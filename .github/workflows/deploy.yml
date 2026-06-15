@@ -1,0 +1,26 @@
+name: Deploy to IONOS
+
+# Läuft bei jedem Push auf main
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: FTP Deploy → training.martinwitte.de
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+        with:
+          server: ${{ secrets.FTP_HOST }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          server-dir: /training.martinwitte.de/
+          log-level: minimal
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/README.md

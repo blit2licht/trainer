@@ -40,7 +40,7 @@ jobs:
           mkdir -p ~/.ssh
           echo "StrictHostKeyChecking no" >> ~/.ssh/config
           lftp -u "$SFTP_USER","$SFTP_PASS" "sftp://$SFTP_HOST" <<EOF
-          mirror --reverse --delete \
+          mirror --reverse \
             --exclude-glob config.php \
             --exclude-glob config.template.php \
             ./website/ /

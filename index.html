@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Training · Martin</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600;700&display=swap');
+
+*, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+
+:root {
+  --bg:#EEF1F5; --card:#FFFFFF; --line:#E2E6EC; --line2:#EDF0F4;
+  --ink:#11131A; --ink2:#444B5A; --ink3:#76808F;
+  --blue:#2563EB; --blue-soft:#E8F0FE; --blue-ink:#1D4ED8;
+  --amber:#D9480F; --amber-soft:#FCEEE5; --amber-ink:#C2410C;
+  --green:#047857; --green-soft:#E1F3EC;
+  --strava:#FC4C02; --strava-soft:#FFF0EB;
+  --gray:#5C6573; --gray-soft:#ECEFF3;
+  --disp:'Space Grotesk', system-ui, sans-serif;
+  --body:'Inter', system-ui, sans-serif;
+  --mono:'JetBrains Mono', monospace;
+  --shadow:0 1px 2px rgba(16,24,40,.04), 0 4px 14px rgba(16,24,40,.05);
+}
+
+html { -webkit-text-size-adjust:100%; }
+body { background:var(--bg); color:var(--ink); font-family:var(--body); line-height:1.5; font-size:16px; min-height:100vh; }
+.shell { max-width:760px; margin:0 auto; padding:22px 16px 64px; }
+
+.view { display:none; }
+.view.active { display:block; animation:fade .22s ease; }
+@keyframes fade { from{opacity:0;transform:translateY(6px);} to{opacity:1;transform:none;} }
+
+/* ── Top bar ── */
+.topbar { display:flex; align-items:flex-end; gap:14px; flex-wrap:wrap; margin-bottom:20px; }
+.brand { font-family:var(--mono); font-size:11px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--ink3); }
+.week-select-wrap { margin-left:auto; position:relative; }
+.week-select-label { display:block; font-family:var(--mono); font-size:9px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--ink3); margin-bottom:5px; }
+select#weekSelect { appearance:none; -webkit-appearance:none; background:var(--card); color:var(--ink); border:1.5px solid var(--line); border-radius:11px; font-family:var(--mono); font-size:13px; font-weight:600; padding:11px 38px 11px 14px; cursor:pointer; transition:border-color .15s; box-shadow:var(--shadow); min-height:44px; }
+select#weekSelect:hover { border-color:var(--blue); }
+.select-chevron { position:absolute; right:14px; bottom:15px; width:13px; height:13px; pointer-events:none; color:var(--ink3); }
+
+/* ── Headers ── */
+.page-header { margin-bottom:18px; }
+.eyebrow { font-family:var(--mono); font-size:11px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--blue); margin-bottom:6px; }
+.page-header h1 { font-family:var(--disp); font-size:30px; font-weight:700; color:var(--ink); letter-spacing:-.02em; line-height:1.08; }
+.page-header .sub { font-size:14px; color:var(--ink2); margin-top:7px; font-weight:500; }
+.detail-sub { font-size:14px; color:var(--ink2); margin:12px 0 26px; line-height:1.55; }
+
+/* ── Legend ── */
+.legend { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:18px; }
+.legend-item { display:inline-flex; align-items:center; gap:6px; font-size:12px; font-weight:600; color:var(--ink2); background:var(--card); border:1px solid var(--line); padding:5px 10px; border-radius:20px; }
+.leg-dot { width:8px; height:8px; border-radius:50%; }
+
+/* ── Day cards ── */
+.days { display:flex; flex-direction:column; gap:12px; }
+.day-card { background:var(--card); border:1px solid var(--line); border-left-width:5px; border-radius:14px; padding:16px 18px; box-shadow:var(--shadow); transition:transform .12s, box-shadow .12s, border-color .12s; }
+.day-card.t-box  { border-left-color:var(--amber); }
+.day-card.t-own  { border-left-color:var(--blue); }
+.day-card.t-rest { border-left-color:#C3CAD4; background:#F7F9FB; }
+.day-card.t-ride { border-left-color:var(--strava); }
+.day-card.clickable { cursor:pointer; }
+.day-card.clickable:hover { transform:translateY(-1px); box-shadow:0 2px 4px rgba(16,24,40,.06),0 10px 24px rgba(37,99,235,.12); border-color:var(--blue); }
+.day-card.clickable:active { transform:translateY(0); }
+
+.dc-head { display:flex; align-items:center; gap:10px; margin-bottom:10px; }
+.dc-day { font-family:var(--disp); font-size:18px; font-weight:700; color:var(--ink); letter-spacing:-.01em; }
+.dc-date { font-family:var(--mono); font-size:12px; font-weight:600; color:var(--ink3); }
+.badge { margin-left:auto; display:inline-flex; align-items:center; gap:5px; padding:5px 11px; border-radius:9px; font-size:12px; font-weight:700; white-space:nowrap; }
+.badge-box  { background:var(--amber-soft); color:var(--amber-ink); }
+.badge-own  { background:var(--blue-soft);  color:var(--blue-ink); }
+.badge-rest { background:var(--gray-soft);  color:var(--gray); }
+.badge-ride { background:var(--strava-soft);color:var(--strava); }
+
+.dc-einheit { font-size:16px; font-weight:600; color:var(--ink); }
+.dc-sub { font-size:13px; color:var(--ink2); margin-top:3px; font-weight:500; }
+.dc-rx { margin-top:11px; display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
+.dc-rx-main { font-family:var(--mono); font-size:15px; font-weight:600; color:var(--ink); line-height:1.45; }
+.dc-rx-main .rv { color:var(--blue-ink); font-weight:700; }
+.rpe-pill { display:inline-block; background:var(--blue-soft); color:var(--blue-ink); font-family:var(--mono); font-size:12px; font-weight:700; padding:3px 9px; border-radius:7px; white-space:nowrap; }
+.dc-note { font-size:13px; color:var(--ink2); margin-top:11px; line-height:1.5; }
+.dc-open { display:inline-flex; align-items:center; gap:6px; margin-top:13px; font-family:var(--mono); font-size:12px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--blue); }
+.dc-open svg { width:14px; height:14px; }
+
+/* ── Strava stats ── */
+.dc-strava { margin-top:13px; padding-top:12px; border-top:1px solid var(--line2); }
+.strava-logo { font-family:var(--mono); font-size:10px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--strava); background:var(--strava-soft); padding:3px 8px; border-radius:6px; display:inline-block; margin-bottom:10px; }
+.dc-strava-grid { display:flex; flex-wrap:wrap; gap:8px; }
+.rs-chip { background:#F5F7FA; border:1px solid var(--line2); border-radius:10px; padding:8px 12px; flex:1 1 calc(25% - 6px); min-width:70px; }
+.rs-label { font-family:var(--mono); font-size:9px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--ink3); margin-bottom:3px; }
+.rs-val { font-family:var(--mono); font-size:18px; font-weight:700; color:var(--ink); line-height:1.1; }
+.rs-unit { font-size:11px; font-weight:500; color:var(--ink3); }
+
+/* ── Notes system ── */
+.note-bar {
+  display:flex; align-items:center; justify-content:space-between;
+  margin-top:14px; padding-top:12px; border-top:1px solid var(--line2);
+}
+.note-toggle-btn {
+  display:inline-flex; align-items:center; gap:6px;
+  font-family:var(--mono); font-size:11px; font-weight:700;
+  letter-spacing:.06em; text-transform:uppercase;
+  color:var(--ink3); background:none; border:none; cursor:pointer; padding:0;
+  transition:color .15s;
+}
+.note-toggle-btn:hover { color:var(--blue); }
+.note-has-indicator {
+  display:inline-flex; align-items:center; gap:5px;
+  font-family:var(--mono); font-size:11px; font-weight:600; color:var(--green);
+}
+.note-rpe-dot {
+  width:9px; height:9px; border-radius:50%; background:var(--green);
+}
+
+.note-panel {
+  display:none; margin-top:12px;
+  background:#F7F9FB; border:1px solid var(--line2);
+  border-radius:11px; padding:14px;
+}
+.note-panel.open { display:block; animation:fade .18s ease; }
+
+.rpe-row { display:flex; gap:8px; margin-bottom:12px; }
+.rpe-btn {
+  flex:1; min-height:44px; border:1.5px solid var(--line);
+  border-radius:10px; background:var(--card); font-size:18px;
+  cursor:pointer; transition:all .15s; display:flex;
+  align-items:center; justify-content:center;
+}
+.rpe-btn:hover { border-color:var(--blue); background:var(--blue-soft); }
+.rpe-btn.selected { border-color:var(--blue); background:var(--blue-soft); box-shadow:0 0 0 2px rgba(37,99,235,.2); }
+
+.note-textarea {
+  width:100%; min-height:80px; border:1.5px solid var(--line);
+  border-radius:10px; padding:11px 13px; font-family:var(--body);
+  font-size:14px; color:var(--ink); background:var(--card);
+  resize:vertical; outline:none; transition:border-color .15s;
+  line-height:1.5;
+}
+.note-textarea:focus { border-color:var(--blue); }
+.note-textarea::placeholder { color:var(--ink3); }
+
+.note-actions { display:flex; align-items:center; gap:12px; margin-top:10px; }
+.note-save-btn {
+  min-height:40px; padding:0 18px; background:var(--blue); color:#fff;
+  border:none; border-radius:9px; font-family:var(--mono); font-size:12px;
+  font-weight:700; letter-spacing:.05em; cursor:pointer; transition:background .15s;
+}
+.note-save-btn:hover { background:var(--blue-ink); }
+.note-save-btn:disabled { background:var(--ink3); cursor:not-allowed; }
+.note-status { font-family:var(--mono); font-size:12px; font-weight:600; color:var(--green); }
+.note-status.err { color:#DC2626; }
+
+/* ── Detail nav ── */
+.nav-back { display:inline-flex; align-items:center; gap:7px; cursor:pointer; color:var(--ink2); font-family:var(--mono); font-size:12px; font-weight:600; padding:11px 15px; background:var(--card); border:1.5px solid var(--line); border-radius:11px; margin-bottom:20px; transition:all .14s; min-height:44px; box-shadow:var(--shadow); }
+.nav-back:hover { color:var(--blue); border-color:var(--blue); }
+.nav-back svg { width:14px; height:14px; }
+.crumb { font-family:var(--mono); font-size:12px; color:var(--ink3); margin-bottom:18px; font-weight:600; }
+.crumb .lnk { color:var(--blue); cursor:pointer; }
+.crumb .sep { margin:0 7px; color:var(--line); }
+
+/* ── Focus blocks ── */
+.blk { margin-bottom:26px; }
+.blk-head { display:flex; align-items:center; gap:11px; margin-bottom:12px; }
+.blk-letter { font-family:var(--mono); font-size:14px; font-weight:700; color:#fff; background:var(--blue); width:30px; height:30px; border-radius:9px; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+.blk-title { font-family:var(--disp); font-size:16px; font-weight:700; color:var(--ink); letter-spacing:-.01em; }
+.blk-sub { font-family:var(--mono); font-size:11px; font-weight:500; color:var(--ink3); margin-top:1px; }
+.exc { background:var(--card); border:1px solid var(--line); border-radius:13px; padding:15px 16px; box-shadow:var(--shadow); margin-bottom:10px; }
+.exc-name { font-family:var(--disp); font-size:18px; font-weight:700; color:var(--ink); letter-spacing:-.01em; line-height:1.2; }
+.exc-name small { display:block; font-family:var(--body); font-size:13px; font-weight:500; color:var(--ink3); margin-top:2px; }
+.exc-data { display:flex; flex-wrap:wrap; gap:8px; margin-top:13px; }
+.chip { background:#F5F7FA; border:1px solid var(--line2); border-radius:10px; padding:8px 12px; min-width:74px; }
+.chip-label { font-family:var(--mono); font-size:9.5px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--ink3); margin-bottom:3px; }
+.chip-val { font-family:var(--mono); font-size:17px; font-weight:700; color:var(--ink); line-height:1.15; }
+.chip-val small { display:block; font-size:11px; font-weight:500; color:var(--ink3); margin-top:2px; letter-spacing:0; }
+.chip.rpe { background:var(--blue-soft); border-color:#D6E4FD; }
+.chip.rpe .chip-label { color:var(--blue-ink); }
+.chip.rpe .chip-val { color:var(--blue-ink); }
+.exc-meta { display:flex; flex-wrap:wrap; gap:14px; margin-top:12px; font-family:var(--mono); font-size:12px; font-weight:500; color:var(--ink2); }
+.exc-meta b { color:var(--ink3); font-weight:600; font-size:9.5px; letter-spacing:.08em; text-transform:uppercase; margin-right:5px; }
+.exc-note { font-size:13px; color:var(--ink2); margin-top:12px; line-height:1.55; padding-top:11px; border-top:1px solid var(--line2); }
+.blk-note { margin-top:11px; padding:12px 14px; background:var(--blue-soft); border-radius:11px; font-size:13px; color:var(--blue-ink); line-height:1.55; font-weight:500; }
+
+/* ── WHOOP ── */
+.whoop-box { margin-top:30px; background:var(--card); border:1px solid var(--line); border-radius:14px; padding:18px; box-shadow:var(--shadow); }
+.whoop-label { display:inline-flex; align-items:center; gap:7px; font-family:var(--mono); font-size:11px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--green); margin-bottom:14px; background:var(--green-soft); padding:5px 11px; border-radius:8px; }
+.whoop-list { list-style:none; }
+.whoop-list li { padding:11px 0; border-bottom:1px solid var(--line2); }
+.whoop-list li:first-child { padding-top:0; }
+.whoop-list li:last-child { border-bottom:none; padding-bottom:0; }
+.w-name { font-family:var(--mono); font-size:14px; font-weight:700; color:var(--ink); }
+.w-detail { font-size:13px; color:var(--ink2); margin-top:3px; font-weight:500; }
+
+.empty { padding:48px; text-align:center; color:var(--ink3); }
+
+@media (max-width:480px){
+  .shell { padding:18px 13px 56px; }
+  .page-header h1 { font-size:26px; }
+  .chip { flex:1 1 calc(50% - 4px); min-width:0; }
+  .rs-chip { flex:1 1 calc(50% - 4px); min-width:0; }
+  .rpe-btn { font-size:20px; }
+}
+</style>
+</head>
+<body>
+<div class="shell">
+
+  <div id="view-week" class="view active">
+    <div class="topbar">
+      <div class="brand">AI Coach · Martin</div>
+      <div class="week-select-wrap">
+        <span class="week-select-label">Woche wählen</span>
+        <select id="weekSelect" onchange="onWeekChange()"></select>
+        <svg class="select-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6l4 4 4-4"/></svg>
+      </div>
+    </div>
+    <div id="weekContent"></div>
+  </div>
+
+  <div id="view-focus" class="view">
+    <div class="nav-back" onclick="showWeek()">
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 3L5 8l5 5"/></svg>
+      Zurück zum Wochenplan
+    </div>
+    <div id="focusContent"></div>
+  </div>
+
+</div>
+
+<script src="data.js"></script>
+<script>
+/* ── Config ─────────────────────────────────────────────── */
+const API_KEY = 'd28088b7-a1a7-4f3c-bfa1-85b8bcde20b1'; // identisch mit config.php
+
+/* ── State ──────────────────────────────────────────────── */
+let currentWeekId = null;
+let weekNotes = {};      // { "2026-06-19": { rpe_feel:4, note_text:"..." } }
+let selectedRPE = {};    // { "2026-06-19": 4 }
+
+/* ── Type config ────────────────────────────────────────── */
+const TYPE = {
+  rest: { cls:'t-rest', badge:'badge-rest', label:'❌ Recovery' },
+  box:  { cls:'t-box',  badge:'badge-box',  label:'📦 Class' },
+  own:  { cls:'t-own',  badge:'badge-own',  label:null },
+  ride: { cls:'t-ride', badge:'badge-ride', label:'🚴 Ride' }
+};
+const RPE_EMOJI = ['','😵','😮‍💨','😐','💪','🔥'];
+
+/* ── Helpers ────────────────────────────────────────────── */
+function splitMain(val){
+  const p = String(val).split('||');
+  return p.length===1 ? p[0] : `${p[0]}<small>${p.slice(1).join(' ')}</small>`;
+}
+function field(headers, row, matchers){
+  for(let i=0;i<headers.length;i++) if(matchers.some(m=>headers[i].toLowerCase().includes(m))) return row[i];
+  return null;
+}
+function getWeek(id){ return DATA.weeks.find(w=>w.id===id); }
+
+/* ── Notes API ──────────────────────────────────────────── */
+async function loadNotes(fromDate, toDate){
+  try {
+    const r = await fetch(`/get_notes.php?from=${fromDate}&to=${toDate}`, {
+      headers: { 'X-Api-Key': API_KEY }
+    });
+    if (!r.ok) return;
+    const d = await r.json();
+    weekNotes = {};
+    (d.notes || []).forEach(n => { weekNotes[n.note_date] = { rpe_feel: parseInt(n.rpe_feel), note_text: n.note_text }; });
+    patchAllNoteUIs();
+  } catch(e) { console.warn('Notes load failed', e); }
+}
+
+async function saveNote(isoDate){
+  const btn  = document.getElementById('nsave-' + isoDate);
+  const stat = document.getElementById('nstat-' + isoDate);
+  const text = document.getElementById('ntext-' + isoDate)?.value || '';
+  const rpe  = selectedRPE[isoDate] || 0;
+
+  btn.disabled = true;
+  btn.textContent = '…';
+
+  try {
+    const r = await fetch('/save_note.php', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'X-Api-Key': API_KEY },
+      body: JSON.stringify({ session_key: isoDate, note_date: isoDate, rpe_feel: rpe, note_text: text })
+    });
+    if (r.ok) {
+      weekNotes[isoDate] = { rpe_feel: rpe, note_text: text };
+      stat.textContent = '✓ Gespeichert';
+      stat.className = 'note-status';
+      patchNoteIndicator(isoDate);
+    } else {
+      stat.textContent = '✗ Fehler';
+      stat.className = 'note-status err';
+    }
+  } catch(e) {
+    stat.textContent = '✗ Offline';
+    stat.className = 'note-status err';
+  }
+
+  btn.disabled = false;
+  btn.textContent = 'Speichern';
+  setTimeout(() => { if(stat) stat.textContent = ''; }, 3000);
+}
+
+/* ── Note UI patches ────────────────────────────────────── */
+function patchAllNoteUIs(){
+  Object.entries(weekNotes).forEach(([date, note]) => patchNoteUI(date, note));
+}
+
+function patchNoteUI(date, note){
+  const ta = document.getElementById('ntext-' + date);
+  if (ta && note.note_text) ta.value = note.note_text;
+  if (note.rpe_feel > 0) {
+    selectedRPE[date] = note.rpe_feel;
+    document.querySelectorAll(`[data-rpe-date="${date}"]`).forEach(btn => {
+      btn.classList.toggle('selected', parseInt(btn.dataset.rpeVal) === note.rpe_feel);
+    });
+  }
+  patchNoteIndicator(date);
+}
+
+function patchNoteIndicator(date){
+  const ind = document.getElementById('nind-' + date);
+  if (!ind) return;
+  const note = weekNotes[date];
+  if (note && (note.rpe_feel > 0 || note.note_text)) {
+    const rpe = note.rpe_feel > 0 ? RPE_EMOJI[note.rpe_feel] : '';
+    ind.innerHTML = `<span class="note-has-indicator"><span class="note-rpe-dot"></span>${rpe} Notiz gespeichert</span>`;
+  } else {
+    ind.innerHTML = '';
+  }
+}
+
+/* ── Toggle note panel ──────────────────────────────────── */
+function toggleNote(isoDate, event){
+  if (event) event.stopPropagation();
+  const panel = document.getElementById('np-' + isoDate);
+  if (!panel) return;
+  panel.classList.toggle('open');
+}
+
+function selectRPE(isoDate, val, event){
+  if (event) event.stopPropagation();
+  selectedRPE[isoDate] = val;
+  document.querySelectorAll(`[data-rpe-date="${isoDate}"]`).forEach(btn => {
+    btn.classList.toggle('selected', parseInt(btn.dataset.rpeVal) === val);
+  });
+}
+
+/* ── Build note block HTML ──────────────────────────────── */
+function buildNoteHTML(isoDate, type){
+  if (type === 'rest') return '';
+  const rpeButtons = RPE_EMOJI.slice(1).map((e,i) =>
+    `<button class="rpe-btn" data-rpe-date="${isoDate}" data-rpe-val="${i+1}"
+             onclick="selectRPE('${isoDate}', ${i+1}, event)">${e}</button>`
+  ).join('');
+  return `
+    <div class="note-bar" onclick="event.stopPropagation()">
+      <button class="note-toggle-btn" onclick="toggleNote('${isoDate}', event)">📝 Notiz</button>
+      <div id="nind-${isoDate}"></div>
+    </div>
+    <div class="note-panel" id="np-${isoDate}" onclick="event.stopPropagation()">
+      <div class="rpe-row">${rpeButtons}</div>
+      <textarea class="note-textarea" id="ntext-${isoDate}"
+                placeholder="Was lief gut / schlecht? Lasten, Energie, Technik…"></textarea>
+      <div class="note-actions">
+        <button class="note-save-btn" id="nsave-${isoDate}"
+                onclick="saveNote('${isoDate}')">Speichern</button>
+        <span class="note-status" id="nstat-${isoDate}"></span>
+      </div>
+    </div>`;
+}
+
+/* ── Render week ────────────────────────────────────────── */
+function initSelect(){
+  const sel = document.getElementById('weekSelect');
+  sel.innerHTML = DATA.weeks.map(w=>`<option value="${w.id}">${w.label}</option>`).join('');
+  currentWeekId = DATA.weeks[0].id;
+  sel.value = currentWeekId;
+}
+
+function onWeekChange(){ currentWeekId=document.getElementById('weekSelect').value; renderWeek(); showWeek(); }
+
+function renderStravaStats(s){
+  return `<div class="dc-strava"><div class="strava-logo">Strava</div>
+    <div class="dc-strava-grid">
+      <div class="rs-chip"><div class="rs-label">Distanz</div><div class="rs-val">${s.km}<span class="rs-unit"> km</span></div></div>
+      <div class="rs-chip"><div class="rs-label">Zeit</div><div class="rs-val">${s.time}</div></div>
+      <div class="rs-chip"><div class="rs-label">Elevation</div><div class="rs-val">${s.elev}<span class="rs-unit"> m</span></div></div>
+      <div class="rs-chip"><div class="rs-label">Ø Speed</div><div class="rs-val">${s.speed}<span class="rs-unit"> km/h</span></div></div>
+    </div></div>`;
+}
+
+function renderWeek(){
+  const w = getWeek(currentWeekId);
+  if(!w){ document.getElementById('weekContent').innerHTML='<div class="empty">Keine Daten.</div>'; return; }
+
+  selectedRPE = {};
+
+  const cards = w.days.map(d => {
+    const t = TYPE[d.type];
+    const label = d.type==='own' ? `🏋️ Focus ${d.focus}` : t.label;
+    const clickable = d.type==='own';
+    const einheit = d.einheit==='—'
+      ? `<div class="dc-einheit" style="color:var(--ink3)">Kein Training</div>`
+      : `<div class="dc-einheit">${d.einheit}</div>${d.sub?`<div class="dc-sub">${d.sub}</div>`:''}`;
+    const rx = d.rx==='—' ? '' :
+      `<div class="dc-rx"><span class="dc-rx-main">${d.rx}</span>${d.rpe?`<span class="rpe-pill">${d.rpe}</span>`:''}</div>`;
+    const strava = (d.type==='ride'&&d.strava) ? renderStravaStats(d.strava) : '';
+    const open   = clickable ? `<div class="dc-open">Routine öffnen <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 3l5 5-5 5"/></svg></div>` : '';
+    const notes  = buildNoteHTML(d.isoDate, d.type);
+
+    return `<div class="day-card ${t.cls}${clickable?' clickable':''}"${clickable?` onclick="showFocus('${d.focus}')"`:''}><div class="dc-head"><span class="dc-day">${d.day}</span><span class="dc-date">${d.date}</span><span class="badge ${t.badge}">${label}</span></div>${einheit}${rx}<div class="dc-note">${d.note}</div>${strava}${open}${notes}</div>`;
+  }).join('');
+
+  document.getElementById('weekContent').innerHTML = `
+    <div class="page-header"><div class="eyebrow">${w.meso}</div><h1>Wochenplan</h1>
+    <div class="sub">${w.label.split('·').slice(1).join('·').trim()} &nbsp;·&nbsp; ${w.phase}</div></div>
+    <div class="legend">
+      <div class="legend-item"><span class="leg-dot" style="background:var(--amber)"></span>📦 Box Class</div>
+      <div class="legend-item"><span class="leg-dot" style="background:var(--blue)"></span>🏋️ Focus-Tag</div>
+      <div class="legend-item"><span class="leg-dot" style="background:#C3CAD4"></span>❌ Recovery</div>
+      <div class="legend-item"><span class="leg-dot" style="background:var(--strava)"></span>🚴 Ride</div>
+    </div>
+    <div class="days">${cards}</div>`;
+
+  // Load notes async — patches UI when ready
+  if (w.dateFrom && w.dateTo) loadNotes(w.dateFrom, w.dateTo);
+}
+
+/* ── Focus day ──────────────────────────────────────────── */
+function renderExercise(headers,row){
+  const name=field(headers,row,['übung']), sets=field(headers,row,['sets','sätze']), dauer=field(headers,row,['dauer']);
+  const last=field(headers,row,['last']), rpe=field(headers,row,['rpe']), tempo=field(headers,row,['tempo']);
+  const rest=field(headers,row,['rest','pause']), note=field(headers,row,['note']);
+  let chips='';
+  if(sets)  chips+=`<div class="chip"><div class="chip-label">Sätze × Wdh</div><div class="chip-val">${splitMain(sets)}</div></div>`;
+  if(dauer) chips+=`<div class="chip"><div class="chip-label">Dauer</div><div class="chip-val">${splitMain(dauer)}</div></div>`;
+  if(last)  chips+=`<div class="chip"><div class="chip-label">Last</div><div class="chip-val">${splitMain(last)}</div></div>`;
+  if(rpe)   chips+=`<div class="chip rpe"><div class="chip-label">RPE</div><div class="chip-val">${rpe}</div></div>`;
+  const meta=[];
+  if(tempo) meta.push(`<span><b>Tempo</b>${tempo}</span>`);
+  if(rest)  meta.push(`<span><b>Pause</b>${rest}</span>`);
+  return `<div class="exc"><div class="exc-name">${splitMain(name)}</div>${chips?`<div class="exc-data">${chips}</div>`:''}${meta.length?`<div class="exc-meta">${meta.join('')}</div>`:''}${note?`<div class="exc-note">${note}</div>`:''}</div>`;
+}
+
+function renderBlock(b){
+  return `<div class="blk"><div class="blk-head"><div class="blk-letter">${b.letter}</div><div><div class="blk-title">${b.title}</div><div class="blk-sub">${b.sub}</div></div></div>${b.rows.map(r=>renderExercise(b.headers,r)).join('')}${b.note?`<div class="blk-note">${b.note}</div>`:''}</div>`;
+}
+
+function renderFocus(key){
+  const w=getWeek(currentWeekId), f=w.focusDays[key];
+  if(!f){ document.getElementById('focusContent').innerHTML='<div class="empty">Kein Focus-Tag.</div>'; return; }
+  const whoop=f.whoop.map(([n,d])=>`<li><div class="w-name">${n}</div><div class="w-detail">${d}</div></li>`).join('');
+  document.getElementById('focusContent').innerHTML=`
+    <div class="crumb"><span class="lnk" onclick="showWeek()">${w.label}</span><span class="sep">/</span>Focus-Tag ${key}</div>
+    <div class="page-header"><div class="eyebrow">${f.date}</div><h1>${f.title}</h1><div class="sub">${f.sub}</div></div>
+    <p class="detail-sub">${f.intro}</p>
+    ${f.blocks.map(renderBlock).join('')}
+    <div class="whoop-box"><div class="whoop-label">⌚ Format 2 — WHOOP Log</div><ul class="whoop-list">${whoop}</ul></div>`;
+}
+
+/* ── Navigation ─────────────────────────────────────────── */
+function showWeek(){ document.querySelectorAll('.view').forEach(v=>v.classList.remove('active')); document.getElementById('view-week').classList.add('active'); window.scrollTo({top:0,behavior:'smooth'}); }
+function showFocus(key){ renderFocus(key); document.querySelectorAll('.view').forEach(v=>v.classList.remove('active')); document.getElementById('view-focus').classList.add('active'); window.scrollTo({top:0,behavior:'smooth'}); }
+
+initSelect();
+renderWeek();
+</script>
+</body>
+</html>

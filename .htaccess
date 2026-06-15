@@ -1,0 +1,6 @@
+<Files "config.php">
+    Order Allow,Deny
+    Deny from all
+</Files>
+
+php_flag display_errors off

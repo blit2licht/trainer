@@ -4,16 +4,33 @@ on:
   push:
     branches: [main]
 
+permissions:
+  contents: write
+
+concurrency:
+  group: production-deploy
+  cancel-in-progress: false
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
 
-      - name: Install lftp
-        run: sudo apt-get install -y lftp
+      - name: Install tools
+        run: sudo apt-get update && sudo apt-get install -y lftp
 
-      - name: Deploy via SFTP
+      - name: Determine expected week
+        id: week
+        shell: bash
+        run: |
+          WEEK_ID="$(sed -n 's/^[[:space:]]*id: "\([^"]*\)",/\1/p' website/data.js | head -n 1)"
+          test -n "$WEEK_ID"
+          echo "id=$WEEK_ID" >> "$GITHUB_OUTPUT"
+
+      - name: Deploy website via SFTP
         env:
           SFTP_HOST: ${{ secrets.FTP_HOST }}
           SFTP_USER: ${{ secrets.FTP_USERNAME }}
@@ -21,13 +38,41 @@ jobs:
         run: |
           mkdir -p ~/.ssh
           echo "StrictHostKeyChecking no" >> ~/.ssh/config
-          lftp -u "$SFTP_USER","$SFTP_PASS" sftp://$SFTP_HOST <<EOF
+          lftp -u "$SFTP_USER","$SFTP_PASS" "sftp://$SFTP_HOST" <<EOF
           mirror --reverse --delete \
-            --exclude-glob .git/ \
-            --exclude-glob .github/ \
-            --exclude-glob SETUP.md \
-            --exclude-glob setup.sql \
+            --exclude-glob config.php \
             --exclude-glob config.template.php \
-            ./ /
+            ./website/ /
           bye
           EOF
+
+      - name: Verify deployment
+        id: verify
+        continue-on-error: true
+        env:
+          EXPECTED_WEEK_ID: ${{ steps.week.outputs.id }}
+        run: |
+          for attempt in 1 2 3 4 5; do
+            if curl --fail --silent --show-error --max-time 20 \
+              https://training.martinwitte.de/data.js | grep --fixed-strings "$EXPECTED_WEEK_ID"; then
+              exit 0
+            fi
+            sleep 12
+          done
+          exit 1
+
+      - name: Revert failed deployment
+        if: steps.verify.outcome == 'failure' && !startsWith(github.event.head_commit.message, 'Revert')
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git revert --no-edit HEAD
+          git push origin HEAD:main
+
+      - name: Report deployment failure
+        if: steps.verify.outcome == 'failure'
+        env:
+          EXPECTED_WEEK_ID: ${{ steps.week.outputs.id }}
+        run: |
+          echo "::error::Website nicht erreichbar oder Wochen-ID $EXPECTED_WEEK_ID wurde nicht ausgeliefert."
+          exit 1

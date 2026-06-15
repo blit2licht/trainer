@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "athlet": {
+    "name": "Martin",
+    "alter": 45,
+    "groesse_cm": 184,
+    "gewicht_kg": 80,
+    "trainingserfahrung_jahre": "13+",
+    "gesundheit": "Keine dauerhaften Verletzungen oder Bewegungseinschränkungen bekannt"
+  },
+  "zielbild": {
+    "apex": "Lange gesund, fit und robust leben und im CrossFit auf Masters-Niveau leistungsfähig bleiben.",
+    "rx_standard": "DreamWOD Level 2 sicher; Level 3 regelmäßig situationsabhängig, aber nicht dauerhaft verpflichtend."
+  },
+  "wochenmodell": {
+    "standard": {
+      "box_tage": 3,
+      "fokus_tage": 2,
+      "radfahrt": "Sonntag, optionales Socializing"
+    },
+    "prioritaet_bei_zeitmangel": [
+      "Fokus-Tage",
+      "Box",
+      "Radfahrt"
+    ],
+    "bei_nur_drei_einheiten": "Beide Fokus-Tage plus wertvollster Box-Tag",
+    "fokus_dauer_min": "60-90",
+    "ausstattung": "Vollständige CrossFit-Box"
+  },
+  "leistungsziele": [
+    {
+      "id": "bar-muscle-up",
+      "ziel": "5 unbroken",
+      "stand": "2 unbroken",
+      "typ": "Gymnastics"
+    },
+    {
+      "id": "toes-to-bar",
+      "ziel": "10 unbroken",
+      "stand": "6 unbroken",
+      "typ": "Gymnastics"
+    },
+    {
+      "id": "weighted-pull-up",
+      "ziel": "6 Wiederholungen mit +5 kg",
+      "stand": "3 Wiederholungen mit +5 kg",
+      "typ": "Gymnastics"
+    },
+    {
+      "id": "strict-hspu",
+      "ziel": "10 unbroken",
+      "stand": "6 unbroken",
+      "typ": "Gymnastics"
+    },
+    {
+      "id": "snatch",
+      "ziel": "65 kg sauber gehoben",
+      "stand": "55 kg",
+      "typ": "1RM-Ziel ohne geplanten Test"
+    },
+    {
+      "id": "clean-and-jerk",
+      "ziel": "85 kg sauber gehoben",
+      "stand": "80 kg",
+      "typ": "1RM-Ziel ohne geplanten Test"
+    },
+    {
+      "id": "front-squat",
+      "ziel": "115 kg sauber gehoben",
+      "stand": "100 kg",
+      "typ": "1RM-Ziel ohne geplanten Test"
+    },
+    {
+      "id": "overhead-squat",
+      "ziel": "mindestens 65 kg sauber gehoben",
+      "stand": "55 kg",
+      "typ": "1RM-Ziel ohne geplanten Test"
+    }
+  ],
+  "ausgeschlossen": [
+    "Ring Muscle-ups"
+  ],
+  "review_rhythmus_wochen": 6,
+  "neue_ziele": "Martin schlägt neue Ziele beim Review vor."
+}

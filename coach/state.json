@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "aktualisiert_am": "2026-06-15",
+  "aktuelle_woche": {
+    "id": "2026-W25",
+    "von": "2026-06-15",
+    "bis": "2026-06-21",
+    "mesocycle": "Meso 2",
+    "woche_im_fokus": 1,
+    "phase": "Reclaim / Kapazität / Robustheit",
+    "veroeffentlichter_plan": "website/data.js"
+  },
+  "aktuelle_foki": {
+    "gymnastics": [
+      "Bar Muscle-up",
+      "Weighted Pull-up",
+      "Strict HSPU",
+      "Toes-to-Bar"
+    ],
+    "weightlifting": [
+      "Snatch",
+      "Clean & Jerk",
+      "Front Squat",
+      "Overhead Squat"
+    ]
+  },
+  "akute_hinweise": [],
+  "hinweis_ablauf": "Beim Wochenreview neu bewerten; spätestens nach 7 Tagen entfernen, wenn nicht erneut bestätigt.",
+  "datenquellen": {
+    "dreamwod": "Manueller Screenshot/Input",
+    "whoop": "Manuell eingefügter Weekly Review und gezielte Detailabfragen",
+    "notizen": "Website-Datenbank über get_notes.php",
+    "strava": "Optional über MCP für Radfahrten"
+  },
+  "naechster_zielreview": "Nach sechs Trainingswochen; Schwerpunkt darf begründet verlängert werden."
+}

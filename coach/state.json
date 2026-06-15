@@ -24,6 +24,34 @@
       "Overhead Squat"
     ]
   },
+  "load_references": {
+    "hinweis": "Arbeitszahlen aus letzten bestätigten Sessions. Beim Wochenreview aus WHOOP auffrischen.",
+    "pause_push_press": {
+      "kg": 70,
+      "rpe": "8-9",
+      "note": "kalibriert; ~15% Pause-Penalty vs. Standard PP"
+    },
+    "push_press_basis": {
+      "kg": 82.5
+    },
+    "squat_snatch_ceiling_w1": {
+      "kg": 52,
+      "note": "W1-Decke Meso 2"
+    },
+    "kb_bottom_up_press": {
+      "kg": 12,
+      "schema": "3x8/8",
+      "rpe": 7
+    },
+    "db_chest_press_medball": {
+      "kg_pro_db": 22.5,
+      "schema": "3x8",
+      "rpe": "7-8"
+    },
+    "barbell_curl_finisher": {
+      "kg": 30
+    }
+  },
   "akute_hinweise": [],
   "hinweis_ablauf": "Beim Wochenreview neu bewerten; spätestens nach 7 Tagen entfernen, wenn nicht erneut bestätigt.",
   "datenquellen": {

@@ -5,9 +5,10 @@
 
 require_once __DIR__ . '/config.php';
 
-// Einfache Cron-Absicherung via URL-Key (selber Key wie API_KEY)
+// Einfache Cron-Absicherung via URL-Key. CRON_KEY bevorzugen; API_KEY bleibt als Übergangs-Fallback.
 $cron_key = $_GET['cron_key'] ?? '';
-if ($cron_key !== API_KEY) {
+$expected_key = defined('CRON_KEY') ? CRON_KEY : (defined('API_KEY') ? API_KEY : '');
+if (!$expected_key || !hash_equals($expected_key, $cron_key)) {
     http_response_code(403);
     exit('Forbidden');
 }

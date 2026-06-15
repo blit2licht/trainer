@@ -1,7 +1,13 @@
 <?php
 header('Content-Type: application/json');
 
-require_once __DIR__ . '/config.php';
+$config_path = __DIR__ . '/config.php';
+if (!is_file($config_path)) {
+    http_response_code(503);
+    echo json_encode(['error' => 'Server configuration missing']);
+    exit;
+}
+require_once $config_path;
 
 // Method
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {

@@ -1,6 +1,11 @@
-Training Session - Personal Trainer Inputs von Claude
+# Trainer
 
+Versioniertes Gedächtnis und Veröffentlichungsoberfläche für Martins KI-gestützten Trainingscoach.
 
-Feature Ideen:
-1. Video Link zu Movement-Videos
-2. 
+- `coach/`: Regeln, Profil, aktueller Zustand, Logbuch und Reviews
+- `website/`: öffentlich ausgelieferter Wochenplan und Notizfunktion
+- `CLAUDE.md`: Einstieg für Claude Code und den Claude-Projekt-Workflow
+
+Die Website zeigt maximal vier Wochen. DreamWOD- und WHOOP-Daten werden manuell eingebracht; in GitHub landen nur verdichtete Ergebnisse.
+
+Die echte `website/config.php` liegt ausschließlich auf dem IONOS-Server und wird beim Deployment weder überschrieben noch gelöscht.

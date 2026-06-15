@@ -33,5 +33,9 @@
     "strava": "Optional über MCP für Radfahrten"
   },
   "naechster_zielreview": "Nach sechs Trainingswochen; Schwerpunkt darf begründet verlängert werden.",
-  "systemstatus": "V1.0-Struktur initialisiert; erster Wochenreview noch offen."
+  "systemstatus": "V1.0-Struktur initialisiert; erster Wochenreview noch offen.",
+  "migration": {
+    "version": "1.0",
+    "abgeschlossen_am": "2026-06-15"
+  }
 }

@@ -28,6 +28,6 @@ jobs:
             --exclude-glob SETUP.md \
             --exclude-glob setup.sql \
             --exclude-glob config.template.php \
-            ./ /training.martinwitte.de/
+            ./ /
           bye
           EOF

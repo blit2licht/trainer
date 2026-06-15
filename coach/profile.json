@@ -31,7 +31,7 @@
     {
       "id": "bar-muscle-up",
       "ziel": "5 unbroken",
-      "stand": "2 unbroken",
+      "stand": "3 unbroken",
       "typ": "Gymnastics"
     },
     {
@@ -78,7 +78,9 @@
     }
   ],
   "ausgeschlossen": [
-    "Ring Muscle-ups"
+    "Ring Muscle-ups",
+    "Handstand Walks",
+    "Crossover Double-Unders"
   ],
   "review_rhythmus_wochen": 6,
   "neue_ziele": "Martin schlägt neue Ziele beim Review vor."

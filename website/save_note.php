@@ -1,5 +1,6 @@
 <?php
 header('Content-Type: application/json');
+header('X-Notes-Version: 2');
 
 $config_path = __DIR__ . '/config.php';
 if (!is_file($config_path)) {
@@ -7,7 +8,21 @@ if (!is_file($config_path)) {
     echo json_encode(['error' => 'Server configuration missing']);
     exit;
 }
-require_once $config_path;
+try {
+    require_once $config_path;
+} catch (Throwable $e) {
+    http_response_code(503);
+    echo json_encode(['error' => 'Server configuration invalid']);
+    exit;
+}
+
+foreach (['DB_HOST', 'DB_NAME', 'DB_USER', 'DB_PASS'] as $required_constant) {
+    if (!defined($required_constant)) {
+        http_response_code(503);
+        echo json_encode(['error' => 'Server configuration incomplete']);
+        exit;
+    }
+}
 
 // Method
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
@@ -65,7 +80,8 @@ try {
 
     echo json_encode(['success' => true]);
 
-} catch (PDOException $e) {
-    http_response_code(500);
-    echo json_encode(['error' => 'Database error']);
+} catch (Throwable $e) {
+    error_log('Notes database error: ' . $e->getMessage());
+    http_response_code(503);
+    echo json_encode(['error' => 'Database unavailable']);
 }

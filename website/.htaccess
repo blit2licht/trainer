@@ -1,3 +1,11 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteRule ^favicon\.ico$ /icons/favicon.php [L]
+    RewriteRule ^favicon-32x32\.png$ /icons/favicon.php [L]
+    RewriteRule ^apple-touch-icon\.png$ /icons/apple-touch-icon.php [L]
+    RewriteRule ^apple-touch-icon-precomposed\.png$ /icons/apple-touch-icon.php [L]
+</IfModule>
+
 <Files "config.php">
     Require all denied
 </Files>

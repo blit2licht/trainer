@@ -52,7 +52,13 @@
       "kg": 30
     }
   },
-  "akute_hinweise": [],
+  "akute_hinweise": [
+    {
+      "datum": "2026-06-19",
+      "betrifft": "Focus A · Samstag 2026-06-20",
+      "hinweis": "Blöcke C (Strict HSPU) und D (GHD) gestrichen. Grund: Team-AMRAP abends. Nur Blöcke A+B ausführen (Pause OHS + Snatch-Komplex bis Ceiling 52 kg)."
+    }
+  ],
   "hinweis_ablauf": "Beim Wochenreview neu bewerten; spätestens nach 7 Tagen entfernen, wenn nicht erneut bestätigt.",
   "datenquellen": {
     "dreamwod": "Manueller Screenshot/Input",

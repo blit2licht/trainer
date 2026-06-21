@@ -140,8 +140,21 @@ select#weekSelect:hover { border-color:var(--blue); }
 /* ── Abbreviation tooltips ── */
 abbr[title] { text-decoration:underline dotted var(--ink3); cursor:help; }
 
-/* ── Today highlight ── */
-.day-card.today { box-shadow:0 4px 24px rgba(4,120,87,.26), 0 1px 5px rgba(4,120,87,.14); }
+/* ── Collapsed day cards ── */
+.day-card.collapsed .dc-body { display:none; }
+.day-card.collapsed { cursor:pointer; opacity:.72; }
+.day-card.collapsed:hover { opacity:1; transform:translateY(-1px); }
+.day-card.collapsed .dc-head { margin-bottom:0; }
+
+/* ── Show-all button ── */
+.show-all-btn {
+  display:block; width:100%; margin-top:4px; padding:12px;
+  background:var(--card); border:1.5px dashed var(--line);
+  border-radius:14px; font-family:var(--mono); font-size:12px;
+  font-weight:700; letter-spacing:.06em; text-transform:uppercase;
+  color:var(--ink3); cursor:pointer; transition:all .15s;
+}
+.show-all-btn:hover { border-color:var(--blue); color:var(--blue); }
 .note-textarea:focus { border-color:var(--blue); }
 .note-textarea::placeholder { color:var(--ink3); }
 
@@ -435,7 +448,8 @@ function renderWeek(){
     const open   = clickable ? `<div class="dc-open">Routine öffnen <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 3l5 5-5 5"/></svg></div>` : '';
     const notes  = buildNoteHTML(d.isoDate, d.type);
 
-    return `<div class="day-card ${t.cls}${clickable?' clickable':''}"${clickable?` onclick="showFocus('${d.focus}')"`:''}><div class="dc-head"><span class="dc-day">${d.day}</span><span class="dc-date">${d.date}</span><span class="badge ${t.badge}">${label}</span></div>${einheit}${rx}<div class="dc-note">${d.note}</div>${strava}${open}${notes}</div>`;
+    const body = `<div class="dc-body">${einheit}${rx}<div class="dc-note">${d.note}</div>${strava}${open}${notes}</div>`;
+    return `<div class="day-card ${t.cls}" id="dc-${d.isoDate}" onclick="toggleDay('${d.isoDate}','${d.focus||''}')"><div class="dc-head"><span class="dc-day">${d.day}</span><span class="dc-date">${d.date}</span><span class="badge ${t.badge}">${label}</span></div>${body}</div>`;
   }).join('');
 
   document.getElementById('weekContent').innerHTML = `
@@ -447,26 +461,39 @@ function renderWeek(){
       <div class="legend-item"><span class="leg-dot" style="background:#C3CAD4"></span>❌ Recovery</div>
       <div class="legend-item"><span class="leg-dot" style="background:var(--strava)"></span>🚴 Ride</div>
     </div>
-    <div class="days">${cards}</div>`;
+    <div class="days">${cards}</div>
+    <button class="show-all-btn" onclick="showAllDays()">Alle Tage anzeigen</button>`;
 
   // Load notes async — patches UI when ready
   if (w.dateFrom && w.dateTo) loadNotes(w.dateFrom, w.dateTo);
 
-  // Scroll to today if viewing current week
+  // Collapse all except today
   const today = new Date().toISOString().slice(0,10);
-  if (w.dateFrom <= today && today <= w.dateTo) {
-    const todayDay = w.days.find(d => d.isoDate === today);
-    if (todayDay) {
-      const idx = w.days.indexOf(todayDay);
-      requestAnimationFrame(() => {
-        const cards = document.querySelectorAll('.day-card');
-        if (cards[idx]) {
-          cards[idx].classList.add('today');
-          cards[idx].scrollIntoView({ behavior:'smooth', block:'start' });
-        }
-      });
-    }
+  requestAnimationFrame(() => {
+    w.days.forEach(d => {
+      const card = document.getElementById('dc-' + d.isoDate);
+      if (!card) return;
+      if (d.isoDate === today && w.dateFrom <= today && today <= w.dateTo) {
+        card.scrollIntoView({ behavior:'smooth', block:'start' });
+      } else {
+        card.classList.add('collapsed');
+      }
+    });
+  });
+}
+
+function toggleDay(isoDate, focusKey) {
+  const card = document.getElementById('dc-' + isoDate);
+  if (!card) return;
+  if (card.classList.contains('collapsed')) {
+    card.classList.remove('collapsed');
+  } else if (focusKey) {
+    showFocus(focusKey);
   }
+}
+
+function showAllDays() {
+  document.querySelectorAll('.day-card.collapsed').forEach(c => c.classList.remove('collapsed'));
 }
 
 /* ── Focus day ──────────────────────────────────────────── */

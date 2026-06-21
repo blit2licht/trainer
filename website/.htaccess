@@ -9,12 +9,3 @@
 <Files "config.php">
     Require all denied
 </Files>
-
-AuthType Basic
-AuthName "Geschuetzter Bereich"
-AuthUserFile /homepages/26/d87812617/htdocs/Coach/.htpasswd
-Require valid-user
-
-<Files ".htpasswd">
-    Require all denied
-</Files>

@@ -452,7 +452,7 @@ function renderWeek(){
     const notes  = buildNoteHTML(d.isoDate, d.type);
 
     const body = `<div class="dc-body">${einheit}${rx}<div class="dc-note">${d.note}</div>${strava}${open}${notes}</div>`;
-    const rpeSlot = `<span id="crpe-${d.isoDate}" style="margin-left:6px;font-size:16px"></span>`;
+    const rpeSlot = '';
     return `<div class="day-card ${t.cls}" id="dc-${d.isoDate}" onclick="toggleDay('${d.isoDate}','${d.focus||''}')"><div class="dc-head"><span class="dc-day">${d.day}</span><span class="dc-date">${d.date}</span><span class="badge ${t.badge}">${label}</span>${rpeSlot}</div>${body}</div>`;
   }).join('');
 

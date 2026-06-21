@@ -136,6 +136,12 @@ select#weekSelect:hover { border-color:var(--blue); }
   resize:vertical; outline:none; transition:border-color .15s;
   line-height:1.5;
 }
+
+/* ── Abbreviation tooltips ── */
+abbr[title] { text-decoration:underline dotted var(--ink3); cursor:help; }
+
+/* ── Today highlight ── */
+.day-card.today { box-shadow:0 0 0 2px var(--blue), var(--shadow); }
 .note-textarea:focus { border-color:var(--blue); }
 .note-textarea::placeholder { color:var(--ink3); }
 
@@ -198,6 +204,7 @@ select#weekSelect:hover { border-color:var(--blue); }
   .chip { flex:1 1 calc(50% - 4px); min-width:0; }
   .rs-chip { flex:1 1 calc(50% - 4px); min-width:0; }
   .rpe-btn { font-size:20px; }
+  .note-textarea { min-height:160px; }
 }
 </style>
 </head>
@@ -228,7 +235,26 @@ select#weekSelect:hover { border-color:var(--blue); }
 
 <script src="data.js"></script>
 <script>
-/* ── Config ─────────────────────────────────────────────── */
+/* ── Abbreviations ──────────────────────────────────────── */
+const ABBR = {
+  'HSPU':'Handstand Push-Up','BMU':'Bar Muscle-Up','MU':'Muscle-Up',
+  'T2B':'Toes-to-Bar','K2E':'Knees-to-Elbow','C&J':'Clean & Jerk',
+  'OHS':'Overhead Squat','FS':'Front Squat','BS':'Back Squat',
+  'PC':'Power Clean','PS':'Power Snatch','SN':'Snatch',
+  'DL':'Deadlift','RDL':'Romanian Deadlift','KB':'Kettlebell',
+  'DB':'Dumbbell','BB':'Barbell','BW':'Bodyweight',
+  'EMOM':'Every Minute on the Minute','AMRAP':'As Many Rounds as Possible',
+  'RFT':'Rounds for Time','NFT':'Not for Time','GHD':'Glute-Ham Developer',
+  'RM':'Repetition Maximum','RPE':'Rate of Perceived Exertion',
+  'Z1':'Zone 1','Z2':'Zone 2','Z3':'Zone 3','HR':'Heart Rate',
+  'CAR':'Controlled Articular Rotation','BWS':'Brustwirbelsäule',
+  'PP':'Push Press','PJ':'Push Jerk','SJ':'Split Jerk'
+};
+function expandAbbr(text){
+  return text.replace(/\b([A-Z][A-Z0-9&]+)\b/g, (m) =>
+    ABBR[m] ? `<abbr title="${ABBR[m]}">${m}</abbr>` : m
+  );
+}
 
 /* ── State ──────────────────────────────────────────────── */
 let currentWeekId = null;
@@ -425,6 +451,22 @@ function renderWeek(){
 
   // Load notes async — patches UI when ready
   if (w.dateFrom && w.dateTo) loadNotes(w.dateFrom, w.dateTo);
+
+  // Scroll to today if viewing current week
+  const today = new Date().toISOString().slice(0,10);
+  if (w.dateFrom <= today && today <= w.dateTo) {
+    const todayDay = w.days.find(d => d.isoDate === today);
+    if (todayDay) {
+      const idx = w.days.indexOf(todayDay);
+      requestAnimationFrame(() => {
+        const cards = document.querySelectorAll('.day-card');
+        if (cards[idx]) {
+          cards[idx].classList.add('today');
+          cards[idx].scrollIntoView({ behavior:'smooth', block:'start' });
+        }
+      });
+    }
+  }
 }
 
 /* ── Focus day ──────────────────────────────────────────── */
@@ -440,7 +482,7 @@ function renderExercise(headers,row){
   const meta=[];
   if(tempo) meta.push(`<span><b>Tempo</b>${tempo}</span>`);
   if(rest)  meta.push(`<span><b>Pause</b>${rest}</span>`);
-  return `<div class="exc"><div class="exc-name">${splitMain(name)}</div>${chips?`<div class="exc-data">${chips}</div>`:''}${meta.length?`<div class="exc-meta">${meta.join('')}</div>`:''}${note?`<div class="exc-note">${note}</div>`:''}</div>`;
+  return `<div class="exc"><div class="exc-name">${expandAbbr(splitMain(name))}</div>${chips?`<div class="exc-data">${chips}</div>`:''}${meta.length?`<div class="exc-meta">${meta.join('')}</div>`:''}${note?`<div class="exc-note">${expandAbbr(note)}</div>`:''}</div>`;
 }
 
 function renderBlock(b){
@@ -456,7 +498,11 @@ function renderFocus(key){
     <div class="page-header"><div class="eyebrow">${f.date}</div><h1>${f.title}</h1><div class="sub">${f.sub}</div></div>
     <p class="detail-sub">${f.intro}</p>
     ${f.blocks.map(renderBlock).join('')}
-    <div class="whoop-box"><div class="whoop-label">⌚ Format 2 — WHOOP Log</div><ul class="whoop-list">${whoop}</ul></div>`;
+    <div class="whoop-box"><div class="whoop-label">⌚ Format 2 — WHOOP Log</div><ul class="whoop-list">${whoop}</ul></div>
+    <div class="nav-back" onclick="showWeek()" style="margin-top:28px">
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 3L5 8l5 5"/></svg>
+      Zurück zum Wochenplan
+    </div>`;
 }
 
 /* ── Navigation ─────────────────────────────────────────── */

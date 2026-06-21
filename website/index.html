@@ -448,7 +448,7 @@ function renderWeek(){
     const rx = d.rx==='—' ? '' :
       `<div class="dc-rx"><span class="dc-rx-main">${d.rx}</span>${d.rpe?`<span class="rpe-pill">${d.rpe}</span>`:''}</div>`;
     const strava = (d.type==='ride'&&d.strava) ? renderStravaStats(d.strava) : '';
-    const open   = clickable ? `<div class="dc-open">Routine öffnen <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 3l5 5-5 5"/></svg></div>` : '';
+    const open   = clickable ? `<div class="dc-open" onclick="openFocus('${d.focus}', event)">Routine öffnen <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 3l5 5-5 5"/></svg></div>` : '';
     const notes  = buildNoteHTML(d.isoDate, d.type);
 
     const body = `<div class="dc-body">${einheit}${rx}<div class="dc-note">${d.note}</div>${strava}${open}${notes}</div>`;
@@ -486,9 +486,14 @@ function toggleDay(isoDate, focusKey) {
   if (!card) return;
   if (card.classList.contains('collapsed')) {
     card.classList.remove('collapsed');
-  } else if (focusKey) {
-    showFocus(focusKey);
+  } else {
+    card.classList.add('collapsed');
   }
+}
+
+function openFocus(focusKey, event) {
+  event.stopPropagation();
+  showFocus(focusKey);
 }
 
 function toggleAllDays() {

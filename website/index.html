@@ -462,7 +462,7 @@ function renderWeek(){
       <div class="legend-item"><span class="leg-dot" style="background:var(--strava)"></span>🚴 Ride</div>
     </div>
     <div class="days">${cards}</div>
-    <button class="show-all-btn" onclick="showAllDays()">Alle Tage anzeigen</button>`;
+    <button class="show-all-btn" id="toggle-days-btn" onclick="toggleAllDays()">Alle Tage anzeigen</button>`;
 
   // Load notes async — patches UI when ready
   if (w.dateFrom && w.dateTo) loadNotes(w.dateFrom, w.dateTo);
@@ -492,8 +492,19 @@ function toggleDay(isoDate, focusKey) {
   }
 }
 
-function showAllDays() {
-  document.querySelectorAll('.day-card.collapsed').forEach(c => c.classList.remove('collapsed'));
+function toggleAllDays() {
+  const btn = document.getElementById('toggle-days-btn');
+  const collapsed = document.querySelectorAll('.day-card.collapsed');
+  if (collapsed.length > 0) {
+    collapsed.forEach(c => c.classList.remove('collapsed'));
+    btn.textContent = 'Nur heute anzeigen';
+  } else {
+    const today = new Date().toISOString().slice(0,10);
+    document.querySelectorAll('.day-card').forEach(c => {
+      if (c.id !== 'dc-' + today) c.classList.add('collapsed');
+    });
+    btn.textContent = 'Alle Tage anzeigen';
+  }
 }
 
 /* ── Focus day ──────────────────────────────────────────── */

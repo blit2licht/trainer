@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "aktualisiert_am": "2026-06-15",
+  "aktualisiert_am": "2026-06-20",
   "aktuelle_woche": {
     "id": "2026-W25",
     "von": "2026-06-15",
@@ -54,9 +54,9 @@
   },
   "akute_hinweise": [
     {
-      "datum": "2026-06-19",
-      "betrifft": "Focus A · Samstag 2026-06-20",
-      "hinweis": "Blöcke C (Strict HSPU) und D (GHD) gestrichen. Grund: Team-AMRAP abends. Nur Blöcke A+B ausführen (Pause OHS + Snatch-Komplex bis Ceiling 52 kg)."
+      "datum": "2026-06-20",
+      "betrifft": "W2-Planung · Focus A Snatch-Ceiling",
+      "hinweis": "Focus A (Snatch-Ceiling 52 kg + OHS) früh in W2 platzieren (Mo/Di). Bedingungen: Focus A vor Focus B; kein schwerer Pulling-/Grip-Box-Tag direkt davor. Grund: Snatch-Reclaim in W25 ausgefallen (Team-AMRAP statt Focus A)."
     }
   ],
   "hinweis_ablauf": "Beim Wochenreview neu bewerten; spätestens nach 7 Tagen entfernen, wenn nicht erneut bestätigt.",

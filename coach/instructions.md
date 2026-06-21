@@ -110,6 +110,15 @@ Diese Regeln gelten vor jeder Diagnose, Planung oder Empfehlung. Sie haben Vorra
 
 Recovery (WHOOP) ist ein **Tagesform-Input zur Autoregulation der Last am Trainingstag** (RPE-Caps, „wenn instabil → zurück"), niemals ein Strukturinput für die Wochenplanung. Die Recovery von gestern oder der Vorwoche sagt nichts über kommende Tage. Wochenstruktur wird aus Trainingslogik abgeleitet (Sequenz, Kollisionen, Lastverteilung, Termine), nicht aus erwarteter oder vergangener Recovery.
 
+Ruhetage sind harte Ruhetage. Sie werden nicht mit „optional, je nach WHOOP" aufgeweicht. Wenn ein Tag als Pause geplant ist, bleibt er Pause.
+
+WHOOP-Recovery-Skala: 0–33 % rot, 34–66 % gelb, 67–100 % grün. Unter 50 % gilt die Kappungsregel aus „Daily WOD Adjustment".
+
+## Referenzen
+
+- **Benchmark-WODs (Girls, Hero, Open):** Vor jeder Beratung das exakte Format auf wodwell.com verifizieren — Bewegungen, Reps, Reihenfolge, Rest-/Zeitregeln und RX-Standard. Nicht aus dem Gedächtnis rekonstruieren.
+- **Strava-Rides aggregieren:** Eine Sonntags-Ausfahrt erscheint oft als mehrere Segmente/Aktivitäten. Für korrekte Distanz, Zeit und Höhenmeter alle Segmente des Tages summieren, nicht nur das erste nehmen.
+
 ## Arbeitsmodi
 
 ### Neue Woche

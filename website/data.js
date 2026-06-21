@@ -7,6 +7,102 @@
 const DATA = {
   weeks: [
     {
+      id: "2026-W26",
+      label: "Woche 2 · 22.–28. Juni 2026",
+      meso: "Meso 2 · Woche 2",
+      phase: "Reclaim / Kapazität / Robustheit",
+      dateFrom: "2026-06-22",
+      dateTo:   "2026-06-28",
+      days: [
+        { day:"Montag",    date:"22.06.", isoDate:"2026-06-22", type:"own",  focus:"A", einheit:"Snatch-Reclaim + OHS-Stabilität", sub:"Pause OHS · Squat Snatch Komplex · Strict HSPU · GHD", rx:"Ceiling <span class='rv'>52 kg</span> W2", rpe:"RPE 8 cap", note:"Geschützter Slot — frisch, nichts davor. Snatch-Reclaim endlich sauber landen (2× ausgefallen). Tagesform regelt die Last über RPE-Caps." },
+        { day:"Dienstag",  date:"23.06.", isoDate:"2026-06-23", type:"rest", einheit:"Mobility", rx:"—", note:"Box-Di = Snatch → würde mit Mo kollidieren. Bewusst frei." },
+        { day:"Mittwoch",  date:"24.06.", isoDate:"2026-06-24", type:"box",  einheit:"Accessory + 16 Min AMRAP", sub:"Goblet Lunges · DB Row · Reverse Fly → AMRAP: STO · FR Reverse Lunges · T2B · Run", rx:"<span class='rv'>L2</span> — Last moderat, AMRAP gleichmäßig", rpe:"RPE ~7", note:"Mixed-Engine, 1 Tag Abstand zu Focus A. Kein Snatch-Overlap." },
+        { day:"Donnerstag",date:"25.06.", isoDate:"2026-06-25", type:"box",  einheit:"Tempo Front Squat + For Time", sub:"5×3 @ 72–77 % (2–3s ab) → 21-15-9 DB Front Squat + Burpee over DB, Run buy-in/cash-out", rx:"Tempo FS submaximal · DB FS <span class='rv'>L2</span>", rpe:"RPE 7–8", note:"Bein-Tag ohne Grip — schirmt Focus B (Fr) ab. Tempo-FS bei 72–77 %, kein Max." },
+        { day:"Freitag",   date:"26.06.", isoDate:"2026-06-26", type:"own",  focus:"B", einheit:"Vertikal-Gymnastics W2", sub:"BMU · Strict HSPU · Pull/T2B · Weighted Pull-up · Mobility", rx:"Auf Anfrage", rpe:"RPE 7–8", note:"Grip isoliert: Do = Beine (kein Grip), Sa = frei. W2-Progression aus geloggter W1-Leistung." },
+        { day:"Samstag",   date:"27.06.", isoDate:"2026-06-27", type:"rest", einheit:"—", rx:"—", note:"Fix: kein Training möglich." },
+        { day:"Sonntag",   date:"28.06.", isoDate:"2026-06-28", type:"box",  einheit:"Team-WOD (2er) · 3 RFT · 36 Min Cap", sub:"20 Strict Pull-up · 30 Push Press · 40 Front Squat · 50/40 Cal Row/Bike", rx:"<span class='rv'>L2 · 40 kg</span> — sozial, nicht ans Cap reden", rpe:"RPE 7", note:"Sonntagvormittag (kein Ride). Split: nach Focus-B-Grip eher Push Press/Front Squat übernehmen, Partner mehr Strict Pull-ups. FS = dritter leichter Bein-Reiz der Woche." }
+      ],
+      focusDays: {
+        A: {
+          title:"🏋️ Focus-Tag A", date:"Montag · 22.06.2026",
+          sub:"Snatch-Reclaim · OHS-Stabilität · Strict HSPU Volumen · GHD · Overhead Mobility",
+          intro:"Geschützter Slot zum Wochenstart — frisch, nichts davor. Ceiling W2 = 52 kg. Erste echte Ausführung (W1 ausgefallen).",
+          blocks:[
+            { letter:"A", title:"Pause OHS — Overhead Aktivierung", sub:"4 Sätze aufsteigend · 2-sec Pause am Bottom",
+              headers:["Übung","Sets × Reps","Last","RPE","Tempo","Rest","Note"],
+              rows:[ ["Pause OHS||2-sec Pause Bottom","4 × 3||40 → 44 → 46 → 48 kg","40 / 44 / 46 / 48 kg","6–7","32X1","2 min","Wenn 48 kg instabil → bei 46 bleiben."] ],
+              note:"Tempo 32X1: 3s descent, 2s Pause unten (aktiv halten), explosiv hoch, 1s oben." },
+            { letter:"B", title:"Squat Snatch Komplex", sub:"Every 2:30 · 5 Sets · Ceiling 52 kg",
+              headers:["Übung","Sets × Reps","Last","RPE","Tempo","Rest","Note"],
+              rows:[ ["Hang Squat Snatch||+ Squat Snatch vom Boden","5 × (1+1)||every 2:30","42 → 46 → 48 → 50 → 52 kg","≤ 8","X","Restliche 2:30","Hang zuerst. Wenn 50 instabil → kein 52."] ],
+              note:"Reclaim-Arbeit, kein Max-Test. Ceiling gilt auch wenn es leicht fühlt. Topgewicht in WHOOP loggen." },
+            { letter:"C", title:"Strict HSPU Volumen", sub:"Hauptarbeit · 4 Sätze · Volumenanker",
+              headers:["Übung","Sets × Reps","Last","RPE","Tempo","Rest","Note"],
+              rows:[ ["Strict HSPU","4 × max−1||W1 war 4×5","BW","8","21X0","3 min","Einen Rep im Tank lassen. Kein Failure, kein Kipping danach."] ] },
+            { letter:"D", title:"GHD Sit-up", sub:"W2 = Gewöhnung fortsetzen · kein Volumen-Push",
+              headers:["Übung","Sets × Reps","Last","RPE","Tempo","Rest","Note"],
+              rows:[ ["GHD Sit-up","3 × 10","BW","6","2010","90 sec","Voller ROM, kein Kipping. Volumen steigt ab W3."] ] },
+            { letter:"E", title:"Overhead & Hip Mobility", sub:"~8 min · Longevity-Faden",
+              headers:["Übung","Dauer","Note"],
+              rows:[
+                ["Lat-Stretch hängend","2 × 45 sec","Overhead-Enge nach Snatch auflösen."],
+                ["Wrist CARs","2 × 10/Seite","Voller Kreisbogen, langsam."],
+                ["Thorakale Extension","1–2 min","Foam Roller · 3 Positionen BWS."],
+                ["Hip-Flexor-Stretch","2 × 45 sec/Seite","90/90 oder Kniestand."]
+              ] }
+          ],
+          whoop:[
+            ["Overhead Squat","4 × 3 Pause · 40 / 44 / 46 / 48 kg · RPE 6–7"],
+            ["Snatch – Barbell","5 × (1+1) every 2:30 · build 42→52 kg · Topgewicht loggen"],
+            ["Handstand Push Up","4 × max−1 strict · BW · W1 war 4×5"],
+            ["GHD Sit Up","3 × 10 · BW · RPE 6"]
+          ]
+        },
+        B: {
+          title:"🏋️ Focus-Tag B", date:"Freitag · 26.06.2026",
+          sub:"Vertikal-Gymnastics · BMU-Progression · Strict HSPU · Pull/T2B · Weighted Pull-up · Mobility",
+          intro:"Metabolisch ruhig. Grip isoliert (Do = Beine, Sa = frei). W2-Progression aus geloggter W1-Leistung — du hast Do alle Ziele am oberen Ende getroffen.",
+          blocks:[
+            { letter:"A", title:"BMU Progression — EMOM", sub:"Akkumulation · Qualität vor Quantität · 10 min",
+              headers:["Übung","Sets × Reps","Last","RPE","Tempo","Rest","Note"],
+              rows:[
+                ["Bar Muscle-Up||Min 1–5","5 × 1–2","BW","7","X","Rest of min","Voller Lockout, kontrollierte Landung. W1 = 10×1 sauber."],
+                ["Bar Muscle-Up||Min 6–10","5 × 2","BW","7–8","X","Rest of min","Doubles wenn sauber. Bei Positionsverlust → Single."]
+              ],
+              note:"Ceiling W2: 12–15 BMU total (W1 = 10). Stop bei Technikverfall. Gesamtreps in WHOOP loggen." },
+            { letter:"B", title:"Pull + T2B Kapazität", sub:"3 Rounds · 90 sec Rest zwischen Rounds",
+              headers:["Übung","Sets × Reps","Last","RPE","Tempo","Rest","Note"],
+              rows:[
+                ["Kipping Pull-up","3 × 8","BW","7","X","30 sec → T2B","Unbroken anstreben."],
+                ["Toes-to-Bar","3 × 7","BW","7","X","90 sec → nächste Round","W1 war 3×6 — ein Rep mehr. Rhythmus halten."]
+              ] },
+            { letter:"C", title:"Strict HSPU Volumen", sub:"Hauptarbeit · 4 Sätze · Volumenanker",
+              headers:["Übung","Sets × Reps","Last","RPE","Tempo","Rest","Note"],
+              rows:[ ["Strict HSPU","4 × 5–6||W1 war 4×5 (auf gelb)","BW","8","21X0","3 min","Einen Rep im Tank lassen. Kein Failure, kein Kipping danach."] ],
+              note:"Tempo 21X0: 2s descent, 1s Stirn, explosiv hoch, keine Pause oben." },
+            { letter:"D", title:"Weighted Pull-up Density", sub:"Kraft-Endurance · Last-Progression W2",
+              headers:["Übung","Sets × Reps","Last","RPE","Tempo","Rest","Note"],
+              rows:[ ["Weighted Pull-up","3 × 3","+5 kg||W1 war +4 kg","7–8","30X1","2 min","Richtung Ziel 6 Reps @ +5 kg. Wenn Rep 3 unsauber → zurück auf +4 kg. Kg loggen."] ] },
+            { letter:"E", title:"Cool-down Mobility", sub:"~5 min · Schulter + Thorax",
+              headers:["Übung","Dauer","Note"],
+              rows:[
+                ["Lat-Stretch hängend","2 × 45 sec","Passive Hängelast, Schulter offen lassen."],
+                ["Shoulder CARs","2 × 8/Seite","Kontrolliert, voller Bewegungsradius."],
+                ["Thorakale Extension","1–2 min","Foam Roller · 3 Positionen entlang der BWS."]
+              ] }
+          ],
+          whoop:[
+            ["Bar Muscle Up","EMOM 10 · 1–2 reps/min · BW · Ziel 12–15 total · Gesamtreps loggen"],
+            ["Pull Up","3 × 8 kipping · BW"],
+            ["Toes to Bar","3 × 7 · BW"],
+            ["Handstand Push Up","4 × 5–6 strict · BW"],
+            ["Pull Up (Weighted)","3 × 3 · +5 kg · RPE 7–8"]
+          ]
+        }
+      }
+    },
+    /* ── W25 ─────────────────────────────────── */
+    {
       id: "2026-W25",
       label: "Woche 1 · 15.–21. Juni 2026",
       meso: "Meso 2 · Woche 1",
@@ -20,9 +116,8 @@ const DATA = {
         { day:"Donnerstag",date:"18.06.", isoDate:"2026-06-18", type:"own",  focus:"B", einheit:"Vertikal-Gymnastics", sub:"BMU-Reclaim · Strict HSPU · Pull/T2B · Mobility", rx:"Auf Anfrage", rpe:"RPE 7–8", note:"Box-Class Do gestrichen. Metabolisch ruhig." },
         { day:"Freitag",   date:"19.06.", isoDate:"2026-06-19", type:"rest", einheit:"Mobility / optionaler Z1–Z2-Spin", rx:"—", note:"Hero gestrichen. Puffer vor Sa-Focus und So-Ride." },
         { day:"Samstag",   date:"20.06.", isoDate:"2026-06-20", type:"own",  focus:"A", einheit:"Snatch-Reclaim + OHS-Stabilität", sub:"Pause OHS · Squat Snatch Komplex · Strict HSPU · GHD", rx:"Ceiling <span class='rv'>52 kg</span> W1", rpe:"RPE 8 cap", note:"Sa-Class gestrichen. Frisch durch Fr-Recovery." },
-        { day:"Sonntag",   date:"21.06.", isoDate:"2026-06-21", type:"ride", einheit:"~75 km Z2/Z3", rx:"<span class='rv'>Fix</span> — nie streichen", note:"Bei schweren Sa-Beinen Intensität anpassen, nicht die Session."
-          /* nach dem Ride beim Recap befüllen:
-          ,strava: { km:"74.6", time:"2h 32m", elev:284, speed:"29.5" } */
+        { day:"Sonntag",   date:"21.06.", isoDate:"2026-06-21", type:"ride", einheit:"~75 km Z2/Z3", rx:"<span class='rv'>Fix</span> — nie streichen", note:"Zwei Rides (Mittag + Nachmittag), Z1/Z2 sozial. Strain 16.6 auf roter Recovery — Wochenende hat Erholung überholt.",
+          strava: { km:"74.5", time:"2h 35m", elev:263, speed:"28.8" }
         }
       ],
       focusDays: {

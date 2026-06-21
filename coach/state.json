@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
-  "aktualisiert_am": "2026-06-20",
+  "aktualisiert_am": "2026-06-21",
   "aktuelle_woche": {
-    "id": "2026-W25",
-    "von": "2026-06-15",
-    "bis": "2026-06-21",
+    "id": "2026-W26",
+    "von": "2026-06-22",
+    "bis": "2026-06-28",
     "mesocycle": "Meso 2",
-    "woche_im_fokus": 1,
+    "woche_im_fokus": 2,
     "phase": "Reclaim / Kapazität / Robustheit",
     "veroeffentlichter_plan": "website/data.js"
   },
@@ -50,13 +50,36 @@
     },
     "barbell_curl_finisher": {
       "kg": 30
+    },
+    "clean_jerk_komplex": {
+      "kg": 75,
+      "rpe": 7,
+      "note": "Squat Clean + Push Jerk Komplex W25; Gwen 15-12-9 mit 52,5 kg alle Sets unbroken"
+    },
+    "weighted_pull_up": {
+      "kg": "+4",
+      "schema": "3x3",
+      "note": "W25-Baseline (Focus B, gelb). W26 → +5 kg."
+    },
+    "strict_hspu": {
+      "schema": "4x5",
+      "note": "W25 4×5 auf gelber Recovery getroffen. W26 → 4×5-6."
+    },
+    "bmu": {
+      "reps_total": 10,
+      "note": "W25: 10×1 saubere Singles (EMOM). W26 → 12-15 total, Doubles."
     }
   },
   "akute_hinweise": [
     {
-      "datum": "2026-06-20",
-      "betrifft": "W2-Planung · Focus A Snatch-Ceiling",
-      "hinweis": "Focus A (Snatch-Ceiling 52 kg + OHS) früh in W2 platzieren (Mo/Di). Bedingungen: Focus A vor Focus B; kein schwerer Pulling-/Grip-Box-Tag direkt davor. Grund: Snatch-Reclaim in W25 ausgefallen (Team-AMRAP statt Focus A)."
+      "datum": "2026-06-21",
+      "betrifft": "W26 · Focus A Snatch-Reclaim",
+      "hinweis": "Focus A auf Montag 22.06 gelegt (geschützter Slot, nichts davor). Snatch-Reclaim ist 2× in Folge ausgefallen (W24 Team-AMRAP, W25 TeamWOD statt Focus A). Wenn auch W26 wieder ausfällt: strukturelles Problem mit dem Samstag-Slot bestätigt → Snatch dauerhaft an den Wochenanfang."
+    },
+    {
+      "datum": "2026-06-21",
+      "betrifft": "Wochenendbelastung",
+      "hinweis": "W25-Wochenende lief Recovery davon: Sa Strain 19.4 + So 16.6 (2 Rides) auf chronischer Schlafschuld → rote Recovery (32%) am So. Schlaf lag die ganze Woche ~1,5-2 h unter Bedarf. Bei künftiger Planung Wochenend-Stacking vermeiden."
     }
   ],
   "hinweis_ablauf": "Beim Wochenreview neu bewerten; spätestens nach 7 Tagen entfernen, wenn nicht erneut bestätigt.",

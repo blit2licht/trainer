@@ -368,7 +368,7 @@ function patchNoteIndicator(date){
     ind.innerHTML = '';
   }
   const crpe = document.getElementById('crpe-' + date);
-  if (crpe) crpe.textContent = (note && note.rpe_feel > 0) ? RPE_EMOJI[note.rpe_feel] : '';
+  if (crpe) crpe.textContent = (note && note.rpe_feel > 0) ? '✅' : '';
 }
 
 /* ── Toggle note panel ──────────────────────────────────── */

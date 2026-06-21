@@ -367,6 +367,8 @@ function patchNoteIndicator(date){
   } else {
     ind.innerHTML = '';
   }
+  const crpe = document.getElementById('crpe-' + date);
+  if (crpe) crpe.textContent = (note && note.rpe_feel > 0) ? RPE_EMOJI[note.rpe_feel] : '';
 }
 
 /* ── Toggle note panel ──────────────────────────────────── */
@@ -437,7 +439,8 @@ function renderWeek(){
 
   const cards = w.days.map(d => {
     const t = TYPE[d.type];
-    const label = d.type==='own' ? `🏋️ Focus ${d.focus}` : t.label;
+    const focusEmoji = d.type==='own' ? (d.focus==='B' ? '💪' : '🏋️') : null;
+    const label = d.type==='own' ? `${focusEmoji} Focus ${d.focus}` : t.label;
     const clickable = d.type==='own';
     const einheit = d.einheit==='—'
       ? `<div class="dc-einheit" style="color:var(--ink3)">Kein Training</div>`
@@ -449,18 +452,14 @@ function renderWeek(){
     const notes  = buildNoteHTML(d.isoDate, d.type);
 
     const body = `<div class="dc-body">${einheit}${rx}<div class="dc-note">${d.note}</div>${strava}${open}${notes}</div>`;
-    return `<div class="day-card ${t.cls}" id="dc-${d.isoDate}" onclick="toggleDay('${d.isoDate}','${d.focus||''}')"><div class="dc-head"><span class="dc-day">${d.day}</span><span class="dc-date">${d.date}</span><span class="badge ${t.badge}">${label}</span></div>${body}</div>`;
+    const rpeSlot = `<span id="crpe-${d.isoDate}" style="margin-left:6px;font-size:16px"></span>`;
+    return `<div class="day-card ${t.cls}" id="dc-${d.isoDate}" onclick="toggleDay('${d.isoDate}','${d.focus||''}')"><div class="dc-head"><span class="dc-day">${d.day}</span><span class="dc-date">${d.date}</span><span class="badge ${t.badge}">${label}</span>${rpeSlot}</div>${body}</div>`;
   }).join('');
 
   document.getElementById('weekContent').innerHTML = `
     <div class="page-header"><div class="eyebrow">${w.meso}</div><h1>Wochenplan</h1>
     <div class="sub">${w.label.split('·').slice(1).join('·').trim()} &nbsp;·&nbsp; ${w.phase} &nbsp;·&nbsp; ${w.id}</div></div>
-    <div class="legend">
-      <div class="legend-item"><span class="leg-dot" style="background:var(--amber)"></span>📦 Box Class</div>
-      <div class="legend-item"><span class="leg-dot" style="background:var(--blue)"></span>🏋️ Focus-Tag</div>
-      <div class="legend-item"><span class="leg-dot" style="background:#C3CAD4"></span>❌ Recovery</div>
-      <div class="legend-item"><span class="leg-dot" style="background:var(--strava)"></span>🚴 Ride</div>
-    </div>
+    <button class="show-all-btn" id="toggle-days-top" onclick="collapseToToday()" style="display:none;margin-bottom:12px">Nur heute anzeigen</button>
     <div class="days">${cards}</div>
     <button class="show-all-btn" id="toggle-days-btn" onclick="toggleAllDays()">Alle Tage anzeigen</button>`;
 
@@ -493,18 +492,26 @@ function toggleDay(isoDate, focusKey) {
 }
 
 function toggleAllDays() {
-  const btn = document.getElementById('toggle-days-btn');
   const collapsed = document.querySelectorAll('.day-card.collapsed');
   if (collapsed.length > 0) {
     collapsed.forEach(c => c.classList.remove('collapsed'));
-    btn.textContent = 'Nur heute anzeigen';
+    document.getElementById('toggle-days-btn').textContent = 'Nur heute anzeigen';
+    document.getElementById('toggle-days-top').style.display = 'block';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   } else {
-    const today = new Date().toISOString().slice(0,10);
-    document.querySelectorAll('.day-card').forEach(c => {
-      if (c.id !== 'dc-' + today) c.classList.add('collapsed');
-    });
-    btn.textContent = 'Alle Tage anzeigen';
+    collapseToToday();
   }
+}
+
+function collapseToToday() {
+  const today = new Date().toISOString().slice(0,10);
+  document.querySelectorAll('.day-card').forEach(c => {
+    if (c.id !== 'dc-' + today) c.classList.add('collapsed');
+  });
+  document.getElementById('toggle-days-btn').textContent = 'Alle Tage anzeigen';
+  document.getElementById('toggle-days-top').style.display = 'none';
+  const todayCard = document.getElementById('dc-' + today);
+  if (todayCard) todayCard.scrollIntoView({ behavior:'smooth', block:'start' });
 }
 
 /* ── Focus day ──────────────────────────────────────────── */

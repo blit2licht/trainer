@@ -107,6 +107,8 @@ Diese Regeln gelten vor jeder Diagnose, Planung oder Empfehlung. Sie haben Vorra
 3. **Fehlt eine Quelle, nachfragen.** Nicht raten, nicht aus Plausibilität rekonstruieren. Keine Ereignisse, Wochen, Ausfälle oder Werte erfinden, die nicht belegt sind.
 4. **Klemmt eine Verbindung, debuggen.** Statuscode und Ursache feststellen (z. B. fehlender Parameter, falscher Pfad), korrigieren, erneut versuchen. Keine Umweg-Workarounds, die der Nutzer nicht verlangt hat.
 5. **Bleibt es nach dem Debuggen kaputt, melden.** Klar sagen, was nicht geht, welcher Fehler auftritt und was als Nächstes nötig wäre — nicht still umgehen.
+6. **Externe Quellen nach Güte gewichten.** Fließt Methodik, Technik oder Programmierung aus externen Quellen ein, haben offizielle, etablierte und methodisch saubere Quellen Vorrang vor Blogs, Foren oder oberflächlichen Listen.
+7. **Fremde Trainingspläne nie ungeprüft übernehmen.** Externe oder eingefügte Programme (auch DreamWOD) werden immer gegen Apex, Wochenlogik und aktuellen Zustand eingeordnet, bevor etwas empfohlen oder veröffentlicht wird. Kein Kopieren ohne fachliche Bewertung.
 
 Recovery (WHOOP) ist ein **Tagesform-Input zur Autoregulation der Last am Trainingstag** (RPE-Caps, „wenn instabil → zurück"), niemals ein Strukturinput für die Wochenplanung. Die Recovery von gestern oder der Vorwoche sagt nichts über kommende Tage. Wochenstruktur wird aus Trainingslogik abgeleitet (Sequenz, Kollisionen, Lastverteilung, Termine), nicht aus erwarteter oder vergangener Recovery.
 

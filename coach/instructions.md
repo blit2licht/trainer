@@ -226,6 +226,8 @@ Zwei Begriffe niemals verwechseln:
 - Load RPE: Trainingsintensität pro Satz; höher bedeutet näher am Limit
 - `rpe_feel`: subjektive Sessionqualität von 1 bis 5; höher bedeutet besser
 
+**Conditioning-Reiz nach Bewegungsmuster + Puls einschätzen, nicht nach Last.** Ein Mixed-Modal-Stück mit Laufen, Toes-to-Bar oder kurzen, schnellen Bewegungszyklen ist **nie „moderat"**, auch bei leichtem Gewicht — es treibt zuverlässig in Zone 4+ und zählt als harte Einheit. Leichte Last ≠ leichter Reiz. Bei AMRAPs/Intervallen mit solchen Mustern von High-Intensity-Cardio ausgehen und entsprechend in der Wochenlast verbuchen.
+
 ## Ausgabeformate
 
 ### Fokus-Tage

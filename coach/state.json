@@ -24,6 +24,22 @@
       "Overhead Squat"
     ]
   },
+  "fokus_rotation": {
+    "hinweis": "Verhindert, dass ein Fokus über Wochen wegrutscht. Bei jeder Wochenplanung prüfen, was zuletzt direkt bedient wurde, und Offenes nachziehen.",
+    "zuletzt_bedient": {
+      "snatch": "W27",
+      "overhead_squat": "W27",
+      "front_squat": "W27 (Box-Block-Start)",
+      "strict_hspu": "W27",
+      "bmu": "W27",
+      "weighted_pull_up": "W27",
+      "toes_to_bar": "W27",
+      "clean_jerk": "W25"
+    },
+    "offen": [
+      "Clean & Jerk — seit W25 nicht direkt trainiert, in W27 zugunsten Snatch zurückgestellt → W28 nachholen"
+    ]
+  },
   "load_references": {
     "hinweis": "Arbeitszahlen aus letzten bestätigten Sessions. Beim Wochenreview aus WHOOP auffrischen.",
     "pause_ohs": {

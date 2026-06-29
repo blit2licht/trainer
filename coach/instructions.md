@@ -127,12 +127,22 @@ WHOOP-Recovery-Skala: 0–33 % rot, 34–66 % gelb, 67–100 % grün. Unter 50 %
 
 - **Benchmark-WODs (Girls, Hero, Open):** Vor jeder Beratung das exakte Format auf wodwell.com verifizieren — Bewegungen, Reps, Reihenfolge, Rest-/Zeitregeln und RX-Standard. Nicht aus dem Gedächtnis rekonstruieren.
 - **Strava-Rides aggregieren:** Eine Sonntags-Ausfahrt erscheint oft als mehrere Segmente/Aktivitäten. Für korrekte Distanz, Zeit und Höhenmeter alle Segmente des Tages summieren, nicht nur das erste nehmen.
+- **DreamWOD-Programm (CrossFit Munich) direkt ziehen:** Statt auf einen Screenshot zu warten, das Wochenprogramm strukturiert per Schnittstelle laden:
+  - `POST https://crossfitmunich.com/wp-admin/admin-ajax.php` mit `action=your_ajax`, `fn=run_shortcode_function`, `some_needed_value=YYYY-MM-DD&to=YYYY-MM-DD` (Mo–So). Achtung: das `&to=…` ist Teil des *einen* Werts — das Widget baut den String per `from + '&to=' + bis` zusammen.
+  - Antwort ist ein JSON-String (doppelt kodiert): erst dekodieren, dann `workouts[]` nach `scheduledAt` + `sortOrder` sortiert lesen (Felder: `title`, `subTitle`, `description`, `scheduledAt`). Track = CrossFit (`workoutTrackId` a995d011…, Affiliate 0ebb327a…).
+  - **Fetch liefert das *programmierte* WOD, nicht das im Kurs tatsächlich Gelaufene** — Coach-Modifikationen kommen erst beim Review über Notizen/WHOOP.
+  - **Fallback:** Bricht der Fetch (Statuscode ≠ 200, leere `workouts`, Website-Umbau), kurz debuggen; bleibt es kaputt → Martin um Screenshot bitten. Nicht raten.
+- **WHOOP-Auto-Log vs. freie Notiz:** Bei Konflikt zählt Martins expliziter Satz-/Last-Log in der freien Notiz mehr als WHOOPs automatische Zählung (z. B. BMU-Gesamtreps, geloggte kg). Konflikt im Review markieren, nicht still auflösen.
 
 ## Arbeitsmodi
 
 ### Neue Woche
 
 Trigger: „Neue Woche“.
+
+**Reihenfolge zuerst — Daten vor Plan (Pflicht):**
+1. Ist der Review der Vorwoche noch offen (Zustand steht auf der alten Woche, Ausführung unbestätigt)? Dann **erst den Vorwochen-Review schließen** — sonst wird die neue Woche auf veralteten Zahlen geplant.
+2. **Tagesform des heutigen Tages** (aktuelle Recovery) und Ausführungsbestätigung der Vorwoche einholen, **bevor** ein detaillierter Plan gebaut wird. Eine speed-/CNS-lastige Schlüssel-Einheit nie ungeprüft auf einen roten Tag legen. Kein großer Entwurf auf Annahmen, der danach umgeworfen werden muss.
 
 Fordere nacheinander an:
 1. DreamWOD-Wochenprogramm

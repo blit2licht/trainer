@@ -6,6 +6,7 @@
 ════════════════════════════════════════════════════════════ */
 const DATA = {
   weeks: [
+    /* ── neue Woche als nächstes Objekt HIER (oben) einfügen ── */
     {
       id: "2026-W27",
       label: "Woche 3 · 29. Juni – 5. Juli 2026",
@@ -299,6 +300,5 @@ const DATA = {
         }
       }
     }
-    /* ── nächste Woche hier davor einfügen ── */
   ]
 };

@@ -131,7 +131,9 @@ WHOOP-Recovery-Skala: 0–33 % rot, 34–66 % gelb, 67–100 % grün. Unter 50 %
   - `POST https://crossfitmunich.com/wp-admin/admin-ajax.php` mit `action=your_ajax`, `fn=run_shortcode_function`, `some_needed_value=YYYY-MM-DD&to=YYYY-MM-DD` (Mo–So). Achtung: das `&to=…` ist Teil des *einen* Werts — das Widget baut den String per `from + '&to=' + bis` zusammen.
   - Antwort ist ein JSON-String (doppelt kodiert): erst dekodieren, dann `workouts[]` nach `scheduledAt` + `sortOrder` sortiert lesen (Felder: `title`, `subTitle`, `description`, `scheduledAt`). Track = CrossFit (`workoutTrackId` a995d011…, Affiliate 0ebb327a…).
   - **Fetch liefert das *programmierte* WOD, nicht das im Kurs tatsächlich Gelaufene** — Coach-Modifikationen kommen erst beim Review über Notizen/WHOOP.
-  - **Fallback:** Bricht der Fetch (Statuscode ≠ 200, leere `workouts`, Website-Umbau), kurz debuggen; bleibt es kaputt → Martin um Screenshot bitten. Nicht raten.
+  - **Nicht im Batch ziehen — eine Woche pro Request, ~30 s Abstand.** Die Seite drosselt schnelle Serien und antwortet dann mit `false` oder leerem `workouts[]` bei HTTP 200 (Soft-Block, kein echter Fehler).
+  - **Leeres/`false`-Ergebnis ist mehrdeutig:** entweder Soft-Block (Drosselung) oder von der Box noch nicht veröffentlicht — in beiden Fällen kein Defekt. Zur Unterscheidung eine **bekannt veröffentlichte Vergangenheitswoche** nachziehen: kommt die auch leer → Drosselung (kurz warten, einzeln wiederholen); kommt sie mit Daten, die Zielwoche aber leer → Programm hängt noch nicht → später erneut ziehen oder Martin fragen/Screenshot.
+  - **Hart kaputt = nur HTTP ≠ 200 oder Parse-/Nicht-JSON-Fehler** → debuggen; bleibt es kaputt → Martin um Screenshot bitten. Nicht raten.
 - **WHOOP-Auto-Log vs. freie Notiz:** Bei Konflikt zählt Martins expliziter Satz-/Last-Log in der freien Notiz mehr als WHOOPs automatische Zählung (z. B. BMU-Gesamtreps, geloggte kg). Konflikt im Review markieren, nicht still auflösen.
 
 ## Arbeitsmodi

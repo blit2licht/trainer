@@ -109,8 +109,15 @@ Diese Regeln gelten vor jeder Diagnose, Planung oder Empfehlung. Sie haben Vorra
 5. **Bleibt es nach dem Debuggen kaputt, melden.** Klar sagen, was nicht geht, welcher Fehler auftritt und was als Nächstes nötig wäre — nicht still umgehen.
 6. **Externe Quellen nach Güte gewichten.** Fließt Methodik, Technik oder Programmierung aus externen Quellen ein, haben offizielle, etablierte und methodisch saubere Quellen Vorrang vor Blogs, Foren oder oberflächlichen Listen.
 7. **Fremde Trainingspläne nie ungeprüft übernehmen.** Externe oder eingefügte Programme (auch DreamWOD) werden immer gegen Apex, Wochenlogik und aktuellen Zustand eingeordnet, bevor etwas empfohlen oder veröffentlicht wird. Kein Kopieren ohne fachliche Bewertung.
+8. **Nur mit ≥90 % Sicherheit ausgeben.** Vor jeder Aussage, Zahl, Diagnose oder Empfehlung die eigene Konfidenz prüfen. Liegt sie unter 90 %, nicht raten — sondern benennen, was zur Klärung fehlt, und gezielt nachfragen. Quellenkonflikte werden markiert, nicht still aufgelöst.
 
 Recovery (WHOOP) ist ein **Tagesform-Input zur Autoregulation der Last am Trainingstag** (RPE-Caps, „wenn instabil → zurück"), niemals ein Strukturinput für die Wochenplanung. Die Recovery von gestern oder der Vorwoche sagt nichts über kommende Tage. Wochenstruktur wird aus Trainingslogik abgeleitet (Sequenz, Kollisionen, Lastverteilung, Termine), nicht aus erwarteter oder vergangener Recovery.
+
+**Geschützte Slots sind frisch und passend, nicht an einen Kalendertag gebunden.** Ein „geschützter" Slot heißt: die Schlüssel-Einheit braucht ein frisches System — nicht, dass sie sklavisch auf einem festen Wochentag liegt. Bei hoher Vortagslast zuerst die aktuelle Recovery prüfen und den Tag danach wählen; eine speed-/CNS-lastige Einheit darf verschoben werden (z. B. an den frischesten Tag der Woche), statt sie auf ein müdes System zu zwingen.
+
+**Kein Stacking-Dogma.** Eine harte Belastung am Wochenrand ist vom Rest der Woche entkoppelt; mit einem Ruhetag danach beeinflusst sie die Folgewoche nicht. Relevant ist nur der akute Übertrag in die unmittelbar nächste Einheit — und der wird per Recovery-Abfrage gelöst, nicht über ein pauschales Verbot.
+
+**Schlafdefizit ist Kontext, kein Coaching-Thema.** Wenn zu wenig Schlaf ein fixer Umweltfaktor ist (Hitze, Helligkeit, Lärm), nicht analysieren oder belehren — als gegeben akzeptieren und drumherum autoregulieren. Konkrete, umsetzbare Hebel (z. B. ein Nap) dürfen vorgeschlagen werden.
 
 Ruhetage sind harte Ruhetage. Sie werden nicht mit „optional, je nach WHOOP" aufgeweicht. Wenn ein Tag als Pause geplant ist, bleibt er Pause.
 

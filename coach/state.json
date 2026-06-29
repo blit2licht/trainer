@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
-  "aktualisiert_am": "2026-06-21",
+  "aktualisiert_am": "2026-06-29",
   "aktuelle_woche": {
-    "id": "2026-W26",
-    "von": "2026-06-22",
-    "bis": "2026-06-28",
+    "id": "2026-W27",
+    "von": "2026-06-29",
+    "bis": "2026-07-05",
     "mesocycle": "Meso 2",
-    "woche_im_fokus": 2,
+    "woche_im_fokus": 3,
     "phase": "Reclaim / Kapazität / Robustheit",
     "veroeffentlichter_plan": "website/data.js"
   },
@@ -26,60 +26,53 @@
   },
   "load_references": {
     "hinweis": "Arbeitszahlen aus letzten bestätigten Sessions. Beim Wochenreview aus WHOOP auffrischen.",
-    "pause_push_press": {
-      "kg": 70,
-      "rpe": "8-9",
-      "note": "kalibriert; ~15% Pause-Penalty vs. Standard PP"
+    "pause_ohs": {
+      "kg": "48-49",
+      "schema": "4x3",
+      "note": "W26-Top sauber. Quellenkonflikt: Notiz 48 ('wie vorgegeben') vs. WHOOP-Log 49. W27 → 50 anvisieren."
     },
     "push_press_basis": {
       "kg": 82.5
     },
-    "squat_snatch_ceiling_w1": {
+    "squat_snatch_ceiling": {
       "kg": 52,
-      "note": "W1-Decke Meso 2"
+      "erreicht_w26": 50,
+      "note": "W26 stoppte bei 50 (Doubles), Ceiling 52 nicht erreicht. Notiz: Hüft-/Drop-Speed langsam → W27 Speed-Bias (Snatch Balance + speed-gated Hang Squat Snatch), nicht Last jagen."
     },
-    "kb_bottom_up_press": {
-      "kg": 12,
-      "schema": "3x8/8",
-      "rpe": 7
-    },
-    "db_chest_press_medball": {
-      "kg_pro_db": 22.5,
-      "schema": "3x8",
-      "rpe": "7-8"
-    },
-    "barbell_curl_finisher": {
-      "kg": 30
+    "front_squat": {
+      "kg_1rm_geschaetzt": 105,
+      "tempo_top_w26": 77.5,
+      "note": "1RM ~105 (Schätzung). FS-Block-Start in der Box ab W27 (Mi, %-basiert bis 88-90%). Lasten RPE-gekappt."
     },
     "clean_jerk_komplex": {
       "kg": 75,
       "rpe": 7,
-      "note": "Squat Clean + Push Jerk Komplex W25; Gwen 15-12-9 mit 52,5 kg alle Sets unbroken"
+      "note": "Squat Clean + Push Jerk Komplex W25. W27 deprioritisiert (Snatch hat geschützten Slot) → W28 nachholen."
     },
     "weighted_pull_up": {
-      "kg": "+4",
+      "kg": "+5",
       "schema": "3x3",
-      "note": "W25-Baseline (Focus B, gelb). W26 → +5 kg."
+      "note": "W26 +5 kg 3×3 bestätigt. Richtung Ziel 6 Reps @ +5."
     },
     "strict_hspu": {
-      "schema": "4x5",
-      "note": "W25 4×5 auf gelber Recovery getroffen. W26 → 4×5-6."
+      "schema": "4x5-6",
+      "note": "W26 4×5 an beiden Tagen sauber. W27 → 4×6 (Focus B) bzw. 4×5-6 (Focus A)."
     },
     "bmu": {
-      "reps_total": 10,
-      "note": "W25: 10×1 saubere Singles (EMOM). W26 → 12-15 total, Doubles."
+      "reps_total": 13,
+      "note": "W26: 5×1 / 3×2 / 2×1 = 13 total (Notiz; WHOOP-Auto zählte 12). W27 → 14-15 total, Doubles."
     }
   },
   "akute_hinweise": [
     {
-      "datum": "2026-06-21",
-      "betrifft": "W26 · Focus A Snatch-Reclaim",
-      "hinweis": "Focus A auf Montag 22.06 gelegt (geschützter Slot, nichts davor). Snatch-Reclaim in W25 (Meso 2 W1, einziger bisheriger Focus-A-Termin) ausgefallen: Sa TeamWOD statt Focus A. W26 = zweiter Anlauf. Wenn er auch jetzt ausfällt: Samstag-Slot taugt nicht für Focus A → Snatch dauerhaft an den Wochenanfang."
+      "datum": "2026-06-29",
+      "betrifft": "Tagesform W27-Start",
+      "hinweis": "Mo 29.06 Recovery 32 % rot (nach So-Strain 19,6: Team-WOD + 74,7 km Rad). Focus A NICHT Montag — Mo Ruhe, Focus A auf Fr verlegt (frischester Slot nach Do-off). Jede Einheit tagesform-gated, <50 % → RPE-Caps."
     },
     {
-      "datum": "2026-06-21",
-      "betrifft": "Wochenendbelastung",
-      "hinweis": "W25-Wochenende lief Recovery davon: Sa Strain 19.4 + So 16.6 (2 Rides) auf chronischer Schlafschuld → rote Recovery (32%) am So. Schlaf lag die ganze Woche ~1,5-2 h unter Bedarf. Bei künftiger Planung Wochenend-Stacking vermeiden."
+      "datum": "2026-06-29",
+      "betrifft": "Slot-Timing-Prinzip",
+      "hinweis": "Geschützter Slot heißt frisch+passend, nicht fix Montag. Vortagslast → erst Recovery prüfen, dann Tag wählen. (Flag 'Snatch-Wochenanfang' aus W26 aufgelöst: Mo-Slot W26 hat funktioniert, aber Timing wird ab jetzt autoreguliert statt fix.)"
     }
   ],
   "hinweis_ablauf": "Beim Wochenreview neu bewerten; spätestens nach 7 Tagen entfernen, wenn nicht erneut bestätigt.",

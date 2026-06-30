@@ -229,6 +229,8 @@ Bei eindeutig als Gesamtgewicht geloggten Kurzhanteln gilt: Gesamtgewicht durch 
 
 Weightlifting-Lasten immer plattenfreundlich angeben — nur Vielfache von 1,25 kg. Verfügbare Scheiben: 1,25 / 2,5 / 5 / 10 / 15 / 20 / 25 kg (kleine olympische Scheiben vorhanden, aber praktisch ungenutzt). Da symmetrisch geladen wird (1,25 kg pro Seite = kleinster Gesamtsprung 2,5 kg), keine krummen Werte wie 42 / 46 / 48, sondern 42,5 / 45 / 47,5 / 50 / 52,5.
 
+WHOOP rundet geloggte Gewichte auf ganze kg (47,5 → 48, 42,5 → 43). Krumme Ganzzahlen aus WHOOP daher nicht wörtlich nehmen, sondern auf das nächste 1,25-Vielfache zurücklesen — Martin nutzt real immer 1,25-Vielfache, nie die kleinen Oly-Scheiben.
+
 Zwei Begriffe niemals verwechseln:
 - Load RPE: Trainingsintensität pro Satz; höher bedeutet näher am Limit
 - `rpe_feel`: subjektive Sessionqualität von 1 bis 5; höher bedeutet besser

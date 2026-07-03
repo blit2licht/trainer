@@ -4,6 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Training · Martin</title>
+<meta name="theme-color" content="#EEF1F5">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Training">
+<link rel="manifest" href="manifest.json">
 <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="icons/favicon-16.png">
 <link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png">
@@ -428,7 +434,7 @@ function initSelect(){
   sel.value = currentWeekId;
 }
 
-function onWeekChange(){ currentWeekId=document.getElementById('weekSelect').value; renderWeek(); showWeek(); }
+function onWeekChange(){ navigate(document.getElementById('weekSelect').value); }
 
 function renderStravaStats(s){
   return `<div class="dc-strava"><div class="strava-logo">Strava</div>
@@ -564,12 +570,56 @@ function renderFocus(key){
     </div>`;
 }
 
-/* ── Navigation ─────────────────────────────────────────── */
-function showWeek(){ document.querySelectorAll('.view').forEach(v=>v.classList.remove('active')); document.getElementById('view-week').classList.add('active'); window.scrollTo({top:0,behavior:'smooth'}); }
-function showFocus(key){ renderFocus(key); document.querySelectorAll('.view').forEach(v=>v.classList.remove('active')); document.getElementById('view-focus').classList.add('active'); window.scrollTo({top:0,behavior:'smooth'}); }
+/* ── Navigation (Hash-Routing) ──────────────────────────────
+   #<weekId>            → Wochenplan, z. B. #2026-W27
+   #<weekId>/<focusKey> → Focus-Tag,  z. B. #2026-W27/A
+   Back-Button/Swipe-Back navigieren damit innerhalb der App. */
+let renderedWeekId = null;
+
+function switchView(id){
+  document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function navigate(wid, fkey){
+  const target = fkey ? `${wid}/${fkey}` : wid;
+  if (location.hash.slice(1) === target) applyRoute();
+  else location.hash = target;
+}
+
+function showWeek(){ navigate(currentWeekId); }
+function showFocus(key){ navigate(currentWeekId, key); }
+
+function applyRoute(){
+  const [wid, fkey] = location.hash.slice(1).split('/');
+  if (wid && getWeek(wid)) {
+    currentWeekId = wid;
+  } else {
+    currentWeekId = DATA.weeks[0].id;
+    history.replaceState(null, '', '#' + currentWeekId);
+  }
+  document.getElementById('weekSelect').value = currentWeekId;
+  if (renderedWeekId !== currentWeekId) {
+    renderWeek();
+    renderedWeekId = currentWeekId;
+  }
+  const w = getWeek(currentWeekId);
+  if (fkey && w.focusDays && w.focusDays[fkey]) {
+    renderFocus(fkey);
+    switchView('view-focus');
+  } else {
+    switchView('view-week');
+  }
+}
+
+window.addEventListener('hashchange', applyRoute);
+
+if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js');
 
 initSelect();
-renderWeek();
+if (!location.hash) history.replaceState(null, '', '#' + currentWeekId);
+applyRoute();
 </script>
 </body>
 </html>

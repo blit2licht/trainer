@@ -16,18 +16,18 @@ const DATA = {
       dateTo:   "2026-07-05",
       days: [
         { day:"Montag",    date:"29.06.", isoDate:"2026-06-29", type:"rest", einheit:"Mobility + Nap", rx:"—", note:"32 % rote Recovery nach So (Strain 19,6). Harter Ruhetag — kein Erzwingen. Wenn möglich 60–90 min Nap am frühen Nachmittag (dunkel/kühl)." },
-        { day:"Dienstag",  date:"30.06.", isoDate:"2026-06-30", type:"own",  focus:"B", einheit:"Vertikal-Gymnastics W3", sub:"BMU · Pull/T2B · Strict HSPU · Weighted Pull-up · Mobility", rx:"Auf Anfrage", rpe:"RPE 7–8", note:"Metabolisch ruhig, niedrigere CNS-Last → verträgt einen noch nicht voll erholten Tag. Morgens Recovery checken." },
-        { day:"Mittwoch",  date:"01.07.", isoDate:"2026-07-01", type:"box",  einheit:"Front Squat Wk1/3 + Intervalle", sub:"FS E2:15×5 (70→90 %) → 4×(3' Work/1' Rest): 200m Run · 10 DL · 5 Burpee o/Bar · Rest-AMRAP Cal", rx:"FS bis <span class='rv'>~92,5–95 kg</span> · DL <span class='rv'>L2 80 kg</span>", rpe:"RPE ≤8", note:"FS-Block-Start (1RM ~105). Letzter Satz im roten Wochenkontext nicht prügeln. DL moderat — Di hatte Grip." },
-        { day:"Donnerstag",date:"02.07.", isoDate:"2026-07-02", type:"rest", einheit:"—", rx:"—", note:"Termin 7:00 — kein Training. = Recovery-Puffer vor Focus A." },
-        { day:"Freitag",   date:"03.07.", isoDate:"2026-07-03", type:"own",  focus:"A", einheit:"Snatch-Speed-Reclaim + OHS", sub:"Pause OHS · Snatch Balance · Hang Squat Snatch · Strict HSPU · GHD", rx:"Ceiling <span class='rv'>52 kg</span> · Speed-Bias", rpe:"RPE 8 cap", note:"Frischester Slot der Woche (Do off davor). Speed vor kg — bei langsamem Turnover stoppen. W26 erreichte nur 50, Hüft-/Drop-Speed ist die Baustelle." },
-        { day:"Samstag",   date:"04.07.", isoDate:"2026-07-04", type:"rest", einheit:"—", rx:"—", note:"Box-Sa (OHS/Power-Snatch) würde Focus A doppeln. Ruhe schützt Recovery." },
+        { day:"Dienstag",  date:"30.06.", isoDate:"2026-06-30", type:"own",  focus:"A", einheit:"Snatch-Speed-Reclaim + OHS", sub:"Pause OHS · Snatch Balance · Hang Squat Snatch · Strict HSPU · GHD", rx:"Ceiling <span class='rv'>52 kg</span> · Speed-Bias", rpe:"RPE 8 cap", note:"Vorgezogen von Fr — Zeit und Tagesform sprachen am Di für Snatch. Speed vor kg — bei langsamem Turnover stoppen. W26 erreichte nur 50, Hüft-/Drop-Speed ist die Baustelle." },
+        { day:"Mittwoch",  date:"01.07.", isoDate:"2026-07-01", type:"box",  einheit:"Front Squat Wk1/3 + Intervalle", sub:"FS E2:15×5 (70→90 %) → 4×(3' Work/1' Rest): 200m Run · 10 DL · 5 Burpee o/Bar · Rest-AMRAP Cal", rx:"FS bis <span class='rv'>~92,5–95 kg</span> · DL <span class='rv'>L2 80 kg</span>", rpe:"RPE ≤8", note:"FS-Block-Start (1RM ~105). Letzter Satz im roten Wochenkontext nicht prügeln." },
+        { day:"Donnerstag",date:"02.07.", isoDate:"2026-07-02", type:"rest", einheit:"—", rx:"—", note:"Termin 7:00 — kein Training." },
+        { day:"Freitag",   date:"03.07.", isoDate:"2026-07-03", type:"rest", einheit:"—", rx:"—", note:"Snatch bereits Di erledigt. Restday." },
+        { day:"Samstag",   date:"04.07.", isoDate:"2026-07-04", type:"own",  focus:"B", einheit:"Vertikal-Gymnastics W3", sub:"BMU · Pull/T2B · Strict HSPU · Weighted Pull-up · Mobility", rx:"Auf Anfrage", rpe:"RPE 7–8", note:"Nachgezogen von Di. Zwei Ruhetage davor (Do+Fr) → frisch für Grip/Pull. Kein Konflikt mit Mi-FS (Beine) oder So-Ride." },
         { day:"Sonntag",   date:"05.07.", isoDate:"2026-07-05", type:"ride", einheit:"Social-Ride Z1/Z2", rx:"<span class='rv'>optional</span>", note:"Sozial, Z1/Z2 halten — nicht mit Strain überlagern (zuletzt das Problem)." }
       ],
       focusDays: {
         A: {
-          title:"🏋️ Focus-Tag A", date:"Freitag · 03.07.2026",
+          title:"🏋️ Focus-Tag A", date:"Dienstag · 30.06.2026",
           sub:"Snatch-Speed-Reclaim · OHS-Progression · Strict HSPU Volumen · GHD · Overhead Mobility",
-          intro:"Frischester Tag der Woche — Do-Termin = Ruhepuffer davor. W26 stoppte bei 50 kg, Hüft-/Drop-Speed war langsam. Diese Woche Speed jagen, nicht Last. Ceiling 52 bleibt, gilt aber nur bei schnellem Turnover.",
+          intro:"Vorgezogen von Fr auf Di — Zeit und Tagesform sprachen am Di für Snatch. W26 stoppte bei 50 kg, Hüft-/Drop-Speed war langsam. Diese Woche Speed jagen, nicht Last. Ceiling 52 bleibt, gilt aber nur bei schnellem Turnover.",
           blocks:[
             { letter:"A", title:"Pause OHS — Overhead Aktivierung", sub:"4 Sätze aufsteigend · 2-sec Pause am Bottom",
               headers:["Übung","Sets × Reps","Last","RPE","Tempo","Rest","Note"],
@@ -64,9 +64,9 @@ const DATA = {
           ]
         },
         B: {
-          title:"🏋️ Focus-Tag B", date:"Dienstag · 30.06.2026",
+          title:"🏋️ Focus-Tag B", date:"Samstag · 04.07.2026",
           sub:"Vertikal-Gymnastics · BMU-Progression · Strict HSPU · Pull/T2B · Weighted Pull-up · Mobility",
-          intro:"Metabolisch ruhig. Grip isoliert (Mi = Beine, Do = frei). W3-Progression aus geloggter W2-Leistung (BMU 13 total, WPU +5 kg). Morgens kurz gegen Recovery checken — niedrigere CNS-Last als Focus A, daher hier vertretbar.",
+          intro:"Nachgezogen von Di auf Sa (Snatch war am Di dran). Grip isoliert: Mi = Beine (Front Squat), Do+Fr = Ruhe davor. W3-Progression aus geloggter W2-Leistung (BMU 13 total, WPU +5 kg).",
           blocks:[
             { letter:"A", title:"BMU Progression — EMOM", sub:"Akkumulation · Qualität vor Quantität · 10 min",
               headers:["Übung","Sets × Reps","Last","RPE","Tempo","Rest","Note"],

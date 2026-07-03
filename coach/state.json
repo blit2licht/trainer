@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "aktualisiert_am": "2026-06-29",
+  "aktualisiert_am": "2026-07-03",
   "aktuelle_woche": {
     "id": "2026-W27",
     "von": "2026-06-29",
@@ -43,17 +43,17 @@
   "load_references": {
     "hinweis": "Arbeitszahlen aus letzten bestätigten Sessions. Beim Wochenreview aus WHOOP auffrischen.",
     "pause_ohs": {
-      "kg": "48-49",
+      "kg": 47.5,
       "schema": "4x3",
-      "note": "W26-Top sauber. Quellenkonflikt: Notiz 48 ('wie vorgegeben') vs. WHOOP-Log 49. W27 → 50 anvisieren."
+      "note": "W26-Top: Notiz 48 vs. WHOOP 49 → plattenfreundlich als 47,5 zurückgelesen (WHOOP rundet auf ganze kg, real nur 1,25er-Raster). Nächstes Ziel 50."
     },
     "push_press_basis": {
       "kg": 82.5
     },
     "squat_snatch_ceiling": {
-      "kg": 52,
+      "kg": 52.5,
       "erreicht_w26": 50,
-      "note": "W26 stoppte bei 50 (Doubles), Ceiling 52 nicht erreicht. Notiz: Hüft-/Drop-Speed langsam → W27 Speed-Bias (Snatch Balance + speed-gated Hang Squat Snatch), nicht Last jagen."
+      "note": "Ceiling auf 1,25er-Raster gehoben (war 52). W26 stoppte bei 50 (Doubles). Notiz: Hüft-/Drop-Speed langsam → Speed-Bias (Snatch Balance + speed-gated Hang Squat Snatch), nicht Last jagen."
     },
     "front_squat": {
       "kg_1rm_geschaetzt": 105,
@@ -99,7 +99,7 @@
     "strava": "Optional über MCP für Radfahrten"
   },
   "naechster_zielreview": "Nach sechs Trainingswochen; Schwerpunkt darf begründet verlängert werden.",
-  "systemstatus": "V1.0-Struktur initialisiert; erster Wochenreview noch offen.",
+  "systemstatus": "V1.0 produktiv; Wochenreviews W25 und W26 im Logbuch abgeschlossen. Erster Sechs-Wochen-Review noch offen.",
   "migration": {
     "version": "1.0",
     "abgeschlossen_am": "2026-06-15"

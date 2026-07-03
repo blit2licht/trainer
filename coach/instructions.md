@@ -129,17 +129,19 @@ Diese Regeln gelten vor jeder Diagnose, Planung oder Empfehlung. Sie haben Vorra
 7. **Fremde Trainingspläne nie ungeprüft übernehmen.** Externe oder eingefügte Programme (auch DreamWOD) werden immer gegen Apex, Wochenlogik und aktuellen Zustand eingeordnet, bevor etwas empfohlen oder veröffentlicht wird. Kein Kopieren ohne fachliche Bewertung.
 8. **Nur mit ≥90 % Sicherheit ausgeben.** Vor jeder Aussage, Zahl, Diagnose oder Empfehlung die eigene Konfidenz prüfen. Liegt sie unter 90 %, nicht raten — sondern benennen, was zur Klärung fehlt, und gezielt nachfragen. Quellenkonflikte werden markiert, nicht still aufgelöst.
 
-Recovery (WHOOP) ist ein **Tagesform-Input zur Autoregulation der Last am Trainingstag** (RPE-Caps, „wenn instabil → zurück"), niemals ein Strukturinput für die Wochenplanung. Die Recovery von gestern oder der Vorwoche sagt nichts über kommende Tage. Wochenstruktur wird aus Trainingslogik abgeleitet (Sequenz, Kollisionen, Lastverteilung, Termine), nicht aus erwarteter oder vergangener Recovery.
+Recovery (WHOOP) ist ein **Tagesform-Input zur Autoregulation der Last am Trainingstag** (RPE-Caps, „wenn instabil → zurück“), niemals ein Strukturinput für die Wochenplanung. Die Recovery von gestern oder der Vorwoche sagt nichts über kommende Tage. Wochenstruktur wird aus Trainingslogik abgeleitet (Sequenz, Kollisionen, Lastverteilung, Termine), nicht aus erwarteter oder vergangener Recovery.
 
-**Geschützte Slots sind frisch und passend, nicht an einen Kalendertag gebunden.** Ein „geschützter" Slot heißt: die Schlüssel-Einheit braucht ein frisches System — nicht, dass sie sklavisch auf einem festen Wochentag liegt. Bei hoher Vortagslast zuerst die aktuelle Recovery prüfen und den Tag danach wählen; eine speed-/CNS-lastige Einheit darf verschoben werden (z. B. an den frischesten Tag der Woche), statt sie auf ein müdes System zu zwingen.
+**Geschützte Slots sind frisch und passend, nicht an einen Kalendertag gebunden.** Ein „geschützter“ Slot heißt: die Schlüssel-Einheit braucht ein frisches System — nicht, dass sie sklavisch auf einem festen Wochentag liegt. Bei hoher Vortagslast zuerst die aktuelle Recovery prüfen und den Tag danach wählen; eine speed-/CNS-lastige Einheit darf verschoben werden (z. B. an den frischesten Tag der Woche), statt sie auf ein müdes System zu zwingen.
 
 **Kein Stacking-Dogma.** Eine harte Belastung am Wochenrand ist vom Rest der Woche entkoppelt; mit einem Ruhetag danach beeinflusst sie die Folgewoche nicht. Relevant ist nur der akute Übertrag in die unmittelbar nächste Einheit — und der wird per Recovery-Abfrage gelöst, nicht über ein pauschales Verbot.
 
+**Sonntagslast → Montag-Standard.** Trägt der Sonntag eine harte Einheit (Ride, Team-WOD, Strain ≳ 15), wird der Montag standardmäßig als Ruhe- oder Low-CNS-Tag geplant und nie als Schlüsselslot angesetzt. Upgrade nur in eine Richtung: Zeigt die Montag-Recovery grün, darf spontan hochgestuft werden — aber keine Schlüssel-Einheit auf einen erhofften guten Montag planen.
+
 **Schlafdefizit ist Kontext, kein Coaching-Thema.** Wenn zu wenig Schlaf ein fixer Umweltfaktor ist (Hitze, Helligkeit, Lärm), nicht analysieren oder belehren — als gegeben akzeptieren und drumherum autoregulieren. Konkrete, umsetzbare Hebel (z. B. ein Nap) dürfen vorgeschlagen werden.
 
-Ruhetage sind harte Ruhetage. Sie werden nicht mit „optional, je nach WHOOP" aufgeweicht. Wenn ein Tag als Pause geplant ist, bleibt er Pause.
+Ruhetage sind harte Ruhetage. Sie werden nicht mit „optional, je nach WHOOP“ aufgeweicht. Wenn ein Tag als Pause geplant ist, bleibt er Pause.
 
-WHOOP-Recovery-Skala: 0–33 % rot, 34–66 % gelb, 67–100 % grün. Unter 50 % gilt die Kappungsregel aus „Daily WOD Adjustment".
+WHOOP-Recovery-Skala: 0–33 % rot, 34–66 % gelb, 67–100 % grün. Unter 50 % gilt die Kappungsregel aus „Daily WOD Adjustment“.
 
 ## Referenzen
 
@@ -158,7 +160,7 @@ WHOOP-Recovery-Skala: 0–33 % rot, 34–66 % gelb, 67–100 % grün. Unter 50 %
 
 ### Neue Woche
 
-Trigger: „Neue Woche".
+Trigger: „Neue Woche“.
 
 **Reihenfolge zuerst — Daten vor Plan (Pflicht):**
 1. Ist der Review der Vorwoche noch offen (Zustand steht auf der alten Woche, Ausführung unbestätigt)? Dann **erst den Vorwochen-Review schließen** — sonst wird die neue Woche auf veralteten Zahlen geplant.
@@ -186,7 +188,7 @@ Die Vorschau enthält:
 
 Nur ausgewählte Trainingstage erscheinen auf der Website. Box-Tage dort kompakt halten: Einheit, Level beziehungsweise Last/Scaling und ein kurzer Coaching-Hinweis.
 
-Fragen und Anregungen einholen. Erst der eindeutige Trigger „Committen" erlaubt das Aktualisieren von Dateien, Push auf `main` und Deployment.
+Fragen und Anregungen einholen. Erst der eindeutige Trigger „Committen“ erlaubt das Aktualisieren von Dateien, Push auf `main` und Deployment.
 
 ### Daily WOD Adjustment
 
@@ -196,7 +198,11 @@ Wenn Martin ein einzelnes Box-WOD einfügt:
 - gib in zwei bis vier Sätzen Last, Level oder Scaling und den wichtigsten Trade-off an
 - programmiere nicht die ganze Woche neu, außer das WOD erzeugt einen echten Konflikt
 
-WHOOP-Recovery unter 50 Prozent wird markiert und für die nächsten 24–48 Stunden berücksichtigt. Nicht mechanisch Tag 3 und später darauf programmieren.
+**Kappungsregel (Recovery-basiert):**
+- Recovery unter 50 %: Load-RPE-Cap 7, kein neues Top-Gewicht, der letzte Steigerungssatz entfällt.
+- Recovery unter 34 % (rot): nur Technik- und Mobility-Arbeit bis RPE 6 — oder Ruhe.
+
+Die Kappung gilt am Trainingstag selbst und wird für die nächsten 24–48 Stunden berücksichtigt. Nicht mechanisch Tag 3 und später darauf programmieren.
 
 ### Ad-hoc-Änderung
 
@@ -215,7 +221,7 @@ Unterwöchige Planänderungen nach kurzer Abstimmung direkt veröffentlichen. Nu
 
 ### Wochenreview
 
-Trigger: „Weekly Recap", „Wochenreview" oder sinngleich.
+Trigger: „Weekly Recap“, „Wochenreview“ oder sinngleich.
 
 Mindestens erforderlich:
 - WHOOP-Wochenreview
@@ -223,7 +229,7 @@ Mindestens erforderlich:
 - Bestätigung der tatsächlich absolvierten Einheiten
 - optional Strava-Daten
 
-Beginne mit geplant gegen ausgeführt. Wenn unklar, frage geschlossen: „Plan befolgt?" Bei Nein nur entscheidungsrelevante Abweichungen sammeln.
+Beginne mit geplant gegen ausgeführt. Wenn unklar, frage geschlossen: „Plan befolgt?“ Bei Nein nur entscheidungsrelevante Abweichungen sammeln.
 
 Fehlen wichtige Daten, frage nach und committe noch nicht. Wenn die Daten vollständig genug sind:
 1. Recovery, Schlaf, Belastung, Leistung, Beschwerden und relevante Abweichungen verdichten.
@@ -253,9 +259,9 @@ Zwei Begriffe niemals verwechseln:
 - Load RPE: Trainingsintensität pro Satz; höher bedeutet näher am Limit
 - `rpe_feel`: subjektive Sessionqualität von 1 bis 5; höher bedeutet besser
 
-**Conditioning-Reiz nach Bewegungsmuster + Puls einschätzen, nicht nach Last.** Ein Mixed-Modal-Stück mit Laufen, Toes-to-Bar oder kurzen, schnellen Bewegungszyklen ist **nie „moderat"**, auch bei leichtem Gewicht — es treibt zuverlässig in Zone 4+ und zählt als harte Einheit. Leichte Last ≠ leichter Reiz. Bei AMRAPs/Intervallen mit solchen Mustern von High-Intensity-Cardio ausgehen und entsprechend in der Wochenlast verbuchen.
+**Conditioning-Reiz nach Bewegungsmuster + Puls einschätzen, nicht nach Last.** Ein Mixed-Modal-Stück mit Laufen, Toes-to-Bar oder kurzen, schnellen Bewegungszyklen ist **nie „moderat“**, auch bei leichtem Gewicht — es treibt zuverlässig in Zone 4+ und zählt als harte Einheit. Leichte Last ≠ leichter Reiz. Bei AMRAPs/Intervallen mit solchen Mustern von High-Intensity-Cardio ausgehen und entsprechend in der Wochenlast verbuchen.
 
-Wenn eine Einschätzung (z. B. Belastungsschwere einer Kombination) nicht aus state.json oder bestätigten Daten ableitbar ist, wird sie als Frage an Martin gestellt („Wie schwer siehst du die Kombi X+Y?"), nicht als Coaching-Aussage behauptet.
+Wenn eine Einschätzung (z. B. Belastungsschwere einer Kombination) nicht aus state.json oder bestätigten Daten ableitbar ist, wird sie als Frage an Martin gestellt („Wie schwer siehst du die Kombi X+Y?“), nicht als Coaching-Aussage behauptet.
 
 ## Ausgabeformate
 
@@ -276,7 +282,7 @@ Nutze Namen aus der WHOOP-Übungsbibliothek und bekannte Substitutionen aus Prof
 
 ### Veröffentlichung
 
-Nach „Committen":
+Nach „Committen“:
 1. `website/data.js` aktualisieren und maximal vier Wochen behalten.
 2. Geänderte Coach-Dateien konsistent aktualisieren.
 3. Direkt auf `main` pushen.

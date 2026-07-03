@@ -298,6 +298,10 @@ function field(headers, row, matchers){
   return null;
 }
 function getWeek(id){ return DATA.weeks.find(w=>w.id===id); }
+function todayLocal(){
+  const d = new Date();
+  return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+}
 
 /* ── Notes API ──────────────────────────────────────────── */
 async function loadNotes(fromDate, toDate){
@@ -472,7 +476,7 @@ function renderWeek(){
   if (w.dateFrom && w.dateTo) loadNotes(w.dateFrom, w.dateTo);
 
   // Collapse all except today
-  const today = new Date().toISOString().slice(0,10);
+  const today = todayLocal();
   requestAnimationFrame(() => {
     w.days.forEach(d => {
       const card = document.getElementById('dc-' + d.isoDate);
@@ -514,7 +518,7 @@ function toggleAllDays() {
 }
 
 function collapseToToday() {
-  const today = new Date().toISOString().slice(0,10);
+  const today = todayLocal();
   document.querySelectorAll('.day-card').forEach(c => {
     if (c.id !== 'dc-' + today) c.classList.add('collapsed');
   });

@@ -9,3 +9,14 @@
 <Files "config.php">
     Require all denied
 </Files>
+
+<IfModule mod_headers.c>
+    # Veränderliche Dateien: immer revalidieren, damit Planänderungen sofort ankommen
+    <FilesMatch "^(index\.html|data\.js|sw\.js|manifest\.json)$">
+        Header set Cache-Control "no-cache"
+    </FilesMatch>
+    # Icons ändern sich praktisch nie
+    <FilesMatch "\.(png|ico)$">
+        Header set Cache-Control "public, max-age=2592000"
+    </FilesMatch>
+</IfModule>

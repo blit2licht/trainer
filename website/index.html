@@ -15,8 +15,10 @@
 <link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
 <link rel="icon" type="image/png" sizes="512x512" href="icons/icon-512.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600;700&display=swap">
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600;700&display=swap');
 
 *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
 
@@ -46,7 +48,7 @@ body { background:var(--bg); color:var(--ink); font-family:var(--body); line-hei
 .topbar { display:flex; align-items:flex-end; gap:14px; flex-wrap:wrap; margin-bottom:20px; }
 .brand { font-family:var(--mono); font-size:11px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--ink3); }
 .week-select-wrap { margin-left:auto; position:relative; }
-.week-select-label { display:block; font-family:var(--mono); font-size:9px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--ink3); margin-bottom:5px; }
+.week-select-label { display:block; font-family:var(--mono); font-size:11px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--ink3); margin-bottom:5px; }
 select#weekSelect { appearance:none; -webkit-appearance:none; background:var(--card); color:var(--ink); border:1.5px solid var(--line); border-radius:11px; font-family:var(--mono); font-size:13px; font-weight:600; padding:11px 38px 11px 14px; cursor:pointer; transition:border-color .15s; box-shadow:var(--shadow); min-height:44px; }
 select#weekSelect:hover { border-color:var(--blue); }
 .select-chevron { position:absolute; right:14px; bottom:15px; width:13px; height:13px; pointer-events:none; color:var(--ink3); }
@@ -95,10 +97,10 @@ select#weekSelect:hover { border-color:var(--blue); }
 
 /* ── Strava stats ── */
 .dc-strava { margin-top:13px; padding-top:12px; border-top:1px solid var(--line2); }
-.strava-logo { font-family:var(--mono); font-size:10px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--strava); background:var(--strava-soft); padding:3px 8px; border-radius:6px; display:inline-block; margin-bottom:10px; }
+.strava-logo { font-family:var(--mono); font-size:11px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--strava); background:var(--strava-soft); padding:3px 8px; border-radius:6px; display:inline-block; margin-bottom:10px; }
 .dc-strava-grid { display:flex; flex-wrap:wrap; gap:8px; }
 .rs-chip { background:#F5F7FA; border:1px solid var(--line2); border-radius:10px; padding:8px 12px; flex:1 1 calc(25% - 6px); min-width:70px; }
-.rs-label { font-family:var(--mono); font-size:9px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--ink3); margin-bottom:3px; }
+.rs-label { font-family:var(--mono); font-size:11px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--ink3); margin-bottom:3px; }
 .rs-val { font-family:var(--mono); font-size:18px; font-weight:700; color:var(--ink); line-height:1.1; }
 .rs-unit { font-size:11px; font-weight:500; color:var(--ink3); }
 
@@ -122,6 +124,8 @@ select#weekSelect:hover { border-color:var(--blue); }
 .note-rpe-dot {
   width:9px; height:9px; border-radius:50%; background:var(--green);
 }
+.note-has-indicator.draft { color:var(--amber-ink); }
+.note-has-indicator.draft .note-rpe-dot { background:var(--amber); }
 
 .note-panel {
   display:none; margin-top:12px;
@@ -148,8 +152,9 @@ select#weekSelect:hover { border-color:var(--blue); }
   line-height:1.5;
 }
 
-/* ── Abbreviation tooltips ── */
-abbr[title] { text-decoration:underline dotted var(--ink3); cursor:help; }
+/* ── Abbreviation tooltips (Desktop: hover, Touch: tap-to-toggle) ── */
+abbr[data-full] { text-decoration:underline dotted var(--ink3); cursor:pointer; }
+abbr[data-full].expanded { text-decoration:none; color:var(--blue-ink); }
 
 /* ── Collapsed day cards ── */
 .day-card.collapsed .dc-body { display:none; }
@@ -199,14 +204,14 @@ abbr[title] { text-decoration:underline dotted var(--ink3); cursor:help; }
 .exc-name small { display:block; font-family:var(--body); font-size:13px; font-weight:500; color:var(--ink3); margin-top:2px; }
 .exc-data { display:flex; flex-wrap:wrap; gap:8px; margin-top:13px; }
 .chip { background:#F5F7FA; border:1px solid var(--line2); border-radius:10px; padding:8px 12px; min-width:74px; }
-.chip-label { font-family:var(--mono); font-size:9.5px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--ink3); margin-bottom:3px; }
+.chip-label { font-family:var(--mono); font-size:11px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--ink3); margin-bottom:3px; }
 .chip-val { font-family:var(--mono); font-size:17px; font-weight:700; color:var(--ink); line-height:1.15; }
 .chip-val small { display:block; font-size:11px; font-weight:500; color:var(--ink3); margin-top:2px; letter-spacing:0; }
 .chip.rpe { background:var(--blue-soft); border-color:#D6E4FD; }
 .chip.rpe .chip-label { color:var(--blue-ink); }
 .chip.rpe .chip-val { color:var(--blue-ink); }
 .exc-meta { display:flex; flex-wrap:wrap; gap:14px; margin-top:12px; font-family:var(--mono); font-size:12px; font-weight:500; color:var(--ink2); }
-.exc-meta b { color:var(--ink3); font-weight:600; font-size:9.5px; letter-spacing:.08em; text-transform:uppercase; margin-right:5px; }
+.exc-meta b { color:var(--ink3); font-weight:600; font-size:11px; letter-spacing:.08em; text-transform:uppercase; margin-right:5px; }
 .exc-note { font-size:13px; color:var(--ink2); margin-top:12px; line-height:1.55; padding-top:11px; border-top:1px solid var(--line2); }
 .blk-note { margin-top:11px; padding:12px 14px; background:var(--blue-soft); border-radius:11px; font-size:13px; color:var(--blue-ink); line-height:1.55; font-weight:500; }
 
@@ -276,9 +281,17 @@ const ABBR = {
 };
 function expandAbbr(text){
   return text.replace(/\b([A-Z][A-Z0-9&]+)\b/g, (m) =>
-    ABBR[m] ? `<abbr title="${ABBR[m]}">${m}</abbr>` : m
+    ABBR[m] ? `<abbr title="${ABBR[m]}" data-abbr="${m}" data-full="${ABBR[m]}">${m}</abbr>` : m
   );
 }
+// Touch: Tippen auf eine Abkürzung schreibt sie aus (Hover-Tooltips gibt es dort nicht)
+document.addEventListener('click', e => {
+  const a = e.target.closest('abbr[data-full]');
+  if (!a) return;
+  e.stopPropagation();
+  const expanded = a.classList.toggle('expanded');
+  a.textContent = expanded ? a.dataset.full : a.dataset.abbr;
+});
 
 /* ── State ──────────────────────────────────────────────── */
 let currentWeekId = null;
@@ -307,6 +320,38 @@ function getWeek(id){ return DATA.weeks.find(w=>w.id===id); }
 function todayLocal(){
   const d = new Date();
   return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+}
+
+/* ── Notiz-Drafts (localStorage) ────────────────────────────
+   Ungespeicherte Eingaben überleben Re-Render, Wochenwechsel
+   und Offline-Fehler. Erfolgreiches Speichern löscht den Draft. */
+function draftKey(d){ return 'note-draft-' + d; }
+function loadDraft(d){
+  try { return JSON.parse(localStorage.getItem(draftKey(d))); } catch(e){ return null; }
+}
+function saveDraft(d){
+  const text = document.getElementById('ntext-' + d)?.value || '';
+  const rpe  = selectedRPE[d] || 0;
+  try {
+    if (text || rpe) localStorage.setItem(draftKey(d), JSON.stringify({ rpe, text }));
+    else localStorage.removeItem(draftKey(d));
+  } catch(e){}
+  patchNoteIndicator(d);
+}
+function clearDraft(d){
+  try { localStorage.removeItem(draftKey(d)); } catch(e){}
+}
+function restoreDraft(d){
+  const draft = loadDraft(d);
+  if (!draft) return;
+  const ta = document.getElementById('ntext-' + d);
+  if (ta && draft.text) ta.value = draft.text;
+  if (draft.rpe > 0) {
+    selectedRPE[d] = draft.rpe;
+    document.querySelectorAll(`[data-rpe-date="${d}"]`).forEach(btn =>
+      btn.classList.toggle('selected', parseInt(btn.dataset.rpeVal) === draft.rpe));
+  }
+  patchNoteIndicator(d);
 }
 
 /* ── Notes API ──────────────────────────────────────────── */
@@ -338,15 +383,16 @@ async function saveNote(isoDate){
     });
     if (r.ok) {
       weekNotes[isoDate] = { rpe_feel: rpe, note_text: text };
+      clearDraft(isoDate);
       stat.textContent = '✓ Gespeichert';
       stat.className = 'note-status';
       patchNoteIndicator(isoDate);
     } else {
-      stat.textContent = '✗ Fehler';
+      stat.textContent = '✗ Fehler — Entwurf bleibt lokal';
       stat.className = 'note-status err';
     }
   } catch(e) {
-    stat.textContent = '✗ Offline';
+    stat.textContent = '✗ Offline — Entwurf bleibt lokal';
     stat.className = 'note-status err';
   }
 
@@ -361,9 +407,10 @@ function patchAllNoteUIs(){
 }
 
 function patchNoteUI(date, note){
+  const draft = loadDraft(date);
   const ta = document.getElementById('ntext-' + date);
-  if (ta && note.note_text) ta.value = note.note_text;
-  if (note.rpe_feel > 0) {
+  if (ta && note.note_text && !(draft && draft.text)) ta.value = note.note_text;
+  if (note.rpe_feel > 0 && !(draft && draft.rpe > 0)) {
     selectedRPE[date] = note.rpe_feel;
     document.querySelectorAll(`[data-rpe-date="${date}"]`).forEach(btn => {
       btn.classList.toggle('selected', parseInt(btn.dataset.rpeVal) === note.rpe_feel);
@@ -376,7 +423,12 @@ function patchNoteIndicator(date){
   const ind = document.getElementById('nind-' + date);
   if (!ind) return;
   const note = weekNotes[date];
-  if (note && (note.rpe_feel > 0 || note.note_text)) {
+  const draft = loadDraft(date);
+  const draftDiffers = draft &&
+    (draft.text !== ((note && note.note_text) || '') || draft.rpe !== ((note && note.rpe_feel) || 0));
+  if (draftDiffers) {
+    ind.innerHTML = `<span class="note-has-indicator draft"><span class="note-rpe-dot"></span>✎ Entwurf</span>`;
+  } else if (note && (note.rpe_feel > 0 || note.note_text)) {
     const rpe = note.rpe_feel > 0 ? RPE_EMOJI[note.rpe_feel] : '';
     ind.innerHTML = `<span class="note-has-indicator"><span class="note-rpe-dot"></span>${rpe} Notiz gespeichert</span>`;
   } else {
@@ -400,6 +452,7 @@ function selectRPE(isoDate, val, event){
   document.querySelectorAll(`[data-rpe-date="${isoDate}"]`).forEach(btn => {
     btn.classList.toggle('selected', parseInt(btn.dataset.rpeVal) === val);
   });
+  saveDraft(isoDate);
 }
 
 /* ── Build note block HTML ──────────────────────────────── */
@@ -416,7 +469,7 @@ function buildNoteHTML(isoDate, type){
     </div>
     <div class="note-panel" id="np-${isoDate}" onclick="event.stopPropagation()">
       <div class="rpe-row">${rpeButtons}</div>
-      <textarea class="note-textarea" id="ntext-${isoDate}"
+      <textarea class="note-textarea" id="ntext-${isoDate}" oninput="saveDraft('${isoDate}')"
                 placeholder="Was lief gut / schlecht? Lasten, Energie, Technik…"></textarea>
       <div class="note-actions">
         <button class="note-save-btn" id="nsave-${isoDate}"
@@ -478,7 +531,8 @@ function renderWeek(){
     <div class="days">${cards}</div>
     <button class="show-all-btn" id="toggle-days-btn" onclick="toggleAllDays()">Alle Tage anzeigen</button>`;
 
-  // Load notes async — patches UI when ready
+  // Ungespeicherte Drafts wiederherstellen, dann Notizen async laden
+  w.days.forEach(d => restoreDraft(d.isoDate));
   if (w.dateFrom && w.dateTo) loadNotes(w.dateFrom, w.dateTo);
 
   // Collapse all except today

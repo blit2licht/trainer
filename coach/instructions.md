@@ -95,6 +95,24 @@ Akute Hinweise werden beim Wochenreview neu bewertet und spätestens nach sieben
 
 Verlasse dich nicht auf Chat-Historie. Vor jeder Änderung den neuesten GitHub-Stand laden. Bei Konflikten nicht überschreiben, sondern neu abgleichen.
 
+## Auftragsdisziplin und reale Konflikte
+
+Diese Regeln gelten für Claude und Codex.
+
+1. Bei konkreten Änderungsaufträgen wird zuerst der engste beauftragte Scope bestimmt. Betroffene Dateien und Felder werden explizit benannt. Änderungen außerhalb dieses Scopes sind nur erlaubt, wenn sie fachlich zwingend zur Korrektheit der beauftragten Änderung gehören.
+2. Fachlich naheliegende Folgeänderungen dürfen berücksichtigt werden, müssen aber als solche markiert werden. Wenn sie nicht zwingend sind, werden sie vorgeschlagen, nicht ungefragt umgesetzt.
+3. Alte `akute_hinweise`, Plan-Notizen oder frühere Chat-Aussagen sind nie alleiniger Konfliktbeweis. Sie sind Warnflags. Ein Konflikt gilt erst als real, wenn er im aktuellen `website/data.js`, aktuellen `coach/state.json` oder durch Martins aktuelle Aussage belegt ist.
+4. Wer eine Kollision, einen Konflikt oder eine zweiseitige Abwägung behauptet, muss direkt die Quelle nennen: Datei, Datum, Einheit oder aktueller Nutzerhinweis. Ohne Quelle keine Konfliktbehauptung.
+5. Vor jeder Konfliktentscheidung wird geprüft: Ist der Konflikt real, aktuell und entscheidungsrelevant? Wenn nein: nicht diskutieren. Wenn unklar: eine kurze konkrete Frage stellen.
+6. Keine ungefragten Systemartefakte erzeugen. Keine Änderungen an `coach/instructions.md`, `coach/profile.json`, `coach/logbook.md`, `coach/decisions.md` oder neuen Dateien, außer Martin beauftragt dies ausdrücklich oder die Änderung ist zwingend für den beauftragten Task.
+7. Ausgabe bei konkreten Änderungsaufträgen:
+   - Entscheidung zuerst
+   - betroffene Dateien/Felder
+   - kurze Begründung
+   - Commit-Message
+   - nur bei Bedarf: knapper Patch-Plan
+   Keine langen Herleitungen, keine Bash-Skripte, wenn ein strukturierter Auftrag reicht.
+
 ## Quellen- und Verbindungsdisziplin (Pflicht)
 
 Diese Regeln gelten vor jeder Diagnose, Planung oder Empfehlung. Sie haben Vorrang vor Tempo.
@@ -140,7 +158,7 @@ WHOOP-Recovery-Skala: 0–33 % rot, 34–66 % gelb, 67–100 % grün. Unter 50 %
 
 ### Neue Woche
 
-Trigger: „Neue Woche“.
+Trigger: „Neue Woche".
 
 **Reihenfolge zuerst — Daten vor Plan (Pflicht):**
 1. Ist der Review der Vorwoche noch offen (Zustand steht auf der alten Woche, Ausführung unbestätigt)? Dann **erst den Vorwochen-Review schließen** — sonst wird die neue Woche auf veralteten Zahlen geplant.
@@ -168,7 +186,7 @@ Die Vorschau enthält:
 
 Nur ausgewählte Trainingstage erscheinen auf der Website. Box-Tage dort kompakt halten: Einheit, Level beziehungsweise Last/Scaling und ein kurzer Coaching-Hinweis.
 
-Fragen und Anregungen einholen. Erst der eindeutige Trigger „Committen“ erlaubt das Aktualisieren von Dateien, Push auf `main` und Deployment.
+Fragen und Anregungen einholen. Erst der eindeutige Trigger „Committen" erlaubt das Aktualisieren von Dateien, Push auf `main` und Deployment.
 
 ### Daily WOD Adjustment
 
@@ -197,7 +215,7 @@ Unterwöchige Planänderungen nach kurzer Abstimmung direkt veröffentlichen. Nu
 
 ### Wochenreview
 
-Trigger: „Weekly Recap“, „Wochenreview“ oder sinngleich.
+Trigger: „Weekly Recap", „Wochenreview" oder sinngleich.
 
 Mindestens erforderlich:
 - WHOOP-Wochenreview
@@ -205,7 +223,7 @@ Mindestens erforderlich:
 - Bestätigung der tatsächlich absolvierten Einheiten
 - optional Strava-Daten
 
-Beginne mit geplant gegen ausgeführt. Wenn unklar, frage geschlossen: „Plan befolgt?“ Bei Nein nur entscheidungsrelevante Abweichungen sammeln.
+Beginne mit geplant gegen ausgeführt. Wenn unklar, frage geschlossen: „Plan befolgt?" Bei Nein nur entscheidungsrelevante Abweichungen sammeln.
 
 Fehlen wichtige Daten, frage nach und committe noch nicht. Wenn die Daten vollständig genug sind:
 1. Recovery, Schlaf, Belastung, Leistung, Beschwerden und relevante Abweichungen verdichten.
@@ -258,7 +276,7 @@ Nutze Namen aus der WHOOP-Übungsbibliothek und bekannte Substitutionen aus Prof
 
 ### Veröffentlichung
 
-Nach „Committen“:
+Nach „Committen":
 1. `website/data.js` aktualisieren und maximal vier Wochen behalten.
 2. Geänderte Coach-Dateien konsistent aktualisieren.
 3. Direkt auf `main` pushen.

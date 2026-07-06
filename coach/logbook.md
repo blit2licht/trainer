@@ -2,6 +2,20 @@
 
 Kurze, verdichtete Wocheneinträge. Rohdaten bleiben in WHOOP, Strava und der Website-Datenbank.
 
+## 2026-W27 · 29. Juni–5. Juli · Meso 2 W3
+
+**Plan befolgt.** Mo Ruhe ✓ (Recovery 32 % rot) · Di Focus A ✓ · Mi Box (FS E2:15×5 + Intervalle) ✓ · Do Ruhe (Termin) ✓ · Fr Ruhe ✓ · Sa Focus B ✓ · So Social-Ride (2×, zweite Ausfahrt bis Z4/Z5 statt sozial Z1/Z2). Recovery Ø 57 % (2 rot/3 gelb/2 grün), Strain gesamt 69,9 (−22 % ggü. W26), Schlaf weiter unter Bedarf (~20 h Defizit) — chronischer Umweltfaktor, kein Strukturthema.
+
+**Kernbefunde:**
+- **Snatch-Speed-Baustelle aus W26 aufgelöst:** Hang Squat Snatch volle Ceiling 52,5 kg sauber erreicht, Catch laut Notiz spürbar schneller. Speed-Bias-Ansatz (Snatch Balance + speed-gated Build) hat funktioniert.
+- **Front-Squat-Block-Start stark:** 100 kg @ RPE 8 glatt (Woche 1/3, E2:15×5). Martin vermutet 1RM >105, kein Test — Referenz bleibt vorerst 105.
+- **Gymnastics-Progression bestätigt:** BMU 15 total (5×1+5×2, neuer Bestwert ggü. W26 = 13), T2B/Pull-up beide 8 Wdh./Runde, Strict HSPU 4×6 (Sa), Weighted Pull-up +5 kg 3×3 zweite Woche in Folge.
+- Pause OHS 50 kg sauber, GHD/Mobility nach Plan.
+- Load bewusst runtergefahren (−22 %) bei gleichzeitig starken Topleistungen — Pullback hat sich ausgezahlt trotz niedrigerer Recovery als W26.
+- Kleine Quelle-Divergenz: WHOOP-Auto-Log labelte Front Squat als „Back Squat" (Tracking-Fehler, Martin bestätigt) und zeigte 95 kg statt 100 kg Top — Notiz/Martins Aussage zählt.
+
+**Offen für W28:** Clean & Jerk seit W25 nicht direkt trainiert (Fokus-Rotation-Flag) → nachholen. Snatch-Ceiling-Erhöhung und Weighted-Pull-up-Reps-Progression stehen an. Ab So 12.07. eine Woche Bangkok (Arbeit) — W29 braucht flexible Planung.
+
 ## 2026-W26 · 22.–28. Juni · Meso 2 W2
 
 **Plan befolgt — alles durchgezogen.** Mo Focus A ✓ · Mi Box (EMOM + AMRAP, 5 Runden, T2B 10 unbroken R1-3) · Do Box (Tempo FS + 21-15-9 WOD) · Fr Focus B ✓ · Sa frei · **So Team-WOD + zusätzlich 2 Rides** (74,7 km, 2:44 h, 270 hm). Recovery Ø 65 % (3 grün / 4 gelb), Schlaf jeden Tag unter Bedarf.

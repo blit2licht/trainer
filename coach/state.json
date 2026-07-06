@@ -10,6 +10,25 @@
     "phase": "Reclaim / Kapazität / Robustheit",
     "veroeffentlichter_plan": "website/data.js"
   },
+  "mesocycle_plan": {
+    "id": "Meso 2",
+    "zeitraum": "2026-W25 bis 2026-W30",
+    "phase": "Reclaim / Kapazität / Robustheit",
+    "wochenrollen": {
+      "W25": "Wiedereinstieg nach Wien — abgeschlossen",
+      "W26": "Kapazität/Progression, voll durchgezogen — abgeschlossen",
+      "W27": "Load-Pullback (−22 %) + Snatch-Speed-Reclaim — abgeschlossen",
+      "W28": "Letzte volle Belastungswoche: C&J-Reclaim, FS-Block Wk 2/3, Gymnastics gehalten",
+      "W29": "Bangkok (Arbeitsreise) — Erhalt/Improvisation nach Ausstattung vor Ort; zählt de facto als Deload",
+      "W30": "Rückkehr: FS-Block Wk 3/3 abschließen, WPU-Progression 3×4 starten, Sechs-Wochen-Zielreview fällig"
+    },
+    "deload_trigger": [
+      "Recovery an ≥3 aufeinanderfolgenden Tagen rot (<34 %)",
+      "rpe_feel ≤2 in zwei aufeinanderfolgenden Einheiten",
+      "Leistungsabfall bei gehaltener Last (Reps/kg unter Vorwochen-Referenz trotz RPE-Cap)"
+    ],
+    "hinweis": "Trigger lösen keinen starren Deload-Rhythmus aus, sondern eine sofortige Wochenkorrektur (Volumen zuerst, dann Intensität). W29 ist der natürliche Deload dieses Bogens."
+  },
   "aktuelle_foki": {
     "gymnastics": [
       "Bar Muscle-up",
@@ -68,7 +87,7 @@
     "weighted_pull_up": {
       "kg": "+5",
       "schema": "3x3",
-      "note": "W27 zweite Woche in Folge +5 kg 3×3 sauber bestätigt. W28: Reps-Progression Richtung Ziel 6 @ +5 kg prüfen (z. B. 3×4)."
+      "note": "W27 zweite Woche in Folge +5 kg 3×3 sauber bestätigt. Entscheidung 06.07.: W28 bleibt 3×3 (Mi-Chipper bringt 20 Burpee-Pull-ups Grip-Last), ab W30 fest 3×4 nach V5-Progressionstreppe (3×3→3×4→3×5→Testsatz)."
     },
     "strict_hspu": {
       "schema": "4x6",

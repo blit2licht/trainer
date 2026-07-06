@@ -82,6 +82,22 @@
     "Handstand Walks",
     "Crossover Double-Unders"
   ],
+  "gymnastics_testprotokoll": {
+    "hinweis": "Verbindet Volumenarbeit mit den Unbroken-Zielen. Alle 3–4 Wochen ersetzt ein Max-Unbroken-Testsatz (frisch, als erster Arbeitssatz des Fokus-Tags) den regulären ersten Satz. Testergebnis aktualisiert den Zielstand in leistungsziele.",
+    "testfrequenz_wochen": "3-4",
+    "naechster_test": "2026-W30",
+    "progressionstreppen": {
+      "bar-muscle-up": "EMOM-Akkumulation: 10×1 → 5×1+5×2 → 10×2 → 2er/3er-Cluster → Testsatz max unbroken (Ziel 5)",
+      "toes-to-bar": "3×7 → 3×8 → 3×9 → 3×10 → Testsatz max unbroken (Ziel 10)",
+      "weighted-pull-up": "3×3 → 3×4 → 3×5 @ +5 kg → Testsatz 6 Reps @ +5 kg",
+      "strict-hspu": "4×5 → 4×6 → 4×7 → 4×8 → Testsatz max unbroken (Ziel 10)"
+    },
+    "regeln": [
+      "Pro Woche höchstens eine Stufe pro Ziel steigen; Stufe gilt erst als bestätigt, wenn alle Sätze sauber (kein Failure, Technik hält).",
+      "Bei unsauberem letzten Satz eine Stufe zurück, nicht wiederholt erzwingen.",
+      "Testsatz nie auf vorermüdetem System (Recovery <50 % oder Grip-/Overhead-Vorlast am Vortag) — dann Test um eine Woche schieben."
+    ]
+  },
   "review_rhythmus_wochen": 6,
   "neue_ziele": "Martin schlägt neue Ziele beim Review vor."
 }

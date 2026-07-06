@@ -79,9 +79,9 @@ const DATA = {
             { letter:"C", title:"Strict HSPU Volumen", sub:"Hauptarbeit · 4 Sätze · gehalten",
               headers:["Übung","Sets × Reps","Last","RPE","Tempo","Rest","Note"],
               rows:[ ["Strict HSPU","4 × 6||gehalten, nicht gesteigert","BW","8","21X0","3 min","Mi hat schon 50 Reps Volumen gebracht — kein Push auf 4×6-7 diese Woche."] ] },
-            { letter:"D", title:"Weighted Pull-up Density", sub:"Vorsichtige Reps-Progression",
+            { letter:"D", title:"Weighted Pull-up Density", sub:"Letzte Woche auf Stufe 3×3",
               headers:["Übung","Sets × Reps","Last","RPE","Tempo","Rest","Note"],
-              rows:[ ["Weighted Pull-up","3 × 3||optional 4. Rep im letzten Satz","+5 kg","7–8","30X1","2 min","Grip auch durch Mi (Burpee-PU) und Sa (DB Hang Snatch) beansprucht — Satz-Erhöhung erst nächste Woche."] ] },
+              rows:[ ["Weighted Pull-up","3 × 3||bewusst gehalten","+5 kg","7–8","30X1","2 min","Grip auch durch Mi (Burpee-PU) und Sa (DB Hang Snatch) beansprucht — 3×3 sauber bestätigen. Ab W30 fest 3×4 (Treppe Richtung 6 @ +5 kg)."] ] },
             { letter:"E", title:"Cool-down Mobility", sub:"~5 min · Schulter + Thorax",
               headers:["Übung","Dauer","Note"],
               rows:[

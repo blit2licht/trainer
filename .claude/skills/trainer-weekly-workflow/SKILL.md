@@ -230,7 +230,8 @@ So sah der Zyklus real aus (Quelle: `coach/logbook.md`, Eintrag 2026-W27):
 |---|---|---|
 | Wochenstart (nach W26-Review) | W26-Review geschlossen; roter Montag (Recovery 32 %) → Mo als Ruhe + Nap geplant, nicht als Schlüsselslot (Sonntagslast → Montag-Standard) | Wochenreview → Neue Woche |
 | Planung W27 | Daten eingesammelt (DreamWOD, WHOOP-Recap, Termine: Do-Termin), Struktur aus Trainingslogik: Focus B Di (niedrige CNS-Last), Box Mi (FS-Block-Start), Focus A Fr (frischester Slot, Speed-Bias), So Social-Ride; Vorschau → „Committen" → Veröffentlichung | Neue Woche |
-| Unter der Woche | Jede Einheit tagesform-gated ausgeführt: Di Focus A/B nach Plan, Mi Box (FS E2:15×5, Top 100 kg @ RPE 8), Sa Focus B | Daily WOD Adjustment (je Tag) |
+| Unter der Woche (03.07.) | **Realer Ad-hoc-Tausch** (Commit `1d914af`): Snatch (Focus A) von Fr auf Di vorgezogen („Zeit und Tagesform sprachen am Di für Snatch"), BMU (Focus B) auf Sa, Fr wurde Restday — Grund + Tagesform geprüft, dann veröffentlicht | Ad-hoc-Änderung |
+| Unter der Woche | Einheiten tagesform-gated ausgeführt: Di Focus A ✓, Mi Box (FS E2:15×5, Top 100 kg @ RPE 8) ✓, Sa Focus B ✓ | Daily WOD Adjustment (je Tag) |
 | Wochenende | So Social-Ride (2 Ausfahrten, zweite bis Z4/Z5 statt Z1/Z2 — Abweichung fürs Review notiert) | — |
 | Wochenende/Folgewoche | „Wochenreview": Plan befolgt? Ja. Verdichtung (Recovery Ø 57 %, Strain −22 %, Snatch-Ceiling 52,5 kg erreicht, BMU 15 total), WHOOP-Auto-Log-Konflikt markiert (FS als „Back Squat"/95 kg getrackt — Notiz zählt: 100 kg), state.json + logbook.md aktualisiert, committet | Wochenreview |
 

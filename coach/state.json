@@ -2,12 +2,12 @@
   "schema_version": 1,
   "aktualisiert_am": "2026-07-13",
   "aktuelle_woche": {
-    "id": "2026-W28",
-    "von": "2026-07-06",
-    "bis": "2026-07-12",
+    "id": "2026-W29",
+    "von": "2026-07-13",
+    "bis": "2026-07-19",
     "mesocycle": "Meso 2",
-    "woche_im_fokus": 4,
-    "phase": "Reclaim / Kapazität / Robustheit",
+    "woche_im_fokus": 5,
+    "phase": "Bangkok-Erhalt / De-facto-Deload",
     "veroeffentlichter_plan": "website/data.js"
   },
   "mesocycle_plan": {
@@ -101,8 +101,8 @@
   "akute_hinweise": [
     {
       "datum": "2026-07-13",
-      "betrifft": "Bangkok-Arbeitsreise (W29)",
-      "hinweis": "Martin ist ab 12.07. eine Woche in Bangkok (Arbeit). Ausstattung vor Ort noch unklar, W29-Planung folgt separat nach Reisedetails — zählt de facto als Deload dieses Mesocycle-Bogens."
+      "betrifft": "Bangkok-Woche W29 — Plan final",
+      "hinweis": "Di/Mi Hotel-Gym-Erhalt vormittags (DB bis ~20-22,5 kg, Maschinen, Klimmzugstange). Do vormittags kein Fenster → Nachmittags-Drop-in in einer CrossFit-Box (WOD noch offen, Level/Scaling folgt per Daily-WOD-Adjustment sobald bekannt). Fr Rückflug Bangkok→München (Reisetag). Sa/So bereits in München, reguläres Box-Programm (Sa Accessory/Engine, So C&J-Singles + WOD). Zählt de facto als Deload."
     }
   ],
   "hinweis_ablauf": "Beim Wochenreview neu bewerten; spätestens nach 7 Tagen entfernen, wenn nicht erneut bestätigt.",

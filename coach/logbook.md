@@ -2,6 +2,21 @@
 
 Kurze, verdichtete Wocheneinträge. Rohdaten bleiben in WHOOP, Strava und der Website-Datenbank.
 
+## 2026-W28 · 6.–12. Juli · Meso 2 W4
+
+**Plan teilweise befolgt.** Mo Ruhe ✓ · Di Box FS (100 kg Top, aufsteigende Einzelsätze) ✓ + Intervall-WOD ✓ (Tagesstrain kombiniert ~18,8 — hoher Einzeltag) · **Mi Box ausgefallen** (hard rest, Recovery 24 % rot, HRV 33 ms/RHR 57 nach anstrengendem Arbeitstag) · Do Focus A (C&J-Reclaim) ✓ RPE 6-7 · Fr Focus B (Gymnastics) ✓ mit Einschränkung · Sa Box Snatch-Complex ✓ + WOD ✓ (Tagesstrain kombiniert ~21,1) · So Abreise Bangkok, kein Training ✓.
+
+**Kernbefunde:**
+- **Squat Snatch neue Ceiling 57,5 kg** — deutlicher Sprung über W27 (52,5 kg), bestätigt durch Notiz und WHOOP-Log (58 kg gerundet). Kein Max-Test, RPE-gated build. Neue Referenz.
+- **Clean & Jerk Reclaim erfolgreich:** Squat Clean + Push Jerk Komplex 78 kg @ RPE 7 (neuer Bestwert ggü. 75 kg @7, W25). Seit-W25-Flag aufgelöst.
+- **Front Squat gehalten, nicht gesteigert:** Block Wk 2/3 Top weiterhin 100 kg (diesmal Einzelsätze statt 5er-Sätze). 1RM-Schätzung >105 weiter unbestätigt. Wk 3/3 verschiebt sich auf Rückkehr nach Bangkok.
+- **BMU-Doubles-Speed-Rückgang:** Notiz „nur 1×2 sauber, Rest unsauber" — Gesamtreps nicht eindeutig bestimmbar (WHOOP liefert keine Summe). Kein neuer Bestwert, im Auge behalten.
+- **Weighted Pull-up und Strict HSPU** planmäßig gehalten (3×3 @ +5 kg bzw. 4×6), sauber.
+- **Ein Box-Tag (Mi) komplett ausgefallen** wegen roter Recovery nach hartem Arbeitstag — korrekt autoreguliert, kein Deload-Trigger (nur 1 Tag rot, nicht ≥3 in Folge).
+- Zwei sehr hohe Doppel-Session-Tage (Di, Sa) direkt vor Abreise — für W28 als „letzte volle Belastungswoche" planmäßig, kein Strukturproblem, da So ohnehin Reisetag ohne Training war.
+
+**Offen für W29/W30:** Overhead Squat seit W27 nicht direkt trainiert → bei Wiedereinstieg nachziehen. W29 = Bangkok (Arbeitsreise), Ausstattung vor Ort unklar, Planung separat nach Reisedetails. FS-Block Wk 3/3 und WPU-Progression auf 3×4 verschieben sich auf W30, wo auch der erste Sechs-Wochen-Zielreview fällig ist.
+
 ## 2026-W27 · 29. Juni–5. Juli · Meso 2 W3
 
 **Plan befolgt.** Mo Ruhe ✓ (Recovery 32 % rot) · Di Focus A ✓ · Mi Box (FS E2:15×5 + Intervalle) ✓ · Do Ruhe (Termin) ✓ · Fr Ruhe ✓ · Sa Focus B ✓ · So Social-Ride (2×, zweite Ausfahrt bis Z4/Z5 statt sozial Z1/Z2). Recovery Ø 57 % (2 rot/3 gelb/2 grün), Strain gesamt 69,9 (−22 % ggü. W26), Schlaf weiter unter Bedarf (~20 h Defizit) — chronischer Umweltfaktor, kein Strukturthema.

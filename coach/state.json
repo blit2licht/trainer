@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "aktualisiert_am": "2026-07-06",
+  "aktualisiert_am": "2026-07-13",
   "aktuelle_woche": {
     "id": "2026-W28",
     "von": "2026-07-06",
@@ -18,7 +18,7 @@
       "W25": "Wiedereinstieg nach Wien — abgeschlossen",
       "W26": "Kapazität/Progression, voll durchgezogen — abgeschlossen",
       "W27": "Load-Pullback (−22 %) + Snatch-Speed-Reclaim — abgeschlossen",
-      "W28": "Letzte volle Belastungswoche: C&J-Reclaim, FS-Block Wk 2/3, Gymnastics gehalten",
+      "W28": "Letzte volle Belastungswoche: C&J-Reclaim, FS-Block Wk 2/3, Gymnastics gehalten — abgeschlossen",
       "W29": "Bangkok (Arbeitsreise) — Erhalt/Improvisation nach Ausstattung vor Ort; zählt de facto als Deload",
       "W30": "Rückkehr: FS-Block Wk 3/3 abschließen, WPU-Progression 3×4 starten, Sechs-Wochen-Zielreview fällig"
     },
@@ -46,17 +46,17 @@
   "fokus_rotation": {
     "hinweis": "Verhindert, dass ein Fokus über Wochen wegrutscht. Bei jeder Wochenplanung prüfen, was zuletzt direkt bedient wurde, und Offenes nachziehen.",
     "zuletzt_bedient": {
-      "snatch": "W27",
+      "snatch": "W28",
       "overhead_squat": "W27",
-      "front_squat": "W27 (Box-Block-Start)",
-      "strict_hspu": "W27",
-      "bmu": "W27",
-      "weighted_pull_up": "W27",
-      "toes_to_bar": "W27",
-      "clean_jerk": "W25"
+      "front_squat": "W28 (Block Wk 2/3)",
+      "strict_hspu": "W28",
+      "bmu": "W28",
+      "weighted_pull_up": "W28",
+      "toes_to_bar": "W28",
+      "clean_jerk": "W28"
     },
     "offen": [
-      "Clean & Jerk — seit W25 nicht direkt trainiert, in W27 zugunsten Snatch zurückgestellt → W28 nachholen"
+      "Overhead Squat — seit W27 nicht direkt trainiert (Pause OHS lief W27, danach nicht mehr im Plan) → bei Wiedereinstieg nach Bangkok nachziehen"
     ]
   },
   "load_references": {
@@ -70,39 +70,39 @@
       "kg": 82.5
     },
     "squat_snatch_ceiling": {
-      "kg": 52.5,
-      "erreicht_w27": 52.5,
-      "note": "Ceiling W27 vollständig erreicht (Hang Squat Snatch, Single). Catch laut Notiz spürbar schneller — Speed-Baustelle aus W26 aufgelöst. W28: Ceiling anheben (z. B. 55 kg) prüfen."
+      "kg": 57.5,
+      "erreicht_w28": 57.5,
+      "note": "Sa 11.07.: Squat Snatch Single 57,5 kg sauber (Notiz + WHOOP-Log 58 kg gerundet, übereinstimmend). Deutlicher Sprung über W27-Ceiling (52,5 kg) — kein Max-Test, RPE-gated build 40→57,5 kg. Neue Referenz für W30."
     },
     "front_squat": {
       "kg_1rm_geschaetzt": 105,
       "tempo_top_w27": 100,
-      "note": "FS-Block Woche 1/3: Top 100 kg @ RPE 8 glatt (E2:15×5, 70→92-95%). Martin vermutet 1RM >105 (eigene Einschätzung, kein Test) — Referenz bleibt 105 bis bestätigt. Block läuft W28 in Woche 2/3 weiter."
+      "note": "FS-Block Woche 2/3 (Di 07.07.): Top weiterhin 100 kg, diesmal als aufsteigende Einzelsätze (5×75-3×85-2×90-2×95-1×100) statt Wiederholungssätzen. Kein neuer Topwert ggü. W27 — Block bleibt bei 100 kg als bestätigter Referenz. 1RM-Schätzung >105 unverändert unbestätigt. Woche 3/3 verschiebt sich auf Rückkehr nach Bangkok (W30)."
     },
     "clean_jerk_komplex": {
-      "kg": 75,
+      "kg": 78,
       "rpe": 7,
-      "note": "Squat Clean + Push Jerk Komplex W25. Seit W25 nicht direkt trainiert (W27 zugunsten Snatch zurückgestellt) → W28 geschützter Slot fällig."
+      "note": "Do 09.07.: Squat Clean + Push Jerk Komplex 78 kg @ RPE 7 sauber (WHOOP: Clean/Push Jerk build 55→78 kg). Neuer Bestwert ggü. W25 (75 kg @7) — Reclaim-Slot erfolgreich nachgeholt, Rotationsflag aufgelöst."
     },
     "weighted_pull_up": {
       "kg": "+5",
       "schema": "3x3",
-      "note": "W27 zweite Woche in Folge +5 kg 3×3 sauber bestätigt. Entscheidung 06.07.: W28 bleibt 3×3 (Mi-Chipper bringt 20 Burpee-Pull-ups Grip-Last), ab W30 fest 3×4 nach V5-Progressionstreppe (3×3→3×4→3×5→Testsatz)."
+      "note": "W28 (Fr 10.07.): 3×3 @ +5 kg wie geplant gehalten, sauber bestätigt. Ab W30 fest 3×4 nach V5-Progressionstreppe (3×3→3×4→3×5→Testsatz)."
     },
     "strict_hspu": {
       "schema": "4x6",
-      "note": "W27: Sa 4×6 sauber bestätigt (obere Kante), Di 4×5-6 nach Plan. W28: 4×6-7 oder Tempo-Variante erwägen."
+      "note": "W28 (Fr 10.07.): 4×6 wie geplant gehalten, sauber. Keine Steigerung diese Woche (bewusst, wegen Mi-Overhead-Volumen im Plan)."
     },
     "bmu": {
-      "reps_total": 15,
-      "note": "W27: 5×1 + 5×2 = 15 total, oberes Ende des W3-Ziels (14-15) getroffen, neuer Bestwert ggü. W26 (13). W28: Ceiling weiter anheben."
+      "reps_total": null,
+      "note": "W28 (Fr 10.07.): Qualitäts-Rückgang bei Doubles — Notiz: 'Single BMU sauber, Doubles zu wenig Speed, nur 1×2 sauber, Rest unsauber'. Gesamtreps nicht eindeutig aus Notiz/WHOOP ableitbar (WHOOP: 10 Sets mixed 1-2 reps, keine Summe) — kein neuer Bestwert, kein Rückschritt in der Progressionsstufe ohne weitere Bestätigung. Bei nächstem Termin Doubles-Speed beobachten."
     }
   },
   "akute_hinweise": [
     {
-      "datum": "2026-07-06",
-      "betrifft": "Terminlage W28",
-      "hinweis": "Mo 06.07. kein Training (fix, Martins Vorgabe). So 12.07. kein Training — ab So 1 Woche Bangkok (Arbeit). W29 braucht flexible Planung, Ausstattung vor Ort noch unklar."
+      "datum": "2026-07-13",
+      "betrifft": "Bangkok-Arbeitsreise (W29)",
+      "hinweis": "Martin ist ab 12.07. eine Woche in Bangkok (Arbeit). Ausstattung vor Ort noch unklar, W29-Planung folgt separat nach Reisedetails — zählt de facto als Deload dieses Mesocycle-Bogens."
     }
   ],
   "hinweis_ablauf": "Beim Wochenreview neu bewerten; spätestens nach 7 Tagen entfernen, wenn nicht erneut bestätigt.",
@@ -113,7 +113,7 @@
     "strava": "Optional über MCP für Radfahrten"
   },
   "naechster_zielreview": "Nach sechs Trainingswochen; Schwerpunkt darf begründet verlängert werden.",
-  "systemstatus": "V1.0 produktiv; Wochenreviews W25, W26 und W27 im Logbuch abgeschlossen. Erster Sechs-Wochen-Review noch offen.",
+  "systemstatus": "V1.0 produktiv; Wochenreviews W25, W26, W27 und W28 im Logbuch abgeschlossen. Erster Sechs-Wochen-Review noch offen (fällig W30).",
   "migration": {
     "version": "1.0",
     "abgeschlossen_am": "2026-06-15"

@@ -92,13 +92,19 @@ const DATA = {
             { letter:"B", title:"Clean &amp; Jerk — Singles", sub:"E1:30 × 8 (12 min) · Woche 1/2",
               headers:["Übung","Sets × Reps","Last","RPE","Tempo","Rest","Note"],
               rows:[ ["Clean &amp; Jerk","8 × 1","60 · 62,5 · 65 · 67,5 · 70 · 72,5 · 75 · 75 kg","≤8","zügig","E1:30","Kein neues Top. Steigerung stoppt, sobald Fang-Position oder Jerk-Lockout unsauber wird — dann auf dem letzten sauberen Gewicht ausfahren."] ] },
-            { letter:"C", title:"WOD — 8 Runden For Time", sub:"Cap 15 min · L3-Standards, Bar reduziert",
-              headers:["Übung","Sets × Reps","Last","Note"],
-              rows:[
-                ["Box Jumps","8 Runden × 4","70 cm","L3-Höhe bleibt."],
-                ["Chest-to-Bar Pull-up","8 Runden × 5","BW","40 Reps gesamt — bewusst gehalten, Zug-Qualität ist der Punkt."],
-                ["Shoulder to Overhead","8 Runden × 6","52,5 kg","Statt publizierter 60 kg: bei 8 × 6 wären 60 kg ≈ 73 % der Push-Press-Basis (82,5 kg) — das kippt von Engine in Kraftausdauer."]
-              ] },
+            { letter:"C", title:"WOD", sub:"Metcon zum Abschluss · L3-Standards, Bar reduziert",
+              wod:{
+                struktur:"8 Runden auf Zeit",
+                format:"For Time",
+                cap:"Cap 15 min",
+                bewegungen:[
+                  { reps:"4", name:"Box Jumps",            detail:"70 cm" },
+                  { reps:"5", name:"Chest-to-Bar Pull-up", detail:"BW" },
+                  { reps:"6", name:"Shoulder to Overhead", detail:"52,5 kg" }
+                ],
+                gesamt:"32 Box Jumps · 40 Chest-to-Bar · 48 Shoulder to Overhead"
+              },
+              note:"Bar von publizierten 60 auf 52,5 kg reduziert — bei 8 × 6 wären 60 kg ≈ 73 % der Push-Press-Basis (82,5 kg), das kippt von Engine in Kraftausdauer. C2B und Box-Höhe bleiben auf L3: Zug-Qualität ist der Punkt, nicht Volumen. Unbroken-Sätze anstreben, bei Grip-Verlust früh in 3/2 teilen statt zu reißen." },
             { letter:"D", title:"Cool-down", sub:"5-10 min",
               headers:["Übung","Dauer","Note"],
               rows:[

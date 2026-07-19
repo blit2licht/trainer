@@ -214,6 +214,26 @@ abbr[data-full].expanded { text-decoration:none; color:var(--blue-ink); }
 .exc-meta b { color:var(--ink3); font-weight:600; font-size:11px; letter-spacing:.08em; text-transform:uppercase; margin-right:5px; }
 .exc-note { font-size:13px; color:var(--ink2); margin-top:12px; line-height:1.55; padding-top:11px; border-top:1px solid var(--line2); }
 .blk-note { margin-top:11px; padding:12px 14px; background:var(--blue-soft); border-radius:11px; font-size:13px; color:var(--blue-ink); line-height:1.55; font-weight:500; }
+/* ── WOD-Block ──────────────────────────────────────────────
+   Ein WOD wird als Ganzes abgearbeitet: Struktur, Reps, Lasten
+   und Zeitlimit müssen zusammen sichtbar sein — nicht als Kette
+   einzelner Übungskarten wie bei Kraftsätzen. */
+.wod { background:var(--card); border:1px solid var(--line); border-radius:13px; padding:16px; box-shadow:var(--shadow); }
+.wod-struct { font-family:var(--disp); font-size:21px; font-weight:700; color:var(--ink); letter-spacing:-.015em; line-height:1.2; }
+.wod-tags { display:flex; flex-wrap:wrap; gap:7px; margin-top:11px; }
+.wod-tag { font-family:var(--mono); font-size:11px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; padding:5px 10px; border-radius:8px; background:var(--gray-soft); color:var(--ink2); }
+.wod-tag.cap { background:var(--amber-soft); color:var(--amber-ink); }
+.wod-lines { margin-top:15px; border-top:1px solid var(--line2); }
+.wod-line { display:flex; align-items:baseline; gap:13px; padding:12px 0; border-bottom:1px solid var(--line2); }
+.wod-line:last-child { border-bottom:none; padding-bottom:2px; }
+.wod-reps { font-family:var(--mono); font-size:21px; font-weight:700; color:var(--blue); min-width:40px; flex-shrink:0; line-height:1.1; }
+.wod-move { font-family:var(--disp); font-size:16px; font-weight:600; color:var(--ink); flex:1; line-height:1.3; }
+.wod-detail { font-family:var(--mono); font-size:13px; font-weight:700; color:var(--ink2); text-align:right; flex-shrink:0; white-space:nowrap; }
+.wod-total { margin-top:13px; padding-top:12px; border-top:1px solid var(--line2); font-family:var(--mono); font-size:12px; font-weight:500; color:var(--ink3); line-height:1.5; }
+@media (max-width:420px){
+  .wod-line { flex-wrap:wrap; gap:0 13px; }
+  .wod-detail { width:100%; text-align:left; margin-top:3px; padding-left:53px; }
+}
 
 /* ── WHOOP ── */
 .whoop-box { margin-top:30px; background:var(--card); border:1px solid var(--line); border-radius:14px; padding:18px; box-shadow:var(--shadow); }
@@ -610,8 +630,27 @@ function renderExercise(headers,row){
   return `<div class="exc"><div class="exc-name">${expandAbbr(splitMain(name))}</div>${chips?`<div class="exc-data">${chips}</div>`:''}${meta.length?`<div class="exc-meta">${meta.join('')}</div>`:''}${note?`<div class="exc-note">${expandAbbr(note)}</div>`:''}</div>`;
 }
 
+/* WOD als geschlossene Einheit: Struktur oben, darunter die Bewegungen in
+   Ausführungsreihenfolge mit Reps und Last/Höhe auf einer Zeile. */
+function renderWod(w){
+  const tags = [
+    w.format ? `<span class="wod-tag">${w.format}</span>` : '',
+    w.cap    ? `<span class="wod-tag cap">${w.cap}</span>` : ''
+  ].join('');
+  const lines = w.bewegungen.map(m =>
+    `<div class="wod-line"><div class="wod-reps">${m.reps}</div><div class="wod-move">${expandAbbr(m.name)}</div>${m.detail?`<div class="wod-detail">${m.detail}</div>`:''}</div>`
+  ).join('');
+  return `<div class="wod">
+    <div class="wod-struct">${w.struktur}</div>
+    ${tags?`<div class="wod-tags">${tags}</div>`:''}
+    <div class="wod-lines">${lines}</div>
+    ${w.gesamt?`<div class="wod-total">Gesamt: ${expandAbbr(w.gesamt)}</div>`:''}
+  </div>`;
+}
+
 function renderBlock(b){
-  return `<div class="blk"><div class="blk-head"><div class="blk-letter">${b.letter}</div><div><div class="blk-title">${b.title}</div><div class="blk-sub">${b.sub}</div></div></div>${b.rows.map(r=>renderExercise(b.headers,r)).join('')}${b.note?`<div class="blk-note">${b.note}</div>`:''}</div>`;
+  const body = b.wod ? renderWod(b.wod) : (b.rows||[]).map(r=>renderExercise(b.headers,r)).join('');
+  return `<div class="blk"><div class="blk-head"><div class="blk-letter">${b.letter}</div><div><div class="blk-title">${b.title}</div><div class="blk-sub">${b.sub}</div></div></div>${body}${b.note?`<div class="blk-note">${b.note}</div>`:''}</div>`;
 }
 
 function renderFocus(key){

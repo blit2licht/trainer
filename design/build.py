@@ -82,28 +82,38 @@ def write(path, group, title, body):
 
 
 # ── Foundations ───────────────────────────────────────────────────────────
-COLORS = [
-    ("--bg", "#EEF1F5", "Seitenhintergrund"), ("--card", "#FFFFFF", "Kartenfläche"),
-    ("--line", "#E2E6EC", "Rahmen"), ("--line2", "#EDF0F4", "Trennlinie innen"),
-    ("--ink", "#11131A", "Text primär"), ("--ink2", "#444B5A", "Text sekundär"),
-    ("--ink3", "#76808F", "Text tertiär"),
-    ("--blue", "#2563EB", "Akzent / Focus-Tag"), ("--blue-soft", "#E8F0FE", "Akzentfläche"),
-    ("--blue-ink", "#1D4ED8", "Akzenttext"),
-    ("--amber", "#D9480F", "Warnung / Zeitcap"), ("--amber-soft", "#FCEEE5", "Warnfläche"),
-    ("--amber-ink", "#C2410C", "Warntext"),
-    ("--green", "#047857", "Bestätigung / WHOOP"), ("--green-soft", "#E1F3EC", "Bestätigungsfläche"),
-    ("--strava", "#FC4C02", "Strava"), ("--strava-soft", "#FFF0EB", "Strava-Fläche"),
-    ("--gray", "#5C6573", "Neutral"), ("--gray-soft", "#ECEFF3", "Neutralfläche"),
+# Token-Namen aus dem echten :root-Block gelesen, nicht hardcodiert — sonst
+# genau die Zweitfassung, die dieses Skript eigentlich vermeiden soll (ist
+# schon einmal passiert: die alte hartkodierte Liste zeigte --amber/--green/
+# --strava/--gray, die es nach dem Redesign gar nicht mehr gibt).
+# Swatches rendern über var(--token), damit Light/Dark automatisch stimmen —
+# keine literalen Hex/OKLCH-Werte, die zusätzlich altern könnten.
+ROOT_BLOCK = re.search(r':root\s*\{(.*?)\}', CSS, re.S).group(1)
+# Nur Tokens mit einem Farbwert (oklch/#hex/rgb) — --disp/--body/--mono/--shadow
+# sind auch in :root, aber Fonts bzw. Box-Shadows, keine Swatches.
+TOKEN_NAMES = [
+    n for n, v in re.findall(r'--([a-z0-9-]+)\s*:\s*([^;]+);', ROOT_BLOCK)
+    if re.match(r'^\s*(oklch\(|#[0-9a-fA-F]{3,8}\b|rgb)', v)
 ]
+TOKEN_DESC = {
+    "bg": "Seitenhintergrund", "card": "Kartenfläche", "card-muted": "Gedämpfte Fläche (Ruhetag, Chips)",
+    "line": "Rahmen", "line2": "Trennlinie innen",
+    "ink": "Text primär", "ink2": "Text sekundär", "ink3": "Text tertiär",
+    "accent": "Akzent / Focus-Tag", "accent-soft": "Akzentfläche", "accent-ink": "Akzenttext",
+    "accent-contrast": "Text auf Akzentfläche", "danger": "Fehlerzustand",
+}
 sw = "".join(
-    f'<div class="ds-swatch"><div class="ds-swatch-color" style="background:{v}"></div>'
-    f'<div class="ds-swatch-meta"><div class="ds-swatch-name">{n}</div>'
-    f'<div class="ds-swatch-val">{v} · {d}</div></div></div>'
-    for n, v, d in COLORS)
+    f'<div class="ds-swatch"><div class="ds-swatch-color" style="background:var(--{n})"></div>'
+    f'<div class="ds-swatch-meta"><div class="ds-swatch-name">--{n}</div>'
+    f'<div class="ds-swatch-val">{TOKEN_DESC.get(n, "unbeschrieben")}</div></div></div>'
+    for n in TOKEN_NAMES)
 write("foundations/colors.html", "Foundations", "Farb-Tokens",
-      f'<div class="ds-label">Farb-Tokens</div><div class="ds-grid">{sw}</div>'
-      '<p class="ds-hint">Definiert in <code>:root</code>. Jede Farbe hat eine kräftige Variante '
-      'für Text/Rahmen und eine <code>-soft</code>-Fläche für Hintergründe.</p>')
+      f'<div class="ds-label">Farb-Tokens ({len(TOKEN_NAMES)}) — hell/dunkel per prefers-color-scheme</div>'
+      f'<div class="ds-grid">{sw}</div>'
+      '<p class="ds-hint">Werte über <code>var(--token)</code> gerendert, nicht literal — diese Seite '
+      'zeigt automatisch Light oder Dark, je nach Systemeinstellung. Namen kommen live aus dem '
+      '<code>:root</code>-Block von <code>index.html</code>, nicht nur <code>--accent</code> hat '
+      'eine <code>-soft</code>-Fläche und eine <code>-ink</code>-Textvariante.</p>')
 
 write("foundations/typography.html", "Foundations", "Typografie",
       '<div class="ds-label">Display — Space Grotesk</div>'
@@ -131,43 +141,62 @@ write("foundations/elevation.html", "Foundations", "Flächen & Radien",
       '<div class="chip rpe"><div class="chip-label">RPE</div><div class="chip-val">≤8</div></div></div>')
 
 # ── Wochenplan ────────────────────────────────────────────────────────────
-def day_card(cls, badge_cls, badge, day, date, einheit, sub, rx, pill, note, open_link=False):
+# SVG-Icons 1:1 aus website/index.html (const ICON) übernommen — keine
+# Zweitfassung, die von den echten Glyphen abweichen könnte.
+ICON = {
+    "box":  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="6.5" cy="12" r="4.2"/><circle cx="17.5" cy="12" r="4.2"/><rect x="10.6" y="10.1" width="2.8" height="2.8" transform="rotate(45 12 11.5)"/></svg>',
+    "own":  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="11" width="14" height="2.4" rx="1"/><rect x="3" y="8" width="3.4" height="8" rx="1"/><rect x="17.6" y="8" width="3.4" height="8" rx="1"/></svg>',
+    "rest": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>',
+    "ride": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l2-6 3 11 2-7 2 2h5"/></svg>',
+}
+COPY_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h9"/></svg>'
+
+
+def type_badge(icon_key, label, focus=False):
+    cls = "type-badge focus" if focus else "type-badge"
+    return f'<span class="{cls}"><span class="type-icon">{ICON[icon_key]}</span>{label}</span>'
+
+
+def day_card(icon_key, label, day, date, einheit, sub, rx, pill, note, focus=False, muted=False, open_link=False):
     ol = ('<div class="dc-open">Routine öffnen <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" '
           'stroke-width="2.2"><path d="M6 3l5 5-5 5"/></svg></div>') if open_link else ''
-    return (f'<div class="day-card {cls}"><div class="dc-head"><span class="dc-day">{day}</span>'
-            f'<span class="dc-date">{date}</span><span class="badge {badge_cls}">{badge}</span></div>'
-            f'<div class="dc-body"><div class="dc-einheit">{einheit}</div>'
+    cls = "day-card t-rest" if muted else "day-card"
+    ink3 = ' style="color:var(--ink3)"' if muted else ''
+    return (f'<div class="{cls}"><div class="dc-head"><span class="dc-day">{day}</span>'
+            f'<span class="dc-date">{date}</span>{type_badge(icon_key, label, focus)}</div>'
+            f'<div class="dc-body"><div class="dc-einheit"{ink3}>{einheit}</div>'
             f'<div class="dc-sub">{sub}</div>'
             f'<div class="dc-rx"><span class="dc-rx-main">{rx}</span><span class="rpe-pill">{pill}</span></div>'
             f'<div class="dc-note">{note}</div>{ol}</div></div>')
 
+
 write("components/day-card.html", "Wochenplan", "Tages-Karte",
-      '<div class="ds-label">Box-Tag</div>' +
-      day_card("t-box", "badge-box", "📦 Class", "Samstag", "18.07.",
+      '<div class="ds-label">Class-Tag</div>' +
+      day_card("box", "Class", "Samstag", "18.07.",
                "Accessory Strength + AMRAP Engine",
                "E3:00×3: Dips · Lateral Raise · Side Plank → 5 Runden: Push-ups · Air Squats · V-ups",
                "RPE-only", "RPE ~6-7", "Kurzer Coaching-Hinweis zur Einordnung des Tages.") +
       '<div class="ds-label">Eigener Fokus-Tag — mit Routine-Link</div>' +
-      day_card("t-own", "badge-own", "🏋️ Focus A", "Dienstag", "14.07.",
+      day_card("own", "Focus A", "Dienstag", "14.07.",
                "Pull/Gymnastics + Front Squat",
                "Strict Pull-up · Toes-to-Bar · Front Rack Squat · Hollow Hold",
-               "Auf Anfrage", "RPE ≤7", "Fokus-Tage öffnen eine detaillierte Routine.", True) +
-      '<div class="ds-label">Ruhetag</div>'
+               "Auf Anfrage", "RPE ≤7", "Fokus-Tage öffnen eine detaillierte Routine.",
+               focus=True, open_link=True) +
+      '<div class="ds-label">Recovery-Tag — gedämpfte Fläche, kein Body-Inhalt</div>'
       '<div class="day-card t-rest"><div class="dc-head"><span class="dc-day">Montag</span>'
-      '<span class="dc-date">13.07.</span><span class="badge badge-rest">❌ Recovery</span></div>'
-      '<div class="dc-body"><div class="dc-einheit" style="color:var(--ink3)">Kein Training</div>'
-      '<div class="dc-note">Ruhetage sind harte Ruhetage — keine optionale Aufweichung.</div></div></div>'
-      '<p class="ds-hint">Der farbige Balken links (<code>t-box</code>, <code>t-own</code>, '
-      '<code>t-rest</code>, <code>t-ride</code>) kodiert den Tagestyp.</p>')
+      f'<span class="dc-date">13.07.</span>{type_badge("rest", "Recovery")}</div></div>'
+      '<p class="ds-hint">Kein farbcodierter Rand mehr: Der Tagestyp steckt im Icon+Label rechts im '
+      'Kopf. Nur <code>t-rest</code> bekommt noch eine eigene (gedämpfte) Kartenfläche.</p>')
 
-write("components/badges.html", "Wochenplan", "Badges & RPE-Pill",
-      '<div class="ds-label">Tagestyp-Badges</div>'
-      '<div style="display:flex;flex-wrap:wrap;gap:8px">'
-      '<span class="badge badge-box">📦 Class</span>'
-      '<span class="badge badge-own">🏋️ Focus A</span>'
-      '<span class="badge badge-own">💪 Focus B</span>'
-      '<span class="badge badge-rest">❌ Recovery</span>'
-      '<span class="badge badge-ride">🚴 Ride</span></div>'
+write("components/badges.html", "Wochenplan", "Type-Badges & RPE-Pill",
+      '<div class="ds-label">Tagestyp: Icon + Label statt Emoji-Badge</div>'
+      '<div style="display:flex;flex-wrap:wrap;gap:14px;align-items:center">' +
+      type_badge("box", "Class") + type_badge("own", "Focus A", focus=True) +
+      type_badge("rest", "Recovery") + type_badge("ride", "Cardio") +
+      '</div>'
+      '<p class="ds-hint">Nur der aktive Fokus-Tag bekommt die Akzentfarbe '
+      '(<code>.type-badge.focus</code>) — alle anderen Typen bleiben neutral in '
+      '<code>--ink3</code>/<code>--card-muted</code>.</p>'
       '<div class="ds-label">RPE-Pill</div>'
       '<div class="dc-rx"><span class="dc-rx-main">Last/Level-Angabe</span>'
       '<span class="rpe-pill">RPE ≤8</span></div>'
@@ -219,34 +248,43 @@ write("components/wod-card.html", "Routine", "WOD-Karte",
       'müssen zusammen sichtbar sein — nicht als Kette einzelner Übungskarten. '
       'Unter 420 px rutscht die Last auf eine eigene Zeile.</p>')
 
-write("components/whoop-box.html", "Routine", "WHOOP-Log",
-      '<div class="ds-label">Übertragsliste für die Uhr</div>'
-      '<div class="whoop-box"><div class="whoop-label">⌚ Format 2 — WHOOP Log</div>'
-      '<ul class="whoop-list">'
-      '<li><div class="w-name">Clean and Jerk</div><div class="w-detail">8 × 1 · 60-75 kg</div></li>'
-      '<li><div class="w-name">Box Jump</div><div class="w-detail">8 × 4 · 70 cm</div></li>'
-      '<li><div class="w-name">Chest to Bar Pull Up</div><div class="w-detail">8 × 5 · BW</div></li>'
-      '</ul></div>'
+write("components/whoop-box.html", "Routine", "WHOOP-Copy-Block",
+      '<div class="ds-label">Kopierbarer Klartext statt Listenkarte</div>'
+      '<div class="whoop-copy"><div class="whoop-copy-head">'
+      '<span class="whoop-copy-title">Für WHOOP kopieren</span>'
+      f'<button class="copy-btn">{COPY_ICON}Kopieren</button></div>'
+      '<div class="whoop-text">Opengym-Session\n'
+      'Sonntag · 19.07.2026\n\n'
+      'Clean and Jerk: 8 × 1 · 60-75 kg\n'
+      'Box Jump: 8 × 4 · 70 cm\n'
+      'Chest to Bar Pull Up: 8 × 5 · BW</div></div>'
       '<p class="ds-hint">Nutzt die Bezeichnungen der WHOOP-Übungsbibliothek, nicht die '
-      'Anzeigenamen aus der Routine.</p>')
+      'Anzeigenamen aus der Routine. Der Klartext geht durch <code>stripHtml()</code>, bevor er '
+      'gerendert und in die Zwischenablage gelegt wird — <code>f.intro</code> enthält echtes HTML '
+      '(<code>&lt;em&gt;</code>, <code>&amp;amp;</code>), das hier nicht als Tag-Suppe landen darf.</p>')
 
 # ── Notizen & Navigation ──────────────────────────────────────────────────
-write("components/note-panel.html", "Notizen", "Notiz & rpe_feel",
-      '<div class="ds-label">Erfassung nach der Einheit</div>'
+write("components/note-panel.html", "Notizen", "Notiz & Session-Feel",
+      '<div class="ds-label">Erfassung nach der Einheit — nummerierte Pills statt Emoji</div>'
       '<div class="note-panel open">'
-      '<div class="rpe-row">'
-      '<button class="rpe-btn">😵</button><button class="rpe-btn">😮‍💨</button>'
-      '<button class="rpe-btn selected">😐</button><button class="rpe-btn">💪</button>'
-      '<button class="rpe-btn">🔥</button></div>'
+      '<div class="feel-label">Wie lief die Session?</div>'
+      '<div class="feel-row">'
+      '<button class="feel-btn" title="1 — Mies">1</button>'
+      '<button class="feel-btn" title="2 — Zäh">2</button>'
+      '<button class="feel-btn selected" title="3 — Okay">3</button>'
+      '<button class="feel-btn" title="4 — Gut">4</button>'
+      '<button class="feel-btn" title="5 — Stark">5</button></div>'
       '<textarea class="note-textarea" placeholder="Was lief gut / schlecht? Lasten, Energie, Technik…"></textarea>'
       '<div class="note-actions"><button class="note-save-btn">Speichern</button>'
       '<span class="note-status">Gespeichert</span></div></div>'
-      '<p class="ds-hint">Die Skala ist <code>rpe_feel</code> (subjektive Sessionqualität 1–5, '
-      'höher = besser) — nicht zu verwechseln mit der Load-RPE in den Übungskarten.</p>')
+      '<p class="ds-hint">Intern weiterhin <code>session_feel</code> (1–5, höher = besser) — '
+      'nur die Darstellung wechselte von Emoji zu Zahlen. Jede Pille trägt ein Label per '
+      '<code>title</code>/<code>aria-label</code>, nicht zu verwechseln mit der Load-RPE in den '
+      'Übungskarten.</p>')
 
 write("components/navigation.html", "Navigation", "Kopfzeile & Rücksprung",
-      '<div class="ds-label">Kopfzeile mit Wochenauswahl</div>'
-      '<div class="topbar"><div class="brand">AI Coach</div>'
+      '<div class="ds-label">Kopfzeile — nur Wochenauswahl, kein Branding</div>'
+      '<div class="topbar">'
       '<div class="week-select-wrap"><span class="week-select-label">Woche wählen</span>'
       '<select id="weekSelect"><option>Woche 5 · 13.–19. Juli 2026</option></select>'
       '<svg class="select-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" '

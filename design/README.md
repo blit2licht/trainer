@@ -40,19 +40,19 @@ absichtlich so: Die App ist eine einzelne HTML-Datei ohne Build-Schritt.
 
 | Gruppe | Datei | Inhalt |
 |---|---|---|
-| Foundations | `foundations/colors.html` | 19 Farb-Tokens mit Verwendungszweck |
+| Foundations | `foundations/colors.html` | 13 Farb-Tokens (OKLCH), live aus `:root` extrahiert, Light + Dark |
 | Foundations | `foundations/typography.html` | Space Grotesk / Inter / JetBrains Mono |
 | Foundations | `foundations/elevation.html` | Radien, Shadow, Flächen |
 | Wochenplan | `components/day-card.html` | Tages-Karte in drei Typvarianten |
-| Wochenplan | `components/badges.html` | Tagestyp-Badges, RPE-Pill, Level-Markup |
+| Wochenplan | `components/badges.html` | Type-Badges (Icon + Label statt Emoji), RPE-Pill, Level-Markup |
 | Routine | `components/block-header.html` | Block-Kopf mit Buchstabe |
 | Routine | `components/exercise-card.html` | Übungskarte mit Chip-Reihe |
 | Routine | `components/wod-card.html` | WOD als geschlossene Einheit |
-| Routine | `components/whoop-box.html` | Übertragsliste für die Uhr |
-| Notizen | `components/note-panel.html` | Notiz-Eingabe mit `rpe_feel`-Skala |
-| Navigation | `components/navigation.html` | Kopfzeile, Breadcrumb, Seitenkopf, Rücksprung |
+| Routine | `components/whoop-box.html` | Kopierbarer WHOOP-Klartextblock |
+| Notizen | `components/note-panel.html` | Notiz-Eingabe mit `session_feel`-Skala (nummerierte Pills) |
+| Navigation | `components/navigation.html` | Kopfzeile (kein Branding), Breadcrumb, Seitenkopf, Rücksprung |
 
-## Zwei Fallstricke, die im Design schon aufgetreten sind
+## Fallstricke, die im Design schon aufgetreten sind
 
 **Mono verwechselt O und 0.** In JetBrains Mono ist das große O kaum von der Null
 zu unterscheiden. In einem WOD, wo Zahlen zählen, las sich „48 S2O" wie „48 S20".
@@ -62,3 +62,9 @@ Abkürzungen mit O daher ausschreiben.
 `Dauer`, `Last`, `RPE`, `Tempo`, `Rest`/`Pause`, `Note` — alles andere wird
 stillschweigend verworfen, ohne Fehlermeldung. Ein WOD gehört deshalb in das
 `wod`-Objekt, nicht in `headers`/`rows`.
+
+**`f.intro` ist vertrautes HTML, kein Klartext.** Felder wie `intro` werden
+per `innerHTML` gerendert und enthalten echtes Markup (`<em>Komplex</em>`,
+`&amp;J`). Wer daraus einen Klartextblock baut (WHOOP-Copy-Button), muss vorher
+durch `stripHtml()` — sonst landen rohe Tags und Entities auf dem Bildschirm
+und in der Zwischenablage.

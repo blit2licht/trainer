@@ -2,6 +2,18 @@
 
 Kurze, verdichtete Wocheneinträge. Rohdaten bleiben in WHOOP, Strava und der Website-Datenbank.
 
+## 2026-W29 · 13.–19. Juli · Meso 2 W5 (Bangkok)
+
+**Plan stark abweichend — de-facto-Deload bestätigt.** Mo Ruhe ✓ (Strain 4.0) · **Di Erhalt A ausgefallen** (Workshop ab 8:30, Zeitfenster geplatzt; Strain 5.9 ohne Training) · Mi Full-Body-DB-Session ✓ statt geplantem Erhalt B (Strain 14.3, 12.459 kg Tonnage, session_feel 5) · Do Recovery-Mobility ✓ (Strain 4.7, nur Spaziergänge) · Fr Reisetag Ruhe ✓ (Rückflug, Strain 5.1) · **Sa Box Accessory+AMRAP ausgefallen** (Strain 5.8, nur leichtes Cardio) · So Opengym C&J-Singles + WOD ✓ (Strain 16.7 — Wochenpeak, session_feel 5).
+
+**Kernbefunde:**
+- Nur 3 von 5 geplanten Einheiten durchgeführt (Mi, Do, So) — Di und Sa fielen der Reise-/Terminlogistik zum Opfer. Bestätigt W29 als de-facto-Deload, wie im Mesocycle-Plan vorgesehen.
+- **So-Doppelsession als Wochenpeak:** C&J-Singles 55→75 kg @ RPE ≤8 (kein neuer Bestwert, sauberer Aufbau, Singles statt Komplex) + Functional-Piece (Box Jump/C2B/Push Jerk 52,5 kg) mit >9 min in HR-Zone 4–5, Strain 14.9 — WHOOP flagt das explizit als obere Belastungsgrenze direkt nach dem Rückflug.
+- Snatch-Pattern und Strict HSPU (ursprünglich für Mi geplant) blieben unbedient — Reclaim-Bedarf bleibt offen, zusätzlich zum bereits seit W27 offenen Overhead Squat.
+- Clean & Jerk als einziger Fokus direkt bedient diese Woche (Singles, kein Komplex) — Rotationsstand aktualisiert.
+
+**Offen für W30:** Overhead Squat (seit W27), Snatch-Pattern/Strict-HSPU-Reclaim (diese Woche ausgefallen), FS-Block Wk 3/3, WPU-Progression auf 3×4, Sechs-Wochen-Zielreview fällig. Mi 22.07 fix Ruhetag (Termin 7:00). Ab Sa 25.07 Urlaub Griechenland — Trainingsumfang W30 dadurch auf effektiv Mo-Fr begrenzt, Details zu Abreise/Trainingszugang vor Ort ausstehend.
+
 ## 2026-W28 · 6.–12. Juli · Meso 2 W4
 
 **Plan teilweise befolgt.** Mo Ruhe ✓ · Di Box FS (100 kg Top, aufsteigende Einzelsätze) ✓ + Intervall-WOD ✓ (Tagesstrain kombiniert ~18,8 — hoher Einzeltag) · **Mi Box ausgefallen** (hard rest, Recovery 24 % rot, HRV 33 ms/RHR 57 nach anstrengendem Arbeitstag) · Do Focus A (C&J-Reclaim) ✓ RPE 6-7 · Fr Focus B (Gymnastics) ✓ mit Einschränkung · Sa Box Snatch-Complex ✓ + WOD ✓ (Tagesstrain kombiniert ~21,1) · So Abreise Bangkok, kein Training ✓.

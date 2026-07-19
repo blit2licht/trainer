@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "aktualisiert_am": "2026-07-13",
+  "aktualisiert_am": "2026-07-19",
   "aktuelle_woche": {
     "id": "2026-W29",
     "von": "2026-07-13",
@@ -19,7 +19,7 @@
       "W26": "Kapazität/Progression, voll durchgezogen — abgeschlossen",
       "W27": "Load-Pullback (−22 %) + Snatch-Speed-Reclaim — abgeschlossen",
       "W28": "Letzte volle Belastungswoche: C&J-Reclaim, FS-Block Wk 2/3, Gymnastics gehalten — abgeschlossen",
-      "W29": "Bangkok (Arbeitsreise) — Erhalt/Improvisation nach Ausstattung vor Ort; zählt de facto als Deload",
+      "W29": "Bangkok (Arbeitsreise) — de-facto-Deload bestätigt: nur 3/5 Einheiten durchgeführt (Mi Full-Body-DB, Do Recovery-Mobility, So C&J-Singles+WOD), Di (Erhalt A) und Sa (Box Accessory+AMRAP) ausgefallen — abgeschlossen",
       "W30": "Rückkehr: FS-Block Wk 3/3 abschließen, WPU-Progression 3×4 starten, Sechs-Wochen-Zielreview fällig"
     },
     "deload_trigger": [
@@ -53,10 +53,11 @@
       "bmu": "W28",
       "weighted_pull_up": "W28",
       "toes_to_bar": "W28",
-      "clean_jerk": "W28"
+      "clean_jerk": "W29 (Singles 55→75 kg @ RPE ≤8, kein Komplex, kein neuer Bestwert)"
     },
     "offen": [
-      "Overhead Squat — seit W27 nicht direkt trainiert (Pause OHS lief W27, danach nicht mehr im Plan) → bei Wiedereinstieg nach Bangkok nachziehen"
+      "Overhead Squat — seit W27 nicht direkt trainiert → bei W30 nachziehen",
+      "Snatch-Pattern und Strict HSPU — für W29 (Mi) geplant, aber durch Full-Body-DB-Ersatzsession nicht bedient → Reclaim in W30 einplanen"
     ]
   },
   "load_references": {
@@ -100,14 +101,14 @@
   },
   "akute_hinweise": [
     {
-      "datum": "2026-07-13",
-      "betrifft": "Bangkok-Woche W29 — Plan final",
-      "hinweis": "Di/Mi Hotel-Gym-Erhalt vormittags (DB bis ~20-22,5 kg, Maschinen, Klimmzugstange). Do vormittags kein Fenster → Nachmittags-Drop-in in einer CrossFit-Box (WOD noch offen, Level/Scaling folgt per Daily-WOD-Adjustment sobald bekannt). Fr Rückflug Bangkok→München (Reisetag). Sa/So bereits in München, reguläres Box-Programm (Sa Accessory/Engine, So C&J-Singles + WOD). Zählt de facto als Deload."
+      "datum": "2026-07-19",
+      "betrifft": "W30 — Mi fix Ruhetag",
+      "hinweis": "Mi 22.07. Termin um 7:00 — Tag fix als Ruhetag geplant. DreamWOD-Boxtag (Matador Dips/T2B-EMOM + Cal/Sit-up-WOD) entfällt dadurch ersatzlos."
     },
     {
-      "datum": "2026-07-15",
-      "betrifft": "Bangkok-Woche W29 — Do-Anpassung",
-      "hinweis": "Mi 15.07. Full-Body-DB-Session statt geplanter Erhalt B (Snatch-Pattern/HSPU) — WHOOP-Builder ohne Wochenkontext genutzt, volle Muster-Coverage bei 34% Recovery. Snatch-Pattern und Strict HSPU bleiben offen, kein Nachholversuch — Reclaim wartet auf W30. Do 16.07. Box-Drop-in gestrichen, ersetzt durch Recovery-Mobility-Session im Hotel-Gym (RPE ≤4, kein Press/Squat/Hinge/Row)."
+      "datum": "2026-07-19",
+      "betrifft": "W30 — Griechenland ab Samstag",
+      "hinweis": "Ab Sa 25.07. Urlaub Griechenland. Genaue Abreisezeit und Trainingszugang vor Ort noch offen — Klärung mit Martin ausstehend. W30-Plan bis dahin nur für Mo-Fr belastbar, Sa/So vorläufig offen."
     }
   ],
   "hinweis_ablauf": "Beim Wochenreview neu bewerten; spätestens nach 7 Tagen entfernen, wenn nicht erneut bestätigt.",
@@ -118,7 +119,7 @@
     "strava": "Optional über MCP für Radfahrten"
   },
   "naechster_zielreview": "Nach sechs Trainingswochen; Schwerpunkt darf begründet verlängert werden.",
-  "systemstatus": "V1.0 produktiv; Wochenreviews W25, W26, W27 und W28 im Logbuch abgeschlossen. Erster Sechs-Wochen-Review noch offen (fällig W30).",
+  "systemstatus": "V1.0 produktiv; Wochenreviews W25-W29 im Logbuch abgeschlossen. Erster Sechs-Wochen-Review fällig (W30), wartet auf Klärung Griechenland-Timing.",
   "migration": {
     "version": "1.0",
     "abgeschlossen_am": "2026-06-15"

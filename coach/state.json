@@ -2,12 +2,12 @@
   "schema_version": 1,
   "aktualisiert_am": "2026-07-19",
   "aktuelle_woche": {
-    "id": "2026-W29",
-    "von": "2026-07-13",
-    "bis": "2026-07-19",
+    "id": "2026-W30",
+    "von": "2026-07-20",
+    "bis": "2026-07-26",
     "mesocycle": "Meso 2",
-    "woche_im_fokus": 5,
-    "phase": "Bangkok-Erhalt / De-facto-Deload",
+    "woche_im_fokus": 6,
+    "phase": "Rückkehr / FS-Block Wk3/3 / Griechenland ab Sa",
     "veroeffentlichter_plan": "website/data.js"
   },
   "mesocycle_plan": {
@@ -108,7 +108,7 @@
     {
       "datum": "2026-07-19",
       "betrifft": "W30 — Griechenland ab Samstag",
-      "hinweis": "Ab Sa 25.07. Urlaub Griechenland. Genaue Abreisezeit und Trainingszugang vor Ort noch offen — Klärung mit Martin ausstehend. W30-Plan bis dahin nur für Mo-Fr belastbar, Sa/So vorläufig offen."
+      "hinweis": "Abflug Sa 25.07. um 8:00 — kein Training am Reisetag. So 26.07. in Griechenland nur Bodyweight/Band/Springseil verfügbar (kein Barbell/DB) — eigene Session geplant, moderat, kein Testcharakter. Sechs-Wochen-Zielreview (fällig W30) verschoben, bis wieder normaler Trainingsrhythmus läuft."
     }
   ],
   "hinweis_ablauf": "Beim Wochenreview neu bewerten; spätestens nach 7 Tagen entfernen, wenn nicht erneut bestätigt.",

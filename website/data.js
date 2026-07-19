@@ -21,7 +21,7 @@ const DATA = {
         { day:"Donnerstag",date:"16.07.", isoDate:"2026-07-16", type:"own",  focus:"Recovery", einheit:"Recovery — Mobility (Hotel-Gym)", sub:"Hüftbeuger-Mobility · BWS-Rotation · Schulter-Mobility (kein Press) · Dead Bug · Foam Roll/Stretch", rx:"RPE ≤4", note:"Ersetzt Box-Drop-in. Nach voller Muster-Coverage Mi (Squat/Hinge/Push/Pull/Overhead bei 34% Recovery) bewusst ohne Reizaufbau vor Sa/So-Belastung in München. Kein Press/Squat/Hinge/Row — alles Mi bereits bedient. Zusätzlich realistisch: Sternerestaurant-Dinner Mi-Abend (spätes/schweres Essen, vsl. Alkohol) dämpft die Recovery Do vermutlich zusätzlich — bewusst kein Reizaufbau versucht." },
         { day:"Freitag",   date:"17.07.", isoDate:"2026-07-17", type:"rest", einheit:"—", rx:"—", note:"Rückflug Bangkok → München — kein Training (Reisetag)." },
         { day:"Samstag",   date:"18.07.", isoDate:"2026-07-18", type:"box",  einheit:"Accessory Strength + AMRAP Engine", sub:"E3:00×3: 8-10 Dips + DB Lateral/Front Raise + 20 sec/Seite Side Plank → 5 Runden (5 min): 15 Push-ups · 30 Air Squats · 15 V-ups · AMRAP Cal Restzeit", rx:"RPE-only", rpe:"RPE ~6-7", note:"Landetag nach Nachtflug — bewusst leichter Accessory/Engine-Tag, kein Lastfokus." },
-        { day:"Sonntag",   date:"19.07.", isoDate:"2026-07-19", type:"box",  einheit:"Clean & Jerk Singles + Box Jump/Pull-up/S2O", sub:"E1:30×8: 1 Clean & Jerk (Woche 1/2) → 8 Runden For Time: 4 Box Jumps · 5 Pull-ups · 6 Shoulder to Overhead", rx:"C&J RPE-gated, keine PR jagen · WOD <span class='rv'>L3 — Bar 60 kg, Box 70 cm, C2B</span>", rpe:"RPE ≤8 (C&J), Cap 15 min (WOD)", note:"Technik/Position erhalten, kein Max-Test — zwei Tage nach dem 78-kg-Erfolg (W28) und nach Zeitzonenwechsel. Level am Trainingstag nach aktueller Recovery entscheiden." }
+        { day:"Sonntag",   date:"19.07.", isoDate:"2026-07-19", type:"own",  focus:"C", einheit:"Opengym — C&J Singles + kurzer WOD", sub:"E1:30×8: 1 Clean &amp; Jerk (Woche 1/2) → 8 Runden For Time: 4 Box Jumps · 5 C2B · 6 Shoulder to Overhead", rx:"C&J bis 75 kg RPE-gated · WOD <span class='rv'>L3-Standards, Bar 52,5 kg, Box 70 cm, C2B</span>", rpe:"RPE ≤8 (C&J), Cap 15 min (WOD)", note:"Kein Kursplatz bekommen → Opengym statt Team-WOD. Recovery 54 % (gelb) bei gutem Schlaf, erst 2. Trainingstag der Woche — keine Kappungsregel, aber kein Test. Bar im WOD von 60 auf 52,5 kg reduziert (60 kg ≈ 73 % der Push-Press-Basis, bei 8×6 sonst Kraftausdauer statt Engine). Team-WOD verworfen: 10 BMU nach 80 T2B + 20 C2B wäre Technik-Rückschritt beim aktuellen Fokus, und der C&J-Block würde ersatzlos ausfallen." }
       ],
       focusDays: {
         A: {
@@ -75,6 +75,43 @@ const DATA = {
             ["Dumbbell Snatch (Single Arm)","5 × 6/Seite · 20-22,5 kg"],
             ["Handstand Push Up","4 × 6 strict · BW"],
             ["Dumbbell Lunge (Reverse)","3 × 10/Bein · 20-22,5 kg"]
+          ]
+        },
+        C: {
+          title:"🏋️ Opengym-Session", date:"Sonntag · 19.07.2026",
+          sub:"Clean &amp; Jerk Singles (Woche 1/2) · kurzer WOD · CrossFit Munich Opengym",
+          intro:"Kein Kursplatz bekommen — statt Team-WOD individuelle Opengym-Session, damit der C&amp;J-Block startet. Recovery 54 % (gelb) bei gutem Schlaf, erst 2. Trainingstag der Woche: keine Kappungsregel (die greift &lt;50 %), aber ausdrücklich kein Max-Test. Referenz ist der 78-kg-<em>Komplex</em> aus W28 (Squat Clean + Push Jerk @ RPE 7) — heute sind es Singles, also nicht daran messen. Gesamtdauer ~60-75 min.",
+          blocks:[
+            { letter:"A", title:"Warm-up", sub:"~10 min · Front-Rack + Overhead öffnen",
+              headers:["Übung","Dauer","Note"],
+              rows:[
+                ["Allgemein (Row/Bike + Mobility)","5 min","Locker, Puls hochbringen."],
+                ["Barbell-Komplex leere Stange","2-3 Durchgänge","Muscle Clean · Front Squat · Push Jerk · Overhead Hold — Positionen wecken."],
+                ["Front-Rack + Lat-Stretch","2 min","Ellbogen hoch, Overhead-Enge lösen."]
+              ] },
+            { letter:"B", title:"Clean &amp; Jerk — Singles", sub:"E1:30 × 8 (12 min) · Woche 1/2",
+              headers:["Übung","Sets × Reps","Last","RPE","Tempo","Rest","Note"],
+              rows:[ ["Clean &amp; Jerk","8 × 1","60 · 62,5 · 65 · 67,5 · 70 · 72,5 · 75 · 75 kg","≤8","zügig","E1:30","Kein neues Top. Steigerung stoppt, sobald Fang-Position oder Jerk-Lockout unsauber wird — dann auf dem letzten sauberen Gewicht ausfahren."] ] },
+            { letter:"C", title:"WOD — 8 Runden For Time", sub:"Cap 15 min · L3-Standards, Bar reduziert",
+              headers:["Übung","Reps/Runde","Last","Note"],
+              rows:[
+                ["Box Jumps","4","70 cm","L3-Höhe bleibt."],
+                ["Chest-to-Bar Pull-up","5","BW","40 Reps gesamt — bewusst gehalten, Zug-Qualität ist der Punkt."],
+                ["Shoulder to Overhead","6","52,5 kg","Statt publizierter 60 kg: bei 8 × 6 wären 60 kg ≈ 73 % der Push-Press-Basis (82,5 kg) — das kippt von Engine in Kraftausdauer."]
+              ] },
+            { letter:"D", title:"Cool-down", sub:"5-10 min",
+              headers:["Übung","Dauer","Note"],
+              rows:[
+                ["Hüftbeuger-Stretch","2 × 45 sec/Seite","Nach Box Jumps + Cleans."],
+                ["Thorakale Extension","1-2 min","Foam Roller."],
+                ["Lat-Stretch hängend","2 × 45 sec","Nach C2B-Volumen."]
+              ] }
+          ],
+          whoop:[
+            ["Clean and Jerk","8 × 1 · 60-75 kg"],
+            ["Box Jump","8 × 4 · 70 cm"],
+            ["Chest to Bar Pull Up","8 × 5 · BW"],
+            ["Shoulder to Overhead","8 × 6 · 52,5 kg"]
           ]
         }
       }

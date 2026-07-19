@@ -93,11 +93,11 @@ const DATA = {
               headers:["Übung","Sets × Reps","Last","RPE","Tempo","Rest","Note"],
               rows:[ ["Clean &amp; Jerk","8 × 1","60 · 62,5 · 65 · 67,5 · 70 · 72,5 · 75 · 75 kg","≤8","zügig","E1:30","Kein neues Top. Steigerung stoppt, sobald Fang-Position oder Jerk-Lockout unsauber wird — dann auf dem letzten sauberen Gewicht ausfahren."] ] },
             { letter:"C", title:"WOD — 8 Runden For Time", sub:"Cap 15 min · L3-Standards, Bar reduziert",
-              headers:["Übung","Reps/Runde","Last","Note"],
+              headers:["Übung","Sets × Reps","Last","Note"],
               rows:[
-                ["Box Jumps","4","70 cm","L3-Höhe bleibt."],
-                ["Chest-to-Bar Pull-up","5","BW","40 Reps gesamt — bewusst gehalten, Zug-Qualität ist der Punkt."],
-                ["Shoulder to Overhead","6","52,5 kg","Statt publizierter 60 kg: bei 8 × 6 wären 60 kg ≈ 73 % der Push-Press-Basis (82,5 kg) — das kippt von Engine in Kraftausdauer."]
+                ["Box Jumps","8 Runden × 4","70 cm","L3-Höhe bleibt."],
+                ["Chest-to-Bar Pull-up","8 Runden × 5","BW","40 Reps gesamt — bewusst gehalten, Zug-Qualität ist der Punkt."],
+                ["Shoulder to Overhead","8 Runden × 6","52,5 kg","Statt publizierter 60 kg: bei 8 × 6 wären 60 kg ≈ 73 % der Push-Press-Basis (82,5 kg) — das kippt von Engine in Kraftausdauer."]
               ] },
             { letter:"D", title:"Cool-down", sub:"5-10 min",
               headers:["Übung","Dauer","Note"],

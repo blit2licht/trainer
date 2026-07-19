@@ -74,7 +74,7 @@ GitHub ist das versionierte Gedächtnis und die gemeinsame Wahrheit.
 - `coach/logbook.md`: kurzer verdichteter Eintrag pro Woche
 - `coach/reviews/`: separate Sechs-Wochen-Reviews
 - `website/data.js`: veröffentlichter Plan der aktuellen und bis zu drei vorherigen Wochen
-- Website-Datenbank: Tagesnotizen und `rpe_feel`
+- Website-Datenbank: Tagesnotizen und `session_feel`
 - WHOOP: manuell eingefügte Wochenreviews und gezielte Detailabfragen
 - DreamWOD: manuell eingefügtes Box-Wochenprogramm
 - Strava: optional für Radfahrtdaten
@@ -255,9 +255,20 @@ Weightlifting-Lasten immer plattenfreundlich angeben — nur Vielfache von 1,25 
 
 WHOOP rundet geloggte Gewichte auf ganze kg (47,5 → 48, 42,5 → 43). Krumme Ganzzahlen aus WHOOP daher nicht wörtlich nehmen, sondern auf das nächste 1,25-Vielfache zurücklesen — Martin nutzt real immer 1,25-Vielfache, nie die kleinen Oly-Scheiben.
 
-Zwei Begriffe niemals verwechseln:
-- Load RPE: Trainingsintensität pro Satz; höher bedeutet näher am Limit
-- `rpe_feel`: subjektive Sessionqualität von 1 bis 5; höher bedeutet besser
+Zwei Skalen, die früher beide „RPE“ hießen und deshalb strikt getrennt werden:
+
+| | **Load RPE** | **Session-Feel** (`session_feel`) |
+|---|---|---|
+| Was | Rate of Perceived Exertion, 1–10 | Wie die Einheit lief, 1–5 |
+| Richtung | höher = härter, näher am Limit | höher = besser |
+| Wer setzt es | Claude, im Plan als Vorgabe | Martin, nach der Einheit |
+| Wo | `rpe`-Feld in `data.js`, RPE-Pill | Emoji-Skala im Notiz-Panel |
+| Stufen | RPE 8 ≈ zwei Wiederholungen in Reserve | 1 Mies · 2 Zäh · 3 Okay · 4 Gut · 5 Stark |
+
+Session-Feel misst ausdrücklich **keine** Anstrengung. Eine harte Einheit mit
+Load RPE 8, die sauber lief, ist Session-Feel 4–5; eine leichte Einheit, bei der
+sich Martin schlapp fühlte, ist Session-Feel 2. Nie das eine aus dem anderen
+ableiten.
 
 **Conditioning-Reiz nach Bewegungsmuster + Puls einschätzen, nicht nach Last.** Ein Mixed-Modal-Stück mit Laufen, Toes-to-Bar oder kurzen, schnellen Bewegungszyklen ist **nie „moderat“**, auch bei leichtem Gewicht — es treibt zuverlässig in Zone 4+ und zählt als harte Einheit. Leichte Last ≠ leichter Reiz. Bei AMRAPs/Intervallen mit solchen Mustern von High-Intensity-Cardio ausgehen und entsprechend in der Wochenlast verbuchen.
 

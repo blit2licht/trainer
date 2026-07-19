@@ -10,11 +10,12 @@ Technischer Überblick des Coaching-Systems. Reine Referenz — die Coaching-Wah
 - **Veröffentlicht wird nur `website/`.** Deployment gilt erst als erfolgreich, wenn die Seite erreichbar ist und die aktuelle Wochen-ID ausliefert.
 - IONOS nutzt teils nicht-standardisierte interne Pfade (z. B. AuthUserFile für Basic Auth) — vor `.htaccess`-Änderungen den tatsächlichen Pfad bestätigen, sonst HTTP 500.
 
-## Tagesnotizen & RPE
+## Tagesnotizen & Session-Feel
 
 - Notizen werden per **iOS-Voice-Input** erfasst und in MariaDB gespeichert (`session_notes`).
-- `rpe_feel`: subjektive Sessionqualität 1–5 (Emoji-Skala), höher = besser. **Nicht** mit Load-RPE verwechseln.
+- `session_feel`: wie die Einheit lief, 1–5 (Emoji-Skala), höher = besser. Misst **keine** Anstrengung — das ist die Load RPE aus dem Plan. Bis 2026-07-19 hieß das Feld `rpe_feel`, was genau diese Verwechslung erzeugt hat.
 - Lesen: `website/get_notes.php?from=YYYY-MM-DD&to=YYYY-MM-DD` (Datumsbereich Pflicht, sonst HTTP 400). Schreiben: `website/save_note.php`.
+- `website/notes_db.php` erkennt zur Laufzeit, ob die Spalte schon `session_feel` heißt. Übergangshilfe für die Migration — kann entfallen, sobald das ALTER TABLE gelaufen ist.
 
 ## Wöchentliche Mail-Summary
 

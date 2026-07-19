@@ -2,6 +2,8 @@
 header('Content-Type: application/json');
 header('X-Notes-Version: 2');
 
+require_once __DIR__ . '/notes_db.php';
+
 $config_path = __DIR__ . '/config.php';
 if (!is_file($config_path)) {
     http_response_code(503);
@@ -37,8 +39,10 @@ $data = json_decode($raw, true);
 
 $session_key = trim($data['session_key'] ?? '');
 $note_date   = trim($data['note_date']   ?? '');
-$rpe_feel    = intval($data['rpe_feel']  ?? 0);
 $note_text   = trim($data['note_text']   ?? '');
+// Übergang: rpe_feel als Fallback, solange gecachte Frontends den alten
+// Feldnamen senden.
+$session_feel = intval($data['session_feel'] ?? $data['rpe_feel'] ?? 0);
 
 if (!$session_key || !$note_date) {
     http_response_code(400);
@@ -53,7 +57,7 @@ if (!preg_match('/^\d{4}-\d{2}-\d{2}$/', $note_date)) {
     exit;
 }
 
-$rpe_feel = max(0, min(5, $rpe_feel));
+$session_feel = max(0, min(5, $session_feel));
 
 // Upsert
 try {
@@ -63,10 +67,11 @@ try {
         [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
     );
 
-    $sql = "INSERT INTO session_notes (session_key, note_date, rpe_feel, note_text)
-            VALUES (:sk, :nd, :rf, :nt)
+    $col = feel_column($pdo);
+    $sql = "INSERT INTO session_notes (session_key, note_date, `$col`, note_text)
+            VALUES (:sk, :nd, :sf, :nt)
             ON DUPLICATE KEY UPDATE
-                rpe_feel   = VALUES(rpe_feel),
+                `$col`     = VALUES(`$col`),
                 note_text  = VALUES(note_text),
                 updated_at = NOW()";
 
@@ -74,7 +79,7 @@ try {
     $stmt->execute([
         ':sk' => $session_key,
         ':nd' => $note_date,
-        ':rf' => $rpe_feel,
+        ':sf' => $session_feel,
         ':nt' => $note_text,
     ]);
 

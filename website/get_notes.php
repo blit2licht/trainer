@@ -2,6 +2,8 @@
 header('Content-Type: application/json');
 header('X-Notes-Version: 2');
 
+require_once __DIR__ . '/notes_db.php';
+
 $config_path = __DIR__ . '/config.php';
 if (!is_file($config_path)) {
     http_response_code(503);
@@ -47,14 +49,22 @@ try {
         [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
     );
 
+    $col = feel_column($pdo);
     $stmt = $pdo->prepare(
-        "SELECT session_key, note_date, rpe_feel, note_text, updated_at
+        "SELECT session_key, note_date, `$col` AS session_feel, note_text, updated_at
          FROM session_notes
          WHERE note_date BETWEEN :from AND :to
          ORDER BY note_date ASC"
     );
     $stmt->execute([':from' => $from, ':to' => $to]);
     $notes = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    // Übergang: Frontends, die der Service Worker noch aus dem Cache liefert,
+    // lesen rpe_feel. Beide Felder ausgeben, bis die alten Caches durch sind.
+    foreach ($notes as &$n) {
+        $n['rpe_feel'] = $n['session_feel'];
+    }
+    unset($n);
 
     echo json_encode(['notes' => $notes]);
 

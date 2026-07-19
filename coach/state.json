@@ -24,7 +24,7 @@
     },
     "deload_trigger": [
       "Recovery an ≥3 aufeinanderfolgenden Tagen rot (<34 %)",
-      "rpe_feel ≤2 in zwei aufeinanderfolgenden Einheiten",
+      "session_feel ≤2 in zwei aufeinanderfolgenden Einheiten",
       "Leistungsabfall bei gehaltener Last (Reps/kg unter Vorwochen-Referenz trotz RPE-Cap)"
     ],
     "hinweis": "Trigger lösen keinen starren Deload-Rhythmus aus, sondern eine sofortige Wochenkorrektur (Volumen zuerst, dann Intensität). W29 ist der natürliche Deload dieses Bogens."

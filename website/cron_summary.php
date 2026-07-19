@@ -4,6 +4,7 @@
 // URL: https://training.martinwitte.de/cron_summary.php?cron_key=DEIN-ZUFAELLIGER-KEY-HIER
 
 require_once __DIR__ . '/config.php';
+require_once __DIR__ . '/notes_db.php';
 
 // Einfache Cron-Absicherung via URL-Key. CRON_KEY bevorzugen; API_KEY bleibt als Übergangs-Fallback.
 $cron_key = $_GET['cron_key'] ?? '';
@@ -24,8 +25,9 @@ try {
         [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
     );
 
+    $col  = feel_column($pdo);
     $stmt = $pdo->prepare(
-        "SELECT session_key, note_date, rpe_feel, note_text
+        "SELECT session_key, note_date, `$col` AS session_feel, note_text
          FROM session_notes
          WHERE note_date BETWEEN :from AND :to
          ORDER BY note_date ASC"
@@ -41,8 +43,10 @@ if (empty($notes)) {
     exit('Keine Notizen diese Woche — keine Mail gesendet.');
 }
 
-// RPE-Labels
-$rpe_label = ['', '😵 Brutal', '😮‍💨 Schwer', '😐 Okay', '💪 Gut', '🔥 Stark'];
+// Session-Feel: wie die Einheit lief (1 = mies, 5 = stark).
+// Bewusst Qualitätswörter — nicht "Brutal/Schwer", das wäre Anstrengung und
+// damit die Load-RPE-Bedeutung.
+$feel_label = ['', '😵 Mies', '😮‍💨 Zäh', '😐 Okay', '💪 Gut', '🔥 Stark'];
 
 // Email bauen
 $subject = "Training Recap · KW " . date('W') . " · " . date('d.m.Y', strtotime($monday)) . " – " . date('d.m.Y', strtotime($sunday));
@@ -52,11 +56,11 @@ $body .= str_repeat("─", 40) . "\n\n";
 
 foreach ($notes as $n) {
     $date_fmt = date('D d.m.', strtotime($n['note_date']));
-    $rpe      = intval($n['rpe_feel']);
-    $rpe_str  = $rpe > 0 ? ($rpe_label[$rpe] ?? "RPE $rpe") : '(kein RPE)';
+    $feel     = intval($n['session_feel']);
+    $feel_str = $feel > 0 ? ($feel_label[$feel] ?? "Feel $feel") : '(kein Feel)';
     $text     = $n['note_text'] ?: '(keine Notiz)';
 
-    $body .= "$date_fmt  |  $rpe_str\n";
+    $body .= "$date_fmt  |  $feel_str\n";
     $body .= "$text\n\n";
 }
 

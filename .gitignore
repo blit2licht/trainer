@@ -3,3 +3,6 @@ config.php
 .DS_Store
 .vscode/
 *.swp
+
+# Generiertes Design-Bundle — wird aus website/index.html gebaut
+design/bundle/

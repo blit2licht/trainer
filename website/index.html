@@ -321,6 +321,12 @@ function todayLocal(){
   const d = new Date();
   return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
 }
+/* Woche, die das heutige Datum enthält — sonst die neueste veröffentlichte
+   (z. B. montags, bevor der neue Plan online ist). */
+function currentWeek(){
+  const t = todayLocal();
+  return DATA.weeks.find(w => w.dateFrom <= t && t <= w.dateTo) || DATA.weeks[0];
+}
 
 /* ── Notiz-Drafts (localStorage) ────────────────────────────
    Ungespeicherte Eingaben überleben Re-Render, Wochenwechsel
@@ -483,7 +489,7 @@ function buildNoteHTML(isoDate, type){
 function initSelect(){
   const sel = document.getElementById('weekSelect');
   sel.innerHTML = DATA.weeks.map(w=>`<option value="${w.id}">${w.label}</option>`).join('');
-  currentWeekId = DATA.weeks[0].id;
+  currentWeekId = currentWeek().id;
   sel.value = currentWeekId;
 }
 
@@ -650,7 +656,7 @@ function applyRoute(){
   if (wid && getWeek(wid)) {
     currentWeekId = wid;
   } else {
-    currentWeekId = DATA.weeks[0].id;
+    currentWeekId = currentWeek().id;
     history.replaceState(null, '', '#' + currentWeekId);
   }
   document.getElementById('weekSelect').value = currentWeekId;
@@ -672,7 +678,14 @@ window.addEventListener('hashchange', applyRoute);
 if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js');
 
 initSelect();
-if (!location.hash) history.replaceState(null, '', '#' + currentWeekId);
+/* Kaltstart: Hash aus einer früheren Sitzung nicht übernehmen, wenn er auf eine
+   andere Woche zeigt. Die installierte PWA und ein neu geladener Tab stellen die
+   zuletzt besuchte URL wieder her — ohne das hier öffnet die App nach dem
+   Wochenwechsel weiterhin den alten Plan. Navigation innerhalb der Sitzung
+   (hashchange) bleibt davon unberührt. */
+if (location.hash.slice(1).split('/')[0] !== currentWeekId) {
+  history.replaceState(null, '', '#' + currentWeekId);
+}
 applyRoute();
 </script>
 </body>

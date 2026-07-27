@@ -2,6 +2,20 @@
 
 Kurze, verdichtete Wocheneinträge. Rohdaten bleiben in WHOOP, Strava und der Website-Datenbank.
 
+## 2026-W30 · 20.–26. Juli · Meso 2 W6 — Meso-Abschluss
+
+**Plan befolgt — alle Einheiten durchgeführt, session_feel durchgehend 4-5.** Mo Ruhe ✓ (kein Recovery-Upgrade genutzt) · Di Fokus A ✓ (FS-Block Wk3/3 + OHS-Reclaim, Strain 6.2) · Mi Ruhe (Termin) ✓ · **Do Großtag** ✓: Snatch-Singles + Metcon (6:13 min Zone 5) + ungeplanter 2-h-Ride 54,8 km abends → Strain 18,4 · Fr Fokus B ✓ (WHOOP nur als 42-min-Activity, kein Satz-Log) · Sa Abflug Griechenland, Ruhe ✓ · So Urlaubs-Bodyweight-Session ✓ (ungeloggt, WHOOP nicht getragen). Recovery ganze Woche grün/gelb (50–71 %), Sleep Debt Do/Sa deutlich.
+
+**Kernbefunde:**
+- **Front Squat neuer Bestwert 102,5 kg** (Top-Single, build 75→102,5) — FS-Block sauber abgeschlossen (W27: 100 · W28: 100 · W30: 102,5). 1RM-Schätzung auf ~107,5 angehoben, Ziel 115.
+- **Snatch-Ceiling 57,5 kg stabil reproduziert:** 2 Singles @ 57,5 im RPE-gated Build — die W28-Referenz ist keine Eintagsfliege. Nächster Schritt Richtung 60 nach Urlaub.
+- **OHS-Pattern reaktiviert** (3×3 @ 40/42,5/45) nach 4 Wochen Pause — W27-Flag aufgelöst, Lastaufbau folgt nach Urlaub.
+- **WPU auf neuer Stufe 3×4 @ +5 kg**, HSPU 4×6 und T2B 3×8 als Reclaim gehalten — alles per Martins Gesamtbestätigung, Fr ohne Satz-Log. BMU-Doubles-Qualität (W28-Flag) dadurch weiter unbeobachtet — beim nächsten Detail-Log prüfen, vorher keine Stufensteigerung.
+- Do-Stacking (Lifting + Zone-5-Metcon + 55-km-Ride) war der Wochenpeak — folgenlos, Fr-Recovery 71 % grün. Bestätigt die Entkopplungs-Regel.
+- Gymnastics-Testsatz (fällig W30) und Sechs-Wochen-Review nicht durchgeführt — beide auf erste normale Woche nach Griechenland verschoben. **Meso 2 damit abgeschlossen** (W25–W30: FS 100→102,5, Snatch 50→57,5, C&J-Komplex 75→78, BMU 10 Singles→15 total, WPU +4→+5/3×4, HSPU 4×5→4×6).
+
+**Offen für W31:** Urlaubswoche Griechenland, nur Bodyweight/Band/Springseil (Drop-in bewusst verworfen). Reduzierter Erhaltsplan, kein Testcharakter. Nach Rückkehr: Sechs-Wochen-Review + Testsatz + Meso-3-Start.
+
 ## 2026-W29 · 13.–19. Juli · Meso 2 W5 (Bangkok)
 
 **Plan stark abweichend — de-facto-Deload bestätigt.** Mo Ruhe ✓ (Strain 4.0) · **Di Erhalt A ausgefallen** (Workshop ab 8:30, Zeitfenster geplatzt; Strain 5.9 ohne Training) · Mi Full-Body-DB-Session ✓ statt geplantem Erhalt B (Strain 14.3, 12.459 kg Tonnage, session_feel 5) · Do Recovery-Mobility ✓ (Strain 4.7, nur Spaziergänge) · Fr Reisetag Ruhe ✓ (Rückflug, Strain 5.1) · **Sa Box Accessory+AMRAP ausgefallen** (Strain 5.8, nur leichtes Cardio) · So Opengym C&J-Singles + WOD ✓ (Strain 16.7 — Wochenpeak, session_feel 5).

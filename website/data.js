@@ -8,6 +8,135 @@ const DATA = {
   weeks: [
     /* ── neue Woche als nächstes Objekt HIER (oben) einfügen ── */
     {
+      id: "2026-W31",
+      label: "Urlaubswoche · 27. Juli – 2. August 2026",
+      meso: "Übergang · nach Meso 2",
+      phase: "Urlaub Griechenland / Erhalt / struktureller Deload",
+      dateFrom: "2026-07-27",
+      dateTo:   "2026-08-02",
+      days: [
+        { day:"Montag",    date:"27.07.", isoDate:"2026-07-27", type:"own",  focus:"A", einheit:"Strength-Circuit Push/Beine", sub:"Wall Strict HSPU · Tempo Push-up · Bulgarian Split Squat · Band Face-Pull · Hollow Hold", rx:"BW/Band", rpe:"RPE ≤7", note:"Einziger direkter Fokus-Erhalt der Woche: Strict HSPU an der Wand, 4×5 — ein Rep unter Stand (4×6), Erhalt statt Push. ~40 min." },
+        { day:"Dienstag",  date:"28.07.", isoDate:"2026-07-28", type:"rest", einheit:"—", rx:"—", note:"Frei — Strand und Schwimmen zählen als Bewegung." },
+        { day:"Mittwoch",  date:"29.07.", isoDate:"2026-07-29", type:"own",  focus:"B", einheit:"Springseil-Conditioning + BW-AMRAP", sub:"6 × (40 sec / 40 sec) Springseil · AMRAP 10 min: 8 Burpees · 12 Air Squats · 10 V-Ups", rx:"BW", rpe:"RPE ≤7", note:"Kurz gehalten (~30 min) — Burpee/V-Up-Muster treibt ohnehin in Zone 4. Zügig, aber nicht ins Limit; kein Testcharakter." },
+        { day:"Donnerstag",date:"30.07.", isoDate:"2026-07-30", type:"rest", einheit:"—", rx:"—", note:"Frei." },
+        { day:"Freitag",   date:"31.07.", isoDate:"2026-07-31", type:"own",  focus:"C", einheit:"Strength-Circuit Pull/Posterior + Handstand", sub:"Band Row schwer · Single-Leg RDL · Wall Handstand Hold · Band Pull-Apart · Side Plank/Arch", rx:"BW/Band", rpe:"RPE ≤7", note:"Einzige Zugarbeit der Woche — Band Row entsprechend priorisiert. Handstand Hold als Overhead-Reiz ohne Pressvolumen. ~40 min." },
+        { day:"Samstag",   date:"01.08.", isoDate:"2026-08-01", type:"rest", einheit:"—", rx:"—", note:"Frei." },
+        { day:"Sonntag",   date:"02.08.", isoDate:"2026-08-02", type:"rest", einheit:"— (optional locker)", rx:"—", note:"Optional 15 min Springseil locker + Mobility-Flow — nur bei Lust, kein Plansoll. Tage der Woche sind verschiebbar, solange zwischen den Sessions je ein Tag Luft bleibt." }
+      ],
+      focusDays: {
+        A: {
+          title:"🏝️ Session 1 — Push/Beine", date:"Montag · 27.07.2026",
+          sub:"Wall Strict HSPU · Tempo Push-up · Bulgarian Split Squat · Band Face-Pull · Core",
+          intro:"Urlaubswoche = struktureller Deload nach Meso 2. Erhalt statt Aufbau, RPE-Deckel 7. HSPU ist der einzige Fokus, der ohne Bar trainierbar bleibt — bewusst 4×5 statt 4×6.",
+          blocks:[
+            { letter:"A", title:"Wall Strict HSPU", sub:"4 Sätze · Erhalt",
+              headers:["Übung","Sets × Reps","Last","RPE","Tempo","Rest","Note"],
+              rows:[ ["Wall Strict HSPU","4 × 5","BW","7","21X0","2-3 min","Ein Rep unter Stand (4×6) — Erhalt, kein Push. Keine geeignete Wand → Pike Push-up mit erhöhten Füßen (Stuhl/Mauer)."] ] },
+            { letter:"B", title:"Push + Beine", sub:"3 Runden · kontrolliert",
+              headers:["Übung","Sets × Reps","Last","RPE","Tempo","Rest","Note"],
+              rows:[
+                ["Push-up Tempo","3 × 12-15","BW","6-7","21X0","60 sec","Sauberes Tempo statt Reps jagen."],
+                ["Bulgarian Split Squat","3 × 10/Bein","BW","6-7","kontrolliert","60 sec","Quad/Hüfte, keine Sprungbelastung."],
+                ["Band Face-Pull + Außenrotation","3 × 15","Band","6","kontrolliert","60 sec","Schultergesundheit gegen das Push-Volumen."]
+              ] },
+            { letter:"C", title:"Core", sub:"Leicht",
+              headers:["Übung","Sets × Reps","Last","RPE","Tempo","Rest","Note"],
+              rows:[ ["Hollow Body Hold","3 × 30 sec","BW","6","—","60 sec","Ruhig atmen, unterer Rücken am Boden."] ] },
+            { letter:"D", title:"Mobility", sub:"~5 min",
+              headers:["Übung","Dauer","Note"],
+              rows:[
+                ["Hüftbeuger-Stretch","2 × 45 sec/Seite","Nach Split Squats."],
+                ["Lat-Stretch (Band-unterstützt)","2 × 45 sec","Overhead-Enge lösen."]
+              ] }
+          ],
+          whoop:[
+            ["Handstand Push Up","4 × 5 strict · BW · Wand"],
+            ["Push Up","3 × 12-15 · BW · Tempo"],
+            ["Walking Lunge","3 × 10/Bein · BW (als Bulgarian Split Squat ausgeführt)"],
+            ["Hollow Body Hold","3 × 30 sec · BW"]
+          ]
+        },
+        B: {
+          title:"🏝️ Session 2 — Conditioning", date:"Mittwoch · 29.07.2026",
+          sub:"Springseil-Intervalle · Bodyweight-AMRAP · ~30 min",
+          intro:"Einziger Engine-Reiz der Woche, bewusst kurz. Burpee/V-Up-Muster treibt zuverlässig in Zone 4 — zügig arbeiten, aber nicht ins Limit. Kein Testcharakter.",
+          blocks:[
+            { letter:"A", title:"Warm-up", sub:"~5 min",
+              headers:["Übung","Dauer","Note"],
+              rows:[
+                ["Springseil locker","3 min","Puls hochbringen."],
+                ["Arm-/Hip-Circles","2 min","Voller Bewegungsradius."]
+              ] },
+            { letter:"B", title:"Springseil-Intervalle", sub:"~8 min",
+              headers:["Übung","Dauer","Note"],
+              rows:[ ["Springseil Intervalle","6 × (40 sec Arbeit / 40 sec Pause)","Single- oder Double-Unders — keine Crossover-DUs (laut Profil ausgeschlossen)."] ] },
+            { letter:"C", title:"AMRAP", sub:"10 min · RPE ≤7",
+              wod:{
+                struktur:"AMRAP 10 min",
+                format:"AMRAP",
+                cap:"10 min",
+                bewegungen:[
+                  { reps:"8",  name:"Burpees",    detail:"BW" },
+                  { reps:"12", name:"Air Squats", detail:"BW" },
+                  { reps:"10", name:"V-Ups",      detail:"BW" }
+                ],
+                gesamt:"Zügiges, gleichmäßiges Tempo — Rundenzahl ist egal, kein Score-Jagen"
+              },
+              note:"Deload-Kontext: gleichmäßig durchziehen, letzte 2 min nicht eskalieren." },
+            { letter:"D", title:"Cool-down", sub:"~5 min",
+              headers:["Übung","Dauer","Note"],
+              rows:[
+                ["Gehen","3-5 min","Puls runter."],
+                ["Hüftbeuger-Stretch","2 × 45 sec/Seite","Nach Burpees/Squats."]
+              ] }
+          ],
+          whoop:[
+            ["Jump Rope","6 × 40 sec Intervalle"],
+            ["Burpee","AMRAP 10 · 8/Runde · BW"],
+            ["Air Squat","AMRAP 10 · 12/Runde · BW"],
+            ["V-Up","AMRAP 10 · 10/Runde · BW"]
+          ]
+        },
+        C: {
+          title:"🏝️ Session 3 — Pull/Posterior", date:"Freitag · 31.07.2026",
+          sub:"Band Row · Single-Leg RDL · Wall Handstand Hold · Pull-Apart · Core",
+          intro:"Einzige Zugarbeit der Woche — Band Row entsprechend priorisiert und schwer (stärkstes Band oder doppelt). Handstand Hold hält den Overhead-Reiz ohne zusätzliches Pressvolumen nach Session 1.",
+          blocks:[
+            { letter:"A", title:"Band Row", sub:"4 Sätze · schwerste Bandvariante",
+              headers:["Übung","Sets × Reps","Last","RPE","Tempo","Rest","Note"],
+              rows:[ ["Band Row","4 × 12","Band schwer","7","30X1","90 sec","Stärkstes Band oder doppelt genommen — bewusste Spannung, kein Federn."] ] },
+            { letter:"B", title:"Posterior Chain", sub:"3 Runden",
+              headers:["Übung","Sets × Reps","Last","RPE","Tempo","Rest","Note"],
+              rows:[
+                ["Single-Leg RDL","3 × 10/Bein","BW oder Band","6-7","kontrolliert","60 sec","Hinge-Pattern erhalten, Balance sauber."],
+                ["Band Pull-Apart","3 × 20","Band","6","kontrolliert","60 sec","Schulterblatt-Arbeit."]
+              ] },
+            { letter:"C", title:"Handstand Hold", sub:"3 Sätze · Overhead-Erhalt",
+              headers:["Übung","Sets × Reps","Last","RPE","Tempo","Rest","Note"],
+              rows:[ ["Wall Handstand Hold","3 × 30-40 sec","BW","6-7","—","90 sec","Aktiv drücken, Rippen geschlossen. Kein Handstand Walk (ausgeschlossen)."] ] },
+            { letter:"D", title:"Core", sub:"Seitlich + Rücken",
+              headers:["Übung","Sets × Reps","Last","RPE","Tempo","Rest","Note"],
+              rows:[
+                ["Side Plank","3 × 30 sec/Seite","BW","6","—","30 sec","Hüfte oben halten."],
+                ["Arch Hold","3 × 20 sec","BW","6","—","60 sec","Gegenspieler zum Hollow aus Session 1."]
+              ] },
+            { letter:"E", title:"Mobility", sub:"~5 min",
+              headers:["Übung","Dauer","Note"],
+              rows:[
+                ["Lat-Stretch (Band-unterstützt)","2 × 45 sec","Nach Handstand."],
+                ["Hüftbeuger-Stretch","2 × 45 sec/Seite","Nach RDL."]
+              ] }
+          ],
+          whoop:[
+            ["Band Row","4 × 12 · Band schwer"],
+            ["Single Leg RDL","3 × 10/Bein · BW/Band"],
+            ["Handstand Hold","3 × 30-40 sec · Wand"],
+            ["Side Plank","3 × 30 sec/Seite · BW"]
+          ]
+        }
+      }
+    },
+    {
       id: "2026-W30",
       label: "Woche 6 · 20.–26. Juli 2026",
       meso: "Meso 2 · Woche 6",
@@ -335,106 +464,6 @@ const DATA = {
           ],
           whoop:[
             ["Bar Muscle Up","EMOM 10 · 1–2 reps/min · BW · Ziel gehalten 14–15 total"],
-            ["Pull Up","3 × 8 kipping · BW"],
-            ["Toes to Bar","3 × 8 · BW"],
-            ["Handstand Push Up","4 × 6 strict · BW"],
-            ["Pull Up (Weighted)","3 × 3 · +5 kg · RPE 7–8"]
-          ]
-        }
-      }
-    },
-    /* ── W27 ─────────────────────────────────── */
-    {
-      id: "2026-W27",
-      label: "Woche 3 · 29. Juni – 5. Juli 2026",
-      meso: "Meso 2 · Woche 3",
-      phase: "Reclaim / Kapazität / Robustheit",
-      dateFrom: "2026-06-29",
-      dateTo:   "2026-07-05",
-      days: [
-        { day:"Montag",    date:"29.06.", isoDate:"2026-06-29", type:"rest", einheit:"Mobility + Nap", rx:"—", note:"32 % rote Recovery nach So (Strain 19,6). Harter Ruhetag — kein Erzwingen. Wenn möglich 60–90 min Nap am frühen Nachmittag (dunkel/kühl)." },
-        { day:"Dienstag",  date:"30.06.", isoDate:"2026-06-30", type:"own",  focus:"A", einheit:"Snatch-Speed-Reclaim + OHS", sub:"Pause OHS · Snatch Balance · Hang Squat Snatch · Strict HSPU · GHD", rx:"Ceiling <span class='rv'>52 kg</span> · Speed-Bias", rpe:"RPE 8 cap", note:"Vorgezogen von Fr — Zeit und Tagesform sprachen am Di für Snatch. Speed vor kg — bei langsamem Turnover stoppen. W26 erreichte nur 50, Hüft-/Drop-Speed ist die Baustelle." },
-        { day:"Mittwoch",  date:"01.07.", isoDate:"2026-07-01", type:"box",  einheit:"Front Squat Wk1/3 + Intervalle", sub:"FS E2:15×5 (70→90 %) → 4×(3' Work/1' Rest): 200m Run · 10 DL · 5 Burpee o/Bar · Rest-AMRAP Cal", rx:"FS bis <span class='rv'>~92,5–95 kg</span> · DL <span class='rv'>L2 80 kg</span>", rpe:"RPE ≤8", note:"FS-Block-Start (1RM ~105). Letzter Satz im roten Wochenkontext nicht prügeln." },
-        { day:"Donnerstag",date:"02.07.", isoDate:"2026-07-02", type:"rest", einheit:"—", rx:"—", note:"Termin 7:00 — kein Training." },
-        { day:"Freitag",   date:"03.07.", isoDate:"2026-07-03", type:"rest", einheit:"—", rx:"—", note:"Snatch bereits Di erledigt. Restday." },
-        { day:"Samstag",   date:"04.07.", isoDate:"2026-07-04", type:"own",  focus:"B", einheit:"Vertikal-Gymnastics W3", sub:"BMU · Pull/T2B · Strict HSPU · Weighted Pull-up · Mobility", rx:"Auf Anfrage", rpe:"RPE 7–8", note:"Nachgezogen von Di. Zwei Ruhetage davor (Do+Fr) → frisch für Grip/Pull. Kein Konflikt mit Mi-FS (Beine) oder So-Ride." },
-        { day:"Sonntag",   date:"05.07.", isoDate:"2026-07-05", type:"ride", einheit:"Social-Ride Z1/Z2", rx:"<span class='rv'>optional</span>", note:"Sozial, Z1/Z2 halten — nicht mit Strain überlagern (zuletzt das Problem)." }
-      ],
-      focusDays: {
-        A: {
-          title:"🏋️ Focus-Tag A", date:"Dienstag · 30.06.2026",
-          sub:"Snatch-Speed-Reclaim · OHS-Progression · Strict HSPU Volumen · GHD · Overhead Mobility",
-          intro:"Vorgezogen von Fr auf Di — Zeit und Tagesform sprachen am Di für Snatch. W26 stoppte bei 50 kg, Hüft-/Drop-Speed war langsam. Diese Woche Speed jagen, nicht Last. Ceiling 52 bleibt, gilt aber nur bei schnellem Turnover.",
-          blocks:[
-            { letter:"A", title:"Pause OHS — Overhead Aktivierung", sub:"4 Sätze aufsteigend · 2-sec Pause am Bottom",
-              headers:["Übung","Sets × Reps","Last","RPE","Tempo","Rest","Note"],
-              rows:[ ["Pause OHS||2-sec Pause Bottom","4 × 3||42 → 46 → 48 → 50 kg","42 / 46 / 48 / 50 kg","6–7","32X1","2 min","W26-Top war 48–49 sauber → heute 50 anvisieren, wenn stabil."] ],
-              note:"Tempo 32X1: 3s descent, 2s Pause unten (aktiv halten), explosiv hoch, 1s oben." },
-            { letter:"B", title:"Snatch Balance — Speed-Drill", sub:"4 Sätze · schneller Drop unter die Bar",
-              headers:["Übung","Sets × Reps","Last","RPE","Tempo","Rest","Note"],
-              rows:[ ["Snatch Balance","4 × 2||40 → 44 → 46 → 48 kg","40 / 44 / 46 / 48 kg","≤7","schnell unter","90 sec","Aggressiver, schneller Drop. Das ist die Baustelle — Geschwindigkeit, nicht Last."] ] },
-            { letter:"C", title:"Hang Squat Snatch", sub:"Every 2:00 · 5 Sets · Ceiling 52 kg (speed-gated)",
-              headers:["Übung","Sets × Reps","Last","RPE","Tempo","Rest","Note"],
-              rows:[ ["Hang Squat Snatch","5 × 1||build","44 → 46 → 48 → 50 → 52 kg","≤8","explosiv","Restliche 2:00","Stop, sobald der Turnover langsam wird — Speed vor kg. Topgewicht in WHOOP loggen."] ],
-              note:"Reclaim mit Speed-Bias, kein Max-Test. Ceiling 52 gilt nur, wenn der Drop schnell bleibt." },
-            { letter:"D", title:"Strict HSPU Volumen", sub:"Hauptarbeit · 4 Sätze · Volumenanker",
-              headers:["Übung","Sets × Reps","Last","RPE","Tempo","Rest","Note"],
-              rows:[ ["Strict HSPU","4 × 5–6||W26 war 4×5","BW","8","21X0","3 min","Einen Rep im Tank lassen. Kein Failure, kein Kipping danach."] ] },
-            { letter:"E", title:"GHD Sit-up", sub:"W3 = Volumen leicht hoch",
-              headers:["Übung","Sets × Reps","Last","RPE","Tempo","Rest","Note"],
-              rows:[ ["GHD Sit-up","3 × 12","BW","6","2010","90 sec","Voller ROM, kein Kipping. W26 war 3×10."] ] },
-            { letter:"F", title:"Overhead & Hip Mobility", sub:"~8 min · Longevity-Faden",
-              headers:["Übung","Dauer","Note"],
-              rows:[
-                ["Lat-Stretch hängend","2 × 45 sec","Overhead-Enge nach Snatch auflösen."],
-                ["Wrist CARs","2 × 10/Seite","Voller Kreisbogen, langsam."],
-                ["Thorakale Extension","1–2 min","Foam Roller · 3 Positionen BWS."],
-                ["Hip-Flexor-Stretch","2 × 45 sec/Seite","90/90 oder Kniestand."]
-              ] }
-          ],
-          whoop:[
-            ["Overhead Squat","4 × 3 Pause · 42 / 46 / 48 / 50 kg · RPE 6–7"],
-            ["Snatch Balance","4 × 2 · build 40→48 kg · Speed-Drill"],
-            ["Snatch – Barbell","5 × 1 Hang Squat Snatch · build 44→52 kg · speed-gated · Topgewicht loggen"],
-            ["Handstand Push Up","4 × 5–6 strict · BW"],
-            ["GHD Sit Up","3 × 12 · BW · RPE 6"]
-          ]
-        },
-        B: {
-          title:"🏋️ Focus-Tag B", date:"Samstag · 04.07.2026",
-          sub:"Vertikal-Gymnastics · BMU-Progression · Strict HSPU · Pull/T2B · Weighted Pull-up · Mobility",
-          intro:"Nachgezogen von Di auf Sa (Snatch war am Di dran). Grip isoliert: Mi = Beine (Front Squat), Do+Fr = Ruhe davor. W3-Progression aus geloggter W2-Leistung (BMU 13 total, WPU +5 kg).",
-          blocks:[
-            { letter:"A", title:"BMU Progression — EMOM", sub:"Akkumulation · Qualität vor Quantität · 10 min",
-              headers:["Übung","Sets × Reps","Last","RPE","Tempo","Rest","Note"],
-              rows:[
-                ["Bar Muscle-Up||Min 1–5","5 × 1–2","BW","7","X","Rest of min","Voller Lockout, kontrollierte Landung. W2 = 13 total."],
-                ["Bar Muscle-Up||Min 6–10","5 × 2","BW","7–8","X","Rest of min","Doubles wenn sauber. Bei Positionsverlust → Single."]
-              ],
-              note:"Ceiling W3: 14–15 BMU total (W2 = 13). Stop bei Technikverfall. Gesamtreps in WHOOP loggen." },
-            { letter:"B", title:"Pull + T2B Kapazität", sub:"3 Rounds · 90 sec Rest zwischen Rounds",
-              headers:["Übung","Sets × Reps","Last","RPE","Tempo","Rest","Note"],
-              rows:[
-                ["Kipping Pull-up","3 × 8","BW","7","X","30 sec → T2B","Unbroken anstreben."],
-                ["Toes-to-Bar","3 × 8","BW","7","X","90 sec → nächste Round","W2 war 3×7 — ein Rep mehr. Rhythmus halten."]
-              ] },
-            { letter:"C", title:"Strict HSPU Volumen", sub:"Hauptarbeit · 4 Sätze · Volumenanker",
-              headers:["Übung","Sets × Reps","Last","RPE","Tempo","Rest","Note"],
-              rows:[ ["Strict HSPU","4 × 6||W2 war 4×5","BW","8","21X0","3 min","Obere Kante des W2-Korridors. Einen Rep im Tank lassen."] ],
-              note:"Tempo 21X0: 2s descent, 1s Stirn, explosiv hoch, keine Pause oben." },
-            { letter:"D", title:"Weighted Pull-up Density", sub:"Kraft-Endurance · Last-Progression W3",
-              headers:["Übung","Sets × Reps","Last","RPE","Tempo","Rest","Note"],
-              rows:[ ["Weighted Pull-up","3 × 3","+5 kg||W2 bestätigt","7–8","30X1","2 min","Richtung Ziel 6 Reps @ +5 kg. Wenn Rep 3 unsauber → zurück auf +4 kg. Kg loggen."] ] },
-            { letter:"E", title:"Cool-down Mobility", sub:"~5 min · Schulter + Thorax",
-              headers:["Übung","Dauer","Note"],
-              rows:[
-                ["Lat-Stretch hängend","2 × 45 sec","Passive Hängelast, Schulter offen lassen."],
-                ["Shoulder CARs","2 × 8/Seite","Kontrolliert, voller Bewegungsradius."],
-                ["Thorakale Extension","1–2 min","Foam Roller · 3 Positionen entlang der BWS."]
-              ] }
-          ],
-          whoop:[
-            ["Bar Muscle Up","EMOM 10 · 1–2 reps/min · BW · Ziel 14–15 total · Gesamtreps loggen"],
             ["Pull Up","3 × 8 kipping · BW"],
             ["Toes to Bar","3 × 8 · BW"],
             ["Handstand Push Up","4 × 6 strict · BW"],

@@ -2,12 +2,12 @@
   "schema_version": 1,
   "aktualisiert_am": "2026-07-27",
   "aktuelle_woche": {
-    "id": "2026-W30",
-    "von": "2026-07-20",
-    "bis": "2026-07-26",
-    "mesocycle": "Meso 2",
-    "woche_im_fokus": 6,
-    "phase": "Rückkehr / FS-Block Wk3/3 / Griechenland ab Sa",
+    "id": "2026-W31",
+    "von": "2026-07-27",
+    "bis": "2026-08-02",
+    "mesocycle": "Übergang (nach Meso 2)",
+    "woche_im_fokus": null,
+    "phase": "Urlaub Griechenland / Erhalt / struktureller Deload",
     "veroeffentlichter_plan": "website/data.js"
   },
   "mesocycle_plan": {

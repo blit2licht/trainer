@@ -4,6 +4,32 @@ Fortlaufende Prosa-Notizen aus Retrospektiven. Neueste Einträge oben.
 
 ---
 
+## 2026-07-28 — Körperkomposition als Meso-3-Reviewpunkt, Accessory-Layer bestätigt
+
+Martin bringt Physique-Wunsch ein (Referenz: zwei AI-idealisierte
+Selbstbilder). Einordnung: Variante "leaner bei gehaltener Masse"
+(~12–14 % KFA) ist in 4–6 Monaten über Ernährung erreichbar; Variante
+"leaner plus +3–5 kg Muskel" braucht 18–36 Monate dedizierte Hypertrophie
+und kollidiert mit Skill-/Apex-Zielen — verworfen.
+
+Entscheidung: Körperkomposition wird als offizielles Ziel in den
+Sechs-Wochen-Review nach Griechenland aufgenommen. Umsetzung nicht über
+Kalorien-Tracking, sondern über 3 Regeln (Protein zuerst ~150 g/Tag,
+Carbs folgen dem Training, keine flüssigen Kalorien/Snacks) plus
+Wiegetrend als Kontrollsystem (Wochenschnitt, Ziel −0,3 bis −0,5 kg/Wo).
+Baseline 80,3 kg (WHOOP-6M-Schnitt Jan–Jul, stabil 79,6–80,9 = bewiesene
+Maintenance). Ziel ~74–76 kg über ~4 Monate. Kein zusätzliches Cardio
+als Defizit-Hebel (Recovery-Budget). Start mit Meso 3, nicht im Urlaub.
+
+Kein Hypertrophie-Block; stattdessen Hypertrophie-Layer: 15 min Accessory
+(Delts, Brust, Arme) an beide Fokus-Tage angehängt. Martin bestätigt:
+15 min passen immer ins 60–75-min-Fenster, 20 min nicht verlässlich —
+15 min ist die Planungsgröße. Skill-Prioritäten bleiben unverändert
+führend. Erwarteter leichter Performance-Dip ab Defizit-Woche 3–4 von
+Martin akzeptiert — zählt nicht als Deload-Trigger.
+
+---
+
 ## 2026-07-15 — Full-Body-DB-Session statt Erhalt B, Do-Box-Drop-in gestrichen
 
 Mi 15.07.: WHOOP-Session-Builder ohne Wochenkontext angewiesen, "einen Reiz zu

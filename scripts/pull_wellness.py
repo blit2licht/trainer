@@ -60,7 +60,11 @@ RIDE_TYPES = {"Ride", "VirtualRide", "GravelRide", "MountainBikeRide", "EBikeRid
 def api_get(path: str, key: str, athlete: str):
     url = BASE.format(athlete=athlete) + path
     token = base64.b64encode(f"API_KEY:{key}".encode()).decode()
-    req = urllib.request.Request(url, headers={"Authorization": f"Basic {token}"})
+    # Cloudflare vor intervals.icu blockt den Default-UA "Python-urllib" mit 403.
+    req = urllib.request.Request(url, headers={
+        "Authorization": f"Basic {token}",
+        "User-Agent": "trainer-wellness-sync/1.0",
+    })
     try:
         with urllib.request.urlopen(req, timeout=30) as resp:
             return json.loads(resp.read().decode())

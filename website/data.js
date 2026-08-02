@@ -8,6 +8,111 @@ const DATA = {
   weeks: [
     /* ── neue Woche als nächstes Objekt HIER (oben) einfügen ── */
     {
+      id: "2026-W32",
+      label: "Woche 1 · 3.–9. August 2026",
+      meso: "Meso 3 · Woche 1",
+      phase: "Meso-3-Start / Gymnastics-Test / C&J-Reclaim / Defizit-Start",
+      dateFrom: "2026-08-03",
+      dateTo:   "2026-08-09",
+      days: [
+        { day:"Montag",    date:"03.08.", isoDate:"2026-08-03", type:"box",  einheit:"Intervall-Chipper (40 min)", sub:"Every 2:00 × 4 Rd: 25/18 Cal · Max Burpees to Target · 200m Run + Sit-ups · Farmer Carry · 1× Cindy", rx:"<span class='rv'>L2 — Farmer 24/16 kg</span>", rpe:"RPE ~7, gleichmäßig", note:"Wiedereinstieg nach Urlaubsdeload (So-Recovery 94 %) — Engine-Reiz ohne Barbell-Kollision. Score nicht jagen, gleichmäßiges Tempo über alle 4 Runden." },
+        { day:"Dienstag",  date:"04.08.", isoDate:"2026-08-04", type:"box",  einheit:"Snatch Singles (Advanced A) + Power-Snatch-RFT", sub:"E1:15 × 7: 1 Snatch → 10 RFT: 100m Run · 3 Power Snatch · 5 Pull-ups", rx:"Snatch bis <span class='rv'>~57,5-60 kg</span> RPE-gated · WOD <span class='rv'>L2 42,5 kg</span>, C2B wenn frisch", rpe:"RPE ≤8 (Snatch) · Cap 17 min", note:"Bedient den Snatch-Fokus strukturell: Singles Richtung 60 antesten (Ceiling 57,5, 2× bestätigt W30). Advanced-WOD (Wall Walks + 50 BMU) bewusst nicht — weit über BMU-Kapazität. L3-Bar (52,5) im RFT zu schwer für 30 Reps Engine." },
+        { day:"Mittwoch",  date:"05.08.", isoDate:"2026-08-05", type:"rest", einheit:"—", rx:"—", note:"Morgens Termin — kein Training (fix)." },
+        { day:"Donnerstag",date:"06.08.", isoDate:"2026-08-06", type:"ride", einheit:"Lockere Radtour mit der Box (abends)", rx:"<span class='rv'>Z1/Z2</span>", note:"Sozialer Ride, erfahrungsgemäß entspannt — Z1/Z2 halten, kein Strain-Stacking vor dem Fr-Testtag. Morgens kein Training (Termin)." },
+        { day:"Freitag",   date:"07.08.", isoDate:"2026-08-07", type:"own",  focus:"B", einheit:"Gymnastics-Testtag + WPU + Layer", sub:"Testsätze BMU · T2B · Strict HSPU (max unbroken) · Weighted Pull-up 3×4 · 15-min-Layer Brust/Trizeps", rx:"Auf Anfrage", rpe:"Tests frisch · Rest RPE ≤8", note:"Frischester Slot der Woche (Ruhe Mi + lockerer Ride Do). Seit W30 fälliger Testblock — Ergebnisse setzen die Profil-Zielstände neu. Hero „DEL“ (Box) bewusst verworfen: dupliziert weighted PU/HSPU/C2B in ermüdeter WOD-Qualität am Testtag." },
+        { day:"Samstag",   date:"08.08.", isoDate:"2026-08-08", type:"own",  focus:"A", einheit:"Clean & Jerk Komplex-Reclaim + Layer", sub:"Clean Pull + Hang Power Clean · Squat Clean + Push Jerk Komplex · Core · 15-min-Layer Delts/Bizeps", rx:"Komplex-Ceiling <span class='rv'>80 kg</span>", rpe:"RPE ≤8 cap", note:"C&J seit W29 offen — Referenz 78 kg @7 (W28). 80 nur bei sauberem Jerk-Timing, kein Max-Test. Box-Couplet (Push Press + PC/FS) verworfen: der Komplex bedient denselben Reiz gezielter." },
+        { day:"Sonntag",   date:"09.08.", isoDate:"2026-08-09", type:"box",  einheit:"Deficit Back Rack Lunge + DB-Bench/T2B-EMOM", sub:"E2:15 × 5: 4/4 Deficit Back Rack Lunge + 15 Pull-Aparts → EMOM 15: 9 DB Bench + 7 T2B · Max Cal · Rest", rx:"Lunge RPE-only · <span class='rv'>DB L2 20 kg</span>", rpe:"RPE ≤7-8", note:"Moderater Abschluss — Lunges diese Woche noch unbedient, T2B als Zweitkontakt nach Fr-Test unkritisch. Kein Score-Jagen; Sonntagslast-Regel gilt für Mo der W33." }
+      ],
+      focusDays: {
+        B: {
+          title:"🏋️ Focus-Tag B", date:"Freitag · 07.08.2026",
+          sub:"Gymnastics-Testtag · BMU/T2B/HSPU max unbroken · Weighted Pull-up 3×4 · Hypertrophie-Layer",
+          intro:"Seit W30 fälliger Testblock auf voll erholtem System. Testsätze frisch als jeweils erster Arbeitssatz, danach reduziertes Volumen. WPU ist kein Test — Stufe 3×4 @ +5 kg nach dem Urlaub sauber wiederholen, dann 3×5. Ab heute läuft der 15-min-Hypertrophie-Layer (Meso-3-Rekomposition).",
+          blocks:[
+            { letter:"A", title:"BMU — Testsatz + Qualität", sub:"Test frisch · Ziel 5 (Stand 3)",
+              headers:["Übung","Sets × Reps","Last","RPE","Tempo","Rest","Note"],
+              rows:[
+                ["Bar Muscle-Up||Testsatz","1 × max unbroken","BW","—","X","voll erholt","Allererster Arbeitssatz. Ergebnis loggen — setzt den Zielstand neu."],
+                ["Bar Muscle-Up||EMOM 5","5 × 1","BW","7","X","Rest of min","Qualitäts-Singles nach dem Test. Doubles-Speed (W28-Flag) beobachten, nicht erzwingen."]
+              ] },
+            { letter:"B", title:"T2B — Testsatz + Kapazität", sub:"Test frisch · Ziel 10 (Stand 6)",
+              headers:["Übung","Sets × Reps","Last","RPE","Tempo","Rest","Note"],
+              rows:[
+                ["Toes-to-Bar||Testsatz","1 × max unbroken","BW","—","X","voll","Rhythmus halten, bei Abriss beenden."],
+                ["Toes-to-Bar","2 × 8","BW","7","X","90 sec","Reduziert wegen Testarbeit."]
+              ] },
+            { letter:"C", title:"Strict HSPU — Testsatz + Volumen", sub:"Test frisch · Ziel 10 (Stand 6)",
+              headers:["Übung","Sets × Reps","Last","RPE","Tempo","Rest","Note"],
+              rows:[
+                ["Strict HSPU||Testsatz","1 × max unbroken","BW","—","21X0","voll","Kein Kipping, sauberer Lockout — Abbruch bei Technikverfall."],
+                ["Strict HSPU","3 × 5","BW","8","21X0","3 min","Reduziert (statt 4×6) wegen Testsatz."]
+              ] },
+            { letter:"D", title:"Weighted Pull-up Density", sub:"Stufe 3×4 bestätigen",
+              headers:["Übung","Sets × Reps","Last","RPE","Tempo","Rest","Note"],
+              rows:[ ["Weighted Pull-up","3 × 4","+5 kg","7–8","30X1","2 min","Saubere Wiederholung der W30-Stufe → nächste Woche 3×5. Bei unsauberem Satz zurück auf 3×3."] ] },
+            { letter:"E", title:"Hypertrophie-Layer — Brust/Trizeps", sub:"~15 min · Rekomposition",
+              headers:["Übung","Sets × Reps","Last","RPE","Tempo","Rest","Note"],
+              rows:[
+                ["DB Bench Press","3 × 10–12","RPE-kalibriert","7","kontrolliert","60 sec","Keine Failure-Sätze — Layer, kein Hauptreiz."],
+                ["Band/Cable Triceps Extension","3 × 15","Band","7","kontrolliert","60 sec","Konstante Spannung."]
+              ] },
+            { letter:"F", title:"Cool-down Mobility", sub:"~5 min",
+              headers:["Übung","Dauer","Note"],
+              rows:[
+                ["Lat-Stretch hängend","2 × 45 sec","Nach Pull-Volumen."],
+                ["Shoulder CARs","2 × 8/Seite","Kontrolliert, voller Bewegungsradius."],
+                ["Thorakale Extension","1–2 min","Foam Roller."]
+              ] }
+          ],
+          whoop:[
+            ["Bar Muscle Up","Testsatz max unbroken + 5 × 1 EMOM · BW · Testergebnis loggen"],
+            ["Toes to Bar","Testsatz max unbroken + 2 × 8 · BW · Testergebnis loggen"],
+            ["Handstand Push Up","Testsatz max unbroken + 3 × 5 strict · BW · Testergebnis loggen"],
+            ["Pull Up (Weighted)","3 × 4 · +5 kg · RPE 7–8"],
+            ["Dumbbell Bench Press","3 × 10–12 · Layer"]
+          ]
+        },
+        A: {
+          title:"🏋️ Focus-Tag A", date:"Samstag · 08.08.2026",
+          sub:"Clean & Jerk Komplex-Reclaim · Core · Hypertrophie-Layer Delts/Bizeps",
+          intro:"C&J seit W29 nicht mehr als Komplex trainiert — letzte Referenz 78 kg @ RPE 7 (W28). Heute Reclaim mit Ceiling 80, kein Max-Test. Kein Lunge-/Quad-Zusatz — der So-Box-Tag bringt Deficit Lunges.",
+          blocks:[
+            { letter:"A", title:"Clean Pull + Hang Power Clean", sub:"4 Sätze aufsteigend · Position wecken",
+              headers:["Übung","Sets × Reps","Last","RPE","Tempo","Rest","Note"],
+              rows:[ ["Clean Pull||+ Hang Power Clean","4 × (1+1)","50 → 60 → 65 → 70 kg","≤7","explosiv","2 min","Zug/Position nach 3 Wochen Pause, kein Quad-Fokus."] ] },
+            { letter:"B", title:"Squat Clean + Push Jerk Komplex", sub:"Every 2:00 · 6 Sätze · Ceiling 80 kg",
+              headers:["Übung","Sets × Reps","Last","RPE","Tempo","Rest","Note"],
+              rows:[ ["Squat Clean||+ Push Jerk","6 × (1+1)||build","60 → 65 → 70 → 75 → 77,5 → 80 kg","≤8","X","Restliche 2:00","W28-Referenz 78 @7. 80 nur bei sauberem Fang + Jerk-Lockout — sonst auf letztem sauberen Gewicht ausfahren. Topgewicht loggen."] ] },
+            { letter:"C", title:"Core", sub:"Leicht",
+              headers:["Übung","Sets × Reps","Last","RPE","Tempo","Rest","Note"],
+              rows:[ ["Hollow Body Hold","3 × 30 sec","BW","6","—","60 sec","Ruhig atmen, unterer Rücken am Boden."] ] },
+            { letter:"D", title:"Hypertrophie-Layer — Delts/Bizeps", sub:"~15 min · Rekomposition",
+              headers:["Übung","Sets × Reps","Last","RPE","Tempo","Rest","Note"],
+              rows:[
+                ["DB Lateral Raise","3 × 12–15","RPE-kalibriert","7","kontrolliert","60 sec","Leicht, sauber — Schulter ist von Jerks vorbelastet."],
+                ["DB Curl","3 × 12","RPE-kalibriert","7","kontrolliert","60 sec","Keine Failure-Sätze."]
+              ] },
+            { letter:"E", title:"Mobility", sub:"~8 min",
+              headers:["Übung","Dauer","Note"],
+              rows:[
+                ["Front-Rack-Stretch","2 min","Ellbogen hoch, Handgelenke lösen."],
+                ["Hüftbeuger-Stretch","2 × 45 sec/Seite","Nach Squat Cleans."],
+                ["Thorakale Extension","1–2 min","Foam Roller · Jerk-Overhead nacharbeiten."]
+              ] }
+          ],
+          whoop:[
+            ["Clean Pull","4 × 1 · build 50→70 kg"],
+            ["Power Clean (Hang)","4 × 1 · build 50→70 kg"],
+            ["Squat Clean","6 × 1 · build 60→80 kg · Topgewicht loggen"],
+            ["Push Jerk","6 × 1 · build 60→80 kg"],
+            ["Hollow Body Hold","3 × 30 sec · BW"],
+            ["Dumbbell Lateral Raise","3 × 12–15 · Layer"],
+            ["Dumbbell Curl","3 × 12 · Layer"]
+          ]
+        }
+      }
+    },
+    {
       id: "2026-W31",
       label: "Urlaubswoche · 27. Juli – 2. August 2026",
       meso: "Übergang · nach Meso 2",
@@ -378,99 +483,5 @@ const DATA = {
         }
       }
     },
-    /* ── W28 ─────────────────────────────────── */
-    {
-      id: "2026-W28",
-      label: "Woche 4 · 6.–12. Juli 2026",
-      meso: "Meso 2 · Woche 4",
-      phase: "Reclaim / Kapazität / Robustheit",
-      dateFrom: "2026-07-06",
-      dateTo:   "2026-07-12",
-      days: [
-        { day:"Montag",    date:"06.07.", isoDate:"2026-07-06", type:"rest", einheit:"—", rx:"—", note:"Kein Training (fix, Martins Vorgabe)." },
-        { day:"Dienstag",  date:"07.07.", isoDate:"2026-07-07", type:"box",  einheit:"Front Squat (Wk 2/3) + Row/Wall Ball/Devils Press", sub:"FS E2:00×5 (70→92-95 %) → 6 Rd (2' Work/1' Rest): 15/12 Cal Row · 15 Wall Balls · AMAP Devils Press", rx:"FS bis <span class='rv'>~97,5–100 kg</span> · WOD L2: DB 20 kg + WB 9 kg", rpe:"RPE ≤8 (Topsatz)", note:"Setzt den FS-Block von letzter Woche fort (W1/3 Top 100 kg → W2/3). L3 (DB 22,5 kg) situativ, wenn frisch." },
-        { day:"Mittwoch",  date:"08.07.", isoDate:"2026-07-08", type:"box",  einheit:"Seated Press/Gorilla Row + HSPU-Run-Chipper", sub:"E1:30×6 (Wk1/4): 10 Seated Barbell Press · 16 Alt. Gorilla Row → For Time: 25 HSPU · 200m Run · 10 Burpee Pull-up · 200m Run · 10 Burpee Pull-up · 200m Run · 25 HSPU", rx:"<span class='rv'>L2 — Abmat HSPU</span>, Press/Row RPE-only", rpe:"Cap 16 min", note:"Hohes Overhead-/Pull-Volumen (50 HSPU total) — Fokus B liegt deshalb erst Fr, nicht direkt danach. L3 (Burpee BMU statt Pull-up) bewusst nicht gewählt — dupliziert Fokus B." },
-        { day:"Donnerstag",date:"09.07.", isoDate:"2026-07-09", type:"own",  focus:"A", einheit:"Clean & Jerk Reclaim", sub:"Clean Pull + Hang Power Clean · Squat Clean + Push Jerk Komplex · Front Rack Reverse Lunge · Hollow Hold", rx:"Komplex-Ziel <span class='rv'>77,5 kg</span>", rpe:"RPE ≤8 cap", note:"Nachholtermin — seit W25 nicht direkt trainiert (letzter Wert 75 kg @7). Technik vor Last, kein zusätzliches Front-Squat-Volumen." },
-        { day:"Freitag",   date:"10.07.", isoDate:"2026-07-10", type:"own",  focus:"B", einheit:"Vertikal-Gymnastics", sub:"BMU · Pull/T2B · Strict HSPU · Weighted Pull-up · Mobility", rx:"Auf Anfrage", rpe:"RPE 7–8", note:"Volumen gehalten (nicht gesteigert) wegen Mi-Overhead-Last. HSPU bleibt 4×6, kein Push auf 4×6-7." },
-        { day:"Samstag",   date:"11.07.", isoDate:"2026-07-11", type:"box",  einheit:"Squat Snatch Complex + DB Hang Snatch/Step-ups", sub:"E1:45×6: 1 Power Snatch + 1 Squat Snatch → For Time: Buy-in 30 Alt. DB Box Step-ups · 5 Rd (6 DB Hang Snatch re · 6 DB Hang Snatch li · 12/9 Cal) · Cash-out 30 Alt. DB Box Step-ups", rx:"Complex RPE-gated <span class='rv'>~42,5–47,5 kg</span> · WOD L2: DB 22,5 kg", rpe:"RPE ≤7 (Complex)", note:"Bedient Snatch diese Woche, da Fokus A auf C&J liegt. Cap 16 min." },
-        { day:"Sonntag",   date:"12.07.", isoDate:"2026-07-12", type:"rest", einheit:"—", rx:"—", note:"Abreise Bangkok (1 Woche Arbeit) — kein Training." }
-      ],
-      focusDays: {
-        A: {
-          title:"🏋️ Focus-Tag A", date:"Donnerstag · 09.07.2026",
-          sub:"Clean & Jerk Reclaim · Positionsarbeit · Front-Rack-Stabilität",
-          intro:"Seit W25 nicht direkt trainiert (W27 zugunsten Snatch zurückgestellt) — geschützter Slot fällig. Letzter bestätigter Wert: 75 kg @ RPE 7 (Squat Clean + Push Jerk Komplex, W25). Technik vor Last, kein zusätzliches Front-Squat-Volumen (Di schon bedient).",
-          blocks:[
-            { letter:"A", title:"Clean Pull + Hang Power Clean", sub:"5 Sätze aufsteigend · Positionsarbeit statt Squat-Volumen",
-              headers:["Übung","Sets × Reps","Last","RPE","Tempo","Rest","Note"],
-              rows:[ ["Clean Pull||+ Hang Power Clean","5 × (1+1)","50 → 60 → 65 → 67,5 → 70 kg","≤7","explosiv","2 min","Front Squat ist schon Di bedient — hier Zug/Position, kein Quad-Fokus."] ] },
-            { letter:"B", title:"Squat Clean + Push Jerk Komplex", sub:"Every 2:00 · 6 Sätze · Reclaim nach 3 Wochen Pause",
-              headers:["Übung","Sets × Reps","Last","RPE","Tempo","Rest","Note"],
-              rows:[ ["Squat Clean||+ Push Jerk","6 × (1+1)||build","55 → 60 → 65 → 70 → 75 → 77,5 kg","≤8","X","Restliche 2:00","W25-Wert war 75 kg @7. Ceiling 77,5–80 kg nur bei sauberem Split-/Jerk-Timing."] ],
-              note:"Reclaim-Arbeit, kein Max-Test. Topgewicht in WHOOP loggen." },
-            { letter:"C", title:"Front Rack Reverse Lunge", sub:"Stabilität · kein Overhead-Zusatz",
-              headers:["Übung","Sets × Reps","Last","RPE","Tempo","Rest","Note"],
-              rows:[ ["Front Rack Reverse Lunge","3 × 8/Bein","RPE-only","6–7","kontrolliert","90 sec","Front-Rack-Position stabilisieren, keine zusätzliche Schulterlast."] ] },
-            { letter:"D", title:"Core", sub:"Leicht · kein Zusatz-Conditioning",
-              headers:["Übung","Sets × Reps","Last","RPE","Tempo","Rest","Note"],
-              rows:[ ["Hollow Body Hold","3 × 30 sec","BW","6","—","60 sec","Ruhig atmen, unterer Rücken am Boden."] ] },
-            { letter:"E", title:"Ankle/Hip & Thorax Mobility", sub:"~8 min",
-              headers:["Übung","Dauer","Note"],
-              rows:[
-                ["Ankle/Hip CARs","2 × 8/Seite","Catch-Tiefe für Squat Clean."],
-                ["Thorakale Extension","1–2 min","Foam Roller · Jerk-Overhead vorbereiten."],
-                ["Lat-Stretch hängend","2 × 45 sec","Overhead-Enge lösen."]
-              ] }
-          ],
-          whoop:[
-            ["Clean Pull","5 × 1 · build 50→70 kg"],
-            ["Power Clean (Hang)","5 × 1 · build 50→70 kg"],
-            ["Squat Clean","6 × 1 · build 55→77,5 kg · Topgewicht loggen"],
-            ["Push Jerk","6 × 1 · build 55→77,5 kg"],
-            ["Walking Lunge (Front Rack)","3 × 8/Bein · RPE 6-7"]
-          ]
-        },
-        B: {
-          title:"🏋️ Focus-Tag B", date:"Freitag · 10.07.2026",
-          sub:"Vertikal-Gymnastics · BMU-Progression · Strict HSPU · Pull/T2B · Weighted Pull-up · Mobility",
-          intro:"Volumen bewusst gehalten, nicht gesteigert — Mi hat mit 50 HSPU + 20 Burpee-Pull-ups schon erhebliches Overhead-/Pull-Volumen gebracht. Zwei Tage Puffer zu Mi.",
-          blocks:[
-            { letter:"A", title:"BMU Progression — EMOM", sub:"Akkumulation · Ziel gehalten auf W27-Niveau · 10 min",
-              headers:["Übung","Sets × Reps","Last","RPE","Tempo","Rest","Note"],
-              rows:[
-                ["Bar Muscle-Up||Min 1–5","5 × 1–2","BW","7","X","Rest of min","Kein weiterer Push — W27 war 15 total (5×1+5×2)."],
-                ["Bar Muscle-Up||Min 6–10","5 × 2","BW","7–8","X","Rest of min","Doubles wenn sauber, sonst Single."]
-              ],
-              note:"Ceiling gehalten bei 14–15 total. Fokus auf Qualität, keine weitere Steigerung diese Woche." },
-            { letter:"B", title:"Pull + T2B Kapazität", sub:"3 Rounds · 90 sec Rest zwischen Rounds",
-              headers:["Übung","Sets × Reps","Last","RPE","Tempo","Rest","Note"],
-              rows:[
-                ["Kipping Pull-up","3 × 8","BW","7","X","30 sec → T2B","Gehalten wie W27."],
-                ["Toes-to-Bar","3 × 8","BW","7","X","90 sec → nächste Round","Gehalten wie W27."]
-              ] },
-            { letter:"C", title:"Strict HSPU Volumen", sub:"Hauptarbeit · 4 Sätze · gehalten",
-              headers:["Übung","Sets × Reps","Last","RPE","Tempo","Rest","Note"],
-              rows:[ ["Strict HSPU","4 × 6||gehalten, nicht gesteigert","BW","8","21X0","3 min","Mi hat schon 50 Reps Volumen gebracht — kein Push auf 4×6-7 diese Woche."] ] },
-            { letter:"D", title:"Weighted Pull-up Density", sub:"Letzte Woche auf Stufe 3×3",
-              headers:["Übung","Sets × Reps","Last","RPE","Tempo","Rest","Note"],
-              rows:[ ["Weighted Pull-up","3 × 3||bewusst gehalten","+5 kg","7–8","30X1","2 min","Grip auch durch Mi (Burpee-PU) und Sa (DB Hang Snatch) beansprucht — 3×3 sauber bestätigen. Ab W30 fest 3×4 (Treppe Richtung 6 @ +5 kg)."] ] },
-            { letter:"E", title:"Cool-down Mobility", sub:"~5 min · Schulter + Thorax",
-              headers:["Übung","Dauer","Note"],
-              rows:[
-                ["Lat-Stretch hängend","2 × 45 sec","Passive Hängelast, Schulter offen lassen."],
-                ["Shoulder CARs","2 × 8/Seite","Kontrolliert, voller Bewegungsradius."],
-                ["Thorakale Extension","1–2 min","Foam Roller · 3 Positionen entlang der BWS."]
-              ] }
-          ],
-          whoop:[
-            ["Bar Muscle Up","EMOM 10 · 1–2 reps/min · BW · Ziel gehalten 14–15 total"],
-            ["Pull Up","3 × 8 kipping · BW"],
-            ["Toes to Bar","3 × 8 · BW"],
-            ["Handstand Push Up","4 × 6 strict · BW"],
-            ["Pull Up (Weighted)","3 × 3 · +5 kg · RPE 7–8"]
-          ]
-        }
-      }
-    }
   ]
 };

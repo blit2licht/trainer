@@ -67,7 +67,7 @@
     {
       "id": "front-squat",
       "ziel": "115 kg sauber gehoben",
-      "stand": "100 kg",
+      "stand": "102,5 kg",
       "typ": "1RM-Ziel ohne geplanten Test"
     },
     {
@@ -85,7 +85,7 @@
   "gymnastics_testprotokoll": {
     "hinweis": "Verbindet Volumenarbeit mit den Unbroken-Zielen. Alle 3–4 Wochen ersetzt ein Max-Unbroken-Testsatz (frisch, als erster Arbeitssatz des Fokus-Tags) den regulären ersten Satz. Testergebnis aktualisiert den Zielstand in leistungsziele.",
     "testfrequenz_wochen": "3-4",
-    "naechster_test": "2026-W30",
+    "naechster_test": "2026-W32 (Fr 07.08., nachgeholt von W30)",
     "progressionstreppen": {
       "bar-muscle-up": "EMOM-Akkumulation: 10×1 → 5×1+5×2 → 10×2 → 2er/3er-Cluster → Testsatz max unbroken (Ziel 5)",
       "toes-to-bar": "3×7 → 3×8 → 3×9 → 3×10 → Testsatz max unbroken (Ziel 10)",
@@ -97,6 +97,16 @@
       "Bei unsauberem letzten Satz eine Stufe zurück, nicht wiederholt erzwingen.",
       "Testsatz nie auf vorermüdetem System (Recovery <50 % oder Grip-/Overhead-Vorlast am Vortag) — dann Test um eine Woche schieben."
     ]
+  },
+  "koerperkomposition": {
+    "beschlossen": "Sechs-Wochen-Review 2026-08-02 (Details: decisions.md 2026-07-28, coach/reviews/2026-08-02-meso2.md)",
+    "baseline_kg": 80.3,
+    "ziel_kg": "74-76",
+    "zeitraum": "~4 Monate ab Meso 3 (2026-W32)",
+    "wochentrend_ziel_kg": "-0,3 bis -0,5",
+    "methode": "3 Regeln statt Tracking: Protein zuerst ~150 g/Tag · Carbs folgen dem Training · keine flüssigen Kalorien/Snacks. Kontrolle über Wiegetrend (täglich wiegen, nur Wochenschnitte vergleichen).",
+    "messregel": "W32-W33 zählen nicht als Trend (Urlaubs-Wasser/Glykogen, Rückkehrgewicht 82 kg am 02.08. ist keine Baseline). Echte Bewertung ab Wochenschnitt W34 vs. W33.",
+    "leitplanken": "Kein zusätzliches Cardio als Defizit-Hebel. 15-min-Hypertrophie-Layer (Delts/Brust/Arme) an beiden Fokus-Tagen. Performance-Dip ab Defizit-Woche 3-4 akzeptiert, kein Deload-Trigger."
   },
   "review_rhythmus_wochen": 6,
   "neue_ziele": "Martin schlägt neue Ziele beim Review vor."

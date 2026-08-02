@@ -2,6 +2,17 @@
 
 Kurze, verdichtete Wocheneinträge. Rohdaten bleiben in WHOOP, Strava und der Website-Datenbank.
 
+## 2026-W31 · 27. Juli–2. August · Urlaub Griechenland (Übergang)
+
+**Plan teilweise befolgt — 1 von 3 Sessions.** Session 1 (Push/Beine) ✓ am **Di statt Mo** (session_feel 5): Wall Strict HSPU 4×5 sauber (WHOOP trackte fälschlich „Deficit HSPU" — waren normale), Push-ups 3×15, Bulgarian Split Squat 3×10/Bein, Plank 4×30 s, extra Trizeps-Band-Pulldowns. **Sessions 2 (Springseil/AMRAP) und 3 (Pull/Posterior) ausgefallen** — stattdessen nur Schwimmen als Bewegung. Urlaubsentscheidung, kein Autoregulationsthema.
+
+**Kernbefunde:**
+- **Struktureller Deload hat funktioniert:** Woche durchgehend gelb (43–56 %, RHR leicht erhöht 51–55 — typisches Urlaubsmuster), Schlaf gut (7–8 h, Scores 84–96), dann Sa 67 % und **So 94 % — System vollständig erholt** für den Meso-3-Start.
+- Einziger bedienter Fokus: Strict HSPU (4×5 Erhalt). Zugarbeit fiel komplett aus (Session 3 ausgefallen) — eine Woche Pull-Pause vor W32 unkritisch, aber Testsatz-Woche entsprechend ohne Vorlast.
+- Wellness-Datenpfad umgestellt: intervals.icu-Pull (`scripts/pull_wellness.py`) ersetzt das manuelle WHOOP-Wochenreview.
+
+**Offen für W32:** Sechs-Wochen-Review Meso 2 + Meso-3-Start (inkl. Körperkomposition per decisions.md 2026-07-28), Gymnastics-Testsatz (seit W30 verschoben), Clean & Jerk (zuletzt W29). Termine W32: Mi + Do morgens schwierig, Do abends lockere Radtour mit der Box.
+
 ## 2026-W30 · 20.–26. Juli · Meso 2 W6 — Meso-Abschluss
 
 **Plan befolgt — alle Einheiten durchgeführt, session_feel durchgehend 4-5.** Mo Ruhe ✓ (kein Recovery-Upgrade genutzt) · Di Fokus A ✓ (FS-Block Wk3/3 + OHS-Reclaim, Strain 6.2) · Mi Ruhe (Termin) ✓ · **Do Großtag** ✓: Snatch-Singles + Metcon (6:13 min Zone 5) + ungeplanter 2-h-Ride 54,8 km abends → Strain 18,4 · Fr Fokus B ✓ (WHOOP nur als 42-min-Activity, kein Satz-Log) · Sa Abflug Griechenland, Ruhe ✓ · So Urlaubs-Bodyweight-Session ✓ (ungeloggt, WHOOP nicht getragen). Recovery ganze Woche grün/gelb (50–71 %), Sleep Debt Do/Sa deutlich.

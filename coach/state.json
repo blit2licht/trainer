@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "aktualisiert_am": "2026-07-27",
+  "aktualisiert_am": "2026-08-02",
   "aktuelle_woche": {
     "id": "2026-W31",
     "von": "2026-07-27",
@@ -49,15 +49,15 @@
       "snatch": "W30 (Singles build 40→57,5, Ceiling 2× sauber bestätigt)",
       "overhead_squat": "W30 (Reclaim 3×3 @ 40/42,5/45, Pattern reaktiviert, kein Lastfokus)",
       "front_squat": "W30 (Block Wk 3/3 abgeschlossen, Top-Single 102,5 kg)",
-      "strict_hspu": "W30 (4×6 gehalten, per Gesamtbestätigung ohne Satz-Log)",
+      "strict_hspu": "W31 (4×5 Wall als Urlaubs-Erhalt, session_feel 5)",
       "bmu": "W30 (EMOM gehalten, per Gesamtbestätigung ohne Satz-Log)",
       "weighted_pull_up": "W30 (neue Stufe 3×4 @ +5 kg, per Gesamtbestätigung ohne Satz-Log)",
       "toes_to_bar": "W30 (3×8 Reclaim, per Gesamtbestätigung ohne Satz-Log)",
       "clean_jerk": "W29 (Singles 55→75 kg @ RPE ≤8, kein Komplex, kein neuer Bestwert)"
     },
     "offen": [
-      "Clean & Jerk — zuletzt W29 (Singles) bedient → nach Urlaubsrückkehr wieder einplanen",
-      "W31 Urlaub (nur Bodyweight/Band/Springseil): alle Bar-abhängigen Foki (BMU, WPU, T2B) und Barbell-Lifts pausieren eine Woche — bewusst, kein Rotationsversäumnis"
+      "Clean & Jerk — zuletzt W29 (Singles) bedient → in W32 einplanen",
+      "W31 abgeschlossen: nur Session 1 (Push/Beine inkl. HSPU 4×5) durchgeführt, Sessions 2+3 ausgefallen (nur Schwimmen) — bewusste Urlaubsentscheidung, kein Rotationsversäumnis. Alle Bar-/Barbell-Foki eine Woche pausiert."
     ]
   },
   "load_references": {
@@ -102,14 +102,14 @@
   },
   "akute_hinweise": [
     {
-      "datum": "2026-07-27",
-      "betrifft": "W31 — Urlaub Griechenland (ganze Woche angenommen)",
-      "hinweis": "Nur Bodyweight, Gummibänder, Springseil — Drop-in bewusst verworfen (zu aufwändig, Martins Entscheidung 27.07.). Reduzierte Woche ohne Testcharakter, keine Bar verfügbar. Rückreisedatum unbestätigt — bei Rückkehr vor So 02.08. Plan anpassen."
+      "datum": "2026-08-02",
+      "betrifft": "W32 — erste normale Trainingswoche (Meso-3-Start)",
+      "hinweis": "Sechs-Wochen-Zielreview Meso 2 + Gymnastics-Testsatz (beide seit W30 verschoben) in W32 ansetzen; dort auch Meso-3-Planung. Im Review neu aufnehmen: Körperkomposition als Ziel (3-Regeln-Ansatz statt Tracking, Baseline 80,3 kg, Ziel ~74–76 kg über ~4 Monate, Wochenschnitt −0,3 bis −0,5 kg/Wo) + 15-min-Hypertrophie-Layer an beiden Fokus-Tagen. Erwarteter Performance-Dip ab Defizit-Woche 3–4 akzeptiert, kein Deload-Trigger. Details: decisions.md 2026-07-28."
     },
     {
-      "datum": "2026-07-27",
-      "betrifft": "Nach Rückkehr fällig",
-      "hinweis": "Sechs-Wochen-Zielreview Meso 2 + Gymnastics-Testsatz (beide seit W30 verschoben) in der ersten normalen Trainingswoche ansetzen; dort auch Meso-3-Planung. Im Review neu aufnehmen: Körperkomposition als Ziel (3-Regeln-Ansatz statt Tracking, Baseline 80,3 kg, Ziel ~74–76 kg über ~4 Monate, Wochenschnitt −0,3 bis −0,5 kg/Wo) + 15-min-Hypertrophie-Layer an beiden Fokus-Tagen. Erwarteter Performance-Dip ab Defizit-Woche 3–4 akzeptiert, kein Deload-Trigger. Details: decisions.md 2026-07-28."
+      "datum": "2026-08-02",
+      "betrifft": "W32 — Termine",
+      "hinweis": "Mi 05.08. und Do 06.08. morgens schwierig (keine Box-Vormittagsslots). Do 06.08. abends lockere Radtour mit der CrossFit Box (sozial, erfahrungsgemäß entspannt) — zählt als Ride-Slot der Woche."
     }
   ],
   "hinweis_ablauf": "Beim Wochenreview neu bewerten; spätestens nach 7 Tagen entfernen, wenn nicht erneut bestätigt.",
@@ -120,7 +120,7 @@
     "strava": "Optional über MCP für Radfahrten"
   },
   "naechster_zielreview": "Erste normale Trainingswoche nach Griechenland-Rückkehr: Sechs-Wochen-Review Meso 2 (W25-W30) + Gymnastics-Testsatz.",
-  "systemstatus": "V1.0 produktiv; Wochenreviews W25-W30 im Logbuch abgeschlossen, Meso 2 komplett. W31 = Urlaubs-/Übergangswoche. Sechs-Wochen-Review und Meso-3-Start nach Rückkehr.",
+  "systemstatus": "V1.0 produktiv; Wochenreviews W25-W31 im Logbuch abgeschlossen, Meso 2 komplett, W31-Urlaubsdeload bestätigt (So 02.08. Recovery 94 %). Sechs-Wochen-Review und Meso-3-Start in W32.",
   "migration": {
     "version": "1.0",
     "abgeschlossen_am": "2026-06-15"

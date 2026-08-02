@@ -56,7 +56,7 @@ MEASTYPE_WEIGHT = 1  # kg; Körperfett (Typ 6/8) wird bewusst NICHT abgefragt
 WINDOW_DAYS = 42
 
 
-def post(path: str, data: dict, access_token: str | None = None) -> dict:
+def post(path: str, data: dict, access_token: str = None) -> dict:
     req = urllib.request.Request(
         API + path,
         data=urllib.parse.urlencode(data).encode(),
@@ -78,7 +78,7 @@ def post(path: str, data: dict, access_token: str | None = None) -> dict:
     return payload.get("body", {})
 
 
-def creds() -> tuple[str, str, str]:
+def creds():
     cid = os.environ.get("WITHINGS_CLIENT_ID")
     secret = os.environ.get("WITHINGS_CLIENT_SECRET")
     if not cid or not secret:
@@ -145,7 +145,7 @@ def fetch_weights(token: str) -> list:
 
 
 def build(groups: list) -> dict:
-    per_day: dict[str, list[float]] = {}
+    per_day = {}
     for g in groups:
         date = dt.datetime.fromtimestamp(g["date"], dt.timezone.utc).astimezone().date().isoformat()
         for m in g.get("measures", []):
@@ -156,7 +156,7 @@ def build(groups: list) -> dict:
     days = [{"date": d, "weight_kg": round(sum(v) / len(v), 2)}
             for d, v in sorted(per_day.items())]
 
-    weeks: dict[str, list[float]] = {}
+    weeks = {}
     for d in days:
         iso = dt.date.fromisoformat(d["date"]).isocalendar()
         weeks.setdefault(f"{iso.year}-W{iso.week:02d}", []).append(d["weight_kg"])

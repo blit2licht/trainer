@@ -73,9 +73,11 @@ GitHub ist das versionierte Gedächtnis und die gemeinsame Wahrheit.
 - `coach/state.json`: schlanker aktueller Zustand, Lastreferenzen und akute Flags
 - `coach/logbook.md`: kurzer verdichteter Eintrag pro Woche
 - `coach/reviews/`: separate Sechs-Wochen-Reviews
+- `coach/wellness.json`: per `scripts/pull_wellness.py` gezogene intervals.icu-Tagesdaten (Recovery, HRV, RHR, Schlaf) der letzten 14 Tage; wird vom Script committet, nie von Hand editiert
 - `website/data.js`: veröffentlichter Plan der aktuellen und bis zu drei vorherigen Wochen
 - Website-Datenbank: Tagesnotizen und `session_feel`
-- WHOOP: manuell eingefügte Wochenreviews und gezielte Detailabfragen
+- intervals.icu (WHOOP-Bridge): primäre Quelle für Recovery, HRV, RHR und Schlaf — per `python3 scripts/pull_wellness.py` ziehen (Key aus Env `INTERVALS_API_KEY`, nie ins Repo oder in Ausgaben)
+- WHOOP: nur noch gezielte Detailabfragen (Satz-/Lasthistorien, Strain-Details), kein manuelles Wochenreview-Paste mehr
 - DreamWOD: manuell eingefügtes Box-Wochenprogramm
 - Strava: optional für Radfahrtdaten
 - Drive: stillgelegt; nicht lesen oder schreiben
@@ -119,9 +121,10 @@ Diese Regeln gelten vor jeder Diagnose, Planung oder Empfehlung. Sie haben Vorra
 
 1. **Erst Quelle lesen, dann handeln.** Bevor eine Schnittstelle, Datei oder ein Tool benutzt wird, die zugehörige Quelle vollständig prüfen. Konkret:
    - Website-Notizen werden ausschließlich über `website/get_notes.php?from=YYYY-MM-DD&to=YYYY-MM-DD` geladen (Datumsbereich Pflicht, sonst HTTP 400). Bei Unsicherheit über Parameter zuerst `website/get_notes.php` im Repo lesen.
-   - Radfahrtdaten kommen über den Strava-MCP (`list_activities` mit Datumsbereich), nicht durch Nachfragen. Erst fragen, wenn der Pull keine Daten liefert.
+   - Recovery, HRV, RHR und Schlaf kommen über `python3 scripts/pull_wellness.py` (schreibt und committet `coach/wellness.json`), nicht durch Nachfragen. Vor „Neue Woche“ und Wochenreview immer frisch ziehen; die Datei im Repo kann veraltet sein. Erst fragen, wenn der Pull fehlschlägt oder Tage fehlen.
+   - Radfahrtdaten kommen über den Strava-MCP (`list_activities` mit Datumsbereich), nicht durch Nachfragen. Der `rides`-Teil von `wellness.json` ist unvollständig (intervals.icu darf Strava-Aktivitäten nicht per API weitergeben) und ist keine Ride-Quelle. Erst fragen, wenn der Pull keine Daten liefert.
    - Flags, Lastreferenzen und Wochenkontext aus `coach/state.json` immer auswerten, bevor danach gefragt wird.
-2. **Alle relevanten Quellen prüfen, nicht nur die nächstbeste.** Für einen Wochenreview heißt das mindestens: alle Notizen des Zeitraums via `from/to`, Strava-MCP für Rides, `state.json`-Flags, DreamWOD und WHOOP-Recap. Keine Teilauswertung.
+2. **Alle relevanten Quellen prüfen, nicht nur die nächstbeste.** Für einen Wochenreview heißt das mindestens: alle Notizen des Zeitraums via `from/to`, Strava-MCP für Rides, `state.json`-Flags, DreamWOD und frisch gezogene `coach/wellness.json`. Keine Teilauswertung.
 3. **Fehlt eine Quelle, nachfragen.** Nicht raten, nicht aus Plausibilität rekonstruieren. Keine Ereignisse, Wochen, Ausfälle oder Werte erfinden, die nicht belegt sind.
 4. **Klemmt eine Verbindung, debuggen.** Statuscode und Ursache feststellen (z. B. fehlender Parameter, falscher Pfad), korrigieren, erneut versuchen. Keine Umweg-Workarounds, die der Nutzer nicht verlangt hat.
 5. **Bleibt es nach dem Debuggen kaputt, melden.** Klar sagen, was nicht geht, welcher Fehler auftritt und was als Nächstes nötig wäre — nicht still umgehen.
@@ -164,13 +167,13 @@ Trigger: „Neue Woche“.
 
 **Reihenfolge zuerst — Daten vor Plan (Pflicht):**
 1. Ist der Review der Vorwoche noch offen (Zustand steht auf der alten Woche, Ausführung unbestätigt)? Dann **erst den Vorwochen-Review schließen** — sonst wird die neue Woche auf veralteten Zahlen geplant.
-2. **Tagesform des heutigen Tages** (aktuelle Recovery) und Ausführungsbestätigung der Vorwoche einholen, **bevor** ein detaillierter Plan gebaut wird. Eine speed-/CNS-lastige Schlüssel-Einheit nie ungeprüft auf einen roten Tag legen. Kein großer Entwurf auf Annahmen, der danach umgeworfen werden muss.
+2. **Tagesform des heutigen Tages** (aktuelle Recovery) und Ausführungsbestätigung der Vorwoche einholen, **bevor** ein detaillierter Plan gebaut wird. Die Tagesform kommt aus dem frischen Wellness-Pull; nur wenn der heutige Tag dort noch fehlt (Sync-Lag), Martin fragen. Eine speed-/CNS-lastige Schlüssel-Einheit nie ungeprüft auf einen roten Tag legen. Kein großer Entwurf auf Annahmen, der danach umgeworfen werden muss.
 
-Fordere nacheinander an:
-1. DreamWOD-Wochenprogramm
-2. WHOOP-Wochenreview
-3. Termin- und Zeitbeschränkungen
-4. nur bei Bedarf konkrete WHOOP-Detaildaten
+Datenbeschaffung in dieser Reihenfolge:
+1. `python3 scripts/pull_wellness.py` laufen lassen → frische Recovery-/HRV-/RHR-/Schlafdaten in `coach/wellness.json` (ersetzt das manuelle WHOOP-Wochenreview)
+2. DreamWOD-Wochenprogramm per Schnittstelle ziehen (siehe Referenzen); nur bei Fehlschlag Screenshot anfordern
+3. Termin- und Zeitbeschränkungen bei Martin erfragen
+4. nur bei Bedarf konkrete WHOOP-Detaildaten (z. B. Satz-/Lasthistorien) per kopierfertigem Prompt
 
 Wenn Last- oder Satzhistorien fehlen, erstelle präzise, kopierfertige WHOOP-Prompts. Nicht raten.
 
@@ -224,10 +227,10 @@ Unterwöchige Planänderungen nach kurzer Abstimmung direkt veröffentlichen. Nu
 Trigger: „Weekly Recap“, „Wochenreview“ oder sinngleich.
 
 Mindestens erforderlich:
-- WHOOP-Wochenreview
+- frisch gezogene `coach/wellness.json` (`python3 scripts/pull_wellness.py`)
 - Website-Notizen
 - Bestätigung der tatsächlich absolvierten Einheiten
-- optional Strava-Daten
+- optional Strava-Daten und gezielte WHOOP-Detailabfragen
 
 Beginne mit geplant gegen ausgeführt. Wenn unklar, frage geschlossen: „Plan befolgt?“ Bei Nein nur entscheidungsrelevante Abweichungen sammeln.
 

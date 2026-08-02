@@ -14,7 +14,7 @@ GitHub ist die gemeinsame Wahrheit. Vor Änderungen immer den neuesten Stand lad
 
 ## Trigger
 
-- **Neue Woche**: DreamWOD-Screenshot, WHOOP-Wochenreview und Terminbeschränkungen anfordern; bei Bedarf kopierfertige WHOOP-Detailprompts erstellen. Erst Vorschau zeigen.
+- **Neue Woche**: zuerst `python3 scripts/pull_wellness.py` laufen lassen (frische Recovery-/HRV-/Schlafdaten aus intervals.icu), DreamWOD per Schnittstelle ziehen, Terminbeschränkungen anfordern; bei Bedarf kopierfertige WHOOP-Detailprompts erstellen. Erst Vorschau zeigen.
 - **Committen**: freigegebenen Wochenplan schreiben, direkt auf `main` pushen und Deployment prüfen.
 - **Weekly Recap / Wochenreview**: fehlende Daten erfragen, danach Zustand und Logbuch sofort aktualisieren und committen.
 - Sechs-Wochen-Reviews unter `coach/reviews/` speichern.

@@ -116,8 +116,10 @@
   ],
   "hinweis_ablauf": "Beim Wochenreview neu bewerten; spätestens nach 7 Tagen entfernen, wenn nicht erneut bestätigt.",
   "datenquellen": {
-    "dreamwod": "Manueller Screenshot/Input",
-    "whoop": "Manuell eingefügter Weekly Review und gezielte Detailabfragen",
+    "dreamwod": "Per Schnittstelle gezogen (siehe instructions.md Referenzen), Screenshot nur als Fallback",
+    "intervals_icu": "Recovery/HRV/RHR/Schlaf über scripts/pull_wellness.py → coach/wellness.json",
+    "withings": "Gewicht über scripts/pull_weight.py → coach/weight.json — Körperfettwert (BIA) wird systemweit ignoriert (~10 %-Punkte zu niedrig, Entscheidung 2026-08-02)",
+    "whoop": "Nur noch gezielte Detailabfragen (Satz-/Lasthistorien)",
     "notizen": "Website-Datenbank über get_notes.php",
     "strava": "Optional über MCP für Radfahrten"
   },

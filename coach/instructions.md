@@ -74,9 +74,11 @@ GitHub ist das versionierte Gedächtnis und die gemeinsame Wahrheit.
 - `coach/logbook.md`: kurzer verdichteter Eintrag pro Woche
 - `coach/reviews/`: separate Sechs-Wochen-Reviews
 - `coach/wellness.json`: per `scripts/pull_wellness.py` gezogene intervals.icu-Tagesdaten (Recovery, HRV, RHR, Schlaf) der letzten 14 Tage; wird vom Script committet, nie von Hand editiert
+- `coach/weight.json`: per `scripts/pull_weight.py` gezogene Withings-Gewichtsdaten (42 Tage, Tageswerte + ISO-Wochenschnitte); wird vom Script committet, nie von Hand editiert
 - `website/data.js`: veröffentlichter Plan der aktuellen und bis zu drei vorherigen Wochen
 - Website-Datenbank: Tagesnotizen und `session_feel`
 - intervals.icu (WHOOP-Bridge): primäre Quelle für Recovery, HRV, RHR und Schlaf — per `python3 scripts/pull_wellness.py` ziehen (Key aus Env `INTERVALS_API_KEY`, nie ins Repo oder in Ausgaben)
+- Withings (OAuth2): primäre Quelle für Gewicht — per `python3 scripts/pull_weight.py` ziehen (Client-Credentials aus Env, Tokens lokal außerhalb des Repos, nie ins Repo oder in Ausgaben). **Einzige genutzte Größe ist der Gewichtstrend. Der Withings-Körperfettwert (BIA) wird systemweit ignoriert — bei Martin ~10 %-Punkte zu niedrig, steuerungsunbrauchbar (Entscheidung 2026-08-02). Nie zitieren, nie in Bewertungen einfließen lassen.**
 - WHOOP: nur noch gezielte Detailabfragen (Satz-/Lasthistorien, Strain-Details), kein manuelles Wochenreview-Paste mehr
 - DreamWOD: manuell eingefügtes Box-Wochenprogramm
 - Strava: optional für Radfahrtdaten
@@ -122,6 +124,7 @@ Diese Regeln gelten vor jeder Diagnose, Planung oder Empfehlung. Sie haben Vorra
 1. **Erst Quelle lesen, dann handeln.** Bevor eine Schnittstelle, Datei oder ein Tool benutzt wird, die zugehörige Quelle vollständig prüfen. Konkret:
    - Website-Notizen werden ausschließlich über `website/get_notes.php?from=YYYY-MM-DD&to=YYYY-MM-DD` geladen (Datumsbereich Pflicht, sonst HTTP 400). Bei Unsicherheit über Parameter zuerst `website/get_notes.php` im Repo lesen.
    - Recovery, HRV, RHR und Schlaf kommen über `python3 scripts/pull_wellness.py` (schreibt und committet `coach/wellness.json`), nicht durch Nachfragen. Vor „Neue Woche“ und Wochenreview immer frisch ziehen; die Datei im Repo kann veraltet sein. Erst fragen, wenn der Pull fehlschlägt oder Tage fehlen.
+   - Gewichtsdaten kommen über `python3 scripts/pull_weight.py` (schreibt und committet `coach/weight.json`), nicht durch Nachfragen. Für jede Wiegetrend-Bewertung (Körperkompositions-Protokoll) frisch ziehen; bewertet werden nur Wochenschnitte, nie Einzeltage.
    - Radfahrtdaten kommen über den Strava-MCP (`list_activities` mit Datumsbereich), nicht durch Nachfragen. Der `rides`-Teil von `wellness.json` ist unvollständig (intervals.icu darf Strava-Aktivitäten nicht per API weitergeben) und ist keine Ride-Quelle. Erst fragen, wenn der Pull keine Daten liefert.
    - Flags, Lastreferenzen und Wochenkontext aus `coach/state.json` immer auswerten, bevor danach gefragt wird.
 2. **Alle relevanten Quellen prüfen, nicht nur die nächstbeste.** Für einen Wochenreview heißt das mindestens: alle Notizen des Zeitraums via `from/to`, Strava-MCP für Rides, `state.json`-Flags, DreamWOD und frisch gezogene `coach/wellness.json`. Keine Teilauswertung.
@@ -228,6 +231,7 @@ Trigger: „Weekly Recap“, „Wochenreview“ oder sinngleich.
 
 Mindestens erforderlich:
 - frisch gezogene `coach/wellness.json` (`python3 scripts/pull_wellness.py`)
+- frisch gezogene `coach/weight.json` (`python3 scripts/pull_weight.py`) — solange das Körperkompositions-Protokoll läuft
 - Website-Notizen
 - Bestätigung der tatsächlich absolvierten Einheiten
 - optional Strava-Daten und gezielte WHOOP-Detailabfragen

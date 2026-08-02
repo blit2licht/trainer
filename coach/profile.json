@@ -105,6 +105,7 @@
     "zeitraum": "~4 Monate ab Meso 3 (2026-W32)",
     "wochentrend_ziel_kg": "-0,3 bis -0,5",
     "methode": "3 Regeln statt Tracking: Protein zuerst ~150 g/Tag · Carbs folgen dem Training · keine flüssigen Kalorien/Snacks. Kontrolle über Wiegetrend (täglich wiegen, nur Wochenschnitte vergleichen).",
+    "datenquelle": "Withings via scripts/pull_weight.py → coach/weight.json. Nur Gewicht — der Withings-Körperfettwert (BIA) wird ignoriert (~10 %-Punkte zu niedrig, steuerungsunbrauchbar).",
     "messregel": "W32-W33 zählen nicht als Trend (Urlaubs-Wasser/Glykogen, Rückkehrgewicht 82 kg am 02.08. ist keine Baseline). Echte Bewertung ab Wochenschnitt W34 vs. W33.",
     "leitplanken": "Kein zusätzliches Cardio als Defizit-Hebel. 15-min-Hypertrophie-Layer (Delts/Brust/Arme) an beiden Fokus-Tagen. Performance-Dip ab Defizit-Woche 3-4 akzeptiert, kein Deload-Trigger."
   },

@@ -32,6 +32,9 @@ Env:
     WITHINGS_CLIENT_SECRET   Pflicht.
     WITHINGS_REDIRECT_URI    Optional, Default "https://training.martinwitte.de/"
                              — muss exakt der in der App registrierten URL entsprechen.
+
+Statt Env-Variablen können die Werte auch in ~/.config/trainer/withings.env
+liegen (KEY=VALUE, eine pro Zeile, chmod 600) — wird automatisch geladen.
 """
 
 import argparse
@@ -50,7 +53,24 @@ AUTHORIZE_URL = "https://account.withings.com/oauth2_user/authorize2"
 REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT_PATH = os.path.join(REPO_ROOT, "coach", "weight.json")
 TOKEN_PATH = os.path.expanduser("~/.config/trainer/withings_token.json")
+ENV_PATH = os.path.expanduser("~/.config/trainer/withings.env")
 DEFAULT_REDIRECT = "https://training.martinwitte.de/"
+
+
+def load_env_file():
+    """Lädt WITHINGS_*-Variablen aus ~/.config/trainer/withings.env, falls
+    nicht schon in der Umgebung gesetzt. Format: KEY=VALUE, eine pro Zeile."""
+    if not os.path.exists(ENV_PATH):
+        return
+    with open(ENV_PATH) as f:
+        for line in f:
+            line = line.strip()
+            if not line or line.startswith("#") or "=" not in line:
+                continue
+            key, _, val = line.partition("=")
+            key, val = key.strip(), val.strip().strip('"').strip("'")
+            if key.startswith("WITHINGS_") and key not in os.environ:
+                os.environ[key] = val
 
 MEASTYPE_WEIGHT = 1  # kg; Körperfett (Typ 6/8) wird bewusst NICHT abgefragt
 WINDOW_DAYS = 42
@@ -96,15 +116,16 @@ def save_tokens(body: dict):
     os.chmod(TOKEN_PATH, stat.S_IRUSR | stat.S_IWUSR)
 
 
-def auth_flow():
+def auth_flow(pasted=None):
     cid, secret, redirect = creds()
     params = urllib.parse.urlencode({
         "response_type": "code", "client_id": cid, "scope": "user.metrics",
         "redirect_uri": redirect, "state": "trainer",
     })
-    print("1. Diese URL im Browser öffnen und Zugriff erlauben:\n")
-    print(f"   {AUTHORIZE_URL}?{params}\n")
-    pasted = input("2. Komplette Redirect-URL (oder nur den code-Wert) hier einfügen: ").strip()
+    if pasted is None:
+        print("1. Diese URL im Browser öffnen und Zugriff erlauben:\n")
+        print(f"   {AUTHORIZE_URL}?{params}\n")
+        pasted = input("2. Komplette Redirect-URL (oder nur den code-Wert) hier einfügen: ").strip()
     code = pasted
     if "code=" in pasted:
         code = urllib.parse.parse_qs(urllib.parse.urlparse(pasted).query)["code"][0]
@@ -181,15 +202,19 @@ def git(*args):
 
 def main():
     ap = argparse.ArgumentParser(description=__doc__)
-    ap.add_argument("--auth", action="store_true", help="einmalige OAuth-Einrichtung")
+    ap.add_argument("--auth", nargs="?", const=True, default=False, metavar="REDIRECT_URL",
+                    help="einmalige OAuth-Einrichtung; optional direkt die "
+                         "Redirect-URL (mit code=…) als Argument")
     ap.add_argument("--inspect", action="store_true",
                     help="Roh-Beispieldatensatz ausgeben (Mapping verifizieren)")
     ap.add_argument("--no-commit", action="store_true",
                     help="weight.json schreiben, aber nicht committen/pushen")
     args = ap.parse_args()
 
+    load_env_file()
+
     if args.auth:
-        auth_flow()
+        auth_flow(None if args.auth is True else args.auth)
         return
 
     groups = fetch_weights(access_token())

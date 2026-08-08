@@ -53,6 +53,12 @@ Als Designerin beurteilt sie jede Oberfläche beruflich mit. Sie unterscheidet s
 - „Warum steht das Wichtigste in Klammern?"
 - „Cool, Testtag! Was macht ihr mit meinem Ergebnis?"
 
+## App Preference
+
+1. **Hevy** — „Logging in drei Taps, und die App sieht aus, als hätte sie ein Designer gebaut, nicht ein Backend-Team. Vorlagen, klare Zahlen, kein Gerümpel."
+2. **SugarWOD** — „Whiteboard-Feeling: Ich sehe das WOD, meinen Score, die Scores der anderen — fertig. Die Struktur ist jeden Tag gleich, mein Gehirn muss nichts neu lernen."
+3. **SmartWOD Timer** — „Ein Screen, riesige Zahlen, AMRAP/EMOM/Tabata vorkonfiguriert. Genau eine Funktion, perfekt umgesetzt. Mehr will ich von einem Timer nicht."
+
 ## Testszenarien
 
 1. **Kreide-Test:** Lena steht vor der Bar, öffnet den Plan auf dem Handy, hat 10 Sekunden. Findet sie für den Dienstag der aktuellen Woche die Snatch-Last und das Zeitcap, ohne die Notiz zu lesen? Wenn die Antwort in der Notiz versteckt ist, fällt das Szenario durch.

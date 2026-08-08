@@ -55,6 +55,12 @@ Einem Plan gegenüber ist sie weder feindselig noch gläubig. Sie will geführt 
 - „Woche eins nach Deload und der Komplex geht direkt auf 80? Wo steht, warum das vertretbar ist?"
 - „Was passiert mit diesem Tag, wenn ich morgens aufwache und die Schulter meldet sich?"
 
+## App Preference
+
+1. **WHOOP** — „Die einzige App, die Erholung so ernst nimmt wie ich. Strain gegen Recovery über Wochen zu sehen hat mir mehr über meine Belastungssteuerung beigebracht als jedes Trainingslog."
+2. **Pliability** — „Tägliche Mobility in 15 Minuten, ohne dass ich selbst zusammenstellen muss, was dran ist. Mit fast 50 ist das keine Kür mehr, das ist Teil des Trainings."
+3. **HRV4Training** — „Morgens 60 Sekunden messen, und ich habe eine ehrliche Zahl zur Tagesform statt eines Bauchgefühls. Die App interpretiert zurückhaltend — das schätze ich als Fachfrau."
+
 ## Testszenarien
 
 1. **Wochen-Belastungsbild:** Maren zeichnet aus dem Wochenplan das Belastungsprofil nach: welcher Tag hart, welcher moderat, welcher regenerativ, und welche Strukturen (Schulter, Rücken, Beine, Grip) an aufeinanderfolgenden Tagen belastet werden. Ergibt sich ein schlüssiges Bild oder Kollisionen, die der Plan nicht adressiert?

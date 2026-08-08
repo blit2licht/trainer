@@ -56,6 +56,12 @@ Sein ADHS zeigt sich nicht in Zappeligkeit, sondern in stiller Ablenkbarkeit und
 - „Donnerstag ist ausgefallen. Und jetzt? Ehrlich, ich hab dann einfach das vom Freitag gemacht. Glaube ich."
 - „Das Kopier-Ding für WHOOP? Hätte ich gern für alles."
 
+## App Preference
+
+1. **WHOOP** — „Null Verwaltungsaufwand: Das Band trackt, ich muss nichts eintragen, nichts pflegen, nichts erinnern. Die einzige Fitness-App, die ich länger als vier Wochen benutze — weil sie mich nicht braucht."
+2. **SmartWOD Timer** — „Um 5:50 Uhr will ich einen Timer, der nach drei Taps läuft. Kein Login, keine Cloud, kein Update-Hinweis. Starten, trainieren, fertig."
+3. **Fitbod** — „Die App trifft die Entscheidungen: Übungen, Gewichte, Sätze stehen fertig da, angepasst an das, was ich zuletzt gemacht habe. Genau das, was mein Kopf morgens nicht leisten will."
+
 ## Testszenarien
 
 1. **5:45-Uhr-Durchlauf:** David öffnet den heutigen Tag mit dem Aufmerksamkeitsniveau eines frühen Morgens und arbeitet ihn gedanklich von oben nach unten ab. Jede Stelle, an der er anhalten, zurückspringen, rechnen oder wählen muss, wird notiert. Ziel: null solcher Stellen bis zum ersten Arbeitssatz.

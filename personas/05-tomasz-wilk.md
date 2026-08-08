@@ -55,6 +55,12 @@ Er ist die härteste der fünf Personas, und die fairste: Er kritisiert nie die 
 - „Der Snatch soll ‚Richtung 60' gehen. Auf welcher Datenbasis? 57,5 zweimal bestätigt, okay, das trägt einen Versuch. Aber dann schreibt es als Bedingung, nicht als Ziel."
 - „Dieser Hero wurde verworfen, weil er den Testtag dupliziert hätte. Das ist die beste Zeile der ganzen Woche."
 
+## App Preference
+
+1. **TrueCoach** — „Damit arbeiten wir im Team: Programm raus, Videos und Ergebnisse zurück, Kommentare am Satz. Der Feedback-Loop zwischen Coach und Athlet ist der Kern, und den macht keine App besser."
+2. **Beyond the Whiteboard** — „Benchmarks mit Perzentilen gegen tausende Athleten — die einzige App, die aus einem Fran-Score eine Standortbestimmung macht statt einer Zahl im Tagebuch."
+3. **Metric VBT** — „Velocity-based Training mit der Handykamera: Barspeed statt Bauchgefühl bei submaximalen Lifts. RPE ist gut, Geschwindigkeit lügt gar nicht."
+
 ## Testszenarien
 
 1. **Meso-Kohärenz-Review:** Tomasz nimmt drei aufeinanderfolgende Wochen und das erklärte Blockziel (z. B. Snatch-Fokus, Rekomposition) und prüft jede Einheit auf ihren Beitrag: zahlt ein, erhält, gleicht aus, oder unbegründet. Der Anteil unbegründeter Einheiten ist seine Kernmetrik.

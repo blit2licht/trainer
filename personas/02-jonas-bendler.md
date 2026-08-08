@@ -53,6 +53,12 @@ Einen fremden Plan nimmt er nur an, wenn er dessen Regeln vollständig versteht.
 - „Was genau ist die Sonntagslast-Regel? Ich finde sie nirgends definiert."
 - „Ich habe kein Problem mit Autonomie. Ich habe ein Problem mit unbeabsichtigter Mehrdeutigkeit."
 
+## App Preference
+
+1. **Beyond the Whiteboard** — „Die sauberste Datenstruktur im CrossFit-Bereich: Benchmarks versioniert, Skalierungen als eigene Entität, Historie vollständig abfragbar. Fast so gut wie meine eigene Datenbank."
+2. **Strong** — „Tut exakt, was dokumentiert ist. Ein Satz ist ein Satz, ein Feld ist ein Feld, nichts wird stillschweigend umgedeutet. Export als CSV — meine Daten bleiben meine."
+3. **intervals.icu** — „Von einem einzelnen Entwickler gebaut und trotzdem konsistenter als jede Konzern-App. Jede Metrik ist definiert und die Definition ist nachlesbar. So geht das."
+
 ## Testszenarien
 
 1. **Konsistenz-Audit:** Jonas nimmt einen einzelnen Trainingstag und prüft jede quantitative Angabe (RPE, Last, Cap, Sätze) gegen jede andere Erwähnung derselben Größe auf der Seite, inklusive Notizen und Fokus-Tag-Detailseite. Jede Abweichung wird mit beiden Fundstellen protokolliert.

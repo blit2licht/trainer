@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "aktualisiert_am": "2026-08-02",
+  "aktualisiert_am": "2026-08-09",
   "aktuelle_woche": {
-    "id": "2026-W32",
-    "von": "2026-08-03",
-    "bis": "2026-08-09",
+    "id": "2026-W33",
+    "von": "2026-08-10",
+    "bis": "2026-08-16",
     "mesocycle": "Meso 3",
-    "woche_im_fokus": 1,
-    "phase": "Meso-3-Start / Gymnastics-Test / C&J-Reclaim / Defizit-Start",
+    "woche_im_fokus": 2,
+    "phase": "Progression aus Testständen / OHS-Lastaufbau / Snatch-60- & C&J-80-Konsolidierung",
     "veroeffentlichter_plan": "website/data.js"
   },
   "mesocycle_plan": {
@@ -16,9 +16,9 @@
     "phase": "Aufbau + Rekomposition",
     "vorheriges_meso": "Meso 2 (W25-W30) abgeschlossen — Review: coach/reviews/2026-08-02-meso2.md",
     "wochenrollen": {
-      "W32": "Meso-3-Start: Gymnastics-Testtag (Fr), C&J-Komplex-Reclaim Ceiling 80 (Sa), Snatch Richtung 60 antesten (Di), Defizit-Start",
-      "W33": "Progression aus Testständen, OHS-Lastaufbau Richtung 52,5+, WPU-Treppe 3×5 bei sauberem 3×4",
-      "W34": "Progression fortsetzen; erste echte Wiegetrend-Bewertung (W34 vs. W33)",
+      "W32": "Meso-3-Start: Gymnastics-Testtag (Fr), C&J-Komplex-Reclaim Ceiling 80 (Sa), Snatch Richtung 60 antesten (Di), Defizit-Start — alles erledigt",
+      "W33": "Progression aus Testständen: OHS-Lastaufbau Richtung 50/52,5, HSPU-Stufe 4×7, WPU bewusst zweite Runde 3×4 (Martin-Entscheid 09.08., 3×5 ab W34), Snatch 60 reproduzieren, C&J-Speed bei ≤80",
+      "W34": "Progression fortsetzen; erste echte Wiegetrend-Bewertung (W34 vs. W33). Mo/Di Italien (Bike, evtl. Box-Drop-in) — strukturierte Woche ab Mi",
       "W35": "FS-Block Teil 2 (Referenz 102,5, Korridor 105-107,5) — vor dem erwarteten Defizit-Dip platzieren",
       "W36": "Konsolidierung, zweiter Gymnastics-Testblock vorbereiten",
       "W37": "Testblock + Sechs-Wochen-Review Meso 3"
@@ -47,19 +47,20 @@
   "fokus_rotation": {
     "hinweis": "Verhindert, dass ein Fokus über Wochen wegrutscht. Bei jeder Wochenplanung prüfen, was zuletzt direkt bedient wurde, und Offenes nachziehen.",
     "zuletzt_bedient": {
-      "snatch": "W30 (Singles build 40→57,5, Ceiling 2× sauber bestätigt)",
-      "overhead_squat": "W30 (Reclaim 3×3 @ 40/42,5/45, Pattern reaktiviert, kein Lastfokus)",
+      "snatch": "W32 (Di 04.08.: 60 kg @ RPE 8, Form 7/10 — neue Ceiling 60, von Martin freigegeben)",
+      "overhead_squat": "W30 (Reclaim 3×3 @ 40/42,5/45) → W33 Mi Lastaufbau eingeplant",
       "front_squat": "W30 (Block Wk 3/3 abgeschlossen, Top-Single 102,5 kg)",
-      "strict_hspu": "W31 (4×5 Wall als Urlaubs-Erhalt, session_feel 5)",
-      "bmu": "W30 (EMOM gehalten, per Gesamtbestätigung ohne Satz-Log)",
-      "weighted_pull_up": "W30 (neue Stufe 3×4 @ +5 kg, per Gesamtbestätigung ohne Satz-Log)",
-      "toes_to_bar": "W30 (3×8 Reclaim, per Gesamtbestätigung ohne Satz-Log)",
-      "clean_jerk": "W29 (Singles 55→75 kg @ RPE ≤8, kein Komplex, kein neuer Bestwert)"
+      "strict_hspu": "W32 (Fr 07.08.: Testsatz 9 unbroken + 3×5)",
+      "bmu": "W32 (Fr 07.08.: Testsatz 3 unbroken + EMOM-Singles)",
+      "weighted_pull_up": "W32 (Fr 07.08.: 3×4 @ +5 kg sauber bestätigt)",
+      "toes_to_bar": "W32 (Fr 07.08.: Testsatz 16 unbroken + 2×8)",
+      "clean_jerk": "W32 (Sa 08.08.: Komplex bis 80 kg, session_feel 5)"
     },
     "offen": [
-      "Clean & Jerk — zuletzt W29 (Singles) → W32 Sa als Komplex-Reclaim eingeplant",
-      "Overhead Squat — langsamster Fokus (50 kg vs. Ziel 65, zuletzt nur Reclaim W30) → ab W33 wieder mit Lastaufbau bedienen",
-      "BMU-Doubles-Speed (W28-Flag) — beim Fr-Testtag W32 mit Detail-Log prüfen, vorher keine Stufensteigerung"
+      "Overhead Squat — langsamster Fokus (Topwert 50 vs. Ziel 65) → W33 Mi erster Lastaufbau seit W27 (5×3 bis 50, 52,5 optional)",
+      "C&J 82,5 — bewusst auf W34+ gezögert (Martin-Entscheid 09.08.), W33 nur Speed-Arbeit bei ≤80",
+      "Front Squat — Block Teil 2 laut Meso-Plan in W35",
+      "BMU-Methodik-Recherche (Martin-Feedback 07.08.): Trainingsvolumen/Frequenz vs. Ausfallzeiten für Unbroken-Progression — vor dem nächsten Testblock (W37) klären; löst das alte W28-Doubles-Speed-Flag ab"
     ]
   },
   "load_references": {
@@ -67,51 +68,59 @@
     "pause_ohs": {
       "kg": 50,
       "schema": "4x3",
-      "note": "Bestätigter Topwert weiter 50 kg (W27). W30 (Di 21.07.): Reclaim 3×3 @ 40/42,5/45 nach 4 Wochen Pause — reine Pattern-Reaktivierung, kein Lastfokus. Nächster Lastaufbau Richtung 50/52,5 nach Urlaub."
+      "note": "Bestätigter Topwert weiter 50 kg (W27). W30: Reclaim 3×3 @ 40/42,5/45. W33 Mi: erster echter Lastaufbau — 5×3 bis 50, bei sauberem 50er optional 52,5."
     },
     "push_press_basis": {
       "kg": 82.5
     },
     "squat_snatch_ceiling": {
-      "kg": 57.5,
+      "kg": 60,
       "erreicht_w28": 57.5,
       "bestaetigt_w30": 57.5,
-      "note": "W30 (Do 23.07.): Ceiling 57,5 kg mit 2 Singles reproduziert (build 40→57,5, RPE-gated, kein Max-Test) — stabil, keine Eintagsfliege. Nächster Schritt Richtung 60 nach Urlaub bei frischem System."
+      "note": "W32 (Di 04.08.): 60 kg @ RPE 8, Form 7/10 — als neue Ceiling von Martin freigegeben (09.08.). W33: 60 sauber reproduzieren, 62,5 nur bei perfektem Lockout als Option."
     },
     "front_squat": {
       "kg_1rm_geschaetzt": 107.5,
       "top_single_w30": 102.5,
-      "note": "FS-Block Woche 3/3 (Di 21.07.): Top-Single 102,5 kg sauber (5×75-3×85-2×95-1×100-1×102,5, WHOOP-Log bestätigt). Neuer Bestwert ggü. 100 kg (W27/W28), Block abgeschlossen. 1RM-Schätzung auf ~107,5 angehoben, weiter unbestätigt (Ziel 115). Nächster FS-Block Bestandteil von Meso 3."
+      "note": "FS-Block Woche 3/3 (Di 21.07.): Top-Single 102,5 kg sauber. 1RM-Schätzung ~107,5, unbestätigt (Ziel 115). Nächster FS-Block laut Meso-Plan W35."
     },
     "clean_jerk_komplex": {
-      "kg": 78,
-      "rpe": 7,
-      "note": "Do 09.07.: Squat Clean + Push Jerk Komplex 78 kg @ RPE 7 sauber (WHOOP: Clean/Push Jerk build 55→78 kg). Neuer Bestwert ggü. W25 (75 kg @7) — Reclaim-Slot erfolgreich nachgeholt, Rotationsflag aufgelöst."
+      "kg": 80,
+      "note": "W32 (Sa 08.08.): Squat Clean + Push Jerk Komplex bis 80 kg sauber (session_feel 5) — neuer Bestwert ggü. 78 @7 (W28). Entscheid 09.08.: konsolidieren, Speed bei ≤80 trainieren, 82,5 frühestens W34."
     },
     "weighted_pull_up": {
       "kg": "+5",
       "schema": "3x4",
-      "note": "W30 (Fr 24.07.): neue Stufe 3×4 @ +5 kg absolviert — bestätigt per Martins Gesamtaussage ('Plan befolgt', session_feel 4-5), kein Satz-Log in WHOOP (Session nur als 42-min-Activity erfasst). Nächste Stufe 3×5 erst nach sauberer Wiederholung von 3×4 nach dem Urlaub."
+      "note": "W32 (Fr 07.08.): 3×4 @ +5 kg sauber bestätigt. W33 bewusst zweite Runde 3×4 (Martin-Entscheid: Potenzial ausschöpfen), 3×5 ab W34."
     },
     "strict_hspu": {
-      "schema": "4x6",
-      "note": "W30 (Fr 24.07.): 4×6 als Reclaim gehalten (Gesamtbestätigung, kein Satz-Log). Push auf 4×7 nach Urlaub prüfen — Stand vor Testsatz: Ziel 10 unbroken, Stand 6."
+      "schema": "4x7",
+      "note": "Test W32 (Fr 07.08.): 9 unbroken (Ziel 10, Stand vorher 6). Ab W33 Stufe 4×7; bei unsauberem letzten Satz zurück auf 4×6."
     },
     "bmu": {
-      "reps_total": null,
-      "note": "W28-Flag bleibt: Doubles-Speed-Qualität seither nicht beobachtbar (W29 Bangkok ohne BMU, W30-Fr ohne Satz-Log/Notiz-Detail). Beim nächsten Fokus-B-Termin mit Detail-Log gezielt prüfen, bevor die Progressionsstufe steigt."
+      "max_unbroken": 3,
+      "note": "Test W32 (Fr 07.08.): 3 unbroken — unverändert ggü. Stand (Ziel 5). Martin-Feedback: Volumen/Ausfallzeiten reichen für Unbroken-Progression nicht → Methodik-Recherche vor dem nächsten Testblock. Das W28-Doubles-Speed-Flag geht darin auf."
+    },
+    "toes_to_bar": {
+      "max_unbroken": 16,
+      "note": "Test W32 (Fr 07.08.): 16 unbroken — Ziel 10 klar übertroffen. Zielneusetzung beim nächsten Review; bis dahin moderates Volumen (3×10)."
     }
   },
   "akute_hinweise": [
     {
-      "datum": "2026-08-02",
-      "betrifft": "W32 — Defizit-Start + Testtag",
-      "hinweis": "Körperkomposition läuft ab dieser Woche (Profil: koerperkomposition). Rückkehrgewicht 02.08. war 82 kg — Wasser/Glykogen nach Urlaub, Baseline bleibt 80,3; W32-W33 zählen nicht als Wiegetrend. Fr 07.08. Gymnastics-Testsätze (BMU/T2B/HSPU max unbroken) — Ergebnisse aktualisieren die Profil-Zielstände; Testregel beachten (frisch, keine Grip-/Overhead-Vorlast am Vortag)."
+      "datum": "2026-08-09",
+      "betrifft": "W33 — Wochenende",
+      "hinweis": "Sa 15.08. Ride Fischmeister (gleiche Runde wie 09.08., ~70 km, sozial) — vorher kein Box-Training (abgestimmt). So 16.08. Reisetag: Autofahrt nach Italien (Eugen), kein Training."
     },
     {
-      "datum": "2026-08-02",
-      "betrifft": "W32 — Termine",
-      "hinweis": "Mi 05.08. und Do 06.08. morgens schwierig (keine Box-Vormittagsslots). Do 06.08. abends lockere Radtour mit der CrossFit Box (sozial, erfahrungsgemäß entspannt) — zählt als Ride-Slot der Woche."
+      "datum": "2026-08-09",
+      "betrifft": "W34 — Italien Mo/Di",
+      "hinweis": "Mo 17. + Di 18.08. bei Eugen in Italien: Bike dabei, Rides geplant, evtl. Box-Drop-in (gut ausgestattet). Rückkehr Di-Abend — strukturierte W34 beginnt real am Mittwoch."
+    },
+    {
+      "datum": "2026-08-09",
+      "betrifft": "Körperkomposition",
+      "hinweis": "W32-Schnitt 81,95 kg (Urlaubs-Wassernachlauf, fallend 82,7→81,3 über die Woche) — zählt laut Messregel nicht als Trend. W33 ist die Referenzwoche; erste echte Bewertung Wochenschnitt W34 vs. W33."
     }
   ],
   "hinweis_ablauf": "Beim Wochenreview neu bewerten; spätestens nach 7 Tagen entfernen, wenn nicht erneut bestätigt.",
@@ -123,8 +132,8 @@
     "notizen": "Website-Datenbank über get_notes.php",
     "strava": "Optional über MCP für Radfahrten"
   },
-  "naechster_zielreview": "2026-W37: Sechs-Wochen-Review Meso 3 + zweiter Gymnastics-Testblock.",
-  "systemstatus": "V1.0 produktiv; Wochenreviews W25-W31 abgeschlossen. Sechs-Wochen-Review Meso 2 erledigt (coach/reviews/2026-08-02-meso2.md), Meso 3 gestartet (W32-W37, Aufbau + Rekomposition inkl. Körperkompositions-Protokoll).",
+  "naechster_zielreview": "2026-W37: Sechs-Wochen-Review Meso 3 + zweiter Gymnastics-Testblock. Vorab fällig: T2B-Zielneusetzung (Test 16 vs. Ziel 10) und BMU-Methodik-Recherche.",
+  "systemstatus": "V1.0 produktiv; Wochenreviews W25-W32 abgeschlossen. Meso 3 läuft (W32-W37, Aufbau + Rekomposition inkl. Körperkompositions-Protokoll). Gymnastics-Testblock 1 absolviert (W32).",
   "migration": {
     "version": "1.0",
     "abgeschlossen_am": "2026-06-15"

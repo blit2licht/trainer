@@ -2,6 +2,19 @@
 
 Kurze, verdichtete Wocheneinträge. Rohdaten bleiben in WHOOP, Strava und der Website-Datenbank.
 
+## 2026-W32 · 3.–9. August · Meso 3 W1 — Testtag + Defizit-Start
+
+**Plan weitgehend befolgt — 5 von 6 Einheiten, So-Box ausgefallen (ersetzt durch Doppelride).** Mo Box Intervall-Chipper ✓ (feel 4, „Burpees tougher als gedacht") · Di Box Snatch + RFT ✓ (Run → Assault Bike substituiert) · Mi Ruhe (Termin) ✓ · Do Abend-Ride mit der Box ✓ (59,4 km, 2:07 h, Ø-HF 127) · Fr Fokus B Gymnastics-Testtag ✓ (feel 3) · Sa Fokus A C&J ✓ (feel 5) · **So Box ausgefallen** — stattdessen 2 Rides (72,8 km gesamt) bei Recovery 36 %.
+
+**Kernbefunde:**
+- **Snatch neue Ceiling 60 kg** (Di, RPE 8, Form 7/10) — von Martin als Ceiling freigegeben. Nächster Schritt 62,5 optional bei perfektem Lockout.
+- **Gymnastics-Test (Fr, nachgeholt von W30):** BMU **3 unbroken** (unverändert, Ziel 5) · T2B **16 unbroken** (Ziel 10 klar übertroffen → Zielneusetzung beim Review) · Strict HSPU **9 unbroken** (Ziel 10 fast erreicht → Stufe 4×7 ab W33). WPU 3×4 @ +5 kg sauber bestätigt.
+- **Martin-Feedback BMU:** Trainingsvolumen/Ausfallzeiten reichen für Unbroken-Progression nicht → Methodik-Recherche vor dem nächsten Testblock (Auftrag an Coach). Löst das W28-Doubles-Speed-Flag ab.
+- **C&J-Komplex bis 80 kg** (Sa, feel 5) — neuer Bestwert ggü. 78 @7 (W28). Entscheid: konsolidieren, Speed bei ≤80, 82,5 frühestens W34. Hypertrophie-Layer erstmals gelaufen (Lateral Raises 2×6 kg 3×15, Curls 2×12 kg 3×12 — beide @ RPE 8-9, über Layer-Ziel 7 → W33 Reps/Last drosseln).
+- Recovery volatil (36–94 %), Sa 94 % perfekt vor dem C&J-Tag. Gewicht W32-Schnitt 81,95 kg, über die Woche fallend (82,7 → 81,3) — Urlaubs-Wassernachlauf, zählt laut Messregel nicht als Trend (erste Bewertung W34 vs. W33).
+
+**Offen für W33:** OHS-Lastaufbau (Mi, 5×3 bis 50/52,5) · HSPU-Stufe 4×7 · WPU bewusst zweite Runde 3×4 (3×5 ab W34) · Sa Ride Fischmeister (kein Box davor) · So Reisetag Italien. W34: Mo/Di Italien mit Bike (evtl. Box-Drop-in), strukturiert ab Mi.
+
 ## 2026-W31 · 27. Juli–2. August · Urlaub Griechenland (Übergang)
 
 **Plan teilweise befolgt — 1 von 3 Sessions.** Session 1 (Push/Beine) ✓ am **Di statt Mo** (session_feel 5): Wall Strict HSPU 4×5 sauber (WHOOP trackte fälschlich „Deficit HSPU" — waren normale), Push-ups 3×15, Bulgarian Split Squat 3×10/Bein, Plank 4×30 s, extra Trizeps-Band-Pulldowns. **Sessions 2 (Springseil/AMRAP) und 3 (Pull/Posterior) ausgefallen** — stattdessen nur Schwimmen als Bewegung. Urlaubsentscheidung, kein Autoregulationsthema.

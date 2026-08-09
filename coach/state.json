@@ -60,7 +60,7 @@
       "Overhead Squat — langsamster Fokus (Topwert 50 vs. Ziel 65) → W33 Mi erster Lastaufbau seit W27 (5×3 bis 50, 52,5 optional)",
       "C&J 82,5 — bewusst auf W34+ gezögert (Martin-Entscheid 09.08.), W33 nur Speed-Arbeit bei ≤80",
       "Front Squat — Block Teil 2 laut Meso-Plan in W35",
-      "BMU-Methodik-Recherche (Martin-Feedback 07.08.): Trainingsvolumen/Frequenz vs. Ausfallzeiten für Unbroken-Progression — vor dem nächsten Testblock (W37) klären; löst das alte W28-Doubles-Speed-Flag ab"
+      "BMU-Protokoll neu ab W33 (Recherche 09.08. erledigt): Linked Doubles 5×2 + Mi-Primer, 2 Kontakte/Woche, Unterbrechungsregel aktiv — Methodik und Quellen-Priorität in coach/bmu-entwicklungsplan.md; gilt sinngemäß auch für andere Skill-Blöcke"
     ]
   },
   "load_references": {
@@ -99,7 +99,8 @@
     },
     "bmu": {
       "max_unbroken": 3,
-      "note": "Test W32 (Fr 07.08.): 3 unbroken — unverändert ggü. Stand (Ziel 5). Martin-Feedback: Volumen/Ausfallzeiten reichen für Unbroken-Progression nicht → Methodik-Recherche vor dem nächsten Testblock. Das W28-Doubles-Speed-Flag geht darin auf."
+      "protokoll": "Linked-Sets-Treppe ab W33: 5×2 unbroken → 4×3 → 3×3+1×max → Test. 2 Kontakte/Woche (Fr Hauptblock + Mi Primer 4×1-2). Methodik + Quellen: coach/bmu-entwicklungsplan.md",
+      "note": "Test W32 (Fr 07.08.): 3 unbroken (Ziel 5). Recherche 09.08. abgeschlossen: Linking ist Rhythmus-, kein Kraftproblem; EMOM-Singles trainierten den Re-Kip nie. Protokollwechsel ab W33. Das W28-Doubles-Speed-Flag ist damit aufgelöst."
     },
     "toes_to_bar": {
       "max_unbroken": 16,
@@ -132,7 +133,7 @@
     "notizen": "Website-Datenbank über get_notes.php",
     "strava": "Optional über MCP für Radfahrten"
   },
-  "naechster_zielreview": "2026-W37: Sechs-Wochen-Review Meso 3 + zweiter Gymnastics-Testblock. Vorab fällig: T2B-Zielneusetzung (Test 16 vs. Ziel 10) und BMU-Methodik-Recherche.",
+  "naechster_zielreview": "2026-W37: Sechs-Wochen-Review Meso 3 + zweiter Gymnastics-Testblock. Vorab fällig: T2B-Zielneusetzung (Test 16 vs. Ziel 10). BMU-Test W37 nur bei ≥2 zusammenhängenden Trainingswochen davor (Unterbrechungsregel).",
   "systemstatus": "V1.0 produktiv; Wochenreviews W25-W32 abgeschlossen. Meso 3 läuft (W32-W37, Aufbau + Rekomposition inkl. Körperkompositions-Protokoll). Gymnastics-Testblock 1 absolviert (W32).",
   "migration": {
     "version": "1.0",

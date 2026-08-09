@@ -99,39 +99,42 @@ const DATA = {
       days: [
         { day:"Montag",    date:"10.08.", isoDate:"2026-08-10", type:"rest", einheit:"—", rx:"—", note:"Sonntagslast-Regel nach dem Doppelride vom 09.08. (~73 km) — Standard-Ruhetag, kein Schlüsselslot. Upgrade auf das Mo-DreamWOD nur bei grüner Recovery am Tag selbst." },
         { day:"Dienstag",  date:"11.08.", isoDate:"2026-08-11", type:"box",  einheit:"Hang Power Clean + Wall-Ball/DB-Push-Press/Pull-up-WOD", sub:"E1:15 × 8: 1 Hang Power Clean → For Time: 42-30-18 Wall Balls · 21-15-9 DB Push Press · Pull-ups", rx:"HPC <span class='rv'>Speed-Fokus, bis ~72,5 kg</span> RPE-gated · WOD <span class='rv'>L2 — WB 9 kg, DB 2×20 kg</span>", rpe:"RPE ≤8 (HPC) · Cap 17 min", note:"HPC im Speed-Fokus (C&J-Konsolidierung: jede Rep aggressiv-schnell, kein Grinder, kein Top-Versuch — morgen Fokus A). L3 (22,5-kg-DB + C2B) verworfen: Grip-/Pull-Volumen vor Mi/Fr moderat halten." },
-        { day:"Mittwoch",  date:"12.08.", isoDate:"2026-08-12", type:"own",  focus:"A", einheit:"Snatch (Ceiling 60) + OHS-Lastaufbau + Layer", sub:"Snatch Singles build · Pause OHS 5×3 Richtung 50/52,5 · Core · 15-min-Layer Delts/Bizeps", rx:"Snatch <span class='rv'>bis 60 kg</span> RPE-gated · OHS <span class='rv'>bis 50 (52,5 optional)</span>", rpe:"RPE ≤8 (Snatch) / ≤7-8 (OHS)", note:"Snatch-Ceiling 60 (W32) sauber reproduzieren, 62,5 nur bei perfektem Lockout. OHS nach dem Reclaim (W30) erster echter Lastaufbau seit W27 — Meso-Rolle W33. Mi-DreamWOD (Back Squat + Deadlift/HPC/S2O/T2B-EMOM) verworfen: zu viele Kollisionen mit Di-Box und Fr-Gymnastics." },
+        { day:"Mittwoch",  date:"12.08.", isoDate:"2026-08-12", type:"own",  focus:"A", einheit:"BMU-Primer + Snatch (Ceiling 60) + OHS-Lastaufbau + Layer", sub:"5-min-BMU-Primer · Snatch Singles build · Pause OHS 5×3 Richtung 50/52,5 · Core · 15-min-Layer Delts/Bizeps", rx:"Snatch <span class='rv'>bis 60 kg</span> RPE-gated · OHS <span class='rv'>bis 50 (52,5 optional)</span>", rpe:"RPE ≤8 (Snatch) / ≤7-8 (OHS)", note:"Neu: 5-min-BMU-Primer (4 × 1-2 frisch, RPE ≤7) direkt nach dem Warm-up — zweiter Wochenkontakt laut BMU-Protokoll. Snatch-Ceiling 60 (W32) sauber reproduzieren, 62,5 nur bei perfektem Lockout. OHS nach dem Reclaim (W30) erster echter Lastaufbau seit W27 — Meso-Rolle W33. Mi-DreamWOD (Back Squat + Deadlift/HPC/S2O/T2B-EMOM) verworfen: zu viele Kollisionen mit Di-Box und Fr-Gymnastics." },
         { day:"Donnerstag",date:"13.08.", isoDate:"2026-08-13", type:"box",  einheit:"Push Press + Farmer-Lunge/DB-Push-Press/DU-AMRAP", sub:"Every 3:00 × 5: 5 Push Press + 8/8 Incline DB Row + 12 Face Pulls → AMRAP 13: 10 Farmers-Hold Walking Lunges · 12 DB Push Press · 50 DU", rx:"Push Press <span class='rv'>bis ~65 kg</span> RPE-gated (Basis 82,5) · WOD <span class='rv'>L2 — DB 2×20 kg</span>", rpe:"RPE ≤7-8", note:"Overhead-Volumen moderat halten — Fr folgt die HSPU-Stufensteigerung. Double-Unders normal (keine Crossover). Lunges diese Woche nur hier, keine Kollision." },
-        { day:"Freitag",   date:"14.08.", isoDate:"2026-08-14", type:"own",  focus:"B", einheit:"Gymnastics-Progression + Layer", sub:"BMU EMOM 10 · T2B 3×10 · Strict HSPU 4×7 (neue Stufe) · Weighted Pull-up 3×4 · 15-min-Layer Brust/Trizeps", rx:"Auf Anfrage", rpe:"RPE ≤8", note:"HSPU steigt nach dem 9er-Test auf 4×7. WPU bewusst zweite Runde 3×4 @ +5 kg — 3×5 ab W34. Fr-DreamWOD (Regional-2014-Chipper, ~100 Deadlifts/Wallballs/Box-Overs) verworfen: zu voluminös vor dem Sa-Ride." },
+        { day:"Freitag",   date:"14.08.", isoDate:"2026-08-14", type:"own",  focus:"B", einheit:"Gymnastics-Progression + Layer", sub:"BMU Linked Doubles 5×2 · T2B 3×10 · Strict HSPU 4×7 (neue Stufe) · Weighted Pull-up 3×4 · 15-min-Layer Brust/Trizeps", rx:"Auf Anfrage", rpe:"RPE ≤8", note:"BMU auf Linked-Doubles-Protokoll umgestellt (Recherche 09.08.: Linking ist Rhythmus, nicht Kraft — coach/bmu-entwicklungsplan.md). HSPU steigt nach dem 9er-Test auf 4×7. WPU bewusst zweite Runde 3×4 @ +5 kg — 3×5 ab W34. Fr-DreamWOD (Regional-2014-Chipper, ~100 Deadlifts/Wallballs/Box-Overs) verworfen: zu voluminös vor dem Sa-Ride." },
         { day:"Samstag",   date:"15.08.", isoDate:"2026-08-15", type:"ride", einheit:"Ride Fischmeister (sozial)", rx:"<span class='rv'>Z1/Z2</span>", note:"Gleiche Runde wie am 09.08. (~70 km). Sozial, Z2-Deckel wo möglich — vorher kein Box-Training (abgestimmt)." },
         { day:"Sonntag",   date:"16.08.", isoDate:"2026-08-16", type:"rest", einheit:"—", rx:"—", note:"Reisetag — Autofahrt nach Italien (Eugen). Kein Training. W34: Mo/Di Italien mit Bike (Rides, evtl. Box-Drop-in), strukturierte Woche ab Mi." }
       ],
       focusDays: {
         A: {
           title:"🏋️ Focus-Tag A", date:"Mittwoch · 12.08.2026",
-          sub:"Snatch Singles (Ceiling 60) · Pause-OHS-Lastaufbau · Core · Hypertrophie-Layer Delts/Bizeps",
-          intro:"Snatch zuerst — Speed vor Kraft, und das Snatch-Volumen wärmt das OHS-Pattern gleich mit auf. Ceiling 60 (W32, Form 7/10) heute sauber reproduzieren; 62,5 ist Option, kein Ziel. Danach OHS: nach dem Reclaim (W30) der erste echte Lastaufbau seit W27 — Richtung 50/52,5 (Meso-Rolle W33).",
-          dauer:{ kern:"~40 min", gesamt:"~65 min", warmup:"~10 min Warm-up (nicht als Block gelistet)", hinweis:"Geschätzt aus Sätzen, Pausen und den im Plan genannten Blockzeiten. Fokus-Tag-Standard: 60–90 min einschließlich Warm-up und Mobility." },
+          sub:"BMU-Primer · Snatch Singles (Ceiling 60) · Pause-OHS-Lastaufbau · Core · Hypertrophie-Layer Delts/Bizeps",
+          intro:"Neu vorweg: 5-min-BMU-Primer (4 × 1-2 frisch) — zweiter Wochenkontakt laut BMU-Protokoll (Frequenz schlägt Session-Volumen, coach/bmu-entwicklungsplan.md). Danach Snatch — Speed vor Kraft, das Snatch-Volumen wärmt das OHS-Pattern gleich mit auf. Ceiling 60 (W32, Form 7/10) heute sauber reproduzieren; 62,5 ist Option, kein Ziel. Danach OHS: nach dem Reclaim (W30) der erste echte Lastaufbau seit W27 — Richtung 50/52,5 (Meso-Rolle W33).",
+          dauer:{ kern:"~45 min", gesamt:"~70 min", warmup:"~10 min Warm-up (nicht als Block gelistet)", hinweis:"Geschätzt aus Sätzen, Pausen und den im Plan genannten Blockzeiten. Fokus-Tag-Standard: 60–90 min einschließlich Warm-up und Mobility." },
           recoveryDay:{
             u50:"Letzter Steigerungssatz entfällt: Snatch endet bei 57,5 kg (kein 60er-/62,5er-Versuch), OHS endet bei 47,5 kg. Load-RPE-Cap 7.",
             u34:"Nur Technik mit leichter Stange und Mobility bis RPE 6 — oder Ruhe."
           },
           blocks:[
-            { letter:"A", prio:"required", min:16, title:"Squat Snatch — Singles", sub:"7 Sätze aufsteigend · Ceiling 60 · 62,5 optional",
+            { letter:"A", prio:"required", min:5, title:"BMU-Primer", sub:"~5 min · zweiter Wochenkontakt · Frequenz, kein Volumen",
+              headers:["Übung","Sets × Reps","Last","RPE","Tempo","Rest","Note"],
+              rows:[ ["Bar Muscle-Up||Primer","4 × 1–2","BW","≤7","X","60-90 sec","Frisch nach dem Warm-up, nie bis zur Ermüdung — reine Skill-Frequenz (BMU-Protokoll). Bei Recovery <50 % nur Singles."] ] },
+            { letter:"B", prio:"required", min:16, title:"Squat Snatch — Singles", sub:"7 Sätze aufsteigend · Ceiling 60 · 62,5 optional",
               headers:["Übung","Sets × Reps","Last","RPE","Tempo","Rest","Note"],
               rows:[ ["Squat Snatch","7 × 1||aufsteigend","40 · 45 · 50 · 52,5 · 55 · 57,5 · 60 kg","≤8","explosiv","E1:30-2:00","Ceiling 60 (W32) reproduzieren — Form war 7/10, heute zählt Qualität. 62,5 nur bei perfektem Lockout als 8. Single, kein Zwang."] ] },
-            { letter:"B", prio:"required", min:14, title:"Pause OHS — Lastaufbau", sub:"5 Sätze · Richtung 50/52,5",
+            { letter:"C", prio:"required", min:14, title:"Pause OHS — Lastaufbau", sub:"5 Sätze · Richtung 50/52,5",
               headers:["Übung","Sets × Reps","Last","RPE","Tempo","Rest","Note"],
               rows:[ ["Pause OHS||2-sec Pause Bottom","5 × 3","40 → 42,5 → 45 → 47,5 → 50 kg","≤7-8","32X1","2-3 min","Erster Lastaufbau seit W27 (Topwert 50). Bei sauberem 50er optional 6. Satz 52,5 — sonst nächste Woche."] ] },
-            { letter:"C", prio:"required", min:5, title:"Core", sub:"Leicht",
+            { letter:"D", prio:"required", min:5, title:"Core", sub:"Leicht",
               headers:["Übung","Sets × Reps","Last","RPE","Tempo","Rest","Note"],
               rows:[ ["Hollow Body Hold","3 × 30 sec","BW","6","—","60 sec","Ruhig atmen, unterer Rücken am Boden."] ] },
-            { letter:"D", prio:"optional", min:15, title:"Hypertrophie-Layer — Delts/Bizeps", sub:"~15 min · Rekomposition",
+            { letter:"E", prio:"optional", min:15, title:"Hypertrophie-Layer — Delts/Bizeps", sub:"~15 min · Rekomposition",
               headers:["Übung","Sets × Reps","Last","RPE","Tempo","Rest","Note"],
               rows:[
                 ["DB Lateral Raise","3 × 12","2 × 6 kg","7","kontrolliert","60 sec","Sa 08.08. war 3×15 @ RPE 8-9 — Reps runter auf 12, Layer bleibt bei RPE 7, keine Failure-Sätze."],
                 ["DB Curl","3 × 10-12","2 × 10-12 kg","7","kontrolliert","60 sec","Sa 08.08. war 12 kg @ RPE 8-9 — ggf. 10 kg nehmen, RPE 7 halten."]
               ] },
-            { letter:"E", prio:"optional", min:8, title:"Mobility", sub:"~8 min",
+            { letter:"F", prio:"optional", min:8, title:"Mobility", sub:"~8 min",
               headers:["Übung","Dauer","Note"],
               rows:[
                 ["Lat-Stretch hängend","2 × 45 sec","Overhead-Enge nach Snatch/OHS lösen."],
@@ -140,6 +143,7 @@ const DATA = {
               ] }
           ],
           whoop:[
+            ["Bar Muscle Up","4 × 1–2 · BW · Primer"],
             ["Snatch","7 × 1 · build 40→60 kg · Topgewicht loggen"],
             ["Overhead Squat","5 × 3 Pause · 40→50 kg · Topgewicht loggen"],
             ["Hollow Body Hold","3 × 30 sec · BW"],
@@ -149,19 +153,19 @@ const DATA = {
         },
         B: {
           title:"🏋️ Focus-Tag B", date:"Freitag · 14.08.2026",
-          sub:"BMU EMOM · T2B · Strict HSPU 4×7 (neue Stufe) · Weighted Pull-up 3×4 · Hypertrophie-Layer Brust/Trizeps",
-          intro:"Progression aus den Testständen vom 07.08.: HSPU steigt nach dem 9er-Test auf 4×7, T2B geht nach dem 16er auf moderates 3×10-Volumen (Zielneusetzung folgt beim Review), BMU bleibt beim Qualitäts-EMOM — die Methodik-Frage (Volumen/Ausfallzeiten für mehr Unbroken-Reps) wird vor dem nächsten Testblock recherchiert. WPU bewusst zweite Runde 3×4 @ +5 kg (sauber bestätigt, Potenzial ausschöpfen) — 3×5 ab W34.",
+          sub:"BMU Linked Doubles · T2B · Strict HSPU 4×7 (neue Stufe) · Weighted Pull-up 3×4 · Hypertrophie-Layer Brust/Trizeps",
+          intro:"Progression aus den Testständen vom 07.08. — und Protokollwechsel beim BMU: Linking ist ein Rhythmus-, kein Kraftproblem (Recherche 09.08., coach/bmu-entwicklungsplan.md). Statt EMOM-Singles jetzt echte verknüpfte Doubles mit voller Pause plus Descent-/Timing-Drill; der zweite Wochenkontakt ist der Mi-Primer. HSPU steigt nach dem 9er-Test auf 4×7, T2B geht nach dem 16er auf moderates 3×10-Volumen (Zielneusetzung folgt beim Review). WPU bewusst zweite Runde 3×4 @ +5 kg — 3×5 ab W34.",
           dauer:{ kern:"~40 min", gesamt:"~65 min", warmup:"~10 min Warm-up (nicht als Block gelistet)", hinweis:"Geschätzt aus Sätzen, Pausen und den im Plan genannten Blockzeiten. Fokus-Tag-Standard: 60–90 min einschließlich Warm-up und Mobility." },
           recoveryDay:{
-            u50:"Letzte Progressionsstufe entfällt: HSPU zurück auf 4×6, BMU nur Singles (10 × 1), T2B 3×8. Load-RPE-Cap 7.",
+            u50:"Letzte Progressionsstufe entfällt: HSPU zurück auf 4×6, BMU keine Linked Doubles — nur 5 × 1 Qualitäts-Singles, T2B 3×8. Load-RPE-Cap 7.",
             u34:"Session entfällt — Mobility bis RPE 6, oder Ruhe."
           },
           blocks:[
-            { letter:"A", prio:"required", min:10, title:"BMU — Qualitäts-EMOM", sub:"10 min · Singles/Doubles",
+            { letter:"A", prio:"required", min:15, title:"BMU — Linked Doubles (Protokoll neu)", sub:"Drill + 5 × 2 unbroken · Rhythmus vor Volumen",
               headers:["Übung","Sets × Reps","Last","RPE","Tempo","Rest","Note"],
               rows:[
-                ["Bar Muscle-Up||Min 1–5","5 × 1–2","BW","7","X","Rest of min","Qualität vor Quantität — Teststand 3 unbroken (07.08.)."],
-                ["Bar Muscle-Up||Min 6–10","5 × 2","BW","7–8","X","Rest of min","Doubles nur wenn schnell und sauber — bei Speedverlust auf Singles zurück."]
+                ["Descent-Kontrolle + Hip-Pop-Timing||Drill","2 × 3 + 2 × 3","BW","6","kontrolliert","60 sec","Kontrollierter Abgang eng an der Bar, dann Hip-Pop bis Brusthöhe ohne Turnover — Rhythmus primen (~5 min)."],
+                ["Bar Muscle-Up||Linked Doubles","5 × 2 unbroken","BW","7–8","X","2–3 min","Stufe 1 der neuen Treppe (5×2 → 4×3 → 3×3+max → Test). Nach Rep 1: Descent eng, Arch bewusst neu aufbauen, leichter Grip mit aktiver Schulter. Reißt das Linking ab → Satz beenden, nicht erzwingen."]
               ] },
             { letter:"B", prio:"required", min:8, title:"T2B — Kapazität", sub:"3 Sätze",
               headers:["Übung","Sets × Reps","Last","RPE","Tempo","Rest","Note"],
@@ -187,7 +191,7 @@ const DATA = {
               ] }
           ],
           whoop:[
-            ["Bar Muscle Up","EMOM 10 · Min 1–5: 1–2 · Min 6–10: 2 · BW"],
+            ["Bar Muscle Up","5 × 2 unbroken · BW · Linked-Doubles-Protokoll"],
             ["Toes to Bar","3 × 10 · BW"],
             ["Handstand Push Up","4 × 7 strict · BW · neue Stufe"],
             ["Pull Up (Weighted)","3 × 4 · +5 kg · RPE 7–8"],

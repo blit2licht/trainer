@@ -87,7 +87,7 @@
     "testfrequenz_wochen": "3-4",
     "naechster_test": "2026-W37 (Testblock + Sechs-Wochen-Review Meso 3)",
     "progressionstreppen": {
-      "bar-muscle-up": "EMOM-Akkumulation: 10×1 → 5×1+5×2 → 10×2 → 2er/3er-Cluster → Testsatz max unbroken (Ziel 5)",
+      "bar-muscle-up": "Linked-Sets-Treppe (ab W33): 5×2 unbroken → 4×3 → 3×3 + 1×max → Testsatz max unbroken (Ziel 5). Frequenz 2 Kontakte/Woche (Hauptblock + 5-min-Primer). Methodik, Stufenkriterien und Quellen-Priorität: coach/bmu-entwicklungsplan.md",
       "toes-to-bar": "3×7 → 3×8 → 3×9 → 3×10 → Testsatz max unbroken (Ziel 10)",
       "weighted-pull-up": "3×3 → 3×4 → 3×5 @ +5 kg → Testsatz 6 Reps @ +5 kg",
       "strict-hspu": "4×5 → 4×6 → 4×7 → 4×8 → Testsatz max unbroken (Ziel 10)"
@@ -95,7 +95,8 @@
     "regeln": [
       "Pro Woche höchstens eine Stufe pro Ziel steigen; Stufe gilt erst als bestätigt, wenn alle Sätze sauber (kein Failure, Technik hält).",
       "Bei unsauberem letzten Satz eine Stufe zurück, nicht wiederholt erzwingen.",
-      "Testsatz nie auf vorermüdetem System (Recovery <50 % oder Grip-/Overhead-Vorlast am Vortag) — dann Test um eine Woche schieben."
+      "Testsatz nie auf vorermüdetem System (Recovery <50 % oder Grip-/Overhead-Vorlast am Vortag) — dann Test um eine Woche schieben.",
+      "Unterbrechungsregel (alle Skills, ab 2026-08-09): ≥10 Tage ohne Kontakt zu einem Skill → eine Reclaim-Session eine Stufe tiefer, bevor die Treppe weiterläuft. Wochen ohne Kontakt zählen nicht als Progressionswochen. Testsatz erst nach ≥2 zusammenhängenden Trainingswochen, nie direkt nach einer Lücke. Herleitung: coach/bmu-entwicklungsplan.md"
     ]
   },
   "koerperkomposition": {

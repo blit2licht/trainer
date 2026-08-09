@@ -28,6 +28,8 @@
   --ink:oklch(22% 0.01 90); --ink2:oklch(45% 0.01 90); --ink3:oklch(58% 0.01 90);
   --accent:oklch(45% 0.09 200); --accent-soft:oklch(93% 0.025 200); --accent-ink:oklch(38% 0.1 200); --accent-contrast:#fff;
   --danger:oklch(55% 0.19 25);
+  --warn:oklch(52% 0.11 75); --warn-soft:oklch(94% 0.04 75);
+  --danger-soft:oklch(95% 0.03 25);
   --disp:'Space Grotesk', system-ui, sans-serif;
   --body:'Inter', system-ui, sans-serif;
   --mono:'JetBrains Mono', monospace;
@@ -40,6 +42,8 @@
   --ink:oklch(96% 0.005 260); --ink2:oklch(75% 0.01 260); --ink3:oklch(58% 0.012 260);
   --accent:oklch(72% 0.16 55); --accent-soft:oklch(34% 0.05 55); --accent-ink:oklch(85% 0.11 55); --accent-contrast:oklch(18% 0.02 60);
   --danger:oklch(68% 0.18 25);
+  --warn:oklch(80% 0.13 85); --warn-soft:oklch(32% 0.05 85);
+  --danger-soft:oklch(30% 0.06 25);
   --shadow:none;
 }
 }
@@ -48,9 +52,15 @@ html { -webkit-text-size-adjust:100%; }
 body { background:var(--bg); color:var(--ink); font-family:var(--body); line-height:1.5; font-size:16px; min-height:100vh; }
 .shell { max-width:760px; margin:0 auto; padding:22px 16px 64px; }
 
+/* Sichtbarer Tastaturfokus — global, nie per outline:none entfernt */
+:focus-visible { outline:3px solid var(--accent); outline-offset:2px; border-radius:8px; }
+.skip-link { position:absolute; left:-9999px; top:0; background:var(--card); color:var(--ink); padding:12px 16px; border:1.5px solid var(--accent); border-radius:10px; z-index:60; }
+.skip-link:focus { left:12px; top:12px; }
+
 .view { display:none; }
 .view.active { display:block; animation:fade .22s ease; }
 @keyframes fade { from{opacity:0;transform:translateY(6px);} to{opacity:1;transform:none;} }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration:.01ms !important; transition-duration:.01ms !important; } }
 
 /* Top bar */
 .topbar { display:flex; align-items:flex-end; gap:14px; flex-wrap:wrap; margin-bottom:20px; }
@@ -61,41 +71,68 @@ select#weekSelect:hover { border-color:var(--accent); }
 .select-chevron { position:absolute; right:14px; bottom:15px; width:13px; height:13px; pointer-events:none; color:var(--ink3); }
 
 /* Headers */
-.page-header { margin-bottom:18px; }
+.page-header { margin-bottom:14px; }
 .eyebrow { font-family:var(--mono); font-size:11px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--accent-ink); margin-bottom:6px; }
 .page-header h1 { font-family:var(--disp); font-size:30px; font-weight:700; color:var(--ink); letter-spacing:-.02em; line-height:1.08; }
 .page-header .sub { font-size:14px; color:var(--ink2); margin-top:7px; font-weight:500; }
 .detail-sub { font-size:14px; color:var(--ink2); margin:12px 0 26px; line-height:1.55; }
 
+/* Meta-Chips: Dauer und Priorität */
+.mchip { display:inline-flex; align-items:center; gap:5px; font-family:var(--mono); font-size:11px; font-weight:700; letter-spacing:.03em; padding:4px 9px; border-radius:8px; background:var(--card-muted); border:1px solid var(--line2); color:var(--ink2); white-space:nowrap; }
+.mchip.prio-1 { background:var(--accent-soft); border-color:var(--accent-soft); color:var(--accent-ink); }
+.mchip.prio-r { background:transparent; }
+.mchip.mchip-opt { background:var(--warn-soft); border-color:var(--warn-soft); color:var(--warn); }
+
 /* Day cards */
 .days { display:flex; flex-direction:column; gap:12px; }
-.day-card { background:var(--card); border:1px solid var(--line); border-radius:16px; padding:16px 18px; box-shadow:var(--shadow); transition:transform .12s, box-shadow .12s, border-color .12s; }
-.day-card.t-rest { background:var(--card-muted); }
-.day-card.t-rest .dc-head { margin-bottom:0; }
-.day-card.clickable { cursor:pointer; }
-.day-card.clickable:hover { transform:translateY(-1px); border-color:var(--accent); }
-.day-card.clickable:active { transform:translateY(0); }
+.day-card { background:var(--card); border:1px solid var(--line); border-radius:16px; padding:6px 8px 14px; box-shadow:var(--shadow); transition:border-color .12s, opacity .12s; }
+.day-card.t-rest { background:var(--card-muted); padding-bottom:10px; }
+.day-card.collapsed { opacity:.78; }
+.day-card.collapsed:hover, .day-card:focus-within { opacity:1; }
+.day-card.is-today { border-color:var(--accent); }
 
-.dc-head { display:flex; align-items:center; gap:10px; margin-bottom:10px; }
+.dc-top { display:flex; align-items:stretch; gap:4px; }
+.dc-main { flex:1; min-width:0; display:flex; flex-direction:column; gap:6px; align-items:flex-start; text-align:left; background:none; border:none; padding:10px; border-radius:12px; cursor:pointer; font:inherit; color:inherit; min-height:44px; }
+.dc-main-static { cursor:default; }
+button.dc-main:hover { background:var(--card-muted); }
+.dc-chev { flex:0 0 auto; width:44px; min-height:44px; display:flex; align-items:center; justify-content:center; background:none; border:none; border-radius:12px; cursor:pointer; color:var(--ink3); }
+.dc-chev:hover { background:var(--card-muted); color:var(--accent-ink); }
+.dc-chev-spacer { flex:0 0 auto; width:44px; }
+.dc-chev svg { width:16px; height:16px; transition:transform .15s; }
+.dc-chev[aria-expanded="true"] svg { transform:rotate(180deg); }
+
+.dc-line1 { display:flex; align-items:center; gap:10px; width:100%; flex-wrap:wrap; }
 .dc-day { font-family:var(--disp); font-size:18px; font-weight:700; color:var(--ink); letter-spacing:-.01em; }
 .dc-date { font-family:var(--mono); font-size:12px; font-weight:600; color:var(--ink3); }
+.dc-einheit { font-size:16px; font-weight:600; color:var(--ink); }
+.dc-metarow { display:flex; flex-wrap:wrap; gap:6px; }
+.dc-cta-btn { display:inline-flex; align-items:center; gap:7px; min-height:44px; margin:8px 10px 0; padding:0 14px; background:var(--accent-soft); border:none; border-radius:11px; cursor:pointer; font-family:var(--mono); font-size:12px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--accent-ink); }
+.dc-cta-btn:hover { background:var(--accent); color:var(--accent-contrast); }
+.dc-cta-btn svg { width:13px; height:13px; }
 
 /* Tagestyp: Icon + Label statt Emoji-Badge/Farbbalken */
-.type-badge { margin-left:auto; display:inline-flex; align-items:center; gap:8px; font-family:var(--mono); font-size:12px; font-weight:700; color:var(--ink2); white-space:nowrap; }
+/* Rechtsbündig mit fester Mindestbreite: dadurch liegen Icon und Label aller
+   Tageskarten auf je einer senkrechten Achse, unabhängig davon, wie lang der
+   Wochentag oder das Typ-Label ist. 84px deckt das längste Label ab
+   („Ruhetag", „Focus B" messen 82,4px) — bei einem längeren Label muss der
+   Wert mitwachsen, sonst bricht die Achse. */
+.type-badge { margin-left:auto; flex-shrink:0; min-width:84px; display:inline-flex; align-items:center; gap:8px; font-family:var(--mono); font-size:12px; font-weight:700; color:var(--ink2); white-space:nowrap; }
 .type-icon { width:24px; height:24px; border-radius:8px; background:var(--card-muted); color:var(--ink3); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
 .type-icon svg { width:14px; height:14px; }
+/* Ruhetag-Karte liegt auf --card-muted, dem Standard-Hintergrund des
+   Icon-Felds — sonst verschwindet das Feld und die Icon-Achse wirkt lückenhaft. */
+.day-card.t-rest .type-icon { background:var(--card); }
 .type-badge.focus { color:var(--accent-ink); }
 .type-badge.focus .type-icon { background:var(--accent-soft); color:var(--accent-ink); }
 
-.dc-einheit { font-size:16px; font-weight:600; color:var(--ink); }
 .dc-sub { font-size:13px; color:var(--ink2); margin-top:3px; font-weight:500; display:flex; flex-direction:column; gap:2px; }
-.dc-rx { margin-top:11px; display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
+.dc-rx { margin:2px 10px 0; display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
 .dc-rx-main { font-family:var(--mono); font-size:15px; font-weight:600; color:var(--ink); line-height:1.45; }
 .dc-rx-main .rv { color:var(--accent-ink); font-weight:700; }
 .rpe-pill { display:inline-block; background:var(--accent-soft); color:var(--accent-ink); font-family:var(--mono); font-size:12px; font-weight:700; padding:3px 9px; border-radius:7px; white-space:nowrap; }
 .dc-note { font-size:13px; color:var(--ink2); margin-top:11px; line-height:1.5; }
-.dc-open { display:inline-flex; align-items:center; gap:6px; margin-top:13px; font-family:var(--mono); font-size:12px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--accent-ink); }
-.dc-open svg { width:14px; height:14px; }
+.dc-note-rest { margin:0 10px; padding-top:2px; }
+.dc-body { padding:0 10px; }
 
 /* Strava stats */
 .dc-strava { margin-top:13px; padding-top:12px; border-top:1px solid var(--line2); }
@@ -106,41 +143,79 @@ select#weekSelect:hover { border-color:var(--accent); }
 .rs-val { font-family:var(--mono); font-size:18px; font-weight:700; color:var(--ink); line-height:1.1; }
 .rs-unit { font-size:11px; font-weight:500; color:var(--ink3); }
 
+/* Aufklapp-Element (Disclosure) */
+.disc { border:1px solid var(--line); border-radius:12px; background:var(--card); overflow:hidden; margin-bottom:8px; }
+.disc-btn { display:flex; align-items:center; gap:10px; width:100%; min-height:44px; padding:11px 14px; background:none; border:none; cursor:pointer; font-family:var(--mono); font-size:12px; font-weight:700; letter-spacing:.02em; color:var(--ink2); text-align:left; }
+.disc-btn:hover { color:var(--accent-ink); background:var(--card-muted); }
+.disc-chev { display:flex; flex-shrink:0; color:var(--ink3); }
+.disc-chev svg { width:14px; height:14px; transition:transform .15s; }
+.disc-btn[aria-expanded="true"] .disc-chev svg { transform:rotate(180deg); }
+.disc-panel { padding:2px 14px 14px; font-size:13px; color:var(--ink2); line-height:1.55; }
+.disc-panel ul { margin:0 0 0 18px; }
+.disc-panel li { margin:3px 0; }
+.rule-scale { font-family:var(--mono); font-size:11px; font-weight:700; letter-spacing:.05em; color:var(--ink3); margin-bottom:10px; }
+.rule-step { border-left:3px solid var(--line); padding:8px 0 8px 11px; margin-bottom:9px; background:var(--card-muted); border-radius:0 8px 8px 0; }
+.rule-step.gelb { border-left-color:var(--warn); }
+.rule-step.rot  { border-left-color:var(--danger); }
+.rule-step-h { font-family:var(--mono); font-size:12px; font-weight:700; color:var(--ink); margin-bottom:4px; }
+.rule-day { margin-top:7px; padding-top:7px; border-top:1px dashed var(--line); color:var(--ink); }
+.rule-day b { font-family:var(--mono); font-size:11px; letter-spacing:.06em; text-transform:uppercase; color:var(--accent-ink); display:block; margin-bottom:2px; }
+.rule-note { margin-top:8px; }
+.rule-src { margin-top:8px; font-family:var(--mono); font-size:11px; color:var(--ink3); }
+.rules-head { font-family:var(--mono); font-size:11px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--ink3); margin:0 0 8px; }
+.rules-bar { margin-bottom:18px; }
+
+/* Glossar */
+.gloss-item { padding:10px 0; border-bottom:1px solid var(--line2); }
+.gloss-item:last-child { border-bottom:none; }
+.gloss-term { font-family:var(--mono); font-size:13px; font-weight:700; color:var(--ink); }
+.gloss-def { margin-top:3px; }
+.gloss-src { margin-top:4px; font-family:var(--mono); font-size:11px; color:var(--ink3); }
+.gloss-wrap { margin-top:22px; }
+
+button.term { font:inherit; font-weight:700; color:var(--accent-ink); background:var(--accent-soft); border:none; border-radius:6px; padding:1px 5px; min-height:24px; cursor:pointer; line-height:1.3; }
+button.term:hover { text-decoration:underline; }
+button.abbr { font:inherit; color:inherit; background:none; border:none; padding:0 1px; min-height:24px; cursor:pointer; text-decoration:underline dotted var(--ink3); }
+button.abbr.expanded { text-decoration:none; color:var(--accent-ink); }
+
+.gloss-pop { position:fixed; left:0; right:0; bottom:0; z-index:50; padding:12px; }
+.gloss-pop-inner { max-width:736px; margin:0 auto; background:var(--card); border:1.5px solid var(--accent); border-radius:16px; padding:16px 18px; box-shadow:0 6px 30px rgba(16,24,40,.22); }
+.gloss-pop-head { display:flex; align-items:flex-start; gap:12px; }
+.gloss-pop-head h2 { font-family:var(--mono); font-size:14px; font-weight:700; color:var(--ink); flex:1; }
+.gloss-close { flex:0 0 auto; width:44px; height:44px; margin:-10px -10px 0 0; display:flex; align-items:center; justify-content:center; background:none; border:none; border-radius:10px; cursor:pointer; color:var(--ink2); }
+.gloss-close:hover { background:var(--card-muted); color:var(--accent-ink); }
+.gloss-close svg { width:16px; height:16px; }
+.gloss-pop p { font-size:14px; color:var(--ink2); line-height:1.55; margin-top:8px; }
+.gloss-pop .gloss-pop-src { font-family:var(--mono); font-size:11px; color:var(--ink3); }
+
 /* Notes system */
-.note-bar { display:flex; align-items:center; justify-content:space-between; margin-top:14px; padding-top:12px; border-top:1px solid var(--line2); }
-.note-toggle-btn { display:inline-flex; align-items:center; gap:6px; font-family:var(--mono); font-size:11px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--ink3); background:none; border:none; cursor:pointer; padding:0; transition:color .15s; }
+.note-bar { display:flex; align-items:center; justify-content:space-between; gap:10px; margin-top:14px; padding-top:6px; border-top:1px solid var(--line2); }
+.note-toggle-btn { display:inline-flex; align-items:center; gap:8px; min-height:44px; padding:0 10px 0 0; font-family:var(--mono); font-size:11px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--ink3); background:none; border:none; cursor:pointer; transition:color .15s; }
 .note-toggle-btn:hover { color:var(--accent-ink); }
+.note-toggle-btn svg { width:13px; height:13px; transition:transform .15s; }
+.note-toggle-btn[aria-expanded="true"] svg { transform:rotate(180deg); }
 .note-has-indicator { display:inline-flex; align-items:center; gap:5px; font-family:var(--mono); font-size:11px; font-weight:600; color:var(--ink2); }
 .note-feel-dot { width:9px; height:9px; border-radius:50%; background:var(--accent); }
 .note-has-indicator.draft { color:var(--ink3); }
 .note-has-indicator.draft .note-feel-dot { background:var(--ink3); }
 
-.note-panel { display:none; margin-top:12px; background:var(--card-muted); border:1px solid var(--line2); border-radius:12px; padding:14px; }
-.note-panel.open { display:block; animation:fade .18s ease; }
+.note-panel { margin-top:12px; background:var(--card-muted); border:1px solid var(--line2); border-radius:12px; padding:14px; }
 
-.feel-label { font-family:var(--mono); font-size:11px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--ink3); margin-bottom:8px; }
+.feel-label { font-family:var(--mono); font-size:11px; font-weight:700; letter-spacing:.06em; color:var(--ink3); margin-bottom:8px; }
 .feel-row { display:flex; gap:8px; margin-bottom:12px; }
 .feel-btn { flex:1; min-height:44px; border:1.5px solid var(--line); border-radius:10px; background:var(--card); font-family:var(--mono); font-size:15px; font-weight:700; color:var(--ink2); cursor:pointer; transition:all .15s; display:flex; align-items:center; justify-content:center; }
 .feel-btn:hover { border-color:var(--accent); color:var(--accent-ink); }
-.feel-btn.selected { border-color:var(--accent); background:var(--accent-soft); color:var(--accent-ink); }
+.feel-btn[aria-pressed="true"] { border-color:var(--accent); background:var(--accent-soft); color:var(--accent-ink); }
 
-.note-textarea { width:100%; min-height:150px; border:1.5px solid var(--line); border-radius:10px; padding:11px 13px; font-family:var(--body); font-size:14px; color:var(--ink); background:var(--card); resize:vertical; outline:none; transition:border-color .15s; line-height:1.5; }
-
-abbr[data-full] { text-decoration:underline dotted var(--ink3); cursor:pointer; }
-abbr[data-full].expanded { text-decoration:none; color:var(--accent-ink); }
-
-.day-card.collapsed .dc-body { display:none; }
-.day-card.collapsed { cursor:pointer; opacity:.72; }
-.day-card.collapsed:hover { opacity:1; transform:translateY(-1px); }
-.day-card.collapsed .dc-head { margin-bottom:0; }
-
-.show-all-btn { display:block; width:100%; margin-top:4px; padding:12px; background:var(--card); border:1.5px dashed var(--line); border-radius:14px; font-family:var(--mono); font-size:12px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--ink3); cursor:pointer; transition:all .15s; }
-.show-all-btn:hover { border-color:var(--accent); color:var(--accent-ink); }
+.note-textarea { width:100%; min-height:150px; border:1.5px solid var(--line); border-radius:10px; padding:11px 13px; font-family:var(--body); font-size:14px; color:var(--ink); background:var(--card); resize:vertical; transition:border-color .15s; line-height:1.5; }
 .note-textarea:focus { border-color:var(--accent); }
 .note-textarea::placeholder { color:var(--ink3); }
 
+.show-all-btn { display:block; width:100%; margin-top:4px; min-height:44px; padding:12px; background:var(--card); border:1.5px dashed var(--line); border-radius:14px; font-family:var(--mono); font-size:12px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--ink3); cursor:pointer; transition:all .15s; }
+.show-all-btn:hover { border-color:var(--accent); color:var(--accent-ink); }
+
 .note-actions { display:flex; align-items:center; gap:12px; margin-top:10px; }
-.note-save-btn { min-height:40px; padding:0 18px; background:var(--accent); color:var(--accent-contrast); border:none; border-radius:9px; font-family:var(--mono); font-size:12px; font-weight:700; letter-spacing:.05em; cursor:pointer; transition:opacity .15s; }
+.note-save-btn { min-height:44px; padding:0 18px; background:var(--accent); color:var(--accent-contrast); border:none; border-radius:9px; font-family:var(--mono); font-size:12px; font-weight:700; letter-spacing:.05em; cursor:pointer; transition:opacity .15s; }
 .note-save-btn:hover { opacity:.85; }
 .note-save-btn:disabled { background:var(--ink3); cursor:not-allowed; }
 .note-status { font-family:var(--mono); font-size:12px; font-weight:600; color:var(--ink2); }
@@ -150,16 +225,25 @@ abbr[data-full].expanded { text-decoration:none; color:var(--accent-ink); }
 .nav-back { display:inline-flex; align-items:center; gap:7px; cursor:pointer; color:var(--ink2); font-family:var(--mono); font-size:12px; font-weight:600; padding:11px 15px; background:var(--card); border:1.5px solid var(--line); border-radius:11px; margin-bottom:20px; transition:all .14s; min-height:44px; box-shadow:var(--shadow); }
 .nav-back:hover { color:var(--accent-ink); border-color:var(--accent); }
 .nav-back svg { width:14px; height:14px; }
-.crumb { font-family:var(--mono); font-size:12px; color:var(--ink3); margin-bottom:18px; font-weight:600; }
-.crumb .lnk { color:var(--accent-ink); cursor:pointer; }
+.crumb { font-family:var(--mono); font-size:12px; color:var(--ink3); margin-bottom:18px; font-weight:600; display:flex; align-items:center; flex-wrap:wrap; }
+.crumb .lnk { font:inherit; color:var(--accent-ink); background:none; border:none; cursor:pointer; min-height:44px; padding:0 4px 0 0; }
+.crumb .lnk:hover { text-decoration:underline; }
 .crumb .sep { margin:0 7px; color:var(--line); }
+
+/* Routinen-Kopf */
+.routine-meta { display:flex; flex-wrap:wrap; gap:7px; margin:14px 0 8px; }
+.routine-meta-note { font-family:var(--mono); font-size:11px; color:var(--ink3); line-height:1.6; margin-bottom:14px; }
 
 /* Focus blocks */
 .blk { margin-bottom:26px; }
-.blk-head { display:flex; align-items:center; gap:11px; margin-bottom:12px; }
+.blk.is-optional { border-left:3px dashed var(--line); padding-left:13px; margin-left:-16px; }
+.blk-head { display:flex; align-items:flex-start; gap:11px; margin-bottom:12px; flex-wrap:wrap; }
 .blk-letter { font-family:var(--mono); font-size:14px; font-weight:700; color:var(--accent-contrast); background:var(--accent); width:30px; height:30px; border-radius:9px; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+.blk.is-optional .blk-letter { background:var(--ink3); }
+.blk-headtext { flex:1; min-width:150px; }
 .blk-title { font-family:var(--disp); font-size:16px; font-weight:700; color:var(--ink); letter-spacing:-.01em; }
 .blk-sub { font-family:var(--mono); font-size:11px; font-weight:500; color:var(--ink3); margin-top:1px; }
+.blk-flags { display:flex; flex-wrap:wrap; gap:6px; align-items:center; }
 .exc { background:var(--card); border:1px solid var(--line); border-radius:14px; padding:15px 16px; box-shadow:var(--shadow); margin-bottom:10px; }
 .exc-name { font-family:var(--disp); font-size:18px; font-weight:700; color:var(--ink); letter-spacing:-.01em; line-height:1.2; }
 .exc-name small { display:block; font-family:var(--body); font-size:13px; font-weight:500; color:var(--ink3); margin-top:2px; }
@@ -195,14 +279,15 @@ abbr[data-full].expanded { text-decoration:none; color:var(--accent-ink); }
 
 /* WHOOP: kopierbarer Textblock statt Karte mit Listen-Items */
 .whoop-copy { margin-top:30px; background:var(--card-muted); border:1px solid var(--line); border-radius:12px; padding:16px 18px; }
-.whoop-copy-head { display:flex; align-items:center; justify-content:space-between; margin-bottom:10px; }
+.whoop-copy-head { display:flex; align-items:center; justify-content:space-between; gap:10px; margin-bottom:10px; }
 .whoop-copy-title { font-family:var(--mono); font-size:11px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--ink3); }
-.copy-btn { display:inline-flex; align-items:center; gap:6px; font-family:var(--mono); font-size:11px; font-weight:700; letter-spacing:.05em; text-transform:uppercase; color:var(--ink2); background:var(--card); border:1px solid var(--line); border-radius:8px; padding:6px 10px; cursor:pointer; }
+.copy-btn { display:inline-flex; align-items:center; gap:6px; min-height:44px; font-family:var(--mono); font-size:11px; font-weight:700; letter-spacing:.05em; text-transform:uppercase; color:var(--ink2); background:var(--card); border:1px solid var(--line); border-radius:8px; padding:6px 12px; cursor:pointer; }
 .copy-btn:hover { border-color:var(--accent); color:var(--accent-ink); }
 .copy-btn svg { width:13px; height:13px; }
 .whoop-text { font-family:var(--mono); font-size:13px; color:var(--ink); line-height:1.75; white-space:pre-wrap; }
 
 .empty { padding:48px; text-align:center; color:var(--ink3); }
+.sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; border:0; }
 
 @media (max-width:480px){
   .shell { padding:18px 13px 56px; }
@@ -210,31 +295,46 @@ abbr[data-full].expanded { text-decoration:none; color:var(--accent-ink); }
   .chip { flex:1 1 calc(50% - 4px); min-width:0; }
   .rs-chip { flex:1 1 calc(50% - 4px); min-width:0; }
   .note-textarea { min-height:160px; }
+  .blk.is-optional { margin-left:0; }
 }
 </style>
 </head>
 <body>
+<a class="skip-link" href="#main">Zum Inhalt springen</a>
 <div class="shell">
 
   <div id="view-week" class="view active">
     <div class="topbar">
       <div class="week-select-wrap">
-        <span class="week-select-label">Woche wählen</span>
+        <label class="week-select-label" for="weekSelect">Woche wählen</label>
         <select id="weekSelect" onchange="onWeekChange()"></select>
-        <svg class="select-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6l4 4 4-4"/></svg>
+        <svg class="select-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 6l4 4 4-4"/></svg>
       </div>
     </div>
-    <div id="weekContent"></div>
+    <main id="main"><div id="weekContent"></div></main>
   </div>
 
   <div id="view-focus" class="view">
-    <div class="nav-back" onclick="showWeek()">
-      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 3L5 8l5 5"/></svg>
+    <button type="button" class="nav-back" onclick="showWeek()">
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M10 3L5 8l5 5"/></svg>
       Zurück zum Wochenplan
-    </div>
+    </button>
     <div id="focusContent"></div>
   </div>
 
+</div>
+
+<div id="glossPop" class="gloss-pop" role="dialog" aria-labelledby="glossTitle" hidden>
+  <div class="gloss-pop-inner">
+    <div class="gloss-pop-head">
+      <h2 id="glossTitle"></h2>
+      <button type="button" class="gloss-close" id="glossClose" aria-label="Erklärung schließen" onclick="closeTerm()">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 4l8 8M12 4l-8 8"/></svg>
+      </button>
+    </div>
+    <p id="glossDef"></p>
+    <p class="gloss-pop-src" id="glossSrc"></p>
+  </div>
 </div>
 
 <script src="data.js"></script>
@@ -252,20 +352,71 @@ const ABBR = {
   'RM':'Repetition Maximum','RPE':'Rate of Perceived Exertion',
   'Z1':'Zone 1','Z2':'Zone 2','Z3':'Zone 3','HR':'Heart Rate',
   'CAR':'Controlled Articular Rotation','BWS':'Brustwirbelsäule',
-  'PP':'Push Press','PJ':'Push Jerk','SJ':'Split Jerk'
+  'PP':'Push Press','PJ':'Push Jerk','SJ':'Split Jerk',
+  'WPU':'Weighted Pull-up','C2B':'Chest-to-Bar','WOD':'Workout of the Day'
 };
-function expandAbbr(text){
-  return text.replace(/\b([A-Z][A-Z0-9&]+)\b/g, (m) =>
-    ABBR[m] ? `<abbr title="${ABBR[m]}" data-abbr="${m}" data-full="${ABBR[m]}">${m}</abbr>` : m
-  );
+
+/* Glossar-Begriffe, die im Fließtext als echte Buttons verlinkt werden.
+   Reihenfolge = Matching-Priorität (längste/spezifischste zuerst). */
+const GLOSS_RE = /(Sonntagslast-Regel|Session-Feel|RPE-gated|E2:15|Ceiling|\bL[23]\b)/g;
+
+function attr(s){
+  return String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 }
-document.addEventListener('click', e => {
-  const a = e.target.closest('abbr[data-full]');
-  if (!a) return;
-  e.stopPropagation();
-  const expanded = a.classList.toggle('expanded');
-  a.textContent = expanded ? a.dataset.full : a.dataset.abbr;
-});
+function escapeHtml(s){
+  return String(s).replace(/[&<>]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+}
+
+/* rich(): verlinkt Glossarbegriffe (und optional Abkürzungen) in bereits
+   gerendertem HTML. Ersetzt nur Textsegmente außerhalb von Tags und schützt
+   fertige Term-Buttons per Platzhalter, damit keine Buttons ineinander landen. */
+function outsideTags(html, fn){
+  return String(html).split(/(<[^>]*>)/).map(seg => seg.charAt(0) === '<' ? seg : fn(seg)).join('');
+}
+function rich(html, opts){
+  if (html === undefined || html === null) return '';
+  const withAbbr = !(opts && opts.abbr === false);
+  const store = [];
+  let s = outsideTags(html, seg => seg.replace(GLOSS_RE, m => {
+    if (!DATA.glossar[m]) return m;
+    store.push('<button type="button" class="term" data-term="' + attr(m) +
+      '" aria-label="' + attr(m + ' — Erklärung anzeigen') + '" onclick="openTerm(this)">' + escapeHtml(m) + '</button>');
+    return '\u0001' + (store.length - 1) + '\u0001';
+  }));
+  if (withAbbr) {
+    s = outsideTags(s, seg => seg.replace(/\b([A-Z][A-Z0-9&]+)\b/g, m =>
+      ABBR[m] ? '<button type="button" class="abbr" data-abbr="' + attr(m) + '" data-full="' + attr(ABBR[m]) +
+        '" aria-label="' + attr(m + ' — ' + ABBR[m]) + '" onclick="toggleAbbr(this)">' + escapeHtml(m) + '</button>' : m));
+  }
+  return s.replace(/\u0001(\d+)\u0001/g, (_, i) => store[i]);
+}
+/* Wochenansicht: nur Glossar, keine Abkürzungs-Buttons (hält die Karten ruhig). */
+function richW(html){ return rich(html, { abbr:false }); }
+
+function toggleAbbr(btn){
+  const expanded = btn.classList.toggle('expanded');
+  btn.textContent = expanded ? btn.dataset.full : btn.dataset.abbr;
+}
+
+/* Glossar-Sheet */
+let lastTermBtn = null;
+function openTerm(btn){
+  const g = DATA.glossar[btn.dataset.term];
+  if (!g) return;
+  lastTermBtn = btn;
+  document.getElementById('glossTitle').textContent = g.term;
+  document.getElementById('glossDef').textContent   = g.def;
+  document.getElementById('glossSrc').textContent   = 'Quelle: ' + g.quelle;
+  document.getElementById('glossPop').hidden = false;
+  document.getElementById('glossClose').focus();
+}
+function closeTerm(){
+  const pop = document.getElementById('glossPop');
+  if (pop.hidden) return;
+  pop.hidden = true;
+  if (lastTermBtn) { lastTermBtn.focus(); lastTermBtn = null; }
+}
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeTerm(); });
 
 /* State */
 let currentWeekId = null;
@@ -274,23 +425,26 @@ let selectedFeel = {};
 
 /* Icons — geometrisches Icon-System statt Emoji */
 const ICON = {
-  box:  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="6.5" cy="12" r="4.2"/><circle cx="17.5" cy="12" r="4.2"/><rect x="10.6" y="10.1" width="2.8" height="2.8" transform="rotate(45 12 11.5)"/></svg>',
-  own:  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="11" width="14" height="2.4" rx="1"/><rect x="3" y="8" width="3.4" height="8" rx="1"/><rect x="17.6" y="8" width="3.4" height="8" rx="1"/></svg>',
-  rest: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>',
-  ride: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l2-6 3 11 2-7 2 2h5"/></svg>'
+  box:  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="6.5" cy="12" r="4.2"/><circle cx="17.5" cy="12" r="4.2"/><rect x="10.6" y="10.1" width="2.8" height="2.8" transform="rotate(45 12 11.5)"/></svg>',
+  own:  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="5" y="11" width="14" height="2.4" rx="1"/><rect x="3" y="8" width="3.4" height="8" rx="1"/><rect x="17.6" y="8" width="3.4" height="8" rx="1"/></svg>',
+  rest: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>',
+  ride: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12h4l2-6 3 11 2-7 2 2h5"/></svg>'
 };
-const COPY_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h9"/></svg>';
+const COPY_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h9"/></svg>';
+const CHEV_DOWN  = '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M3 6l5 5 5-5"/></svg>';
+const CHEV_RIGHT = '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M6 3l5 5-5 5"/></svg>';
 
 /* Session-Feel: wie die Einheit lief, 1 = mies bis 5 = stark. Nummerierte
    Pills statt Emoji — Bedeutung/Skala unverändert, nur die Darstellung. */
 const FEEL_LABEL = ['','Mies','Zäh','Okay','Gut','Stark'];
 
-/* Type config */
+/* Type config — nur Darstellung. Die Beschriftung kommt aus
+   DATA.regeln.prio[type].typ, damit ein Tagestyp genau einen Namen hat. */
 const TYPE = {
-  rest: { cls:'t-rest', icon:'rest', label:'Recovery' },
-  box:  { cls:'',       icon:'box',  label:'Class' },
-  own:  { cls:'',       icon:'own',  label:null },
-  ride: { cls:'',       icon:'ride', label:'Cardio' }
+  rest: { cls:'t-rest', icon:'rest' },
+  box:  { cls:'',       icon:'box'  },
+  own:  { cls:'',       icon:'own'  },
+  ride: { cls:'',       icon:'ride' }
 };
 
 /* Helpers */
@@ -301,10 +455,7 @@ function splitMain(val){
 function renderSub(sub){
   if (!sub) return '';
   const blocks = sub.includes('→') ? sub.split('→') : sub.split('·');
-  return `<div class="dc-sub">${blocks.map(b=>`<div>${b.trim()}</div>`).join('')}</div>`;
-}
-function escapeHtml(s){
-  return String(s).replace(/[&<>]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+  return `<div class="dc-sub">${blocks.map(b=>`<div>${richW(b.trim())}</div>`).join('')}</div>`;
 }
 /* f.intro ist vertrautes HTML fürs Rendering (<em>, &amp; als Entity) — für
    den WHOOP-Klartextblock erst zu reinem Text auflösen, sonst landen rohe
@@ -326,6 +477,65 @@ function todayLocal(){
 function currentWeek(){
   const t = todayLocal();
   return DATA.weeks.find(w => w.dateFrom <= t && t <= w.dateTo) || DATA.weeks[0];
+}
+
+/* ── Aufklapp-Elemente (Disclosure) ── */
+function discHTML(id, label, inner){
+  return `<div class="disc">
+    <button type="button" class="disc-btn" id="${id}-btn" aria-expanded="false" aria-controls="${id}" onclick="toggleDisc('${id}')">
+      <span class="disc-chev">${CHEV_DOWN}</span><span>${label}</span>
+    </button>
+    <div class="disc-panel" id="${id}" hidden>${inner}</div>
+  </div>`;
+}
+function toggleDisc(id){
+  const panel = document.getElementById(id), btn = document.getElementById(id + '-btn');
+  if (!panel || !btn) return;
+  const open = panel.hidden;
+  panel.hidden = !open;
+  btn.setAttribute('aria-expanded', String(open));
+}
+
+/* ── Regeln: Recovery-Anpassung und Ausfall-Regel ── */
+function recoveryPanelHTML(day){
+  const r = DATA.regeln.recovery;
+  const keyFor = { gelb:'u50', rot:'u34' };
+  const stufen = r.stufen.map(s => {
+    const dayText = day && day[keyFor[s.ton]];
+    return `<div class="rule-step ${s.ton}">
+      <div class="rule-step-h">${s.schwelle}</div>
+      <ul>${s.punkte.map(p=>`<li>${richW(p)}</li>`).join('')}</ul>
+      ${dayText ? `<div class="rule-day"><b>Für diese Einheit konkret</b>${richW(dayText)}</div>` : ''}
+    </div>`;
+  }).join('');
+  return `<p class="rule-scale">${r.skala}</p>${stufen}
+    <p class="rule-note">${r.geltung}</p>
+    <p class="rule-src">Quelle: ${r.quelle}</p>`;
+}
+function ausfallPanelHTML(){
+  const a = DATA.regeln.ausfall;
+  return `<ul>${a.punkte.map(p=>`<li>${richW(p)}</li>`).join('')}</ul>
+    <p class="rule-note">${richW(a.innerhalb)}</p>
+    <p class="rule-src">Quelle: ${a.quelle}</p>`;
+}
+
+/* ── Glossar-Panel: nur Begriffe, die auf dieser Seite wirklich vorkommen ── */
+function fillGlossary(scopeId, hostId){
+  const scope = document.getElementById(scopeId), host = document.getElementById(hostId);
+  if (!scope || !host) return;
+  const keys = [...new Set([...scope.querySelectorAll('button.term[data-term]')].map(b => b.dataset.term))]
+    .filter(k => DATA.glossar[k]);
+  if (!keys.length) { host.innerHTML = ''; return; }
+  const items = keys.map(k => {
+    const g = DATA.glossar[k];
+    return `<div class="gloss-item">
+      <div class="gloss-term">${escapeHtml(g.term)}</div>
+      <div class="gloss-def">${escapeHtml(g.def)}</div>
+      <div class="gloss-src">Quelle: ${escapeHtml(g.quelle)}</div>
+    </div>`;
+  }).join('');
+  host.innerHTML = discHTML('gloss-' + scopeId,
+    `Glossar — ${keys.length} ${keys.length === 1 ? 'Begriff' : 'Begriffe'} auf dieser Seite`, items);
 }
 
 /* Notiz-Drafts (localStorage) */
@@ -356,10 +566,13 @@ function restoreDraft(d){
   if (ta && draft.text) ta.value = draft.text;
   if (draft.feel > 0) {
     selectedFeel[d] = draft.feel;
-    document.querySelectorAll(`[data-feel-date="${d}"]`).forEach(btn =>
-      btn.classList.toggle('selected', parseInt(btn.dataset.feelVal) === draft.feel));
+    markFeel(d, draft.feel);
   }
   patchNoteIndicator(d);
+}
+function markFeel(isoDate, val){
+  document.querySelectorAll(`[data-feel-date="${isoDate}"]`).forEach(btn =>
+    btn.setAttribute('aria-pressed', String(parseInt(btn.dataset.feelVal) === val)));
 }
 
 /* Notes API */
@@ -425,9 +638,7 @@ function patchNoteUI(date, note){
   if (ta && note.note_text && !(draft && draft.text)) ta.value = note.note_text;
   if (note.session_feel > 0 && !(draft && draft.feel > 0)) {
     selectedFeel[date] = note.session_feel;
-    document.querySelectorAll(`[data-feel-date="${date}"]`).forEach(btn => {
-      btn.classList.toggle('selected', parseInt(btn.dataset.feelVal) === note.session_feel);
-    });
+    markFeel(date, note.session_feel);
   }
   patchNoteIndicator(date);
 }
@@ -450,19 +661,18 @@ function patchNoteIndicator(date){
 }
 
 /* Toggle note panel */
-function toggleNote(isoDate, event){
-  if (event) event.stopPropagation();
+function toggleNote(isoDate){
   const panel = document.getElementById('np-' + isoDate);
-  if (!panel) return;
-  panel.classList.toggle('open');
+  const btn   = document.getElementById('nbtn-' + isoDate);
+  if (!panel || !btn) return;
+  const open = panel.hidden;
+  panel.hidden = !open;
+  btn.setAttribute('aria-expanded', String(open));
 }
 
-function selectFeel(isoDate, val, event){
-  if (event) event.stopPropagation();
+function selectFeel(isoDate, val){
   selectedFeel[isoDate] = val;
-  document.querySelectorAll(`[data-feel-date="${isoDate}"]`).forEach(btn => {
-    btn.classList.toggle('selected', parseInt(btn.dataset.feelVal) === val);
-  });
+  markFeel(isoDate, val);
   saveDraft(isoDate);
 }
 
@@ -470,24 +680,27 @@ function selectFeel(isoDate, val, event){
 function buildNoteHTML(isoDate, type){
   if (type === 'rest') return '';
   const feelButtons = [1,2,3,4,5].map(i =>
-    `<button class="feel-btn" data-feel-date="${isoDate}" data-feel-val="${i}"
-             title="${i} — ${FEEL_LABEL[i]}" aria-label="${FEEL_LABEL[i]}"
-             onclick="selectFeel('${isoDate}', ${i}, event)">${i}</button>`
+    `<button type="button" class="feel-btn" data-feel-date="${isoDate}" data-feel-val="${i}"
+             aria-pressed="false" aria-label="${attr(FEEL_LABEL[i])} (${i} von 5)"
+             onclick="selectFeel('${isoDate}', ${i})">${i}</button>`
   ).join('');
   return `
-    <div class="note-bar" onclick="event.stopPropagation()">
-      <button class="note-toggle-btn" onclick="toggleNote('${isoDate}', event)">Notiz</button>
+    <div class="note-bar">
+      <button type="button" class="note-toggle-btn" id="nbtn-${isoDate}"
+              aria-expanded="false" aria-controls="np-${isoDate}"
+              onclick="toggleNote('${isoDate}')">${CHEV_DOWN}Notiz und Session-Feel</button>
       <div id="nind-${isoDate}"></div>
     </div>
-    <div class="note-panel" id="np-${isoDate}" onclick="event.stopPropagation()">
-      <div class="feel-label">Wie lief die Session?</div>
+    <div class="note-panel" id="np-${isoDate}" hidden>
+      <div class="feel-label">${richW('Session-Feel')} — wie lief die Einheit?</div>
       <div class="feel-row">${feelButtons}</div>
+      <label class="sr-only" for="ntext-${isoDate}">Notiz zur Einheit</label>
       <textarea class="note-textarea" id="ntext-${isoDate}" oninput="saveDraft('${isoDate}')"
                 placeholder="Was lief gut / schlecht? Lasten, Energie, Technik…"></textarea>
       <div class="note-actions">
-        <button class="note-save-btn" id="nsave-${isoDate}"
+        <button type="button" class="note-save-btn" id="nsave-${isoDate}"
                 onclick="saveNote('${isoDate}')">Speichern</button>
-        <span class="note-status" id="nstat-${isoDate}"></span>
+        <span class="note-status" id="nstat-${isoDate}" role="status"></span>
       </div>
     </div>`;
 }
@@ -512,76 +725,149 @@ function renderStravaStats(s){
     </div></div>`;
 }
 
+/* Priorität eines Tages — abgeleitet aus der Ausfall-Regel
+   („Fokus-Tage vor Box vor Radfahrt"), nicht pro Tag gepflegt. */
+function prioOf(type){ return DATA.regeln.prio[type] || DATA.regeln.prio.rest; }
+
+function dayCardHTML(d, w, today){
+  const t = TYPE[d.type];
+  const isFocus = d.type === 'own';
+  const f = isFocus && w.focusDays ? w.focusDays[d.focus] : null;
+  const prio = prioOf(d.type);
+  const label = isFocus ? `${prio.typ} ${d.focus}` : prio.typ;
+  const badge = `<span class="type-badge${isFocus?' focus':''}"><span class="type-icon">${ICON[t.icon]}</span>${label}</span>`;
+  const dayName = `${d.day}, ${d.date}`;
+  const isToday = d.isoDate === today;
+
+  const chips = [`<span class="mchip prio-${prio.rang || 'r'}">${prio.chip}</span>`];
+  if (f && f.dauer) {
+    chips.push(`<span class="mchip">Dauer ${f.dauer.gesamt}</span>`);
+    chips.push(`<span class="mchip">Kernzeit ${f.dauer.kern}</span>`);
+  }
+  const line1 = `<span class="dc-line1"><span class="dc-day">${d.day}</span><span class="dc-date">${d.date}</span>${badge}</span>`;
+  const metaRow = `<span class="dc-metarow">${chips.join('')}</span>`;
+
+  /* Ruhetag: harte Entscheidung, keine Interaktion, Begründung sofort sichtbar */
+  if (d.type === 'rest') {
+    const unit = (d.einheit && d.einheit !== '—') ? `<span class="dc-einheit">${d.einheit}</span>` : '';
+    /* Platzhalter statt Chevron: hält die Badge-Spalte auf derselben
+       senkrechten Achse wie bei den aufklappbaren Karten. */
+    return `<article class="day-card t-rest${isToday?' is-today':''}" id="dc-${d.isoDate}">
+      <div class="dc-top"><div class="dc-main dc-main-static">${line1}${unit}${metaRow}</div><span class="dc-chev-spacer" aria-hidden="true"></span></div>
+      ${d.note ? `<div class="dc-note dc-note-rest">${richW(d.note)}</div>` : ''}
+    </article>`;
+  }
+
+  const mainInner = `${line1}<span class="dc-einheit">${d.einheit}</span>${metaRow}`;
+
+  const main = isFocus
+    ? `<button type="button" class="dc-main" id="dcm-${d.isoDate}" data-role="open"
+         aria-label="${attr(dayName + ' — Routine öffnen: Focus-Tag ' + d.focus + ', ' + (f ? f.sub : d.einheit))}"
+         onclick="showFocus('${d.focus}')">${mainInner}</button>`
+    : `<button type="button" class="dc-main" id="dcm-${d.isoDate}" data-role="toggle"
+         aria-expanded="false" aria-controls="dcb-${d.isoDate}"
+         aria-label="${attr(dayName + ' — ' + d.einheit + ': Details ein- oder ausblenden')}"
+         onclick="toggleDay('${d.isoDate}')">${mainInner}</button>`;
+
+  const chev = `<button type="button" class="dc-chev" id="dch-${d.isoDate}" data-day-label="${attr(dayName)}"
+      aria-expanded="false" aria-controls="dcb-${d.isoDate}" aria-label="${attr(dayName + ' aufklappen')}"
+      onclick="toggleDay('${d.isoDate}')">${CHEV_DOWN}</button>`;
+
+  /* Lastangaben stehen außerhalb des Karten-Buttons: sie tragen
+     Glossar-Buttons und dürfen deshalb nicht in einem Button verschachtelt
+     sein. Sie bleiben immer sichtbar, auch bei zugeklappter Karte. */
+  const rx = d.rx === '—' ? '' :
+    `<div class="dc-rx"><span class="dc-rx-main">${richW(d.rx)}</span>${d.rpe?`<span class="rpe-pill">${d.rpe}</span>`:''}</div>`;
+
+  /* Der Aufruf steht bewusst unter den Lastangaben: erst die Zahlen, dann der
+     Weg in die Routine. Zweiter Zugang zur selben Aktion wie der Kartenkopf. */
+  const cta = isFocus
+    ? `<button type="button" class="dc-cta-btn"
+         aria-label="${attr('Routine öffnen: Focus-Tag ' + d.focus + ' am ' + dayName)}"
+         onclick="showFocus('${d.focus}')">Routine öffnen ${CHEV_RIGHT}</button>`
+    : '';
+
+  const strava = (d.type==='ride' && d.strava) ? renderStravaStats(d.strava) : '';
+  const body = `<div class="dc-body" id="dcb-${d.isoDate}" hidden>
+      ${renderSub(d.sub)}
+      ${d.note ? `<div class="dc-note">${richW(d.note)}</div>` : ''}
+      ${strava}
+      ${buildNoteHTML(d.isoDate, d.type)}
+    </div>`;
+
+  return `<article class="day-card ${t.cls}${isToday?' is-today':''}" id="dc-${d.isoDate}" data-expandable="1">
+    <div class="dc-top">${main}${chev}</div>${rx}${cta}${body}</article>`;
+}
+
 function renderWeek(){
   const w = getWeek(currentWeekId);
   if(!w){ document.getElementById('weekContent').innerHTML='<div class="empty">Keine Daten.</div>'; return; }
 
   selectedFeel = {};
-
-  const cards = w.days.map(d => {
-    const t = TYPE[d.type];
-    const label = d.type==='own' ? `Focus ${d.focus}` : t.label;
-    const clickable = d.type==='own';
-    const badge = `<span class="type-badge${d.type==='own'?' focus':''}"><span class="type-icon">${ICON[t.icon]}</span>${label}</span>`;
-
-    let body = '';
-    if (d.type !== 'rest') {
-      const einheit = `<div class="dc-einheit">${d.einheit}</div>${renderSub(d.sub)}`;
-      const rx = d.rx==='—' ? '' :
-        `<div class="dc-rx"><span class="dc-rx-main">${d.rx}</span>${d.rpe?`<span class="rpe-pill">${d.rpe}</span>`:''}</div>`;
-      const strava = (d.type==='ride'&&d.strava) ? renderStravaStats(d.strava) : '';
-      const open   = clickable ? `<div class="dc-open" onclick="openFocus('${d.focus}', event)">Routine öffnen <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 3l5 5-5 5"/></svg></div>` : '';
-      const notes  = buildNoteHTML(d.isoDate, d.type);
-      const note   = d.note ? `<div class="dc-note">${d.note}</div>` : '';
-      body = `<div class="dc-body">${einheit}${rx}${note}${strava}${open}${notes}</div>`;
-    }
-
-    return `<div class="day-card ${t.cls}" id="dc-${d.isoDate}" onclick="toggleDay('${d.isoDate}','${d.focus||''}')"><div class="dc-head"><span class="dc-day">${d.day}</span><span class="dc-date">${d.date}</span>${badge}</div>${body}</div>`;
-  }).join('');
+  const today = todayLocal();
+  const cards = w.days.map(d => dayCardHTML(d, w, today)).join('');
 
   document.getElementById('weekContent').innerHTML = `
     <div class="page-header"><div class="eyebrow">${w.meso}</div><h1>Wochenplan</h1>
     <div class="sub">${w.label.split('·').slice(1).join('·').trim()} &nbsp;·&nbsp; ${w.phase} &nbsp;·&nbsp; ${w.id}</div></div>
-    <button class="show-all-btn" id="toggle-days-top" onclick="collapseToToday()" style="display:none;margin-bottom:12px">Nur heute anzeigen</button>
+    <div class="rules-bar">
+      <p class="rules-head">Regeln dieser Woche</p>
+      ${discHTML('rule-rec-week', 'Recovery-Anpassung: was gilt unter 50 % und unter 34 %', recoveryPanelHTML(null))}
+      ${discHTML('rule-out-week', 'Wenn eine Einheit ausfällt: was zuerst gestrichen wird', ausfallPanelHTML())}
+    </div>
+    <button type="button" class="show-all-btn" id="toggle-days-top" onclick="collapseToToday()" style="display:none;margin-bottom:12px">Nur heute anzeigen</button>
     <div class="days">${cards}</div>
-    <button class="show-all-btn" id="toggle-days-btn" onclick="toggleAllDays()">Alle Tage anzeigen</button>`;
+    <button type="button" class="show-all-btn" id="toggle-days-btn" onclick="toggleAllDays()">Alle Tage anzeigen</button>
+    <div class="gloss-wrap" id="glossHost-week"></div>`;
 
   w.days.forEach(d => restoreDraft(d.isoDate));
   if (w.dateFrom && w.dateTo) loadNotes(w.dateFrom, w.dateTo);
+  fillGlossary('weekContent', 'glossHost-week');
 
-  const today = todayLocal();
   requestAnimationFrame(() => {
-    w.days.forEach(d => {
-      const card = document.getElementById('dc-' + d.isoDate);
-      if (!card) return;
-      if (d.isoDate === today && w.dateFrom <= today && today <= w.dateTo) {
-        card.scrollIntoView({ behavior:'smooth', block:'start' });
-      } else {
-        card.classList.add('collapsed');
-      }
-    });
+    w.days.forEach(d => setDayExpanded(d.isoDate, d.isoDate === today));
+    if (w.dateFrom <= today && today <= w.dateTo) scrollToToday();
   });
 }
 
-function toggleDay(isoDate, focusKey) {
-  const card = document.getElementById('dc-' + isoDate);
-  if (!card) return;
-  if (card.classList.contains('collapsed')) {
-    card.classList.remove('collapsed');
-  } else {
-    card.classList.add('collapsed');
-  }
+/* Ohne Smooth-Animation: der erste Scroll läuft, bevor die Webfonts geladen
+   sind — die Zielposition verschiebt sich danach noch. Deshalb hart springen
+   und nach dem Font-Load einmal nachkorrigieren. */
+function scrollToToday(){
+  const go = () => {
+    const card = document.getElementById('dc-' + todayLocal());
+    if (card) card.scrollIntoView({ block:'start' });
+  };
+  go();
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(go);
 }
 
-function openFocus(focusKey, event) {
-  event.stopPropagation();
-  showFocus(focusKey);
+/* Auf-/Zuklappen einer Tageskarte inklusive aria-Zustand */
+function setDayExpanded(isoDate, expanded){
+  const card = document.getElementById('dc-' + isoDate);
+  if (!card || !card.dataset.expandable) return;
+  const body = document.getElementById('dcb-' + isoDate);
+  const chev = document.getElementById('dch-' + isoDate);
+  const main = document.getElementById('dcm-' + isoDate);
+  card.classList.toggle('collapsed', !expanded);
+  if (body) body.hidden = !expanded;
+  if (chev) {
+    chev.setAttribute('aria-expanded', String(expanded));
+    chev.setAttribute('aria-label', `${chev.dataset.dayLabel} ${expanded ? 'zuklappen' : 'aufklappen'}`);
+  }
+  if (main && main.dataset.role === 'toggle') main.setAttribute('aria-expanded', String(expanded));
+}
+
+function toggleDay(isoDate){
+  const card = document.getElementById('dc-' + isoDate);
+  if (!card) return;
+  setDayExpanded(isoDate, card.classList.contains('collapsed'));
 }
 
 function toggleAllDays() {
-  const collapsed = document.querySelectorAll('.day-card.collapsed');
+  const collapsed = document.querySelectorAll('.day-card[data-expandable].collapsed');
   if (collapsed.length > 0) {
-    collapsed.forEach(c => c.classList.remove('collapsed'));
+    collapsed.forEach(c => setDayExpanded(c.id.slice(3), true));
     document.getElementById('toggle-days-btn').textContent = 'Nur heute anzeigen';
     document.getElementById('toggle-days-top').style.display = 'block';
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -592,14 +878,14 @@ function toggleAllDays() {
 
 function collapseToToday() {
   const today = todayLocal();
-  document.querySelectorAll('.day-card').forEach(c => {
-    if (c.id !== 'dc-' + today) c.classList.add('collapsed');
-  });
+  document.querySelectorAll('.day-card[data-expandable]').forEach(c =>
+    setDayExpanded(c.id.slice(3), c.id === 'dc-' + today));
   document.getElementById('toggle-days-btn').textContent = 'Alle Tage anzeigen';
   document.getElementById('toggle-days-top').style.display = 'none';
   const todayCard = document.getElementById('dc-' + today);
   if (todayCard) todayCard.scrollIntoView({ behavior:'smooth', block:'start' });
 }
+
 
 /* Focus day */
 function renderExercise(headers,row){
@@ -614,7 +900,7 @@ function renderExercise(headers,row){
   const meta=[];
   if(tempo) meta.push(`<span><b>Tempo</b>${tempo}</span>`);
   if(rest)  meta.push(`<span><b>Pause</b>${rest}</span>`);
-  return `<div class="exc"><div class="exc-name">${expandAbbr(splitMain(name))}</div>${chips?`<div class="exc-data">${chips}</div>`:''}${meta.length?`<div class="exc-meta">${meta.join('')}</div>`:''}${note?`<div class="exc-note">${expandAbbr(note)}</div>`:''}</div>`;
+  return `<div class="exc"><div class="exc-name">${rich(splitMain(name))}</div>${chips?`<div class="exc-data">${chips}</div>`:''}${meta.length?`<div class="exc-meta">${meta.join('')}</div>`:''}${note?`<div class="exc-note">${rich(note)}</div>`:''}</div>`;
 }
 
 function renderWod(w){
@@ -623,19 +909,33 @@ function renderWod(w){
     w.cap    ? `<span class="wod-tag cap">${w.cap}</span>` : ''
   ].join('');
   const lines = w.bewegungen.map(m =>
-    `<div class="wod-line"><div class="wod-reps">${m.reps}</div><div class="wod-move">${expandAbbr(m.name)}</div>${m.detail?`<div class="wod-detail">${m.detail}</div>`:''}</div>`
+    `<div class="wod-line"><div class="wod-reps">${m.reps}</div><div class="wod-move">${rich(m.name)}</div>${m.detail?`<div class="wod-detail">${m.detail}</div>`:''}</div>`
   ).join('');
   return `<div class="wod">
     <div class="wod-struct">${w.struktur}</div>
     ${tags?`<div class="wod-tags">${tags}</div>`:''}
     <div class="wod-lines">${lines}</div>
-    ${w.gesamt?`<div class="wod-total">Gesamt: ${expandAbbr(w.gesamt)}</div>`:''}
+    ${w.gesamt?`<div class="wod-total">Gesamt: ${rich(w.gesamt)}</div>`:''}
   </div>`;
 }
 
 function renderBlock(b){
   const body = b.wod ? renderWod(b.wod) : (b.rows||[]).map(r=>renderExercise(b.headers,r)).join('');
-  return `<div class="blk"><div class="blk-head"><div class="blk-letter">${b.letter}</div><div><div class="blk-title">${b.title}</div><div class="blk-sub">${b.sub}</div></div></div>${body}${b.note?`<div class="blk-note">${b.note}</div>`:''}</div>`;
+  const optional = b.prio === 'optional';
+  const flags = [];
+  /* Nennt der Block-Untertitel bereits eine Dauer („~15 min"), keinen zweiten
+     Zeitwert danebenstellen — sonst steht dieselbe Angabe zweimal da. */
+  const subHasMin = /\d+\s*min/.test(b.sub || '');
+  if (b.min && !subHasMin) flags.push(`<span class="mchip">~${b.min} min</span>`);
+  if (b.prio) flags.push(optional
+    ? `<span class="mchip mchip-opt">Optional · zuerst streichbar</span>`
+    : `<span class="mchip">Kernblock</span>`);
+  return `<div class="blk${optional?' is-optional':''}">
+    <div class="blk-head">
+      <div class="blk-letter">${b.letter}</div>
+      <div class="blk-headtext"><div class="blk-title">${rich(b.title)}</div><div class="blk-sub">${rich(b.sub)}</div></div>
+      ${flags.length?`<div class="blk-flags">${flags.join('')}</div>`:''}
+    </div>${body}${b.note?`<div class="blk-note">${rich(b.note)}</div>`:''}</div>`;
 }
 
 /* WHOOP: kopierbarer Textblock statt Liste */
@@ -645,7 +945,7 @@ function renderWhoopCopy(f){
   const text = `${stripHtml(f.title)}\n${stripHtml(f.date)}\n\n${lines}${introPlain ? `\n\n${introPlain}` : ''}`;
   return `<div class="whoop-copy" data-whoop-text="${encodeURIComponent(text)}">
     <div class="whoop-copy-head"><span class="whoop-copy-title">Für WHOOP kopieren</span>
-      <button class="copy-btn" onclick="copyWhoopText(this)">${COPY_ICON}Kopieren</button></div>
+      <button type="button" class="copy-btn" aria-label="WHOOP-Übungsliste in die Zwischenablage kopieren" onclick="copyWhoopText(this)">${COPY_ICON}Kopieren</button></div>
     <div class="whoop-text">${escapeHtml(text)}</div></div>`;
 }
 
@@ -658,19 +958,38 @@ function copyWhoopText(btn){
   });
 }
 
+/* Dauer- und Prioritätskopf einer Routine */
+function routineMetaHTML(f){
+  const prio = prioOf('own');
+  const chips = [`<span class="mchip prio-1">Fokus-Tag · ${prio.chip}</span>`];
+  let note = '';
+  if (f.dauer) {
+    chips.push(`<span class="mchip">Dauer gesamt ${f.dauer.gesamt}</span>`);
+    chips.push(`<span class="mchip">Kernzeit ${f.dauer.kern} (ohne optionale Blöcke)</span>`);
+    note = [f.dauer.warmup, f.dauer.hinweis].filter(Boolean).join(' · ');
+  }
+  return `<div class="routine-meta">${chips.join('')}</div>` +
+    (note ? `<p class="routine-meta-note">${note}</p>` : '');
+}
+
 function renderFocus(key){
   const w=getWeek(currentWeekId), f=w.focusDays[key];
   if(!f){ document.getElementById('focusContent').innerHTML='<div class="empty">Kein Focus-Tag.</div>'; return; }
   document.getElementById('focusContent').innerHTML=`
-    <div class="crumb"><span class="lnk" onclick="showWeek()">${w.label}</span><span class="sep">/</span>Focus-Tag ${key}</div>
+    <div class="crumb"><button type="button" class="lnk" onclick="showWeek()">${w.label}</button><span class="sep">/</span>Focus-Tag ${key}</div>
     <div class="page-header"><div class="eyebrow">${f.date}</div><h1>${f.title}</h1><div class="sub">${f.sub}</div></div>
-    <p class="detail-sub">${f.intro}</p>
+    ${routineMetaHTML(f)}
+    ${discHTML('rule-rec-focus', 'Recovery-Anpassung: was gilt unter 50 % und unter 34 %', recoveryPanelHTML(f.recoveryDay))}
+    ${discHTML('rule-out-focus', 'Wenn diese Einheit ausfällt oder die Zeit nicht reicht', ausfallPanelHTML())}
+    <p class="detail-sub">${rich(f.intro)}</p>
     ${f.blocks.map(renderBlock).join('')}
     ${renderWhoopCopy(f)}
-    <div class="nav-back" onclick="showWeek()" style="margin-top:28px">
-      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 3L5 8l5 5"/></svg>
+    <div class="gloss-wrap" id="glossHost-focus"></div>
+    <button type="button" class="nav-back" onclick="showWeek()" style="margin-top:28px">
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M10 3L5 8l5 5"/></svg>
       Zurück zum Wochenplan
-    </div>`;
+    </button>`;
+  fillGlossary('focusContent', 'glossHost-focus');
 }
 
 /* Navigation (Hash-Routing) */
@@ -679,7 +998,10 @@ let renderedWeekId = null;
 function switchView(id){
   document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
   document.getElementById(id).classList.add('active');
-  window.scrollTo({top:0,behavior:'smooth'});
+  /* Hart auf 0 setzen, nicht smooth: renderWeek() scrollt danach im
+     requestAnimationFrame auf den heutigen Tag — eine laufende Smooth-
+     Animation würde diesen zweiten Scroll sonst überschreiben. */
+  window.scrollTo({top:0});
 }
 
 function navigate(wid, fkey){
@@ -692,6 +1014,7 @@ function showWeek(){ navigate(currentWeekId); }
 function showFocus(key){ navigate(currentWeekId, key); }
 
 function applyRoute(){
+  closeTerm();
   const [wid, fkey] = location.hash.slice(1).split('/');
   if (wid && getWeek(wid)) {
     currentWeekId = wid;

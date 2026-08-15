@@ -1,0 +1,11 @@
+# Requirements für scripts/analyze_video.py — separat von den übrigen
+# Scripts, weil mediapipe eine schwere Abhängigkeit ist (u. a. eigenes
+# OpenCV/Protobuf), die die restlichen Scripts nicht brauchen.
+#
+# Installation:
+#   python3 -m pip install -r scripts/requirements-video.txt
+
+mediapipe>=0.10
+opencv-python>=4.9
+numpy>=1.26
+matplotlib>=3.8

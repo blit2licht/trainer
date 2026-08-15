@@ -319,8 +319,16 @@ def torso_scale(points):
 # ----------------------------------------------------------------- Modus BMU
 
 SUPPORT_ENTER = 0.12   # Stütz-Signal-Schwelle zum Eintritt (Torsolängen)
-SUPPORT_EXIT = -0.05   # Schwelle zum Verlassen — Hysterese gegen Landmark-Jitter
+# Echtes Verlassen der Stange (Dismount) reißt das Signal auf ~-1 bis -2;
+# ein flaches Zittern mitten in einer durchgehenden Pull-under-Bewegung
+# reicht nur auf ~-0.1 bis -0.2. -0.3 trennt beides zuverlässig, ohne einen
+# einzelnen kontinuierlichen Turnover künstlich in zwei Reps zu zerreißen.
+SUPPORT_EXIT = -0.3
 SUPPORT_MIN_LEN_S = 0.4     # kürzere Ausschläge sind Kip-Peitsche/Abschwung, kein Halt
+# Ein echter Support drückt das Signal auf ~0.9-1.2 (Handgelenke eine knappe
+# Torsolänge unter den Schultern). Peitschen-/Abschwung-Artefakte bleiben
+# bei ~0.5-0.6 hängen — das Peak-Kriterium filtert sie unabhängig von Dauer.
+SUPPORT_PEAK_MIN = 0.7
 # Kein Merge nahe beieinanderliegender Runs: das Stütz-Signal ist bereits
 # savgol-geglättet, echte Frame-Aussetzer reißen es dadurch nicht auseinander
 # — separate Runs sind fast immer tatsächlich getrennte Bewegungen.
@@ -366,6 +374,7 @@ def analyze_bmu(points, fps):
         support_signal, SUPPORT_ENTER, SUPPORT_EXIT,
         min_len=max(2, int(fps * SUPPORT_MIN_LEN_S)),
     )
+    runs = [(s, e) for s, e in runs if np.max(support_signal[s:e]) >= SUPPORT_PEAK_MIN]
 
     reps = []
     for start, end in runs:

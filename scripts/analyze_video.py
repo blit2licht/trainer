@@ -15,6 +15,13 @@ nur verdichtete Erkenntnisse manuell nach coach/state.json.
 Installation (mediapipe ist schwer, daher eigene Requirements-Datei):
     python3 -m pip install -r scripts/requirements-video.txt
 
+Beim ersten Lauf wird automatisch das Google-Pose-Modell (pose_landmarker_full,
+~9,4 MB) nach ~/.cache/trainer/mediapipe_models/ geladen und dort gecacht —
+kein Repo-Commit, kein erneuter Download bei Folgeläufen. Nutzt die
+MediaPipe-Tasks-API (mp.tasks.vision.PoseLandmarker), da die ältere
+Solutions-API (mp.solutions.pose) in aktuellen mediapipe-Wheels für macOS
+arm64 nicht mehr enthalten ist.
+
 Nutzung:
     python3 scripts/analyze_video.py --mode bmu    --video ~/Videos/bmu.mp4
     python3 scripts/analyze_video.py --mode snatch --video ~/Videos/sn.mp4 --debug
@@ -62,6 +69,30 @@ NEEDED = [
     L_SHOULDER, R_SHOULDER, L_WRIST, R_WRIST,
     L_HIP, R_HIP, L_KNEE, R_KNEE, L_ANKLE, R_ANKLE,
 ]
+
+# Skelett-Kanten für die Debug-Annotation (Teilmenge der Standard-BlazePose-
+# Connections — Google liefert diese Liste über die Tasks-API nicht mehr mit).
+POSE_CONNECTIONS = [
+    (11, 12), (11, 13), (13, 15), (12, 14), (14, 16),
+    (11, 23), (12, 24), (23, 24),
+    (23, 25), (25, 27), (27, 29), (27, 31),
+    (24, 26), (26, 28), (28, 30), (28, 32),
+]
+
+MODEL_URL = ("https://storage.googleapis.com/mediapipe-models/pose_landmarker/"
+             "pose_landmarker_full/float16/latest/pose_landmarker_full.task")
+MODEL_PATH = os.path.expanduser("~/.cache/trainer/mediapipe_models/pose_landmarker_full.task")
+
+
+def ensure_model():
+    """Pose-Landmarker-Modell lokal cachen (einmaliger Download von Google)."""
+    if os.path.isfile(MODEL_PATH):
+        return MODEL_PATH
+    os.makedirs(os.path.dirname(MODEL_PATH), exist_ok=True)
+    import urllib.request
+    print(f"Lade Pose-Modell nach {MODEL_PATH} …")
+    urllib.request.urlretrieve(MODEL_URL, MODEL_PATH)
+    return MODEL_PATH
 
 
 # ---------------------------------------------------------------- Hilfsmittel
@@ -133,6 +164,38 @@ def contiguous_runs(mask, min_len):
     return runs
 
 
+def hysteresis_runs(signal, enter, exit_, min_len, merge_gap=0):
+    """Schmitt-Trigger-Runs: Start erst über `enter`, Ende erst unter `exit_`.
+
+    Ein einfacher Nulldurchgangs-Trigger reißt bei Landmark-Jitter um die
+    Schwelle in viele Mini-Runs — sowohl kurze Störungen als eigene
+    Fehl-Runs (z. B. beim Ab-/Aufschwingen) als auch kurze Aussetzer
+    innerhalb eines echten, länger anhaltenden Halts. `merge_gap` fügt
+    Runs mit kleinem Abstand zusammen, bevor die Mindestlänge greift.
+    """
+    raw = []
+    state = False
+    start = None
+    for i, v in enumerate(signal):
+        if not state and v > enter:
+            state = True
+            start = i
+        elif state and v < exit_:
+            raw.append((start, i))
+            state = False
+    if state:
+        raw.append((start, len(signal)))
+
+    merged = []
+    for start, end in raw:
+        if merged and start - merged[-1][1] <= merge_gap:
+            merged[-1] = (merged[-1][0], end)
+        else:
+            merged.append((start, end))
+
+    return [(s, e) for s, e in merged if e - s >= min_len]
+
+
 # ------------------------------------------------------------------ Pipeline
 
 def extract_landmarks(video_path, debug_path=None):
@@ -142,6 +205,10 @@ def extract_landmarks(video_path, debug_path=None):
     unsichere Landmarks (visibility < 0.5) als NaN.
     """
     import mediapipe as mp
+    from mediapipe.tasks import python as mp_python
+    from mediapipe.tasks.python import vision as mp_vision
+
+    model_path = ensure_model()
 
     cap = cv2.VideoCapture(video_path)
     if not cap.isOpened():
@@ -157,37 +224,56 @@ def extract_landmarks(video_path, debug_path=None):
             debug_path, cv2.VideoWriter_fourcc(*"mp4v"), fps, (width, height)
         )
 
-    drawing = mp.solutions.drawing_utils
-    pose_module = mp.solutions.pose
+    options = mp_vision.PoseLandmarkerOptions(
+        base_options=mp_python.BaseOptions(model_asset_path=model_path),
+        running_mode=mp_vision.RunningMode.VIDEO,
+        num_poses=1,
+        min_pose_detection_confidence=0.5,
+        min_pose_presence_confidence=0.5,
+        min_tracking_confidence=0.5,
+    )
 
     frames = []
-    # static_image_mode=False → Video-Modus mit Tracking zwischen den Frames
-    with pose_module.Pose(
-        static_image_mode=False,
-        model_complexity=2,
-        smooth_landmarks=True,
-        min_detection_confidence=0.5,
-        min_tracking_confidence=0.5,
-    ) as pose:
+    last_ts = -1
+    with mp_vision.PoseLandmarker.create_from_options(options) as landmarker:
+        frame_idx = 0
         while True:
             ok, frame = cap.read()
             if not ok:
                 break
-            result = pose.process(cv2.cvtColor(frame, cv2.COLOR_BGR2RGB))
+
+            ts_ms = int(frame_idx * 1000 / fps)
+            if ts_ms <= last_ts:
+                ts_ms = last_ts + 1
+            last_ts = ts_ms
+
+            mp_image = mp.Image(
+                image_format=mp.ImageFormat.SRGB,
+                data=cv2.cvtColor(frame, cv2.COLOR_BGR2RGB),
+            )
+            result = landmarker.detect_for_video(mp_image, ts_ms)
 
             row = np.full((33, 2), np.nan)
             if result.pose_landmarks:
-                for i, lm in enumerate(result.pose_landmarks.landmark):
-                    if lm.visibility >= MIN_VISIBILITY:
+                lms = result.pose_landmarks[0]
+                for i, lm in enumerate(lms):
+                    vis = lm.visibility if lm.visibility is not None else 1.0
+                    if vis >= MIN_VISIBILITY:
                         row[i] = (lm.x * width, lm.y * height)
                 if writer is not None:
-                    drawing.draw_landmarks(
-                        frame, result.pose_landmarks, pose_module.POSE_CONNECTIONS
-                    )
+                    for a, b in POSE_CONNECTIONS:
+                        if not (np.isnan(row[a]).any() or np.isnan(row[b]).any()):
+                            cv2.line(frame, tuple(row[a].astype(int)),
+                                     tuple(row[b].astype(int)), (0, 255, 0), 2)
+                    for i in range(33):
+                        if not np.isnan(row[i]).any():
+                            cv2.circle(frame, tuple(row[i].astype(int)), 4, (0, 0, 255), -1)
             frames.append(row)
 
             if writer is not None:
                 writer.write(frame)
+
+            frame_idx += 1
 
     cap.release()
     if writer is not None:
@@ -212,7 +298,15 @@ def extract_landmarks(video_path, debug_path=None):
 
 
 def mean_pair(points, left, right):
-    return (points[:, left, :] + points[:, right, :]) / 2.0
+    """Framewise Mittel aus linkem/rechtem Landmark, NaN-robust.
+
+    Bei seitlicher Kameraperspektive ist eine Körperseite oft komplett
+    verdeckt (0 % Erkennungsrate) — nanmean nutzt dann automatisch die
+    sichtbare Seite statt beide Serien auf NaN zu ziehen.
+    """
+    stacked = np.stack([points[:, left, :], points[:, right, :]])
+    with np.errstate(invalid="ignore"):
+        return np.nanmean(stacked, axis=0)
 
 
 def torso_scale(points):
@@ -223,6 +317,25 @@ def torso_scale(points):
 
 
 # ----------------------------------------------------------------- Modus BMU
+
+SUPPORT_ENTER = 0.12   # Stütz-Signal-Schwelle zum Eintritt (Torsolängen)
+SUPPORT_EXIT = -0.05   # Schwelle zum Verlassen — Hysterese gegen Landmark-Jitter
+SUPPORT_MIN_LEN_S = 0.4     # kürzere Ausschläge sind Kip-Peitsche/Abschwung, kein Halt
+# Kein Merge nahe beieinanderliegender Runs: das Stütz-Signal ist bereits
+# savgol-geglättet, echte Frame-Aussetzer reißen es dadurch nicht auseinander
+# — separate Runs sind fast immer tatsächlich getrennte Bewegungen.
+
+
+def swing_phase(hip_angle, window_start, window_end):
+    """Hohlkörper-Tief und darauffolgenden Arch-Peak in einem Zeitfenster finden."""
+    if window_end - window_start < 2:
+        return None
+    seg = slice(window_start, window_end)
+    hollow_idx = window_start + int(np.argmin(hip_angle[seg]))
+    arch_seg = slice(hollow_idx, window_end)
+    arch_idx = hollow_idx + int(np.argmax(hip_angle[arch_seg]))
+    return hollow_idx, arch_idx
+
 
 def analyze_bmu(points, fps):
     t = np.arange(len(points)) / fps
@@ -245,10 +358,14 @@ def analyze_bmu(points, fps):
     hip = mean_pair(points, L_HIP, R_HIP)
 
     # Bildkoordinaten: y wächst nach unten. In Stützposition liegen die
-    # Handgelenke tiefer als die Schultern → Signal > 0.
+    # Handgelenke tiefer als die Schultern → Signal > 0. Hysterese statt
+    # Nulldurchgang, sonst reißt Landmark-Jitter beim Ab-/Aufschwingen den
+    # echten Support-Halt in mehrere Mini-Runs.
     support_signal = savgol((wrist[:, 1] - shoulder[:, 1]) / scale, max(5, int(fps * 0.1)))
-    support = support_signal > 0.0
-    runs = contiguous_runs(support, min_len=max(2, int(fps * 0.08)))
+    runs = hysteresis_runs(
+        support_signal, SUPPORT_ENTER, SUPPORT_EXIT,
+        min_len=max(2, int(fps * SUPPORT_MIN_LEN_S)),
+    )
 
     reps = []
     for start, end in runs:
@@ -264,6 +381,38 @@ def analyze_bmu(points, fps):
         float(np.max(hip_angle[baseline_window]))
         if hip_angle[baseline_window].size else float("nan")
     )
+
+    # Pro-Rep-Kennzahlen: Hohlkörper → Arch → Pull-under → Support.
+    # Gelten für jeden erkannten Rep, unabhängig davon, ob Single oder
+    # Linked Double — bei Linked Doubles ergänzen sie die Übergangsdaten,
+    # bei einem Single BMU sind sie die einzige verfügbare Auswertung.
+    rep_metrics = []
+    for i, rep in enumerate(reps):
+        window_start = reps[i - 1]["end"] if i > 0 else 0
+        phase = swing_phase(hip_angle, window_start, rep["start"])
+        entry = {"rep": i + 1}
+        if phase is not None:
+            hollow_idx, arch_idx = phase
+            descent = slice(arch_idx, rep["start"] + 1)
+            horiz = np.abs(hip[descent, 0] - wrist[descent, 0]) / scale
+            entry.update({
+                "hohlkoerper_s": round(float(t[hollow_idx]), 3),
+                "hohlkoerper_hueftwinkel_grad": round(float(hip_angle[hollow_idx]), 1),
+                "arch_s": round(float(t[arch_idx]), 3),
+                "arch_hueftwinkel_grad": round(float(hip_angle[arch_idx]), 1),
+                "hohlkoerper_zu_arch_s": round(float(t[arch_idx] - t[hollow_idx]), 3),
+                "arch_zu_support_s": round(float(t[rep["start"]] - t[arch_idx]), 3),
+                "hueft_hand_abstand_pullunder_max_torsolaengen": round(float(np.max(horiz)), 3),
+                "hueft_hand_abstand_pullunder_mittel_torsolaengen": round(float(np.mean(horiz)), 3),
+            })
+        entry.update({
+            "support_dauer_s": round(float(t[rep["end"] - 1] - t[rep["start"]]), 3),
+            "hueftwinkel_support_max_grad": round(
+                float(np.max(hip_angle[rep["start"]:rep["end"]])), 1),
+            "schulterwinkel_support_min_grad": round(
+                float(np.min(shoulder_angle[rep["start"]:rep["end"]])), 1),
+        })
+        rep_metrics.append(entry)
 
     transitions = []
     for i in range(len(reps) - 1):
@@ -294,10 +443,30 @@ def analyze_bmu(points, fps):
             "uebergangsdauer_s": round(float(t[nxt] - t[leave]), 3),
         })
 
-    # Kernfrage: voller Arch-Neuaufbau oder verkürzter Zug?
-    if not transitions:
-        verdict = ("Kein vollständiger Rep-Übergang erkannt — Video prüfen "
-                   "(Bildausschnitt, Anzahl Reps, Landmark-Qualität).")
+    # Bewertung: bei 0 Reps Fehlermeldung, bei genau 1 Rep eine deskriptive
+    # Einzel-Rep-Auswertung (keine Rhythmus-Frage möglich — dafür braucht es
+    # einen Linked Double), bei ≥2 Reps die Arch-Rebuild-Kernfrage.
+    if not reps:
+        verdict = ("Kein Rep erkannt — Video prüfen (Bildausschnitt, "
+                   "Landmark-Qualität, Stütz-Signal im Plot ansehen).")
+    elif len(reps) == 1:
+        rm = rep_metrics[0]
+        if "arch_s" in rm:
+            verdict = (
+                f"Einzelner BMU: Hohlkörper bei {rm['hohlkoerper_s']} s "
+                f"({rm['hohlkoerper_hueftwinkel_grad']}°), Arch-Peak bei {rm['arch_s']} s "
+                f"({rm['arch_hueftwinkel_grad']}°) — Peitsche dauert "
+                f"{rm['hohlkoerper_zu_arch_s']} s. Pull-under bis Support-Eintritt "
+                f"{rm['arch_zu_support_s']} s, Hüft-Hand-Abstand dabei max. "
+                f"{rm['hueft_hand_abstand_pullunder_max_torsolaengen']} Torsolängen. "
+                f"Im Support: Hüftwinkel bis {rm['hueftwinkel_support_max_grad']}°, "
+                f"Schulterwinkel bis {rm['schulterwinkel_support_min_grad']}°. "
+                "Für die Rhythmus-Kernfrage (Arch-Neuaufbau vs. verkürzter Zug bei "
+                "Rep 2) braucht es einen Linked-Double-Clip mit mind. 2 Reps — diese "
+                "Einzelwerte sind aber der Referenzpunkt dafür."
+            )
+        else:
+            verdict = "Einzelner BMU erkannt, aber kein Schwung vor dem Turnover im Bild."
     else:
         pct = [x["arch_vs_baseline_prozent"] for x in transitions
                if x["arch_vs_baseline_prozent"] is not None]
@@ -323,6 +492,7 @@ def analyze_bmu(points, fps):
         "baseline_arch_grad": (
             round(baseline_arch, 1) if np.isfinite(baseline_arch) else None
         ),
+        "rep_kennzahlen": rep_metrics,
         "uebergaenge": transitions,
         "bewertung": verdict,
         "hinweis": ("Winkel aus 2D-Projektion — bei schrägem Kamerawinkel systematisch "
@@ -336,6 +506,7 @@ def analyze_bmu(points, fps):
         "shoulder_angle": shoulder_angle,
         "support_signal": support_signal,
         "reps": reps,
+        "rep_metrics": rep_metrics,
         "transitions": transitions,
     }
     return summary, series
@@ -364,6 +535,10 @@ def plot_bmu(series, path):
     for ax in axes:
         for rep in series["reps"]:
             ax.axvspan(t[rep["start"]], t[rep["end"] - 1], color="#3a7d44", alpha=0.12)
+        for rm in series["rep_metrics"]:
+            if "hohlkoerper_s" in rm:
+                ax.axvline(rm["hohlkoerper_s"], color="#888", lw=1.0, ls=":")
+                ax.axvline(rm["arch_s"], color="#c1440e", lw=1.0, ls="--")
         ax.grid(alpha=0.25)
 
     fig.tight_layout()

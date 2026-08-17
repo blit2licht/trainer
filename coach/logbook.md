@@ -2,6 +2,21 @@
 
 Kurze, verdichtete Wocheneinträge. Rohdaten bleiben in WHOOP, Strava und der Website-Datenbank.
 
+## 2026-W33 · 10.–16. August · Meso 3 W2 — Progression aus Testständen
+
+**Plan vollständig befolgt.** Mo Ruhe ✓ · Di Box HPC + WOD ✓ (feel 5, 25 WBS unbroken im ersten Satz, 2. schnellster der Class) · Mi Fokus A ✓ (feel 5) · Do Box Push Press + WOD ✓ (feel 4) · Fr Ruhe ✓ (Gymnastics auf Sa vorgezogen) · Sa Fokus B ✓ (feel 2 — BMU-Baustelle) + Ride Fischmeister ✓ (~74 km über zwei Segmente) · So Reisetag Italien ✓ (kein Training).
+
+**Kernbefunde:**
+- **Snatch-Ceiling 60 kg zweite Woche in Folge sauber reproduziert** (Mi, „gute Form“) — keine Eintagsfliege mehr.
+- **OHS-Lastaufbau gestartet, aber konservativ:** 5×3 gut bis 50 kg, 52,5 nicht angesteuert. Nächster Zielsatz W34.
+- **Strict HSPU 4×7 „easy“** — Stufe klar bestätigt, W34 auf 4×8.
+- **BMU-Protokollwechsel startet holprig:** Linked Doubles 5×2 liefen Sa nicht sauber (session_feel 2, „Muscle-ups haben heute nicht gut funktioniert“). Martin hat übers Wochenende eine MediaPipe-basierte Video-Analyse-Pipeline gebaut (3 Commits 15.08., inkl. Rep-Detection-Bugfix), bisher aber nur 2 Einzel-BMU-Clips ausgewertet — für die eigentliche Rhythmus-Diagnose (Arch-Neuaufbau vs. verkürzter Zug bei Rep 2) fehlt noch ein Linked-Double-Clip. Stufe wird in W34 wiederholt statt gesteigert.
+- **WPU und T2B** liefen laut Plan (3×4 @ +5 kg bzw. 3×10), aber ohne explizites Satz-Log in der Notiz — plangemäß angenommen, nicht als bestätigter Bestwert gebucht.
+- **Quellenklärung:** Di-Notiz sprach von „Clean & Jerk bis 80kg“ — laut Martin (17.08.) ein Verschreiber, tatsächlich plangemäß Hang Power Clean. Kein neuer C&J-Fortschritt gebucht, Ceiling bleibt bei 80 kg (W32 Sa).
+- Recovery die ganze Woche gelb (38–74 %), kein roter Tag. Gewicht W33-Schnitt 81,84 kg (7 Messungen) vs. W32 81,95 kg — leicht fallend, zählt aber laut Messregel noch nicht als Bewertung (die kommt erst W34 vs. W33).
+
+**Offen für W34:** C&J 82,5 (diesmal ohne Slot wegen Italien-Reise, nächster passender Fokus-A-Termin), BMU-Linked-Double-Videodiagnose, erste echte Wiegetrend-Bewertung beim W34-Review.
+
 ## 2026-W32 · 3.–9. August · Meso 3 W1 — Testtag + Defizit-Start
 
 **Plan weitgehend befolgt — 5 von 6 Einheiten, So-Box ausgefallen (ersetzt durch Doppelride).** Mo Box Intervall-Chipper ✓ (feel 4, „Burpees tougher als gedacht") · Di Box Snatch + RFT ✓ (Run → Assault Bike substituiert) · Mi Ruhe (Termin) ✓ · Do Abend-Ride mit der Box ✓ (59,4 km, 2:07 h, Ø-HF 127) · Fr Fokus B Gymnastics-Testtag ✓ (feel 3) · Sa Fokus A C&J ✓ (feel 5) · **So Box ausgefallen** — stattdessen 2 Rides (72,8 km gesamt) bei Recovery 36 %.

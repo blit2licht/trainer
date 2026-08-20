@@ -104,6 +104,8 @@ button.dc-main:hover { background:var(--card-muted); }
 .dc-line1 { display:flex; align-items:center; gap:10px; width:100%; flex-wrap:wrap; }
 .dc-day { font-family:var(--disp); font-size:18px; font-weight:700; color:var(--ink); letter-spacing:-.01em; }
 .dc-date { font-family:var(--mono); font-size:12px; font-weight:600; color:var(--ink3); }
+.dc-blocks > span { display:flex; align-items:baseline; justify-content:space-between; gap:12px; }
+.dcb-last { font-family:var(--mono); font-size:15px; font-weight:700; color:var(--accent-ink); white-space:nowrap; }
 .dc-blocks { display:flex; flex-direction:column; gap:2px; margin-top:3px; font-family:var(--disp); font-size:16px; font-weight:700; color:var(--ink); line-height:1.3; letter-spacing:-.01em; }
 .dc-einheit { font-size:16px; font-weight:600; color:var(--ink); }
 .dc-metarow { display:flex; flex-wrap:wrap; gap:6px; }
@@ -264,6 +266,9 @@ button.term::after { content:''; position:absolute; inset:-6px -4px; }
 .blk-flags { display:flex; flex-wrap:wrap; gap:6px; align-items:center; margin-bottom:11px; }
 /* Übungsnotiz: benannter Griff statt „Mehr" — der Text ist weg, die Zahlen stehen. */
 .exc-note-wrap { margin-top:11px; }
+.dc-note-wrap { margin-top:6px; }
+.dc-note-wrap-rest { margin:0 10px 4px; }
+.dc-note-wrap .dc-note { margin-top:2px; }
 .exc-note-btn { display:inline-flex; align-items:center; gap:7px; min-height:44px; padding:0 4px 0 0; background:none; border:none; cursor:pointer; font-family:var(--mono); font-size:12px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--ink3); }
 .exc-note-btn:hover { color:var(--accent-ink); }
 .exc-note-btn svg { width:13px; height:13px; transition:transform .15s; }
@@ -822,21 +827,28 @@ function dayCardHTML(d, w, today){
     /* Platzhalter statt Chevron: hält die Badge-Spalte auf derselben
        senkrechten Achse wie bei den aufklappbaren Karten. */
     return `<article class="day-card t-rest${isToday?' is-today':''}" id="dc-${d.isoDate}">
-      <div class="dc-top"><div class="dc-main dc-main-static">${line1}${unit}${metaRow}</div><span class="dc-chev-spacer" aria-hidden="true"></span></div>
-      ${d.note ? `<div class="dc-note dc-note-rest">${richW(d.note)}</div>` : ''}
+      <div class="dc-top"><div class="dc-main dc-main-static">${line1}${unit}</div><span class="dc-chev-spacer" aria-hidden="true"></span></div>
+      ${d.note ? `<div class="dc-note-wrap dc-note-wrap-rest">
+        <button type="button" class="exc-note-btn" id="dn-${d.isoDate}-btn" aria-expanded="false" aria-controls="dn-${d.isoDate}"
+                onclick="toggleDayNote('${d.isoDate}')">${CHEV_DOWN}Warum so</button>
+        <div class="dc-note dc-note-rest" id="dn-${d.isoDate}" hidden>${richW(d.note)}</div>
+      </div>` : ''}
     </article>`;
   }
 
   /* Fokus-Tage zeigen ihre Kernblöcke als Liste statt einer langen Überschrift.
      `kurz` ist die gepflegte Kurzform; fehlt sie, wird der Titel entklammert. */
   const kernListe = f && f.blocks
-    ? f.blocks.filter(b => b.prio !== 'optional')
-        .map(b => b.kurz || stripHtml(b.title).replace(/\s*\([^)]*\)/g,'').trim())
+    ? f.blocks.filter(b => b.prio !== 'optional').map(b => ({
+        name: b.kurz || stripHtml(b.title).replace(/\s*\([^)]*\)/g,'').trim(),
+        last: blockTopLoad(b)
+      }))
     : [];
   /* Tage mit `wod` tragen keine Einheiten-Überschrift: Sie zählt genau die
      Bewegungen auf, die direkt darunter strukturiert stehen. */
   const einheitHTML = kernListe.length
-    ? `<span class="dc-blocks">${kernListe.map(k=>`<span>${escapeHtml(k)}</span>`).join('')}</span>`
+    ? `<span class="dc-blocks">${kernListe.map(k=>
+        `<span><span class="dcb-name">${escapeHtml(k.name)}</span>${k.last?`<span class="dcb-last">${escapeHtml(k.last)}</span>`:''}</span>`).join('')}</span>`
     : (d.wod ? '' : `<span class="dc-einheit">${d.einheit}</span>`);
   const mainInner = `${line1}${einheitHTML}${metaRow}`;
 
@@ -856,7 +868,9 @@ function dayCardHTML(d, w, today){
   /* Lastangaben stehen außerhalb des Karten-Buttons: sie tragen
      Glossar-Buttons und dürfen deshalb nicht in einem Button verschachtelt
      sein. Sie bleiben immer sichtbar, auch bei zugeklappter Karte. */
-  const rx = d.rx === '—' ? '' :
+  /* Fokus-Tage tragen ihre Lasten in der Blockliste — eine zweite Lastzeile
+     wäre genau die Wiederholung, die dann nicht mehr gelesen wird. */
+  const rx = (d.rx === '—' || kernListe.length) ? '' :
     `<div class="dc-rx"><span class="dc-rx-main">${richW(d.rx)}</span>${d.rpe?`<span class="rpe-pill">${d.rpe}</span>`:''}</div>`;
 
   /* Der Aufruf steht bewusst unter den Lastangaben: erst die Zahlen, dann der
@@ -871,9 +885,17 @@ function dayCardHTML(d, w, today){
   /* Box-Tage tragen ihre Struktur als `wod`-Objekt, nicht als Fließtext —
      dieselbe Darstellung wie im Fokus-Tag. Fehlt sie, bleibt der Untertitel. */
   const wods = d.wod ? (Array.isArray(d.wod) ? d.wod : [d.wod]).map(renderWod).join('') : '';
+  /* Die Begründung des Coachs liegt hinter demselben Griff wie im Fokus-Tag.
+     Erhalten, aber nicht im Weg — sie wird beim Durchscrollen nicht gelesen. */
+  const noteBlock = d.note ? `<div class="dc-note-wrap">
+      <button type="button" class="exc-note-btn" id="dn-${d.isoDate}-btn" aria-expanded="false" aria-controls="dn-${d.isoDate}"
+              onclick="toggleDayNote('${d.isoDate}')">${CHEV_DOWN}Warum so</button>
+      <div class="dc-note" id="dn-${d.isoDate}" hidden>${richW(d.note)}</div>
+    </div>` : '';
+  /* Fokus-Tage: `sub` wiederholt die Blockliste im Kartenkopf. */
   const body = `<div class="dc-body" id="dcb-${d.isoDate}" hidden>
-      ${wods || renderSub(d.sub)}
-      ${d.note ? `<div class="dc-note">${richW(d.note)}</div>` : ''}
+      ${wods || (kernListe.length ? '' : renderSub(d.sub))}
+      ${noteBlock}
       ${strava}
       ${buildNoteHTML(d.isoDate, d.type)}
     </div>`;
@@ -890,13 +912,12 @@ function renderWeek(){
   const today = todayLocal();
   const cards = w.days.map(d => dayCardHTML(d, w, today)).join('');
 
+  /* Kein Seitenkopf: Die Wochenauswahl darüber nennt Woche und Zeitraum bereits,
+     Phase und Wochen-ID sind Planungsinfo und stehen im Repo. */
   document.getElementById('weekContent').innerHTML = `
-    <div class="page-header"><div class="eyebrow">${w.meso}</div><h1>Wochenplan</h1>
-    <div class="sub">${w.label.split('·').slice(1).join('·').trim()} &nbsp;·&nbsp; ${w.phase} &nbsp;·&nbsp; ${w.id}</div></div>
     <div class="rules-bar">
-      <p class="rules-head">Regeln dieser Woche</p>
-      ${discHTML('rule-rec-week', 'Recovery-Anpassung: was gilt unter 50 % und unter 34 %', recoveryPanelHTML(null))}
-      ${discHTML('rule-out-week', 'Wenn eine Einheit ausfällt: was zuerst gestrichen wird', ausfallPanelHTML())}
+      ${discHTML('rule-rec-week', 'Recovery-Anpassung', recoveryPanelHTML(null))}
+      ${discHTML('rule-out-week', 'Wenn eine Einheit ausfällt', ausfallPanelHTML())}
     </div>
     <button type="button" class="show-all-btn" id="toggle-days-top" onclick="collapseToToday()" style="display:none;margin-bottom:12px">Nur heute anzeigen</button>
     <div class="days">${cards}</div>
@@ -974,6 +995,13 @@ function collapseToToday() {
 
 /* Focus day */
 let excSeq = 0;
+function toggleDayNote(d){
+  const panel = document.getElementById('dn-' + d), btn = document.getElementById('dn-' + d + '-btn');
+  if (!panel || !btn) return;
+  const open = panel.hidden;
+  panel.hidden = !open;
+  btn.setAttribute('aria-expanded', String(open));
+}
 function toggleExcNote(n){
   const panel = document.getElementById('excn-' + n), btn = document.getElementById('excn-' + n + '-btn');
   if (!panel || !btn) return;
@@ -1053,6 +1081,24 @@ function blockPeek(b){
   if (!last) peek = [main(field(b.headers, r, ['übung'])), sets].filter(Boolean).join(' · ');
   if (rows.length > 1) peek += ` · +${rows.length - 1}`;
   return peek;
+}
+
+/* Das Maximalgewicht eines Blocks — die letzte Stufe der schwersten Zeile.
+   Es gehört direkt an die Übung in der Wochenkarte, damit es sich nirgends
+   wiederholen muss. Körpergewichtsblöcke liefern nichts. */
+function blockTopLoad(b){
+  const rows = b.rows || [];
+  if (!rows.length) return '';
+  const rpeOf = r => {
+    const m = String(field(b.headers, r, ['rpe']) || '').match(/\d+/g);
+    return m ? Math.max(...m.map(Number)) : -1;
+  };
+  let idx = 0;
+  rows.forEach((r,i) => { if (rpeOf(r) > rpeOf(rows[idx])) idx = i; });
+  const roh = stripHtml(String(field(b.headers, rows[idx], ['last']) || '').split('||')[0]);
+  const stufen = roh.split(/\s*(?:·|→)\s*/).filter(Boolean);
+  const letzte = (stufen[stufen.length-1] || '').trim();
+  return /\d/.test(letzte) ? letzte : '';
 }
 
 /* Ablaufzustand eines Fokus-Tags. Blöcke sind standardmäßig OFFEN — die Zahlen
@@ -1243,12 +1289,12 @@ function renderFocus(key){
     <div class="crumb"><button type="button" class="lnk" onclick="showWeek()">${w.label}</button><span class="sep">/</span>Focus-Tag ${key}</div>
     <div class="page-header"><div class="eyebrow">${f.date}</div><h1>${f.title}</h1></div>
     ${routineMetaHTML(f)}
-    ${discHTML('rule-rec-focus', 'Recovery-Anpassung: was gilt unter 50 % und unter 34 %', recoveryPanelHTML(f.recoveryDay))}
+    ${discHTML('rule-rec-focus', 'Recovery-Anpassung', recoveryPanelHTML(f.recoveryDay))}
     ${whyParts ? discHTML('focus-why', 'Warum diese Einheit so aussieht', whyParts) : ''}
     ${f.blocks.map(b => renderBlock(b, state)).join('')}
     ${focusDay ? buildNoteHTML(focusDay.isoDate, 'own', 'f-') : ''}
     ${renderWhoopCopy(f)}
-    ${discHTML('rule-out-focus', 'Wenn diese Einheit ausfällt oder die Zeit nicht reicht', ausfallPanelHTML())}
+    ${discHTML('rule-out-focus', 'Wenn diese Einheit ausfällt', ausfallPanelHTML())}
     <div class="gloss-wrap" id="glossHost-focus"></div>
     <button type="button" class="nav-back" onclick="showWeek()" style="margin-top:28px">
       <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M10 3L5 8l5 5"/></svg>

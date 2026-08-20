@@ -471,10 +471,14 @@ def extract_landmarks(video_path, debug_path=None):
     if not frames:
         sys.exit("Keine Frames gelesen — Videodatei prüfen.")
 
+    # WICHTIG: Positionen werden hier NICHT mehr zeitlich interpoliert.
+    # Interpolierte Gelenkpositionen einer schlecht sichtbaren Körperseite
+    # ergeben Müll-Winkel, die beim Links/Rechts-Mitteln echte Werte
+    # verfälschen (Befund 20.08.: Kniewinkel 139° statt real ~170°).
+    # Winkel werden aus Roh-Detektionen berechnet (NaN wo unsichtbar),
+    # erst die fertige Winkelserie wird interpoliert/geglättet.
+    # Positionsbasierte Serien holen sich bei Bedarf interp_points().
     points = np.stack(frames)
-    for i in NEEDED:
-        points[:, i, 0] = interpolate_nan(points[:, i, 0])
-        points[:, i, 1] = interpolate_nan(points[:, i, 1])
 
     coverage = {
         "frames": len(frames),
@@ -499,11 +503,25 @@ def mean_pair(points, left, right):
         return np.nanmean(stacked, axis=0)
 
 
+def interp_points(points):
+    """Zeitlich interpolierte Kopie der Landmarks für POSITIONS-Serien.
+
+    Nur für Orts-Trajektorien (Stütz-Signal, Suchfenster, Abstände) gedacht —
+    NIE als Input für Winkelberechnungen verwenden: Winkel aus interpolierten
+    Positionen einer verdeckten Körperseite sind systematisch falsch.
+    """
+    out = points.copy()
+    for i in NEEDED:
+        out[:, i, 0] = interpolate_nan(out[:, i, 0])
+        out[:, i, 1] = interpolate_nan(out[:, i, 1])
+    return out
+
+
 def torso_scale(points):
     """Robuste Längenreferenz (Schulter–Hüfte, Median) zur Normierung."""
     shoulder = mean_pair(points, L_SHOULDER, R_SHOULDER)
     hip = mean_pair(points, L_HIP, R_HIP)
-    return float(np.median(np.linalg.norm(shoulder - hip, axis=1)))
+    return float(np.nanmedian(np.linalg.norm(shoulder - hip, axis=1)))
 
 
 # ----------------------------------------------------------------- Modus BMU
@@ -551,15 +569,20 @@ def analyze_bmu(points, fps):
     hip_angle = savgol(interpolate_nan(hip_angle), max(5, int(fps * 0.12)))
     shoulder_angle = savgol(interpolate_nan(shoulder_angle), max(5, int(fps * 0.12)))
 
-    shoulder = mean_pair(points, L_SHOULDER, R_SHOULDER)
-    wrist = mean_pair(points, L_WRIST, R_WRIST)
-    hip = mean_pair(points, L_HIP, R_HIP)
+    # Positionsserien aus der interpolierten Kopie (Lücken einzelner Frames
+    # zeitlich gefüllt) — Winkel oben kommen bewusst aus den Roh-Detektionen.
+    pos = interp_points(points)
+    shoulder = mean_pair(pos, L_SHOULDER, R_SHOULDER)
+    wrist = mean_pair(pos, L_WRIST, R_WRIST)
+    hip = mean_pair(pos, L_HIP, R_HIP)
 
     # Bildkoordinaten: y wächst nach unten. In Stützposition liegen die
     # Handgelenke tiefer als die Schultern → Signal > 0. Hysterese statt
     # Nulldurchgang, sonst reißt Landmark-Jitter beim Ab-/Aufschwingen den
     # echten Support-Halt in mehrere Mini-Runs.
-    support_signal = savgol((wrist[:, 1] - shoulder[:, 1]) / scale, max(5, int(fps * 0.1)))
+    support_signal = savgol(
+        interpolate_nan((wrist[:, 1] - shoulder[:, 1]) / scale), max(5, int(fps * 0.1))
+    )
     runs = hysteresis_runs(
         support_signal, SUPPORT_ENTER, SUPPORT_EXIT,
         min_len=max(2, int(fps * SUPPORT_MIN_LEN_S)),
@@ -939,7 +962,7 @@ def main():
             plate, _, _, _ = extract_green_trail(video, points, debug_path)
             source = "trail"
         else:
-            wrist = mean_pair(points, L_WRIST, R_WRIST)
+            wrist = mean_pair(interp_points(points), L_WRIST, R_WRIST)
             scale = torso_scale(points)
             plate, _ = track_plate(video, wrist, scale, fps, size, points, debug_path)
             source = "hough"

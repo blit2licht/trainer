@@ -25,7 +25,7 @@
 :root {
   --bg:oklch(97% 0.005 90); --card:oklch(99% 0.003 90); --card-muted:oklch(94% 0.006 90);
   --line:oklch(89% 0.007 90); --line2:oklch(93% 0.005 90);
-  --ink:oklch(22% 0.01 90); --ink2:oklch(45% 0.01 90); --ink3:oklch(58% 0.01 90);
+  --ink:oklch(22% 0.01 90); --ink2:oklch(45% 0.01 90); --ink3:oklch(49% 0.012 90);
   --accent:oklch(45% 0.09 200); --accent-soft:oklch(93% 0.025 200); --accent-ink:oklch(38% 0.1 200); --accent-contrast:#fff;
   --danger:oklch(55% 0.19 25);
   --warn:oklch(52% 0.11 75); --warn-soft:oklch(94% 0.04 75);
@@ -39,7 +39,7 @@
 :root {
   --bg:oklch(22% 0.015 260); --card:oklch(27% 0.015 260); --card-muted:oklch(19% 0.012 260);
   --line:oklch(34% 0.02 260); --line2:oklch(30% 0.018 260);
-  --ink:oklch(96% 0.005 260); --ink2:oklch(75% 0.01 260); --ink3:oklch(58% 0.012 260);
+  --ink:oklch(96% 0.005 260); --ink2:oklch(75% 0.01 260); --ink3:oklch(70% 0.014 260);
   --accent:oklch(72% 0.16 55); --accent-soft:oklch(34% 0.05 55); --accent-ink:oklch(85% 0.11 55); --accent-contrast:oklch(18% 0.02 60);
   --danger:oklch(68% 0.18 25);
   --warn:oklch(80% 0.13 85); --warn-soft:oklch(32% 0.05 85);
@@ -65,20 +65,20 @@ body { background:var(--bg); color:var(--ink); font-family:var(--body); line-hei
 /* Top bar */
 .topbar { display:flex; align-items:flex-end; gap:14px; flex-wrap:wrap; margin-bottom:20px; }
 .week-select-wrap { margin-left:auto; position:relative; }
-.week-select-label { display:block; font-family:var(--mono); font-size:11px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--ink3); margin-bottom:5px; }
+.week-select-label { display:block; font-family:var(--mono); font-size:12px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--ink3); margin-bottom:5px; }
 select#weekSelect { appearance:none; -webkit-appearance:none; background:var(--card); color:var(--ink); border:1.5px solid var(--line); border-radius:11px; font-family:var(--mono); font-size:13px; font-weight:600; padding:11px 38px 11px 14px; cursor:pointer; transition:border-color .15s; box-shadow:var(--shadow); min-height:44px; }
 select#weekSelect:hover { border-color:var(--accent); }
 .select-chevron { position:absolute; right:14px; bottom:15px; width:13px; height:13px; pointer-events:none; color:var(--ink3); }
 
 /* Headers */
 .page-header { margin-bottom:14px; }
-.eyebrow { font-family:var(--mono); font-size:11px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--accent-ink); margin-bottom:6px; }
+.eyebrow { font-family:var(--mono); font-size:12px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--accent-ink); margin-bottom:6px; }
 .page-header h1 { font-family:var(--disp); font-size:30px; font-weight:700; color:var(--ink); letter-spacing:-.02em; line-height:1.08; }
 .page-header .sub { font-size:14px; color:var(--ink2); margin-top:7px; font-weight:500; }
 .detail-sub { font-size:14px; color:var(--ink2); margin:12px 0 26px; line-height:1.55; }
 
 /* Meta-Chips: Dauer und Priorität */
-.mchip { display:inline-flex; align-items:center; gap:5px; font-family:var(--mono); font-size:11px; font-weight:700; letter-spacing:.03em; padding:4px 9px; border-radius:8px; background:var(--card-muted); border:1px solid var(--line2); color:var(--ink2); white-space:nowrap; }
+.mchip { display:inline-flex; align-items:center; gap:5px; font-family:var(--mono); font-size:12px; font-weight:700; letter-spacing:.03em; padding:4px 9px; border-radius:8px; background:var(--card-muted); border:1px solid var(--line2); color:var(--ink2); white-space:nowrap; }
 .mchip.prio-1 { background:var(--accent-soft); border-color:var(--accent-soft); color:var(--accent-ink); }
 .mchip.prio-r { background:transparent; }
 .mchip.mchip-opt { background:var(--warn-soft); border-color:var(--warn-soft); color:var(--warn); }
@@ -136,12 +136,12 @@ button.dc-main:hover { background:var(--card-muted); }
 
 /* Strava stats */
 .dc-strava { margin-top:13px; padding-top:12px; border-top:1px solid var(--line2); }
-.strava-logo { font-family:var(--mono); font-size:11px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--ink3); background:var(--card-muted); padding:3px 8px; border-radius:6px; display:inline-block; margin-bottom:10px; }
+.strava-logo { font-family:var(--mono); font-size:12px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--ink3); background:var(--card-muted); padding:3px 8px; border-radius:6px; display:inline-block; margin-bottom:10px; }
 .dc-strava-grid { display:flex; flex-wrap:wrap; gap:8px; }
 .rs-chip { background:var(--card-muted); border:1px solid var(--line2); border-radius:10px; padding:8px 12px; flex:1 1 calc(25% - 6px); min-width:70px; }
-.rs-label { font-family:var(--mono); font-size:11px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--ink3); margin-bottom:3px; }
+.rs-label { font-family:var(--mono); font-size:12px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--ink3); margin-bottom:3px; }
 .rs-val { font-family:var(--mono); font-size:18px; font-weight:700; color:var(--ink); line-height:1.1; }
-.rs-unit { font-size:11px; font-weight:500; color:var(--ink3); }
+.rs-unit { font-size:13px; font-weight:500; color:var(--ink3); }
 
 /* Aufklapp-Element (Disclosure) */
 .disc { border:1px solid var(--line); border-radius:12px; background:var(--card); overflow:hidden; margin-bottom:8px; }
@@ -153,16 +153,16 @@ button.dc-main:hover { background:var(--card-muted); }
 .disc-panel { padding:2px 14px 14px; font-size:13px; color:var(--ink2); line-height:1.55; }
 .disc-panel ul { margin:0 0 0 18px; }
 .disc-panel li { margin:3px 0; }
-.rule-scale { font-family:var(--mono); font-size:11px; font-weight:700; letter-spacing:.05em; color:var(--ink3); margin-bottom:10px; }
+.rule-scale { font-family:var(--mono); font-size:13px; font-weight:700; letter-spacing:.05em; color:var(--ink3); margin-bottom:10px; }
 .rule-step { border-left:3px solid var(--line); padding:8px 0 8px 11px; margin-bottom:9px; background:var(--card-muted); border-radius:0 8px 8px 0; }
 .rule-step.gelb { border-left-color:var(--warn); }
 .rule-step.rot  { border-left-color:var(--danger); }
 .rule-step-h { font-family:var(--mono); font-size:12px; font-weight:700; color:var(--ink); margin-bottom:4px; }
 .rule-day { margin-top:7px; padding-top:7px; border-top:1px dashed var(--line); color:var(--ink); }
-.rule-day b { font-family:var(--mono); font-size:11px; letter-spacing:.06em; text-transform:uppercase; color:var(--accent-ink); display:block; margin-bottom:2px; }
+.rule-day b { font-family:var(--mono); font-size:12px; letter-spacing:.06em; text-transform:uppercase; color:var(--accent-ink); display:block; margin-bottom:2px; }
 .rule-note { margin-top:8px; }
-.rule-src { margin-top:8px; font-family:var(--mono); font-size:11px; color:var(--ink3); }
-.rules-head { font-family:var(--mono); font-size:11px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--ink3); margin:0 0 8px; }
+.rule-src { margin-top:8px; font-family:var(--mono); font-size:13px; color:var(--ink3); }
+.rules-head { font-family:var(--mono); font-size:12px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--ink3); margin:0 0 8px; }
 .rules-bar { margin-bottom:18px; }
 
 /* Glossar */
@@ -170,13 +170,15 @@ button.dc-main:hover { background:var(--card-muted); }
 .gloss-item:last-child { border-bottom:none; }
 .gloss-term { font-family:var(--mono); font-size:13px; font-weight:700; color:var(--ink); }
 .gloss-def { margin-top:3px; }
-.gloss-src { margin-top:4px; font-family:var(--mono); font-size:11px; color:var(--ink3); }
+.gloss-src { margin-top:4px; font-family:var(--mono); font-size:13px; color:var(--ink3); }
 .gloss-wrap { margin-top:22px; }
 
 button.term { font:inherit; font-weight:700; color:var(--accent-ink); background:var(--accent-soft); border:none; border-radius:6px; padding:1px 5px; min-height:24px; cursor:pointer; line-height:1.3; }
 button.term:hover { text-decoration:underline; }
-button.abbr { font:inherit; color:inherit; background:none; border:none; padding:0 1px; min-height:24px; cursor:pointer; text-decoration:underline dotted var(--ink3); }
-button.abbr.expanded { text-decoration:none; color:var(--accent-ink); }
+/* Die Trefferfläche wächst über ein Overlay statt über die Zeilenhöhe: inline im
+   Fließtext würde ein 44px hoher Button den Absatzrhythmus zerreißen. */
+button.term { position:relative; }
+button.term::after { content:''; position:absolute; inset:-6px -4px; }
 
 .gloss-pop { position:fixed; left:0; right:0; bottom:0; z-index:50; padding:12px; }
 .gloss-pop-inner { max-width:736px; margin:0 auto; background:var(--card); border:1.5px solid var(--accent); border-radius:16px; padding:16px 18px; box-shadow:0 6px 30px rgba(16,24,40,.22); }
@@ -186,22 +188,22 @@ button.abbr.expanded { text-decoration:none; color:var(--accent-ink); }
 .gloss-close:hover { background:var(--card-muted); color:var(--accent-ink); }
 .gloss-close svg { width:16px; height:16px; }
 .gloss-pop p { font-size:14px; color:var(--ink2); line-height:1.55; margin-top:8px; }
-.gloss-pop .gloss-pop-src { font-family:var(--mono); font-size:11px; color:var(--ink3); }
+.gloss-pop .gloss-pop-src { font-family:var(--mono); font-size:13px; color:var(--ink3); }
 
 /* Notes system */
 .note-bar { display:flex; align-items:center; justify-content:space-between; gap:10px; margin-top:14px; padding-top:6px; border-top:1px solid var(--line2); }
-.note-toggle-btn { display:inline-flex; align-items:center; gap:8px; min-height:44px; padding:0 10px 0 0; font-family:var(--mono); font-size:11px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--ink3); background:none; border:none; cursor:pointer; transition:color .15s; }
+.note-toggle-btn { display:inline-flex; align-items:center; gap:8px; min-height:44px; padding:0 10px 0 0; font-family:var(--mono); font-size:13px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--ink3); background:none; border:none; cursor:pointer; transition:color .15s; }
 .note-toggle-btn:hover { color:var(--accent-ink); }
 .note-toggle-btn svg { width:13px; height:13px; transition:transform .15s; }
 .note-toggle-btn[aria-expanded="true"] svg { transform:rotate(180deg); }
-.note-has-indicator { display:inline-flex; align-items:center; gap:5px; font-family:var(--mono); font-size:11px; font-weight:600; color:var(--ink2); }
+.note-has-indicator { display:inline-flex; align-items:center; gap:5px; font-family:var(--mono); font-size:13px; font-weight:600; color:var(--ink2); }
 .note-feel-dot { width:9px; height:9px; border-radius:50%; background:var(--accent); }
 .note-has-indicator.draft { color:var(--ink3); }
 .note-has-indicator.draft .note-feel-dot { background:var(--ink3); }
 
 .note-panel { margin-top:12px; background:var(--card-muted); border:1px solid var(--line2); border-radius:12px; padding:14px; }
 
-.feel-label { font-family:var(--mono); font-size:11px; font-weight:700; letter-spacing:.06em; color:var(--ink3); margin-bottom:8px; }
+.feel-label { font-family:var(--mono); font-size:13px; font-weight:700; letter-spacing:.06em; color:var(--ink3); margin-bottom:8px; }
 .feel-row { display:flex; gap:8px; margin-bottom:12px; }
 .feel-btn { flex:1; min-height:44px; border:1.5px solid var(--line); border-radius:10px; background:var(--card); font-family:var(--mono); font-size:15px; font-weight:700; color:var(--ink2); cursor:pointer; transition:all .15s; display:flex; align-items:center; justify-content:center; }
 .feel-btn:hover { border-color:var(--accent); color:var(--accent-ink); }
@@ -228,42 +230,65 @@ button.abbr.expanded { text-decoration:none; color:var(--accent-ink); }
 .crumb { font-family:var(--mono); font-size:12px; color:var(--ink3); margin-bottom:18px; font-weight:600; display:flex; align-items:center; flex-wrap:wrap; }
 .crumb .lnk { font:inherit; color:var(--accent-ink); background:none; border:none; cursor:pointer; min-height:44px; padding:0 4px 0 0; }
 .crumb .lnk:hover { text-decoration:underline; }
-.crumb .sep { margin:0 7px; color:var(--line); }
+.crumb .sep { margin:0 7px; color:var(--ink3); }
 
 /* Routinen-Kopf */
 .routine-meta { display:flex; flex-wrap:wrap; gap:7px; margin:14px 0 8px; }
-.routine-meta-note { font-family:var(--mono); font-size:11px; color:var(--ink3); line-height:1.6; margin-bottom:14px; }
+.routine-meta-note { font-family:var(--mono); font-size:13px; color:var(--ink3); line-height:1.6; margin-bottom:14px; }
 
 /* Focus blocks */
-.blk { margin-bottom:26px; }
-.blk.is-optional { border-left:3px dashed var(--line); padding-left:13px; margin-left:-16px; }
-.blk-head { display:flex; align-items:flex-start; gap:11px; margin-bottom:12px; flex-wrap:wrap; }
+/* Blöcke sind aufklappbar: geschlossen trägt der Kopf schon Buchstabe, Titel und
+   die Arbeitszahlen der ersten Zeile. Genau ein Block ist offen — der Fokus-Tag
+   ist eine Anleitung für einen Ablauf, kein Dokument zum Durchlesen. */
+.blk { margin-bottom:10px; border:1px solid var(--line); border-radius:14px; background:var(--card); overflow:hidden; }
+.blk.is-optional { border-style:dashed; }
+.blk-head { display:flex; align-items:center; gap:11px; width:100%; min-height:56px; padding:10px 14px; background:none; border:none; cursor:pointer; text-align:left; }
+.blk-head:hover { background:var(--card-muted); }
 .blk-letter { font-family:var(--mono); font-size:14px; font-weight:700; color:var(--accent-contrast); background:var(--accent); width:30px; height:30px; border-radius:9px; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+.blk-letter svg { width:16px; height:16px; }
 .blk.is-optional .blk-letter { background:var(--ink3); }
-.blk-headtext { flex:1; min-width:150px; }
-.blk-title { font-family:var(--disp); font-size:16px; font-weight:700; color:var(--ink); letter-spacing:-.01em; }
-.blk-sub { font-family:var(--mono); font-size:11px; font-weight:500; color:var(--ink3); margin-top:1px; }
-.blk-flags { display:flex; flex-wrap:wrap; gap:6px; align-items:center; }
+.blk.is-done .blk-letter { background:var(--ink3); }
+.blk-headtext { flex:1; min-width:0; }
+.blk-title { font-family:var(--disp); font-size:16px; font-weight:700; color:var(--ink); letter-spacing:-.01em; display:block; }
+.blk.is-done .blk-title { color:var(--ink3); }
+/* Arbeitszahlen der ersten Zeile — nur im geschlossenen Zustand, offen zeigt sie der Körper. */
+.blk-peek { font-family:var(--mono); font-size:13px; font-weight:700; color:var(--accent-ink); margin-top:2px; display:block; }
+.blk.is-open .blk-peek { display:none; }
+.blk.is-done .blk-peek { color:var(--ink3); }
+.blk-chev { display:flex; flex-shrink:0; color:var(--ink3); }
+.blk-chev svg { width:14px; height:14px; transition:transform .15s cubic-bezier(.2,.7,.3,1); }
+.blk-head[aria-expanded="true"] .blk-chev svg { transform:rotate(180deg); }
+.blk-body { padding:0 14px 14px; }
+.blk-sub { font-family:var(--mono); font-size:12px; font-weight:500; color:var(--ink2); margin:0 0 11px; }
+.blk-flags { display:flex; flex-wrap:wrap; gap:6px; align-items:center; margin-bottom:11px; }
+.blk-done { display:flex; align-items:center; justify-content:center; gap:8px; width:100%; min-height:44px; margin-top:12px; padding:0 14px; background:var(--card-muted); border:1px solid var(--line); border-radius:11px; cursor:pointer; font-family:var(--mono); font-size:12px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--ink2); }
+.blk-done:hover { color:var(--accent-ink); border-color:var(--accent-soft); background:var(--accent-soft); }
+.blk-done svg { width:15px; height:15px; }
+.blk.is-done .blk-done { color:var(--accent-ink); background:var(--accent-soft); border-color:var(--accent-soft); }
 .exc { background:var(--card); border:1px solid var(--line); border-radius:14px; padding:15px 16px; box-shadow:var(--shadow); margin-bottom:10px; }
 .exc-name { font-family:var(--disp); font-size:18px; font-weight:700; color:var(--ink); letter-spacing:-.01em; line-height:1.2; }
 .exc-name small { display:block; font-family:var(--body); font-size:13px; font-weight:500; color:var(--ink3); margin-top:2px; }
-.exc-data { display:flex; flex-wrap:wrap; gap:8px; margin-top:13px; }
+.exc-data { display:flex; flex-wrap:wrap; align-items:flex-start; gap:8px; margin-top:13px; }
 .chip { background:var(--card-muted); border:1px solid var(--line2); border-radius:10px; padding:8px 12px; min-width:74px; }
-.chip-label { font-family:var(--mono); font-size:11px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--ink3); margin-bottom:3px; }
+.chip-label { font-family:var(--mono); font-size:12px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--ink3); margin-bottom:3px; }
 .chip-val { font-family:var(--mono); font-size:17px; font-weight:700; color:var(--ink); line-height:1.15; }
-.chip-val small { display:block; font-size:11px; font-weight:500; color:var(--ink3); margin-top:2px; letter-spacing:0; }
+/* Lasttreppen ab drei Stufen stehen untereinander: ein Wert pro Zeile liest
+   sich von oben nach unten, statt mitten in der Sequenz umzubrechen. */
+.chip-val .steps > span { display:block; }
+.chip-val .steps > span + span { margin-top:1px; }
+.chip-val small { display:block; font-size:13px; font-weight:500; color:var(--ink3); margin-top:2px; letter-spacing:0; }
 .chip.rpe { background:var(--accent-soft); border-color:var(--accent-soft); }
 .chip.rpe .chip-label { color:var(--accent-ink); }
 .chip.rpe .chip-val { color:var(--accent-ink); }
 .exc-meta { display:flex; flex-wrap:wrap; gap:14px; margin-top:12px; font-family:var(--mono); font-size:12px; font-weight:500; color:var(--ink2); }
-.exc-meta b { color:var(--ink3); font-weight:600; font-size:11px; letter-spacing:.08em; text-transform:uppercase; margin-right:5px; }
+.exc-meta b { color:var(--ink3); font-weight:600; font-size:12px; letter-spacing:.08em; text-transform:uppercase; margin-right:5px; }
 .exc-note { font-size:13px; color:var(--ink2); margin-top:12px; line-height:1.55; padding-top:11px; border-top:1px solid var(--line2); }
 .blk-note { margin-top:11px; padding:12px 14px; background:var(--accent-soft); border-radius:12px; font-size:13px; color:var(--accent-ink); line-height:1.55; font-weight:500; }
 /* WOD-Block: Struktur, Reps, Lasten und Zeitlimit zusammen sichtbar, gleiche Schriftgröße für Reps/Move/Detail — keine Prioritäts-Hierarchie */
 .wod { background:var(--card); border:1px solid var(--line); border-radius:14px; padding:16px; box-shadow:var(--shadow); }
 .wod-struct { font-family:var(--disp); font-size:21px; font-weight:700; color:var(--ink); letter-spacing:-.015em; line-height:1.2; }
 .wod-tags { display:flex; flex-wrap:wrap; gap:7px; margin-top:11px; }
-.wod-tag { font-family:var(--mono); font-size:11px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; padding:5px 10px; border-radius:8px; background:var(--card-muted); color:var(--ink2); }
+.wod-tag { font-family:var(--mono); font-size:12px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; padding:5px 10px; border-radius:8px; background:var(--card-muted); color:var(--ink2); }
 .wod-tag.cap { background:var(--accent-soft); color:var(--accent-ink); }
 .wod-lines { margin-top:15px; border-top:1px solid var(--line2); }
 .wod-line { display:flex; align-items:baseline; gap:13px; padding:12px 0; border-bottom:1px solid var(--line2); }
@@ -280,8 +305,8 @@ button.abbr.expanded { text-decoration:none; color:var(--accent-ink); }
 /* WHOOP: kopierbarer Textblock statt Karte mit Listen-Items */
 .whoop-copy { margin-top:30px; background:var(--card-muted); border:1px solid var(--line); border-radius:12px; padding:16px 18px; }
 .whoop-copy-head { display:flex; align-items:center; justify-content:space-between; gap:10px; margin-bottom:10px; }
-.whoop-copy-title { font-family:var(--mono); font-size:11px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--ink3); }
-.copy-btn { display:inline-flex; align-items:center; gap:6px; min-height:44px; font-family:var(--mono); font-size:11px; font-weight:700; letter-spacing:.05em; text-transform:uppercase; color:var(--ink2); background:var(--card); border:1px solid var(--line); border-radius:8px; padding:6px 12px; cursor:pointer; }
+.whoop-copy-title { font-family:var(--mono); font-size:12px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--ink3); }
+.copy-btn { display:inline-flex; align-items:center; gap:6px; min-height:44px; font-family:var(--mono); font-size:12px; font-weight:700; letter-spacing:.05em; text-transform:uppercase; color:var(--ink2); background:var(--card); border:1px solid var(--line); border-radius:8px; padding:6px 12px; cursor:pointer; }
 .copy-btn:hover { border-color:var(--accent); color:var(--accent-ink); }
 .copy-btn svg { width:13px; height:13px; }
 .whoop-text { font-family:var(--mono); font-size:13px; color:var(--ink); line-height:1.75; white-space:pre-wrap; }
@@ -295,7 +320,6 @@ button.abbr.expanded { text-decoration:none; color:var(--accent-ink); }
   .chip { flex:1 1 calc(50% - 4px); min-width:0; }
   .rs-chip { flex:1 1 calc(50% - 4px); min-width:0; }
   .note-textarea { min-height:160px; }
-  .blk.is-optional { margin-left:0; }
 }
 </style>
 </head>
@@ -339,22 +363,6 @@ button.abbr.expanded { text-decoration:none; color:var(--accent-ink); }
 
 <script src="data.js"></script>
 <script>
-/* Abbreviations */
-const ABBR = {
-  'HSPU':'Handstand Push-Up','BMU':'Bar Muscle-Up','MU':'Muscle-Up',
-  'T2B':'Toes-to-Bar','K2E':'Knees-to-Elbow','C&J':'Clean & Jerk',
-  'OHS':'Overhead Squat','FS':'Front Squat','BS':'Back Squat',
-  'PC':'Power Clean','PS':'Power Snatch','SN':'Snatch',
-  'DL':'Deadlift','RDL':'Romanian Deadlift','KB':'Kettlebell',
-  'DB':'Dumbbell','BB':'Barbell','BW':'Bodyweight',
-  'EMOM':'Every Minute on the Minute','AMRAP':'As Many Rounds as Possible',
-  'RFT':'Rounds for Time','NFT':'Not for Time','GHD':'Glute-Ham Developer',
-  'RM':'Repetition Maximum','RPE':'Rate of Perceived Exertion',
-  'Z1':'Zone 1','Z2':'Zone 2','Z3':'Zone 3','HR':'Heart Rate',
-  'CAR':'Controlled Articular Rotation','BWS':'Brustwirbelsäule',
-  'PP':'Push Press','PJ':'Push Jerk','SJ':'Split Jerk',
-  'WPU':'Weighted Pull-up','C2B':'Chest-to-Bar','WOD':'Workout of the Day'
-};
 
 /* Glossar-Begriffe, die im Fließtext als echte Buttons verlinkt werden.
    Reihenfolge = Matching-Priorität (längste/spezifischste zuerst). */
@@ -375,7 +383,6 @@ function outsideTags(html, fn){
 }
 function rich(html, opts){
   if (html === undefined || html === null) return '';
-  const withAbbr = !(opts && opts.abbr === false);
   const store = [];
   let s = outsideTags(html, seg => seg.replace(GLOSS_RE, m => {
     if (!DATA.glossar[m]) return m;
@@ -383,20 +390,12 @@ function rich(html, opts){
       '" aria-label="' + attr(m + ' — Erklärung anzeigen') + '" onclick="openTerm(this)">' + escapeHtml(m) + '</button>');
     return '\u0001' + (store.length - 1) + '\u0001';
   }));
-  if (withAbbr) {
-    s = outsideTags(s, seg => seg.replace(/\b([A-Z][A-Z0-9&]+)\b/g, m =>
-      ABBR[m] ? '<button type="button" class="abbr" data-abbr="' + attr(m) + '" data-full="' + attr(ABBR[m]) +
-        '" aria-label="' + attr(m + ' — ' + ABBR[m]) + '" onclick="toggleAbbr(this)">' + escapeHtml(m) + '</button>' : m));
-  }
   return s.replace(/\u0001(\d+)\u0001/g, (_, i) => store[i]);
 }
-/* Wochenansicht: nur Glossar, keine Abkürzungs-Buttons (hält die Karten ruhig). */
-function richW(html){ return rich(html, { abbr:false }); }
+/* Historischer Alias: Abkürzungs-Buttons gibt es nicht mehr, rich() und richW()
+   sind identisch. Bleibt bestehen, damit die Aufrufstellen unverändert lesen. */
+function richW(html){ return rich(html); }
 
-function toggleAbbr(btn){
-  const expanded = btn.classList.toggle('expanded');
-  btn.textContent = expanded ? btn.dataset.full : btn.dataset.abbr;
-}
 
 /* Glossar-Sheet */
 let lastTermBtn = null;
@@ -420,6 +419,7 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') closeTerm();
 
 /* State */
 let currentWeekId = null;
+let currentFocusKey = null;
 let weekNotes = {};
 let selectedFeel = {};
 
@@ -432,6 +432,7 @@ const ICON = {
 };
 const COPY_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h9"/></svg>';
 const CHEV_DOWN  = '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M3 6l5 5 5-5"/></svg>';
+const CHECK_ICON = '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M3 8.5l3.5 3.5L13 5"/></svg>';
 const CHEV_RIGHT = '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M6 3l5 5-5 5"/></svg>';
 
 /* Session-Feel: wie die Einheit lief, 1 = mies bis 5 = stark. Nummerierte
@@ -451,6 +452,16 @@ const TYPE = {
 function splitMain(val){
   const p = String(val).split('||');
   return p.length===1 ? p[0] : `${p[0]}<small>${p.slice(1).join(' ')}</small>`;
+}
+/* Ab drei Stufen ein Wert pro Zeile (Martin, 20.08.): ein Umbruch mitten in
+   „47,5 → 50 →" ist schlechter lesbar als eine saubere Spalte. */
+function stackSteps(val){
+  const p = String(val).split('||');
+  const steps = p[0].split(/\s*(?:→|·)\s*/).filter(Boolean);
+  const head = steps.length >= 3
+    ? `<span class="steps">${steps.map(x=>`<span>${x}</span>`).join('\n')}</span>`
+    : p[0];
+  return p.length===1 ? head : `${head}<small>${p.slice(1).join(' ')}</small>`;
 }
 function renderSub(sub){
   if (!sub) return '';
@@ -539,6 +550,17 @@ function fillGlossary(scopeId, hostId){
 }
 
 /* Notiz-Drafts (localStorage) */
+/* Ein Tag kann zwei Notiz-Instanzen im DOM haben (Wochenansicht + Fokus-Tag).
+   Gelesen wird aus der sichtbaren Ansicht, geschrieben in beide — sonst zeigen
+   die zwei Instanzen denselben Tag mit verschiedenem Inhalt. */
+function noteRead(attrName, date){
+  const sel = `[${attrName}="${date}"]`;
+  const active = document.querySelector('.view.active');
+  return (active && active.querySelector(sel)) || document.querySelector(sel);
+}
+function noteAll(attrName, date){
+  return document.querySelectorAll(`[${attrName}="${date}"]`);
+}
 function draftKey(d){ return 'note-draft-' + d; }
 function loadDraft(d){
   try {
@@ -548,8 +570,9 @@ function loadDraft(d){
   } catch(e){ return null; }
 }
 function saveDraft(d){
-  const text = document.getElementById('ntext-' + d)?.value || '';
+  const text = noteRead('data-note-text', d)?.value || '';
   const feel = selectedFeel[d] || 0;
+  noteAll('data-note-text', d).forEach(ta => { if (ta.value !== text) ta.value = text; });
   try {
     if (text || feel) localStorage.setItem(draftKey(d), JSON.stringify({ feel, text }));
     else localStorage.removeItem(draftKey(d));
@@ -562,8 +585,7 @@ function clearDraft(d){
 function restoreDraft(d){
   const draft = loadDraft(d);
   if (!draft) return;
-  const ta = document.getElementById('ntext-' + d);
-  if (ta && draft.text) ta.value = draft.text;
+  if (draft.text) noteAll('data-note-text', d).forEach(ta => { ta.value = draft.text; });
   if (draft.feel > 0) {
     selectedFeel[d] = draft.feel;
     markFeel(d, draft.feel);
@@ -593,10 +615,11 @@ async function loadNotes(fromDate, toDate){
 }
 
 async function saveNote(isoDate){
-  const btn  = document.getElementById('nsave-' + isoDate);
-  const stat = document.getElementById('nstat-' + isoDate);
-  const text = document.getElementById('ntext-' + isoDate)?.value || '';
+  const btn  = noteRead('data-note-save', isoDate);
+  const stat = noteRead('data-note-stat', isoDate);
+  const text = noteRead('data-note-text', isoDate)?.value || '';
   const feel = selectedFeel[isoDate] || 0;
+  if (!btn || !stat) return;
 
   btn.disabled = true;
   btn.textContent = '…';
@@ -633,9 +656,10 @@ function patchAllNoteUIs(){
 }
 
 function patchNoteUI(date, note){
+  if (!note) { patchNoteIndicator(date); return; }
   const draft = loadDraft(date);
-  const ta = document.getElementById('ntext-' + date);
-  if (ta && note.note_text && !(draft && draft.text)) ta.value = note.note_text;
+  if (note.note_text && !(draft && draft.text))
+    noteAll('data-note-text', date).forEach(ta => { ta.value = note.note_text; });
   if (note.session_feel > 0 && !(draft && draft.feel > 0)) {
     selectedFeel[date] = note.session_feel;
     markFeel(date, note.session_feel);
@@ -644,26 +668,27 @@ function patchNoteUI(date, note){
 }
 
 function patchNoteIndicator(date){
-  const ind = document.getElementById('nind-' + date);
-  if (!ind) return;
+  const inds = noteAll('data-note-ind', date);
+  if (!inds.length) return;
   const note = weekNotes[date];
   const draft = loadDraft(date);
   const draftDiffers = draft &&
     (draft.text !== ((note && note.note_text) || '') || draft.feel !== ((note && note.session_feel) || 0));
+  let html = '';
   if (draftDiffers) {
-    ind.innerHTML = `<span class="note-has-indicator draft"><span class="note-feel-dot"></span>Entwurf</span>`;
+    html = `<span class="note-has-indicator draft"><span class="note-feel-dot"></span>Entwurf</span>`;
   } else if (note && (note.session_feel > 0 || note.note_text)) {
     const feel = note.session_feel > 0 ? `${note.session_feel} · ` : '';
-    ind.innerHTML = `<span class="note-has-indicator"><span class="note-feel-dot"></span>${feel}Notiz gespeichert</span>`;
-  } else {
-    ind.innerHTML = '';
+    html = `<span class="note-has-indicator"><span class="note-feel-dot"></span>${feel}Notiz gespeichert</span>`;
   }
+  inds.forEach(ind => { ind.innerHTML = html; });
 }
 
 /* Toggle note panel */
-function toggleNote(isoDate){
-  const panel = document.getElementById('np-' + isoDate);
-  const btn   = document.getElementById('nbtn-' + isoDate);
+function toggleNote(isoDate, sc){
+  sc = sc || '';
+  const panel = document.getElementById(sc + 'np-' + isoDate);
+  const btn   = document.getElementById(sc + 'nbtn-' + isoDate);
   if (!panel || !btn) return;
   const open = panel.hidden;
   panel.hidden = !open;
@@ -676,9 +701,14 @@ function selectFeel(isoDate, val){
   saveDraft(isoDate);
 }
 
-/* Build note block HTML — nummerierte Pills statt Emoji */
-function buildNoteHTML(isoDate, type){
+/* Build note block HTML — nummerierte Pills statt Emoji.
+   `sc` trennt die beiden Instanzen desselben Tages: die Notiz steht sowohl auf der
+   Tageskarte der Wochenansicht als auch am Ende des Fokus-Tags. IDs müssen eindeutig
+   bleiben, damit `for` und `aria-controls` auf das richtige Element zeigen; die
+   Zugriffe laufen deshalb über die data-Attribute, nicht über die IDs. */
+function buildNoteHTML(isoDate, type, sc){
   if (type === 'rest') return '';
+  sc = sc || '';
   const feelButtons = [1,2,3,4,5].map(i =>
     `<button type="button" class="feel-btn" data-feel-date="${isoDate}" data-feel-val="${i}"
              aria-pressed="false" aria-label="${attr(FEEL_LABEL[i])} (${i} von 5)"
@@ -686,21 +716,22 @@ function buildNoteHTML(isoDate, type){
   ).join('');
   return `
     <div class="note-bar">
-      <button type="button" class="note-toggle-btn" id="nbtn-${isoDate}"
-              aria-expanded="false" aria-controls="np-${isoDate}"
-              onclick="toggleNote('${isoDate}')">${CHEV_DOWN}Notiz und Session-Feel</button>
-      <div id="nind-${isoDate}"></div>
+      <button type="button" class="note-toggle-btn" id="${sc}nbtn-${isoDate}"
+              aria-expanded="false" aria-controls="${sc}np-${isoDate}"
+              onclick="toggleNote('${isoDate}', '${sc}')">${CHEV_DOWN}Notiz und Session-Feel</button>
+      <div data-note-ind="${isoDate}"></div>
     </div>
-    <div class="note-panel" id="np-${isoDate}" hidden>
+    <div class="note-panel" id="${sc}np-${isoDate}" hidden>
       <div class="feel-label">${richW('Session-Feel')} — wie lief die Einheit?</div>
       <div class="feel-row">${feelButtons}</div>
-      <label class="sr-only" for="ntext-${isoDate}">Notiz zur Einheit</label>
-      <textarea class="note-textarea" id="ntext-${isoDate}" oninput="saveDraft('${isoDate}')"
+      <label class="sr-only" for="${sc}ntext-${isoDate}">Notiz zur Einheit</label>
+      <textarea class="note-textarea" id="${sc}ntext-${isoDate}" data-note-text="${isoDate}"
+                oninput="saveDraft('${isoDate}')"
                 placeholder="Was lief gut / schlecht? Lasten, Energie, Technik…"></textarea>
       <div class="note-actions">
-        <button type="button" class="note-save-btn" id="nsave-${isoDate}"
+        <button type="button" class="note-save-btn" data-note-save="${isoDate}"
                 onclick="saveNote('${isoDate}')">Speichern</button>
-        <span class="note-status" id="nstat-${isoDate}" role="status"></span>
+        <span class="note-status" data-note-stat="${isoDate}" role="status"></span>
       </div>
     </div>`;
 }
@@ -895,7 +926,7 @@ function renderExercise(headers,row){
   let chips='';
   if(sets)  chips+=`<div class="chip"><div class="chip-label">Sätze × Wdh</div><div class="chip-val">${splitMain(sets)}</div></div>`;
   if(dauer) chips+=`<div class="chip"><div class="chip-label">Dauer</div><div class="chip-val">${splitMain(dauer)}</div></div>`;
-  if(last)  chips+=`<div class="chip"><div class="chip-label">Last</div><div class="chip-val">${splitMain(last)}</div></div>`;
+  if(last)  chips+=`<div class="chip"><div class="chip-label">Last</div><div class="chip-val">${stackSteps(last)}</div></div>`;
   if(rpe)   chips+=`<div class="chip rpe"><div class="chip-label">RPE</div><div class="chip-val">${rpe}</div></div>`;
   const meta=[];
   if(tempo) meta.push(`<span><b>Tempo</b>${tempo}</span>`);
@@ -919,9 +950,44 @@ function renderWod(w){
   </div>`;
 }
 
-function renderBlock(b){
+/* Die Arbeitszahlen der ersten Zeile — das, was im geschlossenen Kopf stehen muss,
+   damit man den Block nicht öffnen muss, um zu wissen, was er verlangt. */
+function blockPeek(b){
+  if (b.wod) return stripHtml(b.wod.struktur);
+  const r = (b.rows || [])[0];
+  if (!r) return '';
+  /* Nur der Hauptwert, ohne die <small>-Ergänzung nach `||` — im geschlossenen
+     Kopf zählt die Zahl, nicht ihre Erläuterung. */
+  const main = v => stripHtml(String(v).split('||')[0]).replace(/\s+/g,' ').trim();
+  /* Eine Lasttreppe („40 · 45 · … · 60 kg") wird auf ihre Enden gekürzt.
+     Die Zwischenschritte stehen im offenen Block; hier zählt der Korridor. */
+  const ramp = v => {
+    const parts = v.split(/\s*(?:·|→)\s*/).filter(Boolean);
+    return parts.length > 2 ? `${parts[0]} … ${parts[parts.length-1]}` : v;
+  };
+  const sets = main(field(b.headers, r, ['sets','sätze']) || field(b.headers, r, ['dauer']) || '');
+  const last = ramp(main(field(b.headers, r, ['last']) || ''));
+  return [sets, last].filter(Boolean).join(' · ');
+}
+
+/* Ablaufzustand eines Fokus-Tags: welcher Block ist offen, welche sind erledigt.
+   Überlebt Reload und App-Wechsel — mitten in der Einheit greift man das Handy
+   immer wieder neu, und dann muss die Seite wissen, wo man war. */
+function blkStateKey(){ return 'focus-state-' + currentWeekId + '-' + currentFocusKey; }
+function loadBlkState(){
+  try { return JSON.parse(localStorage.getItem(blkStateKey())) || { open:null, done:[] }; }
+  catch(e){ return { open:null, done:[] }; }
+}
+function saveBlkState(s){
+  try { localStorage.setItem(blkStateKey(), JSON.stringify(s)); } catch(e){}
+}
+
+function renderBlock(b, state){
   const body = b.wod ? renderWod(b.wod) : (b.rows||[]).map(r=>renderExercise(b.headers,r)).join('');
   const optional = b.prio === 'optional';
+  const done = state.done.includes(b.letter);
+  const open = state.open === b.letter;
+  const peek = blockPeek(b);
   const flags = [];
   /* Nennt der Block-Untertitel bereits eine Dauer („~15 min"), keinen zweiten
      Zeitwert danebenstellen — sonst steht dieselbe Angabe zweimal da. */
@@ -930,23 +996,88 @@ function renderBlock(b){
   if (b.prio) flags.push(optional
     ? `<span class="mchip mchip-opt">Optional · zuerst streichbar</span>`
     : `<span class="mchip">Kernblock</span>`);
-  return `<div class="blk${optional?' is-optional':''}">
-    <div class="blk-head">
-      <div class="blk-letter">${b.letter}</div>
-      <div class="blk-headtext"><div class="blk-title">${rich(b.title)}</div><div class="blk-sub">${rich(b.sub)}</div></div>
+  const cls = ['blk', optional?'is-optional':'', open?'is-open':'', done?'is-done':''].filter(Boolean).join(' ');
+  return `<section class="${cls}" id="blk-${b.letter}">
+    <button type="button" class="blk-head" id="blk-${b.letter}-btn" aria-expanded="${open}" aria-controls="blkbody-${b.letter}" onclick="toggleBlock('${b.letter}')">
+      <span class="blk-letter">${done ? CHECK_ICON : b.letter}</span>
+      <span class="blk-headtext">
+        <!-- Klartext, kein rich(): Glossar- und Abkürzungs-Buttons wären hier
+             verschachtelte Buttons — ungültig, und der Browser bricht den
+             Kopf-Button an dieser Stelle auf. -->
+        <span class="blk-title">${escapeHtml(stripHtml(b.title))}</span>
+        ${peek?`<span class="blk-peek">${escapeHtml(peek)}</span>`:''}
+      </span>
+      <span class="blk-chev">${CHEV_DOWN}</span>
+    </button>
+    <div class="blk-body" id="blkbody-${b.letter}"${open?'':' hidden'}>
+      ${b.sub?`<div class="blk-sub">${rich(b.sub)}</div>`:''}
       ${flags.length?`<div class="blk-flags">${flags.join('')}</div>`:''}
-    </div>${body}${b.note?`<div class="blk-note">${rich(b.note)}</div>`:''}</div>`;
+      ${body}${b.note?`<div class="blk-note">${rich(b.note)}</div>`:''}
+      <button type="button" class="blk-done" onclick="markBlockDone('${b.letter}')">
+        ${CHECK_ICON}${done ? 'Erledigt — nochmal öffnen' : 'Erledigt'}
+      </button>
+    </div>
+  </section>`;
+}
+
+/* Genau ein Block ist offen. Öffnen schließt die anderen — das ist der ganze
+   Unterschied zwischen einem Dokument und einer Anleitung. */
+function openBlock(letter, scroll){
+  const s = loadBlkState();
+  s.open = letter;
+  saveBlkState(s);
+  document.querySelectorAll('#focusContent .blk').forEach(sec => {
+    const l = sec.id.slice(4);
+    const isOpen = l === letter;
+    sec.classList.toggle('is-open', isOpen);
+    const btn = document.getElementById('blk-' + l + '-btn');
+    const body = document.getElementById('blkbody-' + l);
+    if (btn) btn.setAttribute('aria-expanded', String(isOpen));
+    if (body) body.hidden = !isOpen;
+  });
+  if (scroll && letter){
+    const sec = document.getElementById('blk-' + letter);
+    if (sec) sec.scrollIntoView({ behavior:'smooth', block:'start' });
+  }
+}
+
+function toggleBlock(letter){
+  const s = loadBlkState();
+  if (s.open === letter){ s.open = null; saveBlkState(s); openBlock(null, false); }
+  else openBlock(letter, false);
+}
+
+/* Erledigt: Block dimmen und den nächsten noch offenen Kernblock aufmachen.
+   Nochmaliges Tippen nimmt die Markierung zurück — kein Zustand ohne Rückweg. */
+function markBlockDone(letter){
+  const s = loadBlkState();
+  const i = s.done.indexOf(letter);
+  if (i >= 0){ s.done.splice(i,1); saveBlkState(s); renderFocus(currentFocusKey); return; }
+  s.done.push(letter);
+  const f = getWeek(currentWeekId).focusDays[currentFocusKey];
+  const next = f.blocks.find(b => !s.done.includes(b.letter) && b.prio !== 'optional')
+            || f.blocks.find(b => !s.done.includes(b.letter));
+  s.open = next ? next.letter : null;
+  saveBlkState(s);
+  renderFocus(currentFocusKey);
+  if (s.open){
+    const sec = document.getElementById('blk-' + s.open);
+    if (sec) sec.scrollIntoView({ behavior:'smooth', block:'start' });
+  }
 }
 
 /* WHOOP: kopierbarer Textblock statt Liste */
+/* Der Begründungstext gehört in die Zwischenablage, nicht ein zweites Mal auf den
+   Bildschirm — sichtbar bleibt die Übungsliste, kopiert wird sie samt Intro. */
 function renderWhoopCopy(f){
   const lines = f.whoop.map(([n,d]) => `${stripHtml(n)}: ${stripHtml(d)}`).join('\n');
   const introPlain = f.intro ? stripHtml(f.intro) : '';
-  const text = `${stripHtml(f.title)}\n${stripHtml(f.date)}\n\n${lines}${introPlain ? `\n\n${introPlain}` : ''}`;
+  const shown = `${stripHtml(f.title)}\n${stripHtml(f.date)}\n\n${lines}`;
+  const text = `${shown}${introPlain ? `\n\n${introPlain}` : ''}`;
   return `<div class="whoop-copy" data-whoop-text="${encodeURIComponent(text)}">
     <div class="whoop-copy-head"><span class="whoop-copy-title">Für WHOOP kopieren</span>
       <button type="button" class="copy-btn" aria-label="WHOOP-Übungsliste in die Zwischenablage kopieren" onclick="copyWhoopText(this)">${COPY_ICON}Kopieren</button></div>
-    <div class="whoop-text">${escapeHtml(text)}</div></div>`;
+    <div class="whoop-text">${escapeHtml(shown)}</div></div>`;
 }
 
 function copyWhoopText(btn){
@@ -959,36 +1090,53 @@ function copyWhoopText(btn){
 }
 
 /* Dauer- und Prioritätskopf einer Routine */
+/* Ein Chip, nicht drei. Wer die Routine geöffnet hat, hat die Priorisierung
+   längst entschieden; die Herleitung der Zeitschätzung steht im Warum-Panel. */
 function routineMetaHTML(f){
-  const prio = prioOf('own');
-  const chips = [`<span class="mchip prio-1">Fokus-Tag · ${prio.chip}</span>`];
-  let note = '';
-  if (f.dauer) {
-    chips.push(`<span class="mchip">Dauer gesamt ${f.dauer.gesamt}</span>`);
-    chips.push(`<span class="mchip">Kernzeit ${f.dauer.kern} (ohne optionale Blöcke)</span>`);
-    note = [f.dauer.warmup, f.dauer.hinweis].filter(Boolean).join(' · ');
-  }
-  return `<div class="routine-meta">${chips.join('')}</div>` +
-    (note ? `<p class="routine-meta-note">${note}</p>` : '');
+  if (!f.dauer) return '';
+  return `<div class="routine-meta"><span class="mchip prio-1">${f.dauer.gesamt} · Kern ${f.dauer.kern}</span></div>`;
 }
 
 function renderFocus(key){
   const w=getWeek(currentWeekId), f=w.focusDays[key];
   if(!f){ document.getElementById('focusContent').innerHTML='<div class="empty">Kein Focus-Tag.</div>'; return; }
+  currentFocusKey = key;
+
+  /* Offener Block: der gemerkte, sonst der erste noch nicht erledigte Kernblock. */
+  const state = loadBlkState();
+  if (!state.open || !f.blocks.some(b => b.letter === state.open)) {
+    const first = f.blocks.find(b => !state.done.includes(b.letter) && b.prio !== 'optional');
+    state.open = first ? first.letter : null;
+  }
+
+  /* Begründung, Warm-up und Schätzmethodik sind Vorabend-Material — sie stehen
+     nicht mehr zwischen der Überschrift und der ersten Zahl der Einheit. */
+  const whyParts = [
+    f.intro ? `<p class="detail-sub">${rich(f.intro)}</p>` : '',
+    f.dauer && (f.dauer.warmup || f.dauer.hinweis)
+      ? `<p class="routine-meta-note">${[f.dauer.warmup, f.dauer.hinweis].filter(Boolean).join(' · ')}</p>` : ''
+  ].filter(Boolean).join('');
+
+  /* Die Notiz gehört an das Ende der Einheit, nicht hinter eine Rücknavigation. */
+  const focusDay = w.days.find(d => d.focus === key);
+
   document.getElementById('focusContent').innerHTML=`
     <div class="crumb"><button type="button" class="lnk" onclick="showWeek()">${w.label}</button><span class="sep">/</span>Focus-Tag ${key}</div>
-    <div class="page-header"><div class="eyebrow">${f.date}</div><h1>${f.title}</h1><div class="sub">${f.sub}</div></div>
+    <div class="page-header"><div class="eyebrow">${f.date}</div><h1>${f.title}</h1></div>
     ${routineMetaHTML(f)}
     ${discHTML('rule-rec-focus', 'Recovery-Anpassung: was gilt unter 50 % und unter 34 %', recoveryPanelHTML(f.recoveryDay))}
-    ${discHTML('rule-out-focus', 'Wenn diese Einheit ausfällt oder die Zeit nicht reicht', ausfallPanelHTML())}
-    <p class="detail-sub">${rich(f.intro)}</p>
-    ${f.blocks.map(renderBlock).join('')}
+    ${whyParts ? discHTML('focus-why', 'Warum diese Einheit so aussieht', whyParts) : ''}
+    ${f.blocks.map(b => renderBlock(b, state)).join('')}
+    ${focusDay ? buildNoteHTML(focusDay.isoDate, 'own', 'f-') : ''}
     ${renderWhoopCopy(f)}
+    ${discHTML('rule-out-focus', 'Wenn diese Einheit ausfällt oder die Zeit nicht reicht', ausfallPanelHTML())}
     <div class="gloss-wrap" id="glossHost-focus"></div>
     <button type="button" class="nav-back" onclick="showWeek()" style="margin-top:28px">
       <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M10 3L5 8l5 5"/></svg>
       Zurück zum Wochenplan
     </button>`;
+  saveBlkState(state);
+  if (focusDay) { patchNoteUI(focusDay.isoDate, weekNotes[focusDay.isoDate]); restoreDraft(focusDay.isoDate); }
   fillGlossary('focusContent', 'glossHost-focus');
 }
 

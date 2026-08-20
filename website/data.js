@@ -107,7 +107,7 @@ const DATA = {
       ],
       focusDays: {
         A: {
-          title:"🏋️ Focus-Tag A", date:"Mittwoch · 19.08.2026",
+          title:"Focus-Tag A", date:"Mittwoch · 19.08.2026",
           sub:"BMU-Primer · Snatch Singles (Ceiling 60) · Pause-OHS-Lastaufbau · Core · Hypertrophie-Layer Delts/Bizeps",
           intro:"Erster strukturierter Tag nach zwei Italien-Bike-Tagen. BMU-Primer vorweg wie gewohnt (2. Wochenkontakt). Snatch-Ceiling 60 zum zweiten Mal in Folge sauber reproduzieren — 62,5 nur bei perfektem Lockout. OHS-Lastaufbau geht in die zweite Runde: letzte Woche bei 50 gehalten, diesmal 52,5 als Zielsatz, 55 optional bei sauberem 52,5er.",
           dauer:{ kern:"~45 min", gesamt:"~70 min", warmup:"~10 min Warm-up (nicht als Block gelistet)", hinweis:"Geschätzt aus Sätzen, Pausen und den im Plan genannten Blockzeiten. Fokus-Tag-Standard: 60–90 min einschließlich Warm-up und Mobility." },
@@ -152,7 +152,7 @@ const DATA = {
           ]
         },
         B: {
-          title:"🏋️ Focus-Tag B", date:"Samstag · 22.08.2026",
+          title:"Focus-Tag B", date:"Samstag · 22.08.2026",
           sub:"BMU Linked Doubles (Stufe wiederholt) · T2B · Strict HSPU 4×8 (neue Stufe) · Weighted Pull-up 3×5 (neue Stufe) · Hypertrophie-Layer Brust/Trizeps",
           intro:"BMU-Treppenstufe wird wiederholt, nicht gesteigert — Sa 15.08 lief nicht sauber (session_feel 2), und ohne Linked-Double-Videoclip fehlt die Diagnose für die eigentliche Rhythmus-Frage. HSPU geht nach dem als 'easy' bestätigten 4×7 auf 4×8, WPU nach Martins Entscheid vom 09.08. auf 3×5. T2B bleibt bei 3×10 — nächster Test erst W37.",
           dauer:{ kern:"~40 min", gesamt:"~65 min", warmup:"~10 min Warm-up (nicht als Block gelistet)", hinweis:"Geschätzt aus Sätzen, Pausen und den im Plan genannten Blockzeiten. Fokus-Tag-Standard: 60–90 min einschließlich Warm-up und Mobility." },
@@ -218,7 +218,7 @@ const DATA = {
       ],
       focusDays: {
         A: {
-          title:"🏋️ Focus-Tag A", date:"Mittwoch · 12.08.2026",
+          title:"Focus-Tag A", date:"Mittwoch · 12.08.2026",
           sub:"BMU-Primer · Snatch Singles (Ceiling 60) · Pause-OHS-Lastaufbau · Core · Hypertrophie-Layer Delts/Bizeps",
           intro:"Neu vorweg: 5-min-BMU-Primer (4 × 1-2 frisch) — zweiter Wochenkontakt laut BMU-Protokoll (Frequenz schlägt Session-Volumen, coach/bmu-entwicklungsplan.md). Danach Snatch — Speed vor Kraft, das Snatch-Volumen wärmt das OHS-Pattern gleich mit auf. Ceiling 60 (W32, Form 7/10) heute sauber reproduzieren; 62,5 ist Option, kein Ziel. Danach OHS: nach dem Reclaim (W30) der erste echte Lastaufbau seit W27 — Richtung 50/52,5 (Meso-Rolle W33).",
           dauer:{ kern:"~45 min", gesamt:"~70 min", warmup:"~10 min Warm-up (nicht als Block gelistet)", hinweis:"Geschätzt aus Sätzen, Pausen und den im Plan genannten Blockzeiten. Fokus-Tag-Standard: 60–90 min einschließlich Warm-up und Mobility." },
@@ -263,7 +263,7 @@ const DATA = {
           ]
         },
         B: {
-          title:"🏋️ Focus-Tag B", date:"Samstag · 15.08.2026",
+          title:"Focus-Tag B", date:"Samstag · 15.08.2026",
           sub:"BMU Linked Doubles · T2B · Strict HSPU 4×7 (neue Stufe) · Weighted Pull-up 3×4 · Hypertrophie-Layer Brust/Trizeps",
           intro:"Progression aus den Testständen vom 07.08. — und Protokollwechsel beim BMU: Linking ist ein Rhythmus-, kein Kraftproblem (Recherche 09.08., coach/bmu-entwicklungsplan.md). Statt EMOM-Singles jetzt echte verknüpfte Doubles mit voller Pause plus Descent-/Timing-Drill; der zweite Wochenkontakt ist der Mi-Primer. HSPU steigt nach dem 9er-Test auf 4×7, T2B geht nach dem 16er auf moderates 3×10-Volumen (Zielneusetzung folgt beim Review). WPU bewusst zweite Runde 3×4 @ +5 kg — 3×5 ab W34.",
           dauer:{ kern:"~40 min", gesamt:"~65 min", warmup:"~10 min Warm-up (nicht als Block gelistet)", hinweis:"Geschätzt aus Sätzen, Pausen und den im Plan genannten Blockzeiten. Fokus-Tag-Standard: 60–90 min einschließlich Warm-up und Mobility." },
@@ -329,7 +329,7 @@ const DATA = {
       ],
       focusDays: {
         B: {
-          title:"🏋️ Focus-Tag B", date:"Freitag · 07.08.2026",
+          title:"Focus-Tag B", date:"Freitag · 07.08.2026",
           sub:"Gymnastics-Testtag · BMU/T2B/HSPU max unbroken · Weighted Pull-up 3×4 · Hypertrophie-Layer",
           intro:"Seit W30 fälliger Testblock auf voll erholtem System. Testsätze frisch als jeweils erster Arbeitssatz, danach reduziertes Volumen. WPU ist kein Test — Stufe 3×4 @ +5 kg nach dem Urlaub sauber wiederholen, dann 3×5. Ab heute läuft der 15-min-Hypertrophie-Layer (Meso-3-Rekomposition).",
           dauer:{ kern:"~50 min", gesamt:"~70 min", warmup:"~10 min Warm-up (nicht als Block gelistet)", hinweis:"Geschätzt aus Sätzen, Pausen und den im Plan genannten Blockzeiten. Fokus-Tag-Standard: 60–90 min einschließlich Warm-up und Mobility." },
@@ -382,7 +382,7 @@ const DATA = {
           ]
         },
         A: {
-          title:"🏋️ Focus-Tag A", date:"Samstag · 08.08.2026",
+          title:"Focus-Tag A", date:"Samstag · 08.08.2026",
           sub:"Clean & Jerk Komplex-Reclaim · Core · Hypertrophie-Layer Delts/Bizeps",
           intro:"C&J seit W29 nicht mehr als Komplex trainiert — letzte Referenz 78 kg @ RPE 7 (W28). Heute Reclaim mit Ceiling 80, kein Max-Test. Kein Lunge-/Quad-Zusatz — der So-Box-Tag bringt Deficit Lunges.",
           dauer:{ kern:"~40 min", gesamt:"~60 min", warmup:"~10 min Warm-up (nicht als Block gelistet)", hinweis:"Geschätzt aus Sätzen, Pausen und den im Plan genannten Blockzeiten. Fokus-Tag-Standard: 60–90 min einschließlich Warm-up und Mobility." },
@@ -444,7 +444,7 @@ const DATA = {
       ],
       focusDays: {
         A: {
-          title:"🏝️ Session 1 — Push/Beine", date:"Montag · 27.07.2026",
+          title:"Session 1 — Push/Beine", date:"Montag · 27.07.2026",
           sub:"Wall Strict HSPU · Tempo Push-up · Bulgarian Split Squat · Band Face-Pull · Core",
           intro:"Urlaubswoche = struktureller Deload nach Meso 2. Erhalt statt Aufbau, RPE-Deckel 7. HSPU ist der einzige Fokus, der ohne Bar trainierbar bleibt — bewusst 4×5 statt 4×6.",
           dauer:{ kern:"~35 min", gesamt:"~40 min", warmup:"~5 min Warm-up (nicht als Block gelistet)", hinweis:"Geschätzt aus Sätzen, Pausen und den im Plan genannten Blockzeiten. Fokus-Tag-Standard: 60–90 min einschließlich Warm-up und Mobility." },
@@ -477,7 +477,7 @@ const DATA = {
           ]
         },
         B: {
-          title:"🏝️ Session 2 — Conditioning", date:"Mittwoch · 29.07.2026",
+          title:"Session 2 — Conditioning", date:"Mittwoch · 29.07.2026",
           sub:"Springseil-Intervalle · Bodyweight-AMRAP · ~30 min",
           intro:"Einziger Engine-Reiz der Woche, bewusst kurz. Burpee/V-Up-Muster treibt zuverlässig in Zone 4 — zügig arbeiten, aber nicht ins Limit. Kein Testcharakter.",
           dauer:{ kern:"~25 min", gesamt:"~30 min", hinweis:"Geschätzt aus Sätzen, Pausen und den im Plan genannten Blockzeiten. Fokus-Tag-Standard: 60–90 min einschließlich Warm-up und Mobility." },
@@ -519,7 +519,7 @@ const DATA = {
           ]
         },
         C: {
-          title:"🏝️ Session 3 — Pull/Posterior", date:"Freitag · 31.07.2026",
+          title:"Session 3 — Pull/Posterior", date:"Freitag · 31.07.2026",
           sub:"Band Row · Single-Leg RDL · Wall Handstand Hold · Pull-Apart · Core",
           intro:"Einzige Zugarbeit der Woche — Band Row entsprechend priorisiert und schwer (stärkstes Band oder doppelt). Handstand Hold hält den Overhead-Reiz ohne zusätzliches Pressvolumen nach Session 1.",
           dauer:{ kern:"~35 min", gesamt:"~40 min", warmup:"~5 min Warm-up (nicht als Block gelistet)", hinweis:"Geschätzt aus Sätzen, Pausen und den im Plan genannten Blockzeiten. Fokus-Tag-Standard: 60–90 min einschließlich Warm-up und Mobility." },

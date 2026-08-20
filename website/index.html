@@ -104,6 +104,7 @@ button.dc-main:hover { background:var(--card-muted); }
 .dc-line1 { display:flex; align-items:center; gap:10px; width:100%; flex-wrap:wrap; }
 .dc-day { font-family:var(--disp); font-size:18px; font-weight:700; color:var(--ink); letter-spacing:-.01em; }
 .dc-date { font-family:var(--mono); font-size:12px; font-weight:600; color:var(--ink3); }
+.dc-blocks { display:flex; flex-direction:column; gap:2px; margin-top:3px; font-family:var(--disp); font-size:16px; font-weight:700; color:var(--ink); line-height:1.3; letter-spacing:-.01em; }
 .dc-einheit { font-size:16px; font-weight:600; color:var(--ink); }
 .dc-metarow { display:flex; flex-wrap:wrap; gap:6px; }
 .dc-cta-btn { display:inline-flex; align-items:center; gap:7px; min-height:44px; margin:8px 10px 0; padding:0 14px; background:var(--accent-soft); border:none; border-radius:11px; cursor:pointer; font-family:var(--mono); font-size:12px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--accent-ink); }
@@ -283,11 +284,9 @@ button.term::after { content:''; position:absolute; inset:-6px -4px; }
 /* Lasttreppen ab drei Stufen stehen untereinander: ein Wert pro Zeile liest
    sich von oben nach unten, statt mitten in der Sequenz umzubrechen. */
 .chip-val .steps > span { display:block; }
+.chip-val .steps > span.op { color:var(--ink3); font-weight:500; }
 .chip-val .steps > span + span { margin-top:1px; }
 .chip-val small { display:block; font-size:13px; font-weight:500; color:var(--ink3); margin-top:2px; letter-spacing:0; }
-.chip.rpe { background:var(--accent-soft); border-color:var(--accent-soft); }
-.chip.rpe .chip-label { color:var(--accent-ink); }
-.chip.rpe .chip-val { color:var(--accent-ink); }
 .exc-meta { display:flex; flex-wrap:wrap; gap:14px; margin-top:12px; font-family:var(--mono); font-size:12px; font-weight:500; color:var(--ink2); }
 .exc-meta b { color:var(--ink3); font-weight:600; font-size:12px; letter-spacing:.08em; text-transform:uppercase; margin-right:5px; }
 .exc-note { font-size:13px; color:var(--ink2); margin-top:12px; line-height:1.55; padding-top:11px; border-top:1px solid var(--line2); }
@@ -469,10 +468,21 @@ function splitMain(val){
    „47,5 → 50 →" ist schlechter lesbar als eine saubere Spalte. */
 function stackSteps(val){
   const p = String(val).split('||');
-  const steps = p[0].split(/\s*(?:→|·)\s*/).filter(Boolean);
-  const head = steps.length >= 3
-    ? `<span class="steps">${steps.map(x=>`<span>${x}</span>`).join('\n')}</span>`
-    : p[0];
+  /* Treppen (·/→) und Verkettungen (+) stehen untereinander. Beim Plus bleibt
+     der Operator als eigene Zeile sichtbar — sonst liest sich „2 × 3 / 2 × 3"
+     wie zwei getrennte Angaben statt wie eine Summe. */
+  const plus = p[0].split(/\s*\+\s*/).filter(Boolean);
+  let steps, head;
+  if (plus.length >= 2) {
+    const teile = [];
+    plus.forEach((x,i) => { if (i) teile.push('<span class="op">+</span>'); teile.push(`<span>${x}</span>`); });
+    head = `<span class="steps">${teile.join('\n')}</span>`;
+  } else {
+    steps = p[0].split(/\s*(?:→|·)\s*/).filter(Boolean);
+    head = steps.length >= 3
+      ? `<span class="steps">${steps.map(x=>`<span>${x}</span>`).join('\n')}</span>`
+      : p[0];
+  }
   return p.length===1 ? head : `${head}<small>${p.slice(1).join(' ')}</small>`;
 }
 function renderSub(sub){
@@ -817,7 +827,16 @@ function dayCardHTML(d, w, today){
     </article>`;
   }
 
-  const mainInner = `${line1}<span class="dc-einheit">${d.einheit}</span>${metaRow}`;
+  /* Fokus-Tage zeigen ihre Kernblöcke als Liste statt einer langen Überschrift.
+     `kurz` ist die gepflegte Kurzform; fehlt sie, wird der Titel entklammert. */
+  const kernListe = f && f.blocks
+    ? f.blocks.filter(b => b.prio !== 'optional')
+        .map(b => b.kurz || stripHtml(b.title).replace(/\s*\([^)]*\)/g,'').trim())
+    : [];
+  const einheitHTML = kernListe.length
+    ? `<span class="dc-blocks">${kernListe.map(k=>`<span>${escapeHtml(k)}</span>`).join('')}</span>`
+    : `<span class="dc-einheit">${d.einheit}</span>`;
+  const mainInner = `${line1}${einheitHTML}${metaRow}`;
 
   const main = isFocus
     ? `<button type="button" class="dc-main" id="dcm-${d.isoDate}" data-role="open"
@@ -965,11 +984,14 @@ function renderExercise(headers,row){
   const last=field(headers,row,['last']), rpe=field(headers,row,['rpe']), tempo=field(headers,row,['tempo']);
   const rest=field(headers,row,['rest','pause']), note=field(headers,row,['note']);
   let chips='';
-  if(sets)  chips+=`<div class="chip"><div class="chip-label">Sätze × Wdh</div><div class="chip-val">${splitMain(sets)}</div></div>`;
+  if(sets)  chips+=`<div class="chip"><div class="chip-label">Sätze × Wdh</div><div class="chip-val">${stackSteps(sets)}</div></div>`;
   if(dauer) chips+=`<div class="chip"><div class="chip-label">Dauer</div><div class="chip-val">${splitMain(dauer)}</div></div>`;
   if(last)  chips+=`<div class="chip"><div class="chip-label">Last</div><div class="chip-val">${stackSteps(last)}</div></div>`;
-  if(rpe)   chips+=`<div class="chip rpe"><div class="chip-label">RPE</div><div class="chip-val">${rpe}</div></div>`;
+  /* RPE hat keinen eigenen Chip mehr: Er war auf dem Handy das größte und
+     einzige farbige Element der Karte, obwohl die Last die Zahl ist, wegen der
+     man hinschaut. Er steht jetzt als Text bei Tempo und Pause. */
   const meta=[];
+  if(rpe)   meta.push(`<span><b>RPE</b>${rpe}</span>`);
   if(tempo) meta.push(`<span><b>Tempo</b>${tempo}</span>`);
   if(rest)  meta.push(`<span><b>Pause</b>${rest}</span>`);
   /* Die Begründung ist der längste Text der Karte und wird mitten im Satz nicht

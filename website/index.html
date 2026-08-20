@@ -833,9 +833,11 @@ function dayCardHTML(d, w, today){
     ? f.blocks.filter(b => b.prio !== 'optional')
         .map(b => b.kurz || stripHtml(b.title).replace(/\s*\([^)]*\)/g,'').trim())
     : [];
+  /* Tage mit `wod` tragen keine Einheiten-Überschrift: Sie zählt genau die
+     Bewegungen auf, die direkt darunter strukturiert stehen. */
   const einheitHTML = kernListe.length
     ? `<span class="dc-blocks">${kernListe.map(k=>`<span>${escapeHtml(k)}</span>`).join('')}</span>`
-    : `<span class="dc-einheit">${d.einheit}</span>`;
+    : (d.wod ? '' : `<span class="dc-einheit">${d.einheit}</span>`);
   const mainInner = `${line1}${einheitHTML}${metaRow}`;
 
   const main = isFocus

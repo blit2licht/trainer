@@ -3,6 +3,10 @@
    Nur diese Datei wächst pro Woche.
    Neue Woche = neues Objekt VORNE in weeks[] einfügen.
    isoDate-Felder sind Pflicht — werden vom Notes-System genutzt.
+   Tage mit `wod`: keine Einheiten-Überschrift nötig (wird nicht gerendert), und
+   `rx` trägt nur, was das wod-Objekt NICHT schon zeigt — also Skalierungsstufe
+   und Lastregel, keine Wiederholung der Bewegungen oder ihrer Gewichte.
+   Fokus-Blöcke: `kurz` ist die Kurzform für die Blockliste der Wochenkarte.
 ════════════════════════════════════════════════════════════ */
 const DATA = {
 
@@ -114,7 +118,7 @@ const DATA = {
                 { reps:"5",  name:"Burpee Box Jump Overs",   detail:"" }
               ] }
           ],
-          sub:"Every 2:30 × 4: 8 Barbell RDL (kontrollierter Abstieg) + 20 banded Hamstring Curls → E2:00 × 8 (Score: langsamste Runde): 10 DB Shoulder-to-Overhead · 30 DU/45 Singles · 5 Burpee Box Jump Overs", rx:"RDL RPE-kalibriert · WOD <span class='rv'>L2 — DB 2×20 kg</span>", rpe:"RPE ≤7-8", note:"Hinge-fokussiert — kollidiert nicht mit Mi (Squat/Overhead) oder Sa (Pull/Press). Sauberer Lückenfüller in der Wochenmitte." },
+          sub:"Every 2:30 × 4: 8 Barbell RDL (kontrollierter Abstieg) + 20 banded Hamstring Curls → E2:00 × 8 (Score: langsamste Runde): 10 DB Shoulder-to-Overhead · 30 DU/45 Singles · 5 Burpee Box Jump Overs", rx:"RDL RPE-kalibriert · WOD <span class='rv'>L2</span>", rpe:"RPE ≤7-8", note:"Hinge-fokussiert — kollidiert nicht mit Mi (Squat/Overhead) oder Sa (Pull/Press). Sauberer Lückenfüller in der Wochenmitte." },
         { day:"Freitag",   date:"21.08.", isoDate:"2026-08-21", type:"rest", einheit:"—", rx:"—", note:"Puffer vor Fokus B. DreamWOD (Power Clean & Jerk + Benchmark „Grace“, 30 C&J @61/43kg for time) bewusst verworfen: unkontrollierter Benchmark-Test mit falschem Reiz für die Konsolidierungsphase, würde außerdem die Sa-Freshness für BMU/HSPU kosten." },
         { day:"Samstag",   date:"22.08.", isoDate:"2026-08-22", type:"own", focus:"B", einheit:"BMU Linked Doubles (Stufe wiederholt) + T2B + Strict HSPU 4×8 + Weighted Pull-up 3×5 + Layer", sub:"Descent-/Hip-Pop-Drill · BMU Linked Doubles 5×2 (Stufe wiederholt) · T2B 3×10 · Strict HSPU 4×8 (neue Stufe) · Weighted Pull-up 3×5 (neue Stufe) · 15-min-Layer Brust/Trizeps", rx:"Gymnastics auf Anfrage", rpe:"RPE ≤8", note:"BMU-Stufe wird wiederholt, nicht auf 4×3 gesteigert — Sa 15.08 lief nicht sauber (feel 2), ohne Linked-Double-Videoclip fehlt die Diagnose. HSPU nach 'easy' bestätigtem 4×7 auf 4×8, WPU nach Martins Entscheid vom 09.08. auf 3×5. T2B gehalten bei 3×10 (nächster Test erst W37)." },
         { day:"Sonntag",   date:"23.08.", isoDate:"2026-08-23", type:"ride", einheit:"Ride (sozial)", rx:"<span class='rv'>Z1/Z2</span>", note:"Standard-Sonntagsride." }

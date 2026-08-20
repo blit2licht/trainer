@@ -78,7 +78,7 @@ select#weekSelect:hover { border-color:var(--accent); }
 .detail-sub { font-size:14px; color:var(--ink2); margin:12px 0 26px; line-height:1.55; }
 
 /* Meta-Chips: Dauer und Priorität */
-.mchip { display:inline-flex; align-items:center; gap:5px; font-family:var(--mono); font-size:12px; font-weight:700; letter-spacing:.03em; padding:4px 9px; border-radius:8px; background:var(--card-muted); border:1px solid var(--line2); color:var(--ink2); white-space:nowrap; }
+.mchip { display:inline-flex; align-items:center; gap:5px; font-family:var(--mono); font-size:12px; font-weight:700; letter-spacing:.01em; padding:2px 7px; border-radius:7px; background:var(--card-muted); border:1px solid var(--line2); color:var(--ink2); white-space:nowrap; }
 .mchip.prio-1 { background:var(--accent-soft); border-color:var(--accent-soft); color:var(--accent-ink); }
 .mchip.prio-r { background:transparent; }
 .mchip.mchip-opt { background:var(--warn-soft); border-color:var(--warn-soft); color:var(--warn); }
@@ -815,8 +815,12 @@ function dayCardHTML(d, w, today){
 
   const chips = [`<span class="mchip prio-${prio.rang || 'r'}">${prio.chip}</span>`];
   if (f && f.dauer) {
-    chips.push(`<span class="mchip">Dauer ${f.dauer.gesamt}</span>`);
-    chips.push(`<span class="mchip">Kernzeit ${f.dauer.kern}</span>`);
+    /* Eine Pille statt zwei: Kernzeit bis Gesamtdauer als Spanne — das ist die
+       Frage, die am Morgen zählt („wie lange muss ich einplanen"). */
+    const zahl = v => (String(v).match(/[\d,.]+/) || [''])[0];
+    const kern = zahl(f.dauer.kern), ges = zahl(f.dauer.gesamt);
+    const spanne = kern && ges && kern !== ges ? `${kern}–${ges}` : (ges || kern);
+    if (spanne) chips.push(`<span class="mchip">T ${spanne} min</span>`);
   }
   const line1 = `<span class="dc-line1"><span class="dc-day">${d.day}</span><span class="dc-date">${d.date}</span>${badge}</span>`;
   const metaRow = `<span class="dc-metarow">${chips.join('')}</span>`;
@@ -1262,7 +1266,11 @@ function copyWhoopText(btn){
    längst entschieden; die Herleitung der Zeitschätzung steht im Warum-Panel. */
 function routineMetaHTML(f){
   if (!f.dauer) return '';
-  return `<div class="routine-meta"><span class="mchip prio-1">${f.dauer.gesamt} · Kern ${f.dauer.kern}</span></div>`;
+  /* Gleiche Schreibweise wie auf der Wochenkarte — eine Sache, eine Notation. */
+  const zahl = v => (String(v).match(/[\d,.]+/) || [''])[0];
+  const kern = zahl(f.dauer.kern), ges = zahl(f.dauer.gesamt);
+  const spanne = kern && ges && kern !== ges ? `${kern}–${ges}` : (ges || kern);
+  return spanne ? `<div class="routine-meta"><span class="mchip prio-1">T ${spanne} min</span></div>` : '';
 }
 
 function renderFocus(key){

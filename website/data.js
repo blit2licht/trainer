@@ -45,9 +45,9 @@ const DATA = {
        Beide Beschriftungen kommen aus dieser einen Stelle, damit ein Tagestyp
        nirgends zwei Namen bekommt. */
     prio: {
-      own:  { rang: 1,    typ: "Focus",   chip: "Prio 1 von 3" },
-      box:  { rang: 2,    typ: "Box",     chip: "Prio 2 von 3" },
-      ride: { rang: 3,    typ: "Ride",    chip: "Prio 3 von 3" },
+      own:  { rang: 1,    typ: "Focus",   chip: "Prio 1/3" },
+      box:  { rang: 2,    typ: "Box",     chip: "Prio 2/3" },
+      ride: { rang: 3,    typ: "Ride",    chip: "Prio 3/3" },
       rest: { rang: null, typ: "Ruhetag", chip: "Bleibt Pause" }
     }
   },

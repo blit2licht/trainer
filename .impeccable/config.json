@@ -1,0 +1,23 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "gpt-thin-border-wide-shadow",
+        "value": "*",
+        "files": [
+          "website/index.html"
+        ],
+        "createdAt": "2026-08-20T05:39:24.469Z",
+        "reason": "Betrifft ausschliesslich div.gloss-pop-inner, das Glossar-Popover (per Browser-Scan verifiziert). Ein schwebendes Overlay darf Kante und Elevation zugleich tragen. Nicht vom Nutzer bestaetigt, sondern als False Positive belegt."
+      },
+      {
+        "rule": "overused-font",
+        "value": "inter",
+        "createdAt": "2026-08-20T07:42:38.064Z",
+        "reason": "Nutzer 2026-08-20: Schriftwahl ausdruecklich egal, Kriterium ist Funktion/Lesbarkeit statt Unverwechselbarkeit. Inter ist als UI-Schrift in kleinen Graden funktional begruendet; der Befund zielt auf Distinktheit, die hier kein Ziel ist."
+      }
+    ]
+  }
+}

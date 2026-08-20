@@ -7,8 +7,17 @@ config.php
 # Generiertes Design-Bundle — wird aus website/index.html gebaut
 design/bundle/
 
-# Laufzeitabhängigkeiten lokaler Claude-Skills — nachinstalliert, nie versioniert
-.claude/skills/*/node_modules/
+# Vendorte Agent-Werkzeuge — gehören nicht in das Trainingsrepo, werden lokal
+# bzw. über den jeweiligen Marketplace installiert
+.claude/
+.github/skills/
+.github/agents/
+.github/hooks/
+
+# Impeccable: Projektwissen (config.json, critique/) wird versioniert,
+# Maschinenzustand nicht
+.impeccable/config.local.json
+.impeccable/hook.cache.json
 
 # Video-Analyse-Rohdaten (Videos, Frames, Plots) — nie committen, nur
 # verdichtete Erkenntnisse wandern manuell nach coach/state.json

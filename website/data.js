@@ -140,7 +140,7 @@ const DATA = {
               rows:[ ["Bar Muscle-Up||Primer","4 × 1–2","BW","≤7","X","60-90 sec","Frisch nach dem Warm-up, nie bis zur Ermüdung — reine Skill-Frequenz (BMU-Protokoll). Bei Recovery <50 % nur Singles."] ] },
             { letter:"B", prio:"required", min:16, title:"Squat Snatch — Singles", kurz:"Squat Snatch", sub:"7 Sätze aufsteigend · Ceiling 60 · 62,5 optional",
               headers:["Übung","Sets × Reps","Last","RPE","Tempo","Rest","Note"],
-              rows:[ ["Squat Snatch","7 × 1||aufsteigend","40 · 45 · 50 · 52,5 · 55 · 57,5 · 60 kg","≤8","explosiv","E1:30-2:00","Ceiling 60 zum zweiten Mal in Folge reproduzieren. 62,5 nur bei perfektem Lockout als 8. Single, kein Zwang."] ] },
+              rows:[ ["Squat Snatch","7 × 1||aufsteigend","40 · 45 · 50 · 52,5 · 55 · 57,5 · 60 kg","≤8","explosiv","E1:30-2:00","Ceiling 60 zum zweiten Mal in Folge reproduzieren. 62,5 nur bei perfektem Lockout als 8. Single, kein Zwang. Nachtrag 20.08.: Bar-Path-Video-Diagnose (3 Clips) zeigt reproduzierbare Lücke Hüfte/Knie am Extensions-Peak (31–35°). Cue fürs nächste Mal: 'Extend before you bend' (Whiteboard Daily S. 157)."] ] },
             { letter:"C", prio:"required", min:14, title:"Pause OHS — Lastaufbau", kurz:"Pause OHS", sub:"5 Sätze · Zielsatz 52,5",
               headers:["Übung","Sets × Reps","Last","RPE","Tempo","Rest","Note"],
               rows:[ ["Pause OHS||2-sec Pause Bottom","5 × 3","42,5 → 45 → 47,5 → 50 → 52,5 kg","≤7-8","32X1","2-3 min","Letzte Woche bei 50 gehalten (52,5 nicht angesteuert) — heute 52,5 als Zielsatz. Bei sauberem 52,5er optional 6. Satz 55."] ] },

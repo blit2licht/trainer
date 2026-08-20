@@ -81,6 +81,11 @@ nachweisbar in die Folgewoche zurück.
   Transpilierschritt. `data.js` ist die einzige Datei, die pro Woche wächst.
 - **Deutsch als einzige Sprache.** Keine i18n-Anforderung. Fachbegriffe (WOD, RPE,
   BMU, EMOM, Ceiling) bleiben englisch und werden im Glossar in `data.js` erklärt.
+- **Keine Entscheidungsunterstützung bei der Lastkappung** (Entscheidung
+  2026-08-20). Martin schätzt selbst ein, wie weit er an einem Tag geht; der
+  Plan nennt die Zielwerte, das Kappen übernimmt er. Kein Recovery-Eingabefeld,
+  keine automatisch reduzierten Lasten, keine Warnzeilen in den Blöcken. Die
+  allgemeine Recovery-Regel bleibt als Nachschlagewerk hinter ihrem Griff.
 - **Keine Tracker.** Externe CDNs sind dagegen ausdrücklich erlaubt
   (Entscheidung 2026-08-19) — Schriften und vergleichbare Assets dürfen von
   fremden Hosts geladen werden.

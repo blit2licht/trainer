@@ -50,8 +50,10 @@ try {
     );
 
     $col = feel_column($pdo);
+    // Erledigt-Vektor nur mitlesen, wenn die Spalte schon existiert (siehe notes_db.php).
+    $bd  = has_blocks_column($pdo) ? 'blocks_done' : "'' AS blocks_done";
     $stmt = $pdo->prepare(
-        "SELECT session_key, note_date, `$col` AS session_feel, note_text, updated_at
+        "SELECT session_key, note_date, `$col` AS session_feel, note_text, $bd, updated_at
          FROM session_notes
          WHERE note_date BETWEEN :from AND :to
          ORDER BY note_date ASC"

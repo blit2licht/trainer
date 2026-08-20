@@ -43,6 +43,8 @@ $note_text   = trim($data['note_text']   ?? '');
 // Übergang: rpe_feel als Fallback, solange gecachte Frontends den alten
 // Feldnamen senden.
 $session_feel = intval($data['session_feel'] ?? $data['rpe_feel'] ?? 0);
+// Erledigt-Vektor der Fokus-Blöcke, z. B. "A,B,C". Nur Buchstaben und Kommas.
+$blocks_done = strtoupper(preg_replace('/[^A-Za-z,]/', '', (string) ($data['blocks_done'] ?? '')));
 
 if (!$session_key || !$note_date) {
     http_response_code(400);
@@ -67,21 +69,28 @@ try {
         [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
     );
 
-    $col = feel_column($pdo);
-    $sql = "INSERT INTO session_notes (session_key, note_date, `$col`, note_text)
-            VALUES (:sk, :nd, :sf, :nt)
-            ON DUPLICATE KEY UPDATE
-                `$col`     = VALUES(`$col`),
-                note_text  = VALUES(note_text),
-                updated_at = NOW()";
+    $col     = feel_column($pdo);
+    $has_bd  = has_blocks_column($pdo);
+
+    $cols   = ['session_key', 'note_date', "`$col`", 'note_text'];
+    $vals   = [':sk', ':nd', ':sf', ':nt'];
+    $update = ["`$col`" . ' = VALUES(`' . $col . '`)', 'note_text = VALUES(note_text)'];
+    $params = [':sk' => $session_key, ':nd' => $note_date, ':sf' => $session_feel, ':nt' => $note_text];
+
+    if ($has_bd) {
+        $cols[]   = 'blocks_done';
+        $vals[]   = ':bd';
+        $update[] = 'blocks_done = VALUES(blocks_done)';
+        $params[':bd'] = $blocks_done;
+    }
+    $update[] = 'updated_at = NOW()';
+
+    $sql = 'INSERT INTO session_notes (' . implode(', ', $cols) . ')
+            VALUES (' . implode(', ', $vals) . ')
+            ON DUPLICATE KEY UPDATE ' . implode(', ', $update);
 
     $stmt = $pdo->prepare($sql);
-    $stmt->execute([
-        ':sk' => $session_key,
-        ':nd' => $note_date,
-        ':sf' => $session_feel,
-        ':nt' => $note_text,
-    ]);
+    $stmt->execute($params);
 
     echo json_encode(['success' => true]);
 

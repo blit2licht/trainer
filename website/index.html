@@ -261,6 +261,14 @@ button.term::after { content:''; position:absolute; inset:-6px -4px; }
 .blk-body { padding:0 14px 14px; }
 .blk-sub { font-family:var(--mono); font-size:12px; font-weight:500; color:var(--ink2); margin:0 0 11px; }
 .blk-flags { display:flex; flex-wrap:wrap; gap:6px; align-items:center; margin-bottom:11px; }
+/* Übungsnotiz: benannter Griff statt „Mehr" — der Text ist weg, die Zahlen stehen. */
+.exc-note-wrap { margin-top:11px; }
+.exc-note-btn { display:inline-flex; align-items:center; gap:7px; min-height:44px; padding:0 4px 0 0; background:none; border:none; cursor:pointer; font-family:var(--mono); font-size:12px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--ink3); }
+.exc-note-btn:hover { color:var(--accent-ink); }
+.exc-note-btn svg { width:13px; height:13px; transition:transform .15s; }
+.exc-note-btn[aria-expanded="true"] svg { transform:rotate(180deg); }
+.note-has-indicator.offen { color:var(--warn); }
+.note-has-indicator.offen .note-feel-dot { background:var(--warn); }
 .blk-done { display:flex; align-items:center; justify-content:center; gap:8px; width:100%; min-height:44px; margin-top:12px; padding:0 14px; background:var(--card-muted); border:1px solid var(--line); border-radius:11px; cursor:pointer; font-family:var(--mono); font-size:12px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--ink2); }
 .blk-done:hover { color:var(--accent-ink); border-color:var(--accent-soft); background:var(--accent-soft); }
 .blk-done svg { width:15px; height:15px; }
@@ -607,7 +615,8 @@ async function loadNotes(fromDate, toDate){
     (d.notes || []).forEach(n => {
       weekNotes[n.note_date] = {
         session_feel: parseInt(n.session_feel ?? n.rpe_feel) || 0,
-        note_text: n.note_text
+        note_text: n.note_text,
+        blocks_done: n.blocks_done || ''
       };
     });
     patchAllNoteUIs();
@@ -653,6 +662,10 @@ async function saveNote(isoDate){
 /* Note UI patches */
 function patchAllNoteUIs(){
   Object.entries(weekNotes).forEach(([date, note]) => patchNoteUI(date, note));
+  /* Danach alle übrigen Tage der Woche nachziehen, damit fehlende Rückmeldung
+     sichtbar wird und nicht als Leerstelle durchgeht. */
+  const w = getWeek(currentWeekId);
+  if (w) w.days.forEach(d => { if (!weekNotes[d.isoDate]) patchNoteIndicator(d.isoDate); });
 }
 
 function patchNoteUI(date, note){
@@ -675,6 +688,17 @@ function patchNoteIndicator(date){
   const draftDiffers = draft &&
     (draft.text !== ((note && note.note_text) || '') || draft.feel !== ((note && note.session_feel) || 0));
   let html = '';
+  /* Schweigen darf nicht als Planerfüllung gelesen werden: Ein vergangener
+     Trainingstag ohne jede Rückmeldung wird ausdrücklich als offen markiert. */
+  const hasFeedback = (note && (note.session_feel > 0 || note.note_text || note.blocks_done)) || draft;
+  const day = (getWeek(currentWeekId)?.days || []).find(x => x.isoDate === date);
+  const istVergangen = date < todayLocal();
+  const warTraining = day && day.type !== 'rest';
+  if (!hasFeedback && istVergangen && warTraining) {
+    noteAll('data-note-ind', date).forEach(ind => {
+      ind.innerHTML = `<span class="note-has-indicator offen"><span class="note-feel-dot"></span>Keine Rückmeldung</span>`; });
+    return;
+  }
   if (draftDiffers) {
     html = `<span class="note-has-indicator draft"><span class="note-feel-dot"></span>Entwurf</span>`;
   } else if (note && (note.session_feel > 0 || note.note_text)) {
@@ -819,8 +843,11 @@ function dayCardHTML(d, w, today){
     : '';
 
   const strava = (d.type==='ride' && d.strava) ? renderStravaStats(d.strava) : '';
+  /* Box-Tage tragen ihre Struktur als `wod`-Objekt, nicht als Fließtext —
+     dieselbe Darstellung wie im Fokus-Tag. Fehlt sie, bleibt der Untertitel. */
+  const wods = d.wod ? (Array.isArray(d.wod) ? d.wod : [d.wod]).map(renderWod).join('') : '';
   const body = `<div class="dc-body" id="dcb-${d.isoDate}" hidden>
-      ${renderSub(d.sub)}
+      ${wods || renderSub(d.sub)}
       ${d.note ? `<div class="dc-note">${richW(d.note)}</div>` : ''}
       ${strava}
       ${buildNoteHTML(d.isoDate, d.type)}
@@ -851,7 +878,9 @@ function renderWeek(){
     <button type="button" class="show-all-btn" id="toggle-days-btn" onclick="toggleAllDays()">Alle Tage anzeigen</button>
     <div class="gloss-wrap" id="glossHost-week"></div>`;
 
-  w.days.forEach(d => restoreDraft(d.isoDate));
+  /* Für JEDEN Tag, nicht nur für die mit Notiz — sonst bleibt genau der Fall
+     unsichtbar, um den es geht: der vergangene Trainingstag ohne Rückmeldung. */
+  w.days.forEach(d => { restoreDraft(d.isoDate); patchNoteIndicator(d.isoDate); });
   if (w.dateFrom && w.dateTo) loadNotes(w.dateFrom, w.dateTo);
   fillGlossary('weekContent', 'glossHost-week');
 
@@ -919,6 +948,14 @@ function collapseToToday() {
 
 
 /* Focus day */
+let excSeq = 0;
+function toggleExcNote(n){
+  const panel = document.getElementById('excn-' + n), btn = document.getElementById('excn-' + n + '-btn');
+  if (!panel || !btn) return;
+  const open = panel.hidden;
+  panel.hidden = !open;
+  btn.setAttribute('aria-expanded', String(open));
+}
 function renderExercise(headers,row){
   const name=field(headers,row,['übung']), sets=field(headers,row,['sets','sätze']), dauer=field(headers,row,['dauer']);
   const last=field(headers,row,['last']), rpe=field(headers,row,['rpe']), tempo=field(headers,row,['tempo']);
@@ -931,7 +968,15 @@ function renderExercise(headers,row){
   const meta=[];
   if(tempo) meta.push(`<span><b>Tempo</b>${tempo}</span>`);
   if(rest)  meta.push(`<span><b>Pause</b>${rest}</span>`);
-  return `<div class="exc"><div class="exc-name">${rich(splitMain(name))}</div>${chips?`<div class="exc-data">${chips}</div>`:''}${meta.length?`<div class="exc-meta">${meta.join('')}</div>`:''}${note?`<div class="exc-note">${rich(note)}</div>`:''}</div>`;
+  /* Die Begründung ist der längste Text der Karte und wird mitten im Satz nicht
+     gebraucht — sie steht hinter einem benannten Griff, die Zahlen stehen frei. */
+  excSeq++;
+  const noteBlock = note ? `<div class="exc-note-wrap">
+      <button type="button" class="exc-note-btn" id="excn-${excSeq}-btn" aria-expanded="false" aria-controls="excn-${excSeq}"
+              onclick="toggleExcNote(${excSeq})">${CHEV_DOWN}Warum so</button>
+      <div class="exc-note" id="excn-${excSeq}" hidden>${rich(note)}</div>
+    </div>` : '';
+  return `<div class="exc"><div class="exc-name">${rich(splitMain(name))}</div>${chips?`<div class="exc-data">${chips}</div>`:''}${meta.length?`<div class="exc-meta">${meta.join('')}</div>`:''}${noteBlock}</div>`;
 }
 
 function renderWod(w){
@@ -950,33 +995,47 @@ function renderWod(w){
   </div>`;
 }
 
-/* Die Arbeitszahlen der ersten Zeile — das, was im geschlossenen Kopf stehen muss,
-   damit man den Block nicht öffnen muss, um zu wissen, was er verlangt. */
+/* Die Arbeitszahlen des Blocks für den zusammengeklappten Kopf.
+   NICHT rows[0]: Zeile 0 ist oft ein Drill (RPE 6), nicht die Arbeit. Maßgeblich
+   ist die Zeile mit dem höchsten RPE — sie trägt den eigentlichen Reiz. */
 function blockPeek(b){
   if (b.wod) return stripHtml(b.wod.struktur);
-  const r = (b.rows || [])[0];
-  if (!r) return '';
-  /* Nur der Hauptwert, ohne die <small>-Ergänzung nach `||` — im geschlossenen
-     Kopf zählt die Zahl, nicht ihre Erläuterung. */
+  const rows = b.rows || [];
+  if (!rows.length) return '';
   const main = v => stripHtml(String(v).split('||')[0]).replace(/\s+/g,' ').trim();
-  /* Eine Lasttreppe („40 · 45 · … · 60 kg") wird auf ihre Enden gekürzt.
-     Die Zwischenschritte stehen im offenen Block; hier zählt der Korridor. */
+  const rpeOf = r => {
+    const m = String(field(b.headers, r, ['rpe']) || '').match(/\d+/g);
+    return m ? Math.max(...m.map(Number)) : -1;
+  };
+  let idx = 0;
+  rows.forEach((r,i) => { if (rpeOf(r) > rpeOf(rows[idx])) idx = i; });
+  const r = rows[idx];
+
+  /* Eine Lasttreppe wird auf ihre letzten Stufen gekürzt, nicht auf die Enden:
+     An der Stange lautet die Frage „welche Scheibe als nächstes", nicht
+     „wo fängt es an und wo hört es auf". */
   const ramp = v => {
     const parts = v.split(/\s*(?:·|→)\s*/).filter(Boolean);
-    return parts.length > 2 ? `${parts[0]} … ${parts[parts.length-1]}` : v;
+    return parts.length > 3 ? '… ' + parts.slice(-3).join(' · ') : v;
   };
   const sets = main(field(b.headers, r, ['sets','sätze']) || field(b.headers, r, ['dauer']) || '');
   const last = ramp(main(field(b.headers, r, ['last']) || ''));
-  return [sets, last].filter(Boolean).join(' · ');
+  let peek = [sets, last].filter(Boolean).join(' · ');
+  /* Blöcke ohne Last (Mobility) tragen sonst eine Zahl ohne Bezug. */
+  if (!last) peek = [main(field(b.headers, r, ['übung'])), sets].filter(Boolean).join(' · ');
+  if (rows.length > 1) peek += ` · +${rows.length - 1}`;
+  return peek;
 }
 
-/* Ablaufzustand eines Fokus-Tags: welcher Block ist offen, welche sind erledigt.
-   Überlebt Reload und App-Wechsel — mitten in der Einheit greift man das Handy
-   immer wieder neu, und dann muss die Seite wissen, wo man war. */
+/* Ablaufzustand eines Fokus-Tags. Blöcke sind standardmäßig OFFEN — die Zahlen
+   stehen immer da. Zusammengeklappt wird nur, was erledigt ist oder was Martin
+   selbst zuklappt; mehrere dürfen offen sein, wie bei den Tageskarten. */
 function blkStateKey(){ return 'focus-state-' + currentWeekId + '-' + currentFocusKey; }
 function loadBlkState(){
-  try { return JSON.parse(localStorage.getItem(blkStateKey())) || { open:null, done:[] }; }
-  catch(e){ return { open:null, done:[] }; }
+  try {
+    const s = JSON.parse(localStorage.getItem(blkStateKey())) || {};
+    return { done: s.done || [], collapsed: s.collapsed || [] };
+  } catch(e){ return { done:[], collapsed:[] }; }
 }
 function saveBlkState(s){
   try { localStorage.setItem(blkStateKey(), JSON.stringify(s)); } catch(e){}
@@ -986,11 +1045,11 @@ function renderBlock(b, state){
   const body = b.wod ? renderWod(b.wod) : (b.rows||[]).map(r=>renderExercise(b.headers,r)).join('');
   const optional = b.prio === 'optional';
   const done = state.done.includes(b.letter);
-  const open = state.open === b.letter;
+  /* Erledigte Blöcke klappen zu — die Seite wird kürzer, während die Einheit
+     läuft, statt von Anfang an Zahlen zu verstecken. */
+  const open = !done && !state.collapsed.includes(b.letter);
   const peek = blockPeek(b);
   const flags = [];
-  /* Nennt der Block-Untertitel bereits eine Dauer („~15 min"), keinen zweiten
-     Zeitwert danebenstellen — sonst steht dieselbe Angabe zweimal da. */
   const subHasMin = /\d+\s*min/.test(b.sub || '');
   if (b.min && !subHasMin) flags.push(`<span class="mchip">~${b.min} min</span>`);
   if (b.prio) flags.push(optional
@@ -1001,9 +1060,6 @@ function renderBlock(b, state){
     <button type="button" class="blk-head" id="blk-${b.letter}-btn" aria-expanded="${open}" aria-controls="blkbody-${b.letter}" onclick="toggleBlock('${b.letter}')">
       <span class="blk-letter">${done ? CHECK_ICON : b.letter}</span>
       <span class="blk-headtext">
-        <!-- Klartext, kein rich(): Glossar- und Abkürzungs-Buttons wären hier
-             verschachtelte Buttons — ungültig, und der Browser bricht den
-             Kopf-Button an dieser Stelle auf. -->
         <span class="blk-title">${escapeHtml(stripHtml(b.title))}</span>
         ${peek?`<span class="blk-peek">${escapeHtml(peek)}</span>`:''}
       </span>
@@ -1020,50 +1076,88 @@ function renderBlock(b, state){
   </section>`;
 }
 
-/* Genau ein Block ist offen. Öffnen schließt die anderen — das ist der ganze
-   Unterschied zwischen einem Dokument und einer Anleitung. */
-function openBlock(letter, scroll){
-  const s = loadBlkState();
-  s.open = letter;
-  saveBlkState(s);
-  document.querySelectorAll('#focusContent .blk').forEach(sec => {
-    const l = sec.id.slice(4);
-    const isOpen = l === letter;
-    sec.classList.toggle('is-open', isOpen);
-    const btn = document.getElementById('blk-' + l + '-btn');
-    const body = document.getElementById('blkbody-' + l);
-    if (btn) btn.setAttribute('aria-expanded', String(isOpen));
-    if (body) body.hidden = !isOpen;
-  });
-  if (scroll && letter){
-    const sec = document.getElementById('blk-' + letter);
-    if (sec) sec.scrollIntoView({ behavior:'smooth', block:'start' });
-  }
-}
-
+/* Kein Zwang mehr: Auf- und Zuklappen betrifft nur den angetippten Block. */
 function toggleBlock(letter){
   const s = loadBlkState();
-  if (s.open === letter){ s.open = null; saveBlkState(s); openBlock(null, false); }
-  else openBlock(letter, false);
+  const i = s.collapsed.indexOf(letter);
+  const body = document.getElementById('blkbody-' + letter);
+  const sec = document.getElementById('blk-' + letter);
+  const btn = document.getElementById('blk-' + letter + '-btn');
+  if (!body || !sec || !btn) return;
+  const open = body.hidden;
+  if (open) { if (i >= 0) s.collapsed.splice(i,1); }
+  else if (i < 0) s.collapsed.push(letter);
+  saveBlkState(s);
+  body.hidden = !open;
+  sec.classList.toggle('is-open', open);
+  btn.setAttribute('aria-expanded', String(open));
 }
 
-/* Erledigt: Block dimmen und den nächsten noch offenen Kernblock aufmachen.
-   Nochmaliges Tippen nimmt die Markierung zurück — kein Zustand ohne Rückweg. */
+/* Erledigt: Block zuklappen und dimmen, zum nächsten offenen Kernblock scrollen.
+   Nochmaliges Tippen nimmt es zurück — kein Zustand ohne Rückweg. */
 function markBlockDone(letter){
   const s = loadBlkState();
+  const f = getWeek(currentWeekId).focusDays[currentFocusKey];
   const i = s.done.indexOf(letter);
   if (i >= 0){ s.done.splice(i,1); saveBlkState(s); renderFocus(currentFocusKey); return; }
   s.done.push(letter);
-  const f = getWeek(currentWeekId).focusDays[currentFocusKey];
+  const ci = s.collapsed.indexOf(letter);
+  if (ci >= 0) s.collapsed.splice(ci,1);
+  saveBlkState(s);
+  pushBlocksDone(s.done);
+  renderFocus(currentFocusKey);
   const next = f.blocks.find(b => !s.done.includes(b.letter) && b.prio !== 'optional')
             || f.blocks.find(b => !s.done.includes(b.letter));
-  s.open = next ? next.letter : null;
-  saveBlkState(s);
-  renderFocus(currentFocusKey);
-  if (s.open){
-    const sec = document.getElementById('blk-' + s.open);
+  if (next){
+    const sec = document.getElementById('blk-' + next.letter);
     if (sec) sec.scrollIntoView({ behavior:'smooth', block:'start' });
   }
+  maybePromptNote(f, s.done);
+}
+
+/* Sind alle Kernblöcke erledigt und der Session-Feel noch leer, das Notizfeld
+   aufmachen — das ist der einzige Moment, in dem das Handy noch in der Hand ist. */
+function maybePromptNote(f, done){
+  const kern = f.blocks.filter(b => b.prio !== 'optional').map(b => b.letter);
+  if (!kern.every(l => done.includes(l))) return;
+  const d = focusIsoDate(currentFocusKey);
+  if (!d) return;
+  const note = weekNotes[d], draft = loadDraft(d);
+  if ((note && note.session_feel > 0) || (draft && draft.feel > 0)) return;
+  const panel = document.getElementById('f-np-' + d);
+  if (!panel || !panel.hidden) return;
+  toggleNote(d, 'f-');
+  setTimeout(() => {
+    const el = document.querySelector('#focusContent .feel-row');
+    if (el) el.scrollIntoView({ behavior:'smooth', block:'center' });
+  }, 350);
+}
+
+function focusIsoDate(key){
+  const day = getWeek(currentWeekId).days.find(d => d.focus === key);
+  return day ? day.isoDate : null;
+}
+
+/* Der Erledigt-Vektor ist der billigste Rückkanal, den es gibt: ein Tap im
+   Moment des Geschehens. Er darf nicht in localStorage enden — der Coach muss
+   ihn beim Wochenreview sehen, auch wenn keine Notiz geschrieben wurde. */
+async function pushBlocksDone(done){
+  const d = focusIsoDate(currentFocusKey);
+  if (!d) return;
+  const note = weekNotes[d] || {};
+  try {
+    await fetch('/save_note.php', {
+      method:'POST', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({
+        session_key: d, note_date: d,
+        session_feel: selectedFeel[d] || note.session_feel || 0,
+        note_text: note.note_text || '',
+        blocks_done: done.join(',')
+      })
+    });
+    weekNotes[d] = Object.assign({}, note, { blocks_done: done.join(',') });
+    patchNoteIndicator(d);
+  } catch(e){ /* offline: der Zustand bleibt lokal, nächster Speichervorgang trägt ihn nach */ }
 }
 
 /* WHOOP: kopierbarer Textblock statt Liste */
@@ -1102,12 +1196,9 @@ function renderFocus(key){
   if(!f){ document.getElementById('focusContent').innerHTML='<div class="empty">Kein Focus-Tag.</div>'; return; }
   currentFocusKey = key;
 
-  /* Offener Block: der gemerkte, sonst der erste noch nicht erledigte Kernblock. */
+  excSeq = 0;
+  /* Blöcke sind offen, bis sie erledigt oder bewusst zugeklappt sind. */
   const state = loadBlkState();
-  if (!state.open || !f.blocks.some(b => b.letter === state.open)) {
-    const first = f.blocks.find(b => !state.done.includes(b.letter) && b.prio !== 'optional');
-    state.open = first ? first.letter : null;
-  }
 
   /* Begründung, Warm-up und Schätzmethodik sind Vorabend-Material — sie stehen
      nicht mehr zwischen der Überschrift und der ersten Zahl der Einheit. */

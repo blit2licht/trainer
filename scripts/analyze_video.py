@@ -57,6 +57,7 @@ REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT_ROOT = os.path.join(REPO_ROOT, "coach", "video_analysis")
 
 MIN_VISIBILITY = 0.5
+PLATE_MAX_BRIGHTNESS = 90  # matt-schwarze Scheibe vs. hellerer Kopf/Haut/Haare
 
 # MediaPipe-Pose-Landmarkindizes
 L_SHOULDER, R_SHOULDER = 11, 12
@@ -198,11 +199,199 @@ def hysteresis_runs(signal, enter, exit_, min_len, merge_gap=0):
 
 # ------------------------------------------------------------------ Pipeline
 
+def detect_plate_in_roi(gray_full, center, half):
+    """Hough-Circle-Suche nur in einem Fenster um `center` (Handgelenk-Schätzung).
+
+    Eine Hough-Suche über das GANZE Bild greift auf Gym-Fotos zuverlässig
+    daneben — der runde Kopf/Oberkörper des Athleten und statische runde
+    Objekte im Hintergrund erzeugen eine stärkere Kreis-Antwort als die
+    Hantelscheibe. Ein Suchfenster um die (grob interpolierte) Handposition
+    schließt Kopf, Rumpf und Hintergrund von vornherein aus — die Scheibe
+    muss dort sein, wo die Hand die Stange greift.
+    """
+    h, w = gray_full.shape
+    cx, cy = center
+    if np.isnan(cx) or np.isnan(cy):
+        return None
+    x0, x1 = int(max(0, cx - half)), int(min(w, cx + half))
+    y0, y1 = int(max(0, cy - half)), int(min(h, cy + half))
+    if x1 - x0 < 20 or y1 - y0 < 20:
+        return None
+    crop = gray_full[y0:y1, x0:x1]
+
+    min_r = int(half * 0.25)
+    max_r = int(half * 0.85)
+    circles = cv2.HoughCircles(
+        crop, cv2.HOUGH_GRADIENT, dp=1.5, minDist=max_r,
+        param1=100, param2=35, minRadius=min_r, maxRadius=max_r,
+    )
+    if circles is None:
+        return None
+    candidates = circles[0]
+
+    # Scheiben sind matt-schwarz — nahe am Kopf (z. B. beim Überkopf-Catch)
+    # kann sonst ein hellerer Kopf/Haare-Kreis gewinnen, obwohl er näher an
+    # der Fenstermitte liegt. Nur ausreichend dunkle Kandidaten zulassen.
+    mask = np.zeros_like(crop)
+    dark_candidates = []
+    for c in candidates:
+        cx, cy, cr = c
+        mask[:] = 0
+        cv2.circle(mask, (int(cx), int(cy)), max(1, int(cr * 0.7)), 255, -1)
+        mean_val = cv2.mean(crop, mask=mask)[0]
+        if mean_val < PLATE_MAX_BRIGHTNESS:
+            dark_candidates.append(c)
+    if not dark_candidates:
+        return None
+
+    center_x, center_y = (x1 - x0) / 2, (y1 - y0) / 2
+    dists = [math.hypot(c[0] - center_x, c[1] - center_y) for c in dark_candidates]
+    idx = int(np.argmin(dists))  # nächster zur Fenstermitte == zur Handschätzung
+    x, y, r = dark_candidates[idx]
+    return (float(x + x0), float(y + y0), float(r))
+
+
+def track_plate(video_path, wrist_px, scale_px, fps, size, points, debug_path=None):
+    """Zweiter Video-Durchlauf: Hantelscheibe in einem Suchfenster um die
+    Handgelenk-Bahn finden (siehe detect_plate_in_roi).
+
+    Eigener Pass statt Kombination mit der Pose-Erkennung, weil das
+    Suchfenster die über das GESAMTE Video interpolierte Handgelenk-Bahn
+    braucht — auch an Stellen, an denen die Hand im selben Frame nicht
+    erkannt wurde. Die liegt erst nach dem ersten (Pose-)Durchlauf vor.
+    Zeichnet bei debug_path zusätzlich das schon bekannte Skelett mit ein.
+    """
+    width, height = size
+    cap = cv2.VideoCapture(video_path)
+    writer = None
+    if debug_path:
+        writer = cv2.VideoWriter(
+            debug_path, cv2.VideoWriter_fourcc(*"mp4v"), fps, (width, height)
+        )
+
+    half = max(80, scale_px * 1.4)
+    plates = []
+    frame_idx = 0
+    while True:
+        ok, frame = cap.read()
+        if not ok:
+            break
+        if frame_idx >= len(wrist_px):
+            break
+        gray = cv2.medianBlur(cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY), 5)
+        plate = detect_plate_in_roi(gray, wrist_px[frame_idx], half)
+        plates.append(plate)
+
+        if writer is not None:
+            row = points[frame_idx]
+            for a, b in POSE_CONNECTIONS:
+                if not (np.isnan(row[a]).any() or np.isnan(row[b]).any()):
+                    cv2.line(frame, tuple(row[a].astype(int)),
+                             tuple(row[b].astype(int)), (0, 255, 0), 2)
+            for i in range(33):
+                if not np.isnan(row[i]).any():
+                    cv2.circle(frame, tuple(row[i].astype(int)), 4, (0, 0, 255), -1)
+            if plate is not None:
+                px, py, pr = plate
+                cv2.circle(frame, (int(px), int(py)), int(pr), (255, 128, 0), 3)
+                cv2.circle(frame, (int(px), int(py)), 4, (255, 128, 0), -1)
+            writer.write(frame)
+
+        frame_idx += 1
+
+    cap.release()
+    if writer is not None:
+        writer.release()
+
+    plate_arr = np.array(
+        [(np.nan, np.nan) if p is None else (p[0], p[1]) for p in plates]
+    )
+    coverage = round(float(np.mean(~np.isnan(plate_arr[:, 0]))), 3)
+    return plate_arr, coverage
+
+
+GREEN_TRAIL_HSV_LOW = (50, 100, 100)
+GREEN_TRAIL_HSV_HIGH = (85, 255, 255)
+
+
+def extract_green_trail(video_path, points=None, debug_path=None):
+    """Bar-Path aus einer bereits eingezeichneten grünen Spur extrahieren.
+
+    Manche Bar-Path-Apps zeichnen den Weg der Hantelscheibe direkt als
+    farbige, kumulative Spur ins Video (--bar-trail). Die Spur wächst über
+    die Zeit — pro Frame zählt deshalb nur das NEU hinzugekommene Segment
+    (Maskendifferenz zum Vorframe, mit Toleranz-Dilatation gegen Antialiasing)
+    als aktuelle Scheiben-Position, nicht die gesamte bisherige Historie.
+    Deutlich robuster als Kreis-Erkennung: die Spurfarbe ist knallig, konstant
+    und kommt im Rest des Bildes nicht vor.
+    """
+    cap = cv2.VideoCapture(video_path)
+    if not cap.isOpened():
+        sys.exit(f"Video nicht lesbar: {video_path}")
+    fps = cap.get(cv2.CAP_PROP_FPS) or 30.0
+    width = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
+    height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
+
+    writer = None
+    if debug_path:
+        writer = cv2.VideoWriter(
+            debug_path, cv2.VideoWriter_fourcc(*"mp4v"), fps, (width, height)
+        )
+
+    kernel = np.ones((5, 5), np.uint8)
+    positions = []
+    prev_mask = None
+    frame_idx = 0
+    while True:
+        ok, frame = cap.read()
+        if not ok:
+            break
+
+        hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
+        mask = cv2.inRange(hsv, GREEN_TRAIL_HSV_LOW, GREEN_TRAIL_HSV_HIGH)
+        if prev_mask is None:
+            new_px = mask
+        else:
+            grown_prev = cv2.dilate(prev_mask, kernel, iterations=2)
+            new_px = cv2.bitwise_and(mask, cv2.bitwise_not(grown_prev))
+        prev_mask = mask
+
+        ys, xs = np.where(new_px > 0)
+        pos = (float(np.mean(xs)), float(np.mean(ys))) if len(xs) > 0 else None
+        positions.append(pos)
+
+        if writer is not None:
+            if points is not None and frame_idx < len(points):
+                row = points[frame_idx]
+                for a, b in POSE_CONNECTIONS:
+                    if not (np.isnan(row[a]).any() or np.isnan(row[b]).any()):
+                        cv2.line(frame, tuple(row[a].astype(int)),
+                                 tuple(row[b].astype(int)), (0, 255, 0), 2)
+                for i in range(33):
+                    if not np.isnan(row[i]).any():
+                        cv2.circle(frame, tuple(row[i].astype(int)), 4, (0, 0, 255), -1)
+            if pos is not None:
+                cv2.circle(frame, (int(pos[0]), int(pos[1])), 8, (255, 0, 255), -1)
+            writer.write(frame)
+
+        frame_idx += 1
+
+    cap.release()
+    if writer is not None:
+        writer.release()
+
+    pos_arr = np.array(
+        [(np.nan, np.nan) if p is None else (p[0], p[1]) for p in positions]
+    )
+    coverage = round(float(np.mean(~np.isnan(pos_arr[:, 0]))), 3)
+    return pos_arr, float(fps), (width, height), coverage
+
+
 def extract_landmarks(video_path, debug_path=None):
     """Video frameweise durch MediaPipe Pose schicken.
 
-    Rückgabe: (points, fps, size) mit points[frame, landmark, xy] in Pixeln,
-    unsichere Landmarks (visibility < 0.5) als NaN.
+    Rückgabe: (points, fps, size, coverage) mit points[frame, landmark, xy]
+    in Pixeln, unsichere Landmarks (visibility < 0.5) als NaN.
     """
     import mediapipe as mp
     from mediapipe.tasks import python as mp_python
@@ -294,6 +483,7 @@ def extract_landmarks(video_path, debug_path=None):
             for i in NEEDED
         },
     }
+
     return points, float(fps), (width, height), coverage
 
 
@@ -557,17 +747,17 @@ def plot_bmu(series, path):
 
 # -------------------------------------------------------------- Modus Snatch
 
-def analyze_snatch(points, fps):
+def analyze_snatch(points, fps, plate, source="hough"):
     t = np.arange(len(points)) / fps
     scale = torso_scale(points)
 
-    wrist = mean_pair(points, L_WRIST, R_WRIST)
+    plate_coverage = float(np.mean(~np.isnan(plate[:, 0])))
     win = max(5, int(fps * 0.1))
-    bar_x = savgol(interpolate_nan(wrist[:, 0]), win)
-    bar_y_img = savgol(interpolate_nan(wrist[:, 1]), win)
+    bar_x = savgol(interpolate_nan(plate[:, 0]), win)
+    bar_y_img = savgol(interpolate_nan(plate[:, 1]), win)
     bar_y = -bar_y_img  # nach oben positiv
 
-    v_y = savgol(interpolate_nan(wrist[:, 1]), win, deriv=1, delta=1.0 / fps)
+    v_y = savgol(interpolate_nan(plate[:, 1]), win, deriv=1, delta=1.0 / fps)
     v_y = -v_y  # positiv = Bar bewegt sich nach oben
     v_y_norm = v_y / scale
 
@@ -607,9 +797,20 @@ def analyze_snatch(points, fps):
         "modus": "snatch",
         "fps": round(fps, 2),
         "dauer_s": round(float(t[-1]), 2),
-        "bar_path_quelle": ("PROXY — Handgelenk-Mittelpunkt aus Pose-Landmarks, "
-                            "KEINE echte Hantelstangen-Erkennung. Bei Griffdrehung "
-                            "und Umgreifen weicht der Proxy von der Bar ab."),
+        "bar_path_quelle": (
+            "PROXY — Mittelpunkt der neu hinzugekommenen Pixel der eingezeichneten "
+            "Bar-Path-Spur pro Frame (--bar-trail), KEINE echte Stangen-/Sleeve-"
+            "Erkennung, aber sehr robust (feste, im Bild sonst nicht vorkommende "
+            "Farbe). Im annotierten Video (magenta Punkt) prüfen."
+            if source == "trail" else
+            "PROXY — Mittelpunkt der größten erkannten Hantelscheibe in einem "
+            "Suchfenster um die Handgelenk-Bahn (Hough-Circle-Transform), KEINE "
+            "echte Stangen-/Sleeve-Erkennung. Kann bei unruhigem Hintergrund oder "
+            "Overlap mit dem Kopf danebengreifen — im annotierten Video (oranger "
+            "Kreis) prüfen; bei Zweifeln lieber --bar-trail mit einer App-Aufnahme "
+            "verwenden, die den Bar-Path bereits einzeichnet."
+        ),
+        "plate_coverage": round(plate_coverage, 3),
         "zug_start_s": round(float(t[start_idx]), 3),
         "peak_geschwindigkeit_s": round(float(t[peak_idx]), 3),
         "peak_geschwindigkeit_torsolaengen_pro_s": round(float(v_y_norm[peak_idx]), 2),
@@ -660,7 +861,7 @@ def plot_snatch(series, path):
         c=t[seg], cmap="viridis", s=14
     )
     ax_path.set_aspect("equal", adjustable="datalim")
-    ax_path.set_title("Bar Path (Proxy: Handgelenk-Mittelpunkt)")
+    ax_path.set_title("Bar Path (Proxy: Hantelscheiben-Mittelpunkt)")
     ax_path.set_xlabel("x (px)")
     ax_path.set_ylabel("Höhe (px)")
     ax_path.grid(alpha=0.25)
@@ -708,6 +909,12 @@ def main():
     parser.add_argument("--debug", action="store_true",
                         help="Zusätzlich annotated.mp4 mit Landmarks schreiben "
                              "(vor dem ersten produktiven Lauf sichten!)")
+    parser.add_argument("--bar-trail", action="store_true",
+                        help="Nur Modus snatch: Video enthält bereits eine "
+                             "eingezeichnete Bar-Path-Spur (z. B. aus einer "
+                             "Handy-App) — Scheiben-Position wird daraus per "
+                             "Farbsegmentierung statt Kreis-Erkennung gelesen. "
+                             "Deutlich robuster, wenn verfügbar.")
     args = parser.parse_args()
 
     video = os.path.expanduser(args.video)
@@ -718,14 +925,25 @@ def main():
     debug_path = os.path.join(out, "annotated.mp4") if args.debug else None
 
     print(f"Analysiere {video} (Modus {args.mode}) …")
-    points, fps, size, coverage = extract_landmarks(video, debug_path)
-    print(f"  {coverage['frames']} Frames, {fps:.1f} fps, {size[0]}×{size[1]}")
-
     if args.mode == "bmu":
+        points, fps, size, coverage = extract_landmarks(video, debug_path)
+        print(f"  {coverage['frames']} Frames, {fps:.1f} fps, {size[0]}×{size[1]}")
         summary, series = analyze_bmu(points, fps)
         plot_bmu(series, os.path.join(out, "plot.png"))
     else:
-        summary, series = analyze_snatch(points, fps)
+        # Pose-Pass ohne Debug-Video — die Scheiben-Suche im zweiten Pass
+        # zeichnet Skelett + Scheibe zusammen in EIN annotated.mp4.
+        points, fps, size, coverage = extract_landmarks(video, debug_path=None)
+        print(f"  {coverage['frames']} Frames, {fps:.1f} fps, {size[0]}×{size[1]}")
+        if args.bar_trail:
+            plate, _, _, _ = extract_green_trail(video, points, debug_path)
+            source = "trail"
+        else:
+            wrist = mean_pair(points, L_WRIST, R_WRIST)
+            scale = torso_scale(points)
+            plate, _ = track_plate(video, wrist, scale, fps, size, points, debug_path)
+            source = "hough"
+        summary, series = analyze_snatch(points, fps, plate, source)
         plot_snatch(series, os.path.join(out, "plot.png"))
 
     summary["quelle"] = os.path.basename(video)

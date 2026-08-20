@@ -265,7 +265,6 @@ button.term::after { content:''; position:absolute; inset:-6px -4px; }
 .blk-chev svg { width:14px; height:14px; transition:transform .15s cubic-bezier(.2,.7,.3,1); }
 .blk-head[aria-expanded="true"] .blk-chev svg { transform:rotate(180deg); }
 .blk-body { padding:0 14px 14px; }
-.blk-sub { font-family:var(--mono); font-size:12px; font-weight:500; color:var(--ink2); margin:0 0 11px; }
 .blk-flags { display:flex; flex-wrap:wrap; gap:6px; align-items:center; margin-bottom:11px; }
 /* Übungsnotiz: benannter Griff statt „Mehr" — der Text ist weg, die Zahlen stehen. */
 .exc-note-wrap { margin-top:11px; }
@@ -292,6 +291,7 @@ button.term::after { content:''; position:absolute; inset:-6px -4px; }
 /* Lasttreppen ab drei Stufen stehen untereinander: ein Wert pro Zeile liest
    sich von oben nach unten, statt mitten in der Sequenz umzubrechen. */
 .chip-val .steps > span { display:block; }
+.chip-label .chip-unit { text-transform:none; letter-spacing:0; margin-left:6px; color:var(--ink3); font-weight:600; }
 .chip-val .steps > span.op { color:var(--ink3); font-weight:500; }
 .chip-val .steps > span + span { margin-top:1px; }
 .chip-val small { display:block; font-size:13px; font-weight:500; color:var(--ink3); margin-top:2px; letter-spacing:0; }
@@ -476,6 +476,15 @@ function splitMain(val){
 }
 /* Ab drei Stufen ein Wert pro Zeile (Martin, 20.08.): ein Umbruch mitten in
    „47,5 → 50 →" ist schlechter lesbar als eine saubere Spalte. */
+/* Trennt eine nachgestellte Einheit ab: „… 60 kg" → [„… 60", „kg"].
+   Der Zusatz nach `||` bleibt unangetastet. */
+function trennEinheit(val){
+  const p = String(val).split('||');
+  const m = p[0].match(/^(.*\d[^]*?)\s+(kg|sec|min|%)\s*$/i);
+  if (!m) return [val, ''];
+  p[0] = m[1];
+  return [p.join('||'), m[2]];
+}
 function stackSteps(val){
   const p = String(val).split('||');
   /* Treppen (·/→) und Verkettungen (+) stehen untereinander. Beim Plus bleibt
@@ -1028,7 +1037,12 @@ function renderExercise(headers,row){
   let chips='';
   if(sets)  chips+=`<div class="chip"><div class="chip-label">Sätze × Wdh</div><div class="chip-val">${stackSteps(sets)}</div></div>`;
   if(dauer) chips+=`<div class="chip"><div class="chip-label">Dauer</div><div class="chip-val">${splitMain(dauer)}</div></div>`;
-  if(last)  chips+=`<div class="chip"><div class="chip-label">Last</div><div class="chip-val">${stackSteps(last)}</div></div>`;
+  if(last){
+    /* Die Einheit steht einmal am Etikett, nicht an jedem Wert — bei einer
+       Lasttreppe sonst siebenmal dasselbe Wort. */
+    const [wert, einheit] = trennEinheit(last);
+    chips+=`<div class="chip"><div class="chip-label">Last${einheit?`<span class="chip-unit">${einheit}</span>`:''}</div><div class="chip-val">${stackSteps(wert)}</div></div>`;
+  }
   /* RPE hat keinen eigenen Chip mehr: Er war auf dem Handy das größte und
      einzige farbige Element der Karte, obwohl die Last die Zahl ist, wegen der
      man hinschaut. Er steht jetzt als Text bei Tempo und Pause. */
@@ -1154,7 +1168,6 @@ function renderBlock(b, state){
       <span class="blk-chev">${CHEV_DOWN}</span>
     </button>
     <div class="blk-body" id="blkbody-${b.letter}"${open?'':' hidden'}>
-      ${b.sub?`<div class="blk-sub">${rich(b.sub)}</div>`:''}
       ${flags.length?`<div class="blk-flags">${flags.join('')}</div>`:''}
       ${body}${b.note?`<div class="blk-note">${rich(b.note)}</div>`:''}
       <button type="button" class="blk-done" onclick="markBlockDone('${b.letter}')">

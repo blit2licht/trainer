@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "aktualisiert_am": "2026-08-17",
+  "aktualisiert_am": "2026-08-20",
   "aktuelle_woche": {
     "id": "2026-W34",
     "von": "2026-08-17",
@@ -47,7 +47,7 @@
   "fokus_rotation": {
     "hinweis": "Verhindert, dass ein Fokus über Wochen wegrutscht. Bei jeder Wochenplanung prüfen, was zuletzt direkt bedient wurde, und Offenes nachziehen.",
     "zuletzt_bedient": {
-      "snatch": "W33 (Mi 12.08.: 60 kg, gute Form — Ceiling zweite Woche in Folge sauber reproduziert)",
+      "snatch": "W33 (Mi 12.08.: 60 kg, gute Form — Ceiling zweite Woche in Folge sauber reproduziert). W34 (Mi 20.08.): Video-Diagnose per Bar-Path-App (3 Clips) — unvollständige Kniestreckung am Extensions-Peak reproduzierbar, siehe load_references.squat_snatch_ceiling.",
       "overhead_squat": "W33 (Mi 12.08.: 5×3 gut bis 50 kg, 52,5 nicht angesteuert) → W34 Mi Zielsatz 52,5",
       "front_squat": "W30 (Block Wk 3/3 abgeschlossen, Top-Single 102,5 kg) — Block Teil 2 laut Meso-Plan in W35",
       "strict_hspu": "W33 (Sa 15.08.: 4×7 laut Notiz „easy“ — Stufe bestätigt) → W34 Sa 4×8",
@@ -59,7 +59,8 @@
     "offen": [
       "C&J 82,5 — Slot in W34 bewusst nicht vergeben (nur 4 Strukturtage durch Italien-Reise, Fr-DreamWOD Grace verworfen). Nächster passender Fokus-A-Slot nachziehen.",
       "Front Squat — Block Teil 2 laut Meso-Plan in W35",
-      "BMU-Linked-Doubles: Stufe 5×2 in W33 nicht sauber (session_feel 2, Sa 15.08.) — W34 wiederholt statt gesteigert. Video-Analyse-Pipeline existiert (scripts/analyze_video.py, 3 Commits 15.08.), bisher nur 2 Einzel-BMU-Clips ausgewertet — Linked-Double-Clip für die eigentliche Rhythmus-Diagnose noch offen. Methodik und Quellen-Priorität in coach/bmu-entwicklungsplan.md."
+      "BMU-Linked-Doubles: Stufe 5×2 in W33 nicht sauber (session_feel 2, Sa 15.08.) — W34 wiederholt statt gesteigert. Video-Analyse-Pipeline existiert (scripts/analyze_video.py, 3 Commits 15.08.), bisher nur 2 Einzel-BMU-Clips ausgewertet — Linked-Double-Clip für die eigentliche Rhythmus-Diagnose noch offen. Methodik und Quellen-Priorität in coach/bmu-entwicklungsplan.md.",
+      "Snatch-Kniestreckung: Video-Diagnose 20.08. zeigt reproduzierbare Lücke Hüfte/Knie am Extensions-Peak (siehe load_references.squat_snatch_ceiling) — als bewusster Cue ins nächste Snatch-Training aufnehmen und mit neuem Bar-Path-Clip gegenchecken, ob sich die Lücke schließt."
     ]
   },
   "load_references": {
@@ -76,7 +77,7 @@
       "kg": 60,
       "erreicht_w28": 57.5,
       "bestaetigt_w30": 57.5,
-      "note": "W32 (Di 04.08.): 60 kg @ RPE 8, Form 7/10 — als neue Ceiling von Martin freigegeben (09.08.). W33: 60 sauber reproduzieren, 62,5 nur bei perfektem Lockout als Option."
+      "note": "W32 (Di 04.08.): 60 kg @ RPE 8, Form 7/10 — als neue Ceiling von Martin freigegeben (09.08.). W33: 60 sauber reproduzieren, 62,5 nur bei perfektem Lockout als Option. Video-Diagnose 20.08. (3 Bar-Path-Clips, --bar-trail): Kniestreckung am Geschwindigkeitspeak reproduzierbar unvollständig (Hüfte 170-174° vs. Knie 139-142°, Lücke 31-35° über alle 3 Reps, Zuggeschwindigkeit dabei konstant ~4,9 Torsolängen/s) — hüftdominante statt vollständiger Triple Extension. Deckt sich mit dem alten W26-Speed-Befund. Cue fürs Training: Knie am Ende des zweiten Pulls bewusst mitstrecken, nicht nur Hüfte öffnen. Referenz: coach/video_analysis/ (lokal, nicht committet)."
     },
     "front_squat": {
       "kg_1rm_geschaetzt": 107.5,
@@ -128,7 +129,7 @@
     "strava": "Optional über MCP für Radfahrten"
   },
   "naechster_zielreview": "2026-W37: Sechs-Wochen-Review Meso 3 + zweiter Gymnastics-Testblock. Vorab fällig: T2B-Zielneusetzung (Test 16 vs. Ziel 10). BMU-Test W37 nur bei ≥2 zusammenhängenden Trainingswochen davor (Unterbrechungsregel).",
-  "systemstatus": "V1.0 produktiv; Wochenreviews W25-W33 abgeschlossen. Meso 3 läuft (W32-W37, Aufbau + Rekomposition inkl. Körperkompositions-Protokoll). Gymnastics-Testblock 1 absolviert (W32). Video-Analyse-Pipeline (MediaPipe) seit 15.08. lokal vorhanden, noch ohne Linked-Double-BMU-Auswertung.",
+  "systemstatus": "V1.0 produktiv; Wochenreviews W25-W33 abgeschlossen. Meso 3 läuft (W32-W37, Aufbau + Rekomposition inkl. Körperkompositions-Protokoll). Gymnastics-Testblock 1 absolviert (W32). Video-Analyse-Pipeline (MediaPipe) seit 15.08. lokal vorhanden: BMU-Modus validiert (noch ohne Linked-Double-Auswertung), Snatch-Modus seit 20.08. auf --bar-trail (Farbsegmentierung) umgestellt und an 3 Clips validiert — erste Kniestreckungs-Diagnose siehe load_references.squat_snatch_ceiling.",
   "migration": {
     "version": "1.0",
     "abgeschlossen_am": "2026-06-15"

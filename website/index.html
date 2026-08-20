@@ -104,6 +104,9 @@ button.dc-main:hover { background:var(--card-muted); }
 .dc-line1 { display:flex; align-items:center; gap:10px; width:100%; flex-wrap:wrap; }
 .dc-day { font-family:var(--disp); font-size:18px; font-weight:700; color:var(--ink); letter-spacing:-.01em; }
 .dc-date { font-family:var(--mono); font-size:12px; font-weight:600; color:var(--ink3); }
+/* Volle Button-Breite, damit die Gewichte untereinander auf einer Kante stehen.
+   Kein negativer Außenabstand: Der würde die Zahlen unter das Chevron schieben. */
+.dc-blocks { align-self:stretch; }
 .dc-blocks > span { display:flex; align-items:baseline; justify-content:space-between; gap:12px; }
 .dcb-last { font-family:var(--mono); font-size:15px; font-weight:700; color:var(--accent-ink); white-space:nowrap; }
 .dc-blocks { display:flex; flex-direction:column; gap:2px; margin-top:3px; font-family:var(--disp); font-size:16px; font-weight:700; color:var(--ink); line-height:1.3; letter-spacing:-.01em; }
@@ -119,7 +122,7 @@ button.dc-main:hover { background:var(--card-muted); }
    Wochentag oder das Typ-Label ist. 84px deckt das längste Label ab
    („Ruhetag", „Focus B" messen 82,4px) — bei einem längeren Label muss der
    Wert mitwachsen, sonst bricht die Achse. */
-.type-badge { margin-left:auto; flex-shrink:0; min-width:84px; display:inline-flex; align-items:center; gap:8px; font-family:var(--mono); font-size:12px; font-weight:700; color:var(--ink2); white-space:nowrap; }
+.type-badge { margin-left:auto; flex-shrink:0; display:inline-flex; align-items:center; gap:8px; font-family:var(--mono); font-size:12px; font-weight:700; color:var(--ink2); white-space:nowrap; }
 .type-icon { width:24px; height:24px; border-radius:8px; background:var(--card-muted); color:var(--ink3); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
 .type-icon svg { width:14px; height:14px; }
 /* Ruhetag-Karte liegt auf --card-muted, dem Standard-Hintergrund des
@@ -306,6 +309,8 @@ button.term::after { content:''; position:absolute; inset:-6px -4px; }
 .wod-tags { display:flex; flex-wrap:wrap; gap:7px; margin-top:11px; }
 .wod-tag { font-family:var(--mono); font-size:12px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; padding:5px 10px; border-radius:8px; background:var(--card-muted); color:var(--ink2); }
 .wod-tag.cap { background:var(--accent-soft); color:var(--accent-ink); }
+.wod-tag.level { background:var(--accent-soft); color:var(--accent-ink); }
+.dc-einheit-rx { font-family:var(--mono); font-size:15px; font-weight:600; color:var(--accent-ink); margin-left:9px; }
 .wod-lines { margin-top:15px; border-top:1px solid var(--line2); }
 .wod-line { display:flex; align-items:baseline; gap:13px; padding:12px 0; border-bottom:1px solid var(--line2); }
 .wod-line:last-child { border-bottom:none; padding-bottom:2px; }
@@ -809,7 +814,9 @@ function dayCardHTML(d, w, today){
   const f = isFocus && w.focusDays ? w.focusDays[d.focus] : null;
   const prio = prioOf(d.type);
   const label = isFocus ? `${prio.typ} ${d.focus}` : prio.typ;
-  const badge = `<span class="type-badge${isFocus?' focus':''}"><span class="type-icon">${ICON[t.icon]}</span>${label}</span>`;
+  /* Nur das Icon: Der Typ ist an Form und Farbe erkennbar, der Name kostete eine
+     ganze Textspalte. Für Screenreader bleibt er als sr-only erhalten. */
+  const badge = `<span class="type-badge${isFocus?' focus':''}"><span class="type-icon">${ICON[t.icon]}</span><span class="sr-only">${label}</span></span>`;
   const dayName = `${d.day}, ${d.date}`;
   const isToday = d.isoDate === today;
 
@@ -853,7 +860,8 @@ function dayCardHTML(d, w, today){
   const einheitHTML = kernListe.length
     ? `<span class="dc-blocks">${kernListe.map(k=>
         `<span><span class="dcb-name">${escapeHtml(k.name)}</span>${k.last?`<span class="dcb-last">${escapeHtml(k.last)}</span>`:''}</span>`).join('')}</span>`
-    : (d.wod ? '' : `<span class="dc-einheit">${d.einheit}</span>`);
+    : (d.wod ? '' : `<span class="dc-einheit">${d.einheit}${
+        d.rx && d.rx !== '—' ? `<span class="dc-einheit-rx">${richW(d.rx)}</span>` : ''}</span>`);
   const mainInner = `${line1}${einheitHTML}${metaRow}`;
 
   const main = isFocus
@@ -872,10 +880,10 @@ function dayCardHTML(d, w, today){
   /* Lastangaben stehen außerhalb des Karten-Buttons: sie tragen
      Glossar-Buttons und dürfen deshalb nicht in einem Button verschachtelt
      sein. Sie bleiben immer sichtbar, auch bei zugeklappter Karte. */
-  /* Fokus-Tage tragen ihre Lasten in der Blockliste — eine zweite Lastzeile
-     wäre genau die Wiederholung, die dann nicht mehr gelesen wird. */
-  const rx = (d.rx === '—' || kernListe.length) ? '' :
-    `<div class="dc-rx"><span class="dc-rx-main">${richW(d.rx)}</span>${d.rpe?`<span class="rpe-pill">${d.rpe}</span>`:''}</div>`;
+  /* Die separate Lastzeile ist abgeschafft: Ihr Inhalt steht dort, wo er gilt —
+     bei Fokus-Tagen in der Blockliste, bei WOD-Tagen als Kennzeichnung im
+     jeweiligen Block, bei Ride-Tagen direkt neben der Einheit. */
+  const rx = '';
 
   /* Der Aufruf steht bewusst unter den Lastangaben: erst die Zahlen, dann der
      Weg in die Routine. Zweiter Zugang zur selben Aktion wie der Kartenkopf. */
@@ -1042,6 +1050,8 @@ function renderExercise(headers,row){
 function renderWod(w){
   const tags = [
     w.format ? `<span class="wod-tag">${w.format}</span>` : '',
+    w.level  ? `<span class="wod-tag level">${w.level}</span>` : '',
+    w.rpe    ? `<span class="wod-tag">${w.rpe}</span>` : '',
     w.cap    ? `<span class="wod-tag cap">${w.cap}</span>` : ''
   ].join('');
   const lines = w.bewegungen.map(m =>

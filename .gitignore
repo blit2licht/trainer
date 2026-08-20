@@ -7,6 +7,9 @@ config.php
 # Generiertes Design-Bundle — wird aus website/index.html gebaut
 design/bundle/
 
+# Laufzeitabhängigkeiten lokaler Claude-Skills — nachinstalliert, nie versioniert
+.claude/skills/*/node_modules/
+
 # Video-Analyse-Rohdaten (Videos, Frames, Plots) — nie committen, nur
 # verdichtete Erkenntnisse wandern manuell nach coach/state.json
 coach/video_analysis/

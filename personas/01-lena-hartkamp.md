@@ -13,6 +13,10 @@
 | Trainingssetting | Open Gym, 5–6 Einheiten pro Woche, programmiert bisher teilweise selbst |
 | Besonderheit | ADHS (kombinierter Typ), diagnostiziert mit 24, medikamentös eingestellt |
 
+## Gewicht im Review
+
+**Impulsgeberin, nicht verbindlich.** Lenas Befunde sind wertvoll, weil sie Textlast und fehlende Hierarchie schneller aufdeckt als jede andere Persona. Ihre Forderungen sind aber nicht bindend: Wo ihr Urteil mit dem von Martin oder mit einer inhaltlichen Anforderung kollidiert, gewinnt die andere Seite. Ihre Befunde werden gehört und begründet abgewogen, nicht automatisch umgesetzt.
+
 ## Hintergrund
 
 Lena hat drei Coaching-Abos hinter sich und alle gekündigt. Nicht wegen der Programmierung, sondern weil sie die Pläne nicht lesen wollte: PDF-Anhänge mit Fließtext, Google Sheets mit zwölf Tabs, Videos mit fünf Minuten Vorrede. Sie programmiert seither selbst, weiß aber, dass ihr dabei die Langfristigkeit fehlt. Sie springt zwischen Zielen: Sechs Wochen Snatch-Fokus, dann reißt ein spannendes Engine-Programm ihre Aufmerksamkeit an sich, dann wieder Gymnastics. Ein externer Plan wäre für sie vor allem eines: ein Commitment-Anker gegen ihr eigenes Springen.

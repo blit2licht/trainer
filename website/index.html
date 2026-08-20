@@ -293,6 +293,10 @@ button.term::after { content:''; position:absolute; inset:-6px -4px; }
 .exc-note { font-size:13px; color:var(--ink2); margin-top:12px; line-height:1.55; padding-top:11px; border-top:1px solid var(--line2); }
 .blk-note { margin-top:11px; padding:12px 14px; background:var(--accent-soft); border-radius:12px; font-size:13px; color:var(--accent-ink); line-height:1.55; font-weight:500; }
 /* WOD-Block: Struktur, Reps, Lasten und Zeitlimit zusammen sichtbar, gleiche Schriftgröße für Reps/Move/Detail — keine Prioritäts-Hierarchie */
+/* Auf der Tageskarte können mehrere WODs direkt aufeinander folgen (Kraftteil +
+   Metcon) und der erste stößt sonst an die Lastzeile darüber. Im Fokus-Tag steht
+   je Block nur einer, dort tragen die Elemente davor ihren eigenen Abstand. */
+.dc-body .wod { margin-top:12px; }
 .wod { background:var(--card); border:1px solid var(--line); border-radius:14px; padding:16px; box-shadow:var(--shadow); }
 .wod-struct { font-family:var(--disp); font-size:21px; font-weight:700; color:var(--ink); letter-spacing:-.015em; line-height:1.2; }
 .wod-tags { display:flex; flex-wrap:wrap; gap:7px; margin-top:11px; }

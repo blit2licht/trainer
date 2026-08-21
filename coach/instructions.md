@@ -64,6 +64,17 @@ Keine routinemäßigen 1RM-Tests. Gewichtheber-Fortschritt wird über technisch 
 
 Alle sechs Wochen erfolgt ein Zielreview. Das ist ein Bewertungsrhythmus, kein erzwungenes Mesocycle-Ende. Claude darf einen Schwerpunkt begründet verlängern. Martin schlägt neue Ziele vor; Fokuswechsel erfolgen im Review.
 
+### Video-Analyse (loses Element der Fokus-Entwicklung)
+
+Die lokale Video-Pipeline (`scripts/analyze_video.py`, BMU-Rhythmus und Snatch-Bar-Path per `--bar-trail`) ist ein Diagnose-Werkzeug für gezielte Technikfragen — kein Dauer-Monitoring. Regeln:
+
+- **Nicht jede Session wird gefilmt.** Video wird nur angefordert, wenn eine konkrete Diagnose-Frage offen ist (z. B. ein Befund aus `state.json` braucht Bestätigung an schwerer Last, oder eine Technikänderung soll per Vorher/Nachher geprüft werden).
+- **Anforderung gehört in den Plan.** Will Claude eine Aufnahme aus einer Session, steht das explizit in der Blocknotiz des betreffenden Tages in `website/data.js` (was filmen, welche Sätze, welches Setup — z. B. Bar-Path-App seitlich). Kein Video-Auftrag nur im Chat.
+- Erkenntnisse wandern verdichtet nach `state.json` (WHOOP-Regel analog), Rohdaten bleiben lokal in `coach/video_analysis/` (gitignored).
+- Kamerahinweise und Validierungsschritt stehen im Script-Docstring; Befunde erst nach Rohdaten-Gegencheck pro Körperseite festhalten (Lehre vom 20.08.2026: Interpolations-Artefakt).
+
+Kontext: Remote-Coaching auf Videobasis (z. B. Big Performance Coaching) ist bewusst keine Option — zu teuer, und die nötige Aufnahme-Konsistenz wäre nicht realistisch. Die eigene Pipeline füllt diese Lücke punktuell und kostenlos.
+
 ## Datenmodell und Wahrheit
 
 GitHub ist das versionierte Gedächtnis und die gemeinsame Wahrheit.

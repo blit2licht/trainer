@@ -72,6 +72,7 @@ Die lokale Video-Pipeline (`scripts/analyze_video.py`, BMU-Rhythmus und Snatch-B
 - **Anforderung gehört in den Plan.** Will Claude eine Aufnahme aus einer Session, steht das explizit in der Blocknotiz des betreffenden Tages in `website/data.js` (was filmen, welche Sätze, welches Setup — z. B. Bar-Path-App seitlich). Kein Video-Auftrag nur im Chat.
 - Erkenntnisse wandern verdichtet nach `state.json` (WHOOP-Regel analog), Rohdaten bleiben lokal in `coach/video_analysis/` (gitignored).
 - Kamerahinweise und Validierungsschritt stehen im Script-Docstring; Befunde erst nach Rohdaten-Gegencheck pro Körperseite festhalten (Lehre vom 20.08.2026: Interpolations-Artefakt).
+- **Normalgeschwindigkeit filmen, kein Slo-mo.** iPhone-Slo-mo backt die gestreckte Zeitachse in die Datei — alle Zeitmetriken (Pausen, Peitschen-Dauer, Drop-Zeiten) werden dann um den unbekannten Faktor 4-8× verfälscht; nur Winkel, Prozente und Abstände bleiben gültig (Lehre vom 22.08.2026). Falls doch Slo-mo: Aufnahme-Einstellung (120/240 fps) mitliefern.
 
 Kontext: Remote-Coaching auf Videobasis (z. B. Big Performance Coaching) ist bewusst keine Option — zu teuer, und die nötige Aufnahme-Konsistenz wäre nicht realistisch. Die eigene Pipeline füllt diese Lücke punktuell und kostenlos.
 

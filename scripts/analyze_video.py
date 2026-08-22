@@ -35,6 +35,9 @@ Kamerahinweise (entscheiden über die Datenqualität):
                 Bild, Bar oben nicht abschneiden.
     Allgemein   60 fps bevorzugt, 30 fps akzeptabel. Gleichmäßiges Licht,
                 Kontrast zum Hintergrund, keine Person im Vordergrund.
+                KEIN Slo-mo: iPhone backt die gestreckte Zeitachse in die
+                Datei, alle Zeitmetriken werden um Faktor 4-8 verfälscht
+                (Winkel/Abstände bleiben gültig). Normalgeschwindigkeit.
 
 Validierung vor produktivem Einsatz (analog zum intervals.icu-Schritt):
     Ersten Lauf mit --debug fahren, annotated.mp4 sichten und prüfen, ob die

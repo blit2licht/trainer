@@ -51,7 +51,7 @@
       "overhead_squat": "W33 (Mi 12.08.: 5×3 gut bis 50 kg, 52,5 nicht angesteuert) → W34 Mi Zielsatz 52,5",
       "front_squat": "W30 (Block Wk 3/3 abgeschlossen, Top-Single 102,5 kg) — Block Teil 2 laut Meso-Plan in W35",
       "strict_hspu": "W33 (Sa 15.08.: 4×7 laut Notiz „easy“ — Stufe bestätigt) → W34 Sa 4×8",
-      "bmu": "W33 (Mi Primer 4 Singles; Sa Linked Doubles 5×2 nicht sauber, session_feel 2) — Stufe W34 wiederholt, Video-Diagnose offen (kein Linked-Double-Clip bisher, siehe coach/video_analysis/)",
+      "bmu": "W34 (Sa 22.08.: Linked Doubles 5×2 wiederholt, einmal sogar 3 am Stück, session_feel 3 — Steigerung ggü. W33 feel 2). Video-Diagnose erledigt (3 Clips, 6 Reps): Kernfrage beantwortet — Arch wird zu 99,5-100 % neu aufgebaut, KEIN verkürzter Zug. Verbindung läuft aber über lange Stütz-Pause oben (10-15 s, laut Martin mental: denken/planen/machen), und der Descent schwingt weit von der Stange weg (0,55-0,76 Torsolängen vs. 0,13-0,25 beim Pull-under). Entwicklungsrichtung: Stütz-Pause verkürzen + Descent enger führen (Rhythmus/Automatisierung, kein Kraftthema). Details load_references.bmu.",
       "weighted_pull_up": "W33 (Sa 15.08.: 3×4 @ +5 kg zweite Runde, nicht explizit geloggt, plangemäß angenommen) → W34 Sa 3×5 (Martin-Entscheid 09.08.)",
       "toes_to_bar": "W33 (Sa 15.08.: 3×10 gehalten, nicht explizit geloggt, plangemäß angenommen)",
       "clean_jerk": "W32 (Sa 08.08.: Komplex bis 80 kg, session_feel 5) — Di 11.08. Notiz „C&J 80kg“ war Verschreiber (tatsächlich Hang Power Clean laut Plan, von Martin bestätigt 17.08.), kein neuer Fortschritt gebucht"
@@ -59,7 +59,7 @@
     "offen": [
       "C&J 82,5 — Slot in W34 bewusst nicht vergeben (nur 4 Strukturtage durch Italien-Reise, Fr-DreamWOD Grace verworfen). Nächster passender Fokus-A-Slot nachziehen.",
       "Front Squat — Block Teil 2 laut Meso-Plan in W35",
-      "BMU-Linked-Doubles: Stufe 5×2 in W33 nicht sauber (session_feel 2, Sa 15.08.) — W34 wiederholt statt gesteigert. Video-Analyse-Pipeline existiert (scripts/analyze_video.py, 3 Commits 15.08.), bisher nur 2 Einzel-BMU-Clips ausgewertet — Linked-Double-Clip für die eigentliche Rhythmus-Diagnose noch offen. Achtung: Winkel-Gradzahlen der beiden Einzel-BMU-Auswertungen vom 15.08. liefen durch den am 20.08. gefixten Interpolations-Bug und gelten als unbestätigt (Rep-Erkennung/Timing bleibt gültig); beim nächsten Clip neu erheben. Methodik und Quellen-Priorität in coach/bmu-entwicklungsplan.md.",
+      "BMU-Linked-Doubles: Diagnose erledigt (Sa 22.08., 3 Clips) — Arch-Neuaufbau intakt, Engpass ist Stütz-Pause (mental) + weiter Descent, siehe load_references.bmu. Beim nächsten Planning: Stufenentscheid 5×2 vs. 4×3 anhand feel 3 + einmal 3 am Stück; Fokus-Cue Richtung kürzerer Stütz-Pause/engerem Descent überlegen. Methodik in coach/bmu-entwicklungsplan.md.",
       "Snatch tiefe Empfangsposition (Befund 20.08., von Martin bestätigt): Wackeln/Zögern in der tiefen Überkopf-Position bei 87-95 % — Details in load_references.squat_snatch_ceiling. Nächster Snatch-Tag: Top-Singles 57,5/60 mit Bar-Path-App filmen (Bestätigung an schwerer Last) — Aufnahme-Anforderung laut instructions.md (Video-Analyse-Regeln) explizit in die Blocknotiz des Wochenplans schreiben. Danach beim Planning über gezielte Übung entscheiden (Diagnose vor Verordnung); Pause-OHS-Aufbau läuft als Positionsreiz bereits."
     ]
   },
@@ -100,7 +100,7 @@
     "bmu": {
       "max_unbroken": 3,
       "protokoll": "Linked-Sets-Treppe ab W33: 5×2 unbroken → 4×3 → 3×3+1×max → Test. 2 Kontakte/Woche (Sa Hauptblock + Mi Primer 4×1-2). Methodik + Quellen: coach/bmu-entwicklungsplan.md",
-      "note": "Test W32 (Fr 07.08.): 3 unbroken (Ziel 5). Protokollwechsel ab W33: erste Linked-Doubles-Session (Sa 15.08.) lief nicht sauber (session_feel 2) — Stufe 5×2 wird W34 wiederholt statt gesteigert. Video-Analyse-Pipeline seit 15.08. vorhanden (scripts/analyze_video.py), bisher nur 2 Einzel-BMU-Clips ausgewertet, Linked-Double-Diagnose noch offen."
+      "note": "Test W32 (Fr 07.08.): 3 unbroken (Ziel 5). W33 Sa: 5×2 nicht sauber (feel 2). W34 Sa 22.08.: 5×2 wiederholt, einmal 3 am Stück, feel 3. Video-Diagnose 22.08. (3 Clips, 6 Reps): Arch-Neuaufbau 99,5-100 % — kein verkürzter Zug; Reps verbunden über 10-15 s Stütz-Pause (mental, nicht physisch), Descent schwingt 0,55-0,76 Torsolängen von der Stange (Pull-under nur 0,13-0,25). Fortschrittsmarker für kommende Sessions: Stütz-Pause kürzer, Descent enger — dann trägt der Schwung in den nächsten Rep und die Treppe (4×3) rückt näher."
     },
     "toes_to_bar": {
       "max_unbroken": 16,

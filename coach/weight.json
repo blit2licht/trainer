@@ -1,12 +1,8 @@
 {
-  "generated": "2026-08-17T17:29:58+00:00",
+  "generated": "2026-08-22T16:14:58+00:00",
   "source": "withings",
   "hinweis": "Nur Gewicht. Withings-Körperfett (BIA) bewusst nicht übernommen — bei Martin ~10 %-Punkte zu niedrig, steuerungsunbrauchbar (Entscheidung 2026-08-02). Steuerung läuft ausschließlich über Wochenschnitt-Vergleich (Ziel −0,3 bis −0,5 kg/Wo ab W34 vs. W33).",
   "days": [
-    {
-      "date": "2026-07-08",
-      "weight_kg": 81.29
-    },
     {
       "date": "2026-07-20",
       "weight_kg": 79.49
@@ -70,14 +66,25 @@
     {
       "date": "2026-08-16",
       "weight_kg": 81.25
+    },
+    {
+      "date": "2026-08-19",
+      "weight_kg": 82.06
+    },
+    {
+      "date": "2026-08-20",
+      "weight_kg": 81.76
+    },
+    {
+      "date": "2026-08-21",
+      "weight_kg": 81.47
+    },
+    {
+      "date": "2026-08-22",
+      "weight_kg": 81.11
     }
   ],
   "wochenschnitte": [
-    {
-      "woche": "2026-W28",
-      "avg_kg": 81.29,
-      "n_messungen": 1
-    },
     {
       "woche": "2026-W30",
       "avg_kg": 80.01,
@@ -97,6 +104,11 @@
       "woche": "2026-W33",
       "avg_kg": 81.84,
       "n_messungen": 7
+    },
+    {
+      "woche": "2026-W34",
+      "avg_kg": 81.6,
+      "n_messungen": 4
     }
   ]
 }

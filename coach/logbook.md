@@ -2,6 +2,21 @@
 
 Kurze, verdichtete Wocheneinträge. Rohdaten bleiben in WHOOP, Strava und der Website-Datenbank.
 
+## 2026-W34 · 17.–23. August · Meso 3 W3 — Italien-Reise + OHS-Progression
+
+**Plan befolgt** (Training Mo–Sa; So-Ride 23.08. sozial, steht bei Review-Abschluss noch aus). Mo/Di Italien-Bike ✓ (Strain 15,4 / 14,4, Di +807 hm) · Mi Fokus A ✓ (feel 4, rec 86 grün) · Do Box RDL + Metcon ✓ (feel 5, „WOD gut, langsamste Runde 1:25 wg. Double-Under-Struggle“) · Fr Ruhe ✓ (DreamWOD „Grace“ bewusst verworfen) · Sa Fokus B ✓ (feel 3, rec 78 grün). Recovery-Bild: Italien-Reise drückte Mo auf 32 % rot (nach Sa-Doubleride W33 + Reise), Erholung dann sauber — Mi 86, Fr 84, Sa 78. Kein Gate verletzt, keine Schlüssel-Einheit auf rotem Tag.
+
+**Kernbefunde:**
+- **Pause-OHS neue Stufe 55×3** (Mi, rec 86, feel 4): sauber bis 55 gerampt — Zielsatz 52,5 übertroffen, optionaler 55er genommen. Zwei Stufen in einer Session. Load-Reference 50 → 55.
+- **Snatch Top 57,5, nicht 60** (Mi): Ceiling 60 nicht reproduziert, bei 57,5 gestoppt (2×). Deckt sich exakt mit dem Video-Befund (tiefe Empfangsposition wackelt bei 87–95 %). Ceiling bleibt 60. Der Snatch-Fokus wurde diese Woche über die Bar-Path-Video-Diagnose bedient (Triple Extension sauber, ein Kniestreckungs-„Mangel“ war ein Pipeline-Artefakt, zurückgezogen).
+- **HSPU 4×8 bestätigt, aber am Limit** (Sa, rec 78): „letzte 3 im letzten Satz schwer“, durchgezogen. Oberste Leiterstufe erreicht — nächster Schritt ist der Max-Unbroken-Test (W37), nicht 4×9.
+- **WPU 3×5 verfehlt → bleibt 3×4** (Sa, rec 78): freie Notiz „5/5/3/2“ (Satz 3 nur 3 Reps) — WHOOP-Autolog zeigte „3×5“, **Quellenkonflikt zugunsten der freien Notiz** (Regel). Rec 78 → echtes Kapazitätslimit, kein Erholungsartefakt. 3×5 nächsten Gymnastics-Tag neu antesten.
+- **BMU** (Sa, feel 3): 5×2 wiederholt, einmal 3 am Stück — Steigerung ggü. W33 (feel 2). Video-Diagnose (3 Clips, 6 Reps) abgeschlossen: Arch wird zu ~100 % neu aufgebaut (kein verkürzter Zug), Engpass ist die Stütz-Pause oben (mental) + zu weiter Descent. Entwicklungsrichtung: Pause kürzen, Descent enger.
+- **T2B 3×10 gehalten** (letzte 2 als slow singles). RDL-Box 75×8 (e1RM ~95, loadable-Kontext für die spätere Engine). Hypertrophie-Layer lief zweite Woche in Folge heiß (RDL-Notiz „RPE 8–9, rotes Band Supersets“) — Cap ist RPE 7, kleiner Steuerungshinweis, kein Eingriff.
+- **Körperkomposition (erste echte Bewertung):** W34-Schnitt 81,60 kg (n=4, Mo/Di Italien ohne Wiegung, So offen) vs. W33 81,84 = **−0,24 kg**. Richtung runter, knapp unter Zielband −0,3/−0,5; partielle Woche nicht überinterpretieren, Innentrend eindeutig fallend (82,06 → 81,11 Mi–Sa).
+
+**Offen für W35:** FS-Block Teil 2 jetzt fällig (Referenz 102,5). C&J 82,5 nachziehen — kollidiert aber mit viel Box-Oly (Mo Squat-Cleans-WOD, Sa Hang Squat Clean); Slot beim Planning klären. WPU 3×5 und BMU-Stufenentscheid (5×2 vs. 4×3) offen. So 23.08.: Ride oder Team-WOD „Waterfall“ (30-min-AMRAP Teams of 3) — Sonntagslast-Input für W35-Montag.
+
 ## 2026-W33 · 10.–16. August · Meso 3 W2 — Progression aus Testständen
 
 **Plan vollständig befolgt.** Mo Ruhe ✓ · Di Box HPC + WOD ✓ (feel 5, 25 WBS unbroken im ersten Satz, 2. schnellster der Class) · Mi Fokus A ✓ (feel 5) · Do Box Push Press + WOD ✓ (feel 4) · Fr Ruhe ✓ (Gymnastics auf Sa vorgezogen) · Sa Fokus B ✓ (feel 2 — BMU-Baustelle) + Ride Fischmeister ✓ (~74 km über zwei Segmente) · So Reisetag Italien ✓ (kein Training).

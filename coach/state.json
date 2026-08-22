@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "aktualisiert_am": "2026-08-20",
+  "aktualisiert_am": "2026-08-22",
   "aktuelle_woche": {
     "id": "2026-W34",
     "von": "2026-08-17",
@@ -47,18 +47,19 @@
   "fokus_rotation": {
     "hinweis": "Verhindert, dass ein Fokus über Wochen wegrutscht. Bei jeder Wochenplanung prüfen, was zuletzt direkt bedient wurde, und Offenes nachziehen.",
     "zuletzt_bedient": {
-      "snatch": "W33 (Mi 12.08.: 60 kg, gute Form — Ceiling zweite Woche in Folge sauber reproduziert). W34 (Mi 20.08.): Video-Diagnose per Bar-Path-App (3 Clips) — Triple Extension sauber (Hüfte 175-177°, Knie 167-173°, Timing exakt am Geschwindigkeitspeak). Früherer 'Kniestreckungs-Lücke'-Befund vom selben Tag war ein Pipeline-Artefakt und ist zurückgezogen. Echter Befund (Lasten 52-57 kg): tiefe Empfangsposition unter schwerer Last wackelt — Details und nächster Schritt in load_references.squat_snatch_ceiling.",
-      "overhead_squat": "W33 (Mi 12.08.: 5×3 gut bis 50 kg, 52,5 nicht angesteuert) → W34 Mi Zielsatz 52,5",
+      "snatch": "W33 (Mi 12.08.: 60 kg, gute Form — Ceiling zweite Woche in Folge sauber reproduziert). W34 (Mi 20.08.): Video-Diagnose per Bar-Path-App (3 Clips) — Triple Extension sauber (Hüfte 175-177°, Knie 167-173°, Timing exakt am Geschwindigkeitspeak). Früherer 'Kniestreckungs-Lücke'-Befund vom selben Tag war ein Pipeline-Artefakt und ist zurückgezogen. Echter Befund (Lasten 52-57 kg): tiefe Empfangsposition unter schwerer Last wackelt — Details und nächster Schritt in load_references.squat_snatch_ceiling. W34-Ausführung (Mi 19.08., rec 86): Top-Single 57,5 (2×), 60 nicht angesteuert — deckt den Empfangs-Befund.",
+      "overhead_squat": "W34 (Mi 19.08., rec 86, feel 4): 5×3 Pause bis 55×3 sauber — Zielsatz 52,5 übertroffen, neue bestätigte Stufe 55. Nächster Aufbau Richtung 57,5.",
       "front_squat": "W30 (Block Wk 3/3 abgeschlossen, Top-Single 102,5 kg) — Block Teil 2 laut Meso-Plan in W35",
-      "strict_hspu": "W33 (Sa 15.08.: 4×7 laut Notiz „easy“ — Stufe bestätigt) → W34 Sa 4×8",
+      "strict_hspu": "W34 (Sa 22.08., rec 78): 4×8 bestätigt am Limit (letzter Satz letzte 3 schwer, durchgezogen). Oberste Leiterstufe — nächster Schritt Max-Test W37.",
       "bmu": "W34 (Sa 22.08.: Linked Doubles 5×2 wiederholt, einmal sogar 3 am Stück, session_feel 3 — Steigerung ggü. W33 feel 2). Video-Diagnose erledigt (3 Clips, 6 Reps): Kernfrage beantwortet — Arch wird zu 99,5-100 % neu aufgebaut, KEIN verkürzter Zug. Verbindung läuft aber über deutliche Stütz-Pause oben (laut Martin mental: denken/planen/machen; Clips waren Slo-mo 120 fps, Faktor 4 — real 2,5-3,8 s Stütz-Pause, Peitsche 0,22-0,26 s, Pull-under 0,16-0,17 s), und der Descent schwingt weit von der Stange weg (0,55-0,76 Torsolängen vs. 0,13-0,25 beim Pull-under — Abstände von Slo-mo unberührt). Entwicklungsrichtung: Stütz-Pause verkürzen + Descent enger führen (Rhythmus/Automatisierung, kein Kraftthema). Details load_references.bmu.",
-      "weighted_pull_up": "W33 (Sa 15.08.: 3×4 @ +5 kg zweite Runde, nicht explizit geloggt, plangemäß angenommen) → W34 Sa 3×5 (Martin-Entscheid 09.08.)",
-      "toes_to_bar": "W33 (Sa 15.08.: 3×10 gehalten, nicht explizit geloggt, plangemäß angenommen)",
+      "weighted_pull_up": "W34 (Sa 22.08., rec 78): 3×5 VERFEHLT (5/5/3/2, Satz 3 nur 3 Reps) — bleibt 3×4, 3×5 neu antesten. Details load_references.weighted_pull_up.",
+      "toes_to_bar": "W34 (Sa 22.08.): 3×10 gehalten (letzte 2 slow singles) — kein Test bis W37.",
       "clean_jerk": "W32 (Sa 08.08.: Komplex bis 80 kg, session_feel 5) — Di 11.08. Notiz „C&J 80kg“ war Verschreiber (tatsächlich Hang Power Clean laut Plan, von Martin bestätigt 17.08.), kein neuer Fortschritt gebucht"
     },
     "offen": [
-      "C&J 82,5 — Slot in W34 bewusst nicht vergeben (nur 4 Strukturtage durch Italien-Reise, Fr-DreamWOD Grace verworfen). Nächster passender Fokus-A-Slot nachziehen.",
-      "Front Squat — Block Teil 2 laut Meso-Plan in W35",
+      "C&J 82,5 — in W34 kein Slot. In W35 nachziehen, aber W35 = FS-Block Teil 2 + viel Box-Oly (Mo Squat-Cleans-WOD, Sa Hang Squat Clean); Slot/Kollision beim W35-Planning klären.",
+      "Front Squat — Block Teil 2 jetzt fällig (W35, Referenz 102,5, Korridor 105-107,5). Vor dem erwarteten Defizit-Dip platzieren.",
+      "WPU 3×5 (W34 Sa verfehlt, 5/5/3 bei rec 78) — nächsten Gymnastics-Tag neu antesten; bleibt bis dahin 3×4.",
       "BMU-Linked-Doubles: Diagnose erledigt (Sa 22.08., 3 Clips) — Arch-Neuaufbau intakt, Engpass ist Stütz-Pause (mental) + weiter Descent, siehe load_references.bmu. Beim nächsten Planning: Stufenentscheid 5×2 vs. 4×3 anhand feel 3 + einmal 3 am Stück. Cues aus Martins Whiteboard-Daily-Buch (Seiten 22.08. abfotografiert, passen exakt): 'Fall Into Pike' (S. 47, Pamela Gagnon — Stütz-Pause: press tall, fall into pike, tension im Arch, press down and around) und 'Feet in a Bucket' (S. 48 — Descent: Füße in imaginären Eimer vor dem Körper, erhält Kip-Momentum). Methodik in coach/bmu-entwicklungsplan.md.",
       "Snatch tiefe Empfangsposition (Befund 20.08., von Martin bestätigt): Wackeln/Zögern in der tiefen Überkopf-Position bei 87-95 % — Details in load_references.squat_snatch_ceiling. Nächster Snatch-Tag: Top-Singles 57,5/60 mit Bar-Path-App filmen (Bestätigung an schwerer Last) — Aufnahme-Anforderung laut instructions.md (Video-Analyse-Regeln) explizit in die Blocknotiz des Wochenplans schreiben. Danach beim Planning über gezielte Übung entscheiden (Diagnose vor Verordnung); Pause-OHS-Aufbau läuft als Positionsreiz bereits."
     ]
@@ -66,9 +67,9 @@
   "load_references": {
     "hinweis": "Arbeitszahlen aus letzten bestätigten Sessions. Beim Wochenreview aus WHOOP auffrischen.",
     "pause_ohs": {
-      "kg": 50,
+      "kg": 55,
       "schema": "5x3",
-      "note": "Bestätigter Topwert weiter 50 kg (W33 Mi: 5×3 bis 50 gut, 52,5 nicht angesteuert). W34 Mi: 52,5 als Zielsatz, 55 optional bei sauberem 52,5er."
+      "note": "W34 Mi (rec 86, feel 4): sauber bis 55×3 gerampt (42,5→45→47,5→50→52,5→55) — Zielsatz 52,5 übertroffen, optionaler 55er sauber genommen. Neuer bestätigter Topwert 55 (vorher 50). Nächster Aufbau Richtung 57,5, aber W35 = FS-Block (OHS ggf. nicht A-Fokus)."
     },
     "push_press_basis": {
       "kg": 82.5
@@ -77,7 +78,7 @@
       "kg": 60,
       "erreicht_w28": 57.5,
       "bestaetigt_w30": 57.5,
-      "note": "W32 (Di 04.08.): 60 kg @ RPE 8, Form 7/10 — als neue Ceiling von Martin freigegeben (09.08.). W33: 60 sauber reproduzieren, 62,5 nur bei perfektem Lockout als Option. Video-Diagnose 20.08. (3 Bar-Path-Clips, --bar-trail, nach Pipeline-Fix): Triple Extension SAUBER — Hüfte 175-177°, Knie 167-173° (Knie-Max bis 176°), volle Extension exakt am Geschwindigkeitspeak, Zuggeschwindigkeit konstant ~4,9 Torsolängen/s über alle 3 Reps. Ein zunächst gemeldeter 'Kniestreckungs-Lücken'-Befund (Knie angeblich 139-142°) war ein Artefakt zeitlich interpolierter Landmarks der verdeckten Körperseite und wurde von Martin am Einzelbild erkannt und nach Rohdaten-Gegencheck zurückgezogen (Script-Fix 20.08.). Zweiter Befund (gleiche 3 Clips, Lasten 52-57 kg = 87-95 % Ceiling, von Martin bestätigt und deckungsgleich mit seinem Gefühl): Zughöhe stark — Bar wird selbst bei ~95 % noch auf Viertelhocken-Höhe gefangen; Turnover schnell (~0,3 s bis Fixierung), Lockout sauber (Ellbogen-Auffälligkeiten waren 2D-Projektion). Baustelle ist die TIEFE EMPFANGSPOSITION unter schwerer Last: zögerliche 1,0-1,2-s-Abfahrt vom hohen Catch in die Hocke mit messbarem Wackeln (schlechtester Clip vertikal ±0,11 Torsolängen). Richtung 62,5/65 fliegt die Bar nicht mehr hoch genug für den hohen Catch — dann muss direkt tief und stabil empfangen werden, genau in der Zone, die jetzt wackelt. Der laufende Pause-OHS-Aufbau zahlt als Positions-/Stabilitätsreiz bereits darauf ein (NICHT als Maximalkraft-Argument — Pause-Tripel und Snatch-Ceiling sind nicht vergleichbar). Nächster Schritt: Top-Singles 57,5/60 mit Bar-Path-App filmen zur Bestätigung; Übungswahl erst danach beim Planning. Referenz: coach/video_analysis/ (lokal, nicht committet)."
+      "note": "W32 (Di 04.08.): 60 kg @ RPE 8, Form 7/10 — als neue Ceiling von Martin freigegeben (09.08.). W33: 60 sauber reproduzieren, 62,5 nur bei perfektem Lockout als Option. Video-Diagnose 20.08. (3 Bar-Path-Clips, --bar-trail, nach Pipeline-Fix): Triple Extension SAUBER — Hüfte 175-177°, Knie 167-173° (Knie-Max bis 176°), volle Extension exakt am Geschwindigkeitspeak, Zuggeschwindigkeit konstant ~4,9 Torsolängen/s über alle 3 Reps. Ein zunächst gemeldeter 'Kniestreckungs-Lücken'-Befund (Knie angeblich 139-142°) war ein Artefakt zeitlich interpolierter Landmarks der verdeckten Körperseite und wurde von Martin am Einzelbild erkannt und nach Rohdaten-Gegencheck zurückgezogen (Script-Fix 20.08.). Zweiter Befund (gleiche 3 Clips, Lasten 52-57 kg = 87-95 % Ceiling, von Martin bestätigt und deckungsgleich mit seinem Gefühl): Zughöhe stark — Bar wird selbst bei ~95 % noch auf Viertelhocken-Höhe gefangen; Turnover schnell (~0,3 s bis Fixierung), Lockout sauber (Ellbogen-Auffälligkeiten waren 2D-Projektion). Baustelle ist die TIEFE EMPFANGSPOSITION unter schwerer Last: zögerliche 1,0-1,2-s-Abfahrt vom hohen Catch in die Hocke mit messbarem Wackeln (schlechtester Clip vertikal ±0,11 Torsolängen). Richtung 62,5/65 fliegt die Bar nicht mehr hoch genug für den hohen Catch — dann muss direkt tief und stabil empfangen werden, genau in der Zone, die jetzt wackelt. Der laufende Pause-OHS-Aufbau zahlt als Positions-/Stabilitätsreiz bereits darauf ein (NICHT als Maximalkraft-Argument — Pause-Tripel und Snatch-Ceiling sind nicht vergleichbar). Nächster Schritt: Top-Singles 57,5/60 mit Bar-Path-App filmen zur Bestätigung; Übungswahl erst danach beim Planning. W34-Ausführung (Mi 19.08., rec 86): Top-Single 57,5 (2×), 60 nicht angesteuert — konsistent mit dem Empfangs-Befund; Ceiling unverändert 60. Referenz: coach/video_analysis/ (lokal, nicht committet)."
     },
     "front_squat": {
       "kg_1rm_geschaetzt": 107.5,
@@ -90,12 +91,12 @@
     },
     "weighted_pull_up": {
       "kg": "+5",
-      "schema": "3x5",
-      "note": "W32 (Fr 07.08.): 3×4 @ +5 kg sauber bestätigt. W33 zweite Runde 3×4 wiederholt (nicht explizit geloggt, plangemäß angenommen). W34 Sa: Stufe hoch auf 3×5 (Martin-Entscheid 09.08.)."
+      "schema": "3x4",
+      "note": "W32 (Fr 07.08.): 3×4 @ +5 kg sauber bestätigt. W33 zweite Runde 3×4. W34 Sa (rec 78): 3×5 versucht, VERFEHLT — freie Notiz 5/5/3/2 (Satz 3 nur 3 Reps); WHOOP-Autolog '3×5' widersprochen, freie Notiz zählt (Regel). Rec 78 → echtes Kapazitätslimit, kein Erholungsartefakt. Stufe bleibt 3×4; 3×5 nächsten Gymnastics-Tag neu antesten, bei erneutem Miss Ursache prüfen (Grip/letzter Satz)."
     },
     "strict_hspu": {
       "schema": "4x8",
-      "note": "Test W32 (Fr 07.08.): 9 unbroken (Ziel 10, Stand vorher 6). W33 Sa: 4×7 laut Notiz „easy“ — Stufe bestätigt. W34 Sa: Stufe hoch auf 4×8; bei unsauberem letzten Satz zurück auf 4×7."
+      "note": "Test W32 (Fr 07.08.): 9 unbroken (Ziel 10, Stand vorher 6). W33 Sa: 4×7 „easy“. W34 Sa (rec 78, feel 3): 4×8 bestätigt, aber am Limit — Notiz „letzte 3 im letzten Satz schwer“, durchgezogen. Oberste Leiterstufe erreicht; nächster Schritt Max-Test W37, nicht 4×9."
     },
     "bmu": {
       "max_unbroken": 3,
@@ -109,14 +110,9 @@
   },
   "akute_hinweise": [
     {
-      "datum": "2026-08-17",
-      "betrifft": "W34 — Italien Mo/Di",
-      "hinweis": "Mo 17. + Di 18.08. in Italien: nur Bike (kein Box-Drop-in), Di nochmal Rad. Keine Termin-/Zeitbeschränkungen Mi–So, aber nur eine Box-Session möglich (Do) — Fokus A Mi, Fokus B Sa, Rest Fr, Ride So (von Martin bestätigt 17.08.)."
-    },
-    {
-      "datum": "2026-08-17",
-      "betrifft": "Körperkomposition",
-      "hinweis": "W33-Schnitt 81,84 kg (7 Messungen) vs. W32 81,95 kg — leicht fallend. Erste echte Protokoll-Bewertung laut Messregel erst Wochenschnitt W34 vs. W33 beim nächsten Review."
+      "datum": "2026-08-22",
+      "betrifft": "Körperkomposition — erste echte Protokoll-Bewertung",
+      "hinweis": "W34-Schnitt 81,60 kg (n=4: Mo/Di Italien ohne Wiegung, So offen) vs. W33 81,84 = −0,24 kg. Richtung runter, knapp unter Zielband −0,3/−0,5 — partielle Woche nicht überinterpretieren. Innentrend eindeutig fallend: 19.–22.08. 82,06→81,76→81,47→81,11 (Post-Italien-Wasser fällt). Nächste saubere Bewertung W35-Schnitt vs. W34 mit voller Wiege-Woche."
     }
   ],
   "hinweis_ablauf": "Beim Wochenreview neu bewerten; spätestens nach 7 Tagen entfernen, wenn nicht erneut bestätigt.",
@@ -129,7 +125,7 @@
     "strava": "Optional über MCP für Radfahrten"
   },
   "naechster_zielreview": "2026-W37: Sechs-Wochen-Review Meso 3 + zweiter Gymnastics-Testblock. Vorab fällig: T2B-Zielneusetzung (Test 16 vs. Ziel 10). BMU-Test W37 nur bei ≥2 zusammenhängenden Trainingswochen davor (Unterbrechungsregel).",
-  "systemstatus": "V1.0 produktiv; Wochenreviews W25-W33 abgeschlossen. Meso 3 läuft (W32-W37, Aufbau + Rekomposition inkl. Körperkompositions-Protokoll). Gymnastics-Testblock 1 absolviert (W32). Video-Analyse-Pipeline (MediaPipe) seit 15.08. lokal vorhanden: BMU-Modus validiert (noch ohne Linked-Double-Auswertung), Snatch-Modus seit 20.08. auf --bar-trail (Farbsegmentierung) umgestellt und an 3 Clips validiert; gleichentags Interpolations-Bug in der Winkelberechnung gefixt (Winkel jetzt aus Roh-Detektionen statt interpolierten Positionen) — Diagnose-Ergebnis siehe load_references.squat_snatch_ceiling.",
+  "systemstatus": "V1.0 produktiv; Wochenreviews W25-W34 abgeschlossen (W34-Training Mo–Sa vollständig; So-Ride 23.08. steht aus, nur sozial, keine Strength-Daten). Meso 3 läuft (W32-W37, Aufbau + Rekomposition inkl. Körperkompositions-Protokoll). Gymnastics-Testblock 1 absolviert (W32). Video-Analyse-Pipeline (MediaPipe) seit 15.08. lokal vorhanden: BMU-Modus validiert (noch ohne Linked-Double-Auswertung), Snatch-Modus seit 20.08. auf --bar-trail (Farbsegmentierung) umgestellt und an 3 Clips validiert; gleichentags Interpolations-Bug in der Winkelberechnung gefixt (Winkel jetzt aus Roh-Detektionen statt interpolierten Positionen) — Diagnose-Ergebnis siehe load_references.squat_snatch_ceiling.",
   "migration": {
     "version": "1.0",
     "abgeschlossen_am": "2026-06-15"

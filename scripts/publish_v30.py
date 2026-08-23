@@ -17,6 +17,7 @@ gegen stilles Auseinanderlaufen von Build und Publisher.
 
 from __future__ import annotations
 
+import hashlib
 import sys
 from pathlib import Path
 
@@ -39,11 +40,25 @@ def main() -> int:
             return 1
         html = html.replace(old, new)
 
+    data = (BUILD / "data.js").read_text(encoding="utf-8")
+
+    # Cache-Busting: Safari am iPhone hielt sonst alte Stände fest (23.08.).
+    # data.js bekommt den Inhalts-Hash an die URL, die Seite selbst ein
+    # no-cache-Meta — sonst zeigt ein Refresh weiter den alten Render.
+    stamp = hashlib.sha1(data.encode("utf-8")).hexdigest()[:8]
+    if 'src="./data.js"' not in html:
+        print("FEHLER: data.js-Einbindung nicht gefunden", file=sys.stderr)
+        return 1
+    html = html.replace('src="./data.js"', f'src="./data.js?v={stamp}"')
+    html = html.replace(
+        "<head>",
+        '<head>\n<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">',
+        1,
+    )
+
     OUT.mkdir(parents=True, exist_ok=True)
     (OUT / "index.html").write_text(html, encoding="utf-8")
-    (OUT / "data.js").write_text(
-        (BUILD / "data.js").read_text(encoding="utf-8"), encoding="utf-8"
-    )
+    (OUT / "data.js").write_text(data, encoding="utf-8")
     print(f"OK: {OUT / 'index.html'} + data.js geschrieben")
     return 0
 

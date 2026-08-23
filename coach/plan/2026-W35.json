@@ -11,7 +11,8 @@
     {
       "iso_date": "2026-08-24",
       "day_type": "rest",
-      "plan_note": "Sonntagslast nach dem Fischmeister-Ride (23.08.) — Standard-Ruhetag, kein Schlüsselslot. Upgrade nur bei grüner Mo-Recovery am Tag selbst."
+      "plan_note": "Sonntagslast nach dem Fischmeister-Ride (23.08.) — Standard-Ruhetag, kein Schlüsselslot. Upgrade nur bei grüner Mo-Recovery am Tag selbst.",
+      "warum": "Sonntagslast nach dem Fischmeister-Ride (23.08.) — Standard-Ruhetag, kein Schlüsselslot. Upgrade nur bei grüner Mo-Recovery am Tag selbst."
     },
     {
       "iso_date": "2026-08-25",
@@ -29,15 +30,27 @@
           "block_id": "A",
           "prio": "required",
           "min": 16,
-          "title": "Clean & Jerk Komplex — Reclaim 82,5",
+          "title": "Clean & Jerk Komplex",
           "superset": false,
           "exercises": [
             {
               "ex_id": "clean_jerk",
               "target": {
-                "mode": "kg", "sets": 6, "reps": "1+1", "kg": 82.5,
-                "ramp": [65, 70, 75, 77.5, 80, 82.5],
-                "rpe_cap": 8, "tempo": "explosiv", "rest": "E2:00-2:30"
+                "mode": "kg",
+                "sets": 6,
+                "reps": "1+1",
+                "kg": 82.5,
+                "ramp": [
+                  65,
+                  70,
+                  75,
+                  77.5,
+                  80,
+                  82.5
+                ],
+                "rpe_cap": 8,
+                "tempo": "explosiv",
+                "rest": "E2:00-2:30"
               },
               "warum": "Reclaim über die W32-Ceiling 80 (Sa 08.08., session_feel 5, seither ~18 Tage ohne Komplex-Kontakt). 82,5 nur bei sauberem Fang + Jerk-Lockout — sonst auf dem letzten sauberen Gewicht ausfahren, kein Erzwingen in der Defizit-Dip-Woche.",
               "note": "Squat Clean + Push/Split Jerk. Warm-up-Singles unter 65 zählen nicht als Arbeitssätze. Topgewicht loggen."
@@ -48,15 +61,26 @@
           "block_id": "B",
           "prio": "required",
           "min": 16,
-          "title": "Front Squat — Block Teil 2",
+          "title": "Front Squat",
           "superset": false,
           "exercises": [
             {
               "ex_id": "front_squat",
               "target": {
-                "mode": "kg", "sets": 5, "reps": 3, "kg": 95,
-                "ramp": [80, 85, 90, 92.5, 95],
-                "rpe_cap": 8, "tempo": "31X1", "rest": "2-3 min"
+                "mode": "kg",
+                "sets": 5,
+                "reps": 3,
+                "kg": 95,
+                "ramp": [
+                  80,
+                  85,
+                  90,
+                  92.5,
+                  95
+                ],
+                "rpe_cap": 8,
+                "tempo": "31X1",
+                "rest": "2-3 min"
               },
               "warum": "Block-Start vor dem erwarteten Defizit-Dip (Meso-Rolle W35). Referenz: Top-Single 102,5 aus Block Teil 1 (W30). Topsatz 95×3 RPE-gated nach der C&J-Vorermüdung — der Korridor 105–107,5 wird W36/W37 mit Singles/Doubles angefahren.",
               "note": "Block-Woche 1. Bei RPE >8 nach dem C&J bei 92,5 bleiben."
@@ -72,7 +96,12 @@
           "exercises": [
             {
               "ex_id": "hollow_hold",
-              "target": { "mode": "time", "sec": 30, "sets": 3, "rest": "60 sec" },
+              "target": {
+                "mode": "time",
+                "sec": 30,
+                "sets": 3,
+                "rest": "60 sec"
+              },
               "warum": "Rumpfspannung als Basis für Front-Rack und Gymnastics — bewusst leicht gehalten.",
               "note": "Ruhig atmen, unterer Rücken am Boden."
             }
@@ -82,21 +111,35 @@
           "block_id": "D",
           "prio": "optional",
           "min": 15,
-          "title": "Hypertrophie-Layer Delts/Bizeps",
+          "title": "Strength: Delts / Bizeps",
           "superset": false,
           "verdict_ex_id": "layer_delts_bizeps",
           "exercises": [
             {
               "ex_id": "lateral_raise",
               "kurz": "DB Lateral Raise",
-              "target": { "mode": "kg", "sets": 3, "reps": 12, "kg": 6, "rpe_cap": 7, "rest": "60 sec" },
+              "target": {
+                "mode": "kg",
+                "sets": 3,
+                "reps": 12,
+                "kg": 6,
+                "rpe_cap": 7,
+                "rest": "60 sec"
+              },
               "warum": "Rekompositions-Layer. RPE-Deckel 7 strikt — der Layer lief zwei Wochen heiß.",
               "note": "2 × 6 kg (je Hantel), kontrolliert, keine Failure-Sätze."
             },
             {
               "ex_id": "biceps_curl",
               "kurz": "DB Curl",
-              "target": { "mode": "kg", "sets": 3, "reps": 12, "kg": 10, "rpe_cap": 7, "rest": "60 sec" },
+              "target": {
+                "mode": "kg",
+                "sets": 3,
+                "reps": 12,
+                "kg": 10,
+                "rpe_cap": 7,
+                "rest": "60 sec"
+              },
               "warum": "Rekompositions-Layer, RPE-Deckel 7 strikt.",
               "note": "2 × 10–12 kg, kontrolliert."
             }
@@ -111,7 +154,10 @@
           "exercises": [
             {
               "ex_id": "mobility",
-              "target": { "mode": "time", "sec": 480 },
+              "target": {
+                "mode": "time",
+                "sec": 480
+              },
               "warum": "Cool-down nach Front-Rack-Volumen.",
               "note": "Front-Rack-Stretch 2 min · Hüftbeuger 2 × 45 sec/Seite · thorakale Extension am Foam Roller."
             }
@@ -122,23 +168,44 @@
     {
       "iso_date": "2026-08-26",
       "day_type": "box",
-      "einheit": "Barbell RDL (Tempo) + S2O/Air-Squat-Intervalle",
+      "einheit": "Tempo RDL + Intervals",
       "sub": "Every 2:30 × 4: 8 Tempo RDL (3-sec-Descent) + 10/Seite Monster Band Side Steps → 8 × (1/1 min): 9/7 Cal · 6 S2O @ 42,5 · Max Air Squats",
       "plan_note": "Hinge/Engine, kollisionsarm zur Fokus-Woche. Day-after Focus A: RDL wirklich moderat/Tempo, Air Squats bei Quad-DOMS nicht auf Max — Dreifach-Kompound-Tag, strikt autoregulieren.",
       "wod": [
         {
-          "struktur": "Every 2:30 × 4", "format": "Intervall", "level": "RDL RPE-kalibriert",
+          "struktur": "Every 2:30 × 4",
           "bewegungen": [
-            { "reps": "8", "name": "Tempo Barbell RDL", "detail": "3-sec-Descent, moderat" },
-            { "reps": "10/Seite", "name": "Monster Band Side Steps", "detail": "" }
+            {
+              "reps": "8",
+              "name": "Tempo Barbell RDL",
+              "detail": "Tempo 3 s · moderate"
+            },
+            {
+              "reps": "10/side",
+              "name": "Monster Band Side Steps",
+              "detail": ""
+            }
           ]
         },
         {
-          "struktur": "8 × (1 min Arbeit / 1 min Pause)", "format": "Score: Total Air Squats", "level": "L2", "rpe": "RPE ≤7-8",
+          "struktur": "8 × (1 min on / 1 min off)",
+          "format": "Score: total Air Squats",
           "bewegungen": [
-            { "reps": "9/7", "name": "Cal beliebige Maschine", "detail": "" },
-            { "reps": "6", "name": "Shoulder-to-Overhead", "detail": "42,5 kg" },
-            { "reps": "Max", "name": "Air Squats", "detail": "Restzeit der Minute" }
+            {
+              "reps": "9",
+              "name": "Cal Machine",
+              "detail": ""
+            },
+            {
+              "reps": "6",
+              "name": "Shoulder-to-Overhead",
+              "detail": "42,5 kg"
+            },
+            {
+              "reps": "Max",
+              "name": "Air Squats",
+              "detail": ""
+            }
           ]
         }
       ]
@@ -146,7 +213,8 @@
     {
       "iso_date": "2026-08-27",
       "day_type": "rest",
-      "plan_note": "Harter Ruhetag — schützt die Fr-Gymnastics-Frische (Grip/Pull) und dient der Defizit-Erholung. Do-DreamWOD bewusst verworfen: 25 strict Chin-ups würden Pull/Grip vor Fr vorermüden."
+      "plan_note": "Harter Ruhetag — schützt die Fr-Gymnastics-Frische (Grip/Pull) und dient der Defizit-Erholung. Do-DreamWOD bewusst verworfen: 25 strict Chin-ups würden Pull/Grip vor Fr vorermüden.",
+      "warum": "Harter Ruhetag — schützt die Fr-Gymnastics-Frische (Grip/Pull) und dient der Defizit-Erholung. Do-DreamWOD bewusst verworfen (25 strict Chin-ups würden Pull/Grip vorermüden)."
     },
     {
       "iso_date": "2026-08-28",
@@ -164,19 +232,33 @@
           "block_id": "A",
           "prio": "required",
           "min": 15,
-          "title": "BMU — Linked Triples",
+          "title": "BMU",
           "superset": false,
           "verdict_ex_id": "bmu",
           "exercises": [
             {
               "ex_id": "bmu_drill",
-              "target": { "mode": "bw", "sets": 4, "reps": 3, "rpe_cap": 6, "tempo": "kontrolliert", "rest": "60 sec" },
+              "target": {
+                "mode": "bw",
+                "sets": 4,
+                "reps": 3,
+                "rpe_cap": 6,
+                "tempo": "kontrolliert",
+                "rest": "60 sec"
+              },
               "warum": "Descent-Kontrolle + Hip-Pop-Timing primen (~5 min) — die Video-Diagnose vom 22.08. zeigt den Engpass im Descent (0,55–0,76 Torsolängen von der Stange) und in der Stütz-Pause, nicht im Zug.",
               "note": "„Feet in a Bucket“: Füße in einen imaginären Eimer vor dem Körper führen, Kip-Momentum erhalten."
             },
             {
               "ex_id": "bmu",
-              "target": { "mode": "bw", "sets": 4, "reps": 3, "unbroken": true, "rpe_cap": 8, "rest": "2-3 min" },
+              "target": {
+                "mode": "bw",
+                "sets": 4,
+                "reps": 3,
+                "unbroken": true,
+                "rpe_cap": 8,
+                "rest": "2-3 min"
+              },
               "warum": "Stufe hoch von 5×2: W34 lief mit feel 3 und einmal 3 am Stück — der Aufstieg auf der Linked-Sets-Treppe (5×2 → 4×3 → 3×3+1×max → Test) ist gerechtfertigt. Reißt das Linking, zurück auf 5×2 — nicht erzwingen.",
               "note": "Cues: „Fall Into Pike“ (Stütz-Pause: press tall, in die Pike fallen, Arch-Spannung, press down and around) + „Feet in a Bucket“ (Descent eng)."
             }
@@ -186,12 +268,18 @@
           "block_id": "B",
           "prio": "required",
           "min": 8,
-          "title": "T2B — Kapazität",
+          "title": "T2B",
           "superset": false,
           "exercises": [
             {
               "ex_id": "t2b",
-              "target": { "mode": "bw", "sets": 3, "reps": 10, "rpe_cap": 7, "rest": "90 sec" },
+              "target": {
+                "mode": "bw",
+                "sets": 3,
+                "reps": 10,
+                "rpe_cap": 7,
+                "rest": "90 sec"
+              },
               "warum": "Gehalten, kein Test — Test 16 hat das Ziel 10 klar übertroffen, Zielneusetzung kommt beim W37-Review.",
               "note": "Letzte Reps als saubere Singles erlaubt."
             }
@@ -201,12 +289,19 @@
           "block_id": "C",
           "prio": "required",
           "min": 15,
-          "title": "Strict HSPU — konsolidieren",
+          "title": "Strict HSPU",
           "superset": false,
           "exercises": [
             {
               "ex_id": "hspu_strict",
-              "target": { "mode": "bw", "sets": 4, "reps": 8, "rpe_cap": 8, "tempo": "21X0", "rest": "3 min" },
+              "target": {
+                "mode": "bw",
+                "sets": 4,
+                "reps": 8,
+                "rpe_cap": 8,
+                "tempo": "21X0",
+                "rest": "3 min"
+              },
               "warum": "Oberste Leiterstufe 4×8 in W34 am Limit bestätigt (letzter Satz schwer) — konsolidieren statt steigern, NICHT 4×9. Nächster Schritt ist der Max-Test W37.",
               "note": "Reißt der letzte Satz → 4×7, kein Stall (Dip-Woche)."
             }
@@ -216,12 +311,20 @@
           "block_id": "D",
           "prio": "required",
           "min": 8,
-          "title": "Weighted Pull-up — zementieren",
+          "title": "Weighted Pull-up",
           "superset": false,
           "exercises": [
             {
               "ex_id": "wpu",
-              "target": { "mode": "bw_plus", "sets": 3, "reps": 4, "kg": 5, "rpe_cap": 8, "tempo": "30X1", "rest": "2 min" },
+              "target": {
+                "mode": "bw_plus",
+                "sets": 3,
+                "reps": 4,
+                "kg": 5,
+                "rpe_cap": 8,
+                "tempo": "30X1",
+                "rest": "2 min"
+              },
               "warum": "Stufe zurück nach dem 3×5-Miss in W34 (5/5/3, rec 78 = echtes Kapazitätslimit) — Stufe-zurück-Regel. 3×4 sauber zementieren, alle Sätze voll; 3×5-Retry erst W36.",
               "note": "+5 kg ist Zusatzlast, nie Tages-Kennzahl."
             }
@@ -231,21 +334,34 @@
           "block_id": "E",
           "prio": "optional",
           "min": 15,
-          "title": "Hypertrophie-Layer Brust/Trizeps",
+          "title": "Strength: Brust / Trizeps",
           "superset": false,
           "verdict_ex_id": "layer_brust_trizeps",
           "exercises": [
             {
               "ex_id": "db_bench",
               "kurz": "DB Bench Press",
-              "target": { "mode": "kg", "sets": 3, "reps": 12, "rpe_cap": 7, "rest": "60 sec" },
+              "target": {
+                "mode": "kg",
+                "sets": 3,
+                "reps": 12,
+                "rpe_cap": 7,
+                "rest": "60 sec"
+              },
               "warum": "Rekompositions-Layer, RPE-kalibriert. Deckel 7 strikt — lief zwei Wochen heiß (W34 RPE 8-9).",
               "note": "Keine Failure-Sätze."
             },
             {
               "ex_id": "triceps_ext",
               "kurz": "Triceps Extension",
-              "target": { "mode": "band", "band": "rotes Band", "sets": 3, "reps": 15, "rpe_cap": 7, "rest": "60 sec" },
+              "target": {
+                "mode": "band",
+                "band": "rotes Band",
+                "sets": 3,
+                "reps": 15,
+                "rpe_cap": 7,
+                "rest": "60 sec"
+              },
               "warum": "Rekompositions-Layer, konstante Spannung.",
               "note": "Band/Cable, volle ROM."
             }
@@ -255,12 +371,15 @@
           "block_id": "F",
           "prio": "optional",
           "min": 5,
-          "title": "Cool-down Mobility",
+          "title": "Mobility",
           "superset": false,
           "exercises": [
             {
               "ex_id": "mobility",
-              "target": { "mode": "time", "sec": 300 },
+              "target": {
+                "mode": "time",
+                "sec": 300
+              },
               "warum": "Cool-down nach Pull-Volumen.",
               "note": "Lat-Stretch hängend 2 × 45 sec · Shoulder CARs 2 × 8/Seite · thorakale Extension 1–2 min."
             }
@@ -271,24 +390,50 @@
     {
       "iso_date": "2026-08-29",
       "day_type": "box",
-      "einheit": "Hang Squat Clean + Burpee-Box-Jump-Over/DL-WOD",
+      "einheit": "Hang Squat Clean + WOD",
       "sub": "Hang Squat Clean 3-3-2-2-1-1 (moderat, Hook-Grip) → 2 Rd auf Zeit (16-min-Cap): 10 BBJO 60/50 · 15/12 Cal · 20 DL @85 · 15/12 Cal · 10 BBJO, 1 min Pause zwischen den Runden",
       "plan_note": "Grip-Schongang — Fr war der Grip-Peak (BMU/T2B/WPU). Hang Cleans mit Hook-Grip, von oben ablassen; DL als Singles, bei Grip-Ermüdung die 40 DL scalen. Oly-Touch, nicht schwer (C&J war Di).",
       "wod": [
         {
-          "struktur": "Kraft: 3-3-2-2-1-1", "format": "Aufsteigend", "level": "moderat/Technik",
+          "struktur": "Strength",
           "bewegungen": [
-            { "reps": "3·3·2·2·1·1", "name": "Hang Squat Clean", "detail": "Oly-Touch, NICHT Max (C&J war Di) — Hook-Grip" }
+            {
+              "reps": "3·3·2·2·1·1",
+              "name": "Hang Squat Clean",
+              "detail": "moderate"
+            }
           ]
         },
         {
-          "struktur": "2 Runden auf Zeit (1 min Pause dazwischen)", "format": "Score: Gesamtzeit inkl. Pause", "level": "L2 · 85 kg", "cap": "16 min", "rpe": "RPE ≤7-8",
+          "struktur": "2 Rounds for time",
+          "format": "Score: total time",
+          "cap": "16 min",
           "bewegungen": [
-            { "reps": "10", "name": "Burpee Box Jump Overs", "detail": "60/50 cm" },
-            { "reps": "15/12", "name": "Cal beliebige Maschine", "detail": "" },
-            { "reps": "20", "name": "Deadlifts", "detail": "85 kg · Singles, kein Touch-and-Go" },
-            { "reps": "15/12", "name": "Cal beliebige Maschine", "detail": "" },
-            { "reps": "10", "name": "Burpee Box Jump Overs", "detail": "60/50 cm" }
+            {
+              "reps": "10",
+              "name": "Burpee Box Jump Overs",
+              "detail": "60 cm"
+            },
+            {
+              "reps": "15",
+              "name": "Cal Machine",
+              "detail": ""
+            },
+            {
+              "reps": "20",
+              "name": "Deadlifts",
+              "detail": "85 kg"
+            },
+            {
+              "reps": "15",
+              "name": "Cal Machine",
+              "detail": ""
+            },
+            {
+              "reps": "10",
+              "name": "Burpee Box Jump Overs",
+              "detail": "60 cm"
+            }
           ]
         }
       ]
@@ -296,18 +441,39 @@
     {
       "iso_date": "2026-08-30",
       "day_type": "box",
-      "einheit": "Team-WOD „Waterfall\"",
-      "sub": "30-min-AMRAP Teams of 3, Waterfall-Versatz — sozialer Slot (FFR + South + West), Ride wetterabhängig zusätzlich",
+      "einheit": "Team-WOD „Waterfall“ oder Ride",
+      "sub": "WOD optional — Alternative ist der Sonntags-Ride",
       "plan_note": "Box-Event, NICHT aus dem DreamWOD-Pull (regulärer So-DreamWOD davon verdrängt). Sonntagslast → Mo (W36) Standard-Ruhe.",
       "wod": [
         {
-          "struktur": "30-min-AMRAP", "format": "Teams of 3 · Waterfall-Versatz", "level": "sozial",
+          "struktur": "30-min AMRAP",
+          "format": "Teams of 3",
           "bewegungen": [
-            { "reps": "12/9", "name": "Cal Row", "detail": "" },
-            { "reps": "12", "name": "Burpees", "detail": "" },
-            { "reps": "12/9", "name": "Cal Bike", "detail": "" },
-            { "reps": "12", "name": "Alt DB Hang Snatch", "detail": "22,5 kg" },
-            { "reps": "12/9", "name": "Push-ups", "detail": "" }
+            {
+              "reps": "12",
+              "name": "Cal Row",
+              "detail": ""
+            },
+            {
+              "reps": "12",
+              "name": "Burpees",
+              "detail": ""
+            },
+            {
+              "reps": "12",
+              "name": "Cal Bike",
+              "detail": ""
+            },
+            {
+              "reps": "12",
+              "name": "Alt DB Hang Snatch",
+              "detail": "22,5 kg"
+            },
+            {
+              "reps": "12",
+              "name": "Push-ups",
+              "detail": ""
+            }
           ]
         }
       ]

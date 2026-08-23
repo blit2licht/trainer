@@ -225,7 +225,7 @@ a{color:inherit;text-underline-offset:3px}
   padding-top:34px;margin-bottom:2px;
 }
 .strip{
-  display:grid;grid-template-columns:92px 22px minmax(0,1fr) auto;
+  display:grid;grid-template-columns:58px 22px minmax(0,1fr) auto;
   align-items:baseline;gap:10px 14px;
   width:calc(100% + 28px);min-height:72px;padding:16px 14px;margin:0 -14px;
   background:none;border:none;border-top:1px solid var(--rule-2);
@@ -236,9 +236,10 @@ a{color:inherit;text-underline-offset:3px}
 .strip[data-nav="0"]{cursor:default}
 .strip:hover .strip-day{color:var(--marker)}
 .strip-when{min-width:0}
+/* Wochentag als Zwei-Buchstaben-Kürzel, groß und fett (Martin 23.08.). */
 .strip-day{
-  display:block;font-family:var(--disp);font-variation-settings:'wdth' 88;
-  font-weight:700;font-size:16px;letter-spacing:-.01em;
+  display:block;font-family:var(--disp);font-variation-settings:'wdth' 118;
+  font-weight:900;font-size:24px;letter-spacing:-.02em;line-height:1;
   transition:color .14s var(--ease);
 }
 .strip-date{
@@ -324,7 +325,7 @@ a{color:inherit;text-underline-offset:3px}
 .blk.is-done .blk-letter{color:var(--cool-dim)}
 .blk-name{
   font-family:var(--disp);font-variation-settings:'wdth' 92;
-  font-weight:700;font-size:clamp(1.15rem,4.6vw,1.45rem);
+  font-weight:700;font-size:clamp(1.4rem,5.5vw,1.75rem);
   letter-spacing:-.02em;line-height:1.12;flex:1;min-width:0;
 }
 /* Zeit und Blockrang tragen das Sicherheitslicht. */
@@ -335,8 +336,8 @@ a{color:inherit;text-underline-offset:3px}
 }
 .blk-top .vflag{
   margin-left:auto;flex:0 0 auto;align-self:center;
-  font-family:var(--mono);font-size:17px;font-weight:700;
-  letter-spacing:.08em;text-transform:uppercase;white-space:nowrap;
+  font-family:var(--mono);font-size:11.5px;font-weight:700;
+  letter-spacing:.13em;text-transform:uppercase;white-space:nowrap;
 }
 .vflag.ok{color:var(--good)}
 .vflag.no{color:var(--marker)}
@@ -403,9 +404,10 @@ a{color:inherit;text-underline-offset:3px}
    eine Schriftgröße für jede Zahl, Zielsatz hebt sich über Fläche/Gewicht
    ab, nie über einen anderen Grad. */
 .ts{
-  flex:1 1 0;min-width:0;min-height:56px;
+  position:relative;flex:1 1 0;min-width:0;min-height:56px;
   display:flex;align-items:center;justify-content:center;padding:0 2px;
   background:color-mix(in oklch, var(--g1), var(--g5) calc(var(--z) * 100%));
+  cursor:pointer;transition:opacity .16s var(--ease);
 }
 .ts-kg{
   font-family:var(--disp);font-variation-settings:'wdth' 100;
@@ -417,6 +419,14 @@ a{color:inherit;text-underline-offset:3px}
 .ts.is-target .ts-kg{
   color:var(--amber-ink);font-weight:900;
 }
+/* Erledigte Stufe: gedimmt, Haken drüber — nur lokale Gym-Übersicht. */
+.ts-check{position:absolute;inset:0;display:none;align-items:center;justify-content:center}
+.ts-check svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:3;
+  stroke-linecap:round;stroke-linejoin:round;color:var(--ink)}
+.ts.is-ticked{opacity:.34}
+.ts.is-ticked .ts-kg{visibility:hidden}
+.ts.is-ticked .ts-check{display:flex}
+.ts.is-target.is-ticked .ts-check svg{color:var(--amber-ink)}
 .ladder-foot{
   margin-top:9px;font-family:var(--mono);font-size:12px;
   letter-spacing:.06em;color:var(--g6);
@@ -495,22 +505,29 @@ a{color:inherit;text-underline-offset:3px}
   font-family:var(--disp);font-variation-settings:'wdth' 100;
   font-weight:800;font-size:clamp(1.35rem,5.5vw,1.8rem);letter-spacing:-.02em;
 }
-.wod-format{
-  font-family:var(--mono);font-size:11.5px;font-weight:500;
-  letter-spacing:.13em;text-transform:uppercase;color:var(--ink-3);margin-top:8px;
+.wod-cap{
+  margin-left:12px;font-family:var(--mono);font-size:11.5px;font-weight:500;
+  letter-spacing:.13em;text-transform:uppercase;color:var(--ink-3);
+  vertical-align:middle;
 }
-.mv{display:grid;grid-template-columns:minmax(66px,auto) minmax(0,1fr);gap:16px;align-items:baseline;padding:13px 0;border-top:1px solid var(--rule-2);margin-top:14px}
-.mv:first-of-type{margin-top:18px}
+/* Reps stehen in der Hierarchie UNTER Tag und Struktur-Überschrift —
+   deshalb deutlich kleiner als früher (Martin 23.08.). Detail steht in
+   derselben Zeile wie der Name, nicht darunter. */
+.mv{display:grid;grid-template-columns:minmax(52px,auto) minmax(0,1fr);gap:14px;align-items:baseline;padding:11px 0;border-top:1px solid var(--rule-2);margin-top:0}
+.mv:first-of-type{margin-top:14px}
 .mv-reps{
-  font-family:var(--disp);font-variation-settings:'wdth' 118;
-  font-weight:900;font-size:32px;letter-spacing:-.04em;color:var(--g10);line-height:.95;
+  font-family:var(--disp);font-variation-settings:'wdth' 108;
+  font-weight:800;font-size:19px;letter-spacing:-.02em;color:var(--ink);line-height:1.25;
 }
-/* Lange Rep-Angaben ("10/Seite", "3·3·2·2·1·1") einen Grad kleiner,
-   damit die Spalte nie in den Namen läuft. */
-.mv-reps.is-long{font-size:19px;font-variation-settings:'wdth' 104;letter-spacing:-.02em}
-.mv-name{font-family:var(--disp);font-weight:600;font-size:17px;letter-spacing:-.01em}
-.mv-name{display:block}
-.mv-detail{display:block;font-family:var(--mono);font-size:13px;color:var(--g6);margin-top:5px}
+.mv-reps.is-long{font-size:15px;font-variation-settings:'wdth' 100;letter-spacing:-.01em}
+.mv-name{
+  display:block;font-family:var(--disp);font-weight:600;font-size:17px;
+  letter-spacing:-.01em;line-height:1.3;
+}
+.mv-detail{
+  margin-left:9px;font-family:var(--mono);font-size:13px;font-weight:500;
+  color:var(--ink-3);white-space:nowrap;
+}
 
 /* ═══ Apparat ═══ */
 .apparat{
@@ -662,12 +679,14 @@ let V3 = {};
 /* ── 3.0-Payload → Render-Form (2.x-Kontrakt des Dunkelkammer-Renders).
    Der approbierte Render bleibt unangetastet; nur diese Übersetzung ist neu. ── */
 const WD_NAMES = ['Sonntag','Montag','Dienstag','Mittwoch','Donnerstag','Freitag','Samstag'];
+const WD_KURZ  = ['SO','MO','DI','MI','DO','FR','SA'];
 function isoDD(iso){ const p = String(iso).split('-'); return p[2] + '.' + p[1] + '.'; }
 function isoWD(iso){ return WD_NAMES[new Date(iso + 'T00:00:00').getDay()]; }
+function isoWDK(iso){ return WD_KURZ[new Date(iso + 'T00:00:00').getDay()]; }
 
 function exRow(ex){
   const t = ex.target || {};
-  const uebung = ex.kurz || ex.ex_id;
+  const uebung = ex.name || ex.kurz || ex.ex_id;
   const sr = (t.sets != null && t.reps != null) ? `${t.sets} × ${t.reps}` : '';
   let setsCell = '', last = '', sub = [];
   if (t.mode === 'kg'){
@@ -691,16 +710,17 @@ function exRow(ex){
   const rpe = t.rpe_cap != null ? '≤' + t.rpe_cap : '';
   // Reihenfolge = headers unten. Note-Spalte trägt das warum (Martin-Revision
   // 23.08.): ausklappbar als „Begründung", nie offen gerendert.
-  return [uebung, setsCell, last, t.tempo || '', rest, rpe, ex.warum || ''];
+  return [uebung, setsCell, last, t.tempo || '', rest, rpe, ex.warum || '', ex.ex_id || ''];
 }
-const ROW_HEADERS = ['Übung','Sets × Reps','Last','Tempo','Rest','RPE','Note'];
+const ROW_HEADERS = ['Übung','Sets × Reps','Last','Tempo','Rest','RPE','Note','_ex'];
 
 function adapt(D3){
   const w = D3.week || {};
   const focusDays = {}, focusLabels = {}, v3 = {};
   const days = (w.days || []).map(day => {
     const base = { isoDate: day.iso_date, date: isoDD(day.iso_date),
-                   day: isoWD(day.iso_date), type: day.day_type };
+                   day: isoWD(day.iso_date), kurzTag: isoWDK(day.iso_date),
+                   type: day.day_type };
     if (day.day_type === 'own'){
       base.focus = day.focus;
       focusLabels[day.focus] = day.focus_label;
@@ -734,6 +754,7 @@ function adapt(D3){
       if (day.sub) base.sub = day.sub;
       if (Array.isArray(day.wod)) base.wod = day.wod;
     }
+    if (day.warum) base.warum = day.warum;
     return base;
   });
   return { weeks: [{ id: w.id, meso: w.meso || w.label || w.id,
@@ -745,6 +766,17 @@ function adapt(D3){
    Umschaltbar über localStorage 'v3_backend'='http' + Secret in 'v3_secret'.
    Angezeigt wird immer der Cache-Stand = Serverstand nach save/hydrate. ── */
 const VKEY = 'v3_verdicts', SKEY = 'v3_secret';
+
+/* Lastleiter-Haken: reine Gym-Übersicht, nur lokal — nie Server, nie Engine
+   (Martin 23.08.: „muss nicht in DB rückgespielt werden"). */
+const TKEY = 'v3_ticks';
+let TICKS = {};
+try { TICKS = JSON.parse(localStorage.getItem(TKEY) || '{}'); } catch(e){ TICKS = {}; }
+function toggleTick(key){
+  if (TICKS[key]) delete TICKS[key]; else TICKS[key] = 1;
+  try { localStorage.setItem(TKEY, JSON.stringify(TICKS)); } catch(e){}
+  return !!TICKS[key];
+}
 const EP_SAVE = '../save_verdict.php';
 const EP_GET  = '../get_verdicts.php';
 const backendMode = (localStorage.getItem('v3_backend') === 'http') ? 'http' : 'stub';
@@ -948,6 +980,9 @@ function renderWeek(){
       ${!today.focus && today.wod ? today.wod.map(wodMarkup).join('') : ''}
       ${!today.focus && !today.wod && today.sub ? `<p class="today-sub">${esc(today.sub)}</p>` : ''}
 
+      ${today.warum ? `<button class="note-handle" type="button" aria-expanded="false">Begründung ${CHEV}</button>
+        <p class="ex-note">${esc(today.warum)}</p>` : ''}
+
       ${today.focus ? `<button class="go" type="button" data-focus="${esc(today.focus)}">Zur Einheit ${ARROW}</button>` : ''}
     </section>
 
@@ -955,6 +990,9 @@ function renderWeek(){
     ${days.map(d => stripMarkup(d, d.isoDate === today.isoDate)).join('')}
   `;
 
+  elWeek.querySelectorAll('.note-handle').forEach(h => h.addEventListener('click', () => {
+    h.setAttribute('aria-expanded', h.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');
+  }));
   elWeek.querySelectorAll('[data-focus]').forEach(b =>
     b.addEventListener('click', () => showFocus(b.dataset.focus)));
   elWeek.querySelectorAll('.strip[data-nav="1"]').forEach(b =>
@@ -984,7 +1022,6 @@ const TYPEICON = {
 
 function stripMarkup(d, isToday){
   const o = dayObject(d, week);
-  const fig = objFigure(o);
   const nav = d.focus ? 1 : (d.wod && d.wod.length ? 2 : 0);
 
   /* Fokus-Tage in Kurzform: nur die Kurznamen der Kernblöcke — der
@@ -1003,21 +1040,15 @@ function stripMarkup(d, isToday){
     unit = objUnit(o, d).replace(/\s*\([^)]*\)/g, '');
   }
 
-  /* Lastspanne statt Einzelzahl, kleinerer Grad. */
-  let load = '';
-  if (fig) load = (o.kgFrom
-    ? `<span class="range">${fmt(o.kgFrom)}–${fig.n}</span>`
-    : fig.n) + `<small>${esc(fig.u)}</small>`;
-
-  /* Box-/Rad-Tage klappen inline auf (2.x-Verhalten, Martin 23.08.) —
-     der Pfeil sitzt im Last-Slot, der bei WOD-Tagen frei ist. */
+  /* Keine Lastspanne mehr in der Wochenzeile (Martin 23.08.: zu unruhig) —
+     die Zahlen stehen dort, wo sie gelten: im Fokus-Tag. */
   const loadCell = nav === 2
     ? `<span class="strip-load is-chev" aria-hidden="true">${CHEV}</span>`
-    : `<span class="strip-load${fig ? '' : ' is-word'}${o.kgFrom ? ' is-range' : ''}">${load}</span>`;
+    : '<span class="strip-load"></span>';
 
   const strip = `<${nav ? 'button' : 'div'} class="strip${o.kind === 'rest' ? ' is-rest' : ''}${isToday ? ' is-today' : ''}" data-nav="${nav}"${nav === 1 ? ` data-focus="${esc(d.focus)}"` : ''}${nav === 2 ? ` data-day="${esc(d.isoDate)}" aria-expanded="false" aria-controls="db-${esc(d.isoDate)}"` : ''}${nav ? ' type="button"' : ''}>
     <span class="strip-when">
-      <span class="strip-day">${esc(d.day)}</span>
+      <span class="strip-day" aria-label="${esc(d.day)}">${esc(d.kurzTag || d.day)}</span>
       <span class="strip-date">${esc(d.date)}</span>
     </span>
     <span class="strip-ico" role="img" aria-label="${esc(TYPEWORD[d.type] || '')}">${TYPEICON[d.type] || ''}</span>
@@ -1107,7 +1138,7 @@ function showFocus(letter){
     /* Superset-Kennung kommt aus dem Payload-Feld (superset: true am Block,
        datenmodell §2) — keine Heuristik mehr: Rest gilt dann dem Paar. */
     const isSuper = b.superset === true && (b.rows || []).length >= 2;
-    let rows = (b.rows || []).map(r => exerciseMarkup(r, hi, single, { noRest:isSuper })).join('');
+    let rows = (b.rows || []).map(r => exerciseMarkup(r, hi, single, { noRest:isSuper, iso })).join('');
     if (isSuper){
       const restVal = hi['Rest'] !== undefined ? (b.rows[0][hi['Rest']] || '') : '';
       rows = `<div class="superset">
@@ -1173,6 +1204,11 @@ function showFocus(letter){
   elFocus.querySelectorAll('.note-handle').forEach(h => h.addEventListener('click', () => {
     h.setAttribute('aria-expanded', h.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');
   }));
+  /* Lastleiter abhaken — lokal, kein Server, kein Rerender (Gym-Übersicht). */
+  elFocus.querySelectorAll('.ts[data-tick]').forEach(el =>
+    el.addEventListener('click', () => {
+      el.classList.toggle('is-ticked', toggleTick(el.dataset.tick));
+    }));
   wireNote(elFocus);
   wireVerdicts(elFocus, letter);
 
@@ -1246,12 +1282,20 @@ function exerciseMarkup(r, hi, single, opts){
   if (pl.kind === 'bar'){
     const target = Math.max.apply(null, pl.steps);
     if (pl.steps.length > 1){
+      /* Jede Stufe ist lokal abhakbar (Gym-Übersicht, nur localStorage —
+         Martin 23.08. PDF-Review Punkt 19). Key: iso|ex_id|kg. */
+      const exId = hi['_ex'] !== undefined ? (r[hi['_ex']] || '') : '';
       ladder = `<div class="teststrip" role="list" aria-label="Lastaufbau, Zielsatz ${fmt(target)} Kilo">` +
-        pl.steps.map((kg, i) =>
-          `<div class="ts${kg === target ? ' is-target' : ''}" role="listitem"
+        pl.steps.map((kg, i) => {
+          const key = (opts.iso && exId) ? `${opts.iso}|${exId}|${kg}` : '';
+          const ticked = key && TICKS[key];
+          return `<div class="ts${kg === target ? ' is-target' : ''}${ticked ? ' is-ticked' : ''}"
+                role="listitem"${key ? ` data-tick="${esc(key)}"` : ''}
                 style="--z:${(i + 1) / pl.steps.length}">
              <span class="ts-kg">${fmt(kg)}</span>
-           </div>`).join('') + `</div>`;
+             <span class="ts-check" aria-hidden="true">${CHECK}</span>
+           </div>`;
+        }).join('') + `</div>`;
     } else {
       loadInline = `${fmt(target)} kg`;
     }
@@ -1290,19 +1334,18 @@ function exerciseMarkup(r, hi, single, opts){
 function normStruct(t){
   return String(t || '').replace(/^every\s+/i, 'E').replace(/\s*×\s*/g, ' × ');
 }
+/* Eine Zeile je Bewegung: Reps · Name · Detail inline (Martin 23.08.
+   PDF-Review 7-9). Format/Level/RPE-Zeile entfällt — nur ein Cap bleibt,
+   weil er den Ablauf begrenzt. */
 function wodMarkup(w){
-  const mvs = (w.bewegungen || []).map(mv => {
-    return `<div class="mv">
+  const mvs = (w.bewegungen || []).map(mv => `<div class="mv">
       <span class="mv-reps${String(mv.reps || '').length > 5 ? ' is-long' : ''}">${esc(mv.reps)}</span>
-      <span>
-        <span class="mv-name">${esc(mv.name)}</span>
-        ${mv.detail ? `<span class="mv-detail">${esc(mv.detail)}</span>` : ''}
-      </span>
-    </div>`;
-  }).join('');
+      <span class="mv-name">${esc(mv.name)}${
+        mv.detail ? `<span class="mv-detail">${esc(mv.detail)}</span>` : ''}</span>
+    </div>`).join('');
   return `<section class="wod">
-    <h2 class="wod-struct">${esc(normStruct(w.struktur))}</h2>
-    <p class="wod-format">${[w.format, w.level, w.rpe].filter(Boolean).map(esc).join(' · ')}</p>
+    <h2 class="wod-struct">${esc(normStruct(w.struktur))}${
+      w.cap ? `<span class="wod-cap">Cap ${esc(w.cap)}</span>` : ''}</h2>
     ${mvs}
   </section>`;
 }

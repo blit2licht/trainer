@@ -10,7 +10,8 @@ const DATA = {
     "days": [
       {
         "iso_date": "2026-08-24",
-        "day_type": "rest"
+        "day_type": "rest",
+        "warum": "Sonntagslast nach dem Fischmeister-Ride (23.08.) — Standard-Ruhetag, kein Schlüsselslot. Upgrade nur bei grüner Mo-Recovery am Tag selbst."
       },
       {
         "iso_date": "2026-08-25",
@@ -22,13 +23,14 @@ const DATA = {
           {
             "block_id": "A",
             "prio": "required",
-            "title": "Clean & Jerk Komplex — Reclaim 82,5",
+            "title": "Clean & Jerk Komplex",
             "min": 16,
             "superset": false,
             "exercises": [
               {
                 "ex_id": "clean_jerk",
                 "kurz": "C&J",
+                "name": "Clean & Jerk",
                 "class": "technical",
                 "target": {
                   "mode": "kg",
@@ -54,13 +56,14 @@ const DATA = {
           {
             "block_id": "B",
             "prio": "required",
-            "title": "Front Squat — Block Teil 2",
+            "title": "Front Squat",
             "min": 16,
             "superset": false,
             "exercises": [
               {
                 "ex_id": "front_squat",
                 "kurz": "FS",
+                "name": "Front Squat",
                 "class": "technical",
                 "target": {
                   "mode": "kg",
@@ -92,6 +95,7 @@ const DATA = {
               {
                 "ex_id": "hollow_hold",
                 "kurz": "Core",
+                "name": "Hollow Body Hold",
                 "class": "generic",
                 "target": {
                   "mode": "time",
@@ -106,13 +110,14 @@ const DATA = {
           {
             "block_id": "D",
             "prio": "optional",
-            "title": "Hypertrophie-Layer Delts/Bizeps",
+            "title": "Strength: Delts / Bizeps",
             "min": 15,
             "superset": false,
             "exercises": [
               {
                 "ex_id": "lateral_raise",
                 "kurz": "DB Lateral Raise",
+                "name": "DB Lateral Raise",
                 "class": null,
                 "target": {
                   "mode": "kg",
@@ -127,6 +132,7 @@ const DATA = {
               {
                 "ex_id": "biceps_curl",
                 "kurz": "DB Curl",
+                "name": "DB Curl",
                 "class": null,
                 "target": {
                   "mode": "kg",
@@ -152,6 +158,7 @@ const DATA = {
               {
                 "ex_id": "mobility",
                 "kurz": "Mobility",
+                "name": "Mobility / Cool-down",
                 "class": "generic",
                 "target": {
                   "mode": "time",
@@ -178,35 +185,31 @@ const DATA = {
       {
         "iso_date": "2026-08-26",
         "day_type": "box",
-        "einheit": "Barbell RDL (Tempo) + S2O/Air-Squat-Intervalle",
+        "einheit": "Tempo RDL + Intervals",
         "sub": "Every 2:30 × 4: 8 Tempo RDL (3-sec-Descent) + 10/Seite Monster Band Side Steps → 8 × (1/1 min): 9/7 Cal · 6 S2O @ 42,5 · Max Air Squats",
         "wod": [
           {
             "struktur": "Every 2:30 × 4",
-            "format": "Intervall",
-            "level": "RDL RPE-kalibriert",
             "bewegungen": [
               {
                 "reps": "8",
                 "name": "Tempo Barbell RDL",
-                "detail": "3-sec-Descent, moderat"
+                "detail": "Tempo 3 s · moderate"
               },
               {
-                "reps": "10/Seite",
+                "reps": "10/side",
                 "name": "Monster Band Side Steps",
                 "detail": ""
               }
             ]
           },
           {
-            "struktur": "8 × (1 min Arbeit / 1 min Pause)",
-            "format": "Score: Total Air Squats",
-            "level": "L2",
-            "rpe": "RPE ≤7-8",
+            "struktur": "8 × (1 min on / 1 min off)",
+            "format": "Score: total Air Squats",
             "bewegungen": [
               {
-                "reps": "9/7",
-                "name": "Cal beliebige Maschine",
+                "reps": "9",
+                "name": "Cal Machine",
                 "detail": ""
               },
               {
@@ -217,7 +220,7 @@ const DATA = {
               {
                 "reps": "Max",
                 "name": "Air Squats",
-                "detail": "Restzeit der Minute"
+                "detail": ""
               }
             ]
           }
@@ -225,7 +228,8 @@ const DATA = {
       },
       {
         "iso_date": "2026-08-27",
-        "day_type": "rest"
+        "day_type": "rest",
+        "warum": "Harter Ruhetag — schützt die Fr-Gymnastics-Frische (Grip/Pull) und dient der Defizit-Erholung. Do-DreamWOD bewusst verworfen (25 strict Chin-ups würden Pull/Grip vorermüden)."
       },
       {
         "iso_date": "2026-08-28",
@@ -237,13 +241,14 @@ const DATA = {
           {
             "block_id": "A",
             "prio": "required",
-            "title": "BMU — Linked Triples",
+            "title": "BMU",
             "min": 15,
             "superset": false,
             "exercises": [
               {
                 "ex_id": "bmu_drill",
                 "kurz": "Drill",
+                "name": "Descent & Hip-Pop Drill",
                 "class": "generic",
                 "target": {
                   "mode": "bw",
@@ -258,6 +263,7 @@ const DATA = {
               {
                 "ex_id": "bmu",
                 "kurz": "BMU",
+                "name": "Bar Muscle-up",
                 "class": "skill",
                 "target": {
                   "mode": "bw",
@@ -276,13 +282,14 @@ const DATA = {
           {
             "block_id": "B",
             "prio": "required",
-            "title": "T2B — Kapazität",
+            "title": "T2B",
             "min": 8,
             "superset": false,
             "exercises": [
               {
                 "ex_id": "t2b",
                 "kurz": "T2B",
+                "name": "Toes-to-Bar",
                 "class": "skill",
                 "target": {
                   "mode": "bw",
@@ -298,13 +305,14 @@ const DATA = {
           {
             "block_id": "C",
             "prio": "required",
-            "title": "Strict HSPU — konsolidieren",
+            "title": "Strict HSPU",
             "min": 15,
             "superset": false,
             "exercises": [
               {
                 "ex_id": "hspu_strict",
                 "kurz": "HSPU",
+                "name": "Strict Handstand Push-up",
                 "class": "skill",
                 "target": {
                   "mode": "bw",
@@ -321,13 +329,14 @@ const DATA = {
           {
             "block_id": "D",
             "prio": "required",
-            "title": "Weighted Pull-up — zementieren",
+            "title": "Weighted Pull-up",
             "min": 8,
             "superset": false,
             "exercises": [
               {
                 "ex_id": "wpu",
                 "kurz": "PU",
+                "name": "Weighted Pull-up",
                 "class": "skill",
                 "target": {
                   "mode": "bw_plus",
@@ -345,13 +354,14 @@ const DATA = {
           {
             "block_id": "E",
             "prio": "optional",
-            "title": "Hypertrophie-Layer Brust/Trizeps",
+            "title": "Strength: Brust / Trizeps",
             "min": 15,
             "superset": false,
             "exercises": [
               {
                 "ex_id": "db_bench",
                 "kurz": "DB Bench Press",
+                "name": "DB Bench Press",
                 "class": null,
                 "target": {
                   "mode": "kg",
@@ -365,6 +375,7 @@ const DATA = {
               {
                 "ex_id": "triceps_ext",
                 "kurz": "Triceps Extension",
+                "name": "Triceps Extension",
                 "class": null,
                 "target": {
                   "mode": "band",
@@ -383,13 +394,14 @@ const DATA = {
           {
             "block_id": "F",
             "prio": "optional",
-            "title": "Cool-down Mobility",
+            "title": "Mobility",
             "min": 5,
             "superset": false,
             "exercises": [
               {
                 "ex_id": "mobility",
                 "kurz": "Mobility",
+                "name": "Mobility / Cool-down",
                 "class": "generic",
                 "target": {
                   "mode": "time",
@@ -412,52 +424,48 @@ const DATA = {
       {
         "iso_date": "2026-08-29",
         "day_type": "box",
-        "einheit": "Hang Squat Clean + Burpee-Box-Jump-Over/DL-WOD",
+        "einheit": "Hang Squat Clean + WOD",
         "sub": "Hang Squat Clean 3-3-2-2-1-1 (moderat, Hook-Grip) → 2 Rd auf Zeit (16-min-Cap): 10 BBJO 60/50 · 15/12 Cal · 20 DL @85 · 15/12 Cal · 10 BBJO, 1 min Pause zwischen den Runden",
         "wod": [
           {
-            "struktur": "Kraft: 3-3-2-2-1-1",
-            "format": "Aufsteigend",
-            "level": "moderat/Technik",
+            "struktur": "Strength",
             "bewegungen": [
               {
                 "reps": "3·3·2·2·1·1",
                 "name": "Hang Squat Clean",
-                "detail": "Oly-Touch, NICHT Max (C&J war Di) — Hook-Grip"
+                "detail": "moderate"
               }
             ]
           },
           {
-            "struktur": "2 Runden auf Zeit (1 min Pause dazwischen)",
-            "format": "Score: Gesamtzeit inkl. Pause",
-            "level": "L2 · 85 kg",
+            "struktur": "2 Rounds for time",
+            "format": "Score: total time",
             "cap": "16 min",
-            "rpe": "RPE ≤7-8",
             "bewegungen": [
               {
                 "reps": "10",
                 "name": "Burpee Box Jump Overs",
-                "detail": "60/50 cm"
+                "detail": "60 cm"
               },
               {
-                "reps": "15/12",
-                "name": "Cal beliebige Maschine",
+                "reps": "15",
+                "name": "Cal Machine",
                 "detail": ""
               },
               {
                 "reps": "20",
                 "name": "Deadlifts",
-                "detail": "85 kg · Singles, kein Touch-and-Go"
+                "detail": "85 kg"
               },
               {
-                "reps": "15/12",
-                "name": "Cal beliebige Maschine",
+                "reps": "15",
+                "name": "Cal Machine",
                 "detail": ""
               },
               {
                 "reps": "10",
                 "name": "Burpee Box Jump Overs",
-                "detail": "60/50 cm"
+                "detail": "60 cm"
               }
             ]
           }
@@ -466,16 +474,15 @@ const DATA = {
       {
         "iso_date": "2026-08-30",
         "day_type": "box",
-        "einheit": "Team-WOD „Waterfall\"",
-        "sub": "30-min-AMRAP Teams of 3, Waterfall-Versatz — sozialer Slot (FFR + South + West), Ride wetterabhängig zusätzlich",
+        "einheit": "Team-WOD „Waterfall“ oder Ride",
+        "sub": "WOD optional — Alternative ist der Sonntags-Ride",
         "wod": [
           {
-            "struktur": "30-min-AMRAP",
-            "format": "Teams of 3 · Waterfall-Versatz",
-            "level": "sozial",
+            "struktur": "30-min AMRAP",
+            "format": "Teams of 3",
             "bewegungen": [
               {
-                "reps": "12/9",
+                "reps": "12",
                 "name": "Cal Row",
                 "detail": ""
               },
@@ -485,7 +492,7 @@ const DATA = {
                 "detail": ""
               },
               {
-                "reps": "12/9",
+                "reps": "12",
                 "name": "Cal Bike",
                 "detail": ""
               },
@@ -495,7 +502,7 @@ const DATA = {
                 "detail": "22,5 kg"
               },
               {
-                "reps": "12/9",
+                "reps": "12",
                 "name": "Push-ups",
                 "detail": ""
               }

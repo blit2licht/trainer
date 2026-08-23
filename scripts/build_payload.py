@@ -47,7 +47,7 @@ def build_day(day: dict, reg: dict, warns: list[str]) -> dict:
     # DreamWOD-Kerninfos wie in 2.x (Martin, 23.08.).
     if dtype != "own":
         out = {"iso_date": iso, "day_type": dtype}
-        for key in ("einheit", "sub", "wod"):
+        for key in ("einheit", "sub", "wod", "warum"):
             if key in day:
                 out[key] = day[key]
         return out
@@ -95,7 +95,10 @@ def build_day(day: dict, reg: dict, warns: list[str]) -> dict:
             # 23.08. mit (Martin-Revision der Content-Diät) — am Handy
             # ausklappbar als „Begründung", nie offen gerendert.
             # class trägt die Verdict-UI (technical → miss_reason Technik/Last).
-            ex_entry = {"ex_id": ex_id, "kurz": kurz,
+            # name = voller Übungsname fürs Handy (Registry, sonst Plan-kurz) —
+            # der Block zeigt immer, WAS zu tun ist (Martin, 23.08. PDF-Review).
+            name = (entry.get("name") if entry else None) or ex.get("kurz") or ex_id
+            ex_entry = {"ex_id": ex_id, "kurz": kurz, "name": name,
                         "class": entry.get("class") if entry else None,
                         "target": target}
             if ex.get("warum"):

@@ -24,11 +24,13 @@ from __future__ import annotations
 import argparse
 import json
 import sys
+from datetime import date
 from pathlib import Path
 
 REPO = Path(__file__).resolve().parent.parent
 EXERCISES_JSON = REPO / "coach" / "exercises.json"
 STATE_JSON = REPO / "coach" / "state.json"
+PLAN_DIR = REPO / "coach" / "plan"
 DEFAULT_OUT = REPO / "V3.0" / "build" / "data.js"
 
 
@@ -146,19 +148,32 @@ def build_day(day: dict, reg: dict, warns: list[str]) -> dict:
     return day_out
 
 
-def build_payload(plan: dict, exercises: dict, warns: list[str]) -> dict:
-    reg = {e["ex_id"]: e for e in exercises["exercises"]}
-    days = [build_day(d, reg, warns) for d in plan.get("days", [])]
+def build_week(plan: dict, reg: dict, warns: list[str]) -> dict:
     return {
-        "week": {
-            "id": plan.get("id"),
-            "label": plan.get("label"),
-            "meso": plan.get("meso"),
-            "von": plan.get("von"),
-            "bis": plan.get("bis"),
-            "days": days,
-        }
+        "id": plan.get("id"),
+        "label": plan.get("label"),
+        "meso": plan.get("meso"),
+        "von": plan.get("von"),
+        "bis": plan.get("bis"),
+        "days": [build_day(d, reg, warns) for d in plan.get("days", [])],
     }
+
+
+def build_payload(plans: list[dict], exercises: dict, warns: list[str]) -> dict:
+    """Payload trägt jede noch nicht abgelaufene Planwoche (aktuelle + nächste).
+
+    Grund (Martin, 23.08.): Wird die Folgewoche am Samstag veröffentlicht,
+    darf das Handy die Resttage der laufenden Woche nicht verlieren. Das
+    Handy wählt beim Öffnen selbst die Woche, in der HEUTE liegt — die
+    Auswahl passiert also zur Anzeigezeit, nicht zur Bauzeit.
+    Vergangene Wochen bleiben draußen (keine Wochenrückschau am Handy).
+    """
+    reg = {e["ex_id"]: e for e in exercises["exercises"]}
+    weeks = [build_week(p, reg, warns) for p in plans]
+    weeks.sort(key=lambda w: w.get("von") or "")
+    # week (Singular) bleibt als erste Woche stehen: Deployment-Check und
+    # ältere Leser greifen weiter auf die aktuelle Wochen-ID zu.
+    return {"week": weeks[0], "weeks": weeks}
 
 
 def render_js(payload: dict) -> str:
@@ -171,32 +186,47 @@ def render_js(payload: dict) -> str:
 
 def main() -> int:
     ap = argparse.ArgumentParser(description="Trainer 3.0 Handy-Payload-Generator")
-    ap.add_argument("--plan", help="Planquelle (Default: coach/plan/<aktuelle-woche>.json)")
+    ap.add_argument("--plan", help="Einzelne Planquelle (überspringt die Auswahl)")
+    ap.add_argument("--plan-dir", help=f"Verzeichnis der Planquellen (Default: {PLAN_DIR})")
+    ap.add_argument("--heute", help="Stichtag YYYY-MM-DD (Default: heute) — Wochen, "
+                                    "die davor enden, fallen raus")
     ap.add_argument("--out", help=f"Ausgabedatei (Default Schatten: {DEFAULT_OUT})")
     args = ap.parse_args()
 
+    heute = args.heute or date.today().isoformat()
+
     if args.plan:
         plan_path = Path(args.plan)
+        if not plan_path.is_file():
+            print(f"Planquelle nicht gefunden: {plan_path}", file=sys.stderr)
+            return 1
+        plans = [load_json(plan_path)]
     else:
-        week_id = load_json(STATE_JSON).get("aktuelle_woche", {}).get("id")
-        plan_path = REPO / "coach" / "plan" / f"{week_id}.json"
-    if not plan_path.is_file():
-        print(f"Planquelle nicht gefunden: {plan_path}", file=sys.stderr)
-        return 1
+        plan_dir = Path(args.plan_dir) if args.plan_dir else PLAN_DIR
+        plans = []
+        for p in sorted(plan_dir.glob("*.json")):
+            plan = load_json(p)
+            # Abgelaufene Wochen fallen raus — keine Rückschau am Handy.
+            if (plan.get("bis") or "") >= heute:
+                plans.append(plan)
+        if not plans:
+            print(f"Keine gültige Planquelle in {plan_dir} (Stichtag {heute})",
+                  file=sys.stderr)
+            return 1
 
-    plan = load_json(plan_path)
     exercises = load_json(EXERCISES_JSON)
 
     warns: list[str] = []
-    payload = build_payload(plan, exercises, warns)
+    payload = build_payload(plans, exercises, warns)
     out_path = Path(args.out) if args.out else DEFAULT_OUT
     out_path.parent.mkdir(parents=True, exist_ok=True)
     out_path.write_text(render_js(payload), encoding="utf-8")
 
-    n_days = len(payload["week"]["days"])
-    n_focus = sum(1 for d in payload["week"]["days"] if d["day_type"] == "own")
     print(f"Payload geschrieben: {out_path}")
-    print(f"  Woche {payload['week']['id']} · {n_days} Tage, {n_focus} Fokus-Tage")
+    for w in payload["weeks"]:
+        n_focus = sum(1 for d in w["days"] if d["day_type"] == "own")
+        print(f"  Woche {w['id']} ({w['von']}–{w['bis']}) · "
+              f"{len(w['days'])} Tage, {n_focus} Fokus-Tage")
     if out_path.resolve() == (REPO / "website" / "data.js").resolve():
         print("  ACHTUNG: schreibt ins LIVE website/data.js (Scharfschaltung).")
     if warns:

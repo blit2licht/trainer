@@ -101,8 +101,20 @@ a{color:inherit;text-underline-offset:3px}
   background:var(--rule);
 }
 .rail-week{
+  display:inline-flex;align-items:center;gap:8px;
+  min-height:44px;padding:0;background:none;border:none;cursor:default;
   font-family:var(--mono);font-size:12.5px;font-weight:700;
   letter-spacing:.13em;text-transform:uppercase;color:var(--ink);
+}
+/* Nur wenn eine weitere Planwoche im Payload liegt, ist die Kopfzeile ein
+   echter Umschalter — sonst bleibt sie ein reines Label. */
+.rail-week.is-switch{cursor:pointer}
+.rail-week svg{width:13px;height:13px;fill:none;stroke:currentColor;stroke-width:2.5;
+  stroke-linecap:round;stroke-linejoin:round;color:var(--ink-3)}
+.rail-week.is-preview{color:var(--marker)}
+.rail-week.is-preview svg{color:var(--marker)}
+.rw-tag{
+  font-size:10.5px;font-weight:500;letter-spacing:.16em;color:var(--marker);
 }
 .rail-meso{
   margin-left:auto;font-family:var(--mono);font-size:11.5px;font-weight:500;
@@ -648,7 +660,7 @@ a{color:inherit;text-underline-offset:3px}
 <body>
 
 <header class="rail">
-  <span class="rail-week" id="railWeek"></span>
+  <button class="rail-week" id="railWeek" type="button" hidden></button>
   <span class="rail-meso" id="railMeso"></span>
 </header>
 
@@ -715,7 +727,9 @@ function exRow(ex){
 const ROW_HEADERS = ['Übung','Sets × Reps','Last','Tempo','Rest','RPE','Note','_ex'];
 
 function adapt(D3){
-  const w = D3.week || {};
+  return adaptWeek(D3.week || {});
+}
+function adaptWeek(w){
   const focusDays = {}, focusLabels = {}, v3 = {};
   const days = (w.days || []).map(day => {
     const base = { isoDate: day.iso_date, date: isoDD(day.iso_date),
@@ -903,11 +917,33 @@ function dayObject(d, weeks){
 /* ════════════════════════════════════════════════════════════════════
    Ansichten
    ════════════════════════════════════════════════════════════════════ */
-const D = adapt(DATA);     // 3.0-Payload → Render-Form
-V3 = D.V3;                 // Verdict-Overlay aus dem Payload
-const week = D.weeks[0];   // keine Wochenwahl am Handy — nur die aktuelle Woche
 let todayIso = new Date().toISOString().slice(0,10);
 let currentFocus = null;
+
+/* Wochen: der Payload trägt die noch nicht abgelaufenen Planwochen. Gewählt
+   wird zur ANZEIGEZEIT, nicht zur Bauzeit — sonst verlöre das Handy die
+   Resttage der laufenden Woche, sobald die Folgewoche gebaut wird
+   (Martin 23.08.). Keine Rückschau: der Payload enthält nie alte Wochen. */
+const RAW_WEEKS = (DATA.weeks && DATA.weeks.length) ? DATA.weeks : [DATA.week];
+function pickWeekIndex(){
+  const i = RAW_WEEKS.findIndex(w => w.von <= todayIso && todayIso <= w.bis);
+  if (i >= 0) return i;
+  const j = RAW_WEEKS.findIndex(w => w.bis >= todayIso);   // nächste kommende
+  return j >= 0 ? j : RAW_WEEKS.length - 1;
+}
+const HOME_WEEK = pickWeekIndex();
+/* Nur nach vorn: die Folgewoche existiert erst, wenn sie gebaut ist. */
+const NEXT_WEEK = RAW_WEEKS.findIndex((w, i) =>
+  i !== HOME_WEEK && (w.von || '') > (RAW_WEEKS[HOME_WEEK].von || ''));
+let weekIdx = HOME_WEEK;
+let D, week;
+function loadWeek(i){
+  weekIdx = i;
+  D = adaptWeek(RAW_WEEKS[i]);
+  V3 = D.V3;
+  week = D.weeks[0];
+}
+loadWeek(weekIdx);
 
 const elWeek = document.getElementById('viewWeek');
 const elFocus = document.getElementById('viewFocus');
@@ -922,7 +958,9 @@ const TYPEWORD = { own:'Fokus', box:'Box', ride:'Rad', rest:'Ruhe' };
 
 /* Dummy-Stub: Fokus-Charakter je Buchstabe. Wird im 3.0-Schema ein
    Datenfeld der Woche (focus-label), hier hart für W34. */
-const FOCUS_LABEL = D.focusLabels || { A:'Oly-Fokus', B:'Gymnastics-Fokus' };
+function focusLabel(letter){
+  return (D.focusLabels || {})[letter] || ('Fokus ' + letter);
+}
 
 /* LoD der Wochenliste: Kurznamen statt voller Blocktitel. Dummy-Wörterbuch —
    im 3.0-Schema liefert die Registry den Kurznamen je ex_id. */
@@ -969,7 +1007,7 @@ function renderWeek(){
 
   elWeek.innerHTML = `
     <section class="today">
-      <p class="today-when"><b>${esc(today.day)}</b>${today.focus ? ' · ' + esc(FOCUS_LABEL[today.focus] || 'Fokus ' + today.focus) : ''}</p>
+      <p class="today-when"><b>${esc(today.day)}</b>${today.focus ? ' · ' + esc(focusLabel(today.focus)) : ''}</p>
       ${headMarkup(today)}
 
       ${fig ? `<div class="today-figure">
@@ -987,7 +1025,7 @@ function renderWeek(){
     </section>
 
     <h2 class="week-head">Die Woche</h2>
-    ${days.map(d => stripMarkup(d, d.isoDate === today.isoDate)).join('')}
+    ${days.map(d => stripMarkup(d, d.isoDate === todayIso)).join('')}
   `;
 
   elWeek.querySelectorAll('.note-handle').forEach(h => h.addEventListener('click', () => {
@@ -1138,7 +1176,7 @@ function showFocus(letter){
     /* Superset-Kennung kommt aus dem Payload-Feld (superset: true am Block,
        datenmodell §2) — keine Heuristik mehr: Rest gilt dann dem Paar. */
     const isSuper = b.superset === true && (b.rows || []).length >= 2;
-    let rows = (b.rows || []).map(r => exerciseMarkup(r, hi, single, { noRest:isSuper, iso })).join('');
+    let rows = (b.rows || []).map(r => exerciseMarkup(r, hi, single, { noRest:isSuper, iso, blockTitle:b.title })).join('');
     if (isSuper){
       const restVal = hi['Rest'] !== undefined ? (b.rows[0][hi['Rest']] || '') : '';
       rows = `<div class="superset">
@@ -1261,6 +1299,12 @@ function wireVerdicts(root, letter){
   }));
 }
 
+/* Vergleich Blocktitel <-> Übungsname: Groß/Klein, Bindestriche und
+   Sonderzeichen sind egal ("Strict HSPU" == "Strict HSPU"). */
+function normName(t){
+  return String(t || '').toLowerCase().replace(/[^a-z0-9]+/g, '');
+}
+
 function exerciseMarkup(r, hi, single, opts){
   opts = opts || {};
   const rawName = r[hi['Übung']] || '';
@@ -1317,8 +1361,14 @@ function exerciseMarkup(r, hi, single, opts){
   });
   const note = hi['Note'] !== undefined ? r[hi['Note']] : '';
 
+  /* Der Übungsname wird auch bei Ein-Übungs-Blöcken gezeigt — außer er
+     wiederholt den Blocktitel wörtlich (Martin 23.08.: „Übung fehlt
+     komplett" bei Core/Drill, seit die Titel entschlackt sind). */
+  const sameAsBlock = single && opts.blockTitle &&
+    normName(opts.blockTitle) === normName(parts[0]);
+
   return `<article class="ex${single ? ' is-single' : ''}">
-    ${single
+    ${single && sameAsBlock
       ? (parts[1] ? `<p class="ex-qual">${esc(parts[1])}</p>` : '')
       : `<h3 class="ex-name">${esc(parts[0])}${parts[1] ? `<small>${esc(parts[1])}</small>` : ''}</h3>`}
     ${setsMain ? (loadInline && loadInline.length <= 12
@@ -1408,13 +1458,45 @@ function renderApparat(kind, ctx){
   elApp.innerHTML = body ? `<h2>Beleg</h2>${body}` : '';
 }
 
+/* ── Kopfzeile: Wochen-Label, bei mehr als einer Planwoche ein Umschalter.
+   Nur nach vorn gedacht (Vorschau auf die gebaute Folgewoche); der Payload
+   trägt nie vergangene Wochen. Zurück führt immer auf die laufende Woche. ── */
+function renderRail(){
+  const el = document.getElementById('railWeek');
+  const preview = weekIdx !== HOME_WEEK;
+  const canSwitch = NEXT_WEEK >= 0;      // ohne gebaute Folgewoche kein Umschalter
+  el.hidden = false;
+  el.classList.toggle('is-switch', canSwitch);
+  el.classList.toggle('is-preview', preview);
+  el.innerHTML = esc(week.id.replace('-', ' '))
+    + (preview ? '<span class="rw-tag">Vorschau</span>' : '')
+    + (canSwitch ? CHEV : '');
+  el.setAttribute('aria-label', canSwitch
+    ? (preview ? 'Zurück zur laufenden Woche' : 'Vorschau auf die nächste Woche')
+    : 'Woche ' + week.id);
+  document.getElementById('railMeso').textContent = week.meso || week.label || '';
+}
+
+async function switchWeek(){
+  if (NEXT_WEEK < 0) return;
+  const next = (weekIdx === HOME_WEEK) ? NEXT_WEEK : HOME_WEEK;
+  loadWeek(next);
+  const days = week.days || [];
+  if (days.length) await vstore.hydrate(days[0].isoDate, days[days.length - 1].isoDate);
+  renderRail();
+  currentFocus = null;
+  elFocus.hidden = true; elWeek.hidden = false;
+  renderWeek();                     // neue Woche zeichnen, nicht nur einblenden
+  window.scrollTo(0, 0);
+}
+
 /* ── Backend-Setup: Long-Press (1,2 s) auf die Kopf-Rail.
    Probe gegen save_verdict.php ohne Payload: 401 = Secret falsch,
    400 = Secret akzeptiert (Validierung greift erst nach Auth) —
    es wird nie ein echter Verdict geschrieben. ── */
 (function(){
   const rail = document.querySelector('.rail');
-  let timer = null, startY = 0, pop = null;
+  let timer = null, startY = 0, pop = null, longPressFired = false;
 
   function close(){ if (pop){ pop.remove(); pop = null; } }
 
@@ -1469,8 +1551,9 @@ function renderApparat(kind, ctx){
   function cancel(){ if (timer){ clearTimeout(timer); timer = null; } }
   rail.addEventListener('pointerdown', e => {
     startY = e.clientY;
+    longPressFired = false;
     cancel();
-    timer = setTimeout(open, 1200);
+    timer = setTimeout(() => { longPressFired = true; open(); }, 1200);
   });
   rail.addEventListener('pointermove', e => {
     if (Math.abs(e.clientY - startY) > 12) cancel();
@@ -1478,6 +1561,13 @@ function renderApparat(kind, ctx){
   rail.addEventListener('pointerup', cancel);
   rail.addEventListener('pointercancel', cancel);
   rail.addEventListener('contextmenu', e => e.preventDefault());
+
+  /* Kurzer Tap auf das Wochen-Label schaltet die Woche um; der Long-Press
+     (Setup) unterdrückt den folgenden Klick. */
+  document.getElementById('railWeek').addEventListener('click', () => {
+    if (longPressFired){ longPressFired = false; return; }
+    switchWeek();
+  });
 })();
 
 /* ── Start ── Verdict-Cache (Serverstand) VOR dem ersten Render laden. */
@@ -1487,11 +1577,10 @@ function renderApparat(kind, ctx){
   const to = days.length ? days[days.length - 1].isoDate : '';
   await vstore.hydrate(from, to);
 
-  document.getElementById('railWeek').textContent = week.id.replace('-', ' ');
-  document.getElementById('railMeso').textContent = week.meso || week.label || '';
+  renderRail();
   renderWeek();
 
-  /* Deep-Links: ?focus=A&theme=dark — Woche ist fix (keine Wochenwahl). */
+  /* Deep-Links: ?focus=A&theme=dark */
   const q = new URLSearchParams(location.search);
   const t = q.get('theme');
   if (t === 'dark' || t === 'light') document.documentElement.dataset.theme = t;

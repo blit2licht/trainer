@@ -752,9 +752,17 @@ const vstore = {
     }
   },
   async clear(iso, ex){
-    // Kein Delete-Endpoint (nur get/save) — http löscht nur die lokale Sicht.
-    delete this.cache[iso + '|' + ex];
-    if (backendMode !== 'http'){
+    // Rücknahme = zurück auf unknown: verdict:'clear' löscht die Server-Zeile.
+    if (backendMode === 'http'){
+      const r = await fetch(EP_SAVE, { method:'POST',
+        headers:{ 'Content-Type':'application/json' },
+        body: JSON.stringify({ secret: localStorage.getItem(SKEY) || '',
+          iso_date: iso, ex_id: ex, verdict: 'clear' }) });
+      const j = await r.json();
+      if (!r.ok || !j || !j.cleared) throw new Error('clear failed');
+      delete this.cache[iso + '|' + ex];
+    } else {
+      delete this.cache[iso + '|' + ex];
       const all = JSON.parse(localStorage.getItem(VKEY) || '{}');
       delete all[iso + '|' + ex]; localStorage.setItem(VKEY, JSON.stringify(all));
     }

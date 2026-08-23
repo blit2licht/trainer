@@ -70,9 +70,9 @@ if (!preg_match('/^[a-z0-9_]{1,32}$/', $ex_id)) {
     echo json_encode(['error' => 'Invalid ex_id']);
     exit;
 }
-if (!in_array($verdict, ['hit', 'miss'], true)) {
+if (!in_array($verdict, ['hit', 'miss', 'clear'], true)) {
     http_response_code(400);
-    echo json_encode(['error' => 'verdict must be hit or miss']);
+    echo json_encode(['error' => 'verdict must be hit, miss or clear']);
     exit;
 }
 // miss_reason nur bei miss zulässig; bei hit immer NULL.
@@ -95,6 +95,18 @@ try {
         DB_USER, DB_PASS,
         [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
     );
+
+    // 'clear' löscht die Zeile — zurück auf unknown (= Abwesenheit der Zeile,
+    // datenmodell §4). Rücknahme-Kanal für Fehltaps am Handy.
+    if ($verdict === 'clear') {
+        $del = $pdo->prepare('DELETE FROM verdicts WHERE iso_date = :d AND ex_id = :e');
+        $del->execute([':d' => $iso_date, ':e' => $ex_id]);
+        echo json_encode([
+            'success' => true, 'cleared' => true,
+            'iso_date' => $iso_date, 'ex_id' => $ex_id,
+        ]);
+        exit;
+    }
 
     // Last-write-wins über den PRIMARY KEY (iso_date, ex_id).
     $sql = 'INSERT INTO verdicts (iso_date, ex_id, verdict, miss_reason, source)

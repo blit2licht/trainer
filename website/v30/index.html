@@ -312,6 +312,12 @@ a{color:inherit;text-underline-offset:3px}
 }
 .back:hover{color:var(--ink)}
 .back svg{width:12px;height:12px}
+/* Zweiter Ausgang am Seitenende — nach dem letzten Block ist der Kopf
+   weit weg (Martin 23.08.). */
+.back.is-foot{
+  display:flex;width:100%;justify-content:flex-start;
+  margin:34px 0 8px;padding-top:26px;border-top:1px solid var(--rule);
+}
 
 .focus-head{padding:8px 0 30px}
 .focus-when{font-family:var(--mono);font-size:12.5px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3)}
@@ -1230,9 +1236,11 @@ function showFocus(letter){
     </header>
     ${blocks}${wods}
     ${noteMarkup(iso, f.date || '')}
+    <button class="back is-foot" type="button" id="backBtnFoot">${BACK} Zur Woche</button>
   `;
 
-  elFocus.querySelector('#backBtn').addEventListener('click', showWeek);
+  elFocus.querySelectorAll('#backBtn, #backBtnFoot').forEach(b =>
+    b.addEventListener('click', showWeek));
   elFocus.querySelectorAll('.blk-toggle').forEach(t => t.addEventListener('click', () => {
     const s = t.closest('.blk');
     const open = t.getAttribute('aria-expanded') === 'true';

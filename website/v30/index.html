@@ -547,6 +547,11 @@ a{color:inherit;text-underline-offset:3px}
   text-decoration:underline;text-underline-offset:3px;
 }
 .vundo:hover{color:var(--ink)}
+/* Pending: Tap sofort quittieren, Anzeige bleibt trotzdem Serverstand —
+   gedimmt bis die Antwort da ist, nie optimistisch umgeschaltet. */
+.vstate.is-pending{opacity:.35}
+.vstate.is-pending .vundo{pointer-events:none}
+.vbtn:disabled{opacity:.4;pointer-events:none}
 .vopen{
   font-family:var(--mono);font-size:11.5px;font-weight:700;
   letter-spacing:.13em;text-transform:uppercase;color:var(--marker);margin-bottom:10px;
@@ -1139,20 +1144,29 @@ function wireVerdicts(root, letter){
   };
   root.querySelectorAll('[data-vdone]').forEach(b => b.addEventListener('click', async () => {
     const [iso, ex] = b.dataset.vdone.split('|'); const i = blkIndex(b); b.disabled = true;
-    await vstore.save(iso, ex, 'hit'); askOpen = null; rerender(i);
+    try { await vstore.save(iso, ex, 'hit'); askOpen = null; rerender(i); }
+    catch(e){ b.disabled = false; }
   }));
   root.querySelectorAll('[data-vfail]').forEach(b => b.addEventListener('click', async () => {
     const key = b.dataset.vfail; const [iso, ex] = key.split('|'); const i = blkIndex(b);
     if (b.dataset.vcls === 'technical'){ askOpen = key; rerender(); }
-    else { b.disabled = true; await vstore.save(iso, ex, 'miss'); rerender(i); }
+    else {
+      b.disabled = true;
+      try { await vstore.save(iso, ex, 'miss'); rerender(i); }
+      catch(e){ b.disabled = false; }
+    }
   }));
   root.querySelectorAll('[data-vreason]').forEach(b => b.addEventListener('click', async () => {
     const [iso, ex] = b.dataset.vkey.split('|'); const i = blkIndex(b); b.disabled = true;
-    await vstore.save(iso, ex, 'miss', b.dataset.vreason); askOpen = null; rerender(i);
+    try { await vstore.save(iso, ex, 'miss', b.dataset.vreason); askOpen = null; rerender(i); }
+    catch(e){ b.disabled = false; }
   }));
   root.querySelectorAll('[data-vundo]').forEach(b => b.addEventListener('click', async () => {
     const [iso, ex] = b.dataset.vundo.split('|');
-    await vstore.clear(iso, ex); askOpen = null; rerender();
+    b.disabled = true;
+    const row = b.closest('.vstate'); if (row) row.classList.add('is-pending');
+    try { await vstore.clear(iso, ex); askOpen = null; rerender(); }
+    catch(e){ if (row) row.classList.remove('is-pending'); b.disabled = false; }
   }));
 }
 

@@ -1104,9 +1104,9 @@ function showFocus(letter){
     const hi = {};
     (b.headers || []).forEach((h, i) => hi[h] = i);
     const single = (b.rows || []).length === 1;
-    /* Superset-Kennung: Layer-Paare laufen im Wechsel — Rest gilt dem Paar,
-       nicht der Einzelübung. Dummy-Heuristik; wird im 3.0-Schema ein Feld. */
-    const isSuper = b.prio === 'optional' && (b.rows || []).length >= 2 && /layer/i.test(b.title || '');
+    /* Superset-Kennung kommt aus dem Payload-Feld (superset: true am Block,
+       datenmodell §2) — keine Heuristik mehr: Rest gilt dann dem Paar. */
+    const isSuper = b.superset === true && (b.rows || []).length >= 2;
     let rows = (b.rows || []).map(r => exerciseMarkup(r, hi, single, { noRest:isSuper })).join('');
     if (isSuper){
       const restVal = hi['Rest'] !== undefined ? (b.rows[0][hi['Rest']] || '') : '';

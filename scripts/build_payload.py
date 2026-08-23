@@ -42,11 +42,14 @@ def build_day(day: dict, reg: dict, warns: list[str]) -> dict:
     iso = day.get("iso_date")
     dtype = day.get("day_type")
 
-    # Box-/Ride-Tage: nur Typ + ggf. WOD (Vollzugsdaten, keine Engine).
+    # Box-/Ride-Tage: Typ + WOD-Kerninfos (Vollzugsdaten, keine Engine).
+    # einheit/sub/wod erreichen das Handy — der Tag-Klick zeigt die
+    # DreamWOD-Kerninfos wie in 2.x (Martin, 23.08.).
     if dtype != "own":
         out = {"iso_date": iso, "day_type": dtype}
-        if "wod" in day:
-            out["wod"] = day["wod"]
+        for key in ("einheit", "sub", "wod"):
+            if key in day:
+                out[key] = day[key]
         return out
 
     out_blocks = []
@@ -88,11 +91,16 @@ def build_day(day: dict, reg: dict, warns: list[str]) -> dict:
                 for r in target.get("ramp", []):
                     if isinstance(r, (int, float)):
                         kg_targets.append(r)
-            # Strip: nur ex_id, kurz, class, target — warum/note fallen weg.
+            # Strip: note/intro/plan_note fallen weg. warum wandert seit
+            # 23.08. mit (Martin-Revision der Content-Diät) — am Handy
+            # ausklappbar als „Begründung", nie offen gerendert.
             # class trägt die Verdict-UI (technical → miss_reason Technik/Last).
-            ex_out.append({"ex_id": ex_id, "kurz": kurz,
-                           "class": entry.get("class") if entry else None,
-                           "target": target})
+            ex_entry = {"ex_id": ex_id, "kurz": kurz,
+                        "class": entry.get("class") if entry else None,
+                        "target": target}
+            if ex.get("warum"):
+                ex_entry["warum"] = ex["warum"]
+            ex_out.append(ex_entry)
 
         # kurzform: kurz der required-Blöcke (erste Übung je Block).
         if prio == "required" and block.get("exercises"):

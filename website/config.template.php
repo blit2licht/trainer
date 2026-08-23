@@ -8,3 +8,7 @@ define('DB_PASS', 'passwort');
 
 // Optional für cron_summary.php:
 define('CRON_KEY', 'langer-zufaelliger-wert');
+
+// Shared-Secret für save_verdict.php (Trainer 3.0, Entscheid 7).
+// Muss mit dem im localStorage des Handys hinterlegten Wert übereinstimmen.
+define('VERDICT_SECRET', 'langer-zufaelliger-verdict-wert');

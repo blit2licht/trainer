@@ -1,0 +1,273 @@
+{
+  "schema_version": 1,
+  "hinweis": "Übungs-Registry Trainer 3.0 (datenmodell.md §1). Handgepflegt, bewusst klein. Ein Eintrag pro Übung. class steuert die Engine (loadable | technical | skill | generic). aliases tragen die exakten WHOOP-Library-Namen fürs Paste-Mapping (derive_state.py). Gegen reale WHOOP-Pastes + die WHOOP-Movement-Liste (22.–23.08.) verifiziert für snatch, ohs, rdl, bmu, t2b, hspu_strict, wpu, clean_jerk, push_press — der jeweils erste alias-Eintrag ist der echte WHOOP-Name. Alle aktuellen Registry-Aliasse sind damit belegt (keine Best-Guesses mehr offen). WHOOP-Konventionen: Plural, Equipment-Suffix ' – Barbell'/' – DB' (vom Parser abgestreift), kein 'Strict'/'Bar'/'Squat'-Präfix; verwandte WHOOP-Movements werden NICHT als Alias von clean_jerk/push_press aufgenommen — die C&J-Teil-Lifts (clean, power_clean, hang_power_clean, clean_pull, push_jerk) und overhead_press sind eigenständige ex_ids (Martin-Entscheid 23.08.). WHOOP-Ist ist coverage-limitiert (Movements/Tracking existierten früher nicht) und korrigiert coach-gepflegte Ceilings nie nach unten. skill-Einträge tragen die Treppe (Entscheid 8, überführt aus profile.json gymnastics_testprotokoll.progressionstreppen — keine Neuerfindung); die Treppenregeln bleiben in profile.json, hier nur referenziert. Paste-Format-Spec: V3.0/whoop-paste-format.md.",
+  "exercises": [
+    {
+      "ex_id": "snatch",
+      "name": "Squat Snatch",
+      "kurz": "Snatch",
+      "aliases": ["Snatch", "Squat Snatch", "Power Snatch"],
+      "class": "technical",
+      "increment": 2.5,
+      "rep_cap_e1rm": 3,
+      "pattern": ["pull", "overhead", "squat"],
+      "note": "Ceiling-geführt (state.json load_references.squat_snatch_ceiling). Kein mechanischer Deload."
+    },
+    {
+      "ex_id": "clean_jerk",
+      "name": "Clean & Jerk",
+      "kurz": "C&J",
+      "aliases": ["Clean and Split Jerk", "Clean & Split Jerk", "Clean and Jerk"],
+      "class": "technical",
+      "increment": 2.5,
+      "rep_cap_e1rm": 3,
+      "pattern": ["pull", "overhead", "squat"],
+      "note": "Voller Komplex; Ceiling-geführt (load_references.clean_jerk_komplex). WHOOP-Fakt (Martin, 23.08.): die Library hat KEIN 'Clean & Jerk' — Martin loggt den Komplex als EINE Zeile 'Clean and Split Jerk – Barbell' (Export nutzt 'and', nicht '&'), unabhängig vom Jerk-Stil (real oft Push Jerk). WICHTIG: die Teil-Lifts 'Clean', 'Power Clean', 'Hang Power Clean', 'Clean Pull', 'Push Jerk' sind bewusst KEINE Aliasse — Teil-Lift ist nicht der Komplex; verschmelzen würde die Ist-Zuordnung verfälschen. Sie sind eigenständige ex_ids (clean, power_clean, hang_power_clean, clean_pull, push_jerk; Martin-Entscheid 23.08.). Ceiling-Hinweis: der coach-gepflegte Ceiling-Wert (state.json, 80) ist REAL — Martin hat 80 gestanden und bis 92,5, nur vor der WHOOP-Ära ungetrackt. WHOOP-Ist ist coverage-limitiert und korrigiert die Ceiling nie nach unten (Übergabe 2.5)."
+    },
+    {
+      "ex_id": "ohs",
+      "name": "Overhead Squat",
+      "kurz": "OHS",
+      "aliases": ["Overhead Squat", "Pause OHS", "Pause Overhead Squat"],
+      "class": "technical",
+      "increment": 2.5,
+      "rep_cap_e1rm": 3,
+      "pattern": ["squat", "overhead"],
+      "note": "Pause-Variante via Alias. Ceiling-geführt (load_references.pause_ohs)."
+    },
+    {
+      "ex_id": "front_squat",
+      "name": "Front Squat",
+      "kurz": "FS",
+      "aliases": ["Front Squat", "Pause Front Squat"],
+      "class": "technical",
+      "increment": 2.5,
+      "rep_cap_e1rm": 3,
+      "pattern": ["squat"],
+      "note": "Martin-Entscheid 22.08.: technical — Ceiling-geführt in Blöcken, kein mechanischer -10%-Deload (Entscheid 13)."
+    },
+    {
+      "ex_id": "clean",
+      "name": "Clean",
+      "kurz": "Clean",
+      "aliases": ["Clean"],
+      "class": "technical",
+      "increment": 2.5,
+      "rep_cap_e1rm": 3,
+      "pattern": ["pull", "squat"],
+      "note": "C&J-Teil-Lift, eigenständig (Martin-Entscheid 23.08.). Nicht mit clean_jerk (voller Komplex) verschmelzen. WHOOP 'Clean – Barbell'."
+    },
+    {
+      "ex_id": "power_clean",
+      "name": "Power Clean",
+      "kurz": "Power Clean",
+      "aliases": ["Power Clean"],
+      "class": "technical",
+      "increment": 2.5,
+      "rep_cap_e1rm": 3,
+      "pattern": ["pull"],
+      "note": "C&J-Teil-Lift, eigenständig. WHOOP 'Power Clean – Barbell'."
+    },
+    {
+      "ex_id": "hang_power_clean",
+      "name": "Hang Power Clean",
+      "kurz": "HPC",
+      "aliases": ["Hang Power Clean"],
+      "class": "technical",
+      "increment": 2.5,
+      "rep_cap_e1rm": 3,
+      "pattern": ["pull"],
+      "note": "C&J-Teil-Lift, eigenständig. WHOOP 'Hang Power Clean – Barbell'. Vgl. state.json: 11.08. HPC bis 80 (inkl. 2×80)."
+    },
+    {
+      "ex_id": "clean_pull",
+      "name": "Clean Pull",
+      "kurz": "Clean Pull",
+      "aliases": ["Clean Pull"],
+      "class": "loadable",
+      "increment": 5,
+      "rep_cap_e1rm": 8,
+      "pattern": ["pull", "hinge"],
+      "note": "Kraft-Accessory für bessere Cleans (Martin-Entscheid 23.08.). loadable — großer Zug, increment 5. WHOOP 'Clean Pull – Barbell'."
+    },
+    {
+      "ex_id": "push_jerk",
+      "name": "Push Jerk",
+      "kurz": "Push Jerk",
+      "aliases": ["Push Jerk"],
+      "class": "technical",
+      "increment": 2.5,
+      "rep_cap_e1rm": 3,
+      "pattern": ["overhead", "push"],
+      "note": "Jerk-Teil des C&J, eigenständig. Nicht mit push_press (loadable Press) und nicht mit clean_jerk verwechseln. WHOOP 'Push Jerk – Barbell'."
+    },
+    {
+      "ex_id": "push_press",
+      "name": "Push Press",
+      "kurz": "PP",
+      "aliases": ["Push Press"],
+      "class": "loadable",
+      "increment": 2.5,
+      "rep_cap_e1rm": 12,
+      "pattern": ["overhead", "push"],
+      "note": "WHOOP-String 'Push Press – Barbell' verifiziert (Martin, 23.08.). 'Overhead Press' (eigene ex_id overhead_press) und 'Push Jerk' (push_jerk) sind bei WHOOP EIGENE Movements — nicht als Alias aufnehmen (Verwechslungsgefahr wie bei den C&J-Teil-Lifts)."
+    },
+    {
+      "ex_id": "overhead_press",
+      "name": "Overhead Press",
+      "kurz": "OHP",
+      "aliases": ["Overhead Press"],
+      "class": "loadable",
+      "increment": 2.5,
+      "rep_cap_e1rm": 12,
+      "pattern": ["overhead", "push"],
+      "note": "Strict Overhead Press, Kraft-/Hypertrophie-Accessory — kein aktueller Meso-Fokus, aber regelmäßig geloggt. WHOOP 'Overhead Press – Barbell' (Martin-Historie 23.08.: Volumenblöcke 40–55 kg, schwere Singles bis 70 kg am 01.05.2026). Eigenes Movement — nie mit push_press verwechseln."
+    },
+    {
+      "ex_id": "rdl",
+      "name": "Romanian Deadlift",
+      "kurz": "RDL",
+      "aliases": ["Romanian Deadlift", "RDL", "Barbell RDL"],
+      "class": "loadable",
+      "increment": 5,
+      "rep_cap_e1rm": 12,
+      "pattern": ["hinge"],
+      "note": "Großer Hinge → increment 5 (Übergabe 1.5)."
+    },
+    {
+      "ex_id": "hspu_strict",
+      "name": "Strict Handstand Push-up",
+      "kurz": "HSPU",
+      "aliases": ["Handstand Push-Ups", "Strict Handstand Push-Up", "Handstand Push-Up"],
+      "class": "skill",
+      "increment": null,
+      "rep_cap_e1rm": null,
+      "pattern": ["overhead", "push"],
+      "ladder": {
+        "steps": ["4x5", "4x6", "4x7", "4x8", "test"],
+        "confirmed_step": 3,
+        "confirmed_at": "2026-08-22",
+        "regeln_ref": "coach/profile.json gymnastics_testprotokoll.regeln"
+      },
+      "note": "W34 (22.08.) 4×8 bestätigt am Limit — oberste Stufe. Nächster Schritt Max-Test W37."
+    },
+    {
+      "ex_id": "wpu",
+      "name": "Weighted Pull-up",
+      "kurz": "PU",
+      "aliases": ["Weighted Pull Ups", "Weighted Pull-Up", "Pull-Up (Weighted)"],
+      "class": "skill",
+      "increment": null,
+      "rep_cap_e1rm": null,
+      "pattern": ["pull"],
+      "ladder": {
+        "steps": ["3x3", "3x4", "3x5", "test 6"],
+        "load": "+5",
+        "confirmed_step": 1,
+        "confirmed_at": "2026-08-22",
+        "regeln_ref": "coach/profile.json gymnastics_testprotokoll.regeln"
+      },
+      "note": "Martin-Entscheid 22.08. (Entscheid 14): skill mit Treppe @ +5 kg, nicht loadable. Zusatzlast im target-Modus bw_plus. W34-Miss 5/5/3 → zurück auf 3×4 (confirmed_step 1); 3×5-Retry ab W36."
+    },
+    {
+      "ex_id": "t2b",
+      "name": "Toes-to-Bar",
+      "kurz": "T2B",
+      "aliases": ["Hanging Toes to Bar", "Toes to Bar", "T2B"],
+      "class": "skill",
+      "increment": null,
+      "rep_cap_e1rm": null,
+      "pattern": ["pull", "core"],
+      "ladder": {
+        "steps": ["3x7", "3x8", "3x9", "3x10", "test"],
+        "confirmed_step": 3,
+        "confirmed_at": "2026-08-22",
+        "regeln_ref": "coach/profile.json gymnastics_testprotokoll.regeln"
+      },
+      "note": "Test W32 16 unbroken (Ziel 10 übertroffen) — Zielneusetzung beim W37-Review. Moderates 3×10-Volumen gehalten."
+    },
+    {
+      "ex_id": "bmu",
+      "name": "Bar Muscle-up",
+      "kurz": "BMU",
+      "aliases": ["Muscle Ups", "Bar Muscle Up", "Bar Muscle-Up"],
+      "class": "skill",
+      "increment": null,
+      "rep_cap_e1rm": null,
+      "pattern": ["pull", "overhead"],
+      "ladder": {
+        "steps": ["5x2 unbroken", "4x3", "3x3 + 1xmax", "test"],
+        "confirmed_step": 0,
+        "confirmed_at": "2026-08-22",
+        "regeln_ref": "coach/profile.json gymnastics_testprotokoll.regeln (+ coach/bmu-entwicklungsplan.md)"
+      },
+      "note": "Linked-Sets-Treppe ab W33. 2 Kontakte/Woche (Sa Hauptblock + Mi Primer). W34: 5×2 wiederholt, feel 3 — Stufe 0 gehalten. Engpass Stütz-Pause + Descent (load_references.bmu)."
+    },
+    {
+      "ex_id": "hollow_hold",
+      "name": "Hollow Hold",
+      "kurz": "Core",
+      "aliases": ["Hollow Hold", "Hollow Body Hold"],
+      "class": "generic",
+      "increment": null,
+      "rep_cap_e1rm": null,
+      "pattern": ["core"],
+      "note": "Zeit-Modus (target mode:time). Verdict-only, keine Engine."
+    },
+    {
+      "ex_id": "layer_delts_bizeps",
+      "name": "Hypertrophie-Layer Delts/Bizeps",
+      "kurz": "Layer",
+      "aliases": ["Layer Delts Bizeps"],
+      "class": "generic",
+      "increment": null,
+      "rep_cap_e1rm": null,
+      "pattern": ["pull", "push"],
+      "note": "15-min-Hypertrophie-Layer A-Tag (profile.koerperkomposition.leitplanken). Verdict-only, loggbar (Schema-Anforderung 7)."
+    },
+    {
+      "ex_id": "layer_brust_trizeps",
+      "name": "Hypertrophie-Layer Brust/Trizeps",
+      "kurz": "Layer",
+      "aliases": ["Layer Brust Trizeps"],
+      "class": "generic",
+      "increment": null,
+      "rep_cap_e1rm": null,
+      "pattern": ["push"],
+      "note": "15-min-Hypertrophie-Layer B-Tag. Verdict-only, loggbar."
+    },
+    {
+      "ex_id": "mobility",
+      "name": "Mobility / Cool-down",
+      "kurz": "Mobility",
+      "aliases": ["Mobility", "Cool-down"],
+      "class": "generic",
+      "increment": null,
+      "rep_cap_e1rm": null,
+      "pattern": [],
+      "note": "Cool-down. Verdict-only."
+    },
+    {
+      "ex_id": "bmu_primer",
+      "name": "BMU-Primer",
+      "kurz": "Primer",
+      "aliases": ["BMU Primer"],
+      "class": "generic",
+      "increment": null,
+      "rep_cap_e1rm": null,
+      "pattern": ["pull", "overhead"],
+      "note": "Frequenzkontakt (2. Wochenkontakt), nie Treppe. Verdict-only."
+    },
+    {
+      "ex_id": "bmu_drill",
+      "name": "BMU-Drill (Descent/Timing)",
+      "kurz": "Drill",
+      "aliases": ["BMU Drill"],
+      "class": "generic",
+      "increment": null,
+      "rep_cap_e1rm": null,
+      "pattern": ["pull", "overhead"],
+      "note": "Descent-/Timing-Drills. Verdict-only, keine Treppe."
+    }
+  ]
+}

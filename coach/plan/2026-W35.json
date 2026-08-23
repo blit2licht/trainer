@@ -1,0 +1,247 @@
+{
+  "schema_version": 1,
+  "id": "2026-W35",
+  "label": "Woche 4 · 24.–30. August 2026",
+  "meso": "Meso 3 · Woche 4",
+  "von": "2026-08-24",
+  "bis": "2026-08-30",
+  "phase": "FS-Block Teil 2 (Start, Topsatz 95×3) / C&J-Reclaim 82,5 / Gymnastics Richtung W37-Test",
+  "_hinweis": "ERSTE echte Planquelle (Trainer 3.0, datenmodell.md §2). Fokus-Tage aus state.json abgeleitet; Box-Tage + Kalender sind Platzhalter — die publizierte Woche zieht DreamWOD/Termine/Wellness in der 'Neue Woche'-Session. Diese Datei beweist den Generator (build_payload.py), nicht den fertigen Plan. Prosa-Felder (warum/note/plan_note/intro) sind bewusst gefüllt, damit der Strip im Payload nachweisbar ist.",
+  "days": [
+    {
+      "iso_date": "2026-08-24",
+      "day_type": "box",
+      "wod": { "_placeholder": "aus DreamWOD zu ziehen (Neue-Woche-Session)" }
+    },
+    {
+      "iso_date": "2026-08-25",
+      "day_type": "box",
+      "wod": { "_placeholder": "aus DreamWOD zu ziehen (Neue-Woche-Session)" }
+    },
+    {
+      "iso_date": "2026-08-26",
+      "day_type": "own",
+      "focus": "A",
+      "focus_label": "Weightlifting-Fokus",
+      "intro": "Kraft-/Oly-Tag der Woche. FS-Block Teil 2 startet vor dem erwarteten Defizit-Dip; C&J-Reclaim auf 82,5 nach ~18 Tagen ohne Kontakt konservativ aufbauen. Snatch + Pause-OHS bewusst NICHT bedient (Oly-Kollision zur front-rack-lastigen Box-Woche, CNS schonen) — kommen W36.",
+      "plan_note": "Coach-Prosa, erreicht das Handy nie: BMU-Primer vorweg = zweiter Wochenkontakt (Frequenz vor Volumen). C&J in WHOOP als 'Clean and Split Jerk' loggen; Verdict-Button ist Leading Signal.",
+      "recovery_day": {
+        "u50": "Load-RPE-Cap 7, kein neues Top-Gewicht, letzter Steigerungssatz entfällt.",
+        "u34": "Nur Technik-/Mobility-Arbeit bis RPE 6 — oder Ruhe."
+      },
+      "blocks": [
+        {
+          "block_id": "A",
+          "prio": "required",
+          "min": 5,
+          "title": "BMU-Primer",
+          "superset": false,
+          "exercises": [
+            {
+              "ex_id": "bmu_primer",
+              "target": { "mode": "bw", "sets": 4, "reps": 2, "rpe_cap": 7 },
+              "warum": "Zweiter Wochenkontakt laut BMU-Protokoll (2 Kontakte/Woche); Frequenz, kein Volumen.",
+              "note": "4 × 1–2 frisch nach dem Warm-up."
+            }
+          ]
+        },
+        {
+          "block_id": "B",
+          "prio": "required",
+          "min": 20,
+          "title": "Front Squat — Block Teil 2",
+          "superset": false,
+          "exercises": [
+            {
+              "ex_id": "front_squat",
+              "target": {
+                "mode": "kg", "sets": 5, "reps": 3, "kg": 95,
+                "ramp": [60, 70, 80, 87.5, 95],
+                "rpe_cap": 8, "tempo": "kontrolliert", "rest": "3:00"
+              },
+              "warum": "FS-Block Teil 2 Start. Referenz 102,5 (Top-Single W30), Korridor 105–107,5; Topsatz 95×3 als Wiedereinstieg. technical → Ceiling-geführt, kein mechanischer Deload.",
+              "note": "Vor dem erwarteten Defizit-Dip platziert (Meso-Rolle W35)."
+            }
+          ]
+        },
+        {
+          "block_id": "C",
+          "prio": "required",
+          "min": 18,
+          "title": "Clean & Jerk — Reclaim 82,5",
+          "superset": false,
+          "exercises": [
+            {
+              "ex_id": "clean_jerk",
+              "target": {
+                "mode": "kg", "sets": 6, "reps": 1, "kg": 82.5,
+                "ramp": [60, 65, 70, 75, 80, 82.5],
+                "optional_top": null,
+                "rpe_cap": 8, "tempo": "X", "rest": "E2:00", "interval": "E2:00"
+              },
+              "warum": "Reclaim auf 82,5. Ceiling 80 (W32 08.08.), ~18 Tage ohne Kontakt → konservativ über 80 aufbauen; 82,5 nur bei sauberem Lockout. WHOOP hat keinen C&J-Komplex — als 'Clean and Split Jerk' loggen.",
+              "note": "Komplex Squat Clean + Push/Split Jerk; Verdict-Button ist Leading Signal, nicht der WHOOP-Recap."
+            }
+          ]
+        },
+        {
+          "block_id": "D",
+          "prio": "optional",
+          "min": 15,
+          "title": "Hypertrophie-Layer Delts/Bizeps",
+          "superset": false,
+          "verdict_ex_id": "layer_delts_bizeps",
+          "exercises": [
+            {
+              "ex_id": "lateral_raise",
+              "kurz": "Lateral Raise",
+              "target": { "mode": "kg", "sets": 3, "reps": 12, "kg": 14, "rpe_cap": 7 },
+              "warum": "Delt-Volumen.",
+              "note": "RPE-Deckel 7 strikt, keine Failure-Sätze."
+            },
+            {
+              "ex_id": "biceps_curl",
+              "kurz": "Biceps Curl",
+              "target": { "mode": "kg", "sets": 3, "reps": 12, "kg": 24, "rpe_cap": 7 },
+              "warum": "Bizeps-Volumen.",
+              "note": "Kontrolliert."
+            }
+          ]
+        },
+        {
+          "block_id": "E",
+          "prio": "optional",
+          "min": 5,
+          "title": "Core + Mobility",
+          "superset": false,
+          "exercises": [
+            {
+              "ex_id": "hollow_hold",
+              "target": { "mode": "time", "sec": 30, "sets": 3 },
+              "warum": "Rumpfstabilität, geringes Volumen.",
+              "note": "3 × 30 sec."
+            },
+            {
+              "ex_id": "mobility",
+              "target": { "mode": "time", "sec": 300 },
+              "warum": "Cool-down.",
+              "note": "Frei nach Bedarf."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "iso_date": "2026-08-27",
+      "day_type": "box",
+      "wod": { "_placeholder": "aus DreamWOD zu ziehen (Neue-Woche-Session)" }
+    },
+    {
+      "iso_date": "2026-08-28",
+      "day_type": "rest"
+    },
+    {
+      "iso_date": "2026-08-29",
+      "day_type": "own",
+      "focus": "B",
+      "focus_label": "Gymnastics-Fokus",
+      "intro": "Gymnastics-Hauptblock Richtung W37-Testblock. HSPU auf oberster Stufe konsolidieren, WPU nach dem W34-Miss die Stufe 3×4 zementieren, BMU-Stufe halten, T2B moderat.",
+      "plan_note": "Coach-Prosa: BMU-Stufenentscheid 5×2 vs. 4×3 aus feel 3 + einmal 3 am Stück — vorerst 5×2 halten (confirmed_step 0), Descent enger + Stütz-Pause kürzer als Fortschrittsmarker (load_references.bmu). WPU 3×5-Retry erst W36.",
+      "recovery_day": {
+        "u50": "Load-RPE-Cap 7, keine neue Stufe testen, letzter Steigerungssatz entfällt.",
+        "u34": "Nur Technik-/Mobility-Arbeit bis RPE 6 — oder Ruhe."
+      },
+      "blocks": [
+        {
+          "block_id": "A",
+          "prio": "required",
+          "min": 14,
+          "title": "Bar Muscle-up — Linked Doubles",
+          "superset": false,
+          "exercises": [
+            {
+              "ex_id": "bmu",
+              "target": { "mode": "bw", "sets": 5, "reps": 2, "unbroken": true, "rpe_cap": 8 },
+              "warum": "Stufe 1/4 (5×2 unbroken) gehalten — W34 feel 3, einmal 3 am Stück, aber noch nicht sauber genug für 4×3.",
+              "note": "Cues: 'Fall Into Pike' (Stütz-Pause) + 'Feet in a Bucket' (Descent). Fortschrittsmarker: Stütz-Pause kürzer, Descent enger."
+            }
+          ]
+        },
+        {
+          "block_id": "B",
+          "prio": "required",
+          "min": 12,
+          "title": "Strict HSPU — konsolidieren",
+          "superset": false,
+          "exercises": [
+            {
+              "ex_id": "hspu_strict",
+              "target": { "mode": "bw", "sets": 4, "reps": 8, "rpe_cap": 8 },
+              "warum": "Oberste Leiterstufe 4×8 (W34 am Limit bestätigt). Konsolidieren, nicht 4×9 — nächster Schritt Max-Test W37.",
+              "note": "Bei sauberem Durchzug halten."
+            }
+          ]
+        },
+        {
+          "block_id": "C",
+          "prio": "required",
+          "min": 12,
+          "title": "Weighted Pull-up — Stufe zementieren",
+          "superset": false,
+          "exercises": [
+            {
+              "ex_id": "wpu",
+              "target": { "mode": "bw_plus", "sets": 3, "reps": 4, "kg": 5, "rpe_cap": 8 },
+              "warum": "Nach W34-Miss (5/5/3) zurück auf 3×4 @ +5. Stufe zementieren; 3×5-Retry erst W36.",
+              "note": "+5 kg ist Zusatzlast, nie Tages-Kennzahl."
+            }
+          ]
+        },
+        {
+          "block_id": "D",
+          "prio": "required",
+          "min": 8,
+          "title": "Toes-to-Bar — Volumen",
+          "superset": false,
+          "exercises": [
+            {
+              "ex_id": "t2b",
+              "target": { "mode": "bw", "sets": 3, "reps": 10, "rpe_cap": 7 },
+              "warum": "Moderates Volumen (Test 16 > Ziel 10; Zielneusetzung W37). Kein Test bis dahin.",
+              "note": "Letzte Reps saubere Singles erlaubt."
+            }
+          ]
+        },
+        {
+          "block_id": "E",
+          "prio": "optional",
+          "min": 15,
+          "title": "Hypertrophie-Layer Brust/Trizeps",
+          "superset": false,
+          "verdict_ex_id": "layer_brust_trizeps",
+          "exercises": [
+            {
+              "ex_id": "db_bench",
+              "kurz": "DB Bench Press",
+              "target": { "mode": "kg", "sets": 3, "reps": 12, "kg": 45, "rpe_cap": 7 },
+              "warum": "Brust-Volumen.",
+              "note": "45 kg = Gesamtlast beider Hanteln. RPE-Deckel 7."
+            },
+            {
+              "ex_id": "triceps_ext",
+              "kurz": "Triceps Extension",
+              "target": { "mode": "band", "band": "rotes Band", "sets": 3, "reps": 15 },
+              "warum": "Trizeps-Volumen.",
+              "note": "Kontrolliert, volle ROM."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "iso_date": "2026-08-30",
+      "day_type": "ride",
+      "wod": { "_placeholder": "Sonntag, optionales Socializing (keine Strength-Daten)" }
+    }
+  ]
+}

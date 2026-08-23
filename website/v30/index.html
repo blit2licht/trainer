@@ -264,6 +264,18 @@ a{color:inherit;text-underline-offset:3px}
   font-size:11.5px;font-weight:500;letter-spacing:.14em;
   text-transform:uppercase;color:var(--ink-3);
 }
+/* WOD-Tage: Pfeil statt Last — der Tag klappt inline auf (2.x-Verhalten). */
+.strip-load.is-chev{line-height:0;color:var(--ink-3)}
+.strip-load.is-chev svg{
+  width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2.5;
+  stroke-linecap:round;stroke-linejoin:round;
+  transition:transform .18s var(--ease);
+}
+.strip.is-open .strip-load.is-chev{color:var(--marker)}
+.strip.is-open .strip-load.is-chev svg{transform:rotate(180deg)}
+.strip-body{padding:0 0 28px}
+.strip-body .wod:first-child{border-top:none;padding-top:10px}
+.strip-body .note-block{margin-top:6px}
 /* Typ-Symbol als eigene Spalte, auf Höhe des Tagesnamens. */
 .strip-ico{color:var(--ink-3);align-self:start;padding-top:3px;line-height:0}
 .strip-ico svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
@@ -948,7 +960,14 @@ function renderWeek(){
   elWeek.querySelectorAll('.strip[data-nav="1"]').forEach(b =>
     b.addEventListener('click', () => showFocus(b.dataset.focus)));
   elWeek.querySelectorAll('.strip[data-nav="2"]').forEach(b =>
-    b.addEventListener('click', () => showDay(b.dataset.day)));
+    b.addEventListener('click', () => {
+      const body = document.getElementById('db-' + b.dataset.day);
+      if (!body) return;
+      const open = body.hidden;
+      body.hidden = !open;
+      b.setAttribute('aria-expanded', String(open));
+      b.classList.toggle('is-open', open);
+    }));
   wireNote(elWeek);
 
   renderApparat('week', today);
@@ -990,15 +1009,27 @@ function stripMarkup(d, isToday){
     ? `<span class="range">${fmt(o.kgFrom)}–${fig.n}</span>`
     : fig.n) + `<small>${esc(fig.u)}</small>`;
 
-  return `<${nav ? 'button' : 'div'} class="strip${o.kind === 'rest' ? ' is-rest' : ''}${isToday ? ' is-today' : ''}" data-nav="${nav}"${nav === 1 ? ` data-focus="${esc(d.focus)}"` : ''}${nav === 2 ? ` data-day="${esc(d.isoDate)}"` : ''}${nav ? ' type="button"' : ''}>
+  /* Box-/Rad-Tage klappen inline auf (2.x-Verhalten, Martin 23.08.) —
+     der Pfeil sitzt im Last-Slot, der bei WOD-Tagen frei ist. */
+  const loadCell = nav === 2
+    ? `<span class="strip-load is-chev" aria-hidden="true">${CHEV}</span>`
+    : `<span class="strip-load${fig ? '' : ' is-word'}${o.kgFrom ? ' is-range' : ''}">${load}</span>`;
+
+  const strip = `<${nav ? 'button' : 'div'} class="strip${o.kind === 'rest' ? ' is-rest' : ''}${isToday ? ' is-today' : ''}" data-nav="${nav}"${nav === 1 ? ` data-focus="${esc(d.focus)}"` : ''}${nav === 2 ? ` data-day="${esc(d.isoDate)}" aria-expanded="false" aria-controls="db-${esc(d.isoDate)}"` : ''}${nav ? ' type="button"' : ''}>
     <span class="strip-when">
       <span class="strip-day">${esc(d.day)}</span>
       <span class="strip-date">${esc(d.date)}</span>
     </span>
     <span class="strip-ico" role="img" aria-label="${esc(TYPEWORD[d.type] || '')}">${TYPEICON[d.type] || ''}</span>
     <span class="strip-unit">${esc(unit)}</span>
-    <span class="strip-load${fig ? '' : ' is-word'}${o.kgFrom ? ' is-range' : ''}">${load}</span>
+    ${loadCell}
   </${nav ? 'button' : 'div'}>`;
+
+  if (nav !== 2) return strip;
+  return strip + `<div class="strip-body" id="db-${esc(d.isoDate)}" hidden>
+    ${(d.wod || []).map(wodMarkup).join('')}
+    ${noteMarkup(d.isoDate, d.date)}
+  </div>`;
 }
 
 /* ── Fokus-Tag ── */
@@ -1061,27 +1092,6 @@ function vHit(iso, letter){
   if (!ov) return false;
   const v = vstore.get(iso, ov.ex_id);
   return !!(v && v.verdict === 'hit');
-}
-
-/* ── Box-/Rad-Tag: Detailansicht mit den DreamWOD-Kerninfos (wie 2.x). ── */
-function showDay(iso){
-  const d = (week.days || []).find(x => x.isoDate === iso);
-  if (!d) return;
-  const title = (d.einheit || TYPEWORD[d.type] || '').replace(/\s*\([^)]*\)/g, '');
-  elFocus.innerHTML = `
-    <button class="back" type="button" id="backBtn">${BACK} Zur Woche</button>
-    <header class="focus-head">
-      <p class="focus-when">${esc(d.day)} · ${esc(d.date)}</p>
-      <h1 class="focus-title">${esc(title)}</h1>
-    </header>
-    ${(d.wod || []).map(wodMarkup).join('')}
-    ${noteMarkup(d.isoDate, d.date)}
-  `;
-  elFocus.querySelector('#backBtn').addEventListener('click', showWeek);
-  wireNote(elFocus);
-  elWeek.hidden = true; elFocus.hidden = false;
-  window.scrollTo(0, 0);
-  renderApparat('week', d);
 }
 
 function showFocus(letter){
@@ -1311,8 +1321,9 @@ function noteMarkup(isoDate, dayLabel){
 }
 
 function wireNote(root){
-  const block = root.querySelector('.note-block');
-  if (!block) return;
+  root.querySelectorAll('.note-block').forEach(wireNoteBlock);
+}
+function wireNoteBlock(block){
   const save = block.querySelector('.note-save');
   const state = block.querySelector('.note-state');
   save.addEventListener('click', () => {

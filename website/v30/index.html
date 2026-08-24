@@ -1464,10 +1464,20 @@ function showWeek(){
    Der Inhalt folgt dem Finger, damit die Geste sichtbar quittiert wird —
    sonst wüsste man im Gym nicht, ob sie gegriffen hat. ── */
 (function(){
-  const TRIGGER = 72;   // ab hier gilt die Geste als „zurück"
-  const RATIO   = 1.5;  // waagerecht muss senkrecht deutlich schlagen
-  const EDGE    = 24;   // Safaris eigene Rand-Geste nicht doppeln
+  /* Zwei verschiedene Schwellen, wie in den gängigen Gesten-Specs:
+     SLOP entscheidet nur, OB eine Geste läuft (Android ViewConfiguration
+     ~8 dp, react-swipeable/Hammer 10 px). Ob sie AUSLÖST, hängt am Anteil
+     der Fensterbreite plus Geschwindigkeit — so lösen es iOS' interactive
+     pop und Swipers longSwipesRatio/shortSwipes. Ein fester Pixelwert wäre
+     am Handy zu scharf und am Tablet praktisch ein Versehen. */
+  const SLOP    = 10;    // ab hier steht die Richtung fest
+  const PART    = 0.25;  // Anteil der Fensterbreite für den ruhigen Zug
+  const FLICK_V = 0.5;   // px/ms — ein Schnipser darf früher auslösen …
+  const FLICK_D = 48;    // … braucht aber eine Mindeststrecke
+  const RATIO   = 1.5;   // waagerecht muss senkrecht deutlich schlagen
+  const EDGE    = 24;    // Safaris eigene Rand-Geste nicht doppeln
   let x0 = 0, y0 = 0, dx = 0, tracking = false, axis = null, swiped = false;
+  let lastX = 0, lastT = 0, vx = 0;   // Velocity des letzten Zugabschnitts
 
   const glide = t => { elFocus.style.transition = t; };
   const reduced = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -1479,6 +1489,7 @@ function showWeek(){
     if (elFocus.hidden || !e.isPrimary || e.pointerType === 'mouse') return;
     if (e.clientX < EDGE) return;
     x0 = e.clientX; y0 = e.clientY; dx = 0;
+    lastX = e.clientX; lastT = e.timeStamp; vx = 0;
     tracking = true; axis = null; swiped = false;
     glide('');
   });
@@ -1486,8 +1497,10 @@ function showWeek(){
   elFocus.addEventListener('pointermove', e => {
     if (!tracking || !e.isPrimary) return;
     const mx = e.clientX - x0, my = e.clientY - y0;
+    const dt = e.timeStamp - lastT;
+    if (dt > 0){ vx = (e.clientX - lastX) / dt; lastX = e.clientX; lastT = e.timeStamp; }
     if (!axis){
-      if (Math.abs(mx) < 10 && Math.abs(my) < 10) return;
+      if (Math.abs(mx) < SLOP && Math.abs(my) < SLOP) return;
       // Richtung einmal festlegen: senkrecht gehört dem Scrollen.
       axis = (Math.abs(mx) > Math.abs(my) * RATIO) ? 'x' : 'y';
       if (axis === 'y'){ stop(); return; }
@@ -1498,7 +1511,8 @@ function showWeek(){
 
   function release(){
     if (!tracking) return;
-    const done = axis === 'x' && dx >= TRIGGER;
+    const done = axis === 'x' &&
+      (dx >= window.innerWidth * PART || (vx >= FLICK_V && dx >= FLICK_D));
     if (done){
       swiped = true;                 // den folgenden Klick schlucken
       if (reduced()){ stop(); showWeek(); return; }

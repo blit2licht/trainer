@@ -122,6 +122,12 @@ a{color:inherit;text-underline-offset:3px}
   letter-spacing:.13em;text-transform:uppercase;color:var(--ink-3);
   white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
 }
+/* Serverstand nicht erreichbar: der angezeigte Stand kommt vom Gerät. Bleibt
+   auch am schmalen Handy stehen — anders als die Meso-Angabe, die weicht. */
+.rail-stale{
+  margin-left:auto;font-family:var(--mono);font-size:11px;font-weight:700;
+  letter-spacing:.13em;text-transform:uppercase;color:var(--marker);white-space:nowrap;
+}
 .rail{user-select:none;-webkit-user-select:none;-webkit-touch-callout:none}
 
 /* ═══ Backend-Setup (Long-Press auf die Rail) ═══ */
@@ -208,10 +214,6 @@ a{color:inherit;text-underline-offset:3px}
   letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);
   padding-bottom:.5em;
 }
-.load-src{
-  margin-top:12px;font-family:var(--mono);font-size:12.5px;
-  letter-spacing:.06em;color:var(--ink-3);
-}
 .today-sub{
   margin-top:22px;font-size:16px;line-height:1.55;color:var(--ink-2);max-width:58ch;
 }
@@ -245,7 +247,10 @@ a{color:inherit;text-underline-offset:3px}
   font:inherit;color:inherit;text-align:left;cursor:pointer;
   transition:opacity .14s var(--ease);
 }
-.strip:last-of-type{border-bottom:1px solid var(--rule-2)}
+/* Abschlusslinie über eine gesetzte Klasse, nicht über :last-of-type: die
+   Zeilen sind mal <button>, mal <div>, dazwischen liegen .strip-body-Divs —
+   der Typselektor träfe zwei Zeilen zugleich. */
+.strip.is-last{border-bottom:1px solid var(--rule-2)}
 .strip[data-nav="0"]{cursor:default}
 .strip:hover .strip-day{color:var(--marker)}
 .strip-when{min-width:0}
@@ -403,18 +408,8 @@ a{color:inherit;text-underline-offset:3px}
   letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);margin-top:3px;
 }
 
-/* Lastleiter + Teststreifen */
-.ladder{
-  margin-top:16px;display:flex;flex-wrap:wrap;align-items:baseline;gap:2px 9px;
-  font-family:var(--disp);font-variation-settings:'wdth' 112;
-  font-weight:700;font-size:clamp(1.4rem,6vw,1.9rem);letter-spacing:-.035em;
-  color:var(--ink-2);line-height:1.25;
-}
-.rung.is-target{
-  color:var(--ink);font-weight:800;
-  font-size:clamp(1.75rem,7.6vw,2.45rem);
-}
-.rung-sep{color:var(--ink-3);font-weight:400}
+/* Teststreifen (die Text-Lastleiter davor ist abgelöst — keine .ladder/.rung
+   mehr im Renderer). */
 .teststrip{
   display:flex;align-items:stretch;gap:2px;margin-top:18px;
   border:1px solid var(--g3);
@@ -446,52 +441,6 @@ a{color:inherit;text-underline-offset:3px}
 .ts.is-ticked .ts-kg{visibility:hidden}
 .ts.is-ticked .ts-check{display:flex}
 .ts.is-target.is-ticked .ts-check svg{color:var(--amber-ink)}
-.ladder-foot{
-  margin-top:9px;font-family:var(--mono);font-size:12px;
-  letter-spacing:.06em;color:var(--g6);
-}
-.ts-mark{color:var(--amber);font-weight:700;letter-spacing:.14em;text-transform:uppercase;font-size:10.5px}
-
-/* ═══ Stationsbahn ═══ */
-.stations{
-  position:sticky;top:52px;z-index:15;
-  display:flex;gap:2px;margin:0 -20px;padding:10px 20px;
-  background:var(--g0);border-bottom:1px solid var(--g3);
-  overflow-x:auto;scrollbar-width:none;
-}
-.stations::-webkit-scrollbar{display:none}
-@media (min-width:1100px){ .stations{margin:0 -8px;padding:10px 8px} }
-.st{
-  flex:0 0 auto;display:flex;align-items:baseline;gap:7px;
-  min-height:44px;padding:0 13px;
-  background:none;border:1px solid var(--g3);color:var(--g6);cursor:pointer;
-  font-family:var(--mono);font-size:11px;font-weight:700;
-  letter-spacing:.13em;text-transform:uppercase;white-space:nowrap;
-  transition:color .16s var(--ease),border-color .16s var(--ease);
-}
-.st-l{font-family:var(--disp);font-variation-settings:'wdth' 118;font-weight:900;font-size:15px;letter-spacing:0}
-.st:hover{color:var(--g9);border-color:var(--g5)}
-.st.is-now{color:var(--amber);border-color:var(--amber)}
-.st.is-done{color:var(--cool);border-color:var(--cool-dim)}
-.st.is-done .st-t{text-decoration:line-through;text-decoration-thickness:1px}
-
-.rung-arrow{
-  font-family:var(--mono);font-size:.5em;font-weight:500;
-  letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);
-  padding:0 2px;
-}
-.ladder-steps{
-  margin-top:8px;font-family:var(--mono);font-size:13px;font-weight:500;
-  color:var(--ink-3);letter-spacing:.04em;line-height:1.6;
-}
-.ladder-unit{
-  font-family:var(--mono);font-size:13px;font-weight:700;
-  letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);
-}
-.ladder-mark{
-  margin-top:6px;font-family:var(--mono);font-size:11px;font-weight:700;
-  letter-spacing:.16em;text-transform:uppercase;color:var(--marker);
-}
 .ex-meta{
   display:flex;flex-wrap:wrap;gap:6px 22px;margin-top:14px;
   font-family:var(--mono);font-size:12.5px;color:var(--ink-2);
@@ -604,6 +553,11 @@ a{color:inherit;text-underline-offset:3px}
    gedimmt bis die Antwort da ist, nie optimistisch umgeschaltet. */
 .vstate.is-pending{opacity:.35}
 .vstate.is-pending .vundo{pointer-events:none}
+/* Gescheiterter Tap: Wort, nicht nur Farbe — der Rückkanal scheitert nie stumm. */
+.verr{
+  margin-top:10px;font-family:var(--mono);font-size:11.5px;font-weight:700;
+  letter-spacing:.13em;text-transform:uppercase;color:var(--marker);
+}
 .vbtn:disabled{opacity:.4;pointer-events:none}
 .vopen{
   font-family:var(--mono);font-size:11.5px;font-weight:700;
@@ -644,22 +598,8 @@ a{color:inherit;text-underline-offset:3px}
 .note-state{font-family:var(--mono);font-size:12px;color:var(--ink-3)}
 .note-state.err{color:var(--marker)}
 
-/* ═══ Bewegung ═══ */
-@keyframes step-in{
-  from{opacity:0;transform:translateY(6px)}
-  to{opacity:1;transform:none}
-}
-.blk.is-open .ladder .rung,
-.blk.is-open .ladder .rung-sep,
-.blk.is-open .ladder .ladder-unit{
-  animation:step-in .34s var(--ease) both;
-  animation-delay:calc(var(--i,0) * 38ms);
-}
-@media (prefers-reduced-motion:reduce){
-  .blk.is-open .ladder .rung,
-  .blk.is-open .ladder .rung-sep,
-  .blk.is-open .ladder .ladder-unit{animation:none}
-}
+/* Bewegung: der einzige gesetzte Moment ist das Zentrieren des nächsten
+   offenen Blocks nach dem Verdict (Zentrier-Regel, DESIGN.md Layout). */
 
 [hidden]{display:none !important}
 </style>
@@ -668,6 +608,7 @@ a{color:inherit;text-underline-offset:3px}
 
 <header class="rail">
   <button class="rail-week" id="railWeek" type="button" hidden></button>
+  <span class="rail-stale" id="railStale" hidden>Offline · Stand vom Gerät</span>
   <span class="rail-meso" id="railMeso"></span>
 </header>
 
@@ -679,7 +620,7 @@ a{color:inherit;text-underline-offset:3px}
   <aside class="apparat" id="apparat"></aside>
 </div>
 
-<script src="./data.js?v=a9e7496a"></script>
+<script src="./data.js?v=e0d8ac10"></script>
 <script>
 /* ════════════════════════════════════════════════════════════════════
    DUNKELKAMMER — Rendering-Kern (aus design/dunkelkammer.html)
@@ -712,6 +653,10 @@ function exRow(ex){
     setsCell = sr;
     last = (t.ramp && t.ramp.length > 1) ? t.ramp.map(fmt).join(' → ') + ' kg'
          : (t.kg != null ? fmt(t.kg) + ' kg' : '');
+  } else if (t.mode === 'rpe'){
+    // Last selbst gewählt, der RPE-Deckel führt — 2.x schrieb hier
+    // „RPE-kalibriert"; leer bliebe die Zeile ohne jede Lastangabe.
+    setsCell = sr; last = 'RPE-kalibriert';
   } else if (t.mode === 'bw'){
     setsCell = sr; last = 'BW'; if (t.unbroken) sub.push('unbroken');
   } else if (t.mode === 'bw_plus'){
@@ -753,7 +698,15 @@ function adaptWeek(w){
           ? ((b.exercises || []).find(e => e.ex_id === b.verdict_ex_id) || first)
           : first;
         v3[day.iso_date] = v3[day.iso_date] || {};
-        v3[day.iso_date][b.block_id] = { ex_id: b.verdict_ex_id || first.ex_id,
+        /* Ein Block ohne Übungen und ohne verdict_ex_id (Layer/Cool-down, laut
+           Konzept loggbar) hätte sonst ex_id === undefined — der Schlüssel
+           würde zu "<iso>|undefined" und zwei solcher Blöcke am selben Tag
+           kollidierten auf demselben DB-Primärschlüssel. Blockeigener Slug
+           als Rückfall, serverkonform zu /^[a-z0-9_]{1,32}$/. */
+        const blockSlug = ('b' + String(day.iso_date).replace(/-/g, '') + '_' +
+                           String(b.block_id || '')).toLowerCase()
+                           .replace(/[^a-z0-9_]/g, '').slice(0, 32);
+        v3[day.iso_date][b.block_id] = { ex_id: b.verdict_ex_id || first.ex_id || blockSlug,
                                          cls: b.verdict_class || first.class || 'loadable' };
         return { letter: b.block_id, title: b.title, prio: b.prio, min: b.min,
                  kurz: anchor.kurz, superset: b.superset,
@@ -803,20 +756,54 @@ const EP_GET  = '../get_verdicts.php';
 const backendMode = (localStorage.getItem('v3_backend') === 'http') ? 'http' : 'stub';
 const vstore = {
   cache: {},
+  /* stale = der angezeigte Stand stammt aus dem Gerätespiegel, nicht vom
+     Server (Funkloch beim Öffnen). Wird in der Kopfzeile wortcodiert. */
+  stale: false,
   get(iso, ex){ return this.cache[iso + '|' + ex] || null; },
+  /* Gerätespiegel: auch im http-Modus wird jeder Serverstand lokal
+     mitgeschrieben. Ohne ihn stünde nach einem gescheiterten Hydrate jeder
+     bereits geloggte Block wieder auf „offen" — und ein Re-Tap überschriebe
+     die korrekte Server-Zeile. */
+  mirrorRead(){
+    try { return JSON.parse(localStorage.getItem(VKEY)) || {}; } catch(e){ return {}; }
+  },
+  mirrorWrite(all){
+    try { localStorage.setItem(VKEY, JSON.stringify(all)); } catch(e){}
+  },
+  mirrorSet(iso, ex, val){
+    const all = this.mirrorRead();
+    if (val) all[iso + '|' + ex] = val; else delete all[iso + '|' + ex];
+    this.mirrorWrite(all);
+  },
   async hydrate(from, to){
     if (backendMode === 'http'){
       try {
         const r = await fetch(`${EP_GET}?from=${from}&to=${to}`);
+        if (!r.ok) throw new Error('hydrate ' + r.status);
         const j = await r.json();
+        const fresh = {};
         (j.verdicts || []).forEach(v => {
-          this.cache[v.iso_date + '|' + v.ex_id] =
+          fresh[v.iso_date + '|' + v.ex_id] =
             { verdict: v.verdict, reason: v.miss_reason, at: v.updated_at };
         });
-      } catch(e){ /* Funkloch: Cache bleibt leer, Offline-Puffer greift lokal */ }
+        Object.assign(this.cache, fresh);
+        this.stale = false;
+        /* Spiegel auf den Serverstand des geladenen Bereichs bringen —
+           Zeilen, die der Server nicht (mehr) kennt, fallen dort raus. */
+        const all = this.mirrorRead();
+        Object.keys(all).forEach(k => {
+          const iso = k.split('|')[0];
+          if (iso >= from && iso <= to && !fresh[k]){ delete all[k]; delete this.cache[k]; }
+        });
+        Object.assign(all, fresh);
+        this.mirrorWrite(all);
+      } catch(e){
+        // Funkloch: Gerätespiegel zeigen statt alles fälschlich als „offen".
+        Object.assign(this.cache, this.mirrorRead());
+        this.stale = true;
+      }
     } else {
-      try { Object.assign(this.cache, JSON.parse(localStorage.getItem(VKEY)) || {}); }
-      catch(e){}
+      Object.assign(this.cache, this.mirrorRead());
     }
   },
   async save(iso, ex, verdict, reason){
@@ -825,16 +812,17 @@ const vstore = {
         headers:{ 'Content-Type':'application/json' },
         body: JSON.stringify({ secret: localStorage.getItem(SKEY) || '',
           iso_date: iso, ex_id: ex, verdict, miss_reason: reason || null }) });
-      const j = await r.json();
-      if (!r.ok || !j || !j.verdict) throw new Error('save failed');
+      const j = await r.json().catch(() => null);
+      if (!r.ok || !j || !j.verdict) throw new Error(r.status === 401 ? 'auth' : 'save');
       const v = j.verdict;   // Serverstand, nie die Tap-Annahme
-      this.cache[iso + '|' + ex] = { verdict: v.verdict, reason: v.miss_reason, at: v.updated_at };
+      const val = { verdict: v.verdict, reason: v.miss_reason, at: v.updated_at };
+      this.cache[iso + '|' + ex] = val;
+      this.mirrorSet(iso, ex, val);
     } else {
       await new Promise(r => setTimeout(r, 160));
-      this.cache[iso + '|' + ex] = { verdict, reason: reason || null, at: new Date().toISOString() };
-      const all = JSON.parse(localStorage.getItem(VKEY) || '{}');
-      all[iso + '|' + ex] = this.cache[iso + '|' + ex];
-      localStorage.setItem(VKEY, JSON.stringify(all));
+      const val = { verdict, reason: reason || null, at: new Date().toISOString() };
+      this.cache[iso + '|' + ex] = val;
+      this.mirrorSet(iso, ex, val);
     }
   },
   async clear(iso, ex){
@@ -844,14 +832,11 @@ const vstore = {
         headers:{ 'Content-Type':'application/json' },
         body: JSON.stringify({ secret: localStorage.getItem(SKEY) || '',
           iso_date: iso, ex_id: ex, verdict: 'clear' }) });
-      const j = await r.json();
-      if (!r.ok || !j || !j.cleared) throw new Error('clear failed');
-      delete this.cache[iso + '|' + ex];
-    } else {
-      delete this.cache[iso + '|' + ex];
-      const all = JSON.parse(localStorage.getItem(VKEY) || '{}');
-      delete all[iso + '|' + ex]; localStorage.setItem(VKEY, JSON.stringify(all));
+      const j = await r.json().catch(() => null);
+      if (!r.ok || !j || !j.cleared) throw new Error(r.status === 401 ? 'auth' : 'clear');
     }
+    delete this.cache[iso + '|' + ex];
+    this.mirrorSet(iso, ex, null);
   }
 };
 let askOpen = null;   // iso|ex mit offener Technik/Last-Rückfrage
@@ -924,7 +909,14 @@ function dayObject(d, weeks){
 /* ════════════════════════════════════════════════════════════════════
    Ansichten
    ════════════════════════════════════════════════════════════════════ */
-let todayIso = new Date().toISOString().slice(0,10);
+/* Lokales Kalenderdatum, nie UTC: toISOString() liefert zwischen lokaler
+   Mitternacht und UTC-Mitternacht noch den Vortag (Europe/Berlin +1/+2) —
+   das Handy hätte um 00:30 die falsche Woche und den falschen „heute". */
+function localIso(d){
+  return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0')
+       + '-' + String(d.getDate()).padStart(2, '0');
+}
+let todayIso = localIso(new Date());
 let currentFocus = null;
 
 /* Wochen: der Payload trägt die noch nicht abgelaufenen Planwochen. Gewählt
@@ -963,8 +955,8 @@ const BACK = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-
 
 const TYPEWORD = { own:'Fokus', box:'Box', ride:'Rad', rest:'Ruhe' };
 
-/* Dummy-Stub: Fokus-Charakter je Buchstabe. Wird im 3.0-Schema ein
-   Datenfeld der Woche (focus-label), hier hart für W34. */
+/* Fokus-Charakter je Tag — kommt als focus_label aus dem Payload
+   (build_payload.py), Fallback nur, wenn die Planquelle keines trägt. */
 function focusLabel(letter){
   return (D.focusLabels || {})[letter] || ('Fokus ' + letter);
 }
@@ -1032,15 +1024,15 @@ function renderWeek(){
     </section>
 
     <h2 class="week-head">Die Woche</h2>
-    ${days.map(d => stripMarkup(d, d.isoDate === todayIso)).join('')}
+    ${days.map((d, i) => stripMarkup(d, d.isoDate === todayIso, i === days.length - 1)).join('')}
   `;
 
   elWeek.querySelectorAll('.note-handle').forEach(h => h.addEventListener('click', () => {
     h.setAttribute('aria-expanded', h.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');
   }));
+  /* Ein Listener je Element: die Fokus-Streifen tragen data-focus schon, ein
+     zweiter Selektor auf .strip[data-nav="1"] hätte doppelt gebunden. */
   elWeek.querySelectorAll('[data-focus]').forEach(b =>
-    b.addEventListener('click', () => showFocus(b.dataset.focus)));
-  elWeek.querySelectorAll('.strip[data-nav="1"]').forEach(b =>
     b.addEventListener('click', () => showFocus(b.dataset.focus)));
   elWeek.querySelectorAll('.strip[data-nav="2"]').forEach(b =>
     b.addEventListener('click', () => {
@@ -1065,7 +1057,7 @@ const TYPEICON = {
   rest: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6v12M15 6v12"/></svg>'
 };
 
-function stripMarkup(d, isToday){
+function stripMarkup(d, isToday, isLast){
   const o = dayObject(d, week);
   const nav = d.focus ? 1 : (d.wod && d.wod.length ? 2 : 0);
 
@@ -1091,7 +1083,7 @@ function stripMarkup(d, isToday){
     ? `<span class="strip-load is-chev" aria-hidden="true">${CHEV}</span>`
     : '<span class="strip-load"></span>';
 
-  const strip = `<${nav ? 'button' : 'div'} class="strip${o.kind === 'rest' ? ' is-rest' : ''}${isToday ? ' is-today' : ''}" data-nav="${nav}"${nav === 1 ? ` data-focus="${esc(d.focus)}"` : ''}${nav === 2 ? ` data-day="${esc(d.isoDate)}" aria-expanded="false" aria-controls="db-${esc(d.isoDate)}"` : ''}${nav ? ' type="button"' : ''}>
+  const strip = `<${nav ? 'button' : 'div'} class="strip${o.kind === 'rest' ? ' is-rest' : ''}${isToday ? ' is-today' : ''}${isLast ? ' is-last' : ''}" data-nav="${nav}"${nav === 1 ? ` data-focus="${esc(d.focus)}"` : ''}${nav === 2 ? ` data-day="${esc(d.isoDate)}" aria-expanded="false" aria-controls="db-${esc(d.isoDate)}"` : ''}${nav ? ' type="button"' : ''}>
     <span class="strip-when">
       <span class="strip-day" aria-label="${esc(d.day)}">${esc(d.kurzTag || d.day)}</span>
       <span class="strip-date">${esc(d.date)}</span>
@@ -1163,13 +1155,6 @@ function vTime(at){
   return d.toLocaleDateString('de-DE',{day:'2-digit',month:'2-digit'}) + ' ' +
          d.toLocaleTimeString('de-DE',{hour:'2-digit',minute:'2-digit'});
 }
-function vHit(iso, letter){
-  const ov = (V3[iso] || {})[letter];
-  if (!ov) return false;
-  const v = vstore.get(iso, ov.ex_id);
-  return !!(v && v.verdict === 'hit');
-}
-
 function showFocus(letter){
   const f = (week.focusDays || {})[letter];
   if (!f) return;
@@ -1268,6 +1253,21 @@ function showFocus(letter){
    (Scrollposition bleibt). */
 function wireVerdicts(root, letter){
   const blkIndex = el => Array.from(root.querySelectorAll('.blk')).indexOf(el.closest('.blk'));
+  /* Der Rückkanal ist das Produkt — ein gescheiterter Tap darf nie stumm
+     bleiben (sonst loggt Martin bei rotiertem Secret ins Leere). Wort statt
+     nur Farbe, wie überall. */
+  const fail = (btn, err) => {
+    const box = btn.closest('.verdict');
+    if (!box) return;
+    box.querySelectorAll('.verr').forEach(n => n.remove());
+    const p = document.createElement('p');
+    p.className = 'verr';
+    p.setAttribute('role', 'status');
+    p.textContent = (err && err.message === 'auth')
+      ? 'Nicht gespeichert · Secret abgelehnt'
+      : 'Nicht gespeichert · nochmal tippen';
+    box.appendChild(p);
+  };
   const rerender = (fromIdx) => {
     const y = window.scrollY;
     showFocus.rerender = true; showFocus(letter); showFocus.rerender = false;
@@ -1283,7 +1283,7 @@ function wireVerdicts(root, letter){
   root.querySelectorAll('[data-vdone]').forEach(b => b.addEventListener('click', async () => {
     const [iso, ex] = b.dataset.vdone.split('|'); const i = blkIndex(b); b.disabled = true;
     try { await vstore.save(iso, ex, 'hit'); askOpen = null; rerender(i); }
-    catch(e){ b.disabled = false; }
+    catch(e){ b.disabled = false; fail(b, e); }
   }));
   root.querySelectorAll('[data-vfail]').forEach(b => b.addEventListener('click', async () => {
     const key = b.dataset.vfail; const [iso, ex] = key.split('|'); const i = blkIndex(b);
@@ -1291,20 +1291,20 @@ function wireVerdicts(root, letter){
     else {
       b.disabled = true;
       try { await vstore.save(iso, ex, 'miss'); rerender(i); }
-      catch(e){ b.disabled = false; }
+      catch(e){ b.disabled = false; fail(b, e); }
     }
   }));
   root.querySelectorAll('[data-vreason]').forEach(b => b.addEventListener('click', async () => {
     const [iso, ex] = b.dataset.vkey.split('|'); const i = blkIndex(b); b.disabled = true;
     try { await vstore.save(iso, ex, 'miss', b.dataset.vreason); askOpen = null; rerender(i); }
-    catch(e){ b.disabled = false; }
+    catch(e){ b.disabled = false; fail(b, e); }
   }));
   root.querySelectorAll('[data-vundo]').forEach(b => b.addEventListener('click', async () => {
     const [iso, ex] = b.dataset.vundo.split('|');
     b.disabled = true;
     const row = b.closest('.vstate'); if (row) row.classList.add('is-pending');
     try { await vstore.clear(iso, ex); askOpen = null; rerender(); }
-    catch(e){ if (row) row.classList.remove('is-pending'); b.disabled = false; }
+    catch(e){ if (row) row.classList.remove('is-pending'); b.disabled = false; fail(b, e); }
   }));
 }
 
@@ -1357,10 +1357,9 @@ function exerciseMarkup(r, hi, single, opts){
   } else if (pl.kind === 'bw'){
     loadInline = 'BW';
   } else if (pl.kind === 'text'){
+    /* Keine Farbe erfinden: ein band-Target ohne Stärke bleibt „Band" — der
+       Lint im Generator meldet die fehlende Angabe an der Quelle. */
     loadInline = pl.text;
-    /* "Band" ohne Stärke ist keine Vorgabe — Dummy-Fix; die Bandfarbe gehört
-       ins 3.0-target (Registry/mode), nicht in Prosa. */
-    if (/^band$/i.test(loadInline)) loadInline = 'rotes Band';
   }
 
   const meta = [];
@@ -1484,6 +1483,7 @@ function renderRail(){
     ? (preview ? 'Zurück zur laufenden Woche' : 'Vorschau auf die nächste Woche')
     : 'Woche ' + week.id);
   document.getElementById('railMeso').textContent = week.meso || week.label || '';
+  document.getElementById('railStale').hidden = !vstore.stale;
 }
 
 async function switchWeek(){

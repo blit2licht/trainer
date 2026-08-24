@@ -33,6 +33,10 @@ STATE_JSON = REPO / "coach" / "state.json"
 PLAN_DIR = REPO / "coach" / "plan"
 DEFAULT_OUT = REPO / "V3.0" / "build" / "data.js"
 
+# Erlaubte target-Modi (datenmodell.md §3). `rpe` = Last selbst gewählt, der
+# RPE-Deckel führt — für Layer-/Accessory-Arbeit ohne vorgeschriebenes Gewicht.
+TARGET_MODES = {"kg", "bw", "bw_plus", "time", "band", "rpe"}
+
 
 def load_json(path: Path) -> dict:
     with path.open(encoding="utf-8") as fh:
@@ -85,6 +89,36 @@ def build_day(day: dict, reg: dict, warns: list[str]) -> dict:
                     warns.append(f"{iso} Block {block.get('block_id')}: ex_id "
                                  f"'{ex_id}' nicht in Registry und kein kurz.")
             target = ex.get("target", {})
+            # Prinzip 1.7: der Modus ist explizit, und ein Modus ohne seinen
+            # Pflichtwert erzeugt am Handy eine lastlose Zeile — lieber laut
+            # warnen als still nichts anzeigen (Review 24.08.).
+            mode = target.get("mode")
+            if mode not in TARGET_MODES:
+                warns.append(f"{iso} Block {block.get('block_id')} / {ex_id}: "
+                             f"unbekannter target.mode «{mode}» — erlaubt: "
+                             f"{', '.join(sorted(TARGET_MODES))}.")
+            # ramp erzeugt nur ab zwei Stufen einen Teststreifen — eine
+            # einstufige ramp ohne kg rendert genauso lastlos wie gar keine.
+            elif mode == "kg" and target.get("kg") is None \
+                    and len(target.get("ramp") or []) < 2:
+                warns.append(f"{iso} Block {block.get('block_id')} / {ex_id}: "
+                             f"mode:kg ohne kg und ohne mehrstufige ramp — Handy "
+                             f"zeigt keine Last. Wert ergänzen oder mode:rpe.")
+            elif mode == "bw_plus" and target.get("kg") is None:
+                warns.append(f"{iso} Block {block.get('block_id')} / {ex_id}: "
+                             f"mode:bw_plus ohne kg (Zusatzlast fehlt).")
+            elif mode == "time" and target.get("sec") is None:
+                warns.append(f"{iso} Block {block.get('block_id')} / {ex_id}: "
+                             f"mode:time ohne sec.")
+            elif mode == "band" and not target.get("band"):
+                warns.append(f"{iso} Block {block.get('block_id')} / {ex_id}: "
+                             f"mode:band ohne band (Stärke/Farbe fehlt).")
+            # Bei mode:rpe IST der Deckel die Vorgabe — fehlt er, steht die
+            # Übung ganz ohne Vorgabe da (selbst gewählt und ungedeckelt).
+            elif mode == "rpe" and target.get("rpe_cap") is None:
+                warns.append(f"{iso} Block {block.get('block_id')} / {ex_id}: "
+                             f"mode:rpe ohne rpe_cap — Last selbst gewählt UND "
+                             f"kein Deckel, das Handy zeigt keine Vorgabe.")
             # kg-Spanne nur aus mode:kg REQUIRED-Blöcke — Accessory-/Layer-Lasten
             # (optional) sind nie Tages-Kennzahl.
             if prio == "required" and target.get("mode") == "kg" \

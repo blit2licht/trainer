@@ -364,7 +364,7 @@ const DATA = {
                 "name": "DB Bench Press",
                 "class": null,
                 "target": {
-                  "mode": "kg",
+                  "mode": "rpe",
                   "sets": 3,
                   "reps": 12,
                   "rpe_cap": 7,
@@ -876,7 +876,7 @@ const DATA = {
                   "name": "DB Bench Press",
                   "class": null,
                   "target": {
-                    "mode": "kg",
+                    "mode": "rpe",
                     "sets": 3,
                     "reps": 12,
                     "rpe_cap": 7,

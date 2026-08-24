@@ -342,7 +342,7 @@
               "ex_id": "db_bench",
               "kurz": "DB Bench Press",
               "target": {
-                "mode": "kg",
+                "mode": "rpe",
                 "sets": 3,
                 "reps": 12,
                 "rpe_cap": 7,

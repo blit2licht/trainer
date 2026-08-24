@@ -17,6 +17,141 @@
         "value": "inter",
         "createdAt": "2026-08-20T07:42:38.064Z",
         "reason": "Nutzer 2026-08-20: Schriftwahl ausdruecklich egal, Kriterium ist Funktion/Lesbarkeit statt Unverwechselbarkeit. Inter ist als UI-Schrift in kleinen Graden funktional begruendet; der Befund zielt auf Distinktheit, die hier kein Ziel ist."
+      },
+      {
+        "rule": "all-caps-body",
+        "value": "*",
+        "files": [
+          "V3.0/welt-visualisierung.html"
+        ],
+        "createdAt": "2026-08-22T09:56:13.050Z",
+        "reason": "Oszilloskop-Grammatik (design-welt.md): Instrumenten-Caps auf Skirt/Legende sind kurze Labels der Welt, kein Fliesstext; vom Nutzer gelockte Weltentscheidung"
+      },
+      {
+        "rule": "codex-grid-background",
+        "value": "*",
+        "files": [
+          "V3.0/handy.html"
+        ],
+        "createdAt": "2026-08-22T12:19:16.947Z",
+        "reason": "Gelockte Designwelt design-welt.md: Graticule ist wörtliche Mess-Oberfläche (Oszilloskop), Raster ist Grund per Weltgrammatik"
+      },
+      {
+        "rule": "all-caps-body",
+        "value": "*",
+        "files": [
+          "V3.0/handy.html"
+        ],
+        "createdAt": "2026-08-22T12:19:17.077Z",
+        "reason": "Uppercase nur in kurzen Instrumenten-Etiketten (Skirt/States/Trigger) per Weltgrammatik; Fließtext ist gemischt"
+      },
+      {
+        "rule": "flat-type-hierarchy",
+        "value": "*",
+        "files": [
+          "V3.0/handy.html"
+        ],
+        "createdAt": "2026-08-22T12:19:17.134Z",
+        "reason": "Hierarchie kommt aus 56px-Readouts vs 14px Text (Verhältnis 4:1); Mono-Labels absichtlich eng gestuft"
+      },
+      {
+        "rule": "design-system-color",
+        "value": "*",
+        "files": [
+          "V3.0/handy.html"
+        ],
+        "createdAt": "2026-08-22T15:17:40.212Z",
+        "reason": "Clickdummy trägt 1:1 die Dunkelkammer-Tokens aus design/dunkelkammer.html (gelockte Welt 22.08., Martin abgenommen); DESIGN.md wird laut Phasenplan aus diesem Gewinner neu geschrieben"
+      },
+      {
+        "rule": "design-system-font-size",
+        "value": "*",
+        "files": [
+          "V3.0/handy.html"
+        ],
+        "createdAt": "2026-08-22T15:17:40.261Z",
+        "reason": "Type-Ramp stammt aus der gelockten Dunkelkammer-Referenz; DESIGN.md-Neuschrieb aus dem Gewinner ist der nächste Phasenschritt"
+      },
+      {
+        "rule": "design-system-font-size",
+        "value": "*",
+        "files": [
+          "V3.0/werkstatt.html"
+        ],
+        "createdAt": "2026-08-22T15:20:51.863Z",
+        "reason": "Dunkelkammer-Weltgrammatik (design/dunkelkammer.html, DESIGN.md): Mono-Etiketten uppercase, feine Mono-Grade, Light-Theme-Leiter; identisch zu V3.0/handy.html sanktioniert. Feintuning in polish."
+      },
+      {
+        "rule": "design-system-color",
+        "value": "*",
+        "files": [
+          "V3.0/werkstatt.html"
+        ],
+        "createdAt": "2026-08-22T15:20:51.912Z",
+        "reason": "Dunkelkammer-Weltgrammatik (design/dunkelkammer.html, DESIGN.md): Mono-Etiketten uppercase, feine Mono-Grade, Light-Theme-Leiter; identisch zu V3.0/handy.html sanktioniert. Feintuning in polish."
+      },
+      {
+        "rule": "all-caps-body",
+        "value": "*",
+        "files": [
+          "V3.0/werkstatt.html"
+        ],
+        "createdAt": "2026-08-22T15:20:51.984Z",
+        "reason": "Dunkelkammer-Weltgrammatik (design/dunkelkammer.html, DESIGN.md): Mono-Etiketten uppercase, feine Mono-Grade, Light-Theme-Leiter; identisch zu V3.0/handy.html sanktioniert. Feintuning in polish."
+      },
+      {
+        "rule": "flat-type-hierarchy",
+        "value": "*",
+        "files": [
+          "V3.0/werkstatt.html"
+        ],
+        "createdAt": "2026-08-22T15:20:52.032Z",
+        "reason": "Dunkelkammer-Weltgrammatik (design/dunkelkammer.html, DESIGN.md): Mono-Etiketten uppercase, feine Mono-Grade, Light-Theme-Leiter; identisch zu V3.0/handy.html sanktioniert. Feintuning in polish."
+      },
+      {
+        "rule": "design-system-color",
+        "value": "*",
+        "files": [
+          "V3.0/icons.html"
+        ],
+        "createdAt": "2026-08-22T15:38:17.643Z",
+        "reason": "Icon-Vorschaublatt: Hex-Näherungen der oklch-Tokens für SVG-Icons plus Präsentations-Scaffold; kein Produkt-UI."
+      },
+      {
+        "rule": "design-system-font-size",
+        "value": "*",
+        "files": [
+          "V3.0/icons.html"
+        ],
+        "createdAt": "2026-08-22T15:38:17.691Z",
+        "reason": "Icon-Vorschaublatt: Hex-Näherungen der oklch-Tokens für SVG-Icons plus Präsentations-Scaffold; kein Produkt-UI."
+      },
+      {
+        "rule": "low-contrast",
+        "value": "*",
+        "files": [
+          "V3.0/icons.html"
+        ],
+        "createdAt": "2026-08-22T15:38:17.739Z",
+        "reason": "Icon-Vorschaublatt: Hex-Näherungen der oklch-Tokens für SVG-Icons plus Präsentations-Scaffold; kein Produkt-UI."
+      },
+      {
+        "rule": "all-caps-body",
+        "value": "*",
+        "files": [
+          "V3.0/icons.html"
+        ],
+        "createdAt": "2026-08-22T15:39:56.041Z",
+        "reason": "Dunkelkammer-Weltgrammatik: Mono-Etiketten uppercase (kurze Labels im Vorschaublatt), identisch zu handy/werkstatt sanktioniert."
+      },
+      {
+        "rule": "flat-type-hierarchy",
+        "value": "*",
+        "files": [
+          "V3.0/icons.html"
+        ],
+        "createdAt": "2026-08-22T15:49:18.599Z",
+        "reason": "Dunkelkammer-Weltgrammatik: enge Mono-Etikettengrade (11-13px) neben Display-h1; identisch zu handy/werkstatt sanktioniert. Vorschaublatt, kein Produkt-UI."
       }
     ]
   }

@@ -1,0 +1,1048 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dunkelkammer · Training</title>
+<meta name="theme-color" content="#0f1113">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Spline+Sans+Mono:wght@400;500;700&display=swap">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+/* ═══ Tokens ═══ · Dunkelkammer
+   Eine einzige elfstufige Tonwertleiter regelt die gesamte Hierarchie —
+   keine zweite Skala für Sonderfälle. g0 ist der Grund, g10 die Zahl.
+   Bernstein ist Sicherheitslicht, kein Neon: kein Glühen, keine Leuchtkante.
+   Der kalte Akzent trägt ausschließlich Bestätigtes. */
+:root{
+  --g0:oklch(11% 0.006 62);  --g1:oklch(14.5% 0.007 62); --g2:oklch(18% 0.008 62);
+  --g3:oklch(22% 0.009 62);  --g4:oklch(28% 0.010 62);   --g5:oklch(36% 0.011 62);
+  --g6:oklch(47% 0.012 62);  --g7:oklch(61% 0.012 62);   --g8:oklch(76% 0.010 62);
+  --g9:oklch(88% 0.008 62);  --g10:oklch(97% 0.005 62);
+
+  --amber:oklch(80% 0.152 72);
+  --amber-ink:oklch(14% 0.02 62);
+  --amber-dim:oklch(34% 0.075 68);
+  --cool:oklch(80% 0.118 196);
+  --cool-dim:oklch(31% 0.055 198);
+
+  --disp:'Archivo',system-ui,sans-serif;
+  --mono:'Spline Sans Mono',ui-monospace,monospace;
+  --ease:cubic-bezier(.16,1,.3,1);
+}
+/* Der helle Modus kehrt dieselbe Leiter um; die beiden Akzente bleiben
+   dieselben Farben, nur auf die Helligkeit des Grundes gebracht. */
+@media (prefers-color-scheme:light){
+  :root:not([data-theme="dark"]){
+    --g0:oklch(98.5% 0.003 62); --g1:oklch(96% 0.004 62);  --g2:oklch(93% 0.005 62);
+    --g3:oklch(89% 0.006 62);   --g4:oklch(82% 0.007 62);  --g5:oklch(70% 0.009 62);
+    --g6:oklch(56% 0.011 62);   --g7:oklch(43% 0.012 62);  --g8:oklch(30% 0.010 62);
+    --g9:oklch(20% 0.008 62);   --g10:oklch(12% 0.006 62);
+    --amber:oklch(58% 0.148 62);
+    --amber-ink:oklch(99% 0.004 62);
+    --amber-dim:oklch(90% 0.055 66);
+    --cool:oklch(48% 0.115 205);
+    --cool-dim:oklch(91% 0.045 200);
+  }
+}
+:root[data-theme="light"]{
+  --g0:oklch(98.5% 0.003 62); --g1:oklch(96% 0.004 62);  --g2:oklch(93% 0.005 62);
+  --g3:oklch(89% 0.006 62);   --g4:oklch(82% 0.007 62);  --g5:oklch(70% 0.009 62);
+  --g6:oklch(56% 0.011 62);   --g7:oklch(43% 0.012 62);  --g8:oklch(30% 0.010 62);
+  --g9:oklch(20% 0.008 62);   --g10:oklch(12% 0.006 62);
+  --amber:oklch(58% 0.148 62);
+  --amber-ink:oklch(99% 0.004 62);
+  --amber-dim:oklch(90% 0.055 66);
+  --cool:oklch(48% 0.115 205);
+  --cool-dim:oklch(91% 0.045 200);
+}
+
+/* Rollen auf die Leiter abgebildet — nirgends wird eine Farbe direkt benutzt. */
+:root{
+  --ground:var(--g0); --ground-2:var(--g1);
+  --rule:var(--g4); --rule-2:var(--g2);
+  --ink:var(--g10); --ink-2:var(--g7); --ink-3:var(--g6);
+  --marker:var(--amber);
+}
+
+html{background:var(--ground);-webkit-text-size-adjust:100%}
+body{
+  background:var(--ground);color:var(--ink);
+  font-family:var(--disp);font-variation-settings:'wdth' 100;
+  font-size:17px;line-height:1.45;min-height:100vh;
+  font-variant-numeric:tabular-nums;
+  -webkit-font-smoothing:antialiased;
+}
+
+/* Browser-Oberflächen tragen die Welt mit */
+::selection{background:var(--marker);color:#fff}
+:root{accent-color:var(--marker);caret-color:var(--marker)}
+:focus-visible{outline:2.5px solid var(--marker);outline-offset:3px}
+*{scrollbar-color:var(--g4) transparent;scrollbar-width:thin}
+::-webkit-scrollbar{width:10px;height:10px}
+::-webkit-scrollbar-thumb{background:var(--g4);border:3px solid var(--ground)}
+::-webkit-scrollbar-track{background:transparent}
+a{color:inherit;text-underline-offset:3px}
+
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* ═══ Schiene ═══ */
+.rail{
+  position:sticky;top:0;z-index:20;
+  display:flex;align-items:center;gap:14px;
+  padding:0 20px;min-height:52px;
+  background:var(--ground);border-bottom:1px solid var(--rule);
+}
+.rail::after{
+  content:'';position:absolute;left:0;right:0;bottom:-1px;height:1px;
+  background:var(--rule);
+}
+.rail-sel{
+  appearance:none;-webkit-appearance:none;
+  background:none;border:none;color:var(--ink);
+  font-family:var(--mono);font-size:12.5px;font-weight:500;
+  letter-spacing:.13em;text-transform:uppercase;
+  min-height:44px;padding:0 22px 0 0;cursor:pointer;
+}
+.rail-selwrap{position:relative;display:inline-flex;align-items:center}
+.rail-selwrap svg{position:absolute;right:2px;width:11px;height:11px;pointer-events:none;color:var(--ink-3)}
+.rail-meso{
+  margin-left:auto;font-family:var(--mono);font-size:11.5px;font-weight:500;
+  letter-spacing:.13em;text-transform:uppercase;color:var(--ink-3);
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+
+/* ═══ Rahmen ═══ */
+.wrap{padding:0 20px 96px}
+@media (min-width:1100px){
+  .rail{padding:0 40px}
+  .wrap{
+    padding:0 40px 120px;max-width:1320px;margin:0 auto;
+    display:grid;grid-template-columns:minmax(0,1fr) 300px;
+    column-gap:56px;align-items:start;
+  }
+  .col-main{min-width:0}
+  .apparat{position:sticky;top:84px}
+}
+@media (max-width:1099px){ .apparat{display:none} }
+/* Auf schmalen Geräten konkurriert die Meso-Angabe mit der Wochenwahl —
+   sie ist Kontext, nicht Navigation, und weicht. */
+@media (max-width:430px){ .rail-meso{display:none} }
+
+/* ═══ Heute ═══ */
+.today{padding:38px 0 34px}
+.today-when{
+  font-family:var(--mono);font-size:12.5px;font-weight:500;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3);
+}
+.today-when b{color:var(--g9);font-weight:700}
+.today-when .now{color:var(--amber);font-weight:700}
+.today-what{
+  font-family:var(--disp);font-variation-settings:'wdth' 88;
+  font-weight:800;letter-spacing:-.03em;line-height:.98;
+  font-size:clamp(2rem,8.5vw,3.25rem);
+  margin-top:10px;text-wrap:balance;max-width:20ch;
+}
+/* Zusammengesetzte Einheitennamen sind echte Daten. Der Grad weicht ihnen aus,
+   damit die Stange im ersten Viewport stehen bleibt. */
+.today-what.is-l{font-size:clamp(1.6rem,6.4vw,2.4rem);max-width:26ch}
+/* Der zweite Teil eines zusammengesetzten Namens ist der WOD-Teil: eigene
+   Zeile, eigener Grad, nicht derselbe Block. */
+.today-what-2{
+  margin-top:8px;font-family:var(--disp);font-variation-settings:'wdth' 92;
+  font-weight:600;font-size:clamp(1.05rem,4.3vw,1.4rem);
+  letter-spacing:-.015em;line-height:1.25;color:var(--ink-2);max-width:40ch;
+}
+.today-figure{display:flex;align-items:flex-end;gap:14px;margin-top:30px;flex-wrap:wrap}
+.load-num{
+  font-family:var(--disp);font-variation-settings:'wdth' 124;
+  font-weight:900;letter-spacing:-.05em;line-height:.78;
+  font-size:clamp(4.25rem,21vw,6rem);color:var(--g10);
+}
+.load-unit{
+  font-family:var(--mono);font-size:15px;font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);
+  padding-bottom:.5em;
+}
+
+/* Eine Zahl ohne Herkunft ist eine Behauptung. */
+.load-src{
+  margin-top:12px;font-family:var(--mono);font-size:12.5px;
+  letter-spacing:.06em;color:var(--ink-3);
+}
+/* Box- und Radtage tragen ihren Ablauf im Klartext — an der Stelle, an der
+   ein Fokus-Tag den Weg in die Routine anbietet. */
+.today-sub{
+  margin-top:22px;font-size:16px;line-height:1.55;color:var(--ink-2);max-width:58ch;
+}
+.rx-line{
+  margin-top:18px;font-family:var(--mono);font-size:13.5px;color:var(--ink-2);line-height:1.65;
+}
+.rx-line .rv{color:var(--ink);font-weight:700}
+
+.go{
+  display:inline-flex;align-items:center;gap:10px;
+  margin-top:26px;min-height:48px;padding:0 20px 0 18px;
+  background:var(--ink);color:var(--ground);border:none;
+  font-family:var(--mono);font-size:12.5px;font-weight:700;
+  letter-spacing:.13em;text-transform:uppercase;cursor:pointer;
+  transition:background .14s var(--ease);
+}
+.go:hover{background:var(--marker);color:#fff}
+.go svg{width:13px;height:13px}
+
+/* ═══ Restwoche ═══ */
+.week-head{
+  font-family:var(--mono);font-size:11.5px;font-weight:700;
+  letter-spacing:.18em;text-transform:uppercase;color:var(--ink-3);
+  padding-top:34px;margin-bottom:2px;
+}
+.strip{
+  display:grid;grid-template-columns:112px minmax(0,1fr) auto;
+  align-items:baseline;gap:10px 20px;
+  width:100%;min-height:72px;padding:16px 0;
+  background:none;border:none;border-top:1px solid var(--rule-2);
+  font:inherit;color:inherit;text-align:left;cursor:pointer;
+  transition:opacity .14s var(--ease);
+}
+.strip:last-of-type{border-bottom:1px solid var(--rule-2)}
+.strip[data-nav="0"]{cursor:default}
+.strip:hover .strip-day{color:var(--marker)}
+.strip-when{min-width:0}
+.strip-day{
+  display:block;font-family:var(--disp);font-variation-settings:'wdth' 88;
+  font-weight:700;font-size:16px;letter-spacing:-.01em;
+  transition:color .14s var(--ease);
+}
+.strip-date{
+  display:block;font-family:var(--mono);font-size:11.5px;
+  color:var(--ink-3);letter-spacing:.09em;text-transform:uppercase;margin-top:3px;
+}
+.strip-unit{
+  min-width:0;font-size:15.5px;color:var(--ink-2);line-height:1.4;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
+}
+.strip-load{
+  font-family:var(--disp);font-variation-settings:'wdth' 118;
+  font-weight:900;font-size:34px;letter-spacing:-.04em;white-space:nowrap;
+  text-align:right;color:var(--g10);line-height:.95;
+}
+.strip-load small{
+  display:block;font-family:var(--mono);font-size:10.5px;font-weight:500;
+  letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);
+}
+.strip-load.is-word{
+  font-family:var(--mono);font-variation-settings:normal;
+  font-size:11.5px;font-weight:500;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--ink-3);
+}
+.strip.is-rest{opacity:.62}
+.strip.is-rest .strip-load{font-variation-settings:'wdth' 88;font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3)}
+
+/* ═══ Fokus-Tag ═══ */
+.back{
+  display:inline-flex;align-items:center;gap:9px;
+  margin:26px 0 0;min-height:44px;padding:0 2px 0 0;
+  background:none;border:none;color:var(--ink-3);cursor:pointer;
+  font-family:var(--mono);font-size:12px;font-weight:700;
+  letter-spacing:.13em;text-transform:uppercase;
+  transition:color .14s var(--ease);
+}
+.back:hover{color:var(--ink)}
+.back svg{width:12px;height:12px}
+
+.focus-head{padding:8px 0 30px}
+.focus-when{font-family:var(--mono);font-size:12.5px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3)}
+.focus-title{
+  font-family:var(--disp);font-variation-settings:'wdth' 86;
+  font-weight:800;letter-spacing:-.03em;line-height:1;
+  font-size:clamp(1.9rem,7.5vw,3rem);margin-top:10px;text-wrap:balance;
+}
+.focus-dauer{
+  margin-top:16px;font-family:var(--mono);font-size:12.5px;
+  letter-spacing:.06em;color:var(--ink-3);
+}
+.focus-dauer b{color:var(--ink-2);font-weight:700}
+
+.blk{padding:30px 0;border-top:1px solid var(--rule)}
+.blk-top{display:flex;align-items:baseline;gap:16px}
+.blk-letter{
+  font-family:var(--disp);font-variation-settings:'wdth' 124;
+  font-weight:900;font-size:clamp(2.6rem,11vw,3.6rem);line-height:.72;
+  letter-spacing:-.05em;color:var(--g4);flex:0 0 auto;
+  transition:color .16s var(--ease);
+}
+.blk.is-open .blk-letter{color:var(--g10)}
+.blk.is-done .blk-letter{color:var(--cool-dim)}
+.blk-name{
+  font-family:var(--disp);font-variation-settings:'wdth' 92;
+  font-weight:700;font-size:clamp(1.15rem,4.6vw,1.45rem);
+  letter-spacing:-.02em;line-height:1.12;flex:1;min-width:0;
+}
+.blk-flags{
+  display:flex;gap:14px;margin-top:9px;
+  font-family:var(--mono);font-size:11.5px;font-weight:500;
+  letter-spacing:.13em;text-transform:uppercase;color:var(--ink-3);
+}
+.blk-flags .opt{color:var(--marker)}
+.blk-toggle{
+  background:none;border:none;color:inherit;font:inherit;cursor:pointer;
+  display:block;width:100%;text-align:left;padding:0;min-height:44px;
+}
+.blk-body{padding-left:0;margin-top:22px}
+@media (min-width:700px){ .blk-body{padding-left:clamp(0px,7vw,84px)} }
+
+.ex{padding:22px 0 6px}
+.ex + .ex{border-top:1px solid var(--rule-2);margin-top:6px}
+.ex-name{
+  font-family:var(--disp);font-variation-settings:'wdth' 92;
+  font-weight:700;font-size:20px;letter-spacing:-.015em;line-height:1.15;
+}
+.ex-name small{
+  display:block;font-family:var(--mono);font-size:12px;font-weight:400;
+  letter-spacing:.02em;color:var(--ink-3);margin-top:5px;
+}
+/* Trägt ein Block nur eine Übung, führt der Blocktitel; hier steht nur noch
+   ihre nähere Bestimmung. */
+.ex.is-single{padding-top:6px}
+.ex-qual{font-family:var(--mono);font-size:12.5px;color:var(--ink-3);margin-bottom:2px}
+.ex-sets{
+  font-family:var(--mono);font-size:13px;font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--ink-2);margin-top:12px;
+}
+
+/* Lastleiter: ein beladener Balken je Stufe */
+/* Die Treppe: eine Zeile Zahlen, der Zielsatz trägt das Gewicht. */
+.ladder{
+  margin-top:16px;display:flex;flex-wrap:wrap;align-items:baseline;gap:2px 9px;
+  font-family:var(--disp);font-variation-settings:'wdth' 112;
+  font-weight:700;font-size:clamp(1.4rem,6vw,1.9rem);letter-spacing:-.035em;
+  color:var(--ink-2);line-height:1.25;
+}
+.rung.is-target{
+  color:var(--ink);font-weight:800;
+  font-size:clamp(1.75rem,7.6vw,2.45rem);
+}
+.rung-sep{color:var(--ink-3);font-weight:400}
+/* ═══ Teststreifen ═══
+   Gestufte Bänder, deren Ton mit der Last steigt; das Zielband trägt das
+   Sicherheitslicht. Die Zahl steht in jedem Band — der Ton ist Grund, nie
+   Träger der Information. */
+.teststrip{
+  display:flex;align-items:stretch;gap:2px;margin-top:18px;
+  border:1px solid var(--g3);
+}
+.ts{
+  flex:1 1 0;min-width:0;min-height:74px;
+  display:flex;align-items:flex-end;justify-content:center;padding:0 2px 9px;
+  background:color-mix(in oklch, var(--g1), var(--g5) calc(var(--z) * 100%));
+}
+.ts-kg{
+  font-family:var(--disp);font-variation-settings:'wdth' 92;
+  font-weight:700;font-size:14px;letter-spacing:-.02em;color:var(--g8);
+}
+.ts.is-target{
+  background:var(--amber);flex:1.5 1 0;align-items:center;
+}
+.ts.is-target .ts-kg{
+  color:var(--amber-ink);font-variation-settings:'wdth' 118;
+  font-weight:900;font-size:clamp(1.6rem,7vw,2.3rem);letter-spacing:-.045em;
+}
+.ladder-foot{
+  margin-top:9px;font-family:var(--mono);font-size:12px;
+  letter-spacing:.06em;color:var(--g6);
+}
+.ts-mark{color:var(--amber);font-weight:700;letter-spacing:.14em;text-transform:uppercase;font-size:10.5px}
+
+/* ═══ Stationsbahn ═══ wo du gerade bist, bleibt markiert */
+.stations{
+  position:sticky;top:52px;z-index:15;
+  display:flex;gap:2px;margin:0 -20px;padding:10px 20px;
+  background:var(--g0);border-bottom:1px solid var(--g3);
+  overflow-x:auto;scrollbar-width:none;
+}
+.stations::-webkit-scrollbar{display:none}
+@media (min-width:1100px){ .stations{margin:0 -8px;padding:10px 8px} }
+.st{
+  flex:0 0 auto;display:flex;align-items:baseline;gap:7px;
+  min-height:44px;padding:0 13px;
+  background:none;border:1px solid var(--g3);color:var(--g6);cursor:pointer;
+  font-family:var(--mono);font-size:11px;font-weight:700;
+  letter-spacing:.13em;text-transform:uppercase;white-space:nowrap;
+  transition:color .16s var(--ease),border-color .16s var(--ease);
+}
+.st-l{font-family:var(--disp);font-variation-settings:'wdth' 118;font-weight:900;font-size:15px;letter-spacing:0}
+.st:hover{color:var(--g9);border-color:var(--g5)}
+.st.is-now{color:var(--amber);border-color:var(--amber)}
+.st.is-done{color:var(--cool);border-color:var(--cool-dim)}
+.st.is-done .st-t{text-decoration:line-through;text-decoration-thickness:1px}
+
+/* Die Spanne führt, die Folge steht darunter im Maßgrad. */
+.rung-arrow{
+  font-family:var(--mono);font-size:.5em;font-weight:500;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);
+  padding:0 2px;
+}
+.ladder-steps{
+  margin-top:8px;font-family:var(--mono);font-size:13px;font-weight:500;
+  color:var(--ink-3);letter-spacing:.04em;line-height:1.6;
+}
+.ladder-unit{
+  font-family:var(--mono);font-size:13px;font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);
+}
+.ladder-mark{
+  margin-top:6px;font-family:var(--mono);font-size:11px;font-weight:700;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--marker);
+}
+.ex-meta{
+  display:flex;flex-wrap:wrap;gap:6px 22px;margin-top:14px;
+  font-family:var(--mono);font-size:12.5px;color:var(--ink-2);
+}
+.ex-meta b{color:var(--ink-3);font-weight:500;letter-spacing:.13em;text-transform:uppercase;font-size:11px;margin-right:7px}
+
+.ex-note{
+  margin-top:14px;font-size:14.5px;line-height:1.55;color:var(--ink-2);
+  border-left:1px solid var(--rule);padding-left:14px;
+}
+.note-handle{
+  display:inline-flex;align-items:center;gap:8px;margin-top:12px;
+  background:none;border:none;color:var(--ink-3);cursor:pointer;min-height:44px;
+  font-family:var(--mono);font-size:11.5px;font-weight:700;
+  letter-spacing:.13em;text-transform:uppercase;
+}
+.note-handle:hover{color:var(--ink)}
+.note-handle svg{width:11px;height:11px;transition:transform .18s var(--ease)}
+.note-handle[aria-expanded="true"] svg{transform:rotate(180deg)}
+.note-handle + .ex-note{display:none}
+.note-handle[aria-expanded="true"] + .ex-note{display:block}
+@media (min-width:1100px){
+  .note-handle{display:none}
+  .note-handle + .ex-note{display:block}
+}
+
+/* WOD-Tage */
+.wod{padding:26px 0;border-top:1px solid var(--rule)}
+.wod-struct{
+  font-family:var(--disp);font-variation-settings:'wdth' 100;
+  font-weight:800;font-size:clamp(1.35rem,5.5vw,1.8rem);letter-spacing:-.02em;
+}
+.wod-format{
+  font-family:var(--mono);font-size:11.5px;font-weight:500;
+  letter-spacing:.13em;text-transform:uppercase;color:var(--ink-3);margin-top:8px;
+}
+.mv{display:grid;grid-template-columns:66px minmax(0,1fr);gap:16px;align-items:baseline;padding:13px 0;border-top:1px solid var(--rule-2);margin-top:14px}
+.mv:first-of-type{margin-top:18px}
+.mv-reps{
+  font-family:var(--disp);font-variation-settings:'wdth' 118;
+  font-weight:900;font-size:32px;letter-spacing:-.04em;color:var(--g10);line-height:.95;
+}
+.mv-name{font-family:var(--disp);font-weight:600;font-size:17px;letter-spacing:-.01em}
+.mv-name{display:block}
+.mv-detail{display:block;font-family:var(--mono);font-size:13px;color:var(--g6);margin-top:5px}
+
+/* ═══ Apparat (Desktop-Randspalte) ═══ */
+.apparat{
+  border-left:1px solid var(--rule);padding-left:24px;
+  font-family:var(--mono);font-size:12.5px;line-height:1.7;color:var(--ink-2);
+}
+.apparat h2{
+  font-family:var(--mono);font-size:11px;font-weight:700;
+  letter-spacing:.18em;text-transform:uppercase;color:var(--ink-3);
+  margin-bottom:14px;
+}
+.apparat p{margin-bottom:16px}
+.apparat .src{color:var(--ink-3)}
+
+/* ═══ Notiz ═══ */
+/* Erledigt-Schalter je Block — der zweite Teil des Rückkanals neben der Notiz */
+.blk-done{
+  display:inline-flex;align-items:center;gap:9px;margin-top:20px;
+  min-height:46px;padding:0 16px 0 14px;
+  background:none;border:1px solid var(--rule);color:var(--ink-3);cursor:pointer;
+  font-family:var(--mono);font-size:11.5px;font-weight:700;
+  letter-spacing:.13em;text-transform:uppercase;
+  transition:color .14s var(--ease),border-color .14s var(--ease);
+}
+.blk-done svg{width:14px;height:14px;opacity:.35;transition:opacity .14s var(--ease)}
+.blk-done:hover{color:var(--ink);border-color:var(--g6)}
+.blk-done[aria-pressed="true"]{color:var(--cool);border-color:var(--cool)}
+.blk-done[aria-pressed="true"] svg{opacity:1}
+.blk.is-done .blk-letter{color:var(--rule)}
+.blk.is-done .blk-name{color:var(--ink-3)}
+
+.note-block{margin-top:44px;padding-top:28px;border-top:1px solid var(--rule)}
+.note-h{
+  font-family:var(--mono);font-size:11.5px;font-weight:700;
+  letter-spacing:.18em;text-transform:uppercase;color:var(--ink-3);margin-bottom:16px;
+}
+.feels{display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap}
+.feel{
+  flex:1 1 0;min-width:0;min-height:52px;
+  background:none;border:1px solid var(--rule);color:var(--ink-2);
+  font-family:var(--disp);font-variation-settings:'wdth' 112;
+  font-weight:800;font-size:17px;cursor:pointer;
+  transition:border-color .14s var(--ease),color .14s var(--ease);
+}
+.feel:hover{border-color:var(--g6);color:var(--ink)}
+.feel[aria-pressed="true"]{border-color:var(--amber);color:var(--amber)}
+.note-ta{
+  width:100%;min-height:132px;padding:14px;
+  background:var(--ground-2);color:var(--ink);
+  border:1px solid var(--rule);
+  font-family:var(--disp);font-size:15.5px;line-height:1.55;resize:vertical;
+}
+.note-ta::placeholder{color:var(--ink-3)}
+.note-ta:focus{border-color:var(--g6)}
+.note-foot{display:flex;align-items:center;gap:16px;margin-top:12px;flex-wrap:wrap}
+.note-save{
+  min-height:48px;padding:0 22px;background:var(--ink);color:var(--ground);
+  border:none;font-family:var(--mono);font-size:12px;font-weight:700;
+  letter-spacing:.13em;text-transform:uppercase;cursor:pointer;
+}
+.note-save:disabled{background:var(--rule);color:var(--ink-3);cursor:not-allowed}
+.note-state{font-family:var(--mono);font-size:12px;color:var(--ink-3)}
+.note-state.err{color:var(--marker)}
+
+/* ═══ Bewegung: ein einziger komponierter Moment ═══
+   Die Treppe baut sich von links auf, Stufe für Stufe — dieselbe Bewegung,
+   die die Einheit selbst macht. Sonst bewegt sich nichts. */
+@keyframes step-in{
+  from{opacity:0;transform:translateY(6px)}
+  to{opacity:1;transform:none}
+}
+.blk.is-open .ladder .rung,
+.blk.is-open .ladder .rung-sep,
+.blk.is-open .ladder .ladder-unit{
+  animation:step-in .34s var(--ease) both;
+  animation-delay:calc(var(--i,0) * 38ms);
+}
+@media (prefers-reduced-motion:reduce){
+  .blk.is-open .ladder .rung,
+  .blk.is-open .ladder .rung-sep,
+  .blk.is-open .ladder .ladder-unit{animation:none}
+}
+
+[hidden]{display:none !important}
+</style>
+</head>
+<body>
+<!--
+  THESIS: Der Plan ist Notation, kein Bild. Diese Oberfläche schreibt Lasten so,
+  wie sie am Whiteboard stehen, und weigert sich sowohl gegen den Kartenfeed mit
+  Fortschrittsringen als auch gegen die abgebildete Hantel — ein gezeichnetes
+  Gerät wiederholt nur, was seine Textzeile bereits vollständig sagt.
+  OWN-WORLD: Gummiboden bzw. Kreide als Grund, und als einzige Farbe der
+  IWF-Scheibencode (rot 25 · blau 20 · gelb 15 · grün 10 · weiß 5) — ausschließlich
+  in der Ladeanweisung, wo er Arbeit leistet. Archivo mit Breitenachse, Spline
+  Sans Mono für Maße. Keine Karten, keine Rahmen: Struktur entsteht aus
+  Haarlinie, Spalte und Leere.
+  STORY: Martin liest die Arbeitslast als Zahl, sieht am Zielsatz, worauf der Tag
+  hinausläuft, und bekommt die Ladeanweisung je Seite dazu.
+  FIRST VIEWPORT: Tag und Einheit klein, darunter die Last monumental, darunter
+  die Ladeanweisung je Seite mit Scheibenmarken.
+  FORM: Ladeschema (IWF-Scheibenfarbcode), Rang 1 der eigenen Liste, vom Nutzer
+  gegen die zugeteilte Meldekarte gewählt; Seed c3fee056.
+  FINISH: unreviewed and undocumented is unfinished; this build ends with the
+  finish review, the verdict, DESIGN.md, and every shipping raster carrying its
+  provenance.
+-->
+
+<header class="rail">
+  <span class="rail-selwrap">
+    <label class="sr" for="weekSel">Woche</label>
+    <select class="rail-sel" id="weekSel"></select>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+  </span>
+  <span class="rail-meso" id="railMeso"></span>
+</header>
+
+<div class="wrap">
+  <div class="col-main">
+    <main id="viewWeek"></main>
+    <main id="viewFocus" hidden></main>
+  </div>
+  <aside class="apparat" id="apparat"></aside>
+</div>
+
+<script src="../website/data.js"></script>
+<script>
+/* ════════════════════════════════════════════════════════════════════
+   DUNKELKAMMER — Rendering-Kern
+
+   Der Kern dieser Welt ist gerechnet, nicht gezeichnet: Aus jeder Last in
+   data.js wird die tatsächliche Stangenbeladung ermittelt und als Objekt
+   ausgegeben. Deshalb braucht keine einzige Wochendatei eine Änderung.
+   ════════════════════════════════════════════════════════════════════ */
+
+const fmt = n => (Math.round(n*100)/100).toString().replace('.', ',');
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const stripHtml = s => String(s).replace(/<[^>]*>/g,'');
+
+/* ── Last-Strings aus data.js deuten ─────────────────────────────────
+   Vorkommende Formen: "60 kg" · "40 · 45 · 50 · 52,5 kg" ·
+   "42,5 → 45 → 47,5 → 50 → 52,5 kg" · "2 × 6 kg" · "BW" · "—" */
+function parseLoad(raw, opts){
+  opts = opts || {};
+  if (!raw) return { kind:'none' };
+  const s = String(raw).trim();
+  if (!s || s === '—' || s === '-') return { kind:'none' };
+  if (/^bw$/i.test(s)) return { kind:'bw' };
+  /* In WOD-Details steht Fließtext ("oder 45 Singles"). Dort zählt eine Zahl
+     nur als Last, wenn sie eine Einheit trägt. */
+  if (opts.requireUnit && !/\bkg\b/i.test(s)) return { kind:'text', text:s };
+
+  const db = s.match(/^(\d+)\s*[×x]\s*([\d.,]+)(?:\s*[–-]\s*([\d.,]+))?\s*kg/i);
+  if (db) return { kind:'db', count:+db[1], each:num(db[2]), eachTo: db[3] ? num(db[3]) : null };
+
+  const nums = s.split(/·|→|->/).map(p => {
+    const m = p.match(/([\d]+(?:[.,]\d+)?)/);
+    return m ? num(m[1]) : null;
+  }).filter(n => n !== null && n > 0);
+
+  if (!nums.length) return { kind:'text', text:s };
+  return { kind:'bar', steps:nums };
+}
+function num(t){ return parseFloat(String(t).replace(',', '.')); }
+
+/* ── Was ist die Kennzahl des Tages? ─────────────────────────────── */
+function dayObject(d, weeks){
+  if (d.type === 'rest') return { kind:'rest' };
+  if (d.type === 'ride') return { kind:'ride' };
+
+  /* Fokus-Tag: schwerste Stangenlast aus seinen Blöcken */
+  if (d.type === 'own' && d.focus){
+    const f = (weeks.focusDays || {})[d.focus];
+    let best = 0, source = '';
+    if (f) for (const b of (f.blocks||[])){
+      const li = (b.headers||[]).indexOf('Last');
+      if (li < 0) continue;
+      for (const r of (b.rows||[])){
+        const pl = parseLoad(r[li]);
+        if (pl.kind === 'bar'){
+          const m = Math.max.apply(null, pl.steps);
+          if (m > best){ best = m; source = (r[0]||'').split('||')[0]; }
+        }
+      }
+    }
+    if (best) return { kind:'bar', kg:best, source, lead:true };
+    return { kind:'bare' };
+  }
+
+  /* Box-Tag: schwerstes vorgegebenes Gerät im WOD */
+  let bestEach = 0, bestCount = 2, bestName = '';
+  for (const w of (d.wod||[])){
+    for (const mv of (w.bewegungen||[])){
+      const pl = parseLoad(mv.detail, { requireUnit:true });
+      if (pl.kind === 'db' && pl.each > bestEach){ bestEach = pl.each; bestCount = pl.count; bestName = mv.name; }
+      if (pl.kind === 'bar'){
+        const m = Math.max.apply(null, pl.steps);
+        if (m > bestEach){ return { kind:'bar', kg:m, source:mv.name }; }
+      }
+    }
+  }
+  if (bestEach) return { kind:'db', each:bestEach, count:bestCount, source:bestName };
+  return { kind:'bare' };
+}
+
+/* ════════════════════════════════════════════════════════════════════
+   Ansichten
+   ════════════════════════════════════════════════════════════════════ */
+/* data.js deklariert DATA als top-level const — das ist eine lexikalische
+   Bindung im globalen Scope, keine Eigenschaft von window. */
+const D = DATA;
+let week = D.weeks[0];
+let todayIso = new Date().toISOString().slice(0,10);
+
+const elWeek = document.getElementById('viewWeek');
+const elFocus = document.getElementById('viewFocus');
+const elApp = document.getElementById('apparat');
+const elSel = document.getElementById('weekSel');
+const elMeso = document.getElementById('railMeso');
+
+const CHEV = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>';
+const ARROW = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
+const CHECK = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>';
+const BACK = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>';
+
+const TYPEWORD = { own:'Fokus', box:'Box', ride:'Rad', rest:'Ruhe' };
+
+function objUnit(o, d){
+  if (o.kind === 'bar')  return o.source || 'Langhantel';
+  if (o.kind === 'db')   return o.source || 'Kurzhanteln';
+  if (o.kind === 'ride') return d && d.einheit && d.einheit !== '—' ? d.einheit : 'Radfahrt';
+  if (o.kind === 'rest') return '';
+  return d && d.einheit && d.einheit !== '—' ? d.einheit : 'Ohne Lastvorgabe';
+}
+/* Eine monumentale Zahl steht nur dort, wo sie die Vorgabe IST — am Fokus-Tag.
+   An Box-Tagen ist die schwerste Hantel im WOD keine Tagesvorgabe, sondern ein
+   Detail einer Bewegung; sie als Kennzahl zu setzen behauptet mehr, als der
+   Plan hergibt. Dort führt das WOD. */
+function objFigure(o){
+  if (o.kind === 'bar' && o.lead) return { n:fmt(o.kg), u:'kg', src:o.source };
+  return null;
+}
+
+/* Zusammengesetzte Einheitennamen sind echte Daten: "Barbell RDL + DB
+   Shoulder-to-Overhead/DU/Burpee Box Jump Overs" ist zweierlei. Der erste
+   Teil führt, der Rest steht als eigene Zeile darunter — statt eines
+   ungebrochenen Blocks im größten Grad der Seite. */
+function headMarkup(d){
+  const raw = (d.einheit && d.einheit !== '—') ? d.einheit : (d.type === 'rest' ? 'Ruhetag' : '');
+  if (!raw) return '';
+  const parts = raw.split(/\s+\+\s+/);
+  const lead = parts.shift();
+  const rest = parts.join(' · ');
+  return `<h1 class="today-what${lead.length > 30 ? ' is-l' : ''}">${esc(lead)}</h1>` +
+         (rest ? `<p class="today-what-2">${esc(rest)}</p>` : '');
+}
+
+function renderWeek(){
+  const days = week.days || [];
+  let idx = days.findIndex(d => d.isoDate === todayIso);
+  if (idx < 0) idx = days.findIndex(d => d.isoDate >= todayIso);
+  if (idx < 0) idx = 0;
+  const today = days[idx];
+  const o = dayObject(today, week);
+  const fig = objFigure(o);
+
+  const rest = days.filter((_, i) => i !== idx);
+
+  elWeek.innerHTML = `
+    <section class="today">
+      <p class="today-when"><b>${esc(today.day)}</b> · ${esc(today.date)}${today.isoDate === todayIso ? ' · <span class="now">heute</span>' : ''}</p>
+      ${headMarkup(today)}
+
+      ${fig ? `<div class="today-figure">
+          <span class="load-num">${fig.n}</span>
+          <span class="load-unit">${esc(fig.u)}</span>
+        </div>
+        ${fig.src ? `<p class="load-src">schwerster Satz · ${esc(fig.src)}</p>` : ''}` : ''}
+
+      ${!today.focus && today.wod ? today.wod.map(wodMarkup).join('') : ''}
+      ${!today.focus && !today.wod && today.sub ? `<p class="today-sub">${esc(today.sub)}</p>` : ''}
+      ${today.rx && today.rx !== '—' ? `<p class="rx-line">${today.rx}</p>` : ''}
+      ${today.rpe ? `<p class="rx-line">${esc(today.rpe)}</p>` : ''}
+
+      ${today.focus ? `<button class="go" type="button" data-focus="${esc(today.focus)}">Zur Einheit ${ARROW}</button>` : ''}
+    </section>
+
+    <h2 class="week-head">Die übrige Woche</h2>
+    ${rest.map(d => stripMarkup(d)).join('')}
+    ${noteMarkup(today.isoDate, today.day)}
+  `;
+
+  elWeek.querySelectorAll('[data-focus]').forEach(b =>
+    b.addEventListener('click', () => showFocus(b.dataset.focus)));
+  elWeek.querySelectorAll('.strip[data-nav="1"]').forEach(b =>
+    b.addEventListener('click', () => showFocus(b.dataset.focus)));
+  wireNote(elWeek);
+
+  renderApparat('week', today);
+}
+
+function stripMarkup(d){
+  const o = dayObject(d, week);
+  const fig = objFigure(o);
+  const nav = d.focus ? 1 : 0;
+  return `<${nav ? 'button' : 'div'} class="strip${o.kind === 'rest' ? ' is-rest' : ''}" data-nav="${nav}"${nav ? ` data-focus="${esc(d.focus)}" type="button"` : ''}>
+    <span class="strip-when">
+      <span class="strip-day">${esc(d.day)}</span>
+      <span class="strip-date">${esc(d.date)} · ${esc(TYPEWORD[d.type] || '')}</span>
+    </span>
+    <span class="strip-unit">${esc(objUnit(o, d))}</span>
+    <span class="strip-load${fig ? '' : ' is-word'}">${fig ? fig.n + '<small>' + esc(fig.u) + '</small>' : ''}</span>
+  </${nav ? 'button' : 'div'}>`;
+}
+
+/* ── Fokus-Tag ───────────────────────────────────────────────────── */
+function focusDate(letter){
+  const d = (week.days || []).find(x => x.focus === letter);
+  return d ? d.isoDate : '';
+}
+
+function showFocus(letter){
+  const f = (week.focusDays || {})[letter];
+  if (!f) return;
+
+  const blocks = (f.blocks || []).map((b, bi) => {
+    const hi = {};
+    (b.headers || []).forEach((h, i) => hi[h] = i);
+    /* Trägt ein Block genau eine Übung, ist der Blocktitel bereits ihr Name.
+       Die Übungsüberschrift entfällt dann; ihr Zusatz rutscht unter den Titel. */
+    const single = (b.rows || []).length === 1;
+    const rows = (b.rows || []).map(r => exerciseMarkup(r, hi, single)).join('');
+    return `<section class="blk is-open">
+      <button class="blk-toggle" type="button" aria-expanded="true" data-blk="${bi}">
+        <span class="blk-top">
+          <span class="blk-letter">${esc(b.letter)}</span>
+          <span class="blk-name">${esc(b.title)}</span>
+        </span>
+        <span class="blk-flags">
+          ${b.min ? `<span>${esc(b.min)} min</span>` : ''}
+          <span class="${b.prio === 'optional' ? 'opt' : ''}">${b.prio === 'optional' ? 'optional' : 'Kernblock'}</span>
+        </span>
+      </button>
+      <div class="blk-body">${rows}
+        <button class="blk-done" type="button" aria-pressed="false" data-blk-letter="${esc(b.letter)}">
+          ${CHECK} Block erledigt
+        </button>
+      </div>
+    </section>`;
+  }).join('');
+
+  const wods = (f.wod || []).map(wodMarkup).join('');
+
+  elFocus.innerHTML = `
+    <button class="back" type="button" id="backBtn">${BACK} Zur Woche</button>
+    <nav class="stations" aria-label="Blöcke des Tages">
+      ${(f.blocks || []).map((b, i) => `<button class="st${i === 0 ? ' is-now' : ''}" type="button" data-goto="${i}">
+        <span class="st-l">${esc(b.letter)}</span><span class="st-t">${esc(b.kurz || b.title)}</span>
+      </button>`).join('')}
+    </nav>
+    <header class="focus-head">
+      <p class="focus-when">${esc(f.date || '')}</p>
+      <h1 class="focus-title">${esc(f.title)}</h1>
+      ${f.dauer ? `<p class="focus-dauer"><b>${esc(f.dauer.kern || '')}</b> Kern · ${esc(f.dauer.gesamt || '')} gesamt</p>` : ''}
+    </header>
+    ${blocks}${wods}
+    ${noteMarkup(f.isoDate || focusDate(letter), f.date || '')}
+  `;
+
+  elFocus.querySelector('#backBtn').addEventListener('click', showWeek);
+  const sts = elFocus.querySelectorAll('.st');
+  sts.forEach(st => st.addEventListener('click', () => {
+    const blk = elFocus.querySelectorAll('.blk')[+st.dataset.goto];
+    if (blk) blk.scrollIntoView({ behavior:'smooth', block:'start' });
+  }));
+  /* Die laufende Station folgt dem Blick — wo Martin gerade ist, bleibt
+     unübersehbar markiert, auch beim Scrollen. */
+  const io2 = new IntersectionObserver(() => {
+    const blks = Array.from(elFocus.querySelectorAll('.blk'));
+    const top = window.scrollY + innerHeight * 0.28;
+    let i = 0;
+    blks.forEach((b, k) => { if (b.offsetTop <= top) i = k; });
+    sts.forEach((x, k) => x.classList.toggle('is-now', k === i));
+  }, { rootMargin:'-20% 0px -70% 0px', threshold:[0, 1] });
+  elFocus.querySelectorAll('.blk').forEach(b => io2.observe(b));
+  elFocus.querySelectorAll('.blk-toggle').forEach(t => t.addEventListener('click', () => {
+    const s = t.closest('.blk');
+    const open = t.getAttribute('aria-expanded') === 'true';
+    t.setAttribute('aria-expanded', String(!open));
+    s.classList.toggle('is-open', !open);
+    s.querySelector('.blk-body').hidden = open;
+  }));
+  elFocus.querySelectorAll('.note-handle').forEach(h => h.addEventListener('click', () => {
+    h.setAttribute('aria-expanded', h.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');
+  }));
+  wireNote(elFocus);
+
+  elWeek.hidden = true; elFocus.hidden = false;
+  window.scrollTo(0, 0);
+  renderApparat('focus', f);
+}
+
+function exerciseMarkup(r, hi, single){
+  const rawName = r[hi['Übung']] || '';
+  const parts = rawName.split('||');
+  const sets = hi['Sets × Reps'] !== undefined ? r[hi['Sets × Reps']] : (hi['Dauer'] !== undefined ? r[hi['Dauer']] : '');
+  const last = hi['Last'] !== undefined ? r[hi['Last']] : '';
+  const pl = parseLoad(last);
+
+  /* Die Treppe steht als Zahlenreihe, so wie sie am Whiteboard steht:
+     eine Zeile, der Zielsatz trägt das Gewicht. Kein Bild einer Hantel —
+     die Ladeanweisung darunter erledigt die Ladearbeit vollständig. */
+  let ladder = '';
+  if (pl.kind === 'bar'){
+    const target = Math.max.apply(null, pl.steps);
+    const multi = pl.steps.length > 1;
+    /* Sieben Zahlen im Anzeigegrad brechen auf jedem Telefon um. Die Spanne
+       führt in einer Zeile, die vollständige Folge steht darunter im Maßgrad,
+       wo ein Umbruch nichts kostet. */
+    /* Der Teststreifen: in der Dunkelkammer belichtet man gestufte Proben,
+       bevor man sich festlegt. Genau das sind die Aufwärmstufen. Jede Stufe
+       trägt ihre Zahl, der Zielsatz ist das ausgezeichnete Band. */
+    ladder = multi
+      ? `<div class="teststrip" role="list" aria-label="Lastaufbau, Zielsatz ${fmt(target)} Kilo">` +
+        pl.steps.map((kg, i) =>
+          `<div class="ts${kg === target ? ' is-target' : ''}" role="listitem"
+                style="--z:${(i + 1) / pl.steps.length}">
+             <span class="ts-kg">${fmt(kg)}</span>
+           </div>`).join('') +
+        `</div>
+         <p class="ladder-foot"><span class="ts-mark">Zielsatz</span> ${fmt(target)} kg · ${pl.steps.length} Stufen</p>`
+      : `<p class="ladder"><span class="rung is-target">${fmt(target)}</span>
+           <span class="ladder-unit">kg</span></p>`;
+  } else if (pl.kind === 'db'){
+    ladder = `<p class="ladder"><span class="rung is-target">${fmt(pl.each)}</span> <span class="ladder-unit">kg je Hand</span></p>`;
+  } else if (pl.kind === 'bw'){
+    ladder = `<p class="ladder-steps">Körpergewicht</p>`;
+  }
+
+  const meta = [];
+  ['RPE','Tempo','Rest','Pause'].forEach(k => {
+    if (hi[k] !== undefined && r[hi[k]] && r[hi[k]] !== '—') meta.push(`<span><b>${k}</b>${esc(r[hi[k]])}</span>`);
+  });
+  const note = hi['Note'] !== undefined ? r[hi['Note']] : '';
+
+  return `<article class="ex${single ? ' is-single' : ''}">
+    ${single
+      ? (parts[1] ? `<p class="ex-qual">${esc(parts[1])}</p>` : '')
+      : `<h3 class="ex-name">${esc(parts[0])}${parts[1] ? `<small>${esc(parts[1])}</small>` : ''}</h3>`}
+    ${sets ? `<p class="ex-sets">${esc(String(sets).replace('||',' · '))}</p>` : ''}
+    ${ladder}
+    ${meta.length ? `<p class="ex-meta">${meta.join('')}</p>` : ''}
+    ${note ? `<button class="note-handle" type="button" aria-expanded="false">Begründung ${CHEV}</button><p class="ex-note">${esc(note)}</p>` : ''}
+  </article>`;
+}
+
+/* Die Daten schreiben "Every 2:30 × 4" und "E2:00 × 8" nebeneinander. Der
+   Plan spricht eine Sprache — die Kurzform, wie sie am Whiteboard steht. */
+function normStruct(t){
+  return String(t || '').replace(/^every\s+/i, 'E').replace(/\s*×\s*/g, ' × ');
+}
+function wodMarkup(w){
+  const mvs = (w.bewegungen || []).map(mv => {
+    const pl = parseLoad(mv.detail, { requireUnit:true });
+    return `<div class="mv">
+      <span class="mv-reps">${esc(mv.reps)}</span>
+      <span>
+        <span class="mv-name">${esc(mv.name)}</span>
+        ${mv.detail ? `<span class="mv-detail">${esc(mv.detail)}</span>` : ''}
+      </span>
+    </div>`;
+  }).join('');
+  return `<section class="wod">
+    <h2 class="wod-struct">${esc(normStruct(w.struktur))}</h2>
+    <p class="wod-format">${[w.format, w.level, w.rpe].filter(Boolean).map(esc).join(' · ')}</p>
+    ${mvs}
+  </section>`;
+}
+
+function noteMarkup(isoDate, dayLabel){
+  return `<section class="note-block" data-date="${esc(isoDate || '')}">
+    <h2 class="note-h">Rückmeldung${dayLabel ? ' · ' + esc(dayLabel) : ''}</h2>
+    <div class="feels">
+      ${[1,2,3,4,5].map(n => `<button class="feel" type="button" aria-pressed="false" data-feel="${n}">${n}</button>`).join('')}
+    </div>
+    <textarea class="note-ta" aria-label="Notiz zur Einheit" placeholder="Tatsächliche Lasten, Abbrüche, was sich angefühlt hat wie."></textarea>
+    <div class="note-foot">
+      <button class="note-save" type="button">Eintragen</button>
+      <span class="note-state"></span>
+    </div>
+  </section>`;
+}
+
+function wireNote(root){
+  const block = root.querySelector('.note-block');
+  if (!block) return;
+  const feels = block.querySelector('.feels');
+  feels.addEventListener('click', e => {
+    const b = e.target.closest('.feel');
+    if (!b) return;
+    const on = b.getAttribute('aria-pressed') === 'true';
+    feels.querySelectorAll('.feel').forEach(x => x.setAttribute('aria-pressed', 'false'));
+    b.setAttribute('aria-pressed', String(!on));
+  });
+
+  root.querySelectorAll('.blk-done').forEach(btn => btn.addEventListener('click', () => {
+    const on = btn.getAttribute('aria-pressed') === 'true';
+    btn.setAttribute('aria-pressed', String(!on));
+    const blk = btn.closest('.blk');
+    blk.classList.toggle('is-done', !on);
+    const i = Array.from(root.querySelectorAll('.blk')).indexOf(blk);
+    const st = root.querySelectorAll('.st')[i];
+    if (st) st.classList.toggle('is-done', !on);
+  }));
+
+  const save = block.querySelector('.note-save');
+  const state = block.querySelector('.note-state');
+  save.addEventListener('click', () => {
+    const feel = block.querySelector('.feel[aria-pressed="true"]');
+    const done = Array.from(root.querySelectorAll('.blk-done[aria-pressed="true"]'))
+                      .map(b => b.dataset.blkLetter).join(',');
+    state.className = 'note-state';
+    state.textContent = 'Wird eingetragen …';
+    fetch('../website/save_note.php', {
+      method:'POST',
+      headers:{ 'Content-Type':'application/json' },
+      body: JSON.stringify({
+        session_key: 'preview',
+        note_date: block.dataset.date,
+        note_text: block.querySelector('.note-ta').value,
+        session_feel: feel ? +feel.dataset.feel : 0,
+        blocks_done: done
+      })
+    })
+      .then(r => { if (!r.ok) throw new Error(r.status); state.textContent = 'Eingetragen.'; })
+      .catch(() => {
+        state.className = 'note-state err';
+        state.textContent = 'Kein Backend in dieser Vorschau — nichts gespeichert.';
+      });
+  });
+}
+
+function showWeek(){
+  elFocus.hidden = true; elWeek.hidden = false;
+  window.scrollTo(0, 0);
+}
+
+/* ── Apparat: Belege und Legende am Rand ─────────────────────────── */
+function renderApparat(kind, ctx){
+  let body = '';
+  if (kind === 'week' && ctx && ctx.note){
+    body = `<p>${esc(ctx.note)}</p><p class="src">coach/state.json · Wochenplan ${esc(week.id)}</p>`;
+  } else if (kind === 'focus' && ctx){
+    body = `${ctx.intro ? `<p>${stripHtml(ctx.intro)}</p>` : ''}
+      ${ctx.dauer && ctx.dauer.hinweis ? `<p class="src">${esc(ctx.dauer.hinweis)}</p>` : ''}`;
+  }
+  elApp.innerHTML = body ? `<h2>Beleg</h2>${body}` : '';
+}
+
+/* ── Start ───────────────────────────────────────────────────────── */
+D.weeks.forEach((w, i) => {
+  const o = document.createElement('option');
+  o.value = String(i); o.textContent = w.id.replace('-', ' ');
+  elSel.appendChild(o);
+});
+elSel.addEventListener('change', () => {
+  week = D.weeks[+elSel.value];
+  elMeso.textContent = week.meso || week.label || '';
+  showWeek(); renderWeek();
+});
+elMeso.textContent = week.meso || week.label || '';
+renderWeek();
+
+/* Deep-Links: ?week=2026-W33&focus=A&theme=dark&scroll=800
+   Damit ist jeder Zustand adressierbar — für Lesezeichen wie für Aufnahmen. */
+(function deepLink(){
+  const q = new URLSearchParams(location.search);
+  const t = q.get('theme');
+  if (t === 'dark' || t === 'light') document.documentElement.dataset.theme = t;
+
+  const w = q.get('week');
+  if (w){
+    const i = D.weeks.findIndex(x => x.id === w);
+    if (i >= 0){ elSel.value = String(i); week = D.weeks[i]; elMeso.textContent = week.meso || week.label || ''; renderWeek(); }
+  }
+  const f = q.get('focus');
+  if (f) showFocus(f);
+
+  /* Erst nach Schriftladung und Umbruch steht die endgültige Höhe — die
+     Sprungmarke wird deshalb mehrfach nachgezogen. */
+  if (q.get('probe')) setTimeout(()=>{document.title='H='+document.body.scrollHeight+' Y='+window.scrollY+' VH='+innerHeight+' F='+(document.fonts?document.fonts.status:'-');},1500);
+  const sc = q.get('scroll');
+  if (sc){
+    const jump = () => window.scrollTo(0, +sc);
+    jump();
+    window.addEventListener('load', jump);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(jump);
+    setTimeout(jump, 400);
+    setTimeout(jump, 1200);
+  }
+})();
+</script>
+</body>
+</html>

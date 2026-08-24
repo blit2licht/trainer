@@ -1,0 +1,1002 @@
+<!DOCTYPE html>
+<html lang="de"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Farbmuster — drei Alternativen</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600;700&display=swap">
+<style>
+
+*, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+
+:root {
+  --bg:oklch(97% 0.005 90); --card:oklch(99% 0.003 90); --card-muted:oklch(94% 0.006 90);
+  --line:oklch(89% 0.007 90); --line2:oklch(93% 0.005 90);
+  --ink:oklch(22% 0.01 90); --ink2:oklch(45% 0.01 90); --ink3:oklch(49% 0.012 90);
+  --accent:oklch(45% 0.09 200); --accent-soft:oklch(93% 0.025 200); --accent-ink:oklch(38% 0.1 200); --accent-contrast:#fff;
+  --danger:oklch(55% 0.19 25);
+  --warn:oklch(52% 0.11 75); --warn-soft:oklch(94% 0.04 75);
+  --danger-soft:oklch(95% 0.03 25);
+  --disp:'Space Grotesk', system-ui, sans-serif;
+  --body:'Inter', system-ui, sans-serif;
+  --mono:'JetBrains Mono', monospace;
+  --shadow:0 1px 2px rgba(16,24,40,.04), 0 4px 14px rgba(16,24,40,.05);
+}
+@media (prefers-color-scheme: dark) {
+:root {
+  --bg:oklch(22% 0.015 260); --card:oklch(27% 0.015 260); --card-muted:oklch(19% 0.012 260);
+  --line:oklch(34% 0.02 260); --line2:oklch(30% 0.018 260);
+  --ink:oklch(96% 0.005 260); --ink2:oklch(75% 0.01 260); --ink3:oklch(70% 0.014 260);
+  --accent:oklch(72% 0.16 55); --accent-soft:oklch(34% 0.05 55); --accent-ink:oklch(85% 0.11 55); --accent-contrast:oklch(18% 0.02 60);
+  --danger:oklch(68% 0.18 25);
+  --warn:oklch(80% 0.13 85); --warn-soft:oklch(32% 0.05 85);
+  --danger-soft:oklch(30% 0.06 25);
+  --shadow:none;
+}
+}
+
+html { -webkit-text-size-adjust:100%; }
+body { background:var(--bg); color:var(--ink); font-family:var(--body); line-height:1.5; font-size:16px; min-height:100vh; }
+.shell { max-width:760px; margin:0 auto; padding:22px 16px 64px; }
+
+/* Sichtbarer Tastaturfokus — global, nie per outline:none entfernt */
+:focus-visible { outline:3px solid var(--accent); outline-offset:2px; border-radius:8px; }
+.skip-link { position:absolute; left:-9999px; top:0; background:var(--card); color:var(--ink); padding:12px 16px; border:1.5px solid var(--accent); border-radius:10px; z-index:60; }
+.skip-link:focus { left:12px; top:12px; }
+
+.view { display:none; }
+.view.active { display:block; animation:fade .22s ease; }
+@keyframes fade { from{opacity:0;transform:translateY(6px);} to{opacity:1;transform:none;} }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration:.01ms !important; transition-duration:.01ms !important; } }
+
+/* Top bar */
+.topbar { display:flex; align-items:flex-end; gap:14px; flex-wrap:wrap; margin-bottom:20px; }
+.week-select-wrap { margin-left:auto; position:relative; }
+.week-select-label { display:block; font-family:var(--mono); font-size:12px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--ink3); margin-bottom:5px; }
+select#weekSelect { appearance:none; -webkit-appearance:none; background:var(--card); color:var(--ink); border:1.5px solid var(--line); border-radius:11px; font-family:var(--mono); font-size:13px; font-weight:600; padding:11px 38px 11px 14px; cursor:pointer; transition:border-color .15s; box-shadow:var(--shadow); min-height:44px; }
+select#weekSelect:hover { border-color:var(--accent); }
+.select-chevron { position:absolute; right:14px; bottom:15px; width:13px; height:13px; pointer-events:none; color:var(--ink3); }
+
+/* Headers */
+.page-header { margin-bottom:14px; }
+.eyebrow { font-family:var(--mono); font-size:12px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--accent-ink); margin-bottom:6px; }
+.page-header h1 { font-family:var(--disp); font-size:30px; font-weight:700; color:var(--ink); letter-spacing:-.02em; line-height:1.08; }
+.page-header .sub { font-size:14px; color:var(--ink2); margin-top:7px; font-weight:500; }
+.detail-sub { font-size:14px; color:var(--ink2); margin:12px 0 26px; line-height:1.55; }
+
+/* Meta-Chips: Dauer und Priorität */
+.mchip { display:inline-flex; align-items:center; gap:5px; font-family:var(--mono); font-size:12px; font-weight:700; letter-spacing:.01em; padding:2px 7px; border-radius:7px; background:var(--card-muted); border:1px solid var(--line2); color:var(--ink2); white-space:nowrap; }
+.mchip.prio-1 { background:var(--accent-soft); border-color:var(--accent-soft); color:var(--accent-ink); }
+.mchip.prio-r { background:transparent; }
+.mchip.mchip-opt { background:var(--warn-soft); border-color:var(--warn-soft); color:var(--warn); }
+
+/* Day cards */
+.days { display:flex; flex-direction:column; gap:12px; }
+.day-card { background:var(--card); border:1px solid var(--line); border-radius:16px; padding:6px 8px 14px; box-shadow:var(--shadow); transition:border-color .12s, opacity .12s; }
+.day-card.t-rest { background:var(--card-muted); padding-bottom:10px; }
+.day-card.collapsed { opacity:.78; }
+.day-card.collapsed:hover, .day-card:focus-within { opacity:1; }
+.day-card.is-today { border-color:var(--accent); }
+
+.dc-top { display:flex; align-items:stretch; gap:4px; }
+.dc-main { flex:1; min-width:0; display:flex; flex-direction:column; gap:6px; align-items:flex-start; text-align:left; background:none; border:none; padding:10px; border-radius:12px; cursor:pointer; font:inherit; color:inherit; min-height:44px; }
+.dc-main-static { cursor:default; }
+button.dc-main:hover { background:var(--card-muted); }
+.dc-chev { flex:0 0 auto; width:44px; min-height:44px; display:flex; align-items:center; justify-content:center; background:none; border:none; border-radius:12px; cursor:pointer; color:var(--ink3); }
+.dc-chev:hover { background:var(--card-muted); color:var(--accent-ink); }
+.dc-chev-spacer { flex:0 0 auto; width:44px; }
+.dc-chev svg { width:16px; height:16px; transition:transform .15s; }
+.dc-chev[aria-expanded="true"] svg { transform:rotate(180deg); }
+
+.dc-line1 { display:flex; align-items:center; gap:10px; width:100%; flex-wrap:wrap; }
+.dc-day { font-family:var(--disp); font-size:18px; font-weight:700; color:var(--ink); letter-spacing:-.01em; }
+.dc-date { font-family:var(--mono); font-size:12px; font-weight:600; color:var(--ink3); }
+/* Volle Button-Breite, damit die Gewichte untereinander auf einer Kante stehen.
+   Kein negativer Außenabstand: Der würde die Zahlen unter das Chevron schieben. */
+.dc-blocks { align-self:stretch; }
+.dc-blocks > span { display:flex; align-items:baseline; justify-content:space-between; gap:12px; }
+.dcb-last { font-family:var(--mono); font-size:15px; font-weight:700; color:var(--accent-ink); white-space:nowrap; }
+.dc-blocks { display:flex; flex-direction:column; gap:2px; margin-top:3px; font-family:var(--disp); font-size:16px; font-weight:700; color:var(--ink); line-height:1.3; letter-spacing:-.01em; }
+.dc-einheit { font-size:16px; font-weight:600; color:var(--ink); }
+.dc-metarow { display:flex; flex-wrap:wrap; gap:6px; }
+.dc-cta-btn { display:inline-flex; align-items:center; gap:7px; min-height:44px; margin:8px 10px 0; padding:0 14px; background:var(--accent-soft); border:none; border-radius:11px; cursor:pointer; font-family:var(--mono); font-size:12px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--accent-ink); }
+.dc-cta-btn:hover { background:var(--accent); color:var(--accent-contrast); }
+.dc-cta-btn svg { width:13px; height:13px; }
+
+/* Tagestyp: Icon + Label statt Emoji-Badge/Farbbalken */
+/* Rechtsbündig mit fester Mindestbreite: dadurch liegen Icon und Label aller
+   Tageskarten auf je einer senkrechten Achse, unabhängig davon, wie lang der
+   Wochentag oder das Typ-Label ist. 84px deckt das längste Label ab
+   („Ruhetag", „Focus B" messen 82,4px) — bei einem längeren Label muss der
+   Wert mitwachsen, sonst bricht die Achse. */
+.type-badge { margin-left:auto; flex-shrink:0; display:inline-flex; align-items:center; gap:8px; font-family:var(--mono); font-size:12px; font-weight:700; color:var(--ink2); white-space:nowrap; }
+.type-icon { width:24px; height:24px; border-radius:8px; background:var(--card-muted); color:var(--ink3); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+.type-icon svg { width:14px; height:14px; }
+/* Ruhetag-Karte liegt auf --card-muted, dem Standard-Hintergrund des
+   Icon-Felds — sonst verschwindet das Feld und die Icon-Achse wirkt lückenhaft. */
+.day-card.t-rest .type-icon { background:var(--card); }
+.type-badge.focus { color:var(--accent-ink); }
+.type-badge.focus .type-icon { background:var(--accent-soft); color:var(--accent-ink); }
+
+.dc-sub { font-size:13px; color:var(--ink2); margin-top:3px; font-weight:500; display:flex; flex-direction:column; gap:2px; }
+.dc-rx { margin:2px 10px 0; display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
+.dc-rx-main { font-family:var(--mono); font-size:15px; font-weight:600; color:var(--ink); line-height:1.45; }
+.dc-rx-main .rv { color:var(--accent-ink); font-weight:700; }
+.rpe-pill { display:inline-block; background:var(--accent-soft); color:var(--accent-ink); font-family:var(--mono); font-size:12px; font-weight:700; padding:3px 9px; border-radius:7px; white-space:nowrap; }
+.dc-note { font-size:13px; color:var(--ink2); margin-top:11px; line-height:1.5; }
+.dc-note-rest { margin:0 10px; padding-top:2px; }
+.dc-body { padding:0 10px; }
+
+/* Strava stats */
+.dc-strava { margin-top:13px; padding-top:12px; border-top:1px solid var(--line2); }
+.strava-logo { font-family:var(--mono); font-size:12px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--ink3); background:var(--card-muted); padding:3px 8px; border-radius:6px; display:inline-block; margin-bottom:10px; }
+.dc-strava-grid { display:flex; flex-wrap:wrap; gap:8px; }
+.rs-chip { background:var(--card-muted); border:1px solid var(--line2); border-radius:10px; padding:8px 12px; flex:1 1 calc(25% - 6px); min-width:70px; }
+.rs-label { font-family:var(--mono); font-size:12px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--ink3); margin-bottom:3px; }
+.rs-val { font-family:var(--mono); font-size:18px; font-weight:700; color:var(--ink); line-height:1.1; }
+.rs-unit { font-size:13px; font-weight:500; color:var(--ink3); }
+
+/* Aufklapp-Element (Disclosure) */
+.disc { border:1px solid var(--line); border-radius:12px; background:var(--card); overflow:hidden; margin-bottom:8px; }
+.disc-btn { display:flex; align-items:center; gap:10px; width:100%; min-height:44px; padding:11px 14px; background:none; border:none; cursor:pointer; font-family:var(--mono); font-size:12px; font-weight:700; letter-spacing:.02em; color:var(--ink2); text-align:left; }
+.disc-btn:hover { color:var(--accent-ink); background:var(--card-muted); }
+.disc-chev { display:flex; flex-shrink:0; color:var(--ink3); }
+.disc-chev svg { width:14px; height:14px; transition:transform .15s; }
+.disc-btn[aria-expanded="true"] .disc-chev svg { transform:rotate(180deg); }
+.disc-panel { padding:2px 14px 14px; font-size:13px; color:var(--ink2); line-height:1.55; }
+.disc-panel ul { margin:0 0 0 18px; }
+.disc-panel li { margin:3px 0; }
+.rule-scale { font-family:var(--mono); font-size:13px; font-weight:700; letter-spacing:.05em; color:var(--ink3); margin-bottom:10px; }
+.rule-step { border-left:3px solid var(--line); padding:8px 0 8px 11px; margin-bottom:9px; background:var(--card-muted); border-radius:0 8px 8px 0; }
+.rule-step.gelb { border-left-color:var(--warn); }
+.rule-step.rot  { border-left-color:var(--danger); }
+.rule-step-h { font-family:var(--mono); font-size:12px; font-weight:700; color:var(--ink); margin-bottom:4px; }
+.rule-day { margin-top:7px; padding-top:7px; border-top:1px dashed var(--line); color:var(--ink); }
+.rule-day b { font-family:var(--mono); font-size:12px; letter-spacing:.06em; text-transform:uppercase; color:var(--accent-ink); display:block; margin-bottom:2px; }
+.rule-note { margin-top:8px; }
+.rule-src { margin-top:8px; font-family:var(--mono); font-size:13px; color:var(--ink3); }
+.rules-head { font-family:var(--mono); font-size:12px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--ink3); margin:0 0 8px; }
+.rules-bar { margin-bottom:18px; }
+
+/* Glossar */
+.gloss-item { padding:10px 0; border-bottom:1px solid var(--line2); }
+.gloss-item:last-child { border-bottom:none; }
+.gloss-term { font-family:var(--mono); font-size:13px; font-weight:700; color:var(--ink); }
+.gloss-def { margin-top:3px; }
+.gloss-src { margin-top:4px; font-family:var(--mono); font-size:13px; color:var(--ink3); }
+.gloss-wrap { margin-top:22px; }
+
+button.term { font:inherit; font-weight:700; color:var(--accent-ink); background:var(--accent-soft); border:none; border-radius:6px; padding:1px 5px; min-height:24px; cursor:pointer; line-height:1.3; }
+button.term:hover { text-decoration:underline; }
+/* Die Trefferfläche wächst über ein Overlay statt über die Zeilenhöhe: inline im
+   Fließtext würde ein 44px hoher Button den Absatzrhythmus zerreißen. */
+button.term { position:relative; }
+button.term::after { content:''; position:absolute; inset:-6px -4px; }
+
+.gloss-pop { position:fixed; left:0; right:0; bottom:0; z-index:50; padding:12px; }
+.gloss-pop-inner { max-width:736px; margin:0 auto; background:var(--card); border:1.5px solid var(--accent); border-radius:16px; padding:16px 18px; box-shadow:0 6px 30px rgba(16,24,40,.22); }
+.gloss-pop-head { display:flex; align-items:flex-start; gap:12px; }
+.gloss-pop-head h2 { font-family:var(--mono); font-size:14px; font-weight:700; color:var(--ink); flex:1; }
+.gloss-close { flex:0 0 auto; width:44px; height:44px; margin:-10px -10px 0 0; display:flex; align-items:center; justify-content:center; background:none; border:none; border-radius:10px; cursor:pointer; color:var(--ink2); }
+.gloss-close:hover { background:var(--card-muted); color:var(--accent-ink); }
+.gloss-close svg { width:16px; height:16px; }
+.gloss-pop p { font-size:14px; color:var(--ink2); line-height:1.55; margin-top:8px; }
+.gloss-pop .gloss-pop-src { font-family:var(--mono); font-size:13px; color:var(--ink3); }
+
+/* Notes system */
+.note-bar { display:flex; align-items:center; justify-content:space-between; gap:10px; margin-top:14px; padding-top:6px; border-top:1px solid var(--line2); }
+.note-toggle-btn { display:inline-flex; align-items:center; gap:8px; min-height:44px; padding:0 10px 0 0; font-family:var(--mono); font-size:13px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--ink3); background:none; border:none; cursor:pointer; transition:color .15s; }
+.note-toggle-btn:hover { color:var(--accent-ink); }
+.note-toggle-btn svg { width:13px; height:13px; transition:transform .15s; }
+.note-toggle-btn[aria-expanded="true"] svg { transform:rotate(180deg); }
+.note-has-indicator { display:inline-flex; align-items:center; gap:5px; font-family:var(--mono); font-size:13px; font-weight:600; color:var(--ink2); }
+.note-feel-dot { width:9px; height:9px; border-radius:50%; background:var(--accent); }
+.note-has-indicator.draft { color:var(--ink3); }
+.note-has-indicator.draft .note-feel-dot { background:var(--ink3); }
+
+.note-panel { margin-top:12px; background:var(--card-muted); border:1px solid var(--line2); border-radius:12px; padding:14px; }
+
+.feel-label { font-family:var(--mono); font-size:13px; font-weight:700; letter-spacing:.06em; color:var(--ink3); margin-bottom:8px; }
+.feel-row { display:flex; gap:8px; margin-bottom:12px; }
+.feel-btn { flex:1; min-height:44px; border:1.5px solid var(--line); border-radius:10px; background:var(--card); font-family:var(--mono); font-size:15px; font-weight:700; color:var(--ink2); cursor:pointer; transition:all .15s; display:flex; align-items:center; justify-content:center; }
+.feel-btn:hover { border-color:var(--accent); color:var(--accent-ink); }
+.feel-btn[aria-pressed="true"] { border-color:var(--accent); background:var(--accent-soft); color:var(--accent-ink); }
+
+.note-textarea { width:100%; min-height:150px; border:1.5px solid var(--line); border-radius:10px; padding:11px 13px; font-family:var(--body); font-size:14px; color:var(--ink); background:var(--card); resize:vertical; transition:border-color .15s; line-height:1.5; }
+.note-textarea:focus { border-color:var(--accent); }
+.note-textarea::placeholder { color:var(--ink3); }
+
+.show-all-btn { display:block; width:100%; margin-top:4px; min-height:44px; padding:12px; background:var(--card); border:1.5px dashed var(--line); border-radius:14px; font-family:var(--mono); font-size:12px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--ink3); cursor:pointer; transition:all .15s; }
+.show-all-btn:hover { border-color:var(--accent); color:var(--accent-ink); }
+
+.note-actions { display:flex; align-items:center; gap:12px; margin-top:10px; }
+.note-save-btn { min-height:44px; padding:0 18px; background:var(--accent); color:var(--accent-contrast); border:none; border-radius:9px; font-family:var(--mono); font-size:12px; font-weight:700; letter-spacing:.05em; cursor:pointer; transition:opacity .15s; }
+.note-save-btn:hover { opacity:.85; }
+.note-save-btn:disabled { background:var(--ink3); cursor:not-allowed; }
+.note-status { font-family:var(--mono); font-size:12px; font-weight:600; color:var(--ink2); }
+.note-status.err { color:var(--danger); }
+
+/* Detail nav */
+.nav-back { display:inline-flex; align-items:center; gap:7px; cursor:pointer; color:var(--ink2); font-family:var(--mono); font-size:12px; font-weight:600; padding:11px 15px; background:var(--card); border:1.5px solid var(--line); border-radius:11px; margin-bottom:20px; transition:all .14s; min-height:44px; box-shadow:var(--shadow); }
+.nav-back:hover { color:var(--accent-ink); border-color:var(--accent); }
+.nav-back svg { width:14px; height:14px; }
+.crumb { font-family:var(--mono); font-size:12px; color:var(--ink3); margin-bottom:18px; font-weight:600; display:flex; align-items:center; flex-wrap:wrap; }
+.crumb .lnk { font:inherit; color:var(--accent-ink); background:none; border:none; cursor:pointer; min-height:44px; padding:0 4px 0 0; }
+.crumb .lnk:hover { text-decoration:underline; }
+.crumb .sep { margin:0 7px; color:var(--ink3); }
+
+/* Routinen-Kopf */
+.routine-meta { display:flex; flex-wrap:wrap; gap:7px; margin:14px 0 8px; }
+.routine-meta-note { font-family:var(--mono); font-size:13px; color:var(--ink3); line-height:1.6; margin-bottom:14px; }
+
+/* Focus blocks */
+/* Blöcke sind aufklappbar: geschlossen trägt der Kopf schon Buchstabe, Titel und
+   die Arbeitszahlen der ersten Zeile. Genau ein Block ist offen — der Fokus-Tag
+   ist eine Anleitung für einen Ablauf, kein Dokument zum Durchlesen. */
+.blk { margin-bottom:10px; border:1px solid var(--line); border-radius:14px; background:var(--card); overflow:hidden; }
+.blk.is-optional { border-style:dashed; }
+.blk-head { display:flex; align-items:center; gap:11px; width:100%; min-height:56px; padding:10px 14px; background:none; border:none; cursor:pointer; text-align:left; }
+.blk-head:hover { background:var(--card-muted); }
+.blk-letter { font-family:var(--mono); font-size:14px; font-weight:700; color:var(--accent-contrast); background:var(--accent); width:30px; height:30px; border-radius:9px; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+.blk-letter svg { width:16px; height:16px; }
+.blk.is-optional .blk-letter { background:var(--ink3); }
+.blk.is-done .blk-letter { background:var(--ink3); }
+.blk-headtext { flex:1; min-width:0; }
+.blk-title { font-family:var(--disp); font-size:16px; font-weight:700; color:var(--ink); letter-spacing:-.01em; display:block; }
+.blk.is-done .blk-title { color:var(--ink3); }
+/* Arbeitszahlen der ersten Zeile — nur im geschlossenen Zustand, offen zeigt sie der Körper. */
+.blk-peek { font-family:var(--mono); font-size:13px; font-weight:700; color:var(--accent-ink); margin-top:2px; display:block; }
+.blk.is-open .blk-peek { display:none; }
+.blk.is-done .blk-peek { color:var(--ink3); }
+.blk-chev { display:flex; flex-shrink:0; color:var(--ink3); }
+.blk-chev svg { width:14px; height:14px; transition:transform .15s cubic-bezier(.2,.7,.3,1); }
+.blk-head[aria-expanded="true"] .blk-chev svg { transform:rotate(180deg); }
+.blk-body { padding:0 14px 14px; }
+.blk-flags { display:flex; flex-wrap:wrap; gap:6px; align-items:center; margin-bottom:11px; }
+/* Übungsnotiz: benannter Griff statt „Mehr" — der Text ist weg, die Zahlen stehen. */
+.exc-note-wrap { margin-top:11px; }
+.dc-note-wrap { margin-top:6px; }
+.dc-note-wrap-rest { margin:0 10px 4px; }
+.dc-note-wrap .dc-note { margin-top:2px; }
+.exc-note-btn { display:inline-flex; align-items:center; gap:7px; min-height:44px; padding:0 4px 0 0; background:none; border:none; cursor:pointer; font-family:var(--mono); font-size:12px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--ink3); }
+.exc-note-btn:hover { color:var(--accent-ink); }
+.exc-note-btn svg { width:13px; height:13px; transition:transform .15s; }
+.exc-note-btn[aria-expanded="true"] svg { transform:rotate(180deg); }
+.note-has-indicator.offen { color:var(--warn); }
+.note-has-indicator.offen .note-feel-dot { background:var(--warn); }
+.blk-done { display:flex; align-items:center; justify-content:center; gap:8px; width:100%; min-height:44px; margin-top:12px; padding:0 14px; background:var(--card-muted); border:1px solid var(--line); border-radius:11px; cursor:pointer; font-family:var(--mono); font-size:12px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--ink2); }
+.blk-done:hover { color:var(--accent-ink); border-color:var(--accent-soft); background:var(--accent-soft); }
+.blk-done svg { width:15px; height:15px; }
+.blk.is-done .blk-done { color:var(--accent-ink); background:var(--accent-soft); border-color:var(--accent-soft); }
+.exc { background:var(--card); border:1px solid var(--line); border-radius:14px; padding:15px 16px; box-shadow:var(--shadow); margin-bottom:10px; }
+.exc-name { font-family:var(--disp); font-size:18px; font-weight:700; color:var(--ink); letter-spacing:-.01em; line-height:1.2; }
+.exc-name small { display:block; font-family:var(--body); font-size:13px; font-weight:500; color:var(--ink3); margin-top:2px; }
+.exc-data { display:flex; flex-wrap:wrap; align-items:flex-start; gap:8px; margin-top:13px; }
+.chip { background:var(--card-muted); border:1px solid var(--line2); border-radius:10px; padding:8px 12px; min-width:74px; }
+.chip-label { font-family:var(--mono); font-size:12px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--ink3); margin-bottom:3px; }
+.chip-val { font-family:var(--mono); font-size:17px; font-weight:700; color:var(--ink); line-height:1.15; }
+/* Lasttreppen ab drei Stufen stehen untereinander: ein Wert pro Zeile liest
+   sich von oben nach unten, statt mitten in der Sequenz umzubrechen. */
+.chip-val .steps > span { display:block; }
+.chip-label .chip-unit { text-transform:none; letter-spacing:0; margin-left:6px; color:var(--ink3); font-weight:600; }
+.chip-val .steps > span.op { color:var(--ink3); font-weight:500; }
+.chip-val .steps > span + span { margin-top:1px; }
+.chip-val small { display:block; font-size:13px; font-weight:500; color:var(--ink3); margin-top:2px; letter-spacing:0; }
+.exc-meta { display:flex; flex-wrap:wrap; gap:14px; margin-top:12px; font-family:var(--mono); font-size:12px; font-weight:500; color:var(--ink2); }
+.exc-meta b { color:var(--ink3); font-weight:600; font-size:12px; letter-spacing:.08em; text-transform:uppercase; margin-right:5px; }
+.exc-note { font-size:13px; color:var(--ink2); margin-top:12px; line-height:1.55; padding-top:11px; border-top:1px solid var(--line2); }
+.blk-note { margin-top:11px; padding:12px 14px; background:var(--accent-soft); border-radius:12px; font-size:13px; color:var(--accent-ink); line-height:1.55; font-weight:500; }
+/* WOD-Block: Struktur, Reps, Lasten und Zeitlimit zusammen sichtbar, gleiche Schriftgröße für Reps/Move/Detail — keine Prioritäts-Hierarchie */
+/* Auf der Tageskarte können mehrere WODs direkt aufeinander folgen (Kraftteil +
+   Metcon) und der erste stößt sonst an die Lastzeile darüber. Im Fokus-Tag steht
+   je Block nur einer, dort tragen die Elemente davor ihren eigenen Abstand. */
+.dc-body .wod { margin-top:12px; }
+.wod { background:var(--card); border:1px solid var(--line); border-radius:14px; padding:16px; box-shadow:var(--shadow); }
+.wod-struct { font-family:var(--disp); font-size:21px; font-weight:700; color:var(--ink); letter-spacing:-.015em; line-height:1.2; }
+.wod-tags { display:flex; flex-wrap:wrap; gap:7px; margin-top:11px; }
+.wod-tag { font-family:var(--mono); font-size:12px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; padding:5px 10px; border-radius:8px; background:var(--card-muted); color:var(--ink2); }
+.wod-tag.cap { background:var(--accent-soft); color:var(--accent-ink); }
+.wod-tag.level { background:var(--accent-soft); color:var(--accent-ink); }
+.dc-einheit-rx { font-family:var(--mono); font-size:15px; font-weight:600; color:var(--accent-ink); margin-left:9px; }
+.wod-lines { margin-top:15px; border-top:1px solid var(--line2); }
+.wod-line { display:flex; align-items:baseline; gap:13px; padding:12px 0; border-bottom:1px solid var(--line2); }
+.wod-line:last-child { border-bottom:none; padding-bottom:2px; }
+.wod-reps { font-family:var(--mono); font-size:15px; font-weight:700; color:var(--ink); min-width:40px; flex-shrink:0; line-height:1.3; }
+.wod-move { font-family:var(--disp); font-size:15px; font-weight:600; color:var(--ink); flex:1; line-height:1.3; }
+.wod-detail { font-family:var(--mono); font-size:15px; font-weight:600; color:var(--ink2); text-align:right; flex-shrink:0; white-space:nowrap; }
+.wod-total { margin-top:13px; padding-top:12px; border-top:1px solid var(--line2); font-family:var(--mono); font-size:12px; font-weight:500; color:var(--ink3); line-height:1.5; }
+@media (max-width:420px){
+  .wod-line { flex-wrap:wrap; gap:0 13px; }
+  .wod-detail { width:100%; text-align:left; margin-top:3px; padding-left:53px; }
+}
+
+/* WHOOP: kopierbarer Textblock statt Karte mit Listen-Items */
+.whoop-copy { margin-top:30px; background:var(--card-muted); border:1px solid var(--line); border-radius:12px; padding:16px 18px; }
+.whoop-copy-head { display:flex; align-items:center; justify-content:space-between; gap:10px; margin-bottom:10px; }
+.whoop-copy-title { font-family:var(--mono); font-size:12px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--ink3); }
+.copy-btn { display:inline-flex; align-items:center; gap:6px; min-height:44px; font-family:var(--mono); font-size:12px; font-weight:700; letter-spacing:.05em; text-transform:uppercase; color:var(--ink2); background:var(--card); border:1px solid var(--line); border-radius:8px; padding:6px 12px; cursor:pointer; }
+.copy-btn:hover { border-color:var(--accent); color:var(--accent-ink); }
+.copy-btn svg { width:13px; height:13px; }
+.whoop-text { font-family:var(--mono); font-size:13px; color:var(--ink); line-height:1.75; white-space:pre-wrap; }
+
+.empty { padding:48px; text-align:center; color:var(--ink3); }
+.sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; border:0; }
+
+@media (max-width:480px){
+  .shell { padding:18px 13px 56px; }
+  .page-header h1 { font-size:26px; }
+  .chip { flex:1 1 calc(50% - 4px); min-width:0; }
+  .rs-chip { flex:1 1 calc(50% - 4px); min-width:0; }
+  .note-textarea { min-height:160px; }
+}
+
+/* ---- Preview-Gerüst (gehört nicht zur App) ---- */
+.pal-a-light{
+  --bg:oklch(97% 0 0); --card:oklch(100% 0 0); --card-muted:oklch(94% 0 0);
+  --line:oklch(85.5% 0 0); --line2:oklch(92% 0 0);
+  --ink:oklch(19% 0 0); --ink2:oklch(44% 0 0); --ink3:oklch(55% 0 0);
+  --accent:oklch(47% 0.16 262); --accent-soft:oklch(94% 0.03 262); --accent-ink:oklch(42% 0.16 262); --accent-contrast:oklch(100% 0 0);
+  --accent2:oklch(52% 0.13 72); --accent2-soft:oklch(94% 0.045 76); --accent2-ink:oklch(46% 0.125 68);
+  --warn:oklch(52% 0.13 72); --warn-soft:oklch(94% 0.045 76);
+  --danger:oklch(52% 0.19 27); --danger-soft:oklch(95% 0.035 27);
+  --shadow:none;
+ }
+.pal-a-dark{
+  --bg:oklch(17% 0 0); --card:oklch(22% 0 0); --card-muted:oklch(13.5% 0 0);
+  --line:oklch(32% 0 0); --line2:oklch(27% 0 0);
+  --ink:oklch(97% 0 0); --ink2:oklch(76% 0 0); --ink3:oklch(64% 0 0);
+  --accent:oklch(73% 0.14 262); --accent-soft:oklch(30% 0.06 262); --accent-ink:oklch(81% 0.11 262); --accent-contrast:oklch(16% 0 0);
+  --accent2:oklch(79% 0.13 78); --accent2-soft:oklch(30% 0.06 78); --accent2-ink:oklch(85% 0.12 80);
+  --warn:oklch(79% 0.13 78); --warn-soft:oklch(30% 0.06 78);
+  --danger:oklch(68% 0.18 27); --danger-soft:oklch(30% 0.07 27);
+  --shadow:none;
+ }
+.pal-b-light{
+  --bg:oklch(97% 0.006 250); --card:oklch(99.5% 0.003 250); --card-muted:oklch(94% 0.009 250);
+  --line:oklch(87% 0.013 250); --line2:oklch(92.5% 0.009 250);
+  --ink:oklch(20% 0.02 250); --ink2:oklch(45% 0.02 250); --ink3:oklch(56% 0.02 250);
+  --accent:oklch(50% 0.12 220); --accent-soft:oklch(93.5% 0.035 220); --accent-ink:oklch(44% 0.12 222); --accent-contrast:oklch(100% 0 0);
+  --accent2:oklch(52% 0.14 138); --accent2-soft:oklch(93.5% 0.05 132); --accent2-ink:oklch(45% 0.13 140);
+  --warn:oklch(53% 0.12 80); --warn-soft:oklch(94% 0.045 80);
+  --danger:oklch(53% 0.19 25); --danger-soft:oklch(95% 0.035 25);
+  --shadow:none;
+ }
+.pal-b-dark{
+  --bg:oklch(16% 0.018 250); --card:oklch(21% 0.02 250); --card-muted:oklch(12.5% 0.016 250);
+  --line:oklch(31% 0.025 250); --line2:oklch(26% 0.022 250);
+  --ink:oklch(97% 0.006 250); --ink2:oklch(77% 0.014 250); --ink3:oklch(65% 0.018 250);
+  --accent:oklch(78% 0.13 205); --accent-soft:oklch(30% 0.06 208); --accent-ink:oklch(85% 0.1 205); --accent-contrast:oklch(15% 0.02 250);
+  --accent2:oklch(87% 0.17 120); --accent2-soft:oklch(30% 0.07 124); --accent2-ink:oklch(89% 0.15 120);
+  --warn:oklch(80% 0.12 80); --warn-soft:oklch(30% 0.055 80);
+  --danger:oklch(68% 0.19 22); --danger-soft:oklch(29% 0.07 22);
+  --shadow:none;
+ }
+.pal-c-light{
+  --bg:oklch(96.5% 0.006 150); --card:oklch(99.5% 0.003 150); --card-muted:oklch(93.5% 0.009 150);
+  --line:oklch(86% 0.011 150); --line2:oklch(92% 0.008 150);
+  --ink:oklch(19% 0.013 150); --ink2:oklch(43% 0.013 150); --ink3:oklch(55% 0.013 150);
+  --accent:oklch(48% 0.17 285); --accent-soft:oklch(94% 0.035 285); --accent-ink:oklch(42% 0.18 285); --accent-contrast:oklch(100% 0 0);
+  --accent2:oklch(55% 0.16 48); --accent2-soft:oklch(94% 0.05 52); --accent2-ink:oklch(48% 0.16 46);
+  --warn:oklch(55% 0.16 48); --warn-soft:oklch(94% 0.05 52);
+  --danger:oklch(50% 0.2 15); --danger-soft:oklch(95% 0.04 15);
+  --shadow:none;
+ }
+.pal-c-dark{
+  --bg:oklch(15% 0.008 150); --card:oklch(20% 0.009 150); --card-muted:oklch(11.5% 0.007 150);
+  --line:oklch(30% 0.012 150); --line2:oklch(25% 0.01 150);
+  --ink:oklch(97% 0.005 150); --ink2:oklch(76% 0.01 150); --ink3:oklch(63% 0.012 150);
+  --accent:oklch(75% 0.15 288); --accent-soft:oklch(30% 0.08 288); --accent-ink:oklch(83% 0.13 288); --accent-contrast:oklch(14% 0.01 150);
+  --accent2:oklch(76% 0.16 52); --accent2-soft:oklch(30% 0.08 50); --accent2-ink:oklch(83% 0.14 55);
+  --warn:oklch(76% 0.16 52); --warn-soft:oklch(30% 0.08 50);
+  --danger:oklch(66% 0.2 15); --danger-soft:oklch(29% 0.08 15);
+  --shadow:none;
+ }
+html { background:#0d0d0d; }
+body { background:#0d0d0d; color:#e8e8e8; font-family:'Inter',system-ui,sans-serif; padding:32px 20px 80px; }
+.pv-wrap { max-width:1400px; margin:0 auto; }
+.pv-title { font-family:'Space Grotesk',sans-serif; font-size:26px; font-weight:700; letter-spacing:-.02em; }
+.pv-lede { font-size:14px; color:#9a9a9a; margin-top:8px; max-width:70ch; line-height:1.6; }
+.pv-variant { margin-top:44px; }
+.pv-head { border-top:1px solid #2a2a2a; padding-top:14px; margin-bottom:14px; display:flex; align-items:baseline; gap:12px; flex-wrap:wrap; }
+.pv-key { font-family:'JetBrains Mono',monospace; font-size:12px; font-weight:700; letter-spacing:.14em; color:#6f6f6f; }
+.pv-head h2 { font-family:'Space Grotesk',sans-serif; font-size:20px; font-weight:700; letter-spacing:-.01em; }
+.pv-head p { font-size:13px; color:#9a9a9a; }
+.pv-frames { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+@media (max-width:900px) { .pv-frames { grid-template-columns:1fr; } }
+.pv-frame { background:var(--bg); color:var(--ink); border:1px solid #2a2a2a; border-radius:14px; padding:18px 18px 22px; font-family:var(--body); }
+.pv-mode { font-family:'JetBrains Mono',monospace; font-size:11px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--ink3); margin-bottom:12px; }
+.sw-row { display:flex; flex-wrap:wrap; gap:6px; margin-bottom:20px; }
+.sw { display:flex; flex-direction:column; gap:4px; align-items:center; width:58px; }
+.sw i { width:100%; height:26px; border-radius:6px; border:1px solid var(--line); }
+.sw span { font-family:'JetBrains Mono',monospace; font-size:9px; color:var(--ink3); letter-spacing:.02em; }
+.pv-scene-label { font-family:'JetBrains Mono',monospace; font-size:11px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--ink3); margin-bottom:8px; }
+.pv-chips { display:flex; flex-wrap:wrap; gap:8px; align-items:center; }
+/* zweiter Akzent im Einsatz: Last und Intensität */
+.pv-frame .dc-rx-main .rv { color:var(--accent2-ink); }
+.pv-frame .rpe-pill { background:var(--accent2-soft); color:var(--accent2-ink); }
+.pv-frame .chip-val { color:var(--ink); }
+.pv-frame .exc-data .chip:nth-child(2) .chip-val { color:var(--accent2-ink); }
+.pv-frame .exc-data .chip:nth-child(2) { border-color:var(--accent2-soft); background:var(--accent2-soft); }
+.pv-frame .dcb-last { color:var(--accent2-ink); }
+</style></head>
+<body><div class="pv-wrap">
+<h1 class="pv-title">Drei Farbwelten — flach, matt, zwei Signalfarben</h1>
+<p class="pv-lede">Gleiches Produktions-CSS aus <code>website/index.html</code>, nur der Tokenblock ist getauscht. Jede Variante steht hell und dunkel gleichwertig. Blau/Violett führt die Struktur, die zweite Farbe trägt Last und Intensität. Keine Schatten — Trennung nur über Ton und Linie.</p>
+
+    <section class="pv-variant">
+      <header class="pv-head">
+        <span class="pv-key">A</span>
+        <h2>Instrument</h2>
+        <p>Chromafreie Neutrale. Kobalt führt, Bernstein trägt Last und Vorsicht.</p>
+      </header>
+      <div class="pv-frames">
+        <div class="pv-frame pal-a-light">
+          <div class="pv-mode">Hell</div>
+          <div class="sw-row"><div class="sw"><i style="background:var(--bg)"></i><span>bg</span></div><div class="sw"><i style="background:var(--card)"></i><span>card</span></div><div class="sw"><i style="background:var(--card-muted)"></i><span>card-muted</span></div><div class="sw"><i style="background:var(--line)"></i><span>line</span></div><div class="sw"><i style="background:var(--ink)"></i><span>ink</span></div><div class="sw"><i style="background:var(--ink2)"></i><span>ink2</span></div><div class="sw"><i style="background:var(--ink3)"></i><span>ink3</span></div><div class="sw"><i style="background:var(--accent)"></i><span>accent</span></div><div class="sw"><i style="background:var(--accent-soft)"></i><span>accent-soft</span></div><div class="sw"><i style="background:var(--accent2)"></i><span>accent2</span></div><div class="sw"><i style="background:var(--accent2-soft)"></i><span>accent2-soft</span></div><div class="sw"><i style="background:var(--danger)"></i><span>danger</span></div></div>
+          
+<div class="pv-scene">
+  <div class="pv-scene-label">Wochenkarte</div>
+  <article class="day-card is-today">
+    <div class="dc-top">
+      <button class="dc-main" type="button">
+        <div class="dc-head">
+          <span class="dc-day">Mittwoch</span>
+          <span class="dc-date">20.08.</span>
+          <span class="type-badge focus"><span class="type-icon"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 12h2m12 0h2M8 8v8m8-8v8M6 10v4m12-4v4"/></svg></span>Fokus</span>
+        </div>
+        <div class="dc-blocks">
+          <span>A · Snatch Komplex</span>
+          <span>B · Front Squat</span>
+          <span>C · Strict HSPU</span>
+        </div>
+        <div class="dc-rx-main">5 &times; 1 &middot; <span class="rv">52,5 kg</span> &middot; <span class="rpe-pill">RPE 8</span></div>
+      </button>
+      <span class="dc-chev-spacer" aria-hidden="true"></span>
+    </div>
+    <button class="dc-cta-btn" type="button">Routine öffnen</button>
+  </article>
+
+  <article class="day-card t-rest" style="margin-top:10px">
+    <div class="dc-top">
+      <button class="dc-main" type="button">
+        <div class="dc-head">
+          <span class="dc-day">Donnerstag</span>
+          <span class="dc-date">21.08.</span>
+          <span class="type-badge"><span class="type-icon"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg></span>Ruhetag</span>
+        </div>
+        <div class="dc-sub">Harte Pause. Kein Ersatztraining.</div>
+      </button>
+      <button class="dc-chev" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button>
+    </div>
+  </article>
+
+  <div class="pv-scene-label" style="margin-top:22px">Fokus-Tag &middot; Block</div>
+  <div class="blk is-open">
+    <button class="blk-head" aria-expanded="true" type="button">
+      <span class="blk-letter">B</span>
+      <span class="blk-headtext">
+        <span class="blk-title">Front Squat</span>
+      </span>
+      <span class="blk-chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
+    </button>
+    <div class="blk-body">
+      <div class="blk-flags"><span class="mchip prio-1">Kernblock</span><span class="mchip">18 min</span></div>
+      <div class="exc">
+        <div class="exc-name">Front Squat<small>Aus dem Rack, Fersen stabil</small></div>
+        <div class="exc-data">
+          <div class="chip"><div class="chip-label">Sets &times; Reps</div><div class="chip-val">4 &times; 3</div></div>
+          <div class="chip"><div class="chip-label">Last<span class="chip-unit">kg</span></div><div class="chip-val"><span class="steps"><span>82,5</span><span>87,5</span><span>90</span></span></div></div>
+          <div class="chip"><div class="chip-label">RPE</div><div class="chip-val">8</div></div>
+        </div>
+        <div class="exc-meta"><span><b>Tempo</b>31X1</span><span><b>Pause</b>2:30</span></div>
+        <div class="exc-note">90 kg ist der Wert aus W33 &mdash; erst wiederholen, dann steigern.</div>
+      </div>
+      <button class="blk-done" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Block erledigt</button>
+    </div>
+  </div>
+
+  <div class="blk is-optional" style="margin-top:8px">
+    <button class="blk-head" aria-expanded="false" type="button">
+      <span class="blk-letter">E</span>
+      <span class="blk-headtext">
+        <span class="blk-title">Hypertrophie-Layer</span>
+        <span class="blk-peek">3 &times; 12 &middot; 22,5 kg</span>
+      </span>
+      <span class="blk-chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
+    </button>
+  </div>
+
+  <div class="pv-scene-label" style="margin-top:22px">Zustände</div>
+  <div class="pv-chips">
+    <span class="mchip prio-1">Akzent</span>
+    <span class="mchip mchip-opt">Optional</span>
+    <span class="mchip">Neutral</span>
+    <span class="rpe-pill">RPE 9</span>
+    <button class="note-save-btn" type="button">Speichern</button>
+    <span class="note-status err">Fehler beim Speichern</span>
+  </div>
+  <div class="rule-step rot" style="margin-top:12px">
+    <div class="rule-step-h">Recovery unter 34 % (rot)</div>
+    <div style="font-size:13px;color:var(--ink2)">nur Technik- und Mobility-Arbeit bis RPE 6 &mdash; oder Ruhe</div>
+  </div>
+</div>
+
+        </div>
+        <div class="pv-frame pal-a-dark">
+          <div class="pv-mode">Dunkel</div>
+          <div class="sw-row"><div class="sw"><i style="background:var(--bg)"></i><span>bg</span></div><div class="sw"><i style="background:var(--card)"></i><span>card</span></div><div class="sw"><i style="background:var(--card-muted)"></i><span>card-muted</span></div><div class="sw"><i style="background:var(--line)"></i><span>line</span></div><div class="sw"><i style="background:var(--ink)"></i><span>ink</span></div><div class="sw"><i style="background:var(--ink2)"></i><span>ink2</span></div><div class="sw"><i style="background:var(--ink3)"></i><span>ink3</span></div><div class="sw"><i style="background:var(--accent)"></i><span>accent</span></div><div class="sw"><i style="background:var(--accent-soft)"></i><span>accent-soft</span></div><div class="sw"><i style="background:var(--accent2)"></i><span>accent2</span></div><div class="sw"><i style="background:var(--accent2-soft)"></i><span>accent2-soft</span></div><div class="sw"><i style="background:var(--danger)"></i><span>danger</span></div></div>
+          
+<div class="pv-scene">
+  <div class="pv-scene-label">Wochenkarte</div>
+  <article class="day-card is-today">
+    <div class="dc-top">
+      <button class="dc-main" type="button">
+        <div class="dc-head">
+          <span class="dc-day">Mittwoch</span>
+          <span class="dc-date">20.08.</span>
+          <span class="type-badge focus"><span class="type-icon"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 12h2m12 0h2M8 8v8m8-8v8M6 10v4m12-4v4"/></svg></span>Fokus</span>
+        </div>
+        <div class="dc-blocks">
+          <span>A · Snatch Komplex</span>
+          <span>B · Front Squat</span>
+          <span>C · Strict HSPU</span>
+        </div>
+        <div class="dc-rx-main">5 &times; 1 &middot; <span class="rv">52,5 kg</span> &middot; <span class="rpe-pill">RPE 8</span></div>
+      </button>
+      <span class="dc-chev-spacer" aria-hidden="true"></span>
+    </div>
+    <button class="dc-cta-btn" type="button">Routine öffnen</button>
+  </article>
+
+  <article class="day-card t-rest" style="margin-top:10px">
+    <div class="dc-top">
+      <button class="dc-main" type="button">
+        <div class="dc-head">
+          <span class="dc-day">Donnerstag</span>
+          <span class="dc-date">21.08.</span>
+          <span class="type-badge"><span class="type-icon"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg></span>Ruhetag</span>
+        </div>
+        <div class="dc-sub">Harte Pause. Kein Ersatztraining.</div>
+      </button>
+      <button class="dc-chev" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button>
+    </div>
+  </article>
+
+  <div class="pv-scene-label" style="margin-top:22px">Fokus-Tag &middot; Block</div>
+  <div class="blk is-open">
+    <button class="blk-head" aria-expanded="true" type="button">
+      <span class="blk-letter">B</span>
+      <span class="blk-headtext">
+        <span class="blk-title">Front Squat</span>
+      </span>
+      <span class="blk-chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
+    </button>
+    <div class="blk-body">
+      <div class="blk-flags"><span class="mchip prio-1">Kernblock</span><span class="mchip">18 min</span></div>
+      <div class="exc">
+        <div class="exc-name">Front Squat<small>Aus dem Rack, Fersen stabil</small></div>
+        <div class="exc-data">
+          <div class="chip"><div class="chip-label">Sets &times; Reps</div><div class="chip-val">4 &times; 3</div></div>
+          <div class="chip"><div class="chip-label">Last<span class="chip-unit">kg</span></div><div class="chip-val"><span class="steps"><span>82,5</span><span>87,5</span><span>90</span></span></div></div>
+          <div class="chip"><div class="chip-label">RPE</div><div class="chip-val">8</div></div>
+        </div>
+        <div class="exc-meta"><span><b>Tempo</b>31X1</span><span><b>Pause</b>2:30</span></div>
+        <div class="exc-note">90 kg ist der Wert aus W33 &mdash; erst wiederholen, dann steigern.</div>
+      </div>
+      <button class="blk-done" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Block erledigt</button>
+    </div>
+  </div>
+
+  <div class="blk is-optional" style="margin-top:8px">
+    <button class="blk-head" aria-expanded="false" type="button">
+      <span class="blk-letter">E</span>
+      <span class="blk-headtext">
+        <span class="blk-title">Hypertrophie-Layer</span>
+        <span class="blk-peek">3 &times; 12 &middot; 22,5 kg</span>
+      </span>
+      <span class="blk-chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
+    </button>
+  </div>
+
+  <div class="pv-scene-label" style="margin-top:22px">Zustände</div>
+  <div class="pv-chips">
+    <span class="mchip prio-1">Akzent</span>
+    <span class="mchip mchip-opt">Optional</span>
+    <span class="mchip">Neutral</span>
+    <span class="rpe-pill">RPE 9</span>
+    <button class="note-save-btn" type="button">Speichern</button>
+    <span class="note-status err">Fehler beim Speichern</span>
+  </div>
+  <div class="rule-step rot" style="margin-top:12px">
+    <div class="rule-step-h">Recovery unter 34 % (rot)</div>
+    <div style="font-size:13px;color:var(--ink2)">nur Technik- und Mobility-Arbeit bis RPE 6 &mdash; oder Ruhe</div>
+  </div>
+</div>
+
+        </div></div>
+    </section>
+    <section class="pv-variant">
+      <header class="pv-head">
+        <span class="pv-key">B</span>
+        <h2>Nachtlabor</h2>
+        <p>Blaustichige Neutrale. Eisblau für Struktur, Limette für Leistung.</p>
+      </header>
+      <div class="pv-frames">
+        <div class="pv-frame pal-b-light">
+          <div class="pv-mode">Hell</div>
+          <div class="sw-row"><div class="sw"><i style="background:var(--bg)"></i><span>bg</span></div><div class="sw"><i style="background:var(--card)"></i><span>card</span></div><div class="sw"><i style="background:var(--card-muted)"></i><span>card-muted</span></div><div class="sw"><i style="background:var(--line)"></i><span>line</span></div><div class="sw"><i style="background:var(--ink)"></i><span>ink</span></div><div class="sw"><i style="background:var(--ink2)"></i><span>ink2</span></div><div class="sw"><i style="background:var(--ink3)"></i><span>ink3</span></div><div class="sw"><i style="background:var(--accent)"></i><span>accent</span></div><div class="sw"><i style="background:var(--accent-soft)"></i><span>accent-soft</span></div><div class="sw"><i style="background:var(--accent2)"></i><span>accent2</span></div><div class="sw"><i style="background:var(--accent2-soft)"></i><span>accent2-soft</span></div><div class="sw"><i style="background:var(--danger)"></i><span>danger</span></div></div>
+          
+<div class="pv-scene">
+  <div class="pv-scene-label">Wochenkarte</div>
+  <article class="day-card is-today">
+    <div class="dc-top">
+      <button class="dc-main" type="button">
+        <div class="dc-head">
+          <span class="dc-day">Mittwoch</span>
+          <span class="dc-date">20.08.</span>
+          <span class="type-badge focus"><span class="type-icon"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 12h2m12 0h2M8 8v8m8-8v8M6 10v4m12-4v4"/></svg></span>Fokus</span>
+        </div>
+        <div class="dc-blocks">
+          <span>A · Snatch Komplex</span>
+          <span>B · Front Squat</span>
+          <span>C · Strict HSPU</span>
+        </div>
+        <div class="dc-rx-main">5 &times; 1 &middot; <span class="rv">52,5 kg</span> &middot; <span class="rpe-pill">RPE 8</span></div>
+      </button>
+      <span class="dc-chev-spacer" aria-hidden="true"></span>
+    </div>
+    <button class="dc-cta-btn" type="button">Routine öffnen</button>
+  </article>
+
+  <article class="day-card t-rest" style="margin-top:10px">
+    <div class="dc-top">
+      <button class="dc-main" type="button">
+        <div class="dc-head">
+          <span class="dc-day">Donnerstag</span>
+          <span class="dc-date">21.08.</span>
+          <span class="type-badge"><span class="type-icon"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg></span>Ruhetag</span>
+        </div>
+        <div class="dc-sub">Harte Pause. Kein Ersatztraining.</div>
+      </button>
+      <button class="dc-chev" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button>
+    </div>
+  </article>
+
+  <div class="pv-scene-label" style="margin-top:22px">Fokus-Tag &middot; Block</div>
+  <div class="blk is-open">
+    <button class="blk-head" aria-expanded="true" type="button">
+      <span class="blk-letter">B</span>
+      <span class="blk-headtext">
+        <span class="blk-title">Front Squat</span>
+      </span>
+      <span class="blk-chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
+    </button>
+    <div class="blk-body">
+      <div class="blk-flags"><span class="mchip prio-1">Kernblock</span><span class="mchip">18 min</span></div>
+      <div class="exc">
+        <div class="exc-name">Front Squat<small>Aus dem Rack, Fersen stabil</small></div>
+        <div class="exc-data">
+          <div class="chip"><div class="chip-label">Sets &times; Reps</div><div class="chip-val">4 &times; 3</div></div>
+          <div class="chip"><div class="chip-label">Last<span class="chip-unit">kg</span></div><div class="chip-val"><span class="steps"><span>82,5</span><span>87,5</span><span>90</span></span></div></div>
+          <div class="chip"><div class="chip-label">RPE</div><div class="chip-val">8</div></div>
+        </div>
+        <div class="exc-meta"><span><b>Tempo</b>31X1</span><span><b>Pause</b>2:30</span></div>
+        <div class="exc-note">90 kg ist der Wert aus W33 &mdash; erst wiederholen, dann steigern.</div>
+      </div>
+      <button class="blk-done" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Block erledigt</button>
+    </div>
+  </div>
+
+  <div class="blk is-optional" style="margin-top:8px">
+    <button class="blk-head" aria-expanded="false" type="button">
+      <span class="blk-letter">E</span>
+      <span class="blk-headtext">
+        <span class="blk-title">Hypertrophie-Layer</span>
+        <span class="blk-peek">3 &times; 12 &middot; 22,5 kg</span>
+      </span>
+      <span class="blk-chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
+    </button>
+  </div>
+
+  <div class="pv-scene-label" style="margin-top:22px">Zustände</div>
+  <div class="pv-chips">
+    <span class="mchip prio-1">Akzent</span>
+    <span class="mchip mchip-opt">Optional</span>
+    <span class="mchip">Neutral</span>
+    <span class="rpe-pill">RPE 9</span>
+    <button class="note-save-btn" type="button">Speichern</button>
+    <span class="note-status err">Fehler beim Speichern</span>
+  </div>
+  <div class="rule-step rot" style="margin-top:12px">
+    <div class="rule-step-h">Recovery unter 34 % (rot)</div>
+    <div style="font-size:13px;color:var(--ink2)">nur Technik- und Mobility-Arbeit bis RPE 6 &mdash; oder Ruhe</div>
+  </div>
+</div>
+
+        </div>
+        <div class="pv-frame pal-b-dark">
+          <div class="pv-mode">Dunkel</div>
+          <div class="sw-row"><div class="sw"><i style="background:var(--bg)"></i><span>bg</span></div><div class="sw"><i style="background:var(--card)"></i><span>card</span></div><div class="sw"><i style="background:var(--card-muted)"></i><span>card-muted</span></div><div class="sw"><i style="background:var(--line)"></i><span>line</span></div><div class="sw"><i style="background:var(--ink)"></i><span>ink</span></div><div class="sw"><i style="background:var(--ink2)"></i><span>ink2</span></div><div class="sw"><i style="background:var(--ink3)"></i><span>ink3</span></div><div class="sw"><i style="background:var(--accent)"></i><span>accent</span></div><div class="sw"><i style="background:var(--accent-soft)"></i><span>accent-soft</span></div><div class="sw"><i style="background:var(--accent2)"></i><span>accent2</span></div><div class="sw"><i style="background:var(--accent2-soft)"></i><span>accent2-soft</span></div><div class="sw"><i style="background:var(--danger)"></i><span>danger</span></div></div>
+          
+<div class="pv-scene">
+  <div class="pv-scene-label">Wochenkarte</div>
+  <article class="day-card is-today">
+    <div class="dc-top">
+      <button class="dc-main" type="button">
+        <div class="dc-head">
+          <span class="dc-day">Mittwoch</span>
+          <span class="dc-date">20.08.</span>
+          <span class="type-badge focus"><span class="type-icon"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 12h2m12 0h2M8 8v8m8-8v8M6 10v4m12-4v4"/></svg></span>Fokus</span>
+        </div>
+        <div class="dc-blocks">
+          <span>A · Snatch Komplex</span>
+          <span>B · Front Squat</span>
+          <span>C · Strict HSPU</span>
+        </div>
+        <div class="dc-rx-main">5 &times; 1 &middot; <span class="rv">52,5 kg</span> &middot; <span class="rpe-pill">RPE 8</span></div>
+      </button>
+      <span class="dc-chev-spacer" aria-hidden="true"></span>
+    </div>
+    <button class="dc-cta-btn" type="button">Routine öffnen</button>
+  </article>
+
+  <article class="day-card t-rest" style="margin-top:10px">
+    <div class="dc-top">
+      <button class="dc-main" type="button">
+        <div class="dc-head">
+          <span class="dc-day">Donnerstag</span>
+          <span class="dc-date">21.08.</span>
+          <span class="type-badge"><span class="type-icon"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg></span>Ruhetag</span>
+        </div>
+        <div class="dc-sub">Harte Pause. Kein Ersatztraining.</div>
+      </button>
+      <button class="dc-chev" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button>
+    </div>
+  </article>
+
+  <div class="pv-scene-label" style="margin-top:22px">Fokus-Tag &middot; Block</div>
+  <div class="blk is-open">
+    <button class="blk-head" aria-expanded="true" type="button">
+      <span class="blk-letter">B</span>
+      <span class="blk-headtext">
+        <span class="blk-title">Front Squat</span>
+      </span>
+      <span class="blk-chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
+    </button>
+    <div class="blk-body">
+      <div class="blk-flags"><span class="mchip prio-1">Kernblock</span><span class="mchip">18 min</span></div>
+      <div class="exc">
+        <div class="exc-name">Front Squat<small>Aus dem Rack, Fersen stabil</small></div>
+        <div class="exc-data">
+          <div class="chip"><div class="chip-label">Sets &times; Reps</div><div class="chip-val">4 &times; 3</div></div>
+          <div class="chip"><div class="chip-label">Last<span class="chip-unit">kg</span></div><div class="chip-val"><span class="steps"><span>82,5</span><span>87,5</span><span>90</span></span></div></div>
+          <div class="chip"><div class="chip-label">RPE</div><div class="chip-val">8</div></div>
+        </div>
+        <div class="exc-meta"><span><b>Tempo</b>31X1</span><span><b>Pause</b>2:30</span></div>
+        <div class="exc-note">90 kg ist der Wert aus W33 &mdash; erst wiederholen, dann steigern.</div>
+      </div>
+      <button class="blk-done" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Block erledigt</button>
+    </div>
+  </div>
+
+  <div class="blk is-optional" style="margin-top:8px">
+    <button class="blk-head" aria-expanded="false" type="button">
+      <span class="blk-letter">E</span>
+      <span class="blk-headtext">
+        <span class="blk-title">Hypertrophie-Layer</span>
+        <span class="blk-peek">3 &times; 12 &middot; 22,5 kg</span>
+      </span>
+      <span class="blk-chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
+    </button>
+  </div>
+
+  <div class="pv-scene-label" style="margin-top:22px">Zustände</div>
+  <div class="pv-chips">
+    <span class="mchip prio-1">Akzent</span>
+    <span class="mchip mchip-opt">Optional</span>
+    <span class="mchip">Neutral</span>
+    <span class="rpe-pill">RPE 9</span>
+    <button class="note-save-btn" type="button">Speichern</button>
+    <span class="note-status err">Fehler beim Speichern</span>
+  </div>
+  <div class="rule-step rot" style="margin-top:12px">
+    <div class="rule-step-h">Recovery unter 34 % (rot)</div>
+    <div style="font-size:13px;color:var(--ink2)">nur Technik- und Mobility-Arbeit bis RPE 6 &mdash; oder Ruhe</div>
+  </div>
+</div>
+
+        </div></div>
+    </section>
+    <section class="pv-variant">
+      <header class="pv-head">
+        <span class="pv-key">C</span>
+        <h2>Basalt</h2>
+        <p>Steingraue Neutrale mit Grünstich. Ultramarin und Signalorange im Gegenschnitt.</p>
+      </header>
+      <div class="pv-frames">
+        <div class="pv-frame pal-c-light">
+          <div class="pv-mode">Hell</div>
+          <div class="sw-row"><div class="sw"><i style="background:var(--bg)"></i><span>bg</span></div><div class="sw"><i style="background:var(--card)"></i><span>card</span></div><div class="sw"><i style="background:var(--card-muted)"></i><span>card-muted</span></div><div class="sw"><i style="background:var(--line)"></i><span>line</span></div><div class="sw"><i style="background:var(--ink)"></i><span>ink</span></div><div class="sw"><i style="background:var(--ink2)"></i><span>ink2</span></div><div class="sw"><i style="background:var(--ink3)"></i><span>ink3</span></div><div class="sw"><i style="background:var(--accent)"></i><span>accent</span></div><div class="sw"><i style="background:var(--accent-soft)"></i><span>accent-soft</span></div><div class="sw"><i style="background:var(--accent2)"></i><span>accent2</span></div><div class="sw"><i style="background:var(--accent2-soft)"></i><span>accent2-soft</span></div><div class="sw"><i style="background:var(--danger)"></i><span>danger</span></div></div>
+          
+<div class="pv-scene">
+  <div class="pv-scene-label">Wochenkarte</div>
+  <article class="day-card is-today">
+    <div class="dc-top">
+      <button class="dc-main" type="button">
+        <div class="dc-head">
+          <span class="dc-day">Mittwoch</span>
+          <span class="dc-date">20.08.</span>
+          <span class="type-badge focus"><span class="type-icon"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 12h2m12 0h2M8 8v8m8-8v8M6 10v4m12-4v4"/></svg></span>Fokus</span>
+        </div>
+        <div class="dc-blocks">
+          <span>A · Snatch Komplex</span>
+          <span>B · Front Squat</span>
+          <span>C · Strict HSPU</span>
+        </div>
+        <div class="dc-rx-main">5 &times; 1 &middot; <span class="rv">52,5 kg</span> &middot; <span class="rpe-pill">RPE 8</span></div>
+      </button>
+      <span class="dc-chev-spacer" aria-hidden="true"></span>
+    </div>
+    <button class="dc-cta-btn" type="button">Routine öffnen</button>
+  </article>
+
+  <article class="day-card t-rest" style="margin-top:10px">
+    <div class="dc-top">
+      <button class="dc-main" type="button">
+        <div class="dc-head">
+          <span class="dc-day">Donnerstag</span>
+          <span class="dc-date">21.08.</span>
+          <span class="type-badge"><span class="type-icon"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg></span>Ruhetag</span>
+        </div>
+        <div class="dc-sub">Harte Pause. Kein Ersatztraining.</div>
+      </button>
+      <button class="dc-chev" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button>
+    </div>
+  </article>
+
+  <div class="pv-scene-label" style="margin-top:22px">Fokus-Tag &middot; Block</div>
+  <div class="blk is-open">
+    <button class="blk-head" aria-expanded="true" type="button">
+      <span class="blk-letter">B</span>
+      <span class="blk-headtext">
+        <span class="blk-title">Front Squat</span>
+      </span>
+      <span class="blk-chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
+    </button>
+    <div class="blk-body">
+      <div class="blk-flags"><span class="mchip prio-1">Kernblock</span><span class="mchip">18 min</span></div>
+      <div class="exc">
+        <div class="exc-name">Front Squat<small>Aus dem Rack, Fersen stabil</small></div>
+        <div class="exc-data">
+          <div class="chip"><div class="chip-label">Sets &times; Reps</div><div class="chip-val">4 &times; 3</div></div>
+          <div class="chip"><div class="chip-label">Last<span class="chip-unit">kg</span></div><div class="chip-val"><span class="steps"><span>82,5</span><span>87,5</span><span>90</span></span></div></div>
+          <div class="chip"><div class="chip-label">RPE</div><div class="chip-val">8</div></div>
+        </div>
+        <div class="exc-meta"><span><b>Tempo</b>31X1</span><span><b>Pause</b>2:30</span></div>
+        <div class="exc-note">90 kg ist der Wert aus W33 &mdash; erst wiederholen, dann steigern.</div>
+      </div>
+      <button class="blk-done" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Block erledigt</button>
+    </div>
+  </div>
+
+  <div class="blk is-optional" style="margin-top:8px">
+    <button class="blk-head" aria-expanded="false" type="button">
+      <span class="blk-letter">E</span>
+      <span class="blk-headtext">
+        <span class="blk-title">Hypertrophie-Layer</span>
+        <span class="blk-peek">3 &times; 12 &middot; 22,5 kg</span>
+      </span>
+      <span class="blk-chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
+    </button>
+  </div>
+
+  <div class="pv-scene-label" style="margin-top:22px">Zustände</div>
+  <div class="pv-chips">
+    <span class="mchip prio-1">Akzent</span>
+    <span class="mchip mchip-opt">Optional</span>
+    <span class="mchip">Neutral</span>
+    <span class="rpe-pill">RPE 9</span>
+    <button class="note-save-btn" type="button">Speichern</button>
+    <span class="note-status err">Fehler beim Speichern</span>
+  </div>
+  <div class="rule-step rot" style="margin-top:12px">
+    <div class="rule-step-h">Recovery unter 34 % (rot)</div>
+    <div style="font-size:13px;color:var(--ink2)">nur Technik- und Mobility-Arbeit bis RPE 6 &mdash; oder Ruhe</div>
+  </div>
+</div>
+
+        </div>
+        <div class="pv-frame pal-c-dark">
+          <div class="pv-mode">Dunkel</div>
+          <div class="sw-row"><div class="sw"><i style="background:var(--bg)"></i><span>bg</span></div><div class="sw"><i style="background:var(--card)"></i><span>card</span></div><div class="sw"><i style="background:var(--card-muted)"></i><span>card-muted</span></div><div class="sw"><i style="background:var(--line)"></i><span>line</span></div><div class="sw"><i style="background:var(--ink)"></i><span>ink</span></div><div class="sw"><i style="background:var(--ink2)"></i><span>ink2</span></div><div class="sw"><i style="background:var(--ink3)"></i><span>ink3</span></div><div class="sw"><i style="background:var(--accent)"></i><span>accent</span></div><div class="sw"><i style="background:var(--accent-soft)"></i><span>accent-soft</span></div><div class="sw"><i style="background:var(--accent2)"></i><span>accent2</span></div><div class="sw"><i style="background:var(--accent2-soft)"></i><span>accent2-soft</span></div><div class="sw"><i style="background:var(--danger)"></i><span>danger</span></div></div>
+          
+<div class="pv-scene">
+  <div class="pv-scene-label">Wochenkarte</div>
+  <article class="day-card is-today">
+    <div class="dc-top">
+      <button class="dc-main" type="button">
+        <div class="dc-head">
+          <span class="dc-day">Mittwoch</span>
+          <span class="dc-date">20.08.</span>
+          <span class="type-badge focus"><span class="type-icon"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 12h2m12 0h2M8 8v8m8-8v8M6 10v4m12-4v4"/></svg></span>Fokus</span>
+        </div>
+        <div class="dc-blocks">
+          <span>A · Snatch Komplex</span>
+          <span>B · Front Squat</span>
+          <span>C · Strict HSPU</span>
+        </div>
+        <div class="dc-rx-main">5 &times; 1 &middot; <span class="rv">52,5 kg</span> &middot; <span class="rpe-pill">RPE 8</span></div>
+      </button>
+      <span class="dc-chev-spacer" aria-hidden="true"></span>
+    </div>
+    <button class="dc-cta-btn" type="button">Routine öffnen</button>
+  </article>
+
+  <article class="day-card t-rest" style="margin-top:10px">
+    <div class="dc-top">
+      <button class="dc-main" type="button">
+        <div class="dc-head">
+          <span class="dc-day">Donnerstag</span>
+          <span class="dc-date">21.08.</span>
+          <span class="type-badge"><span class="type-icon"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg></span>Ruhetag</span>
+        </div>
+        <div class="dc-sub">Harte Pause. Kein Ersatztraining.</div>
+      </button>
+      <button class="dc-chev" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button>
+    </div>
+  </article>
+
+  <div class="pv-scene-label" style="margin-top:22px">Fokus-Tag &middot; Block</div>
+  <div class="blk is-open">
+    <button class="blk-head" aria-expanded="true" type="button">
+      <span class="blk-letter">B</span>
+      <span class="blk-headtext">
+        <span class="blk-title">Front Squat</span>
+      </span>
+      <span class="blk-chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
+    </button>
+    <div class="blk-body">
+      <div class="blk-flags"><span class="mchip prio-1">Kernblock</span><span class="mchip">18 min</span></div>
+      <div class="exc">
+        <div class="exc-name">Front Squat<small>Aus dem Rack, Fersen stabil</small></div>
+        <div class="exc-data">
+          <div class="chip"><div class="chip-label">Sets &times; Reps</div><div class="chip-val">4 &times; 3</div></div>
+          <div class="chip"><div class="chip-label">Last<span class="chip-unit">kg</span></div><div class="chip-val"><span class="steps"><span>82,5</span><span>87,5</span><span>90</span></span></div></div>
+          <div class="chip"><div class="chip-label">RPE</div><div class="chip-val">8</div></div>
+        </div>
+        <div class="exc-meta"><span><b>Tempo</b>31X1</span><span><b>Pause</b>2:30</span></div>
+        <div class="exc-note">90 kg ist der Wert aus W33 &mdash; erst wiederholen, dann steigern.</div>
+      </div>
+      <button class="blk-done" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Block erledigt</button>
+    </div>
+  </div>
+
+  <div class="blk is-optional" style="margin-top:8px">
+    <button class="blk-head" aria-expanded="false" type="button">
+      <span class="blk-letter">E</span>
+      <span class="blk-headtext">
+        <span class="blk-title">Hypertrophie-Layer</span>
+        <span class="blk-peek">3 &times; 12 &middot; 22,5 kg</span>
+      </span>
+      <span class="blk-chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
+    </button>
+  </div>
+
+  <div class="pv-scene-label" style="margin-top:22px">Zustände</div>
+  <div class="pv-chips">
+    <span class="mchip prio-1">Akzent</span>
+    <span class="mchip mchip-opt">Optional</span>
+    <span class="mchip">Neutral</span>
+    <span class="rpe-pill">RPE 9</span>
+    <button class="note-save-btn" type="button">Speichern</button>
+    <span class="note-status err">Fehler beim Speichern</span>
+  </div>
+  <div class="rule-step rot" style="margin-top:12px">
+    <div class="rule-step-h">Recovery unter 34 % (rot)</div>
+    <div style="font-size:13px;color:var(--ink2)">nur Technik- und Mobility-Arbeit bis RPE 6 &mdash; oder Ruhe</div>
+  </div>
+</div>
+
+        </div></div>
+    </section>
+</div></body></html>

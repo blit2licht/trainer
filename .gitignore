@@ -22,3 +22,6 @@ design/bundle/
 # Video-Analyse-Rohdaten (Videos, Frames, Plots) — nie committen, nur
 # verdichtete Erkenntnisse wandern manuell nach coach/state.json
 coach/video_analysis/
+
+# Trainer 3.0 — Ideation-Arbeitsstand, wandert erst als MVP ins Repo
+V3.0/

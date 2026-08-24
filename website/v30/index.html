@@ -170,6 +170,9 @@ a{color:inherit;text-underline-offset:3px}
 
 /* ═══ Rahmen ═══ */
 .wrap{padding:0 20px 96px}
+/* Senkrechtes Scrollen bleibt beim Browser, die Querbewegung gehört der
+   Zurück-Wischgeste. Kein Element im Fokus-Baum scrollt waagerecht. */
+#viewFocus{touch-action:pan-y;will-change:transform}
 @media (min-width:1100px){
   .rail{padding:0 40px}
   .wrap{
@@ -1451,8 +1454,76 @@ function wireNoteBlock(block){
 function showWeek(){
   currentFocus = null;
   elFocus.hidden = true; elWeek.hidden = false;
+  elFocus.style.transition = ''; elFocus.style.transform = '';
   window.scrollTo(0, 0);
 }
+
+/* ── Wischen zurück zur Woche ── zweiter Weg neben „Zur Woche". Nur waagerecht
+   nach rechts und nur auf der Fokusseite; senkrecht bleibt Scrollen (die
+   Seite regelt das über touch-action:pan-y, wir sehen nur die Querbewegung).
+   Der Inhalt folgt dem Finger, damit die Geste sichtbar quittiert wird —
+   sonst wüsste man im Gym nicht, ob sie gegriffen hat. ── */
+(function(){
+  const TRIGGER = 72;   // ab hier gilt die Geste als „zurück"
+  const RATIO   = 1.5;  // waagerecht muss senkrecht deutlich schlagen
+  const EDGE    = 24;   // Safaris eigene Rand-Geste nicht doppeln
+  let x0 = 0, y0 = 0, dx = 0, tracking = false, axis = null, swiped = false;
+
+  const glide = t => { elFocus.style.transition = t; };
+  const reduced = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function stop(){ tracking = false; axis = null; dx = 0; }
+
+  elFocus.addEventListener('pointerdown', e => {
+    // Maus zieht keine Wischgeste — dort markiert man Text.
+    if (elFocus.hidden || !e.isPrimary || e.pointerType === 'mouse') return;
+    if (e.clientX < EDGE) return;
+    x0 = e.clientX; y0 = e.clientY; dx = 0;
+    tracking = true; axis = null; swiped = false;
+    glide('');
+  });
+
+  elFocus.addEventListener('pointermove', e => {
+    if (!tracking || !e.isPrimary) return;
+    const mx = e.clientX - x0, my = e.clientY - y0;
+    if (!axis){
+      if (Math.abs(mx) < 10 && Math.abs(my) < 10) return;
+      // Richtung einmal festlegen: senkrecht gehört dem Scrollen.
+      axis = (Math.abs(mx) > Math.abs(my) * RATIO) ? 'x' : 'y';
+      if (axis === 'y'){ stop(); return; }
+    }
+    dx = Math.max(0, mx);            // nur nach rechts, nie nach links
+    if (!reduced()) elFocus.style.transform = `translateX(${dx * 0.55}px)`;
+  });
+
+  function release(){
+    if (!tracking) return;
+    const done = axis === 'x' && dx >= TRIGGER;
+    if (done){
+      swiped = true;                 // den folgenden Klick schlucken
+      if (reduced()){ stop(); showWeek(); return; }
+      glide('transform .14s var(--ease)');
+      elFocus.style.transform = 'translateX(100%)';
+      setTimeout(showWeek, 140);     // showWeek räumt Transform und Transition
+    } else {
+      glide('transform .14s var(--ease)');
+      elFocus.style.transform = '';
+    }
+    stop();
+  }
+  elFocus.addEventListener('pointerup', release);
+  elFocus.addEventListener('pointercancel', () => {
+    if (tracking){ glide('transform .14s var(--ease)'); elFocus.style.transform = ''; }
+    stop();
+  });
+
+  /* Eine gewischte Bewegung darf keinen Done/Fail-Tap auslösen. */
+  elFocus.addEventListener('click', e => {
+    if (!swiped) return;
+    swiped = false;
+    e.stopPropagation(); e.preventDefault();
+  }, true);
+})();
 
 /* ── Apparat (nur Desktop-Randspalte) ── */
 function renderApparat(kind, ctx){

@@ -52,7 +52,7 @@
                 "tempo": "explosiv",
                 "rest": "E2:00-2:30"
               },
-              "warum": "Reclaim über die W32-Ceiling 80 (Sa 08.08., session_feel 5, seither ~18 Tage ohne Komplex-Kontakt). 82,5 nur bei sauberem Fang + Jerk-Lockout — sonst auf dem letzten sauberen Gewicht ausfahren, kein Erzwingen in der Defizit-Dip-Woche.",
+              "warum": "Aufbau 65 → 82,5, jede Stufe 1 Clean + 1 Jerk, dazwischen volle Pause. Die 82,5 nur nehmen, wenn Fang und Lockout sauber sind — sonst auf dem letzten sauberen Gewicht bleiben, nichts erzwingen. Ziel: den Komplex wieder über die alte 80er-Bestmarke bringen.",
               "note": "Squat Clean + Push/Split Jerk. Warm-up-Singles unter 65 zählen nicht als Arbeitssätze. Topgewicht loggen."
             }
           ]
@@ -82,7 +82,7 @@
                 "tempo": "31X1",
                 "rest": "2-3 min"
               },
-              "warum": "Block-Start vor dem erwarteten Defizit-Dip (Meso-Rolle W35). Referenz: Top-Single 102,5 aus Block Teil 1 (W30). Topsatz 95×3 RPE-gated nach der C&J-Vorermüdung — der Korridor 105–107,5 wird W36/W37 mit Singles/Doubles angefahren.",
+              "warum": "Tempo 31X1: 3 Sekunden runter, unten kurz halten, zügig hoch. Den Topsatz 95 × 3 nur fahren, wenn er sich nach dem C&J wie höchstens 8 von 10 anfühlt. Ziel: in 2–3 Wochen 105–107,5 als schwere Einzel — dieses Volumen legt die Basis dafür.",
               "note": "Block-Woche 1. Bei RPE >8 nach dem C&J bei 92,5 bleiben."
             }
           ]
@@ -102,7 +102,7 @@
                 "sets": 3,
                 "rest": "60 sec"
               },
-              "warum": "Rumpfspannung als Basis für Front-Rack und Gymnastics — bewusst leicht gehalten.",
+              "warum": "Unterer Rücken bleibt fest am Boden, Spannung aus der Körpermitte, ruhig atmen. Diese Spannung trägt Front-Rack und Gymnastics — bewusst leicht gehalten.",
               "note": "Ruhig atmen, unterer Rücken am Boden."
             }
           ]
@@ -125,7 +125,7 @@
                 "rpe_cap": 7,
                 "rest": "60 sec"
               },
-              "warum": "Rekompositions-Layer. RPE-Deckel 7 strikt — der Layer lief zwei Wochen heiß.",
+              "warum": "Kontrolliert und ohne Schwung, zwei Wiederholungen bleiben im Tank. Zweck: Muskelschutz im Kaloriendefizit — der Deckel ist strikt, der Layer lief zuletzt zu schwer.",
               "note": "2 × 6 kg (je Hantel), kontrolliert, keine Failure-Sätze."
             },
             {
@@ -139,7 +139,7 @@
                 "rpe_cap": 7,
                 "rest": "60 sec"
               },
-              "warum": "Rekompositions-Layer, RPE-Deckel 7 strikt.",
+              "warum": "Kontrolliert, kein Muskelversagen, zwei Wiederholungen im Tank. Zweck: Muskelschutz im Kaloriendefizit.",
               "note": "2 × 10–12 kg, kontrolliert."
             }
           ]
@@ -263,7 +263,7 @@
                 "tempo": "kontrolliert",
                 "rest": "60 sec"
               },
-              "warum": "Descent-Kontrolle + Hip-Pop-Timing primen (~5 min) — die Video-Diagnose vom 22.08. zeigt den Engpass im Descent (0,55–0,76 Torsolängen von der Stange) und in der Stütz-Pause, nicht im Zug.",
+              "warum": "Aufwärm-Primer vor den Arbeitssätzen: den Abgang kontrolliert und nah an der Stange führen, dann den Hüft-Impuls im richtigen Moment setzen — genau die zwei Punkte, die die Video-Analyse als Engpass zeigt.",
               "note": "„Feet in a Bucket“: Füße in einen imaginären Eimer vor dem Körper führen, Kip-Momentum erhalten."
             },
             {
@@ -276,7 +276,7 @@
                 "rpe_cap": 8,
                 "rest": "2-3 min"
               },
-              "warum": "Stufe hoch von 5×2: W34 lief mit feel 3 und einmal 3 am Stück — der Aufstieg auf der Linked-Sets-Treppe (5×2 → 4×3 → 3×3+1×max → Test) ist gerechtfertigt. Reißt das Linking, zurück auf 5×2 — nicht erzwingen.",
+              "warum": "4 × 3 verbunden, ohne von der Stange zu steigen. Reißt die Verbindung, zurück auf 5 × 2 — nicht erzwingen. Ziel: Schritt für Schritt zum Max-Test in zwei Wochen.",
               "note": "Cues: „Fall Into Pike“ (Stütz-Pause: press tall, in die Pike fallen, Arch-Spannung, press down and around) + „Feet in a Bucket“ (Descent eng)."
             }
           ]
@@ -297,7 +297,7 @@
                 "rpe_cap": 7,
                 "rest": "90 sec"
               },
-              "warum": "Gehalten, kein Test — Test 16 hat das Ziel 10 klar übertroffen, Zielneusetzung kommt beim W37-Review.",
+              "warum": "3 × 10 kontrolliert, Zehen bewusst zur Stange — deutlich unter dem Testwert von 16 am Stück. Halten statt steigern, das neue Ziel kommt nach dem Test-Review.",
               "note": "Letzte Reps als saubere Singles erlaubt."
             }
           ]
@@ -319,7 +319,7 @@
                 "tempo": "21X0",
                 "rest": "3 min"
               },
-              "warum": "Oberste Leiterstufe 4×8 in W34 am Limit bestätigt (letzter Satz schwer) — konsolidieren statt steigern, NICHT 4×9. Nächster Schritt ist der Max-Test W37.",
+              "warum": "Tempo 21X0: 2 Sekunden runter, explosiv hoch, oben nicht ausruhen. 4 × 8 sauber bestätigen — bewusst nicht steigern, der Max-Test kommt in zwei Wochen.",
               "note": "Reißt der letzte Satz → 4×7, kein Stall (Dip-Woche)."
             }
           ]
@@ -342,7 +342,7 @@
                 "tempo": "30X1",
                 "rest": "2 min"
               },
-              "warum": "Stufe zurück nach dem 3×5-Miss in W34 (5/5/3, rec 78 = echtes Kapazitätslimit) — Stufe-zurück-Regel. 3×4 sauber zementieren, alle Sätze voll; 3×5-Retry erst W36.",
+              "warum": "3 × 4 mit +5 kg, alle Sätze voll — eine Stufe zurück nach dem 5/5/3 der Vorwoche. Steht das sauber, kommt der 3 × 5-Versuch zurück.",
               "note": "+5 kg ist Zusatzlast, nie Tages-Kennzahl."
             }
           ]
@@ -365,7 +365,7 @@
                 "rpe_cap": 7,
                 "rest": "60 sec"
               },
-              "warum": "Rekompositions-Layer, RPE-kalibriert. Deckel 7 strikt — lief zwei Wochen heiß (W34 RPE 8-9).",
+              "warum": "Last selbst wählen, höchstens 7 von 10, kein Versagen. Zweck: Muskelschutz im Kaloriendefizit — zuletzt lief der Layer zu schwer.",
               "note": "Keine Failure-Sätze."
             },
             {
@@ -379,7 +379,7 @@
                 "rpe_cap": 7,
                 "rest": "60 sec"
               },
-              "warum": "Rekompositions-Layer, konstante Spannung.",
+              "warum": "Konstante Bandspannung, kontrolliert, kein Versagen. Zweck: Muskelschutz im Kaloriendefizit.",
               "note": "Band/Cable, volle ROM."
             }
           ]

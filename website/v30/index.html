@@ -361,10 +361,12 @@ a{color:inherit;text-underline-offset:3px}
   font-family:var(--mono);font-size:11.5px;font-weight:500;
   letter-spacing:.13em;text-transform:uppercase;color:var(--marker);
 }
+/* Verdict-Zeichen am zugeklappten Block: deutlich größer als die Flags —
+   das Urteil muss beim Scrollen ins Auge springen (Martin 25.08.). */
 .blk-top .vflag{
   margin-left:auto;flex:0 0 auto;align-self:center;
-  font-family:var(--mono);font-size:11.5px;font-weight:700;
-  letter-spacing:.13em;text-transform:uppercase;white-space:nowrap;
+  font-family:var(--mono);font-size:20px;font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;white-space:nowrap;
 }
 .vflag.ok{color:var(--good)}
 .vflag.no{color:var(--marker)}
@@ -623,6 +625,17 @@ a{color:inherit;text-underline-offset:3px}
   transition:opacity .14s var(--ease),transform .14s var(--ease);
 }
 .copy-toast.is-on{opacity:1;transform:translateX(-50%) translateY(0)}
+/* Timer-Link an Zeit-Übungen: öffnet timer.martinwitte.de fertig
+   konfiguriert (Share-Link-Format des WodTimers, kein Backend). */
+.timer-link{
+  display:inline-flex;align-items:center;gap:8px;margin-top:12px;
+  min-height:44px;color:var(--ink-3);text-decoration:none;
+  font-family:var(--mono);font-size:11.5px;font-weight:700;
+  letter-spacing:.13em;text-transform:uppercase;
+  transition:color .14s var(--ease);
+}
+.timer-link:hover{color:var(--ink)}
+.timer-link svg{width:12px;height:12px}
 /* Long-Press auf der Zeile darf keine Textauswahl/iOS-Callout ziehen. */
 .strip{user-select:none;-webkit-user-select:none;-webkit-touch-callout:none}
 
@@ -648,7 +661,7 @@ a{color:inherit;text-underline-offset:3px}
   <aside class="apparat" id="apparat"></aside>
 </div>
 
-<script src="./data.js?v=41533bd2"></script>
+<script src="./data.js?v=a0367b92"></script>
 <script>
 /* ════════════════════════════════════════════════════════════════════
    DUNKELKAMMER — Rendering-Kern (aus design/dunkelkammer.html)
@@ -671,6 +684,35 @@ const WD_KURZ  = ['SO','MO','DI','MI','DO','FR','SA'];
 function isoDD(iso){ const p = String(iso).split('-'); return p[2] + '.' + p[1] + '.'; }
 function isoWD(iso){ return WD_NAMES[new Date(iso + 'T00:00:00').getDay()]; }
 function isoWDK(iso){ return WD_KURZ[new Date(iso + 'T00:00:00').getDay()]; }
+
+/* ── Timer-Deeplink für Zeit-Übungen (Martin 25.08.): WodTimer versteht
+   #w=<base64url(JSON {m,c,n})> und öffnet das Setup fertig eingestellt
+   (wodtimer js/app.js, Share-Links). sets>1 → INTERVALS (Work/Rest/Runden),
+   sonst COUNTDOWN. Rest aus dem Plan-Text: erste Zahl zählt ("2-3 min" → 2). */
+function parseRestSec(r){
+  const s = String(r || '');
+  const mm = s.match(/(\d+(?:[.,]\d+)?)\s*min/i);
+  if (mm) return Math.round(num(mm[1]) * 60);
+  const ss = s.match(/(\d+)\s*s/i);
+  if (ss) return +ss[1];
+  return 0;
+}
+function timerUrl(t, name){
+  if (!t || t.mode !== 'time' || !t.sec) return '';
+  let m, c;
+  if (t.sets && t.sets > 1){
+    m = 'intervals';
+    c = { work: t.sec, rest: parseRestSec(t.rest) || 60, rounds: t.sets,
+          sets: 1, setRest: 120, prep: 10 };
+  } else {
+    m = 'countdown';
+    c = { duration: t.sec, prep: 10 };
+  }
+  const json = JSON.stringify({ m, c, n: name || '' });
+  const b64 = btoa(unescape(encodeURIComponent(json)))
+    .replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+  return 'https://timer.martinwitte.de/#w=' + b64;
+}
 
 function exRow(ex){
   const t = ex.target || {};
@@ -702,9 +744,10 @@ function exRow(ex){
   const rpe = t.rpe_cap != null ? '≤' + t.rpe_cap : '';
   // Reihenfolge = headers unten. Note-Spalte trägt das warum (Martin-Revision
   // 23.08.): ausklappbar als „Begründung", nie offen gerendert.
-  return [uebung, setsCell, last, t.tempo || '', rest, rpe, ex.warum || '', ex.ex_id || ''];
+  return [uebung, setsCell, last, t.tempo || '', rest, rpe, ex.warum || '', ex.ex_id || '',
+          timerUrl(t, `${uebung} ${setsCell.split('||')[0]}`.trim())];
 }
-const ROW_HEADERS = ['Übung','Sets × Reps','Last','Tempo','Rest','RPE','Note','_ex'];
+const ROW_HEADERS = ['Übung','Sets × Reps','Last','Tempo','Rest','RPE','Note','_ex','_timer'];
 
 function adapt(D3){
   return adaptWeek(D3.week || {});
@@ -790,6 +833,7 @@ function toggleTick(key){
 }
 const EP_SAVE = '../save_verdict.php';
 const EP_GET  = '../get_verdicts.php';
+const EP_NOTES = '../get_notes.php';
 const backendMode = (localStorage.getItem('v3_backend') === 'http') ? 'http' : 'stub';
 const vstore = {
   cache: {},
@@ -877,6 +921,56 @@ const vstore = {
   }
 };
 let askOpen = null;   // iso|ex mit offener Technik/Last-Rückfrage
+
+/* ── Notizen: die DB ist die Wahrheit — beim Öffnen laden und das Feld
+   vorbefüllen, sonst wirkt eine gespeicherte Notiz verloren (Bug 25.08.).
+   Gerätespiegel wie bei den Verdicts: im Funkloch zeigt das Gerät den
+   letzten bekannten Stand statt fälschlich „leer". ── */
+const NKEY = 'v3_notes';
+const nstore = {
+  cache: {},
+  mirrorRead(){
+    try { return JSON.parse(localStorage.getItem(NKEY)) || {}; } catch(e){ return {}; }
+  },
+  mirrorWrite(all){
+    try { localStorage.setItem(NKEY, JSON.stringify(all)); } catch(e){}
+  },
+  set(iso, text, at){
+    const all = this.mirrorRead();
+    if (text && text.trim()){
+      this.cache[iso] = { text, at };
+      all[iso] = this.cache[iso];
+    } else {
+      delete this.cache[iso];
+      delete all[iso];
+    }
+    this.mirrorWrite(all);
+  },
+  async hydrate(from, to){
+    if (backendMode === 'http'){
+      try {
+        const r = await fetch(`${EP_NOTES}?from=${from}&to=${to}`);
+        if (!r.ok) throw new Error('notes ' + r.status);
+        const j = await r.json();
+        const fresh = {};
+        (j.notes || []).forEach(n => {
+          if (n.note_text) fresh[n.note_date] = { text: n.note_text, at: n.updated_at };
+        });
+        const all = this.mirrorRead();
+        Object.keys(all).forEach(iso => {
+          if (iso >= from && iso <= to && !fresh[iso]){ delete all[iso]; delete this.cache[iso]; }
+        });
+        Object.assign(all, fresh);
+        this.mirrorWrite(all);
+        Object.assign(this.cache, fresh);
+      } catch(e){
+        Object.assign(this.cache, this.mirrorRead());
+      }
+    } else {
+      Object.assign(this.cache, this.mirrorRead());
+    }
+  }
+};
 
 /* ── Last-Strings aus data.js deuten ── */
 function parseLoad(raw, opts){
@@ -1161,7 +1255,7 @@ function verdictMarkup(iso, ov, exName){
   const key = iso + '|' + ov.ex_id;
 
   if (v && v.verdict === 'hit'){
-    return `<div class="verdict"><div class="vstate ok">${CHECK} Steht · ${vTime(v.at)}
+    return `<div class="verdict"><div class="vstate ok">${CHECK} Done · ${vTime(v.at)}
       <button class="vundo" type="button" data-vundo="${key}">ändern</button></div></div>`;
   }
   if (v && v.verdict === 'miss'){
@@ -1436,6 +1530,7 @@ function exerciseMarkup(r, hi, single, opts){
     ${setsSub ? `<p class="ex-sub">${esc(setsSub)}</p>` : ''}
     ${ladder}
     ${meta.length ? `<p class="ex-meta">${meta.join('')}</p>` : ''}
+    ${(hi['_timer'] !== undefined && r[hi['_timer']]) ? `<a class="timer-link" href="${esc(r[hi['_timer']])}" target="_blank" rel="noopener">Timer starten ${ARROW}</a>` : ''}
     ${note ? `<button class="note-handle" type="button" aria-expanded="false">Begründung ${CHEV}</button><p class="ex-note">${esc(note)}</p>` : ''}
     ${opts.verdictHtml || ''}
   </article>`;
@@ -1565,12 +1660,13 @@ function wireDayCopy(root){
 function noteMarkup(isoDate, dayLabel){
   /* Kein Gesamtsession-Rating mehr — das Verdict je Übung trägt die
      Bewertung; hier bleibt nur die Notiz. */
+  const n = nstore.cache[isoDate || ''];
   return `<section class="note-block" data-date="${esc(isoDate || '')}">
     <h2 class="note-h">Notiz</h2>
-    <textarea class="note-ta" aria-label="Notiz zur Einheit" placeholder="Tatsächliche Lasten, Abbrüche, was sich angefühlt hat wie."></textarea>
+    <textarea class="note-ta" aria-label="Notiz zur Einheit" placeholder="Tatsächliche Lasten, Abbrüche, was sich angefühlt hat wie.">${n ? esc(n.text) : ''}</textarea>
     <div class="note-foot">
       <button class="note-save" type="button">Eintragen</button>
-      <span class="note-state"></span>
+      <span class="note-state">${n ? 'Eingetragen · ' + vTime(n.at) : ''}</span>
     </div>
   </section>`;
 }
@@ -1594,7 +1690,12 @@ function wireNoteBlock(block){
         session_feel: 0
       })
     })
-      .then(r => { if (!r.ok) throw new Error(r.status); state.textContent = 'Eingetragen.'; })
+      .then(r => {
+        if (!r.ok) throw new Error(r.status);
+        const at = new Date().toISOString();
+        nstore.set(block.dataset.date, block.querySelector('.note-ta').value, at);
+        state.textContent = 'Eingetragen · ' + vTime(at);
+      })
       .catch(() => {
         state.className = 'note-state err';
         state.textContent = 'Kein Backend in dieser Vorschau — nichts gespeichert.';
@@ -1727,7 +1828,10 @@ async function switchWeek(){
   const next = (weekIdx === HOME_WEEK) ? NEXT_WEEK : HOME_WEEK;
   loadWeek(next);
   const days = week.days || [];
-  if (days.length) await vstore.hydrate(days[0].isoDate, days[days.length - 1].isoDate);
+  if (days.length) await Promise.all([
+    vstore.hydrate(days[0].isoDate, days[days.length - 1].isoDate),
+    nstore.hydrate(days[0].isoDate, days[days.length - 1].isoDate)
+  ]);
   renderRail();
   currentFocus = null;
   elFocus.hidden = true; elWeek.hidden = false;
@@ -1820,7 +1924,7 @@ async function switchWeek(){
   const days = week.days || [];
   const from = days.length ? days[0].isoDate : '';
   const to = days.length ? days[days.length - 1].isoDate : '';
-  await vstore.hydrate(from, to);
+  await Promise.all([vstore.hydrate(from, to), nstore.hydrate(from, to)]);
 
   renderRail();
   renderWeek();

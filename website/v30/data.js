@@ -50,7 +50,7 @@ const DATA = {
                   "rest": "E2:00-2:30"
                 },
                 "whoop": "Clean and Split Jerk",
-                "warum": "Reclaim über die W32-Ceiling 80 (Sa 08.08., session_feel 5, seither ~18 Tage ohne Komplex-Kontakt). 82,5 nur bei sauberem Fang + Jerk-Lockout — sonst auf dem letzten sauberen Gewicht ausfahren, kein Erzwingen in der Defizit-Dip-Woche."
+                "warum": "Aufbau 65 → 82,5, jede Stufe 1 Clean + 1 Jerk, dazwischen volle Pause. Die 82,5 nur nehmen, wenn Fang und Lockout sauber sind — sonst auf dem letzten sauberen Gewicht bleiben, nichts erzwingen. Ziel: den Komplex wieder über die alte 80er-Bestmarke bringen."
               }
             ]
           },
@@ -83,7 +83,7 @@ const DATA = {
                   "rest": "2-3 min"
                 },
                 "whoop": "Front Squat",
-                "warum": "Block-Start vor dem erwarteten Defizit-Dip (Meso-Rolle W35). Referenz: Top-Single 102,5 aus Block Teil 1 (W30). Topsatz 95×3 RPE-gated nach der C&J-Vorermüdung — der Korridor 105–107,5 wird W36/W37 mit Singles/Doubles angefahren."
+                "warum": "Tempo 31X1: 3 Sekunden runter, unten kurz halten, zügig hoch. Den Topsatz 95 × 3 nur fahren, wenn er sich nach dem C&J wie höchstens 8 von 10 anfühlt. Ziel: in 2–3 Wochen 105–107,5 als schwere Einzel — dieses Volumen legt die Basis dafür."
               }
             ]
           },
@@ -106,7 +106,7 @@ const DATA = {
                   "rest": "60 sec"
                 },
                 "whoop": "Hollow Hold",
-                "warum": "Rumpfspannung als Basis für Front-Rack und Gymnastics — bewusst leicht gehalten."
+                "warum": "Unterer Rücken bleibt fest am Boden, Spannung aus der Körpermitte, ruhig atmen. Diese Spannung trägt Front-Rack und Gymnastics — bewusst leicht gehalten."
               }
             ]
           },
@@ -131,7 +131,7 @@ const DATA = {
                   "rest": "60 sec"
                 },
                 "whoop": "Lateral Raise",
-                "warum": "Rekompositions-Layer. RPE-Deckel 7 strikt — der Layer lief zwei Wochen heiß."
+                "warum": "Kontrolliert und ohne Schwung, zwei Wiederholungen bleiben im Tank. Zweck: Muskelschutz im Kaloriendefizit — der Deckel ist strikt, der Layer lief zuletzt zu schwer."
               },
               {
                 "ex_id": "biceps_curl",
@@ -147,7 +147,7 @@ const DATA = {
                   "rest": "60 sec"
                 },
                 "whoop": "Biceps Curl",
-                "warum": "Rekompositions-Layer, RPE-Deckel 7 strikt."
+                "warum": "Kontrolliert, kein Muskelversagen, zwei Wiederholungen im Tank. Zweck: Muskelschutz im Kaloriendefizit."
               }
             ]
           },
@@ -285,7 +285,7 @@ const DATA = {
                   "rest": "60 sec"
                 },
                 "whoop": "BMU Drill",
-                "warum": "Descent-Kontrolle + Hip-Pop-Timing primen (~5 min) — die Video-Diagnose vom 22.08. zeigt den Engpass im Descent (0,55–0,76 Torsolängen von der Stange) und in der Stütz-Pause, nicht im Zug."
+                "warum": "Aufwärm-Primer vor den Arbeitssätzen: den Abgang kontrolliert und nah an der Stange führen, dann den Hüft-Impuls im richtigen Moment setzen — genau die zwei Punkte, die die Video-Analyse als Engpass zeigt."
               },
               {
                 "ex_id": "bmu",
@@ -301,7 +301,7 @@ const DATA = {
                   "rest": "2-3 min"
                 },
                 "whoop": "Muscle Ups",
-                "warum": "Stufe hoch von 5×2: W34 lief mit feel 3 und einmal 3 am Stück — der Aufstieg auf der Linked-Sets-Treppe (5×2 → 4×3 → 3×3+1×max → Test) ist gerechtfertigt. Reißt das Linking, zurück auf 5×2 — nicht erzwingen."
+                "warum": "4 × 3 verbunden, ohne von der Stange zu steigen. Reißt die Verbindung, zurück auf 5 × 2 — nicht erzwingen. Ziel: Schritt für Schritt zum Max-Test in zwei Wochen."
               }
             ],
             "verdict_ex_id": "bmu",
@@ -327,7 +327,7 @@ const DATA = {
                   "rest": "90 sec"
                 },
                 "whoop": "Hanging Toes to Bar",
-                "warum": "Gehalten, kein Test — Test 16 hat das Ziel 10 klar übertroffen, Zielneusetzung kommt beim W37-Review."
+                "warum": "3 × 10 kontrolliert, Zehen bewusst zur Stange — deutlich unter dem Testwert von 16 am Stück. Halten statt steigern, das neue Ziel kommt nach dem Test-Review."
               }
             ]
           },
@@ -352,7 +352,7 @@ const DATA = {
                   "rest": "3 min"
                 },
                 "whoop": "Handstand Push-Ups",
-                "warum": "Oberste Leiterstufe 4×8 in W34 am Limit bestätigt (letzter Satz schwer) — konsolidieren statt steigern, NICHT 4×9. Nächster Schritt ist der Max-Test W37."
+                "warum": "Tempo 21X0: 2 Sekunden runter, explosiv hoch, oben nicht ausruhen. 4 × 8 sauber bestätigen — bewusst nicht steigern, der Max-Test kommt in zwei Wochen."
               }
             ]
           },
@@ -378,7 +378,7 @@ const DATA = {
                   "rest": "2 min"
                 },
                 "whoop": "Weighted Pull Ups",
-                "warum": "Stufe zurück nach dem 3×5-Miss in W34 (5/5/3, rec 78 = echtes Kapazitätslimit) — Stufe-zurück-Regel. 3×4 sauber zementieren, alle Sätze voll; 3×5-Retry erst W36."
+                "warum": "3 × 4 mit +5 kg, alle Sätze voll — eine Stufe zurück nach dem 5/5/3 der Vorwoche. Steht das sauber, kommt der 3 × 5-Versuch zurück."
               }
             ]
           },
@@ -402,7 +402,7 @@ const DATA = {
                   "rest": "60 sec"
                 },
                 "whoop": "DB Bench Press",
-                "warum": "Rekompositions-Layer, RPE-kalibriert. Deckel 7 strikt — lief zwei Wochen heiß (W34 RPE 8-9)."
+                "warum": "Last selbst wählen, höchstens 7 von 10, kein Versagen. Zweck: Muskelschutz im Kaloriendefizit — zuletzt lief der Layer zu schwer."
               },
               {
                 "ex_id": "triceps_ext",
@@ -418,7 +418,7 @@ const DATA = {
                   "rest": "60 sec"
                 },
                 "whoop": "Triceps Extension",
-                "warum": "Rekompositions-Layer, konstante Spannung."
+                "warum": "Konstante Bandspannung, kontrolliert, kein Versagen. Zweck: Muskelschutz im Kaloriendefizit."
               }
             ],
             "verdict_ex_id": "layer_brust_trizeps",
@@ -619,7 +619,7 @@ const DATA = {
                     "rest": "E2:00-2:30"
                   },
                   "whoop": "Clean and Split Jerk",
-                  "warum": "Reclaim über die W32-Ceiling 80 (Sa 08.08., session_feel 5, seither ~18 Tage ohne Komplex-Kontakt). 82,5 nur bei sauberem Fang + Jerk-Lockout — sonst auf dem letzten sauberen Gewicht ausfahren, kein Erzwingen in der Defizit-Dip-Woche."
+                  "warum": "Aufbau 65 → 82,5, jede Stufe 1 Clean + 1 Jerk, dazwischen volle Pause. Die 82,5 nur nehmen, wenn Fang und Lockout sauber sind — sonst auf dem letzten sauberen Gewicht bleiben, nichts erzwingen. Ziel: den Komplex wieder über die alte 80er-Bestmarke bringen."
                 }
               ]
             },
@@ -652,7 +652,7 @@ const DATA = {
                     "rest": "2-3 min"
                   },
                   "whoop": "Front Squat",
-                  "warum": "Block-Start vor dem erwarteten Defizit-Dip (Meso-Rolle W35). Referenz: Top-Single 102,5 aus Block Teil 1 (W30). Topsatz 95×3 RPE-gated nach der C&J-Vorermüdung — der Korridor 105–107,5 wird W36/W37 mit Singles/Doubles angefahren."
+                  "warum": "Tempo 31X1: 3 Sekunden runter, unten kurz halten, zügig hoch. Den Topsatz 95 × 3 nur fahren, wenn er sich nach dem C&J wie höchstens 8 von 10 anfühlt. Ziel: in 2–3 Wochen 105–107,5 als schwere Einzel — dieses Volumen legt die Basis dafür."
                 }
               ]
             },
@@ -675,7 +675,7 @@ const DATA = {
                     "rest": "60 sec"
                   },
                   "whoop": "Hollow Hold",
-                  "warum": "Rumpfspannung als Basis für Front-Rack und Gymnastics — bewusst leicht gehalten."
+                  "warum": "Unterer Rücken bleibt fest am Boden, Spannung aus der Körpermitte, ruhig atmen. Diese Spannung trägt Front-Rack und Gymnastics — bewusst leicht gehalten."
                 }
               ]
             },
@@ -700,7 +700,7 @@ const DATA = {
                     "rest": "60 sec"
                   },
                   "whoop": "Lateral Raise",
-                  "warum": "Rekompositions-Layer. RPE-Deckel 7 strikt — der Layer lief zwei Wochen heiß."
+                  "warum": "Kontrolliert und ohne Schwung, zwei Wiederholungen bleiben im Tank. Zweck: Muskelschutz im Kaloriendefizit — der Deckel ist strikt, der Layer lief zuletzt zu schwer."
                 },
                 {
                   "ex_id": "biceps_curl",
@@ -716,7 +716,7 @@ const DATA = {
                     "rest": "60 sec"
                   },
                   "whoop": "Biceps Curl",
-                  "warum": "Rekompositions-Layer, RPE-Deckel 7 strikt."
+                  "warum": "Kontrolliert, kein Muskelversagen, zwei Wiederholungen im Tank. Zweck: Muskelschutz im Kaloriendefizit."
                 }
               ]
             },
@@ -854,7 +854,7 @@ const DATA = {
                     "rest": "60 sec"
                   },
                   "whoop": "BMU Drill",
-                  "warum": "Descent-Kontrolle + Hip-Pop-Timing primen (~5 min) — die Video-Diagnose vom 22.08. zeigt den Engpass im Descent (0,55–0,76 Torsolängen von der Stange) und in der Stütz-Pause, nicht im Zug."
+                  "warum": "Aufwärm-Primer vor den Arbeitssätzen: den Abgang kontrolliert und nah an der Stange führen, dann den Hüft-Impuls im richtigen Moment setzen — genau die zwei Punkte, die die Video-Analyse als Engpass zeigt."
                 },
                 {
                   "ex_id": "bmu",
@@ -870,7 +870,7 @@ const DATA = {
                     "rest": "2-3 min"
                   },
                   "whoop": "Muscle Ups",
-                  "warum": "Stufe hoch von 5×2: W34 lief mit feel 3 und einmal 3 am Stück — der Aufstieg auf der Linked-Sets-Treppe (5×2 → 4×3 → 3×3+1×max → Test) ist gerechtfertigt. Reißt das Linking, zurück auf 5×2 — nicht erzwingen."
+                  "warum": "4 × 3 verbunden, ohne von der Stange zu steigen. Reißt die Verbindung, zurück auf 5 × 2 — nicht erzwingen. Ziel: Schritt für Schritt zum Max-Test in zwei Wochen."
                 }
               ],
               "verdict_ex_id": "bmu",
@@ -896,7 +896,7 @@ const DATA = {
                     "rest": "90 sec"
                   },
                   "whoop": "Hanging Toes to Bar",
-                  "warum": "Gehalten, kein Test — Test 16 hat das Ziel 10 klar übertroffen, Zielneusetzung kommt beim W37-Review."
+                  "warum": "3 × 10 kontrolliert, Zehen bewusst zur Stange — deutlich unter dem Testwert von 16 am Stück. Halten statt steigern, das neue Ziel kommt nach dem Test-Review."
                 }
               ]
             },
@@ -921,7 +921,7 @@ const DATA = {
                     "rest": "3 min"
                   },
                   "whoop": "Handstand Push-Ups",
-                  "warum": "Oberste Leiterstufe 4×8 in W34 am Limit bestätigt (letzter Satz schwer) — konsolidieren statt steigern, NICHT 4×9. Nächster Schritt ist der Max-Test W37."
+                  "warum": "Tempo 21X0: 2 Sekunden runter, explosiv hoch, oben nicht ausruhen. 4 × 8 sauber bestätigen — bewusst nicht steigern, der Max-Test kommt in zwei Wochen."
                 }
               ]
             },
@@ -947,7 +947,7 @@ const DATA = {
                     "rest": "2 min"
                   },
                   "whoop": "Weighted Pull Ups",
-                  "warum": "Stufe zurück nach dem 3×5-Miss in W34 (5/5/3, rec 78 = echtes Kapazitätslimit) — Stufe-zurück-Regel. 3×4 sauber zementieren, alle Sätze voll; 3×5-Retry erst W36."
+                  "warum": "3 × 4 mit +5 kg, alle Sätze voll — eine Stufe zurück nach dem 5/5/3 der Vorwoche. Steht das sauber, kommt der 3 × 5-Versuch zurück."
                 }
               ]
             },
@@ -971,7 +971,7 @@ const DATA = {
                     "rest": "60 sec"
                   },
                   "whoop": "DB Bench Press",
-                  "warum": "Rekompositions-Layer, RPE-kalibriert. Deckel 7 strikt — lief zwei Wochen heiß (W34 RPE 8-9)."
+                  "warum": "Last selbst wählen, höchstens 7 von 10, kein Versagen. Zweck: Muskelschutz im Kaloriendefizit — zuletzt lief der Layer zu schwer."
                 },
                 {
                   "ex_id": "triceps_ext",
@@ -987,7 +987,7 @@ const DATA = {
                     "rest": "60 sec"
                   },
                   "whoop": "Triceps Extension",
-                  "warum": "Rekompositions-Layer, konstante Spannung."
+                  "warum": "Konstante Bandspannung, kontrolliert, kein Versagen. Zweck: Muskelschutz im Kaloriendefizit."
                 }
               ],
               "verdict_ex_id": "layer_brust_trizeps",

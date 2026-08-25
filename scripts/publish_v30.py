@@ -28,6 +28,7 @@ OUT = REPO / "website" / "v30"
 ENDPOINT_REWRITES = [
     ("'../../website/save_verdict.php'", "'../save_verdict.php'"),
     ("'../../website/get_verdicts.php'", "'../get_verdicts.php'"),
+    ("'../../website/get_notes.php'", "'../get_notes.php'"),
     ("'../../website/save_note.php'", "'../save_note.php'"),
 ]
 

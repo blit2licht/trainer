@@ -411,6 +411,32 @@
         "overhead"
       ],
       "note": "Descent-/Timing-Drills. Verdict-only, keine Treppe."
+    },
+    {
+      "ex_id": "lateral_raise",
+      "name": "DB Lateral Raise",
+      "kurz": "Lateral Raise",
+      "aliases": [
+        "Lateral Raise"
+      ],
+      "class": "loadable",
+      "increment": 2,
+      "rep_cap_e1rm": null,
+      "pattern": [],
+      "note": "Bislang Layer-Komponente von layer_delts_bizeps; seit 25.08. eigenständig loadable mit eigenem Verdict (Martin-Entscheid: Verdict-Granularität je loadable-Übung, D1/D2-Split). WHOOP loggt 'Lateral Raise – DB'; increment 2 = KH-Paar-Sprung."
+    },
+    {
+      "ex_id": "biceps_curl",
+      "name": "DB Curl",
+      "kurz": "Curl",
+      "aliases": [
+        "Biceps Curl"
+      ],
+      "class": "loadable",
+      "increment": 2,
+      "rep_cap_e1rm": null,
+      "pattern": [],
+      "note": "Bislang Layer-Komponente von layer_delts_bizeps; seit 25.08. eigenständig loadable mit eigenem Verdict (D1/D2-Split). WHOOP loggt 'Biceps Curl – DB'; increment 2 = KH-Paar-Sprung."
     }
   ]
 }

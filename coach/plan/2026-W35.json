@@ -113,7 +113,6 @@
           "min": 15,
           "title": "Strength: Delts / Bizeps",
           "superset": false,
-          "verdict_ex_id": "layer_delts_bizeps",
           "exercises": [
             {
               "ex_id": "lateral_raise",
@@ -153,15 +152,33 @@
           "superset": false,
           "exercises": [
             {
-              "ex_id": "mobility",
+              "ex_id": "mob_front_rack",
+              "kurz": "Front-Rack-Stretch",
               "target": {
                 "mode": "time",
-                "sec": 480
+                "sec": 120
               },
-              "warum": "Cool-down nach Front-Rack-Volumen.",
-              "note": "Front-Rack-Stretch 2 min · Hüftbeuger 2 × 45 sec/Seite · thorakale Extension am Foam Roller."
+              "warum": "Cool-down nach Front-Rack-Volumen."
+            },
+            {
+              "ex_id": "mob_hip_flexor",
+              "kurz": "Hüftbeuger-Stretch je Seite",
+              "target": {
+                "mode": "time",
+                "sets": 2,
+                "sec": 45
+              }
+            },
+            {
+              "ex_id": "mob_thoracic",
+              "kurz": "Thorakale Extension am Foam Roller",
+              "target": {
+                "mode": "time",
+                "sec": 120
+              }
             }
-          ]
+          ],
+          "verdict_ex_id": "mobility"
         }
       ]
     },
@@ -375,15 +392,34 @@
           "superset": false,
           "exercises": [
             {
-              "ex_id": "mobility",
+              "ex_id": "mob_lat_stretch",
+              "kurz": "Lat-Stretch hängend",
               "target": {
                 "mode": "time",
-                "sec": 300
+                "sets": 2,
+                "sec": 45
               },
-              "warum": "Cool-down nach Pull-Volumen.",
-              "note": "Lat-Stretch hängend 2 × 45 sec · Shoulder CARs 2 × 8/Seite · thorakale Extension 1–2 min."
+              "warum": "Cool-down nach Pull-Volumen."
+            },
+            {
+              "ex_id": "mob_shoulder_cars",
+              "kurz": "Shoulder CARs je Seite",
+              "target": {
+                "mode": "bw",
+                "sets": 2,
+                "reps": 8
+              }
+            },
+            {
+              "ex_id": "mob_thoracic",
+              "kurz": "Thorakale Extension am Foam Roller",
+              "target": {
+                "mode": "time",
+                "sec": 120
+              }
             }
-          ]
+          ],
+          "verdict_ex_id": "mobility"
         }
       ]
     },

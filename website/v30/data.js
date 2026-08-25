@@ -49,6 +49,7 @@ const DATA = {
                   "tempo": "explosiv",
                   "rest": "E2:00-2:30"
                 },
+                "whoop": "Clean and Split Jerk",
                 "warum": "Reclaim über die W32-Ceiling 80 (Sa 08.08., session_feel 5, seither ~18 Tage ohne Komplex-Kontakt). 82,5 nur bei sauberem Fang + Jerk-Lockout — sonst auf dem letzten sauberen Gewicht ausfahren, kein Erzwingen in der Defizit-Dip-Woche."
               }
             ]
@@ -81,6 +82,7 @@ const DATA = {
                   "tempo": "31X1",
                   "rest": "2-3 min"
                 },
+                "whoop": "Front Squat",
                 "warum": "Block-Start vor dem erwarteten Defizit-Dip (Meso-Rolle W35). Referenz: Top-Single 102,5 aus Block Teil 1 (W30). Topsatz 95×3 RPE-gated nach der C&J-Vorermüdung — der Korridor 105–107,5 wird W36/W37 mit Singles/Doubles angefahren."
               }
             ]
@@ -103,6 +105,7 @@ const DATA = {
                   "sets": 3,
                   "rest": "60 sec"
                 },
+                "whoop": "Hollow Hold",
                 "warum": "Rumpfspannung als Basis für Front-Rack und Gymnastics — bewusst leicht gehalten."
               }
             ]
@@ -116,9 +119,9 @@ const DATA = {
             "exercises": [
               {
                 "ex_id": "lateral_raise",
-                "kurz": "DB Lateral Raise",
+                "kurz": "Lateral Raise",
                 "name": "DB Lateral Raise",
-                "class": null,
+                "class": "loadable",
                 "target": {
                   "mode": "kg",
                   "sets": 3,
@@ -127,13 +130,14 @@ const DATA = {
                   "rpe_cap": 7,
                   "rest": "60 sec"
                 },
+                "whoop": "Lateral Raise",
                 "warum": "Rekompositions-Layer. RPE-Deckel 7 strikt — der Layer lief zwei Wochen heiß."
               },
               {
                 "ex_id": "biceps_curl",
-                "kurz": "DB Curl",
+                "kurz": "Curl",
                 "name": "DB Curl",
-                "class": null,
+                "class": "loadable",
                 "target": {
                   "mode": "kg",
                   "sets": 3,
@@ -142,11 +146,10 @@ const DATA = {
                   "rpe_cap": 7,
                   "rest": "60 sec"
                 },
+                "whoop": "Biceps Curl",
                 "warum": "Rekompositions-Layer, RPE-Deckel 7 strikt."
               }
-            ],
-            "verdict_ex_id": "layer_delts_bizeps",
-            "verdict_class": "generic"
+            ]
           },
           {
             "block_id": "E",
@@ -156,17 +159,40 @@ const DATA = {
             "superset": false,
             "exercises": [
               {
-                "ex_id": "mobility",
-                "kurz": "Mobility",
-                "name": "Mobility / Cool-down",
-                "class": "generic",
+                "ex_id": "mob_front_rack",
+                "kurz": "Front-Rack-Stretch",
+                "name": "Front-Rack-Stretch",
+                "class": null,
                 "target": {
                   "mode": "time",
-                  "sec": 480
+                  "sec": 120
                 },
                 "warum": "Cool-down nach Front-Rack-Volumen."
+              },
+              {
+                "ex_id": "mob_hip_flexor",
+                "kurz": "Hüftbeuger-Stretch je Seite",
+                "name": "Hüftbeuger-Stretch je Seite",
+                "class": null,
+                "target": {
+                  "mode": "time",
+                  "sets": 2,
+                  "sec": 45
+                }
+              },
+              {
+                "ex_id": "mob_thoracic",
+                "kurz": "Thorakale Extension am Foam Roller",
+                "name": "Thorakale Extension am Foam Roller",
+                "class": null,
+                "target": {
+                  "mode": "time",
+                  "sec": 120
+                }
               }
-            ]
+            ],
+            "verdict_ex_id": "mobility",
+            "verdict_class": "generic"
           }
         ],
         "last_spanne": [
@@ -258,6 +284,7 @@ const DATA = {
                   "tempo": "kontrolliert",
                   "rest": "60 sec"
                 },
+                "whoop": "BMU Drill",
                 "warum": "Descent-Kontrolle + Hip-Pop-Timing primen (~5 min) — die Video-Diagnose vom 22.08. zeigt den Engpass im Descent (0,55–0,76 Torsolängen von der Stange) und in der Stütz-Pause, nicht im Zug."
               },
               {
@@ -273,6 +300,7 @@ const DATA = {
                   "rpe_cap": 8,
                   "rest": "2-3 min"
                 },
+                "whoop": "Muscle Ups",
                 "warum": "Stufe hoch von 5×2: W34 lief mit feel 3 und einmal 3 am Stück — der Aufstieg auf der Linked-Sets-Treppe (5×2 → 4×3 → 3×3+1×max → Test) ist gerechtfertigt. Reißt das Linking, zurück auf 5×2 — nicht erzwingen."
               }
             ],
@@ -298,6 +326,7 @@ const DATA = {
                   "rpe_cap": 7,
                   "rest": "90 sec"
                 },
+                "whoop": "Hanging Toes to Bar",
                 "warum": "Gehalten, kein Test — Test 16 hat das Ziel 10 klar übertroffen, Zielneusetzung kommt beim W37-Review."
               }
             ]
@@ -322,6 +351,7 @@ const DATA = {
                   "tempo": "21X0",
                   "rest": "3 min"
                 },
+                "whoop": "Handstand Push-Ups",
                 "warum": "Oberste Leiterstufe 4×8 in W34 am Limit bestätigt (letzter Satz schwer) — konsolidieren statt steigern, NICHT 4×9. Nächster Schritt ist der Max-Test W37."
               }
             ]
@@ -347,6 +377,7 @@ const DATA = {
                   "tempo": "30X1",
                   "rest": "2 min"
                 },
+                "whoop": "Weighted Pull Ups",
                 "warum": "Stufe zurück nach dem 3×5-Miss in W34 (5/5/3, rec 78 = echtes Kapazitätslimit) — Stufe-zurück-Regel. 3×4 sauber zementieren, alle Sätze voll; 3×5-Retry erst W36."
               }
             ]
@@ -399,17 +430,41 @@ const DATA = {
             "superset": false,
             "exercises": [
               {
-                "ex_id": "mobility",
-                "kurz": "Mobility",
-                "name": "Mobility / Cool-down",
-                "class": "generic",
+                "ex_id": "mob_lat_stretch",
+                "kurz": "Lat-Stretch hängend",
+                "name": "Lat-Stretch hängend",
+                "class": null,
                 "target": {
                   "mode": "time",
-                  "sec": 300
+                  "sets": 2,
+                  "sec": 45
                 },
                 "warum": "Cool-down nach Pull-Volumen."
+              },
+              {
+                "ex_id": "mob_shoulder_cars",
+                "kurz": "Shoulder CARs je Seite",
+                "name": "Shoulder CARs je Seite",
+                "class": null,
+                "target": {
+                  "mode": "bw",
+                  "sets": 2,
+                  "reps": 8
+                }
+              },
+              {
+                "ex_id": "mob_thoracic",
+                "kurz": "Thorakale Extension am Foam Roller",
+                "name": "Thorakale Extension am Foam Roller",
+                "class": null,
+                "target": {
+                  "mode": "time",
+                  "sec": 120
+                }
               }
-            ]
+            ],
+            "verdict_ex_id": "mobility",
+            "verdict_class": "generic"
           }
         ],
         "zeit_spanne": [
@@ -561,6 +616,7 @@ const DATA = {
                     "tempo": "explosiv",
                     "rest": "E2:00-2:30"
                   },
+                  "whoop": "Clean and Split Jerk",
                   "warum": "Reclaim über die W32-Ceiling 80 (Sa 08.08., session_feel 5, seither ~18 Tage ohne Komplex-Kontakt). 82,5 nur bei sauberem Fang + Jerk-Lockout — sonst auf dem letzten sauberen Gewicht ausfahren, kein Erzwingen in der Defizit-Dip-Woche."
                 }
               ]
@@ -593,6 +649,7 @@ const DATA = {
                     "tempo": "31X1",
                     "rest": "2-3 min"
                   },
+                  "whoop": "Front Squat",
                   "warum": "Block-Start vor dem erwarteten Defizit-Dip (Meso-Rolle W35). Referenz: Top-Single 102,5 aus Block Teil 1 (W30). Topsatz 95×3 RPE-gated nach der C&J-Vorermüdung — der Korridor 105–107,5 wird W36/W37 mit Singles/Doubles angefahren."
                 }
               ]
@@ -615,6 +672,7 @@ const DATA = {
                     "sets": 3,
                     "rest": "60 sec"
                   },
+                  "whoop": "Hollow Hold",
                   "warum": "Rumpfspannung als Basis für Front-Rack und Gymnastics — bewusst leicht gehalten."
                 }
               ]
@@ -628,9 +686,9 @@ const DATA = {
               "exercises": [
                 {
                   "ex_id": "lateral_raise",
-                  "kurz": "DB Lateral Raise",
+                  "kurz": "Lateral Raise",
                   "name": "DB Lateral Raise",
-                  "class": null,
+                  "class": "loadable",
                   "target": {
                     "mode": "kg",
                     "sets": 3,
@@ -639,13 +697,14 @@ const DATA = {
                     "rpe_cap": 7,
                     "rest": "60 sec"
                   },
+                  "whoop": "Lateral Raise",
                   "warum": "Rekompositions-Layer. RPE-Deckel 7 strikt — der Layer lief zwei Wochen heiß."
                 },
                 {
                   "ex_id": "biceps_curl",
-                  "kurz": "DB Curl",
+                  "kurz": "Curl",
                   "name": "DB Curl",
-                  "class": null,
+                  "class": "loadable",
                   "target": {
                     "mode": "kg",
                     "sets": 3,
@@ -654,11 +713,10 @@ const DATA = {
                     "rpe_cap": 7,
                     "rest": "60 sec"
                   },
+                  "whoop": "Biceps Curl",
                   "warum": "Rekompositions-Layer, RPE-Deckel 7 strikt."
                 }
-              ],
-              "verdict_ex_id": "layer_delts_bizeps",
-              "verdict_class": "generic"
+              ]
             },
             {
               "block_id": "E",
@@ -668,17 +726,40 @@ const DATA = {
               "superset": false,
               "exercises": [
                 {
-                  "ex_id": "mobility",
-                  "kurz": "Mobility",
-                  "name": "Mobility / Cool-down",
-                  "class": "generic",
+                  "ex_id": "mob_front_rack",
+                  "kurz": "Front-Rack-Stretch",
+                  "name": "Front-Rack-Stretch",
+                  "class": null,
                   "target": {
                     "mode": "time",
-                    "sec": 480
+                    "sec": 120
                   },
                   "warum": "Cool-down nach Front-Rack-Volumen."
+                },
+                {
+                  "ex_id": "mob_hip_flexor",
+                  "kurz": "Hüftbeuger-Stretch je Seite",
+                  "name": "Hüftbeuger-Stretch je Seite",
+                  "class": null,
+                  "target": {
+                    "mode": "time",
+                    "sets": 2,
+                    "sec": 45
+                  }
+                },
+                {
+                  "ex_id": "mob_thoracic",
+                  "kurz": "Thorakale Extension am Foam Roller",
+                  "name": "Thorakale Extension am Foam Roller",
+                  "class": null,
+                  "target": {
+                    "mode": "time",
+                    "sec": 120
+                  }
                 }
-              ]
+              ],
+              "verdict_ex_id": "mobility",
+              "verdict_class": "generic"
             }
           ],
           "last_spanne": [
@@ -770,6 +851,7 @@ const DATA = {
                     "tempo": "kontrolliert",
                     "rest": "60 sec"
                   },
+                  "whoop": "BMU Drill",
                   "warum": "Descent-Kontrolle + Hip-Pop-Timing primen (~5 min) — die Video-Diagnose vom 22.08. zeigt den Engpass im Descent (0,55–0,76 Torsolängen von der Stange) und in der Stütz-Pause, nicht im Zug."
                 },
                 {
@@ -785,6 +867,7 @@ const DATA = {
                     "rpe_cap": 8,
                     "rest": "2-3 min"
                   },
+                  "whoop": "Muscle Ups",
                   "warum": "Stufe hoch von 5×2: W34 lief mit feel 3 und einmal 3 am Stück — der Aufstieg auf der Linked-Sets-Treppe (5×2 → 4×3 → 3×3+1×max → Test) ist gerechtfertigt. Reißt das Linking, zurück auf 5×2 — nicht erzwingen."
                 }
               ],
@@ -810,6 +893,7 @@ const DATA = {
                     "rpe_cap": 7,
                     "rest": "90 sec"
                   },
+                  "whoop": "Hanging Toes to Bar",
                   "warum": "Gehalten, kein Test — Test 16 hat das Ziel 10 klar übertroffen, Zielneusetzung kommt beim W37-Review."
                 }
               ]
@@ -834,6 +918,7 @@ const DATA = {
                     "tempo": "21X0",
                     "rest": "3 min"
                   },
+                  "whoop": "Handstand Push-Ups",
                   "warum": "Oberste Leiterstufe 4×8 in W34 am Limit bestätigt (letzter Satz schwer) — konsolidieren statt steigern, NICHT 4×9. Nächster Schritt ist der Max-Test W37."
                 }
               ]
@@ -859,6 +944,7 @@ const DATA = {
                     "tempo": "30X1",
                     "rest": "2 min"
                   },
+                  "whoop": "Weighted Pull Ups",
                   "warum": "Stufe zurück nach dem 3×5-Miss in W34 (5/5/3, rec 78 = echtes Kapazitätslimit) — Stufe-zurück-Regel. 3×4 sauber zementieren, alle Sätze voll; 3×5-Retry erst W36."
                 }
               ]
@@ -911,17 +997,41 @@ const DATA = {
               "superset": false,
               "exercises": [
                 {
-                  "ex_id": "mobility",
-                  "kurz": "Mobility",
-                  "name": "Mobility / Cool-down",
-                  "class": "generic",
+                  "ex_id": "mob_lat_stretch",
+                  "kurz": "Lat-Stretch hängend",
+                  "name": "Lat-Stretch hängend",
+                  "class": null,
                   "target": {
                     "mode": "time",
-                    "sec": 300
+                    "sets": 2,
+                    "sec": 45
                   },
                   "warum": "Cool-down nach Pull-Volumen."
+                },
+                {
+                  "ex_id": "mob_shoulder_cars",
+                  "kurz": "Shoulder CARs je Seite",
+                  "name": "Shoulder CARs je Seite",
+                  "class": null,
+                  "target": {
+                    "mode": "bw",
+                    "sets": 2,
+                    "reps": 8
+                  }
+                },
+                {
+                  "ex_id": "mob_thoracic",
+                  "kurz": "Thorakale Extension am Foam Roller",
+                  "name": "Thorakale Extension am Foam Roller",
+                  "class": null,
+                  "target": {
+                    "mode": "time",
+                    "sec": 120
+                  }
                 }
-              ]
+              ],
+              "verdict_ex_id": "mobility",
+              "verdict_class": "generic"
             }
           ],
           "zeit_spanne": [

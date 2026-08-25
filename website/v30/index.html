@@ -601,6 +601,31 @@ a{color:inherit;text-underline-offset:3px}
 .note-state{font-family:var(--mono);font-size:12px;color:var(--ink-3)}
 .note-state.err{color:var(--marker)}
 
+/* ═══ WHOOP-Copy ═══ Tagesprogramm als Klartext in die Zwischenablage —
+   Button am Fuß der Fokusseite, Long-Press auf eine Tageszeile der Woche. */
+.whoop-copy{
+  display:inline-flex;align-items:center;gap:9px;margin-top:30px;
+  min-height:46px;padding:0 16px;background:none;
+  border:1px solid var(--rule);color:var(--ink-2);cursor:pointer;
+  font-family:var(--mono);font-size:12px;font-weight:700;
+  letter-spacing:.13em;text-transform:uppercase;
+  transition:color .14s var(--ease),border-color .14s var(--ease);
+}
+.whoop-copy:hover{color:var(--ink);border-color:var(--g6)}
+/* Quittung: Wort statt nur Zustand, verschwindet nach 2 s von selbst. */
+.copy-toast{
+  position:fixed;left:50%;bottom:28px;z-index:50;
+  transform:translateX(-50%) translateY(8px);
+  padding:12px 18px;background:var(--ink);color:var(--ground);
+  font-family:var(--mono);font-size:12px;font-weight:700;
+  letter-spacing:.13em;text-transform:uppercase;white-space:nowrap;
+  opacity:0;pointer-events:none;
+  transition:opacity .14s var(--ease),transform .14s var(--ease);
+}
+.copy-toast.is-on{opacity:1;transform:translateX(-50%) translateY(0)}
+/* Long-Press auf der Zeile darf keine Textauswahl/iOS-Callout ziehen. */
+.strip{user-select:none;-webkit-user-select:none;-webkit-touch-callout:none}
+
 /* Bewegung: der einzige gesetzte Moment ist das Zentrieren des nächsten
    offenen Blocks nach dem Verdict (Zentrier-Regel, DESIGN.md Layout). */
 
@@ -623,7 +648,7 @@ a{color:inherit;text-underline-offset:3px}
   <aside class="apparat" id="apparat"></aside>
 </div>
 
-<script src="./data.js?v=e0d8ac10"></script>
+<script src="./data.js?v=fba56bfb"></script>
 <script>
 /* ════════════════════════════════════════════════════════════════════
    DUNKELKAMMER — Rendering-Kern (aus design/dunkelkammer.html)
@@ -709,8 +734,17 @@ function adaptWeek(w){
         const blockSlug = ('b' + String(day.iso_date).replace(/-/g, '') + '_' +
                            String(b.block_id || '')).toLowerCase()
                            .replace(/[^a-z0-9_]/g, '').slice(0, 32);
-        v3[day.iso_date][b.block_id] = { ex_id: b.verdict_ex_id || first.ex_id || blockSlug,
-                                         cls: b.verdict_class || first.class || 'loadable' };
+        /* Verdict-Einheiten des Blocks: verdict_ex_id bündelt auf EIN Verdict
+           (Composite/Anker — Layer, Mobility, BMU-Drill+BMU). OHNE
+           verdict_ex_id trägt jede Übung ihr eigenes Verdict: unabhängige
+           loadable-Übungen (D1/D2) brauchen eigene Hit/Miss-Granularität,
+           sonst kann derive_state keine Lastentscheidung je Übung ableiten. */
+        v3[day.iso_date][b.block_id] =
+          (b.verdict_ex_id || (b.exercises || []).length <= 1)
+            ? [{ ex_id: b.verdict_ex_id || first.ex_id || blockSlug,
+                 cls: b.verdict_class || first.class || 'loadable' }]
+            : (b.exercises || []).map(e => ({ ex_id: e.ex_id,
+                                              cls: e.class || 'loadable' }));
         return { letter: b.block_id, title: b.title, prio: b.prio, min: b.min,
                  kurz: anchor.kurz, superset: b.superset,
                  headers: ROW_HEADERS, rows: (b.exercises || []).map(exRow) };
@@ -1033,6 +1067,9 @@ function renderWeek(){
   elWeek.querySelectorAll('.note-handle').forEach(h => h.addEventListener('click', () => {
     h.setAttribute('aria-expanded', h.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');
   }));
+  /* Long-Press-Copy VOR der Nav-Verdrahtung — der Klick nach einem
+     Long-Press wird per stopImmediatePropagation geschluckt. */
+  wireDayCopy(elWeek);
   /* Ein Listener je Element: die Fokus-Streifen tragen data-focus schon, ein
      zweiter Selektor auf .strip[data-nav="1"] hätte doppelt gebunden. */
   elWeek.querySelectorAll('[data-focus]').forEach(b =>
@@ -1086,7 +1123,7 @@ function stripMarkup(d, isToday, isLast){
     ? `<span class="strip-load is-chev" aria-hidden="true">${CHEV}</span>`
     : '<span class="strip-load"></span>';
 
-  const strip = `<${nav ? 'button' : 'div'} class="strip${o.kind === 'rest' ? ' is-rest' : ''}${isToday ? ' is-today' : ''}${isLast ? ' is-last' : ''}" data-nav="${nav}"${nav === 1 ? ` data-focus="${esc(d.focus)}"` : ''}${nav === 2 ? ` data-day="${esc(d.isoDate)}" aria-expanded="false" aria-controls="db-${esc(d.isoDate)}"` : ''}${nav ? ' type="button"' : ''}>
+  const strip = `<${nav ? 'button' : 'div'} class="strip${o.kind === 'rest' ? ' is-rest' : ''}${isToday ? ' is-today' : ''}${isLast ? ' is-last' : ''}" data-nav="${nav}" data-iso="${esc(d.isoDate)}"${nav === 1 ? ` data-focus="${esc(d.focus)}"` : ''}${nav === 2 ? ` data-day="${esc(d.isoDate)}" aria-expanded="false" aria-controls="db-${esc(d.isoDate)}"` : ''}${nav ? ' type="button"' : ''}>
     <span class="strip-when">
       <span class="strip-day" aria-label="${esc(d.day)}">${esc(d.kurzTag || d.day)}</span>
       <span class="strip-date">${esc(d.date)}</span>
@@ -1112,14 +1149,13 @@ function focusDate(letter){
 /* Verdict-Bereich je Block — ersetzt „Block erledigt". Jeder Block ist
    loggbar (auch Layer/Cool-down); ohne Registry-Eintrag fällt er auf eine
    generische ex_id zurück (Dummy — im 3.0-Schema kommt sie aus data.js). */
-function vOverlay(iso, letter){
-  if (!iso) return null;
-  return (V3[iso] || {})[letter] || { ex_id:(iso + '-' + letter).toLowerCase(), cls:'loadable' };
+function vUnits(iso, letter){
+  if (!iso) return [];
+  return (V3[iso] || {})[letter] || [{ ex_id:(iso + '-' + letter).toLowerCase(), cls:'loadable' }];
 }
 const XMARK = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>';
 
-function verdictMarkup(iso, letter, exName){
-  const ov = vOverlay(iso, letter);
+function verdictMarkup(iso, ov, exName){
   if (!ov) return '';
   const v = vstore.get(iso, ov.ex_id);
   const key = iso + '|' + ov.ex_id;
@@ -1149,10 +1185,6 @@ function verdictMarkup(iso, letter, exName){
       <button class="vbtn v-done" type="button" data-vdone="${key}" aria-label="Done: ${esc(exName)}">${CHECK}</button>
     </div></div>`;
 }
-function vGet(iso, letter){
-  const ov = vOverlay(iso, letter);
-  return ov ? vstore.get(iso, ov.ex_id) : null;
-}
 function vTime(at){
   const d = new Date(at);
   return d.toLocaleDateString('de-DE',{day:'2-digit',month:'2-digit'}) + ' ' +
@@ -1171,23 +1203,36 @@ function showFocus(letter){
     /* Superset-Kennung kommt aus dem Payload-Feld (superset: true am Block,
        datenmodell §2) — keine Heuristik mehr: Rest gilt dann dem Paar. */
     const isSuper = b.superset === true && (b.rows || []).length >= 2;
-    let rows = (b.rows || []).map(r => exerciseMarkup(r, hi, single, { noRest:isSuper, iso, blockTitle:b.title })).join('');
+    /* Verdict-Einheiten: eine je Block (Anker/Composite) oder eine je Übung
+       (unabhängige loadable-Übungen, D1/D2-Split). Bei mehreren steht das
+       Verdict direkt unter seiner Übung, nicht am Blockende. */
+    const units = vUnits(iso, b.letter);
+    const perEx = units.length > 1;
+    let rows = (b.rows || []).map(r => {
+      const exId = hi['_ex'] !== undefined ? (r[hi['_ex']] || '') : '';
+      const u = perEx ? units.find(x => x.ex_id === exId) : null;
+      const exName = String(r[0] || '').split('||')[0];
+      return exerciseMarkup(r, hi, single, { noRest:isSuper, iso, blockTitle:b.title,
+        verdictHtml: u ? verdictMarkup(iso, u, exName) : '' });
+    }).join('');
     if (isSuper){
       const restVal = hi['Rest'] !== undefined ? (b.rows[0][hi['Rest']] || '') : '';
       rows = `<div class="superset">
         <p class="ss-label">Superset${restVal ? ` · Rest ${esc(restVal)} nach dem Paar` : ''}</p>
         ${rows}</div>`;
     }
-    const v = vGet(iso, b.letter);
+    const vs = units.map(u => vstore.get(iso, u.ex_id));
     const mainName = (b.rows && b.rows.length ? String(b.rows[b.rows.length-1][0]||'').split('||')[0] : b.title);
     /* Geloggte Blöcke klappen ein und werden grau — tiefschwarz bleibt nur,
-       was noch offen ist. Titelzeile trägt das Verdict als Zeichen. */
-    const logged = !!v;
+       was noch offen ist. Mehrteilige Blöcke gelten erst als geloggt, wenn
+       JEDE Einheit ihr Verdict trägt. Titelzeile zeigt die Verdicts. */
+    const logged = vs.length > 0 && vs.every(Boolean);
+    const allHit = logged && vs.every(v => v.verdict === 'hit');
     /* Zugeklappt: Zeit/Rang weggeblendet, das Verdict-Zeichen steht am
        rechten Rand neben dem Titel. */
     const vflag = !logged ? '' :
-      `<span class="vflag ${v.verdict === 'hit' ? 'ok' : 'no'}">${v.verdict === 'hit' ? '✓' : '✕' + (v.reason ? ' ' + (v.reason === 'technik' ? 'Technik' : 'Last') : '')}</span>`;
-    return `<section class="blk${logged ? ' is-logged' : ' is-open'}${v ? (v.verdict === 'hit' ? ' is-done' : ' is-failed') : ''}">
+      `<span class="vflag ${allHit ? 'ok' : 'no'}">${vs.map(v => v.verdict === 'hit' ? '✓' : '✕' + (v.reason ? ' ' + (v.reason === 'technik' ? 'Technik' : 'Last') : '')).join(' · ')}</span>`;
+    return `<section class="blk${logged ? ' is-logged' : ' is-open'}${logged ? (allHit ? ' is-done' : ' is-failed') : ''}">
       <button class="blk-toggle" type="button" aria-expanded="${!logged}" data-blk="${bi}">
         <span class="blk-top">
           <span class="blk-letter">${esc(b.letter)}</span>
@@ -1200,7 +1245,7 @@ function showFocus(letter){
         </span>`}
       </button>
       <div class="blk-body"${logged ? ' hidden' : ''}>${rows}
-        ${verdictMarkup(iso, b.letter, mainName)}
+        ${perEx ? '' : verdictMarkup(iso, units[0], mainName)}
       </div>
     </section>`;
   }).join('');
@@ -1223,6 +1268,7 @@ function showFocus(letter){
       ${dauer ? `<p class="focus-dauer"><b>${esc(dauer)}</b></p>` : ''}
     </header>
     ${blocks}${wods}
+    ${whoopText(rawDay(iso)) ? `<button class="whoop-copy" type="button" data-whoop="${esc(iso)}">WHOOP Copy</button>` : ''}
     ${noteMarkup(iso, f.date || '')}
     <button class="back is-foot" type="button" id="backBtnFoot">${BACK} Zur Woche</button>
   `;
@@ -1246,6 +1292,8 @@ function showFocus(letter){
     }));
   wireNote(elFocus);
   wireVerdicts(elFocus, letter);
+  const wc = elFocus.querySelector('[data-whoop]');
+  if (wc) wc.addEventListener('click', () => copyWhoop(wc.dataset.whoop));
 
   elWeek.hidden = true; elFocus.hidden = false;
   if (!showFocus.rerender) window.scrollTo(0, 0);
@@ -1389,6 +1437,7 @@ function exerciseMarkup(r, hi, single, opts){
     ${ladder}
     ${meta.length ? `<p class="ex-meta">${meta.join('')}</p>` : ''}
     ${note ? `<button class="note-handle" type="button" aria-expanded="false">Begründung ${CHEV}</button><p class="ex-note">${esc(note)}</p>` : ''}
+    ${opts.verdictHtml || ''}
   </article>`;
 }
 
@@ -1409,6 +1458,108 @@ function wodMarkup(w){
       w.cap ? `<span class="wod-cap">Cap ${esc(w.cap)}</span>` : ''}</h2>
     ${mvs}
   </section>`;
+}
+
+/* ── WHOOP-Copy ── Tagesprogramm als Klartext für den WHOOP-AI-Parser
+   (Strength Trainer akzeptiert Freitext). Regeln: WHOOP-Library-Namen
+   (whoop-Feld aus dem Payload = verifizierter Registry-Alias, sonst der
+   Übungsname), kg immer mit Einheit, Bodyweight ohne Last, RPE weggelassen,
+   Mobility-Blöcke nicht mitkopiert. */
+function rawDay(iso){
+  return ((RAW_WEEKS[weekIdx] || {}).days || []).find(d => d.iso_date === iso);
+}
+function whoopExLine(ex){
+  const t = ex.target || {};
+  const name = ex.whoop || ex.name || ex.kurz || ex.ex_id;
+  let scheme = '';
+  if (t.mode === 'time'){
+    scheme = (t.sets && t.sec) ? `${t.sets}x${t.sec} sec`
+           : (t.sec ? Math.round(t.sec / 60) + ' min' : '');
+  } else if (t.sets != null && t.reps != null){
+    scheme = `${t.sets}x${t.reps}`;
+  }
+  let load = '';
+  if (t.mode === 'kg' && t.kg != null) load = ` @ ${fmt(t.kg)} kg`;
+  else if (t.mode === 'bw_plus' && t.kg != null) load = ` @ +${fmt(t.kg)} kg`;
+  const rest = t.rest ? `, Rest ${t.rest}` : '';
+  return `${name}: ${scheme}${load}${rest}`;
+}
+function whoopText(day){
+  if (!day) return '';
+  const datum = isoDD(day.iso_date) + String(day.iso_date).slice(0, 4);
+  if (day.day_type === 'own'){
+    const lines = [`Strength Workout – ${datum} Fokus ${day.focus}`];
+    (day.blocks || []).forEach(b => {
+      if (b.verdict_ex_id === 'mobility' || /mobility|cool-?down/i.test(b.title || '')) return;
+      (b.exercises || []).forEach(ex => lines.push(whoopExLine(ex)));
+    });
+    return lines.join('\n') + '\n';
+  }
+  if (Array.isArray(day.wod) && day.wod.length){
+    const lines = [`Workout – ${datum} ${day.einheit || 'Box'}`];
+    day.wod.forEach(w => {
+      lines.push(`${w.struktur}${w.cap ? ' (Cap ' + w.cap + ')' : ''}:`);
+      (w.bewegungen || []).forEach(mv =>
+        lines.push(`${mv.reps} ${mv.name}${mv.detail ? ' (' + mv.detail + ')' : ''}`));
+    });
+    return lines.join('\n') + '\n';
+  }
+  return '';   // Ruhetag: nichts zu kopieren
+}
+let toastTimer = null;
+function toast(msg){
+  let el = document.getElementById('copyToast');
+  if (!el){
+    el = document.createElement('div');
+    el.id = 'copyToast'; el.className = 'copy-toast';
+    el.setAttribute('role', 'status');
+    document.body.appendChild(el);
+  }
+  el.textContent = msg;
+  el.classList.add('is-on');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => el.classList.remove('is-on'), 2000);
+}
+function copyWhoop(iso){
+  const text = whoopText(rawDay(iso));
+  if (!text) return;
+  /* writeText synchron im Gesten-Handler aufrufen — Safari verweigert
+     Clipboard außerhalb der User-Aktivierung. */
+  navigator.clipboard.writeText(text)
+    .then(() => toast('Kopiert ✓'))
+    .catch(() => toast('Kopieren fehlgeschlagen'));
+}
+/* Long-Press (1,2 s) auf eine Tageszeile kopiert das Tagesprogramm im
+   WHOOP-Format — Touch + Maus. Der Timer scharf-schaltet nur; kopiert wird
+   beim pointerup, damit writeText in der User-Geste bleibt. Bewegung >12 px
+   bricht ab (Scroll-Falle: echtes Touch-Scrollen feuert ohnehin
+   pointercancel). Kurzer Tap behält die Navigation; der auf den Long-Press
+   folgende Klick wird geschluckt — deshalb wird diese Verdrahtung VOR der
+   Nav-Verdrahtung registriert (stopImmediatePropagation). */
+function wireDayCopy(root){
+  root.querySelectorAll('.strip[data-iso]').forEach(s => {
+    if (!whoopText(rawDay(s.dataset.iso))) return;
+    let timer = null, armed = false, fired = false, sx = 0, sy = 0;
+    const disarm = () => { if (timer){ clearTimeout(timer); timer = null; } armed = false; };
+    s.addEventListener('pointerdown', e => {
+      sx = e.clientX; sy = e.clientY; fired = false; disarm();
+      timer = setTimeout(() => { armed = true; }, 1200);
+    });
+    s.addEventListener('pointermove', e => {
+      if (Math.abs(e.clientX - sx) > 12 || Math.abs(e.clientY - sy) > 12) disarm();
+    });
+    s.addEventListener('pointerup', () => {
+      if (armed){ fired = true; copyWhoop(s.dataset.iso); }
+      disarm();
+    });
+    s.addEventListener('pointercancel', disarm);
+    s.addEventListener('contextmenu', e => e.preventDefault());
+    s.addEventListener('click', e => {
+      if (!fired) return;
+      fired = false;
+      e.preventDefault(); e.stopImmediatePropagation();
+    });
+  });
 }
 
 function noteMarkup(isoDate, dayLabel){

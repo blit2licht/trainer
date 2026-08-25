@@ -137,6 +137,10 @@ def build_day(day: dict, reg: dict, warns: list[str]) -> dict:
             ex_entry = {"ex_id": ex_id, "kurz": kurz, "name": name,
                         "class": entry.get("class") if entry else None,
                         "target": target}
+            # WHOOP-Copy am Handy: der erste alias-Eintrag ist per Registry-
+            # Konvention der verifizierte WHOOP-Library-Name (hinweis-Feld).
+            if entry and entry.get("aliases"):
+                ex_entry["whoop"] = entry["aliases"][0]
             if ex.get("warum"):
                 ex_entry["warum"] = ex["warum"]
             ex_out.append(ex_entry)

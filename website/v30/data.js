@@ -391,9 +391,9 @@ const DATA = {
             "exercises": [
               {
                 "ex_id": "db_bench",
-                "kurz": "DB Bench Press",
+                "kurz": "DB Bench",
                 "name": "DB Bench Press",
-                "class": null,
+                "class": "loadable",
                 "target": {
                   "mode": "rpe",
                   "sets": 3,
@@ -401,13 +401,14 @@ const DATA = {
                   "rpe_cap": 7,
                   "rest": "60 sec"
                 },
+                "whoop": "DB Bench Press",
                 "warum": "Rekompositions-Layer, RPE-kalibriert. Deckel 7 strikt — lief zwei Wochen heiß (W34 RPE 8-9)."
               },
               {
                 "ex_id": "triceps_ext",
-                "kurz": "Triceps Extension",
+                "kurz": "Triceps",
                 "name": "Triceps Extension",
-                "class": null,
+                "class": "generic",
                 "target": {
                   "mode": "band",
                   "band": "rotes Band",
@@ -416,6 +417,7 @@ const DATA = {
                   "rpe_cap": 7,
                   "rest": "60 sec"
                 },
+                "whoop": "Triceps Extension",
                 "warum": "Rekompositions-Layer, konstante Spannung."
               }
             ],
@@ -958,9 +960,9 @@ const DATA = {
               "exercises": [
                 {
                   "ex_id": "db_bench",
-                  "kurz": "DB Bench Press",
+                  "kurz": "DB Bench",
                   "name": "DB Bench Press",
-                  "class": null,
+                  "class": "loadable",
                   "target": {
                     "mode": "rpe",
                     "sets": 3,
@@ -968,13 +970,14 @@ const DATA = {
                     "rpe_cap": 7,
                     "rest": "60 sec"
                   },
+                  "whoop": "DB Bench Press",
                   "warum": "Rekompositions-Layer, RPE-kalibriert. Deckel 7 strikt — lief zwei Wochen heiß (W34 RPE 8-9)."
                 },
                 {
                   "ex_id": "triceps_ext",
-                  "kurz": "Triceps Extension",
+                  "kurz": "Triceps",
                   "name": "Triceps Extension",
-                  "class": null,
+                  "class": "generic",
                   "target": {
                     "mode": "band",
                     "band": "rotes Band",
@@ -983,6 +986,7 @@ const DATA = {
                     "rpe_cap": 7,
                     "rest": "60 sec"
                   },
+                  "whoop": "Triceps Extension",
                   "warum": "Rekompositions-Layer, konstante Spannung."
                 }
               ],

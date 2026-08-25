@@ -437,6 +437,32 @@
       "rep_cap_e1rm": null,
       "pattern": [],
       "note": "Bislang Layer-Komponente von layer_delts_bizeps; seit 25.08. eigenständig loadable mit eigenem Verdict (D1/D2-Split). WHOOP loggt 'Biceps Curl – DB'; increment 2 = KH-Paar-Sprung."
+    },
+    {
+      "ex_id": "db_bench",
+      "name": "DB Bench Press",
+      "kurz": "DB Bench",
+      "aliases": [
+        "DB Bench Press"
+      ],
+      "class": "loadable",
+      "increment": 2,
+      "rep_cap_e1rm": null,
+      "pattern": [],
+      "note": "Layer-Komponente Brust/Trizeps, seit 25.08. mit eigenem Registry-Eintrag (Name/WHOOP-Mapping). Verdict läuft weiter über das Composite layer_brust_trizeps, solange der Block gebündelt ist. Target-Modus rpe (Last selbst gewählt); increment 2 = KH-Paar-Sprung. WHOOP loggt 'DB Bench Press', kg-Angabe dort = Summe beider Kurzhanteln (Paste-Spec Regel 1)."
+    },
+    {
+      "ex_id": "triceps_ext",
+      "name": "Triceps Extension",
+      "kurz": "Triceps",
+      "aliases": [
+        "Triceps Extension"
+      ],
+      "class": "generic",
+      "increment": null,
+      "rep_cap_e1rm": null,
+      "pattern": [],
+      "note": "Layer-Komponente Brust/Trizeps, Band-Arbeit ohne Lastreferenz — generic. Eigener Registry-Eintrag seit 25.08. fürs Name/WHOOP-Mapping; Verdict weiter über layer_brust_trizeps."
     }
   ]
 }

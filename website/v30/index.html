@@ -625,17 +625,19 @@ a{color:inherit;text-underline-offset:3px}
   transition:opacity .14s var(--ease),transform .14s var(--ease);
 }
 .copy-toast.is-on{opacity:1;transform:translateX(-50%) translateY(0)}
-/* Timer-Link an Zeit-Übungen: öffnet timer.martinwitte.de fertig
-   konfiguriert (Share-Link-Format des WodTimers, kein Backend). */
-.timer-link{
-  display:inline-flex;align-items:center;gap:8px;margin-top:12px;
-  min-height:44px;color:var(--ink-3);text-decoration:none;
-  font-family:var(--mono);font-size:11.5px;font-weight:700;
-  letter-spacing:.13em;text-transform:uppercase;
-  transition:color .14s var(--ease);
+/* Timer-Knopf an Zeit-Übungen: Stoppuhr-Symbol neben dem Rep-Schema,
+   mit Abstand und Rahmen, damit er als Knopf lesbar ist (Martin 25.08.).
+   Öffnet timer.martinwitte.de fertig konfiguriert (Share-Link-Format
+   des WodTimers, kein Backend). */
+.timer-btn{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:46px;height:46px;margin-left:14px;align-self:center;
+  border:1px solid var(--rule);color:var(--ink-2);text-decoration:none;
+  transition:color .14s var(--ease),border-color .14s var(--ease);
 }
-.timer-link:hover{color:var(--ink)}
-.timer-link svg{width:12px;height:12px}
+.timer-btn:hover{color:var(--ink);border-color:var(--g6)}
+.timer-btn svg{width:24px;height:24px;fill:none;stroke:currentColor;
+  stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 /* Long-Press auf der Zeile darf keine Textauswahl/iOS-Callout ziehen. */
 .strip{user-select:none;-webkit-user-select:none;-webkit-touch-callout:none}
 
@@ -1083,6 +1085,7 @@ const CHEV = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-
 const ARROW = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
 const CHECK = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>';
 const BACK = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>';
+const STOPW = '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="14" r="7"/><path d="M12 14v-4M10 3h4"/></svg>';
 
 const TYPEWORD = { own:'Fokus', box:'Box', ride:'Rad', rest:'Ruhe' };
 
@@ -1322,10 +1325,11 @@ function showFocus(letter){
        JEDE Einheit ihr Verdict trägt. Titelzeile zeigt die Verdicts. */
     const logged = vs.length > 0 && vs.every(Boolean);
     const allHit = logged && vs.every(v => v.verdict === 'hit');
-    /* Zugeklappt: Zeit/Rang weggeblendet, das Verdict-Zeichen steht am
-       rechten Rand neben dem Titel. */
+    /* Zugeklappt: Zeit/Rang weggeblendet, GENAU EIN Verdict-Zeichen am
+       rechten Rand — mehrere Zeichen erzwingen am Handy den Titelumbruch
+       (Martin 25.08.). ✓ nur, wenn alles steht; Details beim Aufklappen. */
     const vflag = !logged ? '' :
-      `<span class="vflag ${allHit ? 'ok' : 'no'}">${vs.map(v => v.verdict === 'hit' ? '✓' : '✕' + (v.reason ? ' ' + (v.reason === 'technik' ? 'Technik' : 'Last') : '')).join(' · ')}</span>`;
+      `<span class="vflag ${allHit ? 'ok' : 'no'}">${allHit ? '✓' : '✕'}</span>`;
     return `<section class="blk${logged ? ' is-logged' : ' is-open'}${logged ? (allHit ? ' is-done' : ' is-failed') : ''}">
       <button class="blk-toggle" type="button" aria-expanded="${!logged}" data-blk="${bi}">
         <span class="blk-top">
@@ -1466,6 +1470,8 @@ function exerciseMarkup(r, hi, single, opts){
   const sets = hi['Sets × Reps'] !== undefined ? r[hi['Sets × Reps']] : (hi['Dauer'] !== undefined ? r[hi['Dauer']] : '');
   const last = hi['Last'] !== undefined ? r[hi['Last']] : '';
   const pl = parseLoad(last);
+  const turl = hi['_timer'] !== undefined ? (r[hi['_timer']] || '') : '';
+  const timerBtn = turl ? `<a class="timer-btn" href="${esc(turl)}" target="_blank" rel="noopener" aria-label="Timer starten">${STOPW}</a>` : '';
 
   /* Eine Zeile: Rep-Schema · Gewicht. Zusätze ("unbroken", "aufsteigend")
      stehen darunter, nicht daneben. Nur der mehrstufige Lastaufbau behält
@@ -1525,12 +1531,11 @@ function exerciseMarkup(r, hi, single, opts){
       ? (parts[1] ? `<p class="ex-qual">${esc(parts[1])}</p>` : '')
       : `<h3 class="ex-name">${esc(parts[0])}${parts[1] ? `<small>${esc(parts[1])}</small>` : ''}</h3>`}
     ${setsMain ? (loadInline && loadInline.length <= 12
-      ? `<p class="ex-sets"><b class="reps">${esc(setsMain)} @ ${esc(loadInline)}</b></p>`
-      : `<p class="ex-sets"><b class="reps">${esc(setsMain)}</b>${loadInline ? `<span class="xload">· ${esc(loadInline)}</span>` : ''}</p>`) : ''}
+      ? `<p class="ex-sets"><b class="reps">${esc(setsMain)} @ ${esc(loadInline)}</b>${timerBtn}</p>`
+      : `<p class="ex-sets"><b class="reps">${esc(setsMain)}</b>${loadInline ? `<span class="xload">· ${esc(loadInline)}</span>` : ''}${timerBtn}</p>`) : ''}
     ${setsSub ? `<p class="ex-sub">${esc(setsSub)}</p>` : ''}
     ${ladder}
     ${meta.length ? `<p class="ex-meta">${meta.join('')}</p>` : ''}
-    ${(hi['_timer'] !== undefined && r[hi['_timer']]) ? `<a class="timer-link" href="${esc(r[hi['_timer']])}" target="_blank" rel="noopener">Timer starten ${ARROW}</a>` : ''}
     ${note ? `<button class="note-handle" type="button" aria-expanded="false">Begründung ${CHEV}</button><p class="ex-note">${esc(note)}</p>` : ''}
     ${opts.verdictHtml || ''}
   </article>`;

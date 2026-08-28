@@ -122,12 +122,19 @@ a{color:inherit;text-underline-offset:3px}
   letter-spacing:.13em;text-transform:uppercase;color:var(--ink-3);
   white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
 }
-/* Serverstand nicht erreichbar: der angezeigte Stand kommt vom Gerät. Bleibt
-   auch am schmalen Handy stehen — anders als die Meso-Angabe, die weicht. */
-.rail-stale{
-  margin-left:auto;font-family:var(--mono);font-size:11px;font-weight:700;
-  letter-spacing:.13em;text-transform:uppercase;color:var(--marker);white-space:nowrap;
+/* Serververbindung: steht immer in der Schiene, immer als Zeichen — nie als
+   Satz, der die Meso-Angabe verdrängt. Grau ist Ruhe (Serverstand oder
+   bewusst lokal), Amber heißt: der Rückkanal trägt gerade nicht. Bleibt auch
+   am schmalen Handy stehen, anders als die Meso-Angabe, die weicht. */
+.rail-link{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:22px;height:22px;flex:none;color:var(--ink-3);
 }
+.rail-link svg{
+  width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:2;
+  stroke-linecap:round;stroke-linejoin:round;
+}
+.rail-link.is-off{color:var(--marker)}
 .rail{user-select:none;-webkit-user-select:none;-webkit-touch-callout:none}
 
 /* ═══ Backend-Setup (Long-Press auf die Rail) ═══ */
@@ -184,7 +191,7 @@ a{color:inherit;text-underline-offset:3px}
   .apparat{position:sticky;top:84px}
 }
 @media (max-width:1099px){ .apparat{display:none} }
-@media (max-width:430px){ .rail-meso{display:none} }
+@media (max-width:430px){ .rail-meso{display:none} .rail-link{margin-left:auto} }
 
 /* ═══ Heute ═══ */
 .today{padding:38px 0 34px}
@@ -651,8 +658,8 @@ a{color:inherit;text-underline-offset:3px}
 
 <header class="rail">
   <button class="rail-week" id="railWeek" type="button" hidden></button>
-  <span class="rail-stale" id="railStale" hidden>Offline · Stand vom Gerät</span>
   <span class="rail-meso" id="railMeso"></span>
+  <span class="rail-link" id="railLink" role="status"></span>
 </header>
 
 <div class="wrap">
@@ -837,11 +844,59 @@ const EP_SAVE = '../save_verdict.php';
 const EP_GET  = '../get_verdicts.php';
 const EP_NOTES = '../get_notes.php';
 const backendMode = (localStorage.getItem('v3_backend') === 'http') ? 'http' : 'stub';
+
+/* ── Serververbindung in der Kopfzeile ── Der Rückkanal ist das Produkt, also
+   steht sein Zustand dauerhaft oben rechts, und zwar als Zeichen: Wolke =
+   Serverstand, durchgestrichene Wolke = Funkloch (angezeigt wird der
+   Gerätespiegel), Schloss = Server da, Secret abgelehnt (nichts wird
+   geschrieben), Gerät = Stub-Modus ohne Server. Jede Form ist eigen, Farbe
+   ist nie das einzige Signal; das Wort steht für Screenreader daneben. ── */
+const CLOUD = '<path d="M7 17.5A3.5 3.5 0 0 1 7 10.5A5 5 0 0 1 16.5 11A3.5 3.5 0 0 1 17 17.5Z"/>';
+const LINK_STATES = {
+  live:  { off:false, word:'Server verbunden',
+           icon: CLOUD },
+  stale: { off:true,  word:'Server nicht erreichbar · Stand vom Gerät',
+           icon: CLOUD + '<path d="M4.5 20 19.5 4.5"/>' },
+  auth:  { off:true,  word:'Server lehnt das Secret ab · nichts wird gespeichert',
+           icon: '<rect x="5" y="11" width="14" height="9"/><path d="M8.5 11V8a3.5 3.5 0 0 1 7 0v3"/>' },
+  local: { off:false, word:'Ohne Server · Stand nur auf dem Gerät',
+           icon: '<rect x="7" y="3" width="10" height="18"/><path d="M10.5 17.5h3"/>' }
+};
+let linkState = (backendMode === 'http') ? 'live' : 'local';
+function renderLink(){
+  const el = document.getElementById('railLink');
+  if (!el) return;
+  const s = LINK_STATES[linkState] || LINK_STATES.local;
+  el.classList.toggle('is-off', s.off);
+  el.title = s.word;
+  el.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true">' + s.icon + '</svg>'
+    + '<span class="sr">' + s.word + '</span>';
+}
+/* Im Stub-Modus gibt es keinen Server, den man erreichen könnte — dort bleibt
+   das Zeichen beim Gerät, egal was ein einzelner Fetch meldet. */
+function setLink(state){
+  const next = (backendMode === 'http') ? state : 'local';
+  if (next === linkState) return;
+  linkState = next;
+  renderLink();
+}
+renderLink();
+
+/* Ein Fetch, der die Kopfzeile mitführt: nach jedem Zug zum Server steht oben
+   rechts, ob er antwortet, ablehnt oder schweigt. */
+async function linkFetch(url, opts){
+  try {
+    const r = await fetch(url, opts);
+    setLink(r.status === 401 ? 'auth' : 'live');
+    return r;
+  } catch(e){
+    setLink('stale');
+    throw e;
+  }
+}
+
 const vstore = {
   cache: {},
-  /* stale = der angezeigte Stand stammt aus dem Gerätespiegel, nicht vom
-     Server (Funkloch beim Öffnen). Wird in der Kopfzeile wortcodiert. */
-  stale: false,
   get(iso, ex){ return this.cache[iso + '|' + ex] || null; },
   /* Gerätespiegel: auch im http-Modus wird jeder Serverstand lokal
      mitgeschrieben. Ohne ihn stünde nach einem gescheiterten Hydrate jeder
@@ -861,7 +916,7 @@ const vstore = {
   async hydrate(from, to){
     if (backendMode === 'http'){
       try {
-        const r = await fetch(`${EP_GET}?from=${from}&to=${to}`);
+        const r = await linkFetch(`${EP_GET}?from=${from}&to=${to}`);
         if (!r.ok) throw new Error('hydrate ' + r.status);
         const j = await r.json();
         const fresh = {};
@@ -870,7 +925,6 @@ const vstore = {
             { verdict: v.verdict, reason: v.miss_reason, at: v.updated_at };
         });
         Object.assign(this.cache, fresh);
-        this.stale = false;
         /* Spiegel auf den Serverstand des geladenen Bereichs bringen —
            Zeilen, die der Server nicht (mehr) kennt, fallen dort raus. */
         const all = this.mirrorRead();
@@ -883,7 +937,9 @@ const vstore = {
       } catch(e){
         // Funkloch: Gerätespiegel zeigen statt alles fälschlich als „offen".
         Object.assign(this.cache, this.mirrorRead());
-        this.stale = true;
+        /* Angezeigt wird jetzt Gerätestand — das Zeichen sagt es, auch wenn
+           der Server geantwortet hat (401 bleibt die genauere Auskunft). */
+        if (linkState !== 'auth') setLink('stale');
       }
     } else {
       Object.assign(this.cache, this.mirrorRead());
@@ -891,7 +947,7 @@ const vstore = {
   },
   async save(iso, ex, verdict, reason){
     if (backendMode === 'http'){
-      const r = await fetch(EP_SAVE, { method:'POST',
+      const r = await linkFetch(EP_SAVE, { method:'POST',
         headers:{ 'Content-Type':'application/json' },
         body: JSON.stringify({ secret: localStorage.getItem(SKEY) || '',
           iso_date: iso, ex_id: ex, verdict, miss_reason: reason || null }) });
@@ -911,7 +967,7 @@ const vstore = {
   async clear(iso, ex){
     // Rücknahme = zurück auf unknown: verdict:'clear' löscht die Server-Zeile.
     if (backendMode === 'http'){
-      const r = await fetch(EP_SAVE, { method:'POST',
+      const r = await linkFetch(EP_SAVE, { method:'POST',
         headers:{ 'Content-Type':'application/json' },
         body: JSON.stringify({ secret: localStorage.getItem(SKEY) || '',
           iso_date: iso, ex_id: ex, verdict: 'clear' }) });
@@ -951,7 +1007,7 @@ const nstore = {
   async hydrate(from, to){
     if (backendMode === 'http'){
       try {
-        const r = await fetch(`${EP_NOTES}?from=${from}&to=${to}`);
+        const r = await linkFetch(`${EP_NOTES}?from=${from}&to=${to}`);
         if (!r.ok) throw new Error('notes ' + r.status);
         const j = await r.json();
         const fresh = {};
@@ -967,6 +1023,7 @@ const nstore = {
         Object.assign(this.cache, fresh);
       } catch(e){
         Object.assign(this.cache, this.mirrorRead());
+        if (linkState !== 'auth') setLink('stale');
       }
     } else {
       Object.assign(this.cache, this.mirrorRead());
@@ -1685,7 +1742,7 @@ function wireNoteBlock(block){
   save.addEventListener('click', () => {
     state.className = 'note-state';
     state.textContent = 'Wird eingetragen …';
-    fetch('../save_note.php', {
+    linkFetch('../save_note.php', {
       method:'POST',
       headers:{ 'Content-Type':'application/json' },
       body: JSON.stringify({
@@ -1825,7 +1882,6 @@ function renderRail(){
     ? (preview ? 'Zurück zur laufenden Woche' : 'Vorschau auf die nächste Woche')
     : 'Woche ' + week.id);
   document.getElementById('railMeso').textContent = week.meso || week.label || '';
-  document.getElementById('railStale').hidden = !vstore.stale;
 }
 
 async function switchWeek(){

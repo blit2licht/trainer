@@ -228,6 +228,11 @@ die Signaturform: aneinandergesetzte Bänder, Ton steigt mit der Last
 ### Navigation
 - Sticky-Schiene: Mono-Label „2026 W34" links, Meso rechts (entfällt <430px).
   Keine Wochenwahl am Handy. Zurück-Pfeil als Strich-SVG + „Zur Woche".
+- **Verbindungszeichen** ganz rechts, dauerhaft, nie als Satz: Wolke =
+  Serverstand, durchgestrichene Wolke = Funkloch (angezeigt wird der
+  Gerätespiegel), Schloss = Secret abgelehnt, Gerät = Stub ohne Server.
+  15px Strich-SVG, grau im Ruhezustand, Amber wenn der Rückkanal nicht
+  trägt; das Wort steht für Screenreader in der `.sr`-Zeile.
 
 ### Teststreifen (Signatur)
 Lastaufbau als belichtete Probestreifen: je Stufe ein Band mit Zahl,
@@ -248,6 +253,7 @@ Tonwert steigt, Ziel = Amber-Band mit Zahl in amber-ink
 - **Don't** Karten, Schatten, Radien, Verläufe, Glow oder Scanlines.
 - **Don't** Coach-Prosa (`note`, `intro`, warum) auf die Handy-Fläche.
 - **Don't** Wochen-ID, Tagestitel oder Typwort mehrfach zeigen.
-- **Don't** Fortschrittsringe, gezeichnete Hanteln oder Icon-Dekor —
-  Icons nur als Typ-Kategorisierung in der Wochenliste.
+- **Don't** Fortschrittsringe, gezeichnete Hanteln oder Icon-Dekor — Icons
+  nur als Typ-Kategorisierung in der Wochenliste und als Verbindungszeichen
+  in der Schiene.
 - **Don't** Zusatzlasten („+5 kg") als Tages-Kennzahl werten.

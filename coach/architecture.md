@@ -8,6 +8,8 @@ Technischer Überblick des Coaching-Systems. Reine Referenz — die Coaching-Wah
 - **Stack:** PHP + **MariaDB**, Upload via **SFTP**.
 - **Deployment:** GitHub Actions (`.github/workflows/deploy.yml`) bei jedem Push auf `main` → lädt `website/` per `lftp` zu IONOS. Der Workflow liest die erste Wochen-ID aus `website/data.js` und verifiziert sie nach dem Upload.
 - **Veröffentlicht wird nur `website/`.** Deployment gilt erst als erfolgreich, wenn die Seite erreichbar ist und die aktuelle Wochen-ID ausliefert.
+- **App:** `website/index.html` ist Trainer 3.0 (seit 30.08.2026 auf der Root). Der Vorgänger 2.0 liegt stillgelegt unter `archive/2.0/`; der Parallelpfad `/v30/` ist per `.htaccess` auf `/` umgeleitet. `website/sw.js` ist seither ein Kill-Switch: 3.0 registriert keinen Service Worker, der alte 2.0-Worker meldet sich damit auf bereits installierten Geräten selbst ab.
+- **Plan-Pipeline:** `coach/plan/<id>.json` (Quelle) + `coach/exercises.json` (Registry) → `scripts/build_payload.py` → `website/data.js` (generiert) plus Cache-Stempel `?v=<hash>` in `website/index.html`.
 - IONOS nutzt teils nicht-standardisierte interne Pfade (z. B. AuthUserFile für Basic Auth) — vor `.htaccess`-Änderungen den tatsächlichen Pfad bestätigen, sonst HTTP 500.
 
 ## Tagesnotizen & Session-Feel

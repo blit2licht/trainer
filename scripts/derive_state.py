@@ -18,9 +18,11 @@ Inputs
                               --endpoint <url> zum Live-Abruf (nur in Sessions
                               mit Website-Zugriff). Ohne beides: keine Verdicts,
                               alles unknown (das ist in W35 der reale Stand).
-  website/data.js             optional, Archiv: Best-effort-Zählung vergangener
+  archive/2.0/data.js         optional, Archiv: Best-effort-Zählung vergangener
                               Fokus-Tage (Alt-Historie ohne Targets — Backfill
-                              läuft über WHOOP-Prompts, Entscheid 6).
+                              läuft über WHOOP-Prompts, Entscheid 6). Der 2.0-
+                              Bestand endet mit W36; danach wächst die Historie
+                              über die Planquellen coach/plan/.
 
 Output
 ------
@@ -46,7 +48,10 @@ from pathlib import Path
 REPO = Path(__file__).resolve().parent.parent
 EXERCISES_JSON = REPO / "coach" / "exercises.json"
 STATE_JSON = REPO / "coach" / "state.json"
-DATA_JS = REPO / "website" / "data.js"
+# Alt-Historie: das handgeschriebene 2.0-data.js. Seit der 3.0-Umstellung
+# (30.08.2026) wird website/data.js generiert und trägt nur noch die
+# laufende und die nächste Woche — die Rückschau steht im Archiv.
+DATA_JS = REPO / "archive" / "2.0" / "data.js"
 
 # Explizite Zuordnung state.json.load_references -> ex_id. Bewusst als Tabelle
 # im Code statt Heuristik: die Schlüssel sind historisch gewachsen

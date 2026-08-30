@@ -1,0 +1,415 @@
+{
+  "schema_version": 1,
+  "id": "2026-W36",
+  "label": "Woche 5 · 31. August – 6. September 2026",
+  "meso": "Meso 3 · Woche 5",
+  "von": "2026-08-31",
+  "bis": "2026-09-06",
+  "phase": "Konsolidierung vor dem W37-Testblock / Snatch-Video 57,5-60 / FS-Korridor-Aufbau / WPU-3×5-Retry",
+  "_hinweis": "Erste Woche nach der Umstellung auf 3.0: Planquelle ist die Wahrheit, website/data.js wird daraus generiert (scripts/build_payload.py). Inhalt konvertiert aus der 2.0-Fassung von W36 (Commit 3a77956) — Blockzuschnitt, Lasten und Notizen unverändert übernommen.",
+  "days": [
+    {
+      "iso_date": "2026-08-31",
+      "day_type": "rest",
+      "plan_note": "Sonntagslast nach dem ~75-km-Ride (30.08.) — Standard-Ruhetag. Upgrade nur einbahnig bei Recovery ≥70 UND frischen Beinen (Martin-Entscheid 30.08.): dann Mo-Box-WOD gedeckelt — RPE ≤7, Push Jerk moderat bis ~60-65 (kein schwerer Overhead-Tag, Di ist der Oly-Slot), For-Time-Stück L2 ohne Sprint-Finish. Trade-off bewusst: Run/WB/Burpees sind auch gedeckelt Zone 4+ — der Di-Snatch bleibt die Schlüssel-Einheit.",
+      "warum": "Ruhetag nach der Sonntagslast. Nur wenn die Recovery ≥70 ist UND die Beine sich frisch anfühlen, ist ein gedeckeltes Box-WOD drin — RPE ≤7, Push Jerk höchstens 60-65, kein Sprint-Finish. Der Dienstag-Snatch bleibt die Schlüssel-Einheit der Woche."
+    },
+    {
+      "iso_date": "2026-09-01",
+      "day_type": "own",
+      "focus": "A",
+      "focus_label": "Weightlifting-Fokus",
+      "intro": "Schlüssel-Einheit der Woche auf dem frischesten Slot. Snatch zuerst: Ceiling 60 nach dem W34-Slip reproduzieren, Top-Singles 57,5 und 60 seitlich mit der Bar-Path-App filmen (Normalgeschwindigkeit, kein Slo-mo) — Bestätigung des Empfangs-Befunds an schwerer Last, Übungswahl folgt erst nach der Diagnose. Danach Front Squat: Korridor-Aufbau über dem Block-Stand 95×3 — sauberer 100er-Single ist das Wochenziel, 102,5 optional bei RPE ≤8; der Korridor 105-107,5 kommt W37. Pause OHS bleibt klein (Topwert 55 steht) und ist erster Streichkandidat bei Zeitdruck.",
+      "plan_note": "Coach-Prosa: Aufnahme-Anforderung aus state.json (offen, W36) ist hier eingelöst — Bar-Path-App seitlich, Normalgeschwindigkeit, Top-Singles 57,5 und 60. Übungswahl für die tiefe Empfangsposition erst nach der Diagnose. Kein 62,5 und kein 105 diese Woche.",
+      "recovery_day": {
+        "u50": "Letzter Steigerungssatz entfällt: Snatch endet bei 55 (kein Video-Pflichtprogramm, verschiebt sich), FS endet bei 95, Pause OHS entfällt. Load-RPE-Cap 7.",
+        "u34": "Nur Technik mit leichter Stange und Mobility bis RPE 6 — oder Ruhe."
+      },
+      "blocks": [
+        {
+          "block_id": "A",
+          "prio": "required",
+          "min": 18,
+          "title": "Squat Snatch — Singles + Video",
+          "superset": false,
+          "exercises": [
+            {
+              "ex_id": "snatch",
+              "target": {
+                "mode": "kg",
+                "sets": 7,
+                "reps": 1,
+                "kg": 60,
+                "ramp": [40, 45, 50, 52.5, 55, 57.5, 60],
+                "rpe_cap": 8,
+                "tempo": "explosiv",
+                "rest": "E1:30-2:00"
+              },
+              "warum": "Sieben aufsteigende Einzelversuche bis zur Ceiling 60 — die soll nach dem W34-Slip (zweimal 57,5) wieder stehen. Den 57,5er und den 60er seitlich filmen, Bar-Path-App, normale Geschwindigkeit: damit prüfen wir, ob die tiefe Empfangsposition unter schwerer Last wirklich wackelt. Kein 62,5 heute.",
+              "note": "Warm-up-Singles unter 40 zählen nicht als Arbeitssätze. Topgewicht loggen."
+            }
+          ]
+        },
+        {
+          "block_id": "B",
+          "prio": "required",
+          "min": 14,
+          "title": "Front Squat — Korridor-Aufbau",
+          "superset": false,
+          "exercises": [
+            {
+              "ex_id": "front_squat",
+              "target": {
+                "mode": "kg",
+                "sets": 4,
+                "reps": "2/2/1/1",
+                "kg": 100,
+                "ramp": [85, 92.5, 97.5, 100],
+                "rpe_cap": 8,
+                "tempo": "31X1",
+                "rest": "2-3 min"
+              },
+              "warum": "Zwei Doubles, dann zwei Einzel — Aufbau über den Block-Stand 95×3. Ein sauberer 100er ist das Wochenziel; 102,5 nur, wenn er sich wie höchstens 8 von 10 anfühlt und die Rack-Position steht. Der Korridor 105-107,5 kommt erst in der Testwoche.",
+              "note": "Nach dem Snatch. Bei RPE >8 bei 97,5 bleiben."
+            }
+          ]
+        },
+        {
+          "block_id": "C",
+          "prio": "required",
+          "min": 8,
+          "title": "Pause OHS — Positionsreiz",
+          "superset": false,
+          "exercises": [
+            {
+              "ex_id": "ohs",
+              "target": {
+                "mode": "kg",
+                "sets": 3,
+                "reps": 2,
+                "kg": 55,
+                "ramp": [52.5, 55],
+                "rpe_cap": 7,
+                "tempo": "32X1",
+                "rest": "2 min"
+              },
+              "warum": "Zwei Sekunden unten halten, dann sauber hoch. Kein Lastaufbau heute — der Topwert 55 steht bereits. Zweck ist die Position selbst: genau die tiefe Empfangsposition, die im Snatch unter schwerer Last wackelt.",
+              "note": "Erster Streichkandidat bei Zeitdruck."
+            }
+          ]
+        },
+        {
+          "block_id": "D",
+          "prio": "required",
+          "min": 5,
+          "title": "Core",
+          "superset": false,
+          "exercises": [
+            {
+              "ex_id": "hollow_hold",
+              "target": {
+                "mode": "time",
+                "sets": 3,
+                "sec": 30,
+                "rpe_cap": 6,
+                "rest": "60 sec"
+              },
+              "warum": "Unterer Rücken bleibt fest am Boden, Spannung aus der Körpermitte, ruhig atmen. Bewusst leicht gehalten.",
+              "note": "Ruhig atmen, unterer Rücken am Boden."
+            }
+          ]
+        },
+        {
+          "block_id": "E",
+          "prio": "optional",
+          "min": 15,
+          "title": "Strength: Delts / Bizeps",
+          "superset": false,
+          "verdict_ex_id": "layer_delts_bizeps",
+          "exercises": [
+            {
+              "ex_id": "lateral_raise",
+              "target": {
+                "mode": "kg",
+                "sets": 3,
+                "reps": 12,
+                "kg": 6,
+                "rpe_cap": 7,
+                "tempo": "kontrolliert",
+                "rest": "60 sec"
+              },
+              "warum": "Zwei Kurzhanteln à 6 kg, höchstens 7 von 10, kein Versagen. Zweck: Muskelschutz im Kaloriendefizit.",
+              "note": "RPE-Deckel 7 strikt."
+            },
+            {
+              "ex_id": "biceps_curl",
+              "target": {
+                "mode": "kg",
+                "sets": 3,
+                "reps": 12,
+                "kg": 10,
+                "rpe_cap": 7,
+                "tempo": "kontrolliert",
+                "rest": "60 sec"
+              },
+              "warum": "Zwei Kurzhanteln à 10 kg, kontrolliert, keine Failure-Sätze. Zweck: Muskelschutz im Kaloriendefizit.",
+              "note": "RPE-Deckel 7 strikt."
+            }
+          ]
+        },
+        {
+          "block_id": "F",
+          "prio": "optional",
+          "min": 8,
+          "title": "Mobility",
+          "superset": false,
+          "verdict_ex_id": "mobility",
+          "exercises": [
+            {
+              "ex_id": "mob_lat_stretch",
+              "kurz": "Lat-Stretch hängend",
+              "target": { "mode": "time", "sets": 2, "sec": 45 },
+              "warum": "Overhead-Enge nach Snatch und OHS lösen."
+            },
+            {
+              "ex_id": "mob_hipflexor",
+              "kurz": "Hüftbeuger-Stretch je Seite",
+              "target": { "mode": "time", "sets": 2, "sec": 45 },
+              "warum": "Nach dem Squat-Volumen."
+            },
+            {
+              "ex_id": "mob_thoracic",
+              "kurz": "Thorakale Extension am Foam Roller",
+              "target": { "mode": "time", "sec": 120 }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "iso_date": "2026-09-02",
+      "day_type": "rest",
+      "plan_note": "Termin (fix, früh) — kein Training. Trennt zugleich Barbell-Grip (Di) von Gymnastics-Grip (Do).",
+      "warum": "Termin am Morgen — kein Training. Passt gut: der Tag trennt den Barbell-Griff vom Dienstag und den Gymnastics-Griff am Donnerstag."
+    },
+    {
+      "iso_date": "2026-09-03",
+      "day_type": "own",
+      "focus": "B",
+      "focus_label": "Gymnastics-Fokus",
+      "intro": "Konsolidierung Richtung W37-Testblock. BMU bleibt auf der Arbeitsstufe 5×2 — der Wechsel auf 4×3 passiert nur, wenn der 3er im ersten Satz stabil steht (W35: „fast möglich, aber nicht stabil“). Cues unverändert: „Fall Into Pike“ für die Stütz-Pause, „Feet in a Bucket“ für den Descent. WPU geht in den 3×5-Retry nach dem sauber zementierten 3×4; reißt Satz 3, bleibt die Stufe 3×4 und die Grip-Ursache wird notiert. HSPU 4×8 nur halten — Max-Test kommt W37, nicht heute.",
+      "plan_note": "Coach-Prosa: Cues aus dem Whiteboard-Buch (S. 47/48). Stufenentscheid BMU strikt am Kriterium „3er im ERSTEN Satz stabil“ — nicht am Gefühl im dritten. Do-DreamWOD (Hang Squat Snatch + Snatch-RFT) bewusst verworfen: Oly-Redundanz zum Di-Fokus.",
+      "recovery_day": {
+        "u50": "WPU-Retry entfällt (bleibt 3×4), HSPU zurück auf 4×7, BMU nur 5 × 1 Qualitäts-Singles, T2B 3×8. Load-RPE-Cap 7.",
+        "u34": "Session entfällt — Mobility bis RPE 6, oder Ruhe."
+      },
+      "blocks": [
+        {
+          "block_id": "A",
+          "prio": "required",
+          "min": 15,
+          "title": "BMU",
+          "superset": false,
+          "verdict_ex_id": "bmu",
+          "exercises": [
+            {
+              "ex_id": "bmu_drill",
+              "target": {
+                "mode": "bw",
+                "sets": 4,
+                "reps": 3,
+                "rpe_cap": 6,
+                "tempo": "kontrolliert",
+                "rest": "60 sec"
+              },
+              "warum": "Aufwärm-Primer vor den Arbeitssätzen: den Abgang kontrolliert und nah an der Stange führen, dann den Hüft-Impuls im richtigen Moment setzen — genau die zwei Punkte, die die Video-Analyse als Engpass zeigt.",
+              "note": "„Feet in a Bucket“: Füße in einen imaginären Eimer vor dem Körper führen, Kip-Momentum erhalten."
+            },
+            {
+              "ex_id": "bmu",
+              "target": {
+                "mode": "bw",
+                "sets": 5,
+                "reps": 2,
+                "unbroken": true,
+                "rpe_cap": 8,
+                "rest": "2-3 min"
+              },
+              "warum": "Fünf verbundene Doubles — die Arbeitsstufe bleibt. Steht der Dreier im ERSTEN Satz stabil, darfst du auf 4 × 3 wechseln; steht er nicht, bleibt es bei den Doubles. Nicht erzwingen, der Test kommt in zwei Wochen.",
+              "note": "Cues: „Fall Into Pike“ (Stütz-Pause: press tall, in die Pike fallen, Arch-Spannung, press down and around) + „Feet in a Bucket“ (Descent eng)."
+            }
+          ]
+        },
+        {
+          "block_id": "B",
+          "prio": "required",
+          "min": 8,
+          "title": "T2B",
+          "superset": false,
+          "exercises": [
+            {
+              "ex_id": "t2b",
+              "target": {
+                "mode": "bw",
+                "sets": 3,
+                "reps": 10,
+                "rpe_cap": 7,
+                "rest": "90 sec"
+              },
+              "warum": "3 × 10 kontrolliert, Zehen bewusst zur Stange — deutlich unter dem Testwert von 16 am Stück. Halten statt steigern, das neue Ziel kommt beim Review.",
+              "note": "Letzte Reps als saubere Singles erlaubt."
+            }
+          ]
+        },
+        {
+          "block_id": "C",
+          "prio": "required",
+          "min": 15,
+          "title": "Strict HSPU",
+          "superset": false,
+          "exercises": [
+            {
+              "ex_id": "hspu_strict",
+              "target": {
+                "mode": "bw",
+                "sets": 4,
+                "reps": 8,
+                "rpe_cap": 8,
+                "tempo": "21X0",
+                "rest": "3 min"
+              },
+              "warum": "Tempo 21X0: 2 Sekunden runter, explosiv hoch, oben nicht ausruhen. Die Stufe ist zweifach bestätigt — heute nur halten, der Max-Test kommt in zwei Wochen.",
+              "note": "Reißt der letzte Satz → 4×7, kein Drama."
+            }
+          ]
+        },
+        {
+          "block_id": "D",
+          "prio": "required",
+          "min": 10,
+          "title": "Weighted Pull-up — Retry",
+          "superset": false,
+          "exercises": [
+            {
+              "ex_id": "wpu",
+              "target": {
+                "mode": "bw_plus",
+                "sets": 3,
+                "reps": 5,
+                "kg": 5,
+                "rpe_cap": 8,
+                "tempo": "30X1",
+                "rest": "2-2,5 min"
+              },
+              "warum": "Der 3 × 5-Versuch kommt zurück, nachdem 3 × 4 mit +5 kg sauber stand. Reißt der dritte Satz wie in W34 (5/5/3), bleibst du bei 3 × 4 und schreibst in die Notiz, woran es lag — Griff oder Kraft.",
+              "note": "+5 kg ist Zusatzlast, nie Tages-Kennzahl."
+            }
+          ]
+        },
+        {
+          "block_id": "E",
+          "prio": "optional",
+          "min": 15,
+          "title": "Strength: Brust / Trizeps",
+          "superset": false,
+          "verdict_ex_id": "layer_brust_trizeps",
+          "exercises": [
+            {
+              "ex_id": "db_bench",
+              "target": {
+                "mode": "kg",
+                "sets": 3,
+                "reps": 12,
+                "kg": 20,
+                "rpe_cap": 7,
+                "tempo": "kontrolliert",
+                "rest": "60 sec"
+              },
+              "warum": "Zwei Kurzhanteln à 20 kg — die W35-Kalibrierung übernehmen, höchstens 7 von 10. Streichkandidat, weil die Samstags-Box schon Bankdrücken hat.",
+              "note": "Keine Failure-Sätze."
+            },
+            {
+              "ex_id": "triceps_ext",
+              "target": {
+                "mode": "band",
+                "band": "rotes Band",
+                "sets": 3,
+                "reps": 15,
+                "rpe_cap": 7,
+                "rest": "60 sec"
+              },
+              "warum": "Konstante Bandspannung, kontrolliert, kein Versagen. Zweck: Muskelschutz im Kaloriendefizit.",
+              "note": "Band/Cable, volle ROM."
+            }
+          ]
+        },
+        {
+          "block_id": "F",
+          "prio": "optional",
+          "min": 5,
+          "title": "Mobility",
+          "superset": false,
+          "verdict_ex_id": "mobility",
+          "exercises": [
+            {
+              "ex_id": "mob_lat_stretch",
+              "kurz": "Lat-Stretch hängend",
+              "target": { "mode": "time", "sets": 2, "sec": 45 },
+              "warum": "Cool-down nach Pull-Volumen."
+            },
+            {
+              "ex_id": "mob_shoulder_cars",
+              "kurz": "Shoulder CARs je Seite",
+              "target": { "mode": "bw", "sets": 2, "reps": 8 }
+            },
+            {
+              "ex_id": "mob_thoracic",
+              "kurz": "Thorakale Extension am Foam Roller",
+              "target": { "mode": "time", "sec": 120 }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "iso_date": "2026-09-04",
+      "day_type": "rest",
+      "plan_note": "Termin (vermutlich, früh) — kein Training. DreamWOD-Benchmark „LGOP“ (Team) entfällt damit; wäre ohnehin Grip-Kollision (Pull-ups/Power Cleans) direkt nach Fokus B gewesen.",
+      "warum": "Termin am Morgen — kein Training. Der Team-Benchmark „LGOP“ entfällt dadurch; er wäre direkt nach dem Gymnastics-Tag ohnehin eine Griff-Kollision gewesen."
+    },
+    {
+      "iso_date": "2026-09-05",
+      "day_type": "box",
+      "einheit": "Upper-Strength + Step-up/Bench-EMOM",
+      "sub": "Superset 3 Rd: 8/8 Seated DB Press · 10 Reverse Flys · 15 Face Pulls → EMOM 18: 16 Goblet Step-ups @ 20 · 9 Bench @ 42,5 + Max Cal · Rest",
+      "plan_note": "Moderater Press-/Engine-Tag, kein Grip-Konflikt zu Do (Fr-Ruhe dazwischen). Bench L2 42,5 reicht — Brust/Trizeps hatte ggf. schon der Do-Layer. Cals gleichmäßig, kein Score-Jagen.",
+      "warum": "Moderater Press- und Engine-Tag. Die Freitags-Ruhe liegt dazwischen, also kein Griff-Konflikt zum Gymnastics-Tag. Bankdrücken auf L2 mit 42,5 reicht — den Brust-Trizeps-Reiz hatte womöglich schon der Donnerstag-Layer. Cals gleichmäßig verteilen, kein Score-Jagen.",
+      "wod": [
+        {
+          "struktur": "Superset 3 Runden",
+          "bewegungen": [
+            { "reps": "8/8", "name": "Alternating Seated DB Press", "detail": "" },
+            { "reps": "10", "name": "Bent Over Reverse Flys", "detail": "" },
+            { "reps": "15", "name": "Banded Face Pulls", "detail": "1 min Rest zwischen den Runden" }
+          ]
+        },
+        {
+          "struktur": "EMOM 18 · 6 Runden à 3 min",
+          "bewegungen": [
+            { "reps": "16", "name": "Alt Goblet Hold Step Ups", "detail": "8/Seite · DB 20 kg" },
+            { "reps": "9", "name": "Bench Press + Max Cal", "detail": "42,5 kg · Rest der Minute Cals" },
+            { "reps": "—", "name": "Minute 3: Rest", "detail": "" }
+          ]
+        }
+      ]
+    },
+    {
+      "iso_date": "2026-09-06",
+      "day_type": "ride",
+      "einheit": "Ride (sozial, wetterabhängig)",
+      "sub": "Z1/Z2",
+      "plan_note": "Wetter gut → Standard-Sonntagsride Z1/Z2. Wetter schlecht → So-Box als Alternative brauchbar (Back Squat no-lockout 8-8-6-6-4 moderat + 5×2:00-Intervalle Power Clean/Pull-up/BJO, L2 60 kg, RPE ≤7-8 — 2 Tage nach Fokus B unkritisch). Sonntagslast → Mo der W37 Standard-Ruhe, in beiden Fällen.",
+      "warum": "Bei gutem Wetter der Standard-Sonntagsride in Z1/Z2. Bei schlechtem Wetter ist die Sonntags-Box eine brauchbare Alternative (Back Squat moderat + Intervalle, RPE ≤7-8) — zwei Tage nach dem Gymnastics-Tag unkritisch. So oder so ist der Montag der W37 ein Ruhetag."
+    }
+  ]
+}

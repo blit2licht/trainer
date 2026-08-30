@@ -14,15 +14,18 @@ Der Generator
   - LINTET: Klammern im Blocktitel = Warnung (Planungsprosa gehört in note,
     nicht in den Titel — Schema-Anforderung 5).
 
-SCHATTEN-LAUF (W35): Standard-Ausgabe ist V3.0/build/data.js — NICHT das live
-website/data.js. Der 2.x-Bestand bleibt unangetastet, bis zur Scharfschaltung
-(Meso-4-Start). Erst dann `--out website/data.js`.
+SCHARF seit 30.08.2026: Standard-Ausgabe ist website/data.js. Der Generator
+stempelt dabei den Inhalts-Hash in die data.js-Einbindung von website/index.html
+(?v=<hash>) — ohne diesen Stempel hielt Safari am iPhone alte Stände fest
+(Befund 23.08.). 2.0 liegt nur noch als Archiv unter archive/2.0/.
 """
 
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
+import re
 import sys
 from datetime import date
 from pathlib import Path
@@ -31,7 +34,8 @@ REPO = Path(__file__).resolve().parent.parent
 EXERCISES_JSON = REPO / "coach" / "exercises.json"
 STATE_JSON = REPO / "coach" / "state.json"
 PLAN_DIR = REPO / "coach" / "plan"
-DEFAULT_OUT = REPO / "V3.0" / "build" / "data.js"
+DEFAULT_OUT = REPO / "website" / "data.js"
+INDEX_HTML = REPO / "website" / "index.html"
 
 # Erlaubte target-Modi (datenmodell.md §3). `rpe` = Last selbst gewählt, der
 # RPE-Deckel führt — für Layer-/Accessory-Arbeit ohne vorgeschriebenes Gewicht.
@@ -222,13 +226,32 @@ def render_js(payload: dict) -> str:
             f"const DATA = {body};\n")
 
 
+def stamp_index(html_path: Path, data_text: str) -> str:
+    """Inhalts-Hash der data.js in die Einbindung von index.html schreiben.
+
+    Ersetzt die Aufgabe des früheren publish_v30.py: die App ist seit der
+    3.0-Umstellung direkt website/index.html, der Cache-Buster muss also beim
+    Payload-Bau gesetzt werden. Fehlt die Einbindung, ist das ein Fehler —
+    stiller Verzicht auf den Stempel hieße veralteter Plan am Handy.
+    """
+    stamp = hashlib.sha1(data_text.encode("utf-8")).hexdigest()[:8]
+    html = html_path.read_text(encoding="utf-8")
+    new_html, n = re.subn(r'src="\./data\.js(?:\?v=[^"]*)?"',
+                          f'src="./data.js?v={stamp}"', html)
+    if n != 1:
+        raise SystemExit(f"FEHLER: data.js-Einbindung in {html_path} nicht "
+                         f"eindeutig gefunden ({n} Treffer).")
+    html_path.write_text(new_html, encoding="utf-8")
+    return stamp
+
+
 def main() -> int:
     ap = argparse.ArgumentParser(description="Trainer 3.0 Handy-Payload-Generator")
     ap.add_argument("--plan", help="Einzelne Planquelle (überspringt die Auswahl)")
     ap.add_argument("--plan-dir", help=f"Verzeichnis der Planquellen (Default: {PLAN_DIR})")
     ap.add_argument("--heute", help="Stichtag YYYY-MM-DD (Default: heute) — Wochen, "
                                     "die davor enden, fallen raus")
-    ap.add_argument("--out", help=f"Ausgabedatei (Default Schatten: {DEFAULT_OUT})")
+    ap.add_argument("--out", help=f"Ausgabedatei (Default: {DEFAULT_OUT})")
     args = ap.parse_args()
 
     heute = args.heute or date.today().isoformat()
@@ -265,8 +288,9 @@ def main() -> int:
         n_focus = sum(1 for d in w["days"] if d["day_type"] == "own")
         print(f"  Woche {w['id']} ({w['von']}–{w['bis']}) · "
               f"{len(w['days'])} Tage, {n_focus} Fokus-Tage")
-    if out_path.resolve() == (REPO / "website" / "data.js").resolve():
-        print("  ACHTUNG: schreibt ins LIVE website/data.js (Scharfschaltung).")
+    if out_path.resolve() == DEFAULT_OUT.resolve() and INDEX_HTML.is_file():
+        stamp = stamp_index(INDEX_HTML, render_js(payload))
+        print(f"  Cache-Stempel in {INDEX_HTML.name} gesetzt: ?v={stamp}")
     if warns:
         print(f"  LINT-Warnungen ({len(warns)}):")
         for w in warns:

@@ -27,9 +27,29 @@ jobs:
         id: week
         shell: bash
         run: |
-          WEEK_ID="$(sed -n 's/^[[:space:]]*id: "\([^"]*\)",/\1/p' website/data.js | head -n 1)"
+          # data.js wird seit der 3.0-Umstellung generiert (JSON-Schreibweise
+          # "id": "..."), früher stand hier JS-Objektsyntax id: "...".
+          WEEK_ID="$(sed -n 's/^[[:space:]]*"id": "\([^"]*\)",/\1/p' website/data.js | head -n 1)"
           test -n "$WEEK_ID"
           echo "id=$WEEK_ID" >> "$GITHUB_OUTPUT"
+
+      # EINMALIG (30.08.2026): Der Parallelpfad /v30/ ist mit der Umstellung auf
+      # 3.0 weggefallen. `mirror --reverse` läuft ohne --delete und räumt daher
+      # nichts weg — ohne diesen Schritt bliebe unter /v30/ eine funktionsfähige
+      # Altversion liegen, die bei ausgefallenem mod_rewrite wieder ausgeliefert
+      # würde und über ../save_verdict.php echte Verdicts schriebe.
+      # Nach dem ersten grünen Deploy diesen Schritt wieder entfernen.
+      # `|| true`: fehlt der Ordner (zweiter Lauf), ist das der Sollzustand.
+      - name: Retire parallel path /v30
+        env:
+          SFTP_HOST: ${{ secrets.FTP_HOST }}
+          SFTP_USER: ${{ secrets.FTP_USERNAME }}
+          SFTP_PASS: ${{ secrets.FTP_PASSWORD }}
+        run: |
+          mkdir -p ~/.ssh
+          echo "StrictHostKeyChecking no" >> ~/.ssh/config
+          lftp -u "$SFTP_USER","$SFTP_PASS" "sftp://$SFTP_HOST" \
+            -e "rm -r /v30; bye" || true
 
       - name: Deploy website via SFTP
         env:

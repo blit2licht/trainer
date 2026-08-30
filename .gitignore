@@ -18,10 +18,16 @@ design/bundle/
 # Maschinenzustand nicht
 .impeccable/config.local.json
 .impeccable/hook.cache.json
+.impeccable/questions/
 
 # Video-Analyse-Rohdaten (Videos, Frames, Plots) — nie committen, nur
 # verdichtete Erkenntnisse wandern manuell nach coach/state.json
 coach/video_analysis/
 
-# Trainer 3.0 — Ideation-Arbeitsstand, wandert erst als MVP ins Repo
-V3.0/
+# Trainer 3.0 — seit der Umstellung am 30.08.2026 das Produkt. Die
+# Konzeptdokumente sind versioniert (Skripte referenzieren sie: datenmodell.md,
+# whoop-paste-format.md, offene-fragen-w35.md). Nicht versioniert: die alten
+# Clickdummies und Icon-Spielwiesen, der generierte build/ und die lokalen
+# Werkstatt-Aufträge in inbox/.
+V3.0/*
+!V3.0/*.md

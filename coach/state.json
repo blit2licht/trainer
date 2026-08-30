@@ -8,7 +8,7 @@
     "mesocycle": "Meso 3",
     "woche_im_fokus": 5,
     "phase": "Konsolidierung vor W37-Testblock: Snatch-Video 57,5/60 (Di) / FS-Korridor-Aufbau Richtung 100 / WPU 3×5-Retry + BMU 5×2 mit 4×3-Option (Do). Nur Di/Do/Sa frei (Mi+Fr Termin); Mo Ruhe mit Upgrade-Option nur bei Rec ≥70 + frischen Beinen; So Ride wetterabhängig.",
-    "veroeffentlichter_plan": "website/data.js"
+    "veroeffentlichter_plan": "coach/plan/2026-W36.json (Quelle) → website/data.js (generiert)"
   },
   "mesocycle_plan": {
     "id": "Meso 3",
@@ -128,7 +128,7 @@
     "strava": "Optional über MCP für Radfahrten"
   },
   "naechster_zielreview": "2026-W37: Sechs-Wochen-Review Meso 3 + zweiter Gymnastics-Testblock. Vorab fällig: T2B-Zielneusetzung (Test 16 vs. Ziel 10). BMU-Test W37 nur bei ≥2 zusammenhängenden Trainingswochen davor (Unterbrechungsregel).",
-  "systemstatus": "V1.0 produktiv; Wochenreviews W25-W35 abgeschlossen (W34-So-Ride 23.08. nachgetragen: 74,3 km / 2:36 / 279 Hm, feel 5; W35-So-Ride 30.08. angekündigt ~75 km, Strava-Sync ausstehend). Session-Feel-Skala seit W35 abgeschafft — Verdict-Tabelle + freie Notiz ersetzen sie (Deload-Trigger entsprechend umformuliert). Meso 3 läuft (W32-W37, Aufbau + Rekomposition inkl. Körperkompositions-Protokoll). Gymnastics-Testblock 1 absolviert (W32). Video-Analyse-Pipeline (MediaPipe) seit 15.08. lokal vorhanden: BMU-Modus validiert (noch ohne Linked-Double-Auswertung), Snatch-Modus seit 20.08. auf --bar-trail (Farbsegmentierung) umgestellt und an 3 Clips validiert; gleichentags Interpolations-Bug in der Winkelberechnung gefixt (Winkel jetzt aus Roh-Detektionen statt interpolierten Positionen) — Diagnose-Ergebnis siehe load_references.squat_snatch_ceiling.",
+  "systemstatus": "Trainer 3.0 produktiv seit 30.08.2026 (W36): website/index.html ist die 3.0-App auf der Root, website/data.js wird von scripts/build_payload.py aus coach/plan/<id>.json + coach/exercises.json generiert und nie von Hand editiert, /v30/ leitet per .htaccess auf / um, 2.0 liegt stillgelegt unter archive/2.0/ (Alt-Historie für derive_state.py). Engine weiter offen: derive_state.py Phase 1 read-only. Wochenreviews W25-W35 abgeschlossen (W34-So-Ride 23.08. nachgetragen: 74,3 km / 2:36 / 279 Hm, feel 5; W35-So-Ride 30.08. angekündigt ~75 km, Strava-Sync ausstehend). Session-Feel-Skala seit W35 abgeschafft — Verdict-Tabelle + freie Notiz ersetzen sie (Deload-Trigger entsprechend umformuliert). Meso 3 läuft (W32-W37, Aufbau + Rekomposition inkl. Körperkompositions-Protokoll). Gymnastics-Testblock 1 absolviert (W32). Video-Analyse-Pipeline (MediaPipe) seit 15.08. lokal vorhanden: BMU-Modus validiert (noch ohne Linked-Double-Auswertung), Snatch-Modus seit 20.08. auf --bar-trail (Farbsegmentierung) umgestellt und an 3 Clips validiert; gleichentags Interpolations-Bug in der Winkelberechnung gefixt (Winkel jetzt aus Roh-Detektionen statt interpolierten Positionen) — Diagnose-Ergebnis siehe load_references.squat_snatch_ceiling.",
   "migration": {
     "version": "1.0",
     "abgeschlossen_am": "2026-06-15"

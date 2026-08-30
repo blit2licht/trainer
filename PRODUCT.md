@@ -91,9 +91,13 @@ Titelseite, nicht hinter einem Prompt.
   Deployment gilt erst als erfolgreich, wenn https://training.martinwitte.de
   die aktuelle Wochen-ID ausliefert. `website/config.php` existiert nur auf dem
   Server. Endpoints mit Schreibzugriff tragen ein Shared Secret.
-- **Migration 3.0:** Bau W35, Parallel-Lauf W36–37 (Engine read-only gegen
-  handgepflegte Referenzen), Scharfschaltung zum Meso-4-Start. Bis dahin ist
-  der Bestand (2.x) live. Konzeptstand in `V3.0/` (gitignored bis MVP).
+- **Migration 3.0 — abgeschlossen (30.08.2026, W36).** Bau W35, Parallel-Lauf
+  unter `/v30/` in W35. Martin nutzte 2.0 in W35 nicht mehr, deshalb
+  Scharfschaltung vor dem geplanten Meso-4-Termin: `website/index.html` ist die
+  3.0-App, `website/data.js` wird aus `coach/plan/` generiert, `/v30/` leitet
+  auf `/` um, 2.0 liegt stillgelegt unter `archive/2.0/`. Offen bleibt die
+  Engine (`derive_state.py` Phase 1, read-only gegen die handgepflegten
+  Referenzen). Konzeptdokumente versioniert in `V3.0/*.md`.
 
 ## Capabilities and Constraints
 

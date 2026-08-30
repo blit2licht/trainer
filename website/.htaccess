@@ -1,5 +1,10 @@
 <IfModule mod_rewrite.c>
     RewriteEngine On
+    # 3.0 ist seit 30.08.2026 die Root. Der Parallelbetrieb /v30/ ist weg;
+    # Lesezeichen und Homescreen-Icons zeigen aber noch dorthin. Bewusst 302
+    # (nicht 301): ein 301 bliebe auf dem Gerät dauerhaft gecacht.
+    RewriteRule ^v30/?$ / [R=302,L]
+    RewriteRule ^v30/(.*)$ /$1 [R=302,L]
     RewriteRule ^favicon\.ico$ /icons/favicon.php [L]
     RewriteRule ^favicon-32x32\.png$ /icons/favicon.php [L]
     RewriteRule ^apple-touch-icon\.png$ /icons/apple-touch-icon.php [L]

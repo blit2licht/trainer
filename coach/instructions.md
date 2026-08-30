@@ -87,7 +87,8 @@ GitHub ist das versionierte Gedächtnis und die gemeinsame Wahrheit.
 - `coach/reviews/`: separate Sechs-Wochen-Reviews
 - `coach/wellness.json`: per `scripts/pull_wellness.py` gezogene intervals.icu-Tagesdaten (Recovery, HRV, RHR, Schlaf) der letzten 14 Tage; wird vom Script committet, nie von Hand editiert
 - `coach/weight.json`: per `scripts/pull_weight.py` gezogene Withings-Gewichtsdaten (42 Tage, Tageswerte + ISO-Wochenschnitte); wird vom Script committet, nie von Hand editiert
-- `website/data.js`: veröffentlichter Plan der aktuellen und bis zu drei vorherigen Wochen
+- `coach/plan/<jahr>-W<nr>.json`: Planquelle — die Wahrheit für den Wochenplan (Schema: V3.0/datenmodell.md §4)
+- `website/data.js`: generierter Handy-Payload (`scripts/build_payload.py`), trägt die laufende und die nächste Woche; nie von Hand editieren
 - Website-Datenbank: Tagesnotizen und `session_feel`
 - intervals.icu (WHOOP-Bridge): primäre Quelle für Recovery, HRV, RHR und Schlaf — per `python3 scripts/pull_wellness.py` ziehen (Key aus Env `INTERVALS_API_KEY`, nie ins Repo oder in Ausgaben)
 - Withings (OAuth2): primäre Quelle für Gewicht — per `python3 scripts/pull_weight.py` ziehen (Client-Credentials aus Env, Tokens lokal außerhalb des Repos, nie ins Repo oder in Ausgaben). **Einzige genutzte Größe ist der Gewichtstrend. Der Withings-Körperfettwert (BIA) wird systemweit ignoriert — bei Martin ~10 %-Punkte zu niedrig, steuerungsunbrauchbar (Entscheidung 2026-08-02). Nie zitieren, nie in Bewertungen einfließen lassen.**
@@ -103,7 +104,7 @@ Akute Hinweise werden beim Wochenreview neu bewertet und spätestens nach sieben
 ## Pflichtstart jeder Session
 
 1. Lies `coach/state.json`.
-2. Lies `website/data.js`.
+2. Lies die Planquelle der laufenden Woche (`coach/plan/<jahr>-W<nr>.json`); `website/data.js` ist daraus generiert.
 3. Lies `coach/profile.json`, wenn Ziele, Baselines, Ausschlüsse oder dauerhafte Regeln relevant sind.
 4. Lies `coach/logbook.md` nur für Wochenreviews, Trends oder historische Fragen.
 5. Bestätige intern Mesocycle, Kalenderwoche, aktuelle Foki, Lastreferenzen, Einschränkungen und offene Flags.
@@ -117,7 +118,7 @@ Diese Regeln gelten für Claude und Codex.
 
 1. Bei konkreten Änderungsaufträgen wird zuerst der engste beauftragte Scope bestimmt. Betroffene Dateien und Felder werden explizit benannt. Änderungen außerhalb dieses Scopes sind nur erlaubt, wenn sie fachlich zwingend zur Korrektheit der beauftragten Änderung gehören.
 2. Fachlich naheliegende Folgeänderungen dürfen berücksichtigt werden, müssen aber als solche markiert werden. Wenn sie nicht zwingend sind, werden sie vorgeschlagen, nicht ungefragt umgesetzt.
-3. Alte `akute_hinweise`, Plan-Notizen oder frühere Chat-Aussagen sind nie alleiniger Konfliktbeweis. Sie sind Warnflags. Ein Konflikt gilt erst als real, wenn er im aktuellen `website/data.js`, aktuellen `coach/state.json` oder durch Martins aktuelle Aussage belegt ist.
+3. Alte `akute_hinweise`, Plan-Notizen oder frühere Chat-Aussagen sind nie alleiniger Konfliktbeweis. Sie sind Warnflags. Ein Konflikt gilt erst als real, wenn er in der aktuellen Planquelle (`coach/plan/`), im aktuellen `coach/state.json` oder durch Martins aktuelle Aussage belegt ist.
 4. Wer eine Kollision, einen Konflikt oder eine zweiseitige Abwägung behauptet, muss direkt die Quelle nennen: Datei, Datum, Einheit oder aktueller Nutzerhinweis. Ohne Quelle keine Konfliktbehauptung.
 5. Vor jeder Konfliktentscheidung wird geprüft: Ist der Konflikt real, aktuell und entscheidungsrelevant? Wenn nein: nicht diskutieren. Wenn unklar: eine kurze konkrete Frage stellen.
 6. Keine ungefragten Systemartefakte erzeugen. Keine Änderungen an `coach/instructions.md`, `coach/profile.json`, `coach/logbook.md`, `coach/decisions.md` oder neuen Dateien, außer Martin beauftragt dies ausdrücklich oder die Änderung ist zwingend für den beauftragten Task.
@@ -313,7 +314,7 @@ Nutze Namen aus der WHOOP-Übungsbibliothek und bekannte Substitutionen aus Prof
 ### Veröffentlichung
 
 Nach „Committen“:
-1. `website/data.js` aktualisieren und maximal vier Wochen behalten.
+1. Planquelle `coach/plan/<jahr>-W<nr>.json` schreiben und `python3 scripts/build_payload.py` laufen lassen — erzeugt `website/data.js` (laufende + nächste Woche) und setzt den Cache-Stempel in `website/index.html`. Lint-Warnungen vor dem Commit klären.
 2. Geänderte Coach-Dateien konsistent aktualisieren.
 3. Direkt auf `main` pushen.
 4. Deployment prüfen.

@@ -1,53 +1,20 @@
-/* Service Worker — Offline-Fähigkeit für den Wochenplan.
-   Strategie: Network-first mit Cache-Fallback für same-origin GETs.
-   Online kommt immer der frische Plan, offline der zuletzt gesehene. */
-const CACHE = 'training-v1';
-const PRECACHE = [
-  '/',
-  '/index.html',
-  '/data.js',
-  '/manifest.json',
-  '/icons/icon-192.png',
-  '/icons/icon-512.png',
-  '/icons/apple-touch-icon.png',
-  '/icons/favicon-32.png',
-  '/icons/favicon-16.png'
-];
-
-self.addEventListener('install', e => {
-  e.waitUntil(
-    caches.open(CACHE)
-      .then(c => c.addAll(PRECACHE))
-      .then(() => self.skipWaiting())
-  );
-});
+/* Service Worker — Kill-Switch.
+   Bis 2.0 lag hier ein Network-first-Cache für den Wochenplan. Mit der
+   Umstellung auf 3.0 (30.08.2026) registriert die App keinen Service Worker
+   mehr; die Frische kommt über den ?v=<hash> an data.js und die no-cache-Header
+   der .htaccess. Der ALTE Worker bleibt aber in bereits installierten Browsern
+   registriert und würde die neue Root mit 2.0-Beständen beschatten. Diese
+   Fassung räumt genau das auf: Caches löschen, sich selbst abmelden, offene
+   Clients neu laden. Datei bleibt liegen, bis alle Geräte einmal aktualisiert
+   haben — sie erst danach löschen (ein 404 meldet den alten Worker nicht ab). */
+self.addEventListener('install', e => e.waitUntil(self.skipWaiting()));
 
 self.addEventListener('activate', e => {
-  e.waitUntil(
-    caches.keys()
-      .then(keys => Promise.all(keys.filter(k => k !== CACHE).map(k => caches.delete(k))))
-      .then(() => self.clients.claim())
-  );
-});
-
-self.addEventListener('fetch', e => {
-  const url = new URL(e.request.url);
-  if (e.request.method !== 'GET' || url.origin !== location.origin) return;
-  e.respondWith(
-    fetch(e.request)
-      .then(res => {
-        if (res.ok) {
-          const copy = res.clone();
-          caches.open(CACHE).then(c => c.put(e.request, copy));
-        }
-        return res;
-      })
-      .catch(() =>
-        caches.match(e.request).then(m => {
-          if (m) return m;
-          if (e.request.mode === 'navigate') return caches.match('/index.html');
-          return Response.error();
-        })
-      )
-  );
+  e.waitUntil((async () => {
+    const keys = await caches.keys();
+    await Promise.all(keys.map(k => caches.delete(k)));
+    await self.registration.unregister();
+    const clients = await self.clients.matchAll({ type: 'window' });
+    for (const c of clients) c.navigate(c.url);
+  })());
 });

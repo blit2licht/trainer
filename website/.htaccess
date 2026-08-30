@@ -5,10 +5,12 @@
     # (nicht 301): ein 301 bliebe auf dem Gerät dauerhaft gecacht.
     RewriteRule ^v30/?$ / [R=302,L]
     RewriteRule ^v30/(.*)$ /$1 [R=302,L]
-    RewriteRule ^favicon\.ico$ /icons/favicon.php [L]
-    RewriteRule ^favicon-32x32\.png$ /icons/favicon.php [L]
-    RewriteRule ^apple-touch-icon\.png$ /icons/apple-touch-icon.php [L]
-    RewriteRule ^apple-touch-icon-precomposed\.png$ /icons/apple-touch-icon.php [L]
+    # Die Root-Icons lagen frueher hinter icons/favicon.php und
+    # icons/apple-touch-icon.php. Diese Skripte stammen von der Vorgaengerseite,
+    # sind nicht im Repo und liefern deren altes Motiv. Seit 30.08.2026 liegen
+    # favicon.ico, apple-touch-icon.png und -precomposed.png als echte Dateien
+    # in website/ und werden direkt ausgeliefert -- keine Umschreibung mehr.
+    RewriteRule ^favicon-32x32\.png$ /icons/favicon-32.png [L]
 </IfModule>
 
 <Files "config.php">

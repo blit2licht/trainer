@@ -161,6 +161,24 @@
         ],
         "createdAt": "2026-08-30T07:52:04.641Z",
         "reason": "Dunkelkammer-Designwelt am 22.08. von Martin gelockt (Kommentar im File: 'Basis: design/dunkelkammer.html UNVERÄNDERT'); Typo-Ramp ist bewusste Gestaltung, Edit betraf nur Head-Links"
+      },
+      {
+        "rule": "design-system-color",
+        "value": "*",
+        "files": [
+          "website/index.html"
+        ],
+        "createdAt": "2026-08-30T07:54:55.396Z",
+        "reason": "Dunkelkammer-Designwelt 22.08. gelockt (File-Kommentar 'UNVERÄNDERT'); Sidecar älter als DESIGN.md — Tokens sind die dokumentierte Ramp"
+      },
+      {
+        "rule": "design-system-font-size",
+        "value": "*",
+        "files": [
+          "website/index.html"
+        ],
+        "createdAt": "2026-08-30T07:54:55.447Z",
+        "reason": "Dunkelkammer-Designwelt 22.08. gelockt; Typo-Ramp bewusste Gestaltung, kein Drift"
       }
     ]
   }

@@ -2,6 +2,23 @@
 
 Kurze, verdichtete Wocheneinträge. Rohdaten bleiben in WHOOP, Strava und der Website-Datenbank.
 
+## 2026-W35 · 24.–30. August · Meso 3 W4 — FS-Block-Start + C&J-PR in der Defizit-Dip-Woche
+
+**Plan befolgt** (alle 5 Trainingstage plangemäß; einzige Abweichung: So-Team-WOD „Waterfall" entfallen, nur Ride ~75 km angekündigt, Strava-Sync bei Review-Abschluss ausstehend). Mo Ruhe ✓ · Di Fokus A ✓ (rec 72) · Mi Box ✓ (rec 54, Strain 16,3) · Do harter Ruhetag ✓ (rec 21 rot — fiel exakt auf den geplanten Ruhetag) · Fr Fokus B ✓ (rec 49) · Sa Box ✓ (rec 78, WOD 13:25). Erste Woche ohne Session-Feel-Skala — Verdict-Kanal (alle Blöcke hit außer Di-Mobility miss) + freie Notizen tragen den Rückkanal; Skala per Martin-Entscheid 30.08. abgeschafft, Deload-Trigger umformuliert.
+
+**Kernbefunde:**
+- **C&J-Komplex neuer Bestwert 82,5** (Di, rec 72): Leiter 65/70/72,5/75/80/82,5, Notiz 8/10 „letzte okay, da Last hoch". Offener Punkt seit W32 geschlossen — und das mitten in der erwarteten Defizit-Dip-Woche.
+- **FS-Block Teil 2 Woche 1 im Plan** (Di): 5×3 build 80→95, Topsatz 95×3 (8/10, „letzte schwer aber machbar") nach C&J-Vorermüdung. Korridor 105–107,5 → W36/W37.
+- **BMU: 4×3 noch nicht stabil** (Fr, rec 49): Fallback 5×2 gegriffen (plankonform), 3. Rep „fast möglich", 2er konsistenter als W34 — Rhythmusfortschritt ohne Stufenaufstieg. **Quellenkonflikt:** WHOOP-Autolog „4×3" vs. Notiz „5×2" — Notiz zählt (Regel). Stufe bleibt 5×2.
+- **WPU 3×4 @ +5 zementiert** (Fr): Stufe-zurück-Regel nach W34-Miss erfüllt, 3×5-Retry W36.
+- **HSPU 4×8 konsolidiert** (Fr): zweite saubere Runde, diesmal ohne Limit-Notiz — Testreife W37. T2B 3×10 gehalten.
+- **Fr-Grenzfall dokumentiert:** rec 49 lag unter der 50er-Kappungsgrenze (Regel: letzte Progressionsstufe entfällt), Martin zog das volle Programm — alle Blöcke hit. Ausgang gut, kein Eingriff; bleibt Einzelfall, keine Regeländerung.
+- **Sa moderat wie verordnet:** Hang Clean bis 77,5 (kein Max, C&J war Di), WOD 13:25 inkl. Pause, DL-Blöcke statt Singles geloggt.
+- **Körperkomposition (erste volle Wiege-Woche):** W35 81,40 kg (n=6) vs. W34 81,59 = **−0,19**. Zweite Woche unter Zielband −0,3/−0,5; kumuliert −0,44/2 Wochen. Entscheid nachschärfen vs. Band akzeptieren → W36-Planning.
+- **Infrastruktur:** intervals.icu-Pull scheiterte an nie persistiertem API-Key — `pull_wellness.py` lädt jetzt `~/.config/trainer/intervals.env` (analog withings.env), Key neu hinterlegt.
+
+**Offen für W36:** Snatch + Pause OHS wieder einplanen (Top-Singles 57,5/60 filmen, Normalgeschwindigkeit), WPU 3×5-Retry, BMU-Stufenentscheid (4×3 erst bei stabilem 3er), FS-Korridor-Aufbau, Körperkomp-Entscheid. W37: Testblock + Sechs-Wochen-Review + T2B-Zielneusetzung.
+
 ## 2026-W34 · 17.–23. August · Meso 3 W3 — Italien-Reise + OHS-Progression
 
 **Plan befolgt** (Training Mo–Sa; So-Ride 23.08. sozial, steht bei Review-Abschluss noch aus). Mo/Di Italien-Bike ✓ (Strain 15,4 / 14,4, Di +807 hm) · Mi Fokus A ✓ (feel 4, rec 86 grün) · Do Box RDL + Metcon ✓ (feel 5, „WOD gut, langsamste Runde 1:25 wg. Double-Under-Struggle“) · Fr Ruhe ✓ (DreamWOD „Grace“ bewusst verworfen) · Sa Fokus B ✓ (feel 3, rec 78 grün). Recovery-Bild: Italien-Reise drückte Mo auf 32 % rot (nach Sa-Doubleride W33 + Reise), Erholung dann sauber — Mi 86, Fr 84, Sa 78. Kein Gate verletzt, keine Schlüssel-Einheit auf rotem Tag.

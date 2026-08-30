@@ -5,8 +5,9 @@ Pullt Wellness- und Aktivitätsdaten der letzten 14 Tage von intervals.icu,
 verdichtet sie ins Zielformat und committet coach/wellness.json auf main.
 
 Auth: Basic Auth, Username ist der literale String "API_KEY", Passwort kommt
-aus der Env-Variable INTERVALS_API_KEY. Der Key landet nie im Repo und wird
-nie ausgegeben.
+aus der Env-Variable INTERVALS_API_KEY — oder, wenn die nicht gesetzt ist,
+aus ~/.config/trainer/intervals.env (chmod 600, analog withings.env). Der Key
+landet nie im Repo und wird nie ausgegeben.
 
 Nutzung:
     INTERVALS_API_KEY=... python3 scripts/pull_wellness.py --inspect
@@ -19,7 +20,7 @@ Nutzung:
         → nur schreiben, nicht committen (Dry-Run)
 
 Env:
-    INTERVALS_API_KEY   Pflicht. Persönlicher API-Key.
+    INTERVALS_API_KEY   Pflicht (Env oder intervals.env). Persönlicher API-Key.
     INTERVALS_ATHLETE   Optional, Default "0" (= eigener Account).
 """
 
@@ -36,6 +37,23 @@ import urllib.request
 BASE = "https://intervals.icu/api/v1/athlete/{athlete}"
 REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT_PATH = os.path.join(REPO_ROOT, "coach", "wellness.json")
+ENV_PATH = os.path.expanduser("~/.config/trainer/intervals.env")
+
+
+def load_env_file():
+    """Lädt INTERVALS_*-Variablen aus ENV_PATH, ohne gesetzte Env zu überschreiben
+    (gleiches Muster wie pull_weight.py mit withings.env)."""
+    if not os.path.isfile(ENV_PATH):
+        return
+    with open(ENV_PATH) as f:
+        for line in f:
+            line = line.strip()
+            if not line or line.startswith("#") or "=" not in line:
+                continue
+            key, val = line.split("=", 1)
+            key, val = key.strip(), val.strip()
+            if key.startswith("INTERVALS_") and key not in os.environ:
+                os.environ[key] = val
 
 # Kandidaten-Feldnamen (Reihenfolge = Priorität). Vor der ersten produktiven
 # Nutzung per --inspect gegen die echten API-Antworten verifizieren.
@@ -147,9 +165,11 @@ def main():
                     help="wellness.json schreiben, aber nicht committen/pushen")
     args = ap.parse_args()
 
+    load_env_file()
     key = os.environ.get("INTERVALS_API_KEY")
     if not key:
-        sys.exit("FEHLER: Env-Variable INTERVALS_API_KEY ist nicht gesetzt.")
+        sys.exit("FEHLER: INTERVALS_API_KEY ist nicht gesetzt — weder als "
+                 f"Env-Variable noch in {ENV_PATH}.")
     athlete = os.environ.get("INTERVALS_ATHLETE", "0")
 
     today = dt.date.today()

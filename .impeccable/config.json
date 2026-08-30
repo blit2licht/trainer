@@ -152,6 +152,15 @@
         ],
         "createdAt": "2026-08-22T15:49:18.599Z",
         "reason": "Dunkelkammer-Weltgrammatik: enge Mono-Etikettengrade (11-13px) neben Display-h1; identisch zu handy/werkstatt sanktioniert. Vorschaublatt, kein Produkt-UI."
+      },
+      {
+        "rule": "flat-type-hierarchy",
+        "value": "*",
+        "files": [
+          "website/index.html"
+        ],
+        "createdAt": "2026-08-30T07:52:04.641Z",
+        "reason": "Dunkelkammer-Designwelt am 22.08. von Martin gelockt (Kommentar im File: 'Basis: design/dunkelkammer.html UNVERÄNDERT'); Typo-Ramp ist bewusste Gestaltung, Edit betraf nur Head-Links"
       }
     ]
   }

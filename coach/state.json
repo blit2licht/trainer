@@ -2,12 +2,12 @@
   "schema_version": 1,
   "aktualisiert_am": "2026-08-30",
   "aktuelle_woche": {
-    "id": "2026-W35",
-    "von": "2026-08-24",
-    "bis": "2026-08-30",
+    "id": "2026-W36",
+    "von": "2026-08-31",
+    "bis": "2026-09-06",
     "mesocycle": "Meso 3",
-    "woche_im_fokus": 4,
-    "phase": "FS-Block Teil 2 (Start, Topsatz 95×3) / C&J-Reclaim 82,5 / Gymnastics Richtung W37-Test (BMU 4×3, HSPU 4×8 konsolidieren, WPU zurück 3×4)",
+    "woche_im_fokus": 5,
+    "phase": "Konsolidierung vor W37-Testblock: Snatch-Video 57,5/60 (Di) / FS-Korridor-Aufbau Richtung 100 / WPU 3×5-Retry + BMU 5×2 mit 4×3-Option (Do). Nur Di/Do/Sa frei (Mi+Fr Termin); Mo Ruhe mit Upgrade-Option nur bei Rec ≥70 + frischen Beinen; So Ride wetterabhängig.",
     "veroeffentlichter_plan": "website/data.js"
   },
   "mesocycle_plan": {
@@ -20,7 +20,7 @@
       "W33": "Progression aus Testständen: OHS-Lastaufbau Richtung 50/52,5, HSPU-Stufe 4×7, WPU bewusst zweite Runde 3×4 (Martin-Entscheid 09.08., 3×5 ab W34), Snatch 60 reproduzieren, C&J-Speed bei ≤80 — alles erledigt, BMU-Linked-Doubles-Start (Sa) nicht sauber",
       "W34": "Mo/Di Italien (Bike, kein Box-Drop-in) — strukturierte Woche ab Mi. OHS-Zielsatz 52,5, HSPU 4×8, WPU 3×5, Snatch 60 zum zweiten Mal, BMU-Stufe wiederholt (Video-Diagnose offen). C&J-82,5 diese Woche ohne Slot, verschiebt sich. Erste echte Wiegetrend-Bewertung folgt beim W34-Review (vs. W33-Schnitt 81,84 kg).",
       "W35": "FS-Block Teil 2 (Referenz 102,5, Korridor 105-107,5) — vor dem erwarteten Defizit-Dip platzieren. Erledigt: C&J 82,5 (neuer Bestwert), FS 95×3, WPU 3×4 zementiert, HSPU 4×8 konsolidiert; So-Team-WOD entfallen (nur Ride)",
-      "W36": "Konsolidierung, zweiter Gymnastics-Testblock vorbereiten",
+      "W36": "Konsolidierung, zweiter Gymnastics-Testblock vorbereiten — geplant: Di Fokus A (Snatch-Video 57,5/60, FS Richtung 100, Pause OHS klein), Do Fokus B (WPU 3×5-Retry, BMU 5×2/4×3-Option, HSPU 4×8 halten), Sa Box Upper/EMOM. Körperkomp-Entscheid: Band akzeptiert, Neubewertung W37-Review.",
       "W37": "Testblock + Sechs-Wochen-Review Meso 3"
     },
     "deload_trigger": [
@@ -63,7 +63,7 @@
       "BMU-Stufenentscheid W36: 5×2 bleibt Arbeitsstufe (W35: 4×3 nicht stabil, 3. Rep 'fast möglich'). 4×3 erneut antesten, sobald der 3er im Aufwärmen/ersten Satz stabil steht; Cues 'Fall Into Pike' (Stütz-Pause) + 'Feet in a Bucket' (Descent) beibehalten. Methodik coach/bmu-entwicklungsplan.md.",
       "Snatch tiefe Empfangsposition (Befund 20.08., bestätigt): Wackeln bei 87-95 % — Details load_references.squat_snatch_ceiling. Bestätigung an schwerer Last steht aus (Video W36), Übungswahl erst danach; Pause-OHS-Aufbau läuft als Positionsreiz bereits.",
       "T2B-Zielneusetzung vor/beim W37-Review (Test 16 vs. Ziel 10).",
-      "Körperkomposition: zwei Wochen in Folge unter Zielband (−0,24 / −0,19 vs. Ziel −0,3/−0,5) — beim W36-Planning entscheiden: Defizit nachschärfen oder Band akzeptieren."
+      "Körperkomposition: zwei Wochen unter Zielband (−0,24 / −0,19 vs. −0,3/−0,5). W36-Planning-Entscheid (30.08., mit Plan-Freigabe committet): Band akzeptiert — Leistung steigt im Defizit (C&J-PR), kein Nachschärfen vor dem Testblock. Neubewertung im W37-Sechs-Wochen-Review."
     ]
   },
   "load_references": {

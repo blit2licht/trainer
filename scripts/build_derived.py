@@ -263,8 +263,11 @@ def build_derived(today: date, state: dict, profile: dict, exercises: dict,
         "lagebild": lagebild,
         "exercises": exercises_out,
         "gewicht": gew,
-        "regel_treue": regel_treue(wellness, week.get("von", ""),
-                                   week.get("bis", "")),
+        # Rückblickendes Fenster (letzte 7 Tage bis heute) — die Sektion prüft
+        # gelaufenes Training, nicht die geplante Woche (Critique 30.08., P3).
+        "regel_treue": regel_treue(wellness,
+                                   (today - timedelta(days=6)).isoformat(),
+                                   today.isoformat()),
     }
 
 

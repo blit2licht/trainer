@@ -232,12 +232,23 @@ die Signaturform: aneinandergesetzte Bänder, Ton steigt mit der Last
 
 ### Inputs / Fields
 - **Notiz-Textarea:** g1-Fläche, 1px g4-Rand, 15.5px Archivo; Fokus-Rand g6;
-  Placeholder g6. Kein Session-Rating mehr — Verdict je Übung ersetzt es.
+  Placeholder g6. Kein Session-Rating auf Fokus-Tagen — Verdict je Übung
+  ersetzt es.
+- **Session-Feel (nur Box-/Rad-Tage, Paket 3 Strang 1):** vier Ein-Tap-Ziele
+  in der Tagesansicht (`.feel`), je Wort UND Zahl — 1 Mies · 2 Zäh · 4 Gut ·
+  5 Stark (DB-Skala 1–5, höher = besser; die Mitte „Okay" entfällt, weil die
+  Coach-Signale nur ≤2 und 4–5 lesen). Tap speichert sofort, erneuter Tap
+  nimmt zurück; gewählt = Amber-Rand + Amber-Text.
 - **Save:** wie Go-Button; Fehlerzustand als Amber-Textzeile.
 
 ### Navigation
 - Sticky-Schiene: Mono-Label „2026 W34" links, Verbindungszeichen rechts.
   Keine Meso-Angabe. Zurück-Pfeil als Strich-SVG + „Zur Woche".
+- **Ein Navigationsmodell** (Paket 3 Strang 1): jeder Trainingstag wechselt
+  per Tap in eine Tagesansicht — Fokus-Tage in die Block-/Verdict-Seite,
+  Box-/Rad-Tage in eine WOD-Seite mit Session-Feel und Notiz am Ende.
+  Ruhetage reagieren nicht. Das Inline-Akkordeon der Wochenliste (Chevron,
+  `strip-body`) ist entfallen.
 - **Zustandszeichen der Wochenliste** in der vierten Spalte, nur Zeichen,
   kein Wort (Martin 31.08.): Haken = geloggt, leerer Kreis = offen,
   gefüllter Viertel-/Halb-/Dreiviertelkreis = teilweise. Grün für geloggt,

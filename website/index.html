@@ -11,10 +11,28 @@
 <link rel="icon" type="image/png" sizes="16x16" href="icons/favicon-16.png">
 <link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png">
 <meta name="theme-color" content="#171310">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Spline+Sans+Mono:wght@400;500;700&display=swap">
+<!-- Schriften selbst gehostet (Paket 3, Strang 3): variable Dateien mit
+     erhaltener wdth-Achse, Latin-Subset, SIL OFL (fonts/OFL-*.txt).
+     crossorigin ist bei Font-Preloads auch same-origin Pflicht, sonst lädt
+     der Browser die Datei doppelt. -->
+<link rel="preload" href="fonts/archivo-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/spline-sans-mono-var.woff2" as="font" type="font/woff2" crossorigin>
 <style>
+@font-face{
+  font-family:'Archivo';
+  src:url('fonts/archivo-var.woff2') format('woff2');
+  font-weight:100 900;
+  font-stretch:62% 125%;
+  font-style:normal;
+  font-display:swap;
+}
+@font-face{
+  font-family:'Spline Sans Mono';
+  src:url('fonts/spline-sans-mono-var.woff2') format('woff2');
+  font-weight:300 700;
+  font-style:normal;
+  font-display:swap;
+}
 /* ═══ Trainer 3.0 · Handy-Clickdummy ═══
    Basis: design/dunkelkammer.html UNVERÄNDERT (Designwelt, gelockt 22.08.).
    Eingriffe nur: (1) Verdict pro Übung ersetzt „Block erledigt",
@@ -147,6 +165,20 @@ a{color:inherit;text-underline-offset:3px}
   stroke-linecap:round;stroke-linejoin:round;
 }
 .rail-link.is-off{color:var(--marker)}
+/* Wach-Zeichen (Wake Lock, Martin 31.08.: ja, anzeigen): ein Feature, das
+   Akku zieht, ist nicht unsichtbar. Steht links neben dem Verbindungszeichen,
+   nur solange die Sperre wirklich hält; grau = Ruhezustand, kein Alarm. */
+.rail-wake{
+  display:inline-flex;align-items:center;justify-content:center;
+  margin-left:auto;width:22px;height:22px;flex:none;color:var(--ink-3);
+}
+.rail-wake svg{
+  width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:2;
+  stroke-linecap:round;stroke-linejoin:round;
+}
+/* Sichtbares Wach-Zeichen übernimmt den Auto-Margin; das Verbindungszeichen
+   bleibt trotzdem ganz rechts. */
+.rail-wake:not([hidden]) ~ .rail-link{margin-left:0}
 .rail{user-select:none;-webkit-user-select:none;-webkit-touch-callout:none}
 
 /* ═══ Backend-Setup (Long-Press auf die Rail) ═══ */
@@ -324,18 +356,9 @@ a{color:inherit;text-underline-offset:3px}
   font-size:11.5px;font-weight:500;letter-spacing:.14em;
   text-transform:uppercase;color:var(--ink-3);
 }
-/* WOD-Tage: Pfeil statt Last — der Tag klappt inline auf (2.x-Verhalten). */
-.strip-load.is-chev{line-height:0;color:var(--ink-3)}
-.strip-load.is-chev svg{
-  width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2.5;
-  stroke-linecap:round;stroke-linejoin:round;
-  transition:transform .18s var(--ease);
-}
-.strip.is-open .strip-load.is-chev{color:var(--marker)}
-.strip.is-open .strip-load.is-chev svg{transform:rotate(180deg)}
-.strip-body{padding:0 0 28px}
-.strip-body .wod:first-child{border-top:none;padding-top:10px}
-.strip-body .note-block{margin-top:6px}
+/* Ein Navigationsmodell (Paket 3, Strang 1): jeder Trainingstag wechselt
+   die Ebene — Box-Tage klappen nicht mehr inline auf. Der Chevron- und
+   strip-body-Apparat des 2.x-Akkordeons ist damit entfallen. */
 /* Typ-Symbol als eigene Spalte, auf Höhe des Tagesnamens. */
 .strip-ico{color:var(--ink-3);align-self:start;padding-top:3px;line-height:0}
 .strip-ico svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
@@ -628,14 +651,24 @@ a{color:inherit;text-underline-offset:3px}
   font-family:var(--mono);font-size:11.5px;font-weight:700;
   letter-spacing:.18em;text-transform:uppercase;color:var(--ink-3);margin-bottom:16px;
 }
+/* Session-Feel an Box-Tagen (Paket 3, Strang 1): vier Ein-Tap-Ziele,
+   jedes trägt Wort UND Zahl (Wortcodierungs-Regel) — die DB-Skala ist 1–5,
+   höher = besser (coach/architecture.md). */
 .feels{display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap}
 .feel{
-  flex:1 1 0;min-width:0;min-height:52px;
+  flex:1 1 0;min-width:0;min-height:56px;
+  display:inline-flex;flex-direction:column;align-items:center;
+  justify-content:center;gap:3px;
   background:none;border:1px solid var(--rule);color:var(--ink-2);
   font-family:var(--disp);font-variation-settings:'wdth' 112;
   font-weight:800;font-size:17px;cursor:pointer;
   transition:border-color .14s var(--ease),color .14s var(--ease);
 }
+.feel small{
+  font-family:var(--mono);font-size:10.5px;font-weight:500;
+  letter-spacing:.12em;color:var(--ink-3);line-height:1;
+}
+.feel[aria-pressed="true"] small{color:inherit}
 @media (hover:hover){ .feel:hover{border-color:var(--g6);color:var(--ink)} }
 .feel[aria-pressed="true"]{border-color:var(--amber);color:var(--amber)}
 .note-ta{
@@ -704,6 +737,8 @@ a{color:inherit;text-underline-offset:3px}
 
 <header class="rail">
   <button class="rail-week" id="railWeek" type="button" hidden></button>
+  <span class="rail-wake" id="railWake" role="status" hidden
+        title="Bildschirm bleibt wach"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2.5 12s3.5-6 9.5-6 9.5 6 9.5 6-3.5 6-9.5 6-9.5-6-9.5-6z"/><circle cx="12" cy="12" r="2.6"/></svg><span class="sr">Bildschirm bleibt wach</span></span>
   <span class="rail-link" id="railLink" role="status"></span>
 </header>
 
@@ -940,6 +975,39 @@ async function linkFetch(url, opts){
   }
 }
 
+/* ── Wake Lock (Paket 3, Strang 2): der Bildschirm bleibt wach, solange
+   eine Tagesansicht offen ist — in der Box liegt das Handy zwischen den
+   Sätzen offen daneben. Anfordern beim Betreten (showFocus/showBox),
+   freigeben beim Verlassen (showWeek). iOS lässt die Sperre beim Wechsel
+   in den Hintergrund fallen; wakeWanted merkt sich die Absicht, und
+   visibilitychange fordert erneut an. Safari ab iOS 16.4. Das Zeichen in
+   der Schiene steht nur, wenn die Sperre tatsächlich hält. ── */
+let wakeLock = null;
+let wakeWanted = false;
+function renderWake(){
+  const el = document.getElementById('railWake');
+  if (el) el.hidden = !wakeLock;
+}
+async function wakeAcquire(){
+  wakeWanted = true;
+  if (!('wakeLock' in navigator) || wakeLock){ renderWake(); return; }
+  try {
+    wakeLock = await navigator.wakeLock.request('screen');
+    /* release feuert auch, wenn das SYSTEM die Sperre nimmt (Hintergrund,
+       Energiesparen) — das Zeichen darf dann nicht stehen bleiben. */
+    wakeLock.addEventListener('release', () => { wakeLock = null; renderWake(); });
+  } catch(e){ wakeLock = null; }   // verweigert (z. B. Energiesparmodus) — still
+  renderWake();
+}
+function wakeRelease(){
+  wakeWanted = false;
+  if (wakeLock){ wakeLock.release().catch(() => {}); wakeLock = null; }
+  renderWake();
+}
+document.addEventListener('visibilitychange', () => {
+  if (document.visibilityState === 'visible' && wakeWanted) wakeAcquire();
+});
+
 const vstore = {
   cache: {},
   get(iso, ex){ return this.cache[iso + '|' + ex] || null; },
@@ -1040,11 +1108,18 @@ const nstore = {
   },
   /* dirty = auf dem Gerät, aber noch nicht beim Server. Der Entwurf wird bei
      jeder Eingabe geschrieben; ohne ihn löschte ein Netzfehler den einzigen
-     Text, den Martin freiwillig schreibt (Bug 30.08.). */
-  set(iso, text, at, dirty){
+     Text, den Martin freiwillig schreibt (Bug 30.08.).
+     feel = session_feel (1–5, 0 = keine Angabe) — Rückkanal der Box-Tage;
+     ein Eintrag lebt, solange Text ODER Feel etwas tragen. */
+  set(iso, text, at, dirty, feel){
     const all = this.mirrorRead();
-    if (text && text.trim()){
-      this.cache[iso] = { text, at, dirty: !!dirty };
+    feel = feel || 0;
+    /* Ein leerer, aber dirty Eintrag bleibt als Löschauftrag liegen: die
+       Rücknahme eines bereits eingetragenen Feels im Funkloch muss den
+       Server noch erreichen (flush), sonst käme der Wert beim nächsten
+       Hydrate zurück. Erst der erfolgreiche Sync (dirty=false) räumt ab. */
+    if ((text && text.trim()) || feel > 0 || dirty){
+      this.cache[iso] = { text: text || '', feel, at, dirty: !!dirty };
       all[iso] = this.cache[iso];
     } else {
       delete this.cache[iso];
@@ -1062,9 +1137,10 @@ const nstore = {
         const r = await linkFetch('./save_note.php', {
           method:'POST', headers:{ 'Content-Type':'application/json' },
           body: JSON.stringify({ session_key: iso, note_date: iso,
-                                 note_text: all[iso].text, session_feel: 0 }) });
+                                 note_text: all[iso].text,
+                                 session_feel: all[iso].feel || 0 }) });
         if (!r.ok) throw new Error(r.status);
-        this.set(iso, all[iso].text, all[iso].at, false);
+        this.set(iso, all[iso].text, all[iso].at, false, all[iso].feel);
       } catch(e){ return; }   // weiter offline — Entwurf bleibt liegen
     }
   },
@@ -1076,7 +1152,9 @@ const nstore = {
         const j = await r.json();
         const fresh = {};
         (j.notes || []).forEach(n => {
-          if (n.note_text) fresh[n.note_date] = { text: n.note_text, at: n.updated_at };
+          const feel = parseInt(n.session_feel) || 0;
+          if (n.note_text || feel > 0)
+            fresh[n.note_date] = { text: n.note_text || '', feel, at: n.updated_at };
         });
         const all = this.mirrorRead();
         Object.keys(all).forEach(iso => {
@@ -1177,6 +1255,7 @@ function localIso(d){
 }
 let todayIso = localIso(new Date());
 let currentFocus = null;
+let currentBox = null;   // iso des offenen Box-/Rad-Tags (showBox)
 
 /* Wochen: der Payload trägt die noch nicht abgelaufenen Planwochen. Gewählt
    wird zur ANZEIGEZEIT, nicht zur Bauzeit — sonst verlöre das Handy die
@@ -1312,7 +1391,8 @@ function renderWeek(){
       ${today.warum ? `<button class="note-handle" type="button" aria-expanded="false">Begründung ${CHEV}</button>
         <p class="ex-note">${esc(today.warum)}</p>` : ''}
 
-      ${today.focus ? `<button class="go" type="button" data-focus="${esc(today.focus)}">Zur Einheit ${ARROW}</button>` : ''}
+      ${today.focus ? `<button class="go" type="button" data-focus="${esc(today.focus)}">Zur Einheit ${ARROW}</button>`
+        : (today.wod && today.wod.length ? `<button class="go" type="button" data-box="${esc(today.isoDate)}">Zur Einheit ${ARROW}</button>` : '')}
     </section>
 
     <h2 class="week-head">Die Woche</h2>
@@ -1325,20 +1405,14 @@ function renderWeek(){
   /* Long-Press-Copy VOR der Nav-Verdrahtung — der Klick nach einem
      Long-Press wird per stopImmediatePropagation geschluckt. */
   wireDayCopy(elWeek);
-  /* Ein Listener je Element: die Fokus-Streifen tragen data-focus schon, ein
-     zweiter Selektor auf .strip[data-nav="1"] hätte doppelt gebunden. */
+  /* Ein Listener je Element: Streifen und Go-Button tragen data-focus bzw.
+     data-box schon — ein zweiter Selektor auf .strip hätte doppelt gebunden.
+     Die Wochenliste hält keine Notiz mehr; der Rückkanal lebt in der
+     Tagesansicht (showBox). */
   elWeek.querySelectorAll('[data-focus]').forEach(b =>
     b.addEventListener('click', () => showFocus(b.dataset.focus)));
-  elWeek.querySelectorAll('.strip[data-nav="2"]').forEach(b =>
-    b.addEventListener('click', () => {
-      const body = document.getElementById('db-' + b.dataset.day);
-      if (!body) return;
-      const open = body.hidden;
-      body.hidden = !open;
-      b.setAttribute('aria-expanded', String(open));
-      b.classList.toggle('is-open', open);
-    }));
-  wireNote(elWeek);
+  elWeek.querySelectorAll('[data-box]').forEach(b =>
+    b.addEventListener('click', () => showBox(b.dataset.box)));
 
   renderApparat('week', today);
 }
@@ -1362,28 +1436,42 @@ function focusShorts(focus){
     .map(b => shortName(b.kurz || b.title)))];
 }
 
-/* Verdict-Stand eines vergangenen oder heutigen Fokus-Tags. Zählt dieselben
-   Einheiten, die verdictMarkup() taggt (vUnits), damit die Schlüssel
-   identisch sind; optionale Blöcke zählen nicht mit. Zukünftige Tage haben
-   keinen Zustand — dort kann nichts offen sein. */
+/* Rückkanal-Stand eines vergangenen oder heutigen Tages. Fokus-Tage zählen
+   dieselben Einheiten, die verdictMarkup() taggt (vUnits), damit die
+   Schlüssel identisch sind; optionale Blöcke zählen nicht mit. Box-Tage
+   gelten als geloggt, sobald Session-Feel oder Notiz etwas tragen.
+   Zukünftige Tage haben keinen Zustand — dort kann nichts offen sein. */
 function dayState(d){
-  if (!d.focus || d.isoDate > todayIso) return null;
-  const f = (week.focusDays || {})[d.focus];
-  if (!f) return null;
-  const ids = (f.blocks || [])
-    .filter(b => b.prio !== 'optional')
-    .flatMap(b => vUnits(d.isoDate, b.letter).map(u => u.ex_id));
-  if (!ids.length) return null;
-  const n = ids.filter(id => vstore.get(d.isoDate, id)).length;
-  if (n === 0)          return { cls:'is-open', svg:RING,  label:'Offen, nichts geloggt' };
-  if (n === ids.length) return { cls:'is-done', svg:CHECK, label:'Geloggt' };
-  const q = Math.min(3, Math.max(1, Math.round(n / ids.length * 4)));
-  return { cls:'is-part', svg:PIE[q], label:n + ' von ' + ids.length + ' geloggt' };
+  if (d.isoDate > todayIso) return null;
+  if (d.focus){
+    const f = (week.focusDays || {})[d.focus];
+    if (!f) return null;
+    const ids = (f.blocks || [])
+      .filter(b => b.prio !== 'optional')
+      .flatMap(b => vUnits(d.isoDate, b.letter).map(u => u.ex_id));
+    if (!ids.length) return null;
+    const n = ids.filter(id => vstore.get(d.isoDate, id)).length;
+    if (n === 0)          return { cls:'is-open', svg:RING,  label:'Offen, nichts geloggt' };
+    if (n === ids.length) return { cls:'is-done', svg:CHECK, label:'Geloggt' };
+    const q = Math.min(3, Math.max(1, Math.round(n / ids.length * 4)));
+    return { cls:'is-part', svg:PIE[q], label:n + ' von ' + ids.length + ' geloggt' };
+  }
+  if (d.wod && d.wod.length){
+    const n = nstore.cache[d.isoDate];
+    if (n && (n.feel > 0 || (n.text && n.text.trim())))
+      return { cls:'is-done', svg:CHECK, label:'Rückmeldung eingetragen' };
+    return { cls:'is-open', svg:RING, label:'Offen, keine Rückmeldung' };
+  }
+  return null;
 }
 
 function stripMarkup(d, isToday, isLast){
   const o = dayObject(d, week);
-  const nav = d.focus ? 1 : (d.wod && d.wod.length ? 2 : 0);
+  /* Ein Navigationsmodell: jeder Trainingstag wechselt die Ebene (Fokus-Tag
+     in showFocus, Box-/Rad-Tag mit WOD in showBox), Ruhetage reagieren nicht.
+     Der frühere Inline-Aufklapp-Zweig (data-nav="2") ist entfallen. */
+  const hasWod = !!(d.wod && d.wod.length);
+  const nav = (d.focus || hasWod) ? 1 : 0;
 
   /* Fokus-Tage in Kurzform: nur die Kurznamen der Kernblöcke — der
      Fokus-Charakter steht auf der Tageskarte, nicht in der Zeile (Platz
@@ -1404,11 +1492,9 @@ function stripMarkup(d, isToday, isLast){
   const st = dayState(d);
   const loadCell = st
     ? `<span class="strip-state ${st.cls}" role="img" aria-label="${esc(st.label)}">${st.svg}</span>`
-    : (nav === 2
-        ? `<span class="strip-load is-chev" aria-hidden="true">${CHEV}</span>`
-        : '<span class="strip-load"></span>');
+    : '<span class="strip-load"></span>';
 
-  const strip = `<${nav ? 'button' : 'div'} class="strip${o.kind === 'rest' ? ' is-rest' : ''}${isToday ? ' is-today' : ''}${st && st.cls === 'is-done' ? ' is-done-day' : ''}${isLast ? ' is-last' : ''}" data-nav="${nav}" data-iso="${esc(d.isoDate)}"${nav === 1 ? ` data-focus="${esc(d.focus)}"` : ''}${nav === 2 ? ` data-day="${esc(d.isoDate)}" aria-expanded="false" aria-controls="db-${esc(d.isoDate)}"` : ''}${nav ? ' type="button"' : ''}>
+  return `<${nav ? 'button' : 'div'} class="strip${o.kind === 'rest' ? ' is-rest' : ''}${isToday ? ' is-today' : ''}${st && st.cls === 'is-done' ? ' is-done-day' : ''}${isLast ? ' is-last' : ''}" data-nav="${nav}" data-iso="${esc(d.isoDate)}"${d.focus ? ` data-focus="${esc(d.focus)}"` : ''}${!d.focus && hasWod ? ` data-box="${esc(d.isoDate)}"` : ''}${nav ? ' type="button"' : ''}>
     <span class="strip-when">
       <span class="strip-day" aria-label="${esc(d.day)}">${esc(d.kurzTag || d.day)}</span>
       <span class="strip-date">${esc(d.date)}</span>
@@ -1417,12 +1503,6 @@ function stripMarkup(d, isToday, isLast){
     <span class="strip-unit">${esc(unit)}</span>
     ${loadCell}
   </${nav ? 'button' : 'div'}>`;
-
-  if (nav !== 2) return strip;
-  return strip + `<div class="strip-body" id="db-${esc(d.isoDate)}" hidden>
-    ${(d.wod || []).map(wodMarkup).join('')}
-    ${noteMarkup(d.isoDate, d.date)}
-  </div>`;
 }
 
 /* ── Fokus-Tag ── */
@@ -1585,6 +1665,7 @@ function showFocus(letter){
 
   elWeek.hidden = true; elFocus.hidden = false;
   if (!showFocus.rerender) window.scrollTo(0, 0);
+  wakeAcquire();
   renderApparat('focus', f);
 }
 
@@ -1645,6 +1726,42 @@ function wireVerdicts(root, letter){
     try { await vstore.clear(iso, ex); askOpen = null; rerender(); }
     catch(e){ if (row) row.classList.remove('is-pending'); b.disabled = false; fail(b, e); }
   }));
+}
+
+/* ── Box-/Rad-Tag: eigene Tagesansicht (Paket 3, Strang 1). Das WOD oben,
+   am Ende Session-Feel und Notiz als Ein-Tap-Rückkanal — dort, wo die
+   Einheit endet, nicht im Akkordeon der Wochenliste. Nutzt dieselbe
+   elFocus-Fläche wie der Fokus-Tag, damit Wischgeste und Zurück-Wege
+   identisch funktionieren. ── */
+function showBox(iso){
+  const d = (week.days || []).find(x => x.isoDate === iso);
+  if (!d || !(d.wod && d.wod.length)) return;
+  currentFocus = null;
+  currentBox = iso;
+  askOpen = null;
+
+  elFocus.innerHTML = `
+    <button class="back" type="button" id="backBtn">${BACK} Zur Woche</button>
+    <header class="focus-head">
+      <p class="focus-when">${esc(d.day)} · ${esc(d.date)}</p>
+      <h1 class="focus-title">${esc(d.einheit && d.einheit !== '—' ? d.einheit : 'Box')}</h1>
+    </header>
+    ${(d.wod || []).map(wodMarkup).join('')}
+    ${whoopText(rawDay(iso)) ? `<button class="whoop-copy" type="button" data-whoop="${esc(iso)}">WHOOP Copy</button>` : ''}
+    ${noteMarkup(iso, d.date, { feels: true })}
+    <button class="back is-foot" type="button" id="backBtnFoot">${BACK} Zur Woche</button>
+  `;
+
+  elFocus.querySelectorAll('#backBtn, #backBtnFoot').forEach(b =>
+    b.addEventListener('click', showWeek));
+  wireNote(elFocus);
+  const wc = elFocus.querySelector('[data-whoop]');
+  if (wc) wc.addEventListener('click', () => copyWhoop(wc.dataset.whoop));
+
+  elWeek.hidden = true; elFocus.hidden = false;
+  window.scrollTo(0, 0);
+  wakeAcquire();
+  renderApparat('box', d);
 }
 
 /* Vergleich Blocktitel <-> Übungsname: Groß/Klein, Bindestriche und
@@ -1852,12 +1969,28 @@ function wireDayCopy(root){
   });
 }
 
-function noteMarkup(isoDate, dayLabel){
-  /* Kein Gesamtsession-Rating mehr — das Verdict je Übung trägt die
-     Bewertung; hier bleibt nur die Notiz. */
+/* Session-Feel: 1–5 in der DB (höher = besser, misst wie die Einheit lief,
+   nicht die Anstrengung — coach/architecture.md). Vier Ein-Tap-Ziele statt
+   fünf: die Mitte „Okay" steuert nichts — die Coach-Signale lesen ≤2 als
+   zäh und 4–5 als gut. Jedes Ziel trägt Wort und Zahl, nie nur Farbe. */
+const FEELS = [{ v:1, w:'Mies' }, { v:2, w:'Zäh' }, { v:4, w:'Gut' }, { v:5, w:'Stark' }];
+
+function noteMarkup(isoDate, dayLabel, opts){
+  /* Fokus-Tage: das Verdict je Übung trägt die Bewertung, hier bleibt nur
+     die Notiz. Box-Tage (opts.feels): session_feel als Ein-Tap-Ziele davor —
+     der Rückkanal, den das WOD nicht über Verdicts abdeckt. */
+  opts = opts || {};
   const n = nstore.cache[isoDate || ''];
+  const feel = (opts.feels && n && n.feel) || 0;
+  const feels = opts.feels
+    ? `<div class="feels" role="group" aria-label="Session-Feel, wie die Einheit lief (1 bis 5)">
+        ${FEELS.map(f => `<button class="feel" type="button" data-feel="${f.v}"
+          aria-pressed="${feel === f.v}" aria-label="${esc(f.w)} (${f.v} von 5)"><small>${f.v}</small>${esc(f.w)}</button>`).join('')}
+      </div>`
+    : '';
   return `<section class="note-block" data-date="${esc(isoDate || '')}">
-    <h2 class="note-h">Notiz</h2>
+    <h2 class="note-h">${opts.feels ? 'Rückmeldung' : 'Notiz'}</h2>
+    ${feels}
     <textarea class="note-ta" aria-label="Notiz zur Einheit" placeholder="Tatsächliche Lasten, Abbrüche, was sich angefühlt hat wie.">${n ? esc(n.text) : ''}</textarea>
     <div class="note-foot">
       <button class="note-save" type="button">Eintragen</button>
@@ -1875,6 +2008,20 @@ function wireNoteBlock(block){
   const state = block.querySelector('.note-state');
   const ta    = block.querySelector('.note-ta');
   const iso   = block.dataset.date;
+  const feelBtns = block.querySelectorAll('.feel');
+  const curFeel = () => (nstore.cache[iso] && nstore.cache[iso].feel) || 0;
+  const markFeel = v => feelBtns.forEach(b =>
+    b.setAttribute('aria-pressed', String(+b.dataset.feel === v)));
+
+  /* Notiz und Feel gehen als EINE Zeile zum Server (save_note.php upsertet
+     die ganze Zeile) — jeder Sendeweg trägt deshalb beide Werte. */
+  const post = (text, feel) => linkFetch('./save_note.php', {
+    method:'POST',
+    headers:{ 'Content-Type':'application/json' },
+    body: JSON.stringify({
+      session_key: iso, note_date: iso, note_text: text, session_feel: feel
+    })
+  });
 
   /* Entwurf bei jeder Eingabe auf dem Gerät sichern. Die Verdict-Taps puffern
      offline, die Notiz tat es nicht — ein Funkloch löschte den Text. */
@@ -1882,32 +2029,52 @@ function wireNoteBlock(block){
   ta.addEventListener('input', () => {
     clearTimeout(t);
     t = setTimeout(() => {
-      nstore.set(iso, ta.value, new Date().toISOString(), true);
+      nstore.set(iso, ta.value, new Date().toISOString(), true, curFeel());
       if (!state.classList.contains('err')) state.textContent = '';
     }, 400);
   });
 
-  save.addEventListener('click', () => {
+  /* Session-Feel ist ein Ein-Tap-Ziel: der Tap speichert sofort, ein
+     erneuter Tap auf dasselbe Ziel nimmt die Angabe zurück. Scheitert der
+     Server, bleibt der Wert als Entwurf auf dem Gerät (wie die Notiz). */
+  feelBtns.forEach(b => b.addEventListener('click', () => {
     clearTimeout(t);
+    const v = +b.dataset.feel;
+    const next = v === curFeel() ? 0 : v;
+    markFeel(next);
     const text = ta.value;
     state.className = 'note-state';
     state.textContent = 'Wird eingetragen …';
-    linkFetch('./save_note.php', {
-      method:'POST',
-      headers:{ 'Content-Type':'application/json' },
-      body: JSON.stringify({
-        session_key: iso, note_date: iso, note_text: text, session_feel: 0
-      })
-    })
+    post(text, next)
       .then(r => {
         if (!r.ok) throw new Error(r.status);
         const at = new Date().toISOString();
-        nstore.set(iso, text, at, false);
+        nstore.set(iso, text, at, false, next);
+        state.textContent = 'Eingetragen · ' + vTime(at);
+      })
+      .catch(() => {
+        nstore.set(iso, text, new Date().toISOString(), true, next);
+        state.className = 'note-state err';
+        state.textContent = 'Nicht gespeichert · auf dem Gerät gesichert';
+      });
+  }));
+
+  save.addEventListener('click', () => {
+    clearTimeout(t);
+    const text = ta.value;
+    const feel = curFeel();
+    state.className = 'note-state';
+    state.textContent = 'Wird eingetragen …';
+    post(text, feel)
+      .then(r => {
+        if (!r.ok) throw new Error(r.status);
+        const at = new Date().toISOString();
+        nstore.set(iso, text, at, false, feel);
         state.textContent = 'Eingetragen · ' + vTime(at);
       })
       .catch(() => {
         // Wortlaut wie bei den Verdicts: der Text ist nicht weg, nur nicht dort.
-        nstore.set(iso, text, new Date().toISOString(), true);
+        nstore.set(iso, text, new Date().toISOString(), true, feel);
         state.className = 'note-state err';
         state.textContent = 'Nicht gespeichert · auf dem Gerät gesichert';
       });
@@ -1916,7 +2083,9 @@ function wireNoteBlock(block){
 
 function showWeek(){
   currentFocus = null;
+  currentBox = null;
   askOpen = null;   // die Rückfrage überlebt keine Navigation
+  wakeRelease();    // Bildschirm darf wieder einschlafen
   renderWeek();     // Verdict-Stand der Zeilen auffrischen
   elFocus.hidden = true; elWeek.hidden = false;
   elFocus.style.transition = ''; elFocus.style.transform = '';
@@ -2023,6 +2192,8 @@ function renderApparat(kind, ctx){
   let body = '';
   if (kind === 'week' && ctx && ctx.note){
     body = `<p>${esc(ctx.note)}</p><p class="src">coach/state.json · Wochenplan ${esc(week.id)}</p>`;
+  } else if (kind === 'box' && ctx && ctx.warum){
+    body = `<p>${esc(ctx.warum)}</p>`;
   } else if (kind === 'focus' && ctx){
     body = `${ctx.intro ? `<p>${stripHtml(ctx.intro)}</p>` : ''}
       ${ctx.dauer && ctx.dauer.hinweis ? `<p class="src">${esc(ctx.dauer.hinweis)}</p>` : ''}`;
@@ -2059,6 +2230,8 @@ async function switchWeek(){
   ]);
   renderRail();
   currentFocus = null;
+  currentBox = null;
+  wakeRelease();
   elFocus.hidden = true; elWeek.hidden = false;
   renderWeek();                     // neue Woche zeichnen, nicht nur einblenden
   window.scrollTo(0, 0);
@@ -2160,6 +2333,19 @@ async function switchWeek(){
   if (t === 'dark' || t === 'light') document.documentElement.dataset.theme = t;
   const f = q.get('focus');
   if (f) showFocus(f);
+
+  /* ── Service Worker (Paket 3, Strang 2): hält die Schale offline, liefert
+     nie einen alten Plan (data.js network-first, PHP nie gecacht). Die
+     Version ist der Cache-Stempel aus dem data.js-Script-Tag — den schreibt
+     build_payload.py bei jedem Plan; neue Registrier-URL heißt neuer Worker
+     samt frischem Schalen-Cache. Nach dem Kill-Switch vom 30.08. gibt es
+     Geräte ganz ohne Worker: deshalb wird bei JEDEM Laden registriert. */
+  if ('serviceWorker' in navigator){
+    const ds = document.querySelector('script[src*="data.js"]');
+    const m = ds && ds.src.match(/[?&]v=([\w-]+)/);
+    navigator.serviceWorker.register('./sw.js?v=' + (m ? m[1] : 'dev'))
+      .catch(() => {});   // ohne Worker läuft die Seite unverändert online
+  }
 })();
 </script>
 </body>

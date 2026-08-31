@@ -62,3 +62,21 @@ Maßnahmen:
 
 Offene Frage: DECISION_LOG-Pfad final klären (Obsidian-Vault
 "obsidian-challenge" aktuell im Aufbau, noch nicht produktiv).
+
+---
+
+## 2026-08-31 — session_feel abgeschafft, Rückmeldung nur noch Notiz
+
+Martin (nach dem iPhone-Test von Paket 3): das Session-Feel-Feedback
+(1–5-Skala, in Paket 3 Strang 1 als Ein-Tap-Ziele an Box-Tagen
+wiederbelebt) fliegt komplett raus — „wir machen nur noch Notizfeedback,
+kein Scaling mehr über RPE-Feel, die Funktion ist obsolet."
+
+Konsequenz: Feel-UI aus index.html entfernt; save_note.php ignoriert das
+Feld und schreibt die Spalte nur noch bei neuen Zeilen mit 0 (falls NOT
+NULL ohne Default), aktualisiert sie nie; get_notes.php und
+cron_summary.php liefern kein session_feel mehr aus. Die DB-Spalte und
+alle historischen Werte bleiben unangetastet (Log ist unantastbar) —
+Auswertungen lesen sie direkt aus der DB, nicht über die Endpunkte.
+Signale der Steuerung: Verdict-Tabelle + Klartextnotiz (wie in
+coach/state.json seit W35 vermerkt).

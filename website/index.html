@@ -651,26 +651,8 @@ a{color:inherit;text-underline-offset:3px}
   font-family:var(--mono);font-size:11.5px;font-weight:700;
   letter-spacing:.18em;text-transform:uppercase;color:var(--ink-3);margin-bottom:16px;
 }
-/* Session-Feel an Box-Tagen (Paket 3, Strang 1): vier Ein-Tap-Ziele,
-   jedes trägt Wort UND Zahl (Wortcodierungs-Regel) — die DB-Skala ist 1–5,
-   höher = besser (coach/architecture.md). */
-.feels{display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap}
-.feel{
-  flex:1 1 0;min-width:0;min-height:56px;
-  display:inline-flex;flex-direction:column;align-items:center;
-  justify-content:center;gap:3px;
-  background:none;border:1px solid var(--rule);color:var(--ink-2);
-  font-family:var(--disp);font-variation-settings:'wdth' 112;
-  font-weight:800;font-size:17px;cursor:pointer;
-  transition:border-color .14s var(--ease),color .14s var(--ease);
-}
-.feel small{
-  font-family:var(--mono);font-size:10.5px;font-weight:500;
-  letter-spacing:.12em;color:var(--ink-3);line-height:1;
-}
-.feel[aria-pressed="true"] small{color:inherit}
-@media (hover:hover){ .feel:hover{border-color:var(--g6);color:var(--ink)} }
-.feel[aria-pressed="true"]{border-color:var(--amber);color:var(--amber)}
+/* Session-Feel ist abgeschafft (Martin, 31.08.2026): Rückmeldung ist an
+   jedem Tagestyp nur noch die Notiz — kein Skalen-Feedback mehr. */
 .note-ta{
   width:100%;min-height:132px;padding:14px;
   background:var(--ground-2);color:var(--ink);
@@ -1108,18 +1090,15 @@ const nstore = {
   },
   /* dirty = auf dem Gerät, aber noch nicht beim Server. Der Entwurf wird bei
      jeder Eingabe geschrieben; ohne ihn löschte ein Netzfehler den einzigen
-     Text, den Martin freiwillig schreibt (Bug 30.08.).
-     feel = session_feel (1–5, 0 = keine Angabe) — Rückkanal der Box-Tage;
-     ein Eintrag lebt, solange Text ODER Feel etwas tragen. */
-  set(iso, text, at, dirty, feel){
+     Text, den Martin freiwillig schreibt (Bug 30.08.). */
+  set(iso, text, at, dirty){
     const all = this.mirrorRead();
-    feel = feel || 0;
-    /* Ein leerer, aber dirty Eintrag bleibt als Löschauftrag liegen: die
-       Rücknahme eines bereits eingetragenen Feels im Funkloch muss den
-       Server noch erreichen (flush), sonst käme der Wert beim nächsten
-       Hydrate zurück. Erst der erfolgreiche Sync (dirty=false) räumt ab. */
-    if ((text && text.trim()) || feel > 0 || dirty){
-      this.cache[iso] = { text: text || '', feel, at, dirty: !!dirty };
+    /* Ein leerer, aber dirty Eintrag bleibt als Löschauftrag liegen: das
+       Leeren einer bereits eingetragenen Notiz im Funkloch muss den Server
+       noch erreichen (flush), sonst käme der Text beim nächsten Hydrate
+       zurück. Erst der erfolgreiche Sync (dirty=false) räumt ab. */
+    if ((text && text.trim()) || dirty){
+      this.cache[iso] = { text: text || '', at, dirty: !!dirty };
       all[iso] = this.cache[iso];
     } else {
       delete this.cache[iso];
@@ -1137,10 +1116,9 @@ const nstore = {
         const r = await linkFetch('./save_note.php', {
           method:'POST', headers:{ 'Content-Type':'application/json' },
           body: JSON.stringify({ session_key: iso, note_date: iso,
-                                 note_text: all[iso].text,
-                                 session_feel: all[iso].feel || 0 }) });
+                                 note_text: all[iso].text }) });
         if (!r.ok) throw new Error(r.status);
-        this.set(iso, all[iso].text, all[iso].at, false, all[iso].feel);
+        this.set(iso, all[iso].text, all[iso].at, false);
       } catch(e){ return; }   // weiter offline — Entwurf bleibt liegen
     }
   },
@@ -1152,9 +1130,7 @@ const nstore = {
         const j = await r.json();
         const fresh = {};
         (j.notes || []).forEach(n => {
-          const feel = parseInt(n.session_feel) || 0;
-          if (n.note_text || feel > 0)
-            fresh[n.note_date] = { text: n.note_text || '', feel, at: n.updated_at };
+          if (n.note_text) fresh[n.note_date] = { text: n.note_text, at: n.updated_at };
         });
         const all = this.mirrorRead();
         Object.keys(all).forEach(iso => {
@@ -1439,7 +1415,7 @@ function focusShorts(focus){
 /* Rückkanal-Stand eines vergangenen oder heutigen Tages. Fokus-Tage zählen
    dieselben Einheiten, die verdictMarkup() taggt (vUnits), damit die
    Schlüssel identisch sind; optionale Blöcke zählen nicht mit. Box-Tage
-   gelten als geloggt, sobald Session-Feel oder Notiz etwas tragen.
+   gelten als geloggt, sobald die Notiz etwas trägt.
    Zukünftige Tage haben keinen Zustand — dort kann nichts offen sein. */
 function dayState(d){
   if (d.isoDate > todayIso) return null;
@@ -1458,9 +1434,9 @@ function dayState(d){
   }
   if (d.wod && d.wod.length){
     const n = nstore.cache[d.isoDate];
-    if (n && (n.feel > 0 || (n.text && n.text.trim())))
-      return { cls:'is-done', svg:CHECK, label:'Rückmeldung eingetragen' };
-    return { cls:'is-open', svg:RING, label:'Offen, keine Rückmeldung' };
+    if (n && n.text && n.text.trim())
+      return { cls:'is-done', svg:CHECK, label:'Notiz eingetragen' };
+    return { cls:'is-open', svg:RING, label:'Offen, keine Notiz' };
   }
   return null;
 }
@@ -1729,10 +1705,9 @@ function wireVerdicts(root, letter){
 }
 
 /* ── Box-/Rad-Tag: eigene Tagesansicht (Paket 3, Strang 1). Das WOD oben,
-   am Ende Session-Feel und Notiz als Ein-Tap-Rückkanal — dort, wo die
-   Einheit endet, nicht im Akkordeon der Wochenliste. Nutzt dieselbe
-   elFocus-Fläche wie der Fokus-Tag, damit Wischgeste und Zurück-Wege
-   identisch funktionieren. ── */
+   am Ende die Notiz als Rückkanal — dort, wo die Einheit endet, nicht im
+   Akkordeon der Wochenliste. Nutzt dieselbe elFocus-Fläche wie der
+   Fokus-Tag, damit Wischgeste und Zurück-Wege identisch funktionieren. ── */
 function showBox(iso){
   const d = (week.days || []).find(x => x.isoDate === iso);
   if (!d || !(d.wod && d.wod.length)) return;
@@ -1748,7 +1723,7 @@ function showBox(iso){
     </header>
     ${(d.wod || []).map(wodMarkup).join('')}
     ${whoopText(rawDay(iso)) ? `<button class="whoop-copy" type="button" data-whoop="${esc(iso)}">WHOOP Copy</button>` : ''}
-    ${noteMarkup(iso, d.date, { feels: true })}
+    ${noteMarkup(iso, d.date)}
     <button class="back is-foot" type="button" id="backBtnFoot">${BACK} Zur Woche</button>
   `;
 
@@ -1969,28 +1944,13 @@ function wireDayCopy(root){
   });
 }
 
-/* Session-Feel: 1–5 in der DB (höher = besser, misst wie die Einheit lief,
-   nicht die Anstrengung — coach/architecture.md). Vier Ein-Tap-Ziele statt
-   fünf: die Mitte „Okay" steuert nichts — die Coach-Signale lesen ≤2 als
-   zäh und 4–5 als gut. Jedes Ziel trägt Wort und Zahl, nie nur Farbe. */
-const FEELS = [{ v:1, w:'Mies' }, { v:2, w:'Zäh' }, { v:4, w:'Gut' }, { v:5, w:'Stark' }];
-
-function noteMarkup(isoDate, dayLabel, opts){
-  /* Fokus-Tage: das Verdict je Übung trägt die Bewertung, hier bleibt nur
-     die Notiz. Box-Tage (opts.feels): session_feel als Ein-Tap-Ziele davor —
-     der Rückkanal, den das WOD nicht über Verdicts abdeckt. */
-  opts = opts || {};
+function noteMarkup(isoDate, dayLabel){
+  /* Die Notiz ist der einzige freiwillige Rückkanal — an Fokus-Tagen neben
+     dem Verdict je Übung, an Box-Tagen allein. Session-Feel ist abgeschafft
+     (Martin, 31.08.2026): kein Skalen-Feedback mehr, nur Text. */
   const n = nstore.cache[isoDate || ''];
-  const feel = (opts.feels && n && n.feel) || 0;
-  const feels = opts.feels
-    ? `<div class="feels" role="group" aria-label="Session-Feel, wie die Einheit lief (1 bis 5)">
-        ${FEELS.map(f => `<button class="feel" type="button" data-feel="${f.v}"
-          aria-pressed="${feel === f.v}" aria-label="${esc(f.w)} (${f.v} von 5)"><small>${f.v}</small>${esc(f.w)}</button>`).join('')}
-      </div>`
-    : '';
   return `<section class="note-block" data-date="${esc(isoDate || '')}">
-    <h2 class="note-h">${opts.feels ? 'Rückmeldung' : 'Notiz'}</h2>
-    ${feels}
+    <h2 class="note-h">Notiz</h2>
     <textarea class="note-ta" aria-label="Notiz zur Einheit" placeholder="Tatsächliche Lasten, Abbrüche, was sich angefühlt hat wie.">${n ? esc(n.text) : ''}</textarea>
     <div class="note-foot">
       <button class="note-save" type="button">Eintragen</button>
@@ -2008,20 +1968,6 @@ function wireNoteBlock(block){
   const state = block.querySelector('.note-state');
   const ta    = block.querySelector('.note-ta');
   const iso   = block.dataset.date;
-  const feelBtns = block.querySelectorAll('.feel');
-  const curFeel = () => (nstore.cache[iso] && nstore.cache[iso].feel) || 0;
-  const markFeel = v => feelBtns.forEach(b =>
-    b.setAttribute('aria-pressed', String(+b.dataset.feel === v)));
-
-  /* Notiz und Feel gehen als EINE Zeile zum Server (save_note.php upsertet
-     die ganze Zeile) — jeder Sendeweg trägt deshalb beide Werte. */
-  const post = (text, feel) => linkFetch('./save_note.php', {
-    method:'POST',
-    headers:{ 'Content-Type':'application/json' },
-    body: JSON.stringify({
-      session_key: iso, note_date: iso, note_text: text, session_feel: feel
-    })
-  });
 
   /* Entwurf bei jeder Eingabe auf dem Gerät sichern. Die Verdict-Taps puffern
      offline, die Notiz tat es nicht — ein Funkloch löschte den Text. */
@@ -2029,52 +1975,30 @@ function wireNoteBlock(block){
   ta.addEventListener('input', () => {
     clearTimeout(t);
     t = setTimeout(() => {
-      nstore.set(iso, ta.value, new Date().toISOString(), true, curFeel());
+      nstore.set(iso, ta.value, new Date().toISOString(), true);
       if (!state.classList.contains('err')) state.textContent = '';
     }, 400);
   });
 
-  /* Session-Feel ist ein Ein-Tap-Ziel: der Tap speichert sofort, ein
-     erneuter Tap auf dasselbe Ziel nimmt die Angabe zurück. Scheitert der
-     Server, bleibt der Wert als Entwurf auf dem Gerät (wie die Notiz). */
-  feelBtns.forEach(b => b.addEventListener('click', () => {
-    clearTimeout(t);
-    const v = +b.dataset.feel;
-    const next = v === curFeel() ? 0 : v;
-    markFeel(next);
-    const text = ta.value;
-    state.className = 'note-state';
-    state.textContent = 'Wird eingetragen …';
-    post(text, next)
-      .then(r => {
-        if (!r.ok) throw new Error(r.status);
-        const at = new Date().toISOString();
-        nstore.set(iso, text, at, false, next);
-        state.textContent = 'Eingetragen · ' + vTime(at);
-      })
-      .catch(() => {
-        nstore.set(iso, text, new Date().toISOString(), true, next);
-        state.className = 'note-state err';
-        state.textContent = 'Nicht gespeichert · auf dem Gerät gesichert';
-      });
-  }));
-
   save.addEventListener('click', () => {
     clearTimeout(t);
     const text = ta.value;
-    const feel = curFeel();
     state.className = 'note-state';
     state.textContent = 'Wird eingetragen …';
-    post(text, feel)
+    linkFetch('./save_note.php', {
+      method:'POST',
+      headers:{ 'Content-Type':'application/json' },
+      body: JSON.stringify({ session_key: iso, note_date: iso, note_text: text })
+    })
       .then(r => {
         if (!r.ok) throw new Error(r.status);
         const at = new Date().toISOString();
-        nstore.set(iso, text, at, false, feel);
+        nstore.set(iso, text, at, false);
         state.textContent = 'Eingetragen · ' + vTime(at);
       })
       .catch(() => {
         // Wortlaut wie bei den Verdicts: der Text ist nicht weg, nur nicht dort.
-        nstore.set(iso, text, new Date().toISOString(), true, feel);
+        nstore.set(iso, text, new Date().toISOString(), true);
         state.className = 'note-state err';
         state.textContent = 'Nicht gespeichert · auf dem Gerät gesichert';
       });

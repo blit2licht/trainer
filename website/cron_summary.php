@@ -25,9 +25,10 @@ try {
         [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
     );
 
-    $col  = feel_column($pdo);
+    // session_feel ist abgeschafft (Martin, 31.08.2026) — der Recap trägt
+    // nur noch die Notizen.
     $stmt = $pdo->prepare(
-        "SELECT session_key, note_date, `$col` AS session_feel, note_text
+        "SELECT session_key, note_date, note_text
          FROM session_notes
          WHERE note_date BETWEEN :from AND :to
          ORDER BY note_date ASC"
@@ -43,11 +44,6 @@ if (empty($notes)) {
     exit('Keine Notizen diese Woche — keine Mail gesendet.');
 }
 
-// Session-Feel: wie die Einheit lief (1 = mies, 5 = stark).
-// Bewusst Qualitätswörter — nicht "Brutal/Schwer", das wäre Anstrengung und
-// damit die Load-RPE-Bedeutung.
-$feel_label = ['', '😵 Mies', '😮‍💨 Zäh', '😐 Okay', '💪 Gut', '🔥 Stark'];
-
 // Email bauen
 $subject = "Training Recap · KW " . date('W') . " · " . date('d.m.Y', strtotime($monday)) . " – " . date('d.m.Y', strtotime($sunday));
 
@@ -56,11 +52,9 @@ $body .= str_repeat("─", 40) . "\n\n";
 
 foreach ($notes as $n) {
     $date_fmt = date('D d.m.', strtotime($n['note_date']));
-    $feel     = intval($n['session_feel']);
-    $feel_str = $feel > 0 ? ($feel_label[$feel] ?? "Feel $feel") : '(kein Feel)';
     $text     = $n['note_text'] ?: '(keine Notiz)';
 
-    $body .= "$date_fmt  |  $feel_str\n";
+    $body .= "$date_fmt\n";
     $body .= "$text\n\n";
 }
 

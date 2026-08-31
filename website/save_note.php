@@ -40,9 +40,9 @@ $data = json_decode($raw, true);
 $session_key = trim($data['session_key'] ?? '');
 $note_date   = trim($data['note_date']   ?? '');
 $note_text   = trim($data['note_text']   ?? '');
-// Übergang: rpe_feel als Fallback, solange gecachte Frontends den alten
-// Feldnamen senden.
-$session_feel = intval($data['session_feel'] ?? $data['rpe_feel'] ?? 0);
+// session_feel ist abgeschafft (Martin, 31.08.2026): Rückmeldung ist nur noch
+// die Notiz. Ein noch mitgesendetes Feld wird ignoriert; die DB-Spalte bleibt
+// als Historie stehen und wird nicht mehr beschrieben.
 // Erledigt-Vektor der Fokus-Blöcke, z. B. "A,B,C". Nur Buchstaben und Kommas.
 $blocks_done = strtoupper(preg_replace('/[^A-Za-z,]/', '', (string) ($data['blocks_done'] ?? '')));
 
@@ -59,8 +59,6 @@ if (!preg_match('/^\d{4}-\d{2}-\d{2}$/', $note_date)) {
     exit;
 }
 
-$session_feel = max(0, min(5, $session_feel));
-
 // Upsert
 try {
     $pdo = new PDO(
@@ -69,13 +67,16 @@ try {
         [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
     );
 
-    $col     = feel_column($pdo);
     $has_bd  = has_blocks_column($pdo);
+    // Die Feel-Spalte (session_feel bzw. alt rpe_feel) bekommt bei NEUEN
+    // Zeilen eine literale 0 (falls sie NOT NULL ohne Default ist), wird
+    // aber nie mehr aktualisiert — historische Werte bleiben stehen.
+    $col     = feel_column($pdo);
 
-    $cols   = ['session_key', 'note_date', "`$col`", 'note_text'];
-    $vals   = [':sk', ':nd', ':sf', ':nt'];
-    $update = ["`$col`" . ' = VALUES(`' . $col . '`)', 'note_text = VALUES(note_text)'];
-    $params = [':sk' => $session_key, ':nd' => $note_date, ':sf' => $session_feel, ':nt' => $note_text];
+    $cols   = ['session_key', 'note_date', 'note_text', "`$col`"];
+    $vals   = [':sk', ':nd', ':nt', '0'];
+    $update = ['note_text = VALUES(note_text)'];
+    $params = [':sk' => $session_key, ':nd' => $note_date, ':nt' => $note_text];
 
     if ($has_bd) {
         $cols[]   = 'blocks_done';

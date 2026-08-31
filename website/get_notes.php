@@ -49,24 +49,18 @@ try {
         [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
     );
 
-    $col = feel_column($pdo);
+    // session_feel ist abgeschafft (Martin, 31.08.2026) und wird nicht mehr
+    // ausgeliefert; die Spalte bleibt nur als Historie in der DB.
     // Erledigt-Vektor nur mitlesen, wenn die Spalte schon existiert (siehe notes_db.php).
     $bd  = has_blocks_column($pdo) ? 'blocks_done' : "'' AS blocks_done";
     $stmt = $pdo->prepare(
-        "SELECT session_key, note_date, `$col` AS session_feel, note_text, $bd, updated_at
+        "SELECT session_key, note_date, note_text, $bd, updated_at
          FROM session_notes
          WHERE note_date BETWEEN :from AND :to
          ORDER BY note_date ASC"
     );
     $stmt->execute([':from' => $from, ':to' => $to]);
     $notes = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-    // Übergang: Frontends, die der Service Worker noch aus dem Cache liefert,
-    // lesen rpe_feel. Beide Felder ausgeben, bis die alten Caches durch sind.
-    foreach ($notes as &$n) {
-        $n['rpe_feel'] = $n['session_feel'];
-    }
-    unset($n);
 
     echo json_encode(['notes' => $notes]);
 

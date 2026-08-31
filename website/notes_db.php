@@ -1,16 +1,13 @@
 <?php
-/* Übergangshelfer für die Umbenennung rpe_feel → session_feel.
+/* Laufzeit-Helfer für Schema-Zustände, die nur von Hand migriert werden
+ * (der Code deployt per GitHub Actions, ALTER TABLE läuft separat).
  *
- * Grund: Der Code wird per GitHub Actions deployt, die Spalte muss von Hand
- * per ALTER TABLE umbenannt werden. Beides lässt sich nicht gleichzeitig
- * auslösen. Ohne diesen Helfer bräche das Speichern in der Lücke zwischen
- * beiden Schritten — je nachdem, was zuerst passiert.
- *
- * Die Endpunkte fragen deshalb zur Laufzeit, welche Spalte existiert. Damit
- * ist die Reihenfolge egal und es gibt kein Ausfallfenster.
- *
- * Nach erfolgter Migration kann diese Datei entfallen und der Spaltenname in
- * den drei Endpunkten fest verdrahtet werden.
+ * session_feel ist abgeschafft (Martin, 31.08.2026): Rückmeldung ist nur
+ * noch die Notiz. Die Feel-Spalte (session_feel bzw. alt rpe_feel) bleibt
+ * als Historie in der DB; save_note.php braucht feel_column() weiterhin,
+ * um sie bei neuen Zeilen mit 0 zu belegen, falls sie NOT NULL ohne
+ * Default ist. Entfällt erst, wenn die Spalte per ALTER TABLE einen
+ * Default bekommt oder gedroppt wird.
  */
 
 /**

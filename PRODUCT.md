@@ -26,8 +26,9 @@ Drei bestätigte Nutzungsszenen, nach Härte der Anforderung:
    Magnesium an den Händen, wechselndes Licht, Zeitdruck. Dazu gehört jetzt der
    Ein-Tap-Rückkanal (Verdict). Diese Szene stellt die härtesten Anforderungen
    und gewinnt im Konflikt gegen die anderen beiden.
-2. **Nach der Einheit: Rückmeldung erfassen.** Verdict pro Übung (Done/Fail),
-   Session-Feel und Notiz, direkt nach dem Training am Handy.
+2. **Nach der Einheit: Rückmeldung erfassen.** Verdict pro Übung (Done/Fail)
+   und Notiz, direkt nach dem Training am Handy. Session-Feel ist abgeschafft
+   (Entscheidung 2026-08-31).
 3. **Werkstatt am Desktop.** Fortschritt prüfen, Historie und e1RM-Kurven lesen,
    Soll/Ist-Muster erkennen, mit Claude die nächste Woche planen — mit Zeit und
    großem Viewport.
@@ -135,7 +136,8 @@ Titelseite, nicht hinter einem Prompt.
   `wod`-Objekt. Felder wie `f.intro` werden per `innerHTML` gerendert —
   Klartext-Ableitungen müssen durch `stripHtml()`.
 - Box-Tage bleiben außerhalb der Verdict-/Progressions-Logik; dort führt das
-  WOD, Rückmeldung über `session_feel`.
+  WOD, Rückmeldung über die Tagesnotiz. `session_feel` ist abgeschafft
+  (Entscheidung 2026-08-31); die DB-Spalte bleibt nur als Historie.
 
 ## Brand Commitments
 

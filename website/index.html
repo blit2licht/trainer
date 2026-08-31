@@ -165,6 +165,20 @@ a{color:inherit;text-underline-offset:3px}
   stroke-linecap:round;stroke-linejoin:round;
 }
 .rail-link.is-off{color:var(--marker)}
+/* Wach-Zeichen (Wake Lock, Martin 31.08.: ja, anzeigen): ein Feature, das
+   Akku zieht, ist nicht unsichtbar. Steht links neben dem Verbindungszeichen,
+   nur solange die Sperre wirklich hält; grau = Ruhezustand, kein Alarm. */
+.rail-wake{
+  display:inline-flex;align-items:center;justify-content:center;
+  margin-left:auto;width:22px;height:22px;flex:none;color:var(--ink-3);
+}
+.rail-wake svg{
+  width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:2;
+  stroke-linecap:round;stroke-linejoin:round;
+}
+/* Sichtbares Wach-Zeichen übernimmt den Auto-Margin; das Verbindungszeichen
+   bleibt trotzdem ganz rechts. */
+.rail-wake:not([hidden]) ~ .rail-link{margin-left:0}
 .rail{user-select:none;-webkit-user-select:none;-webkit-touch-callout:none}
 
 /* ═══ Backend-Setup (Long-Press auf die Rail) ═══ */
@@ -723,6 +737,8 @@ a{color:inherit;text-underline-offset:3px}
 
 <header class="rail">
   <button class="rail-week" id="railWeek" type="button" hidden></button>
+  <span class="rail-wake" id="railWake" role="status" hidden
+        title="Bildschirm bleibt wach"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2.5 12s3.5-6 9.5-6 9.5 6 9.5 6-3.5 6-9.5 6-9.5-6-9.5-6z"/><circle cx="12" cy="12" r="2.6"/></svg><span class="sr">Bildschirm bleibt wach</span></span>
   <span class="rail-link" id="railLink" role="status"></span>
 </header>
 
@@ -958,6 +974,39 @@ async function linkFetch(url, opts){
     throw e;
   }
 }
+
+/* ── Wake Lock (Paket 3, Strang 2): der Bildschirm bleibt wach, solange
+   eine Tagesansicht offen ist — in der Box liegt das Handy zwischen den
+   Sätzen offen daneben. Anfordern beim Betreten (showFocus/showBox),
+   freigeben beim Verlassen (showWeek). iOS lässt die Sperre beim Wechsel
+   in den Hintergrund fallen; wakeWanted merkt sich die Absicht, und
+   visibilitychange fordert erneut an. Safari ab iOS 16.4. Das Zeichen in
+   der Schiene steht nur, wenn die Sperre tatsächlich hält. ── */
+let wakeLock = null;
+let wakeWanted = false;
+function renderWake(){
+  const el = document.getElementById('railWake');
+  if (el) el.hidden = !wakeLock;
+}
+async function wakeAcquire(){
+  wakeWanted = true;
+  if (!('wakeLock' in navigator) || wakeLock){ renderWake(); return; }
+  try {
+    wakeLock = await navigator.wakeLock.request('screen');
+    /* release feuert auch, wenn das SYSTEM die Sperre nimmt (Hintergrund,
+       Energiesparen) — das Zeichen darf dann nicht stehen bleiben. */
+    wakeLock.addEventListener('release', () => { wakeLock = null; renderWake(); });
+  } catch(e){ wakeLock = null; }   // verweigert (z. B. Energiesparmodus) — still
+  renderWake();
+}
+function wakeRelease(){
+  wakeWanted = false;
+  if (wakeLock){ wakeLock.release().catch(() => {}); wakeLock = null; }
+  renderWake();
+}
+document.addEventListener('visibilitychange', () => {
+  if (document.visibilityState === 'visible' && wakeWanted) wakeAcquire();
+});
 
 const vstore = {
   cache: {},
@@ -1616,6 +1665,7 @@ function showFocus(letter){
 
   elWeek.hidden = true; elFocus.hidden = false;
   if (!showFocus.rerender) window.scrollTo(0, 0);
+  wakeAcquire();
   renderApparat('focus', f);
 }
 
@@ -1710,6 +1760,7 @@ function showBox(iso){
 
   elWeek.hidden = true; elFocus.hidden = false;
   window.scrollTo(0, 0);
+  wakeAcquire();
   renderApparat('box', d);
 }
 
@@ -2034,6 +2085,7 @@ function showWeek(){
   currentFocus = null;
   currentBox = null;
   askOpen = null;   // die Rückfrage überlebt keine Navigation
+  wakeRelease();    // Bildschirm darf wieder einschlafen
   renderWeek();     // Verdict-Stand der Zeilen auffrischen
   elFocus.hidden = true; elWeek.hidden = false;
   elFocus.style.transition = ''; elFocus.style.transform = '';
@@ -2179,6 +2231,7 @@ async function switchWeek(){
   renderRail();
   currentFocus = null;
   currentBox = null;
+  wakeRelease();
   elFocus.hidden = true; elWeek.hidden = false;
   renderWeek();                     // neue Woche zeichnen, nicht nur einblenden
   window.scrollTo(0, 0);
@@ -2280,6 +2333,19 @@ async function switchWeek(){
   if (t === 'dark' || t === 'light') document.documentElement.dataset.theme = t;
   const f = q.get('focus');
   if (f) showFocus(f);
+
+  /* ── Service Worker (Paket 3, Strang 2): hält die Schale offline, liefert
+     nie einen alten Plan (data.js network-first, PHP nie gecacht). Die
+     Version ist der Cache-Stempel aus dem data.js-Script-Tag — den schreibt
+     build_payload.py bei jedem Plan; neue Registrier-URL heißt neuer Worker
+     samt frischem Schalen-Cache. Nach dem Kill-Switch vom 30.08. gibt es
+     Geräte ganz ohne Worker: deshalb wird bei JEDEM Laden registriert. */
+  if ('serviceWorker' in navigator){
+    const ds = document.querySelector('script[src*="data.js"]');
+    const m = ds && ds.src.match(/[?&]v=([\w-]+)/);
+    navigator.serviceWorker.register('./sw.js?v=' + (m ? m[1] : 'dev'))
+      .catch(() => {});   // ohne Worker läuft die Seite unverändert online
+  }
 })();
 </script>
 </body>

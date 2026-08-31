@@ -11,10 +11,28 @@
 <link rel="icon" type="image/png" sizes="16x16" href="icons/favicon-16.png">
 <link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png">
 <meta name="theme-color" content="#171310">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Spline+Sans+Mono:wght@400;500;700&display=swap">
+<!-- Schriften selbst gehostet (Paket 3, Strang 3): variable Dateien mit
+     erhaltener wdth-Achse, Latin-Subset, SIL OFL (fonts/OFL-*.txt).
+     crossorigin ist bei Font-Preloads auch same-origin Pflicht, sonst lädt
+     der Browser die Datei doppelt. -->
+<link rel="preload" href="fonts/archivo-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/spline-sans-mono-var.woff2" as="font" type="font/woff2" crossorigin>
 <style>
+@font-face{
+  font-family:'Archivo';
+  src:url('fonts/archivo-var.woff2') format('woff2');
+  font-weight:100 900;
+  font-stretch:62% 125%;
+  font-style:normal;
+  font-display:swap;
+}
+@font-face{
+  font-family:'Spline Sans Mono';
+  src:url('fonts/spline-sans-mono-var.woff2') format('woff2');
+  font-weight:300 700;
+  font-style:normal;
+  font-display:swap;
+}
 /* ═══ Trainer 3.0 · Handy-Clickdummy ═══
    Basis: design/dunkelkammer.html UNVERÄNDERT (Designwelt, gelockt 22.08.).
    Eingriffe nur: (1) Verdict pro Übung ersetzt „Block erledigt",

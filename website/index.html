@@ -34,6 +34,12 @@
   --cool-dim:oklch(31% 0.055 198);
   --good:oklch(80% 0.14 152);
   --good-dim:oklch(32% 0.07 152);
+  /* Milchglas für geloggte Blöcke: eigene Rollen statt color-mix gegen den
+     Grund. Die Mischung interpolierte den Farbton mit (Grün 152° und
+     Bernstein 72° landeten bei 89° und 65°) — Done und Fail waren faktisch
+     dieselbe Farbe. Gleiche Helligkeit wie vorher, 84° Abstand statt 24°. */
+  --logged-done:oklch(40% 0.080 152);
+  --logged-fail:oklch(40% 0.080 68);
 
   --disp:'Archivo',system-ui,sans-serif;
   --mono:'Spline Sans Mono',ui-monospace,monospace;
@@ -52,6 +58,8 @@
     --cool-dim:oklch(91% 0.045 200);
     --good:oklch(52% 0.13 152);
     --good-dim:oklch(90% 0.06 152);
+    --logged-done:oklch(72% 0.090 152);
+    --logged-fail:oklch(72% 0.090 62);
   }
 }
 :root[data-theme="light"]{
@@ -66,6 +74,8 @@
   --cool-dim:oklch(91% 0.045 200);
   --good:oklch(52% 0.13 152);
   --good-dim:oklch(90% 0.06 152);
+  --logged-done:oklch(72% 0.090 152);
+  --logged-fail:oklch(72% 0.090 62);
 }
 
 :root{
@@ -84,7 +94,7 @@ body{
   -webkit-font-smoothing:antialiased;
 }
 
-::selection{background:var(--marker);color:#fff}
+::selection{background:var(--marker);color:var(--amber-ink)}
 :root{accent-color:var(--marker);caret-color:var(--marker)}
 :focus-visible{outline:2.5px solid var(--marker);outline-offset:3px}
 *{scrollbar-color:var(--g4) transparent;scrollbar-width:thin}
@@ -122,18 +132,15 @@ a{color:inherit;text-underline-offset:3px}
 .rw-tag{
   font-size:10.5px;font-weight:500;letter-spacing:.16em;color:var(--marker);
 }
-.rail-meso{
-  margin-left:auto;font-family:var(--mono);font-size:11.5px;font-weight:500;
-  letter-spacing:.13em;text-transform:uppercase;color:var(--ink-3);
-  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
-}
+/* Meso-Angabe entfällt (Martin 31.08.): im Gym irrelevant, und die Regel
+   blendete sie ohnehin auf jedem aktuellen iPhone aus. Die Schiene trägt
+   Wochen-ID links, Verbindungszeichen rechts. */
 /* Serververbindung: steht immer in der Schiene, immer als Zeichen — nie als
    Satz, der die Meso-Angabe verdrängt. Grau ist Ruhe (Serverstand oder
-   bewusst lokal), Amber heißt: der Rückkanal trägt gerade nicht. Bleibt auch
-   am schmalen Handy stehen, anders als die Meso-Angabe, die weicht. */
+   bewusst lokal), Amber heißt: der Rückkanal trägt gerade nicht. */
 .rail-link{
   display:inline-flex;align-items:center;justify-content:center;
-  width:22px;height:22px;flex:none;color:var(--ink-3);
+  margin-left:auto;width:22px;height:22px;flex:none;color:var(--ink-3);
 }
 .rail-link svg{
   width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:2;
@@ -196,10 +203,11 @@ a{color:inherit;text-underline-offset:3px}
   .apparat{position:sticky;top:84px}
 }
 @media (max-width:1099px){ .apparat{display:none} }
-@media (max-width:430px){ .rail-meso{display:none} .rail-link{margin-left:auto} }
 
 /* ═══ Heute ═══ */
-.today{padding:38px 0 34px}
+/* Abstand nach unten von 34 auf 22px (Martin 31.08.): zusammen mit dem
+   week-head-Vorlauf standen rund 105px Leere zwischen Karte und Woche. */
+.today{padding:38px 0 22px}
 .today-when{
   font-family:var(--mono);font-size:12.5px;font-weight:500;
   letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3);
@@ -218,6 +226,16 @@ a{color:inherit;text-underline-offset:3px}
   font-weight:600;font-size:clamp(1.05rem,4.3vw,1.4rem);
   letter-spacing:-.015em;line-height:1.25;color:var(--ink-2);max-width:40ch;
 }
+/* Fokus-Tag: der Inhalt führt, nicht eine Zahl ohne Herkunft (Martin 31.08.).
+   Dieselben Kurznamen wie in Spalte 3 der Wochenzeile, nur groß. */
+.today-list{
+  margin-top:22px;font-family:var(--disp);font-variation-settings:'wdth' 112;
+  font-weight:800;font-size:clamp(1.5rem,6.2vw,2.05rem);letter-spacing:-.025em;
+  line-height:1.18;color:var(--ink);text-wrap:balance;max-width:22ch;
+}
+.today-list .sep{color:var(--g5);font-weight:400;font-size:.72em;vertical-align:.12em}
+/* Begründung und Zur Einheit untereinander, nicht nebeneinander. */
+.today .note-handle,.today .go{display:flex;width:fit-content}
 .today-figure{display:flex;align-items:flex-end;gap:14px;margin-top:30px;flex-wrap:wrap}
 .load-num{
   font-family:var(--disp);font-variation-settings:'wdth' 124;
@@ -245,14 +263,22 @@ a{color:inherit;text-underline-offset:3px}
   letter-spacing:.13em;text-transform:uppercase;cursor:pointer;
   transition:background .14s var(--ease);
 }
-.go:hover{background:var(--marker);color:#fff}
+/* Auf Amber-Flächen schreibt amber-ink, nie Weiß (Eine-Leiter-Regel).
+   Der (hover:hover)-Rahmen um alle :hover-Regeln ist der iOS-Fix: sonst
+   bleibt der Hover-Zustand nach einem Tap kleben. */
+@media (hover:hover){ .go:hover{background:var(--marker);color:var(--amber-ink)} }
 .go svg{width:13px;height:13px}
 
 /* ═══ Restwoche ═══ */
 .week-head{
   font-family:var(--mono);font-size:11.5px;font-weight:700;
   letter-spacing:.18em;text-transform:uppercase;color:var(--ink-3);
-  padding-top:34px;margin-bottom:2px;
+  padding-top:16px;margin-bottom:2px;
+}
+/* Ruhetag: eine Zeile, die etwas sagt, statt 400px Nichts (Martin 31.08.). */
+.rest-line{
+  margin-top:16px;font-family:var(--mono);font-size:13px;
+  letter-spacing:.06em;color:var(--ink-3);
 }
 .strip{
   display:grid;grid-template-columns:58px 22px minmax(0,1fr) auto;
@@ -267,7 +293,7 @@ a{color:inherit;text-underline-offset:3px}
    der Typselektor träfe zwei Zeilen zugleich. */
 .strip.is-last{border-bottom:1px solid var(--rule-2)}
 .strip[data-nav="0"]{cursor:default}
-.strip:hover .strip-day{color:var(--marker)}
+@media (hover:hover){ .strip:hover .strip-day{color:var(--marker)} }
 .strip-when{min-width:0}
 /* Wochentag als Zwei-Buchstaben-Kürzel, groß und fett (Martin 23.08.). */
 .strip-day{
@@ -320,6 +346,21 @@ a{color:inherit;text-underline-offset:3px}
 .strip.is-rest .strip-day{color:var(--ink-3)}
 .strip-load .range{font-size:22px;font-variation-settings:'wdth' 108;letter-spacing:-.02em}
 .strip.is-rest .strip-load{font-variation-settings:'wdth' 88;font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3)}
+/* Verdict-Stand des Tages in der vierten Spalte (Martin 31.08.): nur
+   Zeichen, kein Wort. Haken = geloggt, leerer Kreis = offen, gefüllter
+   Viertel-/Halb-/Dreiviertelkreis = teilweise. Das Wort steht im
+   aria-label, damit der Zustand nicht allein an der Farbe hängt. */
+.strip-state{align-self:center;line-height:0;color:var(--ink-3)}
+.strip-state svg{
+  width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2.2;
+  stroke-linecap:round;stroke-linejoin:round;
+}
+.strip-state svg .pie{fill:currentColor;stroke:none}
+.strip-state.is-done{color:var(--good)}
+.strip-state.is-part,.strip-state.is-open{color:var(--marker)}
+/* Erledigter Tag tritt zurück (Milchglas-Regel), bleibt aber als
+   Orientierung und als Eingang für den Nachtrag stehen. */
+.strip.is-done-day .strip-day,.strip.is-done-day .strip-unit{color:var(--ink-3)}
 
 /* ═══ Fokus-Tag ═══ */
 .back{
@@ -330,7 +371,7 @@ a{color:inherit;text-underline-offset:3px}
   letter-spacing:.13em;text-transform:uppercase;
   transition:color .14s var(--ease);
 }
-.back:hover{color:var(--ink)}
+@media (hover:hover){ .back:hover{color:var(--ink)} }
 .back svg{width:12px;height:12px}
 /* Zweiter Ausgang am Seitenende — nach dem letzten Block ist der Kopf
    weit weg (Martin 23.08.). */
@@ -383,11 +424,11 @@ a{color:inherit;text-underline-offset:3px}
 .vflag.ok{color:var(--good)}
 .vflag.no{color:var(--marker)}
 /* Geloggt = eingeklappt und grau; offen bleibt tiefschwarz.
-   Der Buchstabe trägt das Urteil hinter Milchglas: stark Richtung Grund
-   abgeblendetes Grün bzw. Bernstein. */
+   Der Buchstabe trägt das Urteil hinter Milchglas — über die eigenen
+   Rollen, nicht über color-mix (Farbton bleibt erhalten). */
 .blk.is-logged .blk-name{color:var(--ink-3)}
-.blk.is-logged.is-done .blk-letter{color:color-mix(in oklch, var(--good) 30%, var(--ground))}
-.blk.is-logged.is-failed .blk-letter{color:color-mix(in oklch, var(--amber) 30%, var(--ground))}
+.blk.is-logged.is-done .blk-letter{color:var(--logged-done)}
+.blk.is-logged.is-failed .blk-letter{color:var(--logged-fail)}
 .blk-toggle{
   background:none;border:none;color:inherit;font:inherit;cursor:pointer;
   display:block;width:100%;text-align:left;padding:0;min-height:44px;
@@ -474,7 +515,7 @@ a{color:inherit;text-underline-offset:3px}
   font-family:var(--mono);font-size:11.5px;font-weight:700;
   letter-spacing:.13em;text-transform:uppercase;
 }
-.note-handle:hover{color:var(--ink)}
+@media (hover:hover){ .note-handle:hover{color:var(--ink)} }
 .note-handle svg{width:11px;height:11px;transition:transform .18s var(--ease)}
 .note-handle[aria-expanded="true"] svg{transform:rotate(180deg)}
 .note-handle + .ex-note{display:none}
@@ -542,14 +583,14 @@ a{color:inherit;text-underline-offset:3px}
 }
 .vbtn svg{width:16px;height:16px}
 .vbtn.is-word{width:auto;flex:1 1 0;padding:0 14px}
-.vbtn:hover{color:var(--ink);border-color:var(--g6)}
-.vbtn.v-done:hover{color:var(--good);border-color:var(--good)}
+@media (hover:hover){ .vbtn:hover{color:var(--ink);border-color:var(--g6)} }
+@media (hover:hover){ .vbtn.v-done:hover{color:var(--good);border-color:var(--good)} }
 .vask-label{
   font-family:var(--mono);font-size:11.5px;font-weight:700;
   letter-spacing:.13em;text-transform:uppercase;color:var(--marker);margin-bottom:10px;
 }
 .vask .vbtn{border-color:var(--amber-dim);color:var(--marker)}
-.vask .vbtn:hover{border-color:var(--marker)}
+@media (hover:hover){ .vask .vbtn:hover{border-color:var(--marker)} }
 .vstate{
   display:flex;align-items:center;gap:10px;min-height:46px;
   font-family:var(--mono);font-size:12px;font-weight:700;
@@ -565,7 +606,7 @@ a{color:inherit;text-underline-offset:3px}
   letter-spacing:.13em;text-transform:uppercase;
   text-decoration:underline;text-underline-offset:3px;
 }
-.vundo:hover{color:var(--ink)}
+@media (hover:hover){ .vundo:hover{color:var(--ink)} }
 /* Pending: Tap sofort quittieren, Anzeige bleibt trotzdem Serverstand —
    gedimmt bis die Antwort da ist, nie optimistisch umgeschaltet. */
 .vstate.is-pending{opacity:.35}
@@ -595,7 +636,7 @@ a{color:inherit;text-underline-offset:3px}
   font-weight:800;font-size:17px;cursor:pointer;
   transition:border-color .14s var(--ease),color .14s var(--ease);
 }
-.feel:hover{border-color:var(--g6);color:var(--ink)}
+@media (hover:hover){ .feel:hover{border-color:var(--g6);color:var(--ink)} }
 .feel[aria-pressed="true"]{border-color:var(--amber);color:var(--amber)}
 .note-ta{
   width:100%;min-height:132px;padding:14px;
@@ -625,7 +666,7 @@ a{color:inherit;text-underline-offset:3px}
   letter-spacing:.13em;text-transform:uppercase;
   transition:color .14s var(--ease),border-color .14s var(--ease);
 }
-.whoop-copy:hover{color:var(--ink);border-color:var(--g6)}
+@media (hover:hover){ .whoop-copy:hover{color:var(--ink);border-color:var(--g6)} }
 /* Quittung: Wort statt nur Zustand, verschwindet nach 2 s von selbst. */
 .copy-toast{
   position:fixed;left:50%;bottom:28px;z-index:50;
@@ -647,7 +688,7 @@ a{color:inherit;text-underline-offset:3px}
   border:1px solid var(--rule);color:var(--ink-2);text-decoration:none;
   transition:color .14s var(--ease),border-color .14s var(--ease);
 }
-.timer-btn:hover{color:var(--ink);border-color:var(--g6)}
+@media (hover:hover){ .timer-btn:hover{color:var(--ink);border-color:var(--g6)} }
 .timer-btn svg{width:18px;height:18px;fill:none;stroke:currentColor;
   stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 /* Long-Press auf der Zeile darf keine Textauswahl/iOS-Callout ziehen. */
@@ -663,7 +704,6 @@ a{color:inherit;text-underline-offset:3px}
 
 <header class="rail">
   <button class="rail-week" id="railWeek" type="button" hidden></button>
-  <span class="rail-meso" id="railMeso"></span>
   <span class="rail-link" id="railLink" role="status"></span>
 </header>
 
@@ -998,16 +1038,35 @@ const nstore = {
   mirrorWrite(all){
     try { localStorage.setItem(NKEY, JSON.stringify(all)); } catch(e){}
   },
-  set(iso, text, at){
+  /* dirty = auf dem Gerät, aber noch nicht beim Server. Der Entwurf wird bei
+     jeder Eingabe geschrieben; ohne ihn löschte ein Netzfehler den einzigen
+     Text, den Martin freiwillig schreibt (Bug 30.08.). */
+  set(iso, text, at, dirty){
     const all = this.mirrorRead();
     if (text && text.trim()){
-      this.cache[iso] = { text, at };
+      this.cache[iso] = { text, at, dirty: !!dirty };
       all[iso] = this.cache[iso];
     } else {
       delete this.cache[iso];
       delete all[iso];
     }
     this.mirrorWrite(all);
+  },
+  /* Ungesynchte Entwürfe nachschieben, sobald der Rückkanal wieder trägt. */
+  async flush(){
+    if (backendMode !== 'http') return;
+    const all = this.mirrorRead();
+    for (const iso of Object.keys(all)){
+      if (!all[iso] || !all[iso].dirty) continue;
+      try {
+        const r = await linkFetch('./save_note.php', {
+          method:'POST', headers:{ 'Content-Type':'application/json' },
+          body: JSON.stringify({ session_key: iso, note_date: iso,
+                                 note_text: all[iso].text, session_feel: 0 }) });
+        if (!r.ok) throw new Error(r.status);
+        this.set(iso, all[iso].text, all[iso].at, false);
+      } catch(e){ return; }   // weiter offline — Entwurf bleibt liegen
+    }
   },
   async hydrate(from, to){
     if (backendMode === 'http'){
@@ -1021,11 +1080,16 @@ const nstore = {
         });
         const all = this.mirrorRead();
         Object.keys(all).forEach(iso => {
+          // Ungesynchter Entwurf überlebt den Abgleich, sonst wäre er weg.
+          if (all[iso] && all[iso].dirty) return;
           if (iso >= from && iso <= to && !fresh[iso]){ delete all[iso]; delete this.cache[iso]; }
         });
-        Object.assign(all, fresh);
+        Object.keys(fresh).forEach(iso => {
+          if (all[iso] && all[iso].dirty) return;   // Entwurf schlägt Serverstand
+          all[iso] = fresh[iso]; this.cache[iso] = fresh[iso];
+        });
         this.mirrorWrite(all);
-        Object.assign(this.cache, fresh);
+        await this.flush();
       } catch(e){
         Object.assign(this.cache, this.mirrorRead());
         if (linkState !== 'auth') setLink('stale');
@@ -1146,6 +1210,15 @@ const elApp = document.getElementById('apparat');
 const CHEV = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>';
 const ARROW = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
 const CHECK = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>';
+
+/* Zustandszeichen der Wochenliste. Gezeichnete Strich-SVGs wie die
+   Typ-Symbole; der gefüllte Sektor läuft im Uhrzeigersinn ab 12 Uhr. */
+const RING = '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"/></svg>';
+const PIE = {
+  1: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path class="pie" d="M12 12V4a8 8 0 0 1 8 8z"/></svg>',
+  2: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path class="pie" d="M12 12V4a8 8 0 0 1 0 16z"/></svg>',
+  3: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path class="pie" d="M12 12V4a8 8 0 1 1-8 8z"/></svg>'
+};
 const BACK = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>';
 const STOPW = '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="14" r="7"/><path d="M12 14v-4M10 3h4"/></svg>';
 
@@ -1191,6 +1264,20 @@ function headMarkup(d){
   return `<h1 class="today-what${raw.length > 30 ? ' is-l' : ''}">${esc(raw)}</h1>`;
 }
 
+/* Ruhetag: worauf er zuläuft. Ohne die Zeile bleiben nach dem
+   Begründungs-Griff rund 400px leer. */
+function restLine(days, i){
+  for (let k = i + 1; k < days.length; k++){
+    const d = days[k];
+    if (d.type === 'rest') continue;
+    const when = k === i + 1 ? 'morgen' : d.day;
+    const what = d.focus ? focusLabel(d.focus)
+                         : (d.einheit && d.einheit !== '—' ? d.einheit : '');
+    return `<p class="rest-line">Nächste Einheit ${esc(when)}${what ? ' · ' + esc(what) : ''}</p>`;
+  }
+  return '';
+}
+
 function renderWeek(){
   const days = week.days || [];
   let idx = days.findIndex(d => d.isoDate === todayIso);
@@ -1198,17 +1285,26 @@ function renderWeek(){
   if (idx < 0) idx = 0;
   const today = days[idx];
   const o = dayObject(today, week);
-  const fig = objFigure(o);
+  /* Fokus-Tag: der Inhalt steht groß, die Kennzahl entfällt (Martin 31.08.).
+     Die alte Zahl war die Spitze irgendeiner Übung, nicht die des Tages, und
+     nannte ihre Herkunft nie. Der Titel stand dadurch auch nicht mehr doppelt
+     (Skirt-Zeile plus H1). */
+  const shorts = today.focus ? focusShorts(today.focus) : [];
+  const fig = today.focus ? null : objFigure(o);
 
   elWeek.innerHTML = `
     <section class="today">
       <p class="today-when"><b>${esc(today.day)}</b>${today.focus ? ' · ' + esc(focusLabel(today.focus)) : ''}</p>
-      ${headMarkup(today)}
+      ${shorts.length
+        ? `<p class="today-list">${shorts.map(esc).join(' <span class="sep">·</span> ')}</p>`
+        : headMarkup(today)}
 
       ${fig ? `<div class="today-figure">
           <span class="load-num">${fig.n}</span>
           <span class="load-unit">${esc(fig.u)}</span>
         </div>` : ''}
+
+      ${today.type === 'rest' ? restLine(days, idx) : ''}
 
       ${!today.focus && today.wod ? today.wod.map(wodMarkup).join('') : ''}
       ${!today.focus && !today.wod && today.sub ? `<p class="today-sub">${esc(today.sub)}</p>` : ''}
@@ -1256,6 +1352,35 @@ const TYPEICON = {
   rest: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6v12M15 6v12"/></svg>'
 };
 
+/* Kurznamen der Kernblöcke eines Fokus-Tags — eine Quelle für die
+   Wochenzeile und die Tageskarte, damit beide nie auseinanderlaufen. */
+function focusShorts(focus){
+  const f = (week.focusDays || {})[focus];
+  if (!f) return [];
+  return [...new Set((f.blocks || [])
+    .filter(b => b.prio !== 'optional')
+    .map(b => shortName(b.kurz || b.title)))];
+}
+
+/* Verdict-Stand eines vergangenen oder heutigen Fokus-Tags. Zählt dieselben
+   Einheiten, die verdictMarkup() taggt (vUnits), damit die Schlüssel
+   identisch sind; optionale Blöcke zählen nicht mit. Zukünftige Tage haben
+   keinen Zustand — dort kann nichts offen sein. */
+function dayState(d){
+  if (!d.focus || d.isoDate > todayIso) return null;
+  const f = (week.focusDays || {})[d.focus];
+  if (!f) return null;
+  const ids = (f.blocks || [])
+    .filter(b => b.prio !== 'optional')
+    .flatMap(b => vUnits(d.isoDate, b.letter).map(u => u.ex_id));
+  if (!ids.length) return null;
+  const n = ids.filter(id => vstore.get(d.isoDate, id)).length;
+  if (n === 0)          return { cls:'is-open', svg:RING,  label:'Offen, nichts geloggt' };
+  if (n === ids.length) return { cls:'is-done', svg:CHECK, label:'Geloggt' };
+  const q = Math.min(3, Math.max(1, Math.round(n / ids.length * 4)));
+  return { cls:'is-part', svg:PIE[q], label:n + ' von ' + ids.length + ' geloggt' };
+}
+
 function stripMarkup(d, isToday, isLast){
   const o = dayObject(d, week);
   const nav = d.focus ? 1 : (d.wod && d.wod.length ? 2 : 0);
@@ -1265,9 +1390,7 @@ function stripMarkup(d, isToday, isLast){
      neben der Lastspanne, Übungsname führt). Box-Tage: die Einheit. */
   let unit;
   if (d.focus && (week.focusDays || {})[d.focus]){
-    const f = week.focusDays[d.focus];
-    const shorts = (f.blocks || []).filter(b => b.prio !== 'optional').map(b => shortName(b.kurz || b.title));
-    unit = [...new Set(shorts)].join(', ');
+    unit = focusShorts(d.focus).join(', ');
   } else if (o.kind === 'rest'){
     unit = 'Ruhetag';
   } else if (d.einheit && d.einheit !== '—'){
@@ -1278,11 +1401,14 @@ function stripMarkup(d, isToday, isLast){
 
   /* Keine Lastspanne mehr in der Wochenzeile (Martin 23.08.: zu unruhig) —
      die Zahlen stehen dort, wo sie gelten: im Fokus-Tag. */
-  const loadCell = nav === 2
-    ? `<span class="strip-load is-chev" aria-hidden="true">${CHEV}</span>`
-    : '<span class="strip-load"></span>';
+  const st = dayState(d);
+  const loadCell = st
+    ? `<span class="strip-state ${st.cls}" role="img" aria-label="${esc(st.label)}">${st.svg}</span>`
+    : (nav === 2
+        ? `<span class="strip-load is-chev" aria-hidden="true">${CHEV}</span>`
+        : '<span class="strip-load"></span>');
 
-  const strip = `<${nav ? 'button' : 'div'} class="strip${o.kind === 'rest' ? ' is-rest' : ''}${isToday ? ' is-today' : ''}${isLast ? ' is-last' : ''}" data-nav="${nav}" data-iso="${esc(d.isoDate)}"${nav === 1 ? ` data-focus="${esc(d.focus)}"` : ''}${nav === 2 ? ` data-day="${esc(d.isoDate)}" aria-expanded="false" aria-controls="db-${esc(d.isoDate)}"` : ''}${nav ? ' type="button"' : ''}>
+  const strip = `<${nav ? 'button' : 'div'} class="strip${o.kind === 'rest' ? ' is-rest' : ''}${isToday ? ' is-today' : ''}${st && st.cls === 'is-done' ? ' is-done-day' : ''}${isLast ? ' is-last' : ''}" data-nav="${nav}" data-iso="${esc(d.isoDate)}"${nav === 1 ? ` data-focus="${esc(d.focus)}"` : ''}${nav === 2 ? ` data-day="${esc(d.isoDate)}" aria-expanded="false" aria-controls="db-${esc(d.isoDate)}"` : ''}${nav ? ' type="button"' : ''}>
     <span class="strip-when">
       <span class="strip-day" aria-label="${esc(d.day)}">${esc(d.kurzTag || d.day)}</span>
       <span class="strip-date">${esc(d.date)}</span>
@@ -1352,6 +1478,8 @@ function vTime(at){
 function showFocus(letter){
   const f = (week.focusDays || {})[letter];
   if (!f) return;
+  // Frische Ansicht startet nie mit offener Rückfrage; ein rerender schon.
+  if (!showFocus.rerender) askOpen = null;
   currentFocus = letter;
   const iso = f.isoDate || focusDate(letter);
 
@@ -1733,7 +1861,8 @@ function noteMarkup(isoDate, dayLabel){
     <textarea class="note-ta" aria-label="Notiz zur Einheit" placeholder="Tatsächliche Lasten, Abbrüche, was sich angefühlt hat wie.">${n ? esc(n.text) : ''}</textarea>
     <div class="note-foot">
       <button class="note-save" type="button">Eintragen</button>
-      <span class="note-state">${n ? 'Eingetragen · ' + vTime(n.at) : ''}</span>
+      <span class="note-state">${n ? (n.dirty ? 'Auf dem Gerät · noch nicht eingetragen'
+                                              : 'Eingetragen · ' + vTime(n.at)) : ''}</span>
     </div>
   </section>`;
 }
@@ -1742,36 +1871,53 @@ function wireNote(root){
   root.querySelectorAll('.note-block').forEach(wireNoteBlock);
 }
 function wireNoteBlock(block){
-  const save = block.querySelector('.note-save');
+  const save  = block.querySelector('.note-save');
   const state = block.querySelector('.note-state');
+  const ta    = block.querySelector('.note-ta');
+  const iso   = block.dataset.date;
+
+  /* Entwurf bei jeder Eingabe auf dem Gerät sichern. Die Verdict-Taps puffern
+     offline, die Notiz tat es nicht — ein Funkloch löschte den Text. */
+  let t = null;
+  ta.addEventListener('input', () => {
+    clearTimeout(t);
+    t = setTimeout(() => {
+      nstore.set(iso, ta.value, new Date().toISOString(), true);
+      if (!state.classList.contains('err')) state.textContent = '';
+    }, 400);
+  });
+
   save.addEventListener('click', () => {
+    clearTimeout(t);
+    const text = ta.value;
     state.className = 'note-state';
     state.textContent = 'Wird eingetragen …';
     linkFetch('./save_note.php', {
       method:'POST',
       headers:{ 'Content-Type':'application/json' },
       body: JSON.stringify({
-        session_key: block.dataset.date,
-        note_date: block.dataset.date,
-        note_text: block.querySelector('.note-ta').value,
-        session_feel: 0
+        session_key: iso, note_date: iso, note_text: text, session_feel: 0
       })
     })
       .then(r => {
         if (!r.ok) throw new Error(r.status);
         const at = new Date().toISOString();
-        nstore.set(block.dataset.date, block.querySelector('.note-ta').value, at);
+        nstore.set(iso, text, at, false);
         state.textContent = 'Eingetragen · ' + vTime(at);
       })
       .catch(() => {
+        // Wortlaut wie bei den Verdicts: der Text ist nicht weg, nur nicht dort.
+        nstore.set(iso, text, new Date().toISOString(), true);
         state.className = 'note-state err';
-        state.textContent = 'Kein Backend in dieser Vorschau — nichts gespeichert.';
+        state.textContent = 'Nicht gespeichert · auf dem Gerät gesichert';
       });
   });
 }
 
 function showWeek(){
   currentFocus = null;
+  askOpen = null;   // die Rückfrage überlebt keine Navigation
+  renderWeek();     // Verdict-Stand der Zeilen auffrischen
   elFocus.hidden = true; elWeek.hidden = false;
   elFocus.style.transition = ''; elFocus.style.transform = '';
   window.scrollTo(0, 0);
@@ -1858,6 +2004,20 @@ function showWeek(){
   }, true);
 })();
 
+/* ── Rückfrage „Woran lag's?" verlassen ── Ein Tap außerhalb der beiden
+   Schaltflächen bricht ab. Ohne diesen Ausgang führte ein Fehltap auf einer
+   technical-Übung in eine Sackgasse, aus der nur ein Reload oder ein
+   geschriebener miss herausführte. Der Tap bricht nur ab und schlägt nicht
+   durch — sonst hätte er zwei Wirkungen, und genau das reparieren wir hier. ── */
+elFocus.addEventListener('click', e => {
+  if (!askOpen || e.target.closest('.vask')) return;
+  e.stopPropagation(); e.preventDefault();
+  askOpen = null;
+  /* Wie der interne rerender(): Flag setzen, sonst springt die Seite
+     beim Abbrechen nach oben. */
+  if (currentFocus){ showFocus.rerender = true; showFocus(currentFocus); showFocus.rerender = false; }
+}, true);
+
 /* ── Apparat (nur Desktop-Randspalte) ── */
 function renderApparat(kind, ctx){
   let body = '';
@@ -1886,7 +2046,6 @@ function renderRail(){
   el.setAttribute('aria-label', canSwitch
     ? (preview ? 'Zurück zur laufenden Woche' : 'Vorschau auf die nächste Woche')
     : 'Woche ' + week.id);
-  document.getElementById('railMeso').textContent = week.meso || week.label || '';
 }
 
 async function switchWeek(){

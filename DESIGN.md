@@ -18,6 +18,8 @@ colors:
   amber-dim: "oklch(34% 0.075 68)"
   good: "oklch(80% 0.14 152)"
   good-dim: "oklch(32% 0.07 152)"
+  logged-done: "oklch(40% 0.080 152)"
+  logged-fail: "oklch(40% 0.080 68)"
 typography:
   display:
     fontFamily: "Archivo, system-ui, sans-serif"
@@ -136,8 +138,11 @@ kein Verlauf. Es ist Licht im abgedunkelten Raum, keine Reklame.
 Zustand trägt Wort oder Zeichen (Steht/Fail·Technik/Offen, ✓/✕).
 
 **Die Milchglas-Regel.** Erledigtes tritt hinter Milchglas: geloggte
-Block-Buchstaben stehen in `color-mix(in oklch, <akzent> 30%, var(--ground))`.
-Tiefschwarz (g10) gehört nur dem Offenen.
+Block-Buchstaben stehen in `--logged-done` bzw. `--logged-fail` — eigene
+Rollen mit erhaltenem Farbton (152° / 68°), nicht als Mischung gegen den
+Grund. Die frühere `color-mix`-Fassung zog auch den Farbton mit und ließ
+Done und Fail auf 24° zusammenfallen (gemessen 30.08.). Tiefschwarz (g10)
+gehört nur dem Offenen.
 
 ## Typography
 
@@ -153,7 +158,10 @@ gilt global.
 
 ### Hierarchy
 - **Display** (800–900, clamp(2rem–3.25rem) bzw. Kennzahl bis clamp(4.25rem–6rem),
-  lh ≤1, −0.03…−0.05em, wdth 88/124): Tagestitel und Tages-Kennzahl.
+  lh ≤1, −0.03…−0.05em, wdth 88/124): Tagestitel und Tages-Kennzahl. Auf
+  Fokus-Tagen führt seit dem 31.08. der Inhalt statt einer Zahl: dieselben
+  Kurznamen wie in Spalte 3 der Wochenzeile, clamp(1.5rem–2.05rem), wdth 112.
+  Eine Tages-Kennzahl ohne benannte Quelle steht nicht mehr auf der Karte.
 - **Headline** (800, clamp(1.9rem–3rem), wdth 86): Fokus-Titel.
 - **Title** (800, 23px, wdth 112): Repschema-Zeile „5 × 2 @ BW" — führt die
   Übung; 20px/700/wdth 92 für Übungsnamen, 16px für Tageszeilen.
@@ -171,8 +179,10 @@ mehrstufige Lastaufbau wird zum Teststreifen.
 
 Eine Spalte, max. 520px-Lesefluss am Handy; Desktop (≥1100px) zweispaltig
 1fr + 300px Apparat-Randspalte, Container max 1320px. Sticky-Schiene oben
-(52px) trägt Wochen-ID und Meso genau einmal. Wochenliste als Grid
-92px · 22px · 1fr · auto (Tag · Typ-Symbol · Einheit · Last); Heute-Zeile
+(52px) trägt die Wochen-ID links und das Verbindungszeichen rechts; die
+Meso-Angabe entfällt am Handy ganz (Martin 31.08.: im Gym irrelevant).
+Wochenliste als Grid 92px · 22px · 1fr · auto (Tag · Typ-Symbol · Einheit ·
+Verdict-Zustand); Heute-Zeile
 mit Bernstein-Feld (`color-mix(amber 14%, ground)`), Ruhetag mit g1-Feld,
 beide über Zeilenbreite (Bleed ±14px). Rhythmus: 10/14/16/20/30px;
 Blockkopf → Inhalt bewusst eng (10px).
@@ -226,8 +236,13 @@ die Signaturform: aneinandergesetzte Bänder, Ton steigt mit der Last
 - **Save:** wie Go-Button; Fehlerzustand als Amber-Textzeile.
 
 ### Navigation
-- Sticky-Schiene: Mono-Label „2026 W34" links, Meso rechts (entfällt <430px).
-  Keine Wochenwahl am Handy. Zurück-Pfeil als Strich-SVG + „Zur Woche".
+- Sticky-Schiene: Mono-Label „2026 W34" links, Verbindungszeichen rechts.
+  Keine Meso-Angabe. Zurück-Pfeil als Strich-SVG + „Zur Woche".
+- **Zustandszeichen der Wochenliste** in der vierten Spalte, nur Zeichen,
+  kein Wort (Martin 31.08.): Haken = geloggt, leerer Kreis = offen,
+  gefüllter Viertel-/Halb-/Dreiviertelkreis = teilweise. Grün für geloggt,
+  Bernstein sonst; das Wort steht im `aria-label`. Ein geloggter Tag tritt
+  grau zurück, bleibt aber stehen — er ist der Eingang zum Nachtrag.
 - **Verbindungszeichen** ganz rechts, dauerhaft, nie als Satz: Wolke =
   Serverstand, durchgestrichene Wolke = Funkloch (angezeigt wird der
   Gerätespiegel), Schloss = Secret abgelehnt, Gerät = Stub ohne Server.

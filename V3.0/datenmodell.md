@@ -139,7 +139,7 @@ Ersetzt das handgeschriebene `data.js` als Wahrheit. Trägt alle Prosa
           "block_id": "B",
           "prio": "required",
           "min": 16,
-          "title": "Squat Snatch — Singles",
+          "title": "Squat Snatch",
           "superset": false,
           "exercises": [
             {
@@ -170,9 +170,12 @@ Regeln:
 
 - **`focus_label`** am Tag (Schema-Anforderung 1). Wochenliste zeigt
   `focus_label` + Kurznamen der required-Blöcke (generiert).
-- **Titel bleiben sauber** — Klammerzusätze wie „(Stufe wiederholt)" gehören in
-  `note`/`warum`, nie in `title` (Schema-Anforderung 5). Der Generator übernimmt
-  Titel wörtlich; Lint im Build: Klammern im Titel = Warnung.
+- **Titel bleiben sauber** — `title` ist NUR der Übungs- bzw. Blockname
+  („Squat Snatch", „Core"). Zusätze jeder Art — Klammern wie „(Stufe
+  wiederholt)" ebenso wie Gedankenstrich-Anhängsel wie „— Singles + Video"
+  — gehören in `note`/`warum`, nie in `title` (Schema-Anforderung 5,
+  verschärft 01.09.2026 nach Martin-Feedback). Der Generator übernimmt Titel
+  wörtlich; Lint im Build: Klammern oder Gedankenstrich im Titel = Warnung.
 - **`warum` Pflicht** an jeder Fokus-Übung (maschinenerzeugt aus der Ableitung,
   Übergabe 5.2); Handy-Payload strippt es (handy-konzept §2).
 - **`superset: true` am Block**: Rest steht dann am Block und gilt dem Paar,
@@ -288,7 +291,7 @@ const DATA = {
         last_spanne: [40, 60],            // generiert, nur mode:kg
         zeit_spanne: [45, 70],            // generiert aus block.min
         blocks: [
-          { block_id: "B", prio: "required", title: "Squat Snatch — Singles",
+          { block_id: "B", prio: "required", title: "Squat Snatch",
             superset: false,
             exercises: [
               { ex_id: "snatch", kurz: "Snatch",

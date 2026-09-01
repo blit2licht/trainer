@@ -11,7 +11,8 @@ Der Generator
     Kurzform je Fokus-Tag (datenmodell §5).
   - REICHERT an: kurz aus der Registry, generierte kurzform / last_spanne /
     zeit_spanne (nie redundant in der Quelle gespeichert).
-  - LINTET: Klammern im Blocktitel = Warnung (Planungsprosa gehört in note,
+  - LINTET: Klammern oder Gedankenstrich-Zusätze im Blocktitel = Warnung
+    (Titel ist nur der Übungs-/Blockname; Planungsprosa gehört in note,
     nicht in den Titel — Schema-Anforderung 5).
 
 SCHARF seit 30.08.2026: Standard-Ausgabe ist website/data.js. Der Generator
@@ -73,6 +74,10 @@ def build_day(day: dict, reg: dict, warns: list[str]) -> dict:
         if "(" in title or ")" in title:
             warns.append(f"{iso} Block {block.get('block_id')}: Klammern im "
                          f"Titel «{title}» — gehört in note, nicht in den Titel.")
+        if "—" in title or "–" in title:
+            warns.append(f"{iso} Block {block.get('block_id')}: Zusatz nach "
+                         f"Gedankenstrich im Titel «{title}» — Titel ist nur "
+                         f"der Übungsname, Prosa gehört in note/warum.")
         prio = block.get("prio")
         bmin = block.get("min", 0) or 0
         min_all += bmin

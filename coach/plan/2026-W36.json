@@ -30,7 +30,7 @@
           "block_id": "A",
           "prio": "required",
           "min": 18,
-          "title": "Squat Snatch — Singles + Video",
+          "title": "Squat Snatch",
           "superset": false,
           "exercises": [
             {
@@ -54,7 +54,7 @@
           "block_id": "B",
           "prio": "required",
           "min": 14,
-          "title": "Front Squat — Korridor-Aufbau",
+          "title": "Front Squat",
           "superset": false,
           "exercises": [
             {
@@ -78,7 +78,7 @@
           "block_id": "C",
           "prio": "required",
           "min": 8,
-          "title": "Pause OHS — Positionsreiz",
+          "title": "Pause OHS",
           "superset": false,
           "exercises": [
             {
@@ -287,7 +287,7 @@
           "block_id": "D",
           "prio": "required",
           "min": 10,
-          "title": "Weighted Pull-up — Retry",
+          "title": "Weighted Pull-up",
           "superset": false,
           "exercises": [
             {

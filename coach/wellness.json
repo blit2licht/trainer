@@ -1,39 +1,7 @@
 {
-  "generated": "2026-08-30T06:53:55+00:00",
+  "generated": "2026-09-03T12:54:44+00:00",
   "source": "intervals.icu",
   "days": [
-    {
-      "date": "2026-08-16",
-      "recovery": 38.0,
-      "hrv": 42.205067,
-      "rhr": 54,
-      "sleep_h": 7.23,
-      "sleep_score": 79.0
-    },
-    {
-      "date": "2026-08-17",
-      "recovery": 32.0,
-      "hrv": 39.142117,
-      "rhr": 57,
-      "sleep_h": 6.52,
-      "sleep_score": 77.0
-    },
-    {
-      "date": "2026-08-18",
-      "recovery": 56.0,
-      "hrv": 50.105404,
-      "rhr": 53,
-      "sleep_h": 7.34,
-      "sleep_score": 81.0
-    },
-    {
-      "date": "2026-08-19",
-      "recovery": 86.0,
-      "hrv": 58.36177,
-      "rhr": 46,
-      "sleep_h": 7.94,
-      "sleep_score": 87.0
-    },
     {
       "date": "2026-08-20",
       "recovery": 41.0,
@@ -121,21 +89,41 @@
       "rhr": 48,
       "sleep_h": 7.48,
       "sleep_score": 90.0
+    },
+    {
+      "date": "2026-08-31",
+      "recovery": 44.0,
+      "hrv": 41.929256,
+      "rhr": 53,
+      "sleep_h": 7.45,
+      "sleep_score": 81.0
+    },
+    {
+      "date": "2026-09-01",
+      "recovery": 60.0,
+      "hrv": 48.327705,
+      "rhr": 49,
+      "sleep_h": 6.86,
+      "sleep_score": 84.0
+    },
+    {
+      "date": "2026-09-02",
+      "recovery": 80.0,
+      "hrv": 56.360817,
+      "rhr": 49,
+      "sleep_h": 6.38,
+      "sleep_score": 84.0
+    },
+    {
+      "date": "2026-09-03",
+      "recovery": 84.0,
+      "hrv": 59.224373,
+      "rhr": 46,
+      "sleep_h": 5.73,
+      "sleep_score": 73.0
     }
   ],
   "rides": [
-    {
-      "date": "2026-08-17",
-      "distance_km": 39.9,
-      "moving_time_min": 99,
-      "avg_hr": 134
-    },
-    {
-      "date": "2026-08-18",
-      "distance_km": 23.9,
-      "moving_time_min": 87,
-      "avg_hr": 132
-    },
     {
       "date": "2026-08-23",
       "distance_km": 37.2,
@@ -147,6 +135,18 @@
       "distance_km": 37.1,
       "moving_time_min": 78,
       "avg_hr": 127
+    },
+    {
+      "date": "2026-08-30",
+      "distance_km": 74.6,
+      "moving_time_min": 154,
+      "avg_hr": 133
+    },
+    {
+      "date": "2026-09-01",
+      "distance_km": 47.8,
+      "moving_time_min": 100,
+      "avg_hr": 139
     }
   ]
 }

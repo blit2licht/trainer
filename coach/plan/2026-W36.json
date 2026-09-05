@@ -379,37 +379,40 @@
     },
     {
       "iso_date": "2026-09-05",
-      "day_type": "box",
-      "einheit": "Upper-Strength + Step-up/Bench-EMOM",
-      "sub": "Superset 3 Rd: 8/8 Seated DB Press · 10 Reverse Flys · 15 Face Pulls → EMOM 18: 16 Goblet Step-ups @ 20 · 9 Bench @ 42,5 + Max Cal · Rest",
-      "plan_note": "Moderater Press-/Engine-Tag, kein Grip-Konflikt zu Do (Fr-Ruhe dazwischen). Bench L2 42,5 reicht — Brust/Trizeps hatte ggf. schon der Do-Layer. Cals gleichmäßig, kein Score-Jagen.",
-      "warum": "Moderater Press- und Engine-Tag. Die Freitags-Ruhe liegt dazwischen, also kein Griff-Konflikt zum Gymnastics-Tag. Bankdrücken auf L2 mit 42,5 reicht — den Brust-Trizeps-Reiz hatte womöglich schon der Donnerstag-Layer. Cals gleichmäßig verteilen, kein Score-Jagen.",
-      "wod": [
-        {
-          "struktur": "Superset 3 Runden",
-          "bewegungen": [
-            { "reps": "8/8", "name": "Alternating Seated DB Press", "detail": "" },
-            { "reps": "10", "name": "Bent Over Reverse Flys", "detail": "" },
-            { "reps": "15", "name": "Banded Face Pulls", "detail": "1 min Rest zwischen den Runden" }
-          ]
-        },
-        {
-          "struktur": "EMOM 18 · 6 Runden à 3 min",
-          "bewegungen": [
-            { "reps": "16", "name": "Alt Goblet Hold Step Ups", "detail": "8/Seite · DB 20 kg" },
-            { "reps": "9", "name": "Bench Press + Max Cal", "detail": "42,5 kg · Rest der Minute Cals" },
-            { "reps": "—", "name": "Minute 3: Rest", "detail": "" }
-          ]
-        }
-      ]
+      "day_type": "rest",
+      "plan_note": "Ausgefallen (Martin 05.09.). Geplant war Upper-Strength + Step-up/Bench-EMOM. Kein Nachholen — Woche läuft Di/Do/So, zwei Ruhetage vor dem Team-WOD.",
+      "warum": "Ausgefallen. Der geplante Press- und Engine-Tag wird nicht nachgeholt; die Woche läuft mit Dienstag, Donnerstag und dem Sonntags-Team-WOD."
     },
     {
       "iso_date": "2026-09-06",
-      "day_type": "ride",
-      "einheit": "Ride (sozial, wetterabhängig)",
-      "sub": "Z1/Z2",
-      "plan_note": "Wetter gut → Standard-Sonntagsride Z1/Z2. Wetter schlecht → So-Box als Alternative brauchbar (Back Squat no-lockout 8-8-6-6-4 moderat + 5×2:00-Intervalle Power Clean/Pull-up/BJO, L2 60 kg, RPE ≤7-8 — 2 Tage nach Fokus B unkritisch). Sonntagslast → Mo der W37 Standard-Ruhe, in beiden Fällen.",
-      "warum": "Bei gutem Wetter der Standard-Sonntagsride in Z1/Z2. Bei schlechtem Wetter ist die Sonntags-Box eine brauchbare Alternative (Back Squat moderat + Intervalle, RPE ≤7-8) — zwei Tage nach dem Gymnastics-Tag unkritisch. So oder so ist der Montag der W37 ein Ruhetag."
+      "day_type": "box",
+      "einheit": "Team-WOD „FFR + South + West“",
+      "sub": "Teams of 2 · 12 Rd (4 je AMRAP) à 2:30 + 30 s Rest · Score Total Cals",
+      "plan_note": "Ride entfallen (05.09. kein Cycling möglich). Team-WOD statt Ride, L2/RX-Lasten unkritisch. Caps: RPE ≤8, Cals gleichmäßig, kein Sprint in Rd 4. Split BPU 5er kipping, WB 10er, Swings 15er; Cals Rower/Bike Erg, nicht Ski. Grip/Pulling vier Tage vor Gymnastics-Test okay; WB-Quadlast vor Di-Testblock durch Fr/Sa-Ruhe und Mo-Ruhe abgefedert.",
+      "warum": "Team-WOD statt Ride. RX-Lasten sind unkritisch, die Last steckt in der Struktur: Cals gleichmäßig, RPE höchstens 8, kein Score-Jagen in der letzten Runde. Burpee-Pull-ups in 5ern kipping, Wallballs in 10ern, Swings in 15ern, Cals auf Rower oder Bike Erg. Montag der W37 bleibt Ruhetag.",
+      "wod": [
+        {
+          "struktur": "AMRAP 2:30 · 4 Runden",
+          "bewegungen": [
+            { "reps": "20", "name": "Burpee Pull-ups", "detail": "kipping, 5er-Splits" },
+            { "reps": "Max", "name": "Cal any Machine", "detail": "Rower/Bike Erg" }
+          ]
+        },
+        {
+          "struktur": "AMRAP 2:30 · 4 Runden",
+          "bewegungen": [
+            { "reps": "40", "name": "Wallball Shots", "detail": "9 kg · 10er-Splits" },
+            { "reps": "Max", "name": "Cal any Machine", "detail": "Rower/Bike Erg" }
+          ]
+        },
+        {
+          "struktur": "AMRAP 2:30 · 4 Runden",
+          "bewegungen": [
+            { "reps": "60", "name": "KB Swings", "detail": "24 kg · 15er-Splits" },
+            { "reps": "Max", "name": "Cal any Machine", "detail": "30 s Rest zwischen allen Runden" }
+          ]
+        }
+      ]
     }
   ]
 }

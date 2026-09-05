@@ -480,59 +480,62 @@ const DATA = {
       },
       {
         "iso_date": "2026-09-05",
+        "day_type": "rest",
+        "warum": "Ausgefallen. Der geplante Press- und Engine-Tag wird nicht nachgeholt; die Woche läuft mit Dienstag, Donnerstag und dem Sonntags-Team-WOD."
+      },
+      {
+        "iso_date": "2026-09-06",
         "day_type": "box",
-        "einheit": "Upper-Strength + Step-up/Bench-EMOM",
-        "sub": "Superset 3 Rd: 8/8 Seated DB Press · 10 Reverse Flys · 15 Face Pulls → EMOM 18: 16 Goblet Step-ups @ 20 · 9 Bench @ 42,5 + Max Cal · Rest",
+        "einheit": "Team-WOD „FFR + South + West“",
+        "sub": "Teams of 2 · 12 Rd (4 je AMRAP) à 2:30 + 30 s Rest · Score Total Cals",
         "wod": [
           {
-            "struktur": "Superset 3 Runden",
+            "struktur": "AMRAP 2:30 · 4 Runden",
             "bewegungen": [
               {
-                "reps": "8/8",
-                "name": "Alternating Seated DB Press",
-                "detail": ""
+                "reps": "20",
+                "name": "Burpee Pull-ups",
+                "detail": "kipping, 5er-Splits"
               },
               {
-                "reps": "10",
-                "name": "Bent Over Reverse Flys",
-                "detail": ""
-              },
-              {
-                "reps": "15",
-                "name": "Banded Face Pulls",
-                "detail": "1 min Rest zwischen den Runden"
+                "reps": "Max",
+                "name": "Cal any Machine",
+                "detail": "Rower/Bike Erg"
               }
             ]
           },
           {
-            "struktur": "EMOM 18 · 6 Runden à 3 min",
+            "struktur": "AMRAP 2:30 · 4 Runden",
             "bewegungen": [
               {
-                "reps": "16",
-                "name": "Alt Goblet Hold Step Ups",
-                "detail": "8/Seite · DB 20 kg"
+                "reps": "40",
+                "name": "Wallball Shots",
+                "detail": "9 kg · 10er-Splits"
               },
               {
-                "reps": "9",
-                "name": "Bench Press + Max Cal",
-                "detail": "42,5 kg · Rest der Minute Cals"
+                "reps": "Max",
+                "name": "Cal any Machine",
+                "detail": "Rower/Bike Erg"
+              }
+            ]
+          },
+          {
+            "struktur": "AMRAP 2:30 · 4 Runden",
+            "bewegungen": [
+              {
+                "reps": "60",
+                "name": "KB Swings",
+                "detail": "24 kg · 15er-Splits"
               },
               {
-                "reps": "—",
-                "name": "Minute 3: Rest",
-                "detail": ""
+                "reps": "Max",
+                "name": "Cal any Machine",
+                "detail": "30 s Rest zwischen allen Runden"
               }
             ]
           }
         ],
-        "warum": "Moderater Press- und Engine-Tag. Die Freitags-Ruhe liegt dazwischen, also kein Griff-Konflikt zum Gymnastics-Tag. Bankdrücken auf L2 mit 42,5 reicht — den Brust-Trizeps-Reiz hatte womöglich schon der Donnerstag-Layer. Cals gleichmäßig verteilen, kein Score-Jagen."
-      },
-      {
-        "iso_date": "2026-09-06",
-        "day_type": "ride",
-        "einheit": "Ride (sozial, wetterabhängig)",
-        "sub": "Z1/Z2",
-        "warum": "Bei gutem Wetter der Standard-Sonntagsride in Z1/Z2. Bei schlechtem Wetter ist die Sonntags-Box eine brauchbare Alternative (Back Squat moderat + Intervalle, RPE ≤7-8) — zwei Tage nach dem Gymnastics-Tag unkritisch. So oder so ist der Montag der W37 ein Ruhetag."
+        "warum": "Team-WOD statt Ride. RX-Lasten sind unkritisch, die Last steckt in der Struktur: Cals gleichmäßig, RPE höchstens 8, kein Score-Jagen in der letzten Runde. Burpee-Pull-ups in 5ern kipping, Wallballs in 10ern, Swings in 15ern, Cals auf Rower oder Bike Erg. Montag der W37 bleibt Ruhetag."
       }
     ]
   },
@@ -1016,59 +1019,62 @@ const DATA = {
         },
         {
           "iso_date": "2026-09-05",
+          "day_type": "rest",
+          "warum": "Ausgefallen. Der geplante Press- und Engine-Tag wird nicht nachgeholt; die Woche läuft mit Dienstag, Donnerstag und dem Sonntags-Team-WOD."
+        },
+        {
+          "iso_date": "2026-09-06",
           "day_type": "box",
-          "einheit": "Upper-Strength + Step-up/Bench-EMOM",
-          "sub": "Superset 3 Rd: 8/8 Seated DB Press · 10 Reverse Flys · 15 Face Pulls → EMOM 18: 16 Goblet Step-ups @ 20 · 9 Bench @ 42,5 + Max Cal · Rest",
+          "einheit": "Team-WOD „FFR + South + West“",
+          "sub": "Teams of 2 · 12 Rd (4 je AMRAP) à 2:30 + 30 s Rest · Score Total Cals",
           "wod": [
             {
-              "struktur": "Superset 3 Runden",
+              "struktur": "AMRAP 2:30 · 4 Runden",
               "bewegungen": [
                 {
-                  "reps": "8/8",
-                  "name": "Alternating Seated DB Press",
-                  "detail": ""
+                  "reps": "20",
+                  "name": "Burpee Pull-ups",
+                  "detail": "kipping, 5er-Splits"
                 },
                 {
-                  "reps": "10",
-                  "name": "Bent Over Reverse Flys",
-                  "detail": ""
-                },
-                {
-                  "reps": "15",
-                  "name": "Banded Face Pulls",
-                  "detail": "1 min Rest zwischen den Runden"
+                  "reps": "Max",
+                  "name": "Cal any Machine",
+                  "detail": "Rower/Bike Erg"
                 }
               ]
             },
             {
-              "struktur": "EMOM 18 · 6 Runden à 3 min",
+              "struktur": "AMRAP 2:30 · 4 Runden",
               "bewegungen": [
                 {
-                  "reps": "16",
-                  "name": "Alt Goblet Hold Step Ups",
-                  "detail": "8/Seite · DB 20 kg"
+                  "reps": "40",
+                  "name": "Wallball Shots",
+                  "detail": "9 kg · 10er-Splits"
                 },
                 {
-                  "reps": "9",
-                  "name": "Bench Press + Max Cal",
-                  "detail": "42,5 kg · Rest der Minute Cals"
+                  "reps": "Max",
+                  "name": "Cal any Machine",
+                  "detail": "Rower/Bike Erg"
+                }
+              ]
+            },
+            {
+              "struktur": "AMRAP 2:30 · 4 Runden",
+              "bewegungen": [
+                {
+                  "reps": "60",
+                  "name": "KB Swings",
+                  "detail": "24 kg · 15er-Splits"
                 },
                 {
-                  "reps": "—",
-                  "name": "Minute 3: Rest",
-                  "detail": ""
+                  "reps": "Max",
+                  "name": "Cal any Machine",
+                  "detail": "30 s Rest zwischen allen Runden"
                 }
               ]
             }
           ],
-          "warum": "Moderater Press- und Engine-Tag. Die Freitags-Ruhe liegt dazwischen, also kein Griff-Konflikt zum Gymnastics-Tag. Bankdrücken auf L2 mit 42,5 reicht — den Brust-Trizeps-Reiz hatte womöglich schon der Donnerstag-Layer. Cals gleichmäßig verteilen, kein Score-Jagen."
-        },
-        {
-          "iso_date": "2026-09-06",
-          "day_type": "ride",
-          "einheit": "Ride (sozial, wetterabhängig)",
-          "sub": "Z1/Z2",
-          "warum": "Bei gutem Wetter der Standard-Sonntagsride in Z1/Z2. Bei schlechtem Wetter ist die Sonntags-Box eine brauchbare Alternative (Back Squat moderat + Intervalle, RPE ≤7-8) — zwei Tage nach dem Gymnastics-Tag unkritisch. So oder so ist der Montag der W37 ein Ruhetag."
+          "warum": "Team-WOD statt Ride. RX-Lasten sind unkritisch, die Last steckt in der Struktur: Cals gleichmäßig, RPE höchstens 8, kein Score-Jagen in der letzten Runde. Burpee-Pull-ups in 5ern kipping, Wallballs in 10ern, Swings in 15ern, Cals auf Rower oder Bike Erg. Montag der W37 bleibt Ruhetag."
         }
       ]
     }

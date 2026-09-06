@@ -2,6 +2,23 @@
 
 Kurze, verdichtete Wocheneinträge. Rohdaten bleiben in WHOOP, Strava und der Website-Datenbank.
 
+## 2026-W36 · 31. August–6. September · Meso 3 W5 — Konsolidierung: Snatch-Video, BMU 4×3, WPU 3×5
+
+**Plan befolgt** (Di/Do/So wie zuletzt geplant; Sa Box am 05.09. abgesagt, nicht nachgeholt). Mo Ruhe ✓ (rec 44 — Upgrade-Option ≥70 nicht ausgelöst) · Di Fokus A ✓ (rec 60; abends ungeplant Ride mit der Arbeit 47,7 km / 1:40 h / 282 Hm / Ø-HF 139) · Mi Ruhe (Termin) ✓ (rec 80) · Do Fokus B ✓ (rec 84) · Fr Ruhe (Termin) ✓ (rec 12 rot) · Sa ausgefallen ✓ (rec 66) · So Team-WOD „FFR + South + West" ✓ (rec 71, Strain 16,5, Notiz „Scheiss cardio workout"). Erste Woche auf Trainer 3.0 (Planquelle + generiertes data.js): Verdict-Kanal 12/12 hit (Di 6, Do 6), Notizen an allen drei Trainingstagen. Kein Deload-Trigger.
+
+**Kernbefunde:**
+- **Snatch-Ceiling 60 reproduziert** (Di, rec 60): Top-Singles 57,5 + 60 gehoben, Verdict hit, „keine fails" — der W34-Slip war kein Trend. Bar-Path-Video (seitlich) bestätigte den Empfangs-Befund an schwerer Last und verschärfte ihn (Abfahrt 1,6 s @ 57,5 / 3,1 s @ 60, ~11–12 cm Rückdrift; Zug stark) — bereits am 02.09. in state.json eingearbeitet. Neu dazu: rechter Fuß springt nach vorne rechts und landet außenrotiert. Übungswahl-Entscheid (Snatch Balance/Drop Snatch + tief empfangene Singles) beim W37-Planning fällig.
+- **FS 100×1 sauber** (Di): 2/2/1/1 @ 85/92,5/97,5/100 — Wochenziel erreicht, 102,5-Option nicht belegt. Korridor 105–107,5 → W37.
+- **BMU erstmals 4×3** (Do, rec 84): Reihenfolge 1×2, dann 4×3 — „heute sehr gut". Stufe 4×3 der Linked-Sets-Treppe erreicht; formal per Double-Einstieg statt „3er im ersten Satz", danach aber vier saubere Tripel. Zwei zusammenhängende Kontaktwochen (W35/W36) → Testsatz W37 zulässig.
+- **WPU 3×5 @ +5 erstmals sauber** (Do): oberste Treppenstufe nach dem W34-Miss (5/5/3) und dem W35-Zementieren von 3×4. Testsatz 6 Reps @ +5 → W37. Profil-Stand aktualisiert.
+- **HSPU 4×8 dritte saubere Runde, T2B 3×10 „sehr gut"** (Do) — beide testreif für W37.
+- **Pause OHS 3×2 @ 52,5/55** (Di) als Positionsreiz, hit; Layer (Delts/Bizeps Di, Brust/Trizeps Do), Core und Mobility an beiden Tagen hit.
+- **Fr rec 12 rot** (HRV 24,5 ms, RHR 62, Schlaf-Score 52): Einzeltag-Ausreißer auf einem Ruhetag, Ursache aus den Daten nicht ableitbar (kein Training am Do-Abend), Sa 66 / So 71 wieder normal. Kein Trigger (1 Tag), als akuter Hinweis mit Ablauf notiert.
+- **Körperkomposition:** W36 81,05 kg (n=5) vs. W35 81,40 = **−0,35** — erste Woche im Zielband −0,3/−0,5. Kumuliert seit W33 −0,79 in 3 Wochen (≈ −0,26/Wo). Der Band-Entscheid vom 30.08. bestätigt sich vorerst; Neubewertung W37-Review. Leistung im Defizit weiter steigend (BMU-/WPU-Stufen, Snatch 60).
+- **Nachtrag W35:** So-Ride 30.08. per Strava bestätigt — 74,5 km / 2:33 h (moving) / 395 Hm / Ø-HF 133.
+
+**Offen für W37:** Testblock (BMU max unbroken, WPU 6 @ +5, HSPU max unbroken) + FS-Korridor 105–107,5 + Snatch-Übungswahl (tiefer Empfang) + Fuß-Cue aus dem Whiteboard-Buch + T2B-Zielneusetzung + Sechs-Wochen-Review Meso 3. Mo 07.09. Ruhe-Standard nach der Sonntagslast; Testsätze nur frisch (Test-Regel).
+
 ## 2026-W35 · 24.–30. August · Meso 3 W4 — FS-Block-Start + C&J-PR in der Defizit-Dip-Woche
 
 **Plan befolgt** (alle 5 Trainingstage plangemäß; einzige Abweichung: So-Team-WOD „Waterfall" entfallen, nur Ride ~75 km angekündigt, Strava-Sync bei Review-Abschluss ausstehend). Mo Ruhe ✓ · Di Fokus A ✓ (rec 72) · Mi Box ✓ (rec 54, Strain 16,3) · Do harter Ruhetag ✓ (rec 21 rot — fiel exakt auf den geplanten Ruhetag) · Fr Fokus B ✓ (rec 49) · Sa Box ✓ (rec 78, WOD 13:25). Erste Woche ohne Session-Feel-Skala — Verdict-Kanal (alle Blöcke hit außer Di-Mobility miss) + freie Notizen tragen den Rückkanal; Skala per Martin-Entscheid 30.08. abgeschafft, Deload-Trigger umformuliert.

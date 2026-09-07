@@ -231,15 +231,39 @@ def render_js(payload: dict) -> str:
             f"const DATA = {body};\n")
 
 
+# Shell-Dateien, die in den Cache-Stempel eingehen (siehe stamp_index).
+SHELL_GLOBS = ("sw.js", "manifest*.json", "icons/*", "favicon.ico",
+               "apple-touch-icon*.png")
+
+
 def stamp_index(html_path: Path, data_text: str) -> str:
-    """Inhalts-Hash der data.js in die Einbindung von index.html schreiben.
+    """Inhalts-Hash von Payload UND Shell in die data.js-Einbindung schreiben.
 
     Ersetzt die Aufgabe des früheren publish_v30.py: die App ist seit der
     3.0-Umstellung direkt website/index.html, der Cache-Buster muss also beim
     Payload-Bau gesetzt werden. Fehlt die Einbindung, ist das ein Fehler —
     stiller Verzicht auf den Stempel hieße veralteter Plan am Handy.
+
+    Der Stempel deckt seit 07.09.2026 die komplette Schale ab, nicht mehr nur
+    data.js. Grund: der Service Worker leitet Cache-Namen und Registrierungs-URL
+    aus diesem Stempel ab. Blieb er bei einer reinen Shell-Änderung (Icons,
+    index.html, sw.js) gleich, behielt das Gerät die alte Schale — genau das
+    Symptom „neues Icon wird nicht aufgegriffen". Dateinamen gehen mit in den
+    Hash ein, damit auch eine reine Umbenennung den Stempel dreht.
     """
-    stamp = hashlib.sha1(data_text.encode("utf-8")).hexdigest()[:8]
+    h = hashlib.sha1()
+    h.update(data_text.encode("utf-8"))
+    web = html_path.parent
+    # index.html trägt den Stempel selbst — vor dem Hashen neutralisieren,
+    # sonst hinge der Hash von seinem eigenen Vorgängerwert ab.
+    h.update(html_path.name.encode("utf-8"))
+    h.update(re.sub(r"\?v=[0-9a-f]*", "?v=",
+                    html_path.read_text(encoding="utf-8")).encode("utf-8"))
+    assets = sorted({p for g in SHELL_GLOBS for p in web.glob(g) if p.is_file()})
+    for p in assets:
+        h.update(str(p.relative_to(web)).encode("utf-8"))
+        h.update(p.read_bytes())
+    stamp = h.hexdigest()[:8]
     html = html_path.read_text(encoding="utf-8")
     new_html, n = re.subn(r'src="\./data\.js(?:\?v=[^"]*)?"',
                           f'src="./data.js?v={stamp}"', html)

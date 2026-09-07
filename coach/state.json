@@ -1,14 +1,14 @@
 {
   "schema_version": 1,
-  "aktualisiert_am": "2026-09-06",
+  "aktualisiert_am": "2026-09-07",
   "aktuelle_woche": {
-    "id": "2026-W36",
-    "von": "2026-08-31",
-    "bis": "2026-09-06",
+    "id": "2026-W37",
+    "von": "2026-09-07",
+    "bis": "2026-09-13",
     "mesocycle": "Meso 3",
-    "woche_im_fokus": 5,
-    "phase": "Konsolidierung vor W37-Testblock: Snatch-Video 57,5/60 (Di) / FS-Korridor-Aufbau Richtung 100 / WPU 3×5-Retry + BMU 5×2 mit 4×3-Option (Do). Nur Di/Do/Sa frei (Mi+Fr Termin); Mo Ruhe mit Upgrade-Option nur bei Rec ≥70 + frischen Beinen; So Ride wetterabhängig.",
-    "veroeffentlichter_plan": "coach/plan/2026-W36.json (Quelle) → website/data.js (generiert)"
+    "woche_im_fokus": 6,
+    "phase": "Testblock + Meso-3-Abschluss: Mi Gymnastics-Testtag (BMU max unbroken frisch + 3×3, HSPU max, WPU Testsatz 6 @ +5, T2B nur Volumen), Do Fokus A (Drop Snatch + tief empfangene Singles 55/57,5 mit Frontal-Video, FS-Korridor 105), Sa Box Squat C&J 10 RFT @ 60. Mo Ruhe (Sonntagslast), Di Termin, Fr Ruhe (McGhee verworfen), So Abflug Charlotte NC.",
+    "veroeffentlichter_plan": "coach/plan/2026-W37.json (Quelle) → website/data.js (generiert)"
   },
   "mesocycle_plan": {
     "id": "Meso 3",
@@ -21,7 +21,7 @@
       "W34": "Mo/Di Italien (Bike, kein Box-Drop-in) — strukturierte Woche ab Mi. OHS-Zielsatz 52,5, HSPU 4×8, WPU 3×5, Snatch 60 zum zweiten Mal, BMU-Stufe wiederholt (Video-Diagnose offen). C&J-82,5 diese Woche ohne Slot, verschiebt sich. Erste echte Wiegetrend-Bewertung folgt beim W34-Review (vs. W33-Schnitt 81,84 kg).",
       "W35": "FS-Block Teil 2 (Referenz 102,5, Korridor 105-107,5) — vor dem erwarteten Defizit-Dip platzieren. Erledigt: C&J 82,5 (neuer Bestwert), FS 95×3, WPU 3×4 zementiert, HSPU 4×8 konsolidiert; So-Team-WOD entfallen (nur Ride)",
       "W36": "Konsolidierung, zweiter Gymnastics-Testblock vorbereiten — geplant: Di Fokus A (Snatch-Video 57,5/60, FS Richtung 100, Pause OHS klein), Do Fokus B (WPU 3×5-Retry, BMU 5×2/4×3-Option, HSPU 4×8 halten), Sa Box Upper/EMOM. Körperkomp-Entscheid: Band akzeptiert, Neubewertung W37-Review. Erledigt (Review 06.09.): Snatch 57,5 + 60 mit Bar-Path-Video (Ceiling reproduziert, Empfangs-Befund bestätigt, neuer Fuß-Befund), FS 100×1, Pause OHS 3×2 @ 55, BMU erstmals 4×3 (1×2 + 4×3), WPU erstmals 3×5 @ +5, HSPU 4×8 und T2B 3×10 gehalten — 12/12 Verdicts hit. Sa Box ausgefallen, So Team-WOD statt Ride (Strain 16,5), Di zusätzlich Abend-Ride 47,7 km mit der Arbeit. Gewicht W36 81,05 kg = −0,35 (erstmals im Zielband).",
-      "W37": "Testblock + Sechs-Wochen-Review Meso 3 — fällig aus den Treppen: BMU Max-Unbroken-Test (Ziel 5, 4×3 in W36), WPU Testsatz 6 @ +5 (3×5 in W36), HSPU Max-Unbroken-Test (Ziel 10, 4×8 dreifach), T2B-Zielneusetzung; FS-Korridor 105-107,5 (Stand 100×1); Snatch-Übungswahl für den tiefen Empfang + Fuß-Cue. Mo 07.09. Ruhe-Standard nach dem Sonntags-Team-WOD, Testsätze nur frisch."
+      "W37": "Testblock + Sechs-Wochen-Review Meso 3. Geplant (07.09.): drei Qualitätseinheiten Mi/Do/Sa, vier Ruhetage — Testsätze nur frisch. Mi Testtag in Grip-Reihenfolge BMU/HSPU/WPU; BMU-Treppenstufe 3×3 und Testsatz in einer Session (Max frisch zuerst). Do Snatch-Übungswahl-Entscheid eingelöst (Drop Snatch + tief empfangene Singles, Frontal-Video für den Fuß-Befund) + FS 105. Fr McGhee verworfen (Hinge nach FS-Max, Push-ups nach HSPU-Test) — Woche trägt bewusst wenig Engine. So Abflug Charlotte NC, W38 wird Reisewoche."
     },
     "deload_trigger": [
       "Recovery an ≥3 aufeinanderfolgenden Tagen rot (<34 %)",

@@ -307,7 +307,7 @@ const DATA = {
                   "rest": "2 min"
                 },
                 "whoop": "Snatch",
-                "warum": "Singles unter der Ceiling, bewusst tief empfangen — nicht hoch fangen und dann absitzen. Kein 60 und kein Ceiling-Versuch heute: die 60 steht seit letzter Woche, gearbeitet wird an der Position darunter."
+                "warum": "Singles unter der Ceiling, bewusst tief empfangen — nicht hoch fangen und dann absitzen. Fünf Sätze auf vier Stufen: die 57,5 nimmst du zweimal. Kein 60 und kein Ceiling-Versuch heute, die 60 steht seit letzter Woche — gearbeitet wird an der Position darunter."
               }
             ]
           },
@@ -815,7 +815,7 @@ const DATA = {
                     "rest": "2 min"
                   },
                   "whoop": "Snatch",
-                  "warum": "Singles unter der Ceiling, bewusst tief empfangen — nicht hoch fangen und dann absitzen. Kein 60 und kein Ceiling-Versuch heute: die 60 steht seit letzter Woche, gearbeitet wird an der Position darunter."
+                  "warum": "Singles unter der Ceiling, bewusst tief empfangen — nicht hoch fangen und dann absitzen. Fünf Sätze auf vier Stufen: die 57,5 nimmst du zweimal. Kein 60 und kein Ceiling-Versuch heute, die 60 steht seit letzter Woche — gearbeitet wird an der Position darunter."
                 }
               ]
             },

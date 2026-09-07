@@ -732,7 +732,7 @@ a{color:inherit;text-underline-offset:3px}
   <aside class="apparat" id="apparat"></aside>
 </div>
 
-<script src="./data.js?v=163bab72"></script>
+<script src="./data.js?v=28567381"></script>
 <script>
 /* ════════════════════════════════════════════════════════════════════
    DUNKELKAMMER — Rendering-Kern (aus design/dunkelkammer.html)
@@ -1761,7 +1761,10 @@ function exerciseMarkup(r, hi, single, opts){
   const setParts = String(sets || '').split('||');
   let setsMain = setParts[0].trim();
   let setsSub = (setParts[1] || '').trim();
-  const sm = setsMain.match(/^(.+?)\s+((?!sec\b|min\b)[A-Za-zÄÖÜäöü][\wÄÖÜäöüß-]*)$/);
+  /* „max" ist ein Rep-Wert, kein Zusatz: ohne die Ausnahme wandert es aus
+     „1 × max" in die Unterzeile und oben bleibt das nackte „1 ×" stehen
+     (Testsätze, 07.09.2026) — analog zu sec/min. */
+  const sm = setsMain.match(/^(.+?)\s+((?!sec\b|min\b|max\b)[A-Za-zÄÖÜäöü][\wÄÖÜäöüß-]*)$/);
   if (sm){ setsMain = sm[1]; setsSub = setsSub ? sm[2] + ' · ' + setsSub : sm[2]; }
 
   let loadInline = '', ladder = '';

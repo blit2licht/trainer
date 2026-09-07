@@ -22,6 +22,23 @@
       "note": "Ceiling-geführt (state.json load_references.squat_snatch_ceiling). Kein mechanischer Deload."
     },
     {
+      "ex_id": "drop_snatch",
+      "name": "Drop Snatch",
+      "kurz": "Drop Snatch",
+      "aliases": [
+        "Drop Snatch",
+        "Snatch Balance"
+      ],
+      "class": "generic",
+      "increment": null,
+      "rep_cap_e1rm": null,
+      "pattern": [
+        "overhead",
+        "squat"
+      ],
+      "note": "Positions-Drill fuer die tiefe Snatch-Empfangsposition (state.json load_references.squat_snatch_ceiling). Leichte Last mit Absicht, Verdict-only, keine Treppe und kein e1RM."
+    },
+    {
       "ex_id": "clean_jerk",
       "name": "Clean & Jerk",
       "kurz": "C&J",

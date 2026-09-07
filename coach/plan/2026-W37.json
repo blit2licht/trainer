@@ -55,7 +55,7 @@
               "note": "Erst gründlich aufwärmen: Hang-Arbeit, 2-3 Einzel-BMU als Kontakt, dann der Testsatz. Reps exakt loggen."
             },
             {
-              "ex_id": "bmu_drill",
+              "ex_id": "bmu",
               "kurz": "BMU Arbeitssätze",
               "target": {
                 "mode": "bw",
@@ -222,7 +222,6 @@
           "exercises": [
             {
               "ex_id": "drop_snatch",
-              "kurz": "Drop Snatch",
               "target": {
                 "mode": "kg",
                 "sets": 3,

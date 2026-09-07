@@ -49,10 +49,10 @@ const DATA = {
                 "warum": "Max unbroken, frisch als erster Arbeitssatz. Stand ist 3, das Ziel 5. Nach dem Warm-up ein Satz, alles rausholen, kein zweiter Versuch — der Wert zählt nur frisch."
               },
               {
-                "ex_id": "bmu_drill",
-                "kurz": "Drill",
-                "name": "Descent & Hip-Pop Drill",
-                "class": "generic",
+                "ex_id": "bmu",
+                "kurz": "BMU",
+                "name": "Bar Muscle-up",
+                "class": "skill",
                 "target": {
                   "mode": "bw",
                   "sets": 3,
@@ -61,7 +61,7 @@ const DATA = {
                   "rpe_cap": 8,
                   "rest": "2-3 min"
                 },
-                "whoop": "BMU Drill",
+                "whoop": "Muscle Ups",
                 "warum": "Drei verbundene Tripel nach dem Testsatz — das ist die Treppenstufe 3×3, die auf die 4×3 aus W36 folgt. Reißt ein Satz nach dem Max, ist das kein Rückschritt, sondern Vorermüdung."
               }
             ],
@@ -246,7 +246,7 @@ const DATA = {
         "day_type": "own",
         "focus": "A",
         "focus_label": "Weightlifting-Fokus",
-        "kurzform": "drop_snatch, Snatch, FS, Core",
+        "kurzform": "Drop Snatch, Snatch, FS, Core",
         "blocks": [
           {
             "block_id": "A",
@@ -259,7 +259,7 @@ const DATA = {
                 "ex_id": "drop_snatch",
                 "kurz": "Drop Snatch",
                 "name": "Drop Snatch",
-                "class": null,
+                "class": "generic",
                 "target": {
                   "mode": "kg",
                   "sets": 3,
@@ -274,6 +274,7 @@ const DATA = {
                   "tempo": "schnell unter die Stange",
                   "rest": "90 sec"
                 },
+                "whoop": "Drop Snatch",
                 "warum": "Aus dem Stand die Stange auf den Schultern, dann so schnell wie möglich unter sie fallen und tief fangen. Leichte Last mit Absicht: geübt wird der Weg nach unten, nicht das Gewicht. Genau die Bewegung, die im Video 3,1 Sekunden gedauert hat."
               }
             ]
@@ -556,10 +557,10 @@ const DATA = {
                   "warum": "Max unbroken, frisch als erster Arbeitssatz. Stand ist 3, das Ziel 5. Nach dem Warm-up ein Satz, alles rausholen, kein zweiter Versuch — der Wert zählt nur frisch."
                 },
                 {
-                  "ex_id": "bmu_drill",
-                  "kurz": "Drill",
-                  "name": "Descent & Hip-Pop Drill",
-                  "class": "generic",
+                  "ex_id": "bmu",
+                  "kurz": "BMU",
+                  "name": "Bar Muscle-up",
+                  "class": "skill",
                   "target": {
                     "mode": "bw",
                     "sets": 3,
@@ -568,7 +569,7 @@ const DATA = {
                     "rpe_cap": 8,
                     "rest": "2-3 min"
                   },
-                  "whoop": "BMU Drill",
+                  "whoop": "Muscle Ups",
                   "warum": "Drei verbundene Tripel nach dem Testsatz — das ist die Treppenstufe 3×3, die auf die 4×3 aus W36 folgt. Reißt ein Satz nach dem Max, ist das kein Rückschritt, sondern Vorermüdung."
                 }
               ],
@@ -753,7 +754,7 @@ const DATA = {
           "day_type": "own",
           "focus": "A",
           "focus_label": "Weightlifting-Fokus",
-          "kurzform": "drop_snatch, Snatch, FS, Core",
+          "kurzform": "Drop Snatch, Snatch, FS, Core",
           "blocks": [
             {
               "block_id": "A",
@@ -766,7 +767,7 @@ const DATA = {
                   "ex_id": "drop_snatch",
                   "kurz": "Drop Snatch",
                   "name": "Drop Snatch",
-                  "class": null,
+                  "class": "generic",
                   "target": {
                     "mode": "kg",
                     "sets": 3,
@@ -781,6 +782,7 @@ const DATA = {
                     "tempo": "schnell unter die Stange",
                     "rest": "90 sec"
                   },
+                  "whoop": "Drop Snatch",
                   "warum": "Aus dem Stand die Stange auf den Schultern, dann so schnell wie möglich unter sie fallen und tief fangen. Leichte Last mit Absicht: geübt wird der Weg nach unten, nicht das Gewicht. Genau die Bewegung, die im Video 3,1 Sekunden gedauert hat."
                 }
               ]

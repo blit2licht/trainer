@@ -634,6 +634,10 @@ a{color:inherit;text-underline-offset:3px}
    gedimmt bis die Antwort da ist, nie optimistisch umgeschaltet. */
 .vstate.is-pending{opacity:.35}
 .vstate.is-pending .vundo{pointer-events:none}
+/* Nachtrag aus dem Funkloch: liegt auf dem Gerät, wartet auf den Server.
+   Wort, nicht nur Farbe — der Rückkanal sagt immer, wo der Stand steht. */
+.vwait{display:inline-flex;align-items:center;color:var(--ink-3)}
+.vwait svg{fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 /* Gescheiterter Tap: Wort, nicht nur Farbe — der Rückkanal scheitert nie stumm. */
 .verr{
   margin-top:10px;font-family:var(--mono);font-size:11.5px;font-weight:700;
@@ -732,7 +736,7 @@ a{color:inherit;text-underline-offset:3px}
   <aside class="apparat" id="apparat"></aside>
 </div>
 
-<script src="./data.js?v=72b35501"></script>
+<script src="./data.js?v=46e3c56a"></script>
 <script>
 /* ════════════════════════════════════════════════════════════════════
    DUNKELKAMMER — Rendering-Kern (aus design/dunkelkammer.html)
@@ -919,11 +923,19 @@ const LINK_STATES = {
            icon: CLOUD },
   stale: { off:true,  word:'Server nicht erreichbar · Stand vom Gerät',
            icon: CLOUD + '<path d="M4.5 20 19.5 4.5"/>' },
-  auth:  { off:true,  word:'Server lehnt das Secret ab · nichts wird gespeichert',
+  /* Seit dem Nachtrag-Fix stimmt „nichts wird gespeichert" nicht mehr: der
+     Tap liegt auf dem Gerät und geht raus, sobald das Secret wieder passt. */
+  auth:  { off:true,  word:'Server lehnt das Secret ab · Stand bleibt auf dem Gerät',
            icon: '<rect x="5" y="11" width="14" height="9"/><path d="M8.5 11V8a3.5 3.5 0 0 1 7 0v3"/>' },
   local: { off:false, word:'Ohne Server · Stand nur auf dem Gerät',
            icon: '<rect x="7" y="3" width="10" height="18"/><path d="M10.5 17.5h3"/>' }
 };
+/* Dasselbe Zeichen am einzelnen Verdict: durchgestrichene Wolke heißt auch
+   hier „Stand liegt auf dem Gerät" — ein Wort passte am Handy nicht in die
+   Zeile, ein zweites Zeichen wäre eine zweite Sprache. */
+const CLOUD_OFF = '<svg viewBox="0 0 24 24" aria-hidden="true">'
+  + CLOUD + '<path d="M4.5 20 19.5 4.5"/></svg>';
+
 let linkState = (backendMode === 'http') ? 'live' : 'local';
 function renderLink(){
   const el = document.getElementById('railLink');
@@ -992,7 +1004,12 @@ document.addEventListener('visibilitychange', () => {
 
 const vstore = {
   cache: {},
-  get(iso, ex){ return this.cache[iso + '|' + ex] || null; },
+  /* Ein liegen gebliebener Löschauftrag ist kein Stand — der Block steht
+     wieder offen, auch bevor der Server ihn kennt. */
+  get(iso, ex){
+    const v = this.cache[iso + '|' + ex] || null;
+    return (v && v.verdict === 'clear') ? null : v;
+  },
   /* Gerätespiegel: auch im http-Modus wird jeder Serverstand lokal
      mitgeschrieben. Ohne ihn stünde nach einem gescheiterten Hydrate jeder
      bereits geloggte Block wieder auf „offen" — und ein Re-Tap überschriebe
@@ -1019,16 +1036,22 @@ const vstore = {
           fresh[v.iso_date + '|' + v.ex_id] =
             { verdict: v.verdict, reason: v.miss_reason, at: v.updated_at };
         });
-        Object.assign(this.cache, fresh);
         /* Spiegel auf den Serverstand des geladenen Bereichs bringen —
-           Zeilen, die der Server nicht (mehr) kennt, fallen dort raus. */
+           Zeilen, die der Server nicht (mehr) kennt, fallen dort raus.
+           Ausgenommen sind Nachträge (dirty): ein offline getippter Tap darf
+           nicht ausgerechnet vom ersten geglückten Hydrate gelöscht werden. */
         const all = this.mirrorRead();
         Object.keys(all).forEach(k => {
+          if (all[k] && all[k].dirty) return;   // Nachtrag schlägt Serverstand
           const iso = k.split('|')[0];
           if (iso >= from && iso <= to && !fresh[k]){ delete all[k]; delete this.cache[k]; }
         });
-        Object.assign(all, fresh);
+        Object.keys(fresh).forEach(k => {
+          if (all[k] && all[k].dirty) return;
+          all[k] = fresh[k]; this.cache[k] = fresh[k];
+        });
         this.mirrorWrite(all);
+        await this.flush();   // Liegengebliebenes sofort nachschieben
       } catch(e){
         // Funkloch: Gerätespiegel zeigen statt alles fälschlich als „offen".
         Object.assign(this.cache, this.mirrorRead());
@@ -1040,36 +1063,102 @@ const vstore = {
       Object.assign(this.cache, this.mirrorRead());
     }
   },
+  /* ── Nachtrag-Warteschlange ── Ein Tap im Funkloch zählt sofort auf dem
+     Gerät und bleibt als dirty liegen, bis der Rückkanal wieder trägt
+     (Bug 10.09.2026: die am Handy geloggte Session war nach dem Online-Gehen
+     weg — der gescheiterte POST hatte lokal nichts hinterlassen). Die
+     Einträge gehen in Schlüsselreihenfolge raus; der erste Fehler stoppt den
+     Lauf, der Rest bleibt liegen. */
+  async flush(){
+    if (backendMode !== 'http') return false;
+    const all = this.mirrorRead();
+    for (const k of Object.keys(all)){
+      const v = all[k];
+      if (!v || !v.dirty) continue;
+      const [iso, ex] = k.split('|');
+      try {
+        const r = await linkFetch(EP_SAVE, { method:'POST',
+          headers:{ 'Content-Type':'application/json' },
+          body: JSON.stringify({ secret: localStorage.getItem(SKEY) || '',
+            iso_date: iso, ex_id: ex, verdict: v.verdict,
+            miss_reason: v.reason || null }) });
+        const j = await r.json().catch(() => null);
+        if (!r.ok || !j) throw new Error(r.status === 401 ? 'auth' : 'flush');
+        if (v.verdict === 'clear'){
+          if (!j.cleared) throw new Error('clear');
+          delete this.cache[k]; this.mirrorSet(iso, ex, null);
+        } else {
+          if (!j.verdict) throw new Error('save');
+          const sv = { verdict: j.verdict.verdict, reason: j.verdict.miss_reason,
+                       at: j.verdict.updated_at };
+          this.cache[k] = sv; this.mirrorSet(iso, ex, sv);
+        }
+      } catch(e){ return false; }   // weiter offline oder Secret abgelehnt
+    }
+    return true;
+  },
   async save(iso, ex, verdict, reason){
+    const key = iso + '|' + ex;
     if (backendMode === 'http'){
-      const r = await linkFetch(EP_SAVE, { method:'POST',
-        headers:{ 'Content-Type':'application/json' },
-        body: JSON.stringify({ secret: localStorage.getItem(SKEY) || '',
-          iso_date: iso, ex_id: ex, verdict, miss_reason: reason || null }) });
-      const j = await r.json().catch(() => null);
-      if (!r.ok || !j || !j.verdict) throw new Error(r.status === 401 ? 'auth' : 'save');
-      const v = j.verdict;   // Serverstand, nie die Tap-Annahme
-      const val = { verdict: v.verdict, reason: v.miss_reason, at: v.updated_at };
-      this.cache[iso + '|' + ex] = val;
-      this.mirrorSet(iso, ex, val);
+      /* Erst auf dem Gerät festhalten, dann zum Server — ein Funkloch darf
+         die einzige Eingabe der Einheit nicht verschlucken. */
+      const local = { verdict, reason: reason || null,
+                      at: new Date().toISOString(), dirty: true };
+      this.cache[key] = local; this.mirrorSet(iso, ex, local);
+      try {
+        const r = await linkFetch(EP_SAVE, { method:'POST',
+          headers:{ 'Content-Type':'application/json' },
+          body: JSON.stringify({ secret: localStorage.getItem(SKEY) || '',
+            iso_date: iso, ex_id: ex, verdict, miss_reason: reason || null }) });
+        const j = await r.json().catch(() => null);
+        if (!r.ok || !j || !j.verdict) throw new Error(r.status === 401 ? 'auth' : 'save');
+        const v = j.verdict;   // Serverstand, nie die Tap-Annahme
+        const val = { verdict: v.verdict, reason: v.miss_reason, at: v.updated_at };
+        this.cache[key] = val;
+        this.mirrorSet(iso, ex, val);
+      } catch(e){
+        /* Funkloch UND abgelehntes Secret: der Eintrag bleibt liegen, flush()
+           trägt ihn nach. Beim Secret ist der Grund ein anderer, der Verlust
+           wäre derselbe — ein rotiertes oder fehlendes Secret darf die
+           geloggte Einheit nicht kosten. Das Schloss in der Schiene sagt,
+           warum nichts hochgeht; das Zeichen an der Zeile sagt, dass der
+           Stand auf dem Gerät liegt. Nach dem Nachtragen des Secrets
+           (Setup, Reload) geht alles Liegengebliebene raus. */
+      }
     } else {
+      /* Stub: ohne Server ist jeder Eintrag ein Nachtrag. Ohne dirty würde
+         der erste Hydrate nach dem Aktivieren des Servers genau diese Zeilen
+         löschen — die im Stub-Modus geloggte Einheit wäre weg. */
       await new Promise(r => setTimeout(r, 160));
-      const val = { verdict, reason: reason || null, at: new Date().toISOString() };
-      this.cache[iso + '|' + ex] = val;
+      const val = { verdict, reason: reason || null,
+                    at: new Date().toISOString(), dirty: true };
+      this.cache[key] = val;
       this.mirrorSet(iso, ex, val);
     }
   },
   async clear(iso, ex){
     // Rücknahme = zurück auf unknown: verdict:'clear' löscht die Server-Zeile.
+    const key = iso + '|' + ex;
     if (backendMode === 'http'){
-      const r = await linkFetch(EP_SAVE, { method:'POST',
-        headers:{ 'Content-Type':'application/json' },
-        body: JSON.stringify({ secret: localStorage.getItem(SKEY) || '',
-          iso_date: iso, ex_id: ex, verdict: 'clear' }) });
-      const j = await r.json().catch(() => null);
-      if (!r.ok || !j || !j.cleared) throw new Error(r.status === 401 ? 'auth' : 'clear');
+      /* Auch die Rücknahme wartet im Funkloch — als dirty 'clear', sonst holte
+         das nächste Hydrate die zurückgenommene Zeile wieder herein. */
+      const order = { verdict:'clear', reason:null,
+                      at: new Date().toISOString(), dirty: true };
+      this.cache[key] = order; this.mirrorSet(iso, ex, order);
+      try {
+        const r = await linkFetch(EP_SAVE, { method:'POST',
+          headers:{ 'Content-Type':'application/json' },
+          body: JSON.stringify({ secret: localStorage.getItem(SKEY) || '',
+            iso_date: iso, ex_id: ex, verdict: 'clear' }) });
+        const j = await r.json().catch(() => null);
+        if (!r.ok || !j || !j.cleared) throw new Error(r.status === 401 ? 'auth' : 'clear');
+        delete this.cache[key]; this.mirrorSet(iso, ex, null);
+      } catch(e){
+        // Funkloch oder abgelehntes Secret: der Löschauftrag bleibt liegen.
+      }
+      return;
     }
-    delete this.cache[iso + '|' + ex];
+    delete this.cache[key];
     this.mirrorSet(iso, ex, null);
   }
 };
@@ -1501,13 +1590,18 @@ function verdictMarkup(iso, ov, exName){
   const v = vstore.get(iso, ov.ex_id);
   const key = iso + '|' + ov.ex_id;
 
+  /* Ein Nachtrag steht auf dem Gerät und wartet auf den Server — das sagt
+     die Zeile, statt einen Serverstand vorzutäuschen. */
+  const wait = (v && v.dirty && backendMode === 'http')
+    ? `<span class="vwait" title="Noch nicht auf dem Server">${CLOUD_OFF}<span class="sr">Stand vom Gerät, noch nicht auf dem Server</span></span>` : '';
+
   if (v && v.verdict === 'hit'){
-    return `<div class="verdict"><div class="vstate ok">${CHECK} Done · ${vTime(v.at)}
+    return `<div class="verdict"><div class="vstate ok">${CHECK} Done · ${vTime(v.at)}${wait}
       <button class="vundo" type="button" data-vundo="${key}">ändern</button></div></div>`;
   }
   if (v && v.verdict === 'miss'){
     const why = v.reason ? ' · ' + (v.reason === 'technik' ? 'Technik' : 'Last') : '';
-    return `<div class="verdict"><div class="vstate no">Fail${why} · ${vTime(v.at)}
+    return `<div class="verdict"><div class="vstate no">Fail${why} · ${vTime(v.at)}${wait}
       <button class="vundo" type="button" data-vundo="${key}">ändern</button></div></div>`;
   }
   if (askOpen === key){
@@ -2243,6 +2337,37 @@ async function switchWeek(){
     switchWeek();
   });
 })();
+
+/* ── Zurück im Netz ── Liegen gebliebene Taps und Notizen gehen raus, sobald
+   das Gerät wieder Netz meldet oder die App wieder im Vordergrund steht.
+   Ohne diesen Weg käme der Nachtrag erst beim nächsten Kaltstart an — und ein
+   Handy in der Box lädt die Seite nicht neu. ── */
+function repaint(){
+  /* Nie in eine offene Eingabe hineinzeichnen — ein Repaint während des
+     Tippens nähme Martin den Notiztext unter den Fingern weg. */
+  const a = document.activeElement;
+  if (a && (a.tagName === 'TEXTAREA' || a.tagName === 'INPUT')) return;
+  const y = window.scrollY;
+  if (currentFocus){ showFocus.rerender = true; showFocus(currentFocus); showFocus.rerender = false; }
+  else if (currentBox) return;   // Box-Tag trägt keine Verdict-Zeilen
+  else renderWeek();
+  window.scrollTo(0, y);
+}
+let syncing = false;
+async function syncPending(){
+  if (backendMode !== 'http' || syncing) return;
+  syncing = true;
+  try {
+    const before = JSON.stringify(vstore.cache);
+    await vstore.flush();
+    await nstore.flush();
+    if (JSON.stringify(vstore.cache) !== before) repaint();
+  } finally { syncing = false; }
+}
+window.addEventListener('online', syncPending);
+document.addEventListener('visibilitychange', () => {
+  if (document.visibilityState === 'visible') syncPending();
+});
 
 /* ── Start ── Verdict-Cache (Serverstand) VOR dem ersten Render laden. */
 (async function start(){

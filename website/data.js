@@ -1018,8 +1018,8 @@ const DATA = {
     },
     {
       "id": "2026-W38",
-      "label": "Reisewoche · 14.–20. September 2026",
-      "meso": "Übergang · zwischen Meso 3 und Meso 4",
+      "label": "Reise + Meso-4-Start · 14.–20. September 2026",
+      "meso": "Übergang · Meso-4-Start am Samstag",
       "von": "2026-09-14",
       "bis": "2026-09-20",
       "days": [
@@ -1046,17 +1046,210 @@ const DATA = {
         {
           "iso_date": "2026-09-18",
           "day_type": "rest",
-          "warum": "Letzter Tag, den du als frei festgelegt hast. Ab hier ist die Woche offen."
+          "warum": "Letzter Tag des freien Fensters. Ab morgen läuft wieder Training."
         },
         {
           "iso_date": "2026-09-19",
-          "day_type": "rest",
-          "warum": "Hier könnte der Wiedereinstieg liegen, wenn vor Ort etwas geht. Steht noch nichts fest, bleibt der Tag frei — und die erste Einheit wäre ohnehin ein Reclaim eine Stufe unter dem letzten Stand, kein Treppenstart."
+          "day_type": "own",
+          "focus": "A",
+          "focus_label": "Weightlifting-Fokus",
+          "kurzform": "C&J, OHS",
+          "blocks": [
+            {
+              "block_id": "A",
+              "prio": "required",
+              "title": "Clean & Jerk",
+              "min": 25,
+              "superset": false,
+              "exercises": [
+                {
+                  "ex_id": "clean_jerk",
+                  "kurz": "C&J",
+                  "name": "Clean & Jerk",
+                  "class": "technical",
+                  "target": {
+                    "mode": "kg",
+                    "sets": 4,
+                    "reps": 1,
+                    "kg": 75,
+                    "ramp": [
+                      60,
+                      65,
+                      70,
+                      75
+                    ],
+                    "rpe_cap": 7,
+                    "tempo": "explosiv",
+                    "rest": "2-3 min"
+                  },
+                  "whoop": "Clean and Split Jerk",
+                  "warum": "Ein Komplex pro Stufe, sauber hoch bis 75. Der Bestwert steht bei 82,5 aus dem August — den lässt du heute liegen. Nach 25 Tagen ohne Kontakt holt man das Muster zurück, nicht die Last."
+                }
+              ]
+            },
+            {
+              "block_id": "B",
+              "prio": "required",
+              "title": "Overhead Squat",
+              "min": 18,
+              "superset": false,
+              "exercises": [
+                {
+                  "ex_id": "ohs",
+                  "kurz": "OHS",
+                  "name": "Overhead Squat",
+                  "class": "technical",
+                  "target": {
+                    "mode": "kg",
+                    "sets": 3,
+                    "reps": 3,
+                    "kg": 50,
+                    "ramp": [
+                      45,
+                      47.5,
+                      50
+                    ],
+                    "rpe_cap": 7,
+                    "tempo": "kontrolliert",
+                    "rest": "2 min"
+                  },
+                  "whoop": "Overhead Squat",
+                  "warum": "Drei Dreier aufsteigend bis 50. Topwert ist 55×3, aber der ist vier Wochen alt und lief seitdem nur als Positionsarbeit. 52,5 ist frei, wenn die 50 wirklich sauber sitzt — sonst bleibt es dabei."
+                }
+              ]
+            },
+            {
+              "block_id": "C",
+              "prio": "optional",
+              "title": "Strength: Delts / Bizeps",
+              "min": 15,
+              "superset": false,
+              "exercises": [
+                {
+                  "ex_id": "lateral_raise",
+                  "kurz": "Lateral Raise",
+                  "name": "DB Lateral Raise",
+                  "class": "loadable",
+                  "target": {
+                    "mode": "kg",
+                    "sets": 3,
+                    "reps": 12,
+                    "kg": 6,
+                    "rpe_cap": 7,
+                    "tempo": "kontrolliert",
+                    "rest": "60 sec"
+                  },
+                  "whoop": "Lateral Raise",
+                  "warum": "Zwei Kurzhanteln à 6 kg, kein Versagen. Zweck: Muskelschutz im Kaloriendefizit."
+                },
+                {
+                  "ex_id": "biceps_curl",
+                  "kurz": "Curl",
+                  "name": "DB Curl",
+                  "class": "loadable",
+                  "target": {
+                    "mode": "kg",
+                    "sets": 3,
+                    "reps": 12,
+                    "kg": 10,
+                    "rpe_cap": 7,
+                    "tempo": "kontrolliert",
+                    "rest": "60 sec"
+                  },
+                  "whoop": "Biceps Curl",
+                  "warum": "Zwei Kurzhanteln à 10 kg, kontrolliert."
+                }
+              ],
+              "verdict_ex_id": "layer_delts_bizeps",
+              "verdict_class": "generic"
+            },
+            {
+              "block_id": "D",
+              "prio": "optional",
+              "title": "Mobility",
+              "min": 8,
+              "superset": false,
+              "exercises": [
+                {
+                  "ex_id": "mob_lat_stretch",
+                  "kurz": "Lat-Stretch hängend",
+                  "name": "Lat-Stretch hängend",
+                  "class": null,
+                  "target": {
+                    "mode": "time",
+                    "sets": 2,
+                    "sec": 45
+                  },
+                  "warum": "Overhead-Enge nach C&J und OHS lösen."
+                },
+                {
+                  "ex_id": "mob_hipflexor",
+                  "kurz": "Hüftbeuger-Stretch je Seite",
+                  "name": "Hüftbeuger-Stretch je Seite",
+                  "class": null,
+                  "target": {
+                    "mode": "time",
+                    "sets": 2,
+                    "sec": 45
+                  },
+                  "warum": "Nach dem Squat-Volumen."
+                },
+                {
+                  "ex_id": "mob_thoracic",
+                  "kurz": "Thorakale Extension am Foam Roller",
+                  "name": "Thorakale Extension am Foam Roller",
+                  "class": null,
+                  "target": {
+                    "mode": "time",
+                    "sec": 120
+                  }
+                }
+              ],
+              "verdict_ex_id": "mobility",
+              "verdict_class": "generic"
+            }
+          ],
+          "last_spanne": [
+            45,
+            75
+          ],
+          "zeit_spanne": [
+            43,
+            66
+          ],
+          "recovery_day": {
+            "u50": "C&J endet bei 70, OHS bei 47,5. Layer entfällt. Load-RPE-Cap 7.",
+            "u34": "Nur Technik mit leichter Stange und Mobility bis RPE 6 — oder Ruhe."
+          }
         },
         {
           "iso_date": "2026-09-20",
-          "day_type": "rest",
-          "warum": "Zweiter offener Tag. Meso 4 startet regulär in der Woche darauf."
+          "day_type": "box",
+          "einheit": "Deadlift / Toes-to-Bar Ladder For Time",
+          "sub": "3-6-9-12-9-6-3 · 15 Air Squats pro Runde · 13 Min Cap",
+          "wod": [
+            {
+              "struktur": "3-6-9-12-9-6-3 auf Zeit · 15 Air Squats am Ende jeder Runde · 13 Min Cap",
+              "bewegungen": [
+                {
+                  "reps": "3-6-9-12-9-6-3",
+                  "name": "Deadlift",
+                  "detail": "85 kg · Level 2"
+                },
+                {
+                  "reps": "3-6-9-12-9-6-3",
+                  "name": "Toes-to-Bar",
+                  "detail": "unbroken solange sauber"
+                },
+                {
+                  "reps": "15",
+                  "name": "Air Squats",
+                  "detail": "am Ende jeder Runde"
+                }
+              ]
+            }
+          ],
+          "warum": "Deadlifts mit 85 Kilo, dazu Toes-to-Bar und Air Squats, Deckel bei 13 Minuten. Hinge hattest du letzte Woche gar nicht, und die Last ist so weit unter deinem Bereich, dass der Tag nach dem Wiedereinstieg kein Problem ist. Wenn du lieber Rad fährst, ist das der gleichwertige Tausch."
         }
       ]
     }

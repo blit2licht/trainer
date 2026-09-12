@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
   "id": "2026-W38",
-  "label": "Reisewoche · 14.–20. September 2026",
-  "meso": "Übergang · zwischen Meso 3 und Meso 4",
+  "label": "Reise + Meso-4-Start · 14.–20. September 2026",
+  "meso": "Übergang · Meso-4-Start am Samstag",
   "von": "2026-09-14",
   "bis": "2026-09-20",
-  "phase": "Charlotte NC — trainingsfreie Woche als natürlicher Deload",
-  "_hinweis": "Martin hat am 12.09. festgelegt: von So 13.09. bis Fr 18.09. kein Training. Sechs freie Tage direkt nach der 101-km-Ausfahrt sind der Meso-Übergang, kein Ausfall. Sa 20. und So 21. bleiben offen, bis die Trainingsmöglichkeiten vor Ort bekannt sind — erst dann wird der Wiedereinstieg geplant. Beim Wiedereinstieg greift die Unterbrechungsregel: BMU, WPU und HSPU haben ab 09.09. eine Lücke, C&J ab 25.08. — erst Reclaim eine Stufe tiefer, dann die neuen Treppen.",
+  "phase": "Charlotte NC (Mo-Fr frei) · Wiedereinstieg am Wochenende",
+  "_hinweis": "Mo 14. bis Fr 18. kein Training — von Martin am 12.09. festgelegt (Charlotte NC). Sa 19. und So 20. liegen NACH diesem Fenster und sind normale Trainingstage; Martin ist dann zurück in München. Der Samstag ist der Meso-4-Start: beide Barbell-Übungen laufen als Reclaim eine Stufe unter dem letzten bestätigten Stand (Unterbrechungsregel — C&J 25 Tage ohne Kontakt, OHS 18). Kein Maximalversuch in der ersten Einheit nach sechs freien Tagen. OHS bekommt erstmals seit W34 wieder einen eigenen Slot mit Last statt nur Positionsarbeit — das war der offene Befund aus dem Meso-3-Review.",
   "days": [
     {
       "iso_date": "2026-09-14",
@@ -35,20 +35,186 @@
     {
       "iso_date": "2026-09-18",
       "day_type": "rest",
-      "plan_note": "Kein Training. Letzter festgelegter freier Tag.",
-      "warum": "Letzter Tag, den du als frei festgelegt hast. Ab hier ist die Woche offen."
+      "plan_note": "Kein Training. Letzter freier Tag der Reise.",
+      "warum": "Letzter Tag des freien Fensters. Ab morgen läuft wieder Training."
     },
     {
       "iso_date": "2026-09-19",
-      "day_type": "rest",
-      "plan_note": "Offen — wird geplant, sobald die Trainingsmöglichkeiten vor Ort feststehen. Bis dahin frei.",
-      "warum": "Hier könnte der Wiedereinstieg liegen, wenn vor Ort etwas geht. Steht noch nichts fest, bleibt der Tag frei — und die erste Einheit wäre ohnehin ein Reclaim eine Stufe unter dem letzten Stand, kein Treppenstart."
+      "day_type": "own",
+      "focus": "A",
+      "focus_label": "Weightlifting-Fokus",
+      "intro": "Meso-4-Start und erste Einheit nach sechs freien Tagen. Frisches System, aber kein Maximalversuch: beide Übungen laufen als Reclaim eine Stufe unter dem letzten bestätigten Stand. C&J hattest du zuletzt am 25.08., Overhead Squat mit echter Last am 19.08. — nach so einer Lücke ist der Bestwert nicht der Einstiegspunkt.",
+      "plan_note": "Coach-Prosa: Unterbrechungsregel greift bei beiden Übungen (C&J 25 Tage, OHS 18 Tage ohne Kontakt) — Reclaim eine Stufe tiefer, dann läuft die Progression in W39 normal weiter. OHS bekommt erstmals seit W34 wieder einen eigenen Slot mit Lastaufbau; in W36 lief er nur als Positionsreiz, in W37 gar nicht. Das war der offene Befund aus dem Meso-3-Review (55 gegen Ziel 65, größter Abstand aller Ziele). Gymnastics bleibt heute außen vor: die neuen Treppen starten erst, wenn die Zielformulierung steht.",
+      "recovery_day": {
+        "u50": "C&J endet bei 70, OHS bei 47,5. Layer entfällt. Load-RPE-Cap 7.",
+        "u34": "Nur Technik mit leichter Stange und Mobility bis RPE 6 — oder Ruhe."
+      },
+      "blocks": [
+        {
+          "block_id": "A",
+          "prio": "required",
+          "min": 25,
+          "title": "Clean & Jerk",
+          "superset": false,
+          "exercises": [
+            {
+              "ex_id": "clean_jerk",
+              "kurz": "Squat Clean + Push Jerk (Komplex)",
+              "target": {
+                "mode": "kg",
+                "sets": 4,
+                "reps": 1,
+                "kg": 75,
+                "ramp": [
+                  60,
+                  65,
+                  70,
+                  75
+                ],
+                "rpe_cap": 7,
+                "tempo": "explosiv",
+                "rest": "2-3 min"
+              },
+              "warum": "Ein Komplex pro Stufe, sauber hoch bis 75. Der Bestwert steht bei 82,5 aus dem August — den lässt du heute liegen. Nach 25 Tagen ohne Kontakt holt man das Muster zurück, nicht die Last.",
+              "note": "Abbruch, sobald der Jerk nicht mehr sicher steht. Kein Nachlegen über 75."
+            }
+          ]
+        },
+        {
+          "block_id": "B",
+          "prio": "required",
+          "min": 18,
+          "title": "Overhead Squat",
+          "superset": false,
+          "exercises": [
+            {
+              "ex_id": "ohs",
+              "target": {
+                "mode": "kg",
+                "sets": 3,
+                "reps": 3,
+                "kg": 50,
+                "ramp": [
+                  45,
+                  47.5,
+                  50
+                ],
+                "rpe_cap": 7,
+                "tempo": "kontrolliert",
+                "rest": "2 min"
+              },
+              "warum": "Drei Dreier aufsteigend bis 50. Topwert ist 55×3, aber der ist vier Wochen alt und lief seitdem nur als Positionsarbeit. 52,5 ist frei, wenn die 50 wirklich sauber sitzt — sonst bleibt es dabei.",
+              "note": "Erste Lasteinheit seit W34. Tief und stabil, nicht schwer."
+            }
+          ]
+        },
+        {
+          "block_id": "C",
+          "prio": "optional",
+          "min": 15,
+          "title": "Strength: Delts / Bizeps",
+          "superset": false,
+          "verdict_ex_id": "layer_delts_bizeps",
+          "exercises": [
+            {
+              "ex_id": "lateral_raise",
+              "target": {
+                "mode": "kg",
+                "sets": 3,
+                "reps": 12,
+                "kg": 6,
+                "rpe_cap": 7,
+                "tempo": "kontrolliert",
+                "rest": "60 sec"
+              },
+              "warum": "Zwei Kurzhanteln à 6 kg, kein Versagen. Zweck: Muskelschutz im Kaloriendefizit.",
+              "note": "RPE-Deckel 7 strikt."
+            },
+            {
+              "ex_id": "biceps_curl",
+              "target": {
+                "mode": "kg",
+                "sets": 3,
+                "reps": 12,
+                "kg": 10,
+                "rpe_cap": 7,
+                "tempo": "kontrolliert",
+                "rest": "60 sec"
+              },
+              "warum": "Zwei Kurzhanteln à 10 kg, kontrolliert.",
+              "note": "RPE-Deckel 7 strikt."
+            }
+          ]
+        },
+        {
+          "block_id": "D",
+          "prio": "optional",
+          "min": 8,
+          "title": "Mobility",
+          "superset": false,
+          "verdict_ex_id": "mobility",
+          "exercises": [
+            {
+              "ex_id": "mob_lat_stretch",
+              "kurz": "Lat-Stretch hängend",
+              "target": {
+                "mode": "time",
+                "sets": 2,
+                "sec": 45
+              },
+              "warum": "Overhead-Enge nach C&J und OHS lösen."
+            },
+            {
+              "ex_id": "mob_hipflexor",
+              "kurz": "Hüftbeuger-Stretch je Seite",
+              "target": {
+                "mode": "time",
+                "sets": 2,
+                "sec": 45
+              },
+              "warum": "Nach dem Squat-Volumen."
+            },
+            {
+              "ex_id": "mob_thoracic",
+              "kurz": "Thorakale Extension am Foam Roller",
+              "target": {
+                "mode": "time",
+                "sec": 120
+              }
+            }
+          ]
+        }
+      ]
     },
     {
       "iso_date": "2026-09-20",
-      "day_type": "rest",
-      "plan_note": "Offen — wie Samstag. Bis dahin frei.",
-      "warum": "Zweiter offener Tag. Meso 4 startet regulär in der Woche darauf."
+      "day_type": "box",
+      "einheit": "Deadlift / Toes-to-Bar Ladder For Time",
+      "sub": "3-6-9-12-9-6-3 · 15 Air Squats pro Runde · 13 Min Cap",
+      "plan_note": "Level 2 mit 85 kg. Hinge war in W37 gar nicht bedient, T2B läuft als Volumen ohne Zielstatus. Einen Tag nach dem Wiedereinstieg bewusst moderat: die Last ist weit unter allem, was nach der Pause riskant wäre, und der Cap begrenzt die Dosis. Kein Score-Jagen. Alternative: die Sonntagsausfahrt, wenn dir der soziale Slot lieber ist.",
+      "warum": "Deadlifts mit 85 Kilo, dazu Toes-to-Bar und Air Squats, Deckel bei 13 Minuten. Hinge hattest du letzte Woche gar nicht, und die Last ist so weit unter deinem Bereich, dass der Tag nach dem Wiedereinstieg kein Problem ist. Wenn du lieber Rad fährst, ist das der gleichwertige Tausch.",
+      "wod": [
+        {
+          "struktur": "3-6-9-12-9-6-3 auf Zeit · 15 Air Squats am Ende jeder Runde · 13 Min Cap",
+          "bewegungen": [
+            {
+              "reps": "3-6-9-12-9-6-3",
+              "name": "Deadlift",
+              "detail": "85 kg · Level 2"
+            },
+            {
+              "reps": "3-6-9-12-9-6-3",
+              "name": "Toes-to-Bar",
+              "detail": "unbroken solange sauber"
+            },
+            {
+              "reps": "15",
+              "name": "Air Squats",
+              "detail": "am Ende jeder Runde"
+            }
+          ]
+        }
+      ]
     }
   ]
 }

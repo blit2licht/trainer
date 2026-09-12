@@ -1015,6 +1015,50 @@ const DATA = {
           "warum": "Reisetag nach Charlotte. Kein Training. Die Reisewoche planen wir separat, sobald du weißt, was vor Ort geht."
         }
       ]
+    },
+    {
+      "id": "2026-W38",
+      "label": "Reisewoche · 14.–20. September 2026",
+      "meso": "Übergang · zwischen Meso 3 und Meso 4",
+      "von": "2026-09-14",
+      "bis": "2026-09-20",
+      "days": [
+        {
+          "iso_date": "2026-09-14",
+          "day_type": "rest",
+          "warum": "Erster Tag nach dem Flug. Die Woche ist bewusst frei — sechs Tage Pause nach dem Testblock und der langen Ausfahrt sind der Übergang zwischen zwei Mesos, nicht verlorene Zeit."
+        },
+        {
+          "iso_date": "2026-09-15",
+          "day_type": "rest",
+          "warum": "Freier Tag wie besprochen."
+        },
+        {
+          "iso_date": "2026-09-16",
+          "day_type": "rest",
+          "warum": "Freier Tag wie besprochen."
+        },
+        {
+          "iso_date": "2026-09-17",
+          "day_type": "rest",
+          "warum": "Freier Tag wie besprochen."
+        },
+        {
+          "iso_date": "2026-09-18",
+          "day_type": "rest",
+          "warum": "Letzter Tag, den du als frei festgelegt hast. Ab hier ist die Woche offen."
+        },
+        {
+          "iso_date": "2026-09-19",
+          "day_type": "rest",
+          "warum": "Hier könnte der Wiedereinstieg liegen, wenn vor Ort etwas geht. Steht noch nichts fest, bleibt der Tag frei — und die erste Einheit wäre ohnehin ein Reclaim eine Stufe unter dem letzten Stand, kein Treppenstart."
+        },
+        {
+          "iso_date": "2026-09-20",
+          "day_type": "rest",
+          "warum": "Zweiter offener Tag. Meso 4 startet regulär in der Woche darauf."
+        }
+      ]
     }
   ]
 };

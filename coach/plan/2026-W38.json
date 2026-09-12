@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "id": "2026-W38",
+  "label": "Reisewoche · 14.–20. September 2026",
+  "meso": "Übergang · zwischen Meso 3 und Meso 4",
+  "von": "2026-09-14",
+  "bis": "2026-09-20",
+  "phase": "Charlotte NC — trainingsfreie Woche als natürlicher Deload",
+  "_hinweis": "Martin hat am 12.09. festgelegt: von So 13.09. bis Fr 18.09. kein Training. Sechs freie Tage direkt nach der 101-km-Ausfahrt sind der Meso-Übergang, kein Ausfall. Sa 20. und So 21. bleiben offen, bis die Trainingsmöglichkeiten vor Ort bekannt sind — erst dann wird der Wiedereinstieg geplant. Beim Wiedereinstieg greift die Unterbrechungsregel: BMU, WPU und HSPU haben ab 09.09. eine Lücke, C&J ab 25.08. — erst Reclaim eine Stufe tiefer, dann die neuen Treppen.",
+  "days": [
+    {
+      "iso_date": "2026-09-14",
+      "day_type": "rest",
+      "plan_note": "Reisewoche Charlotte. Kein Training.",
+      "warum": "Erster Tag nach dem Flug. Die Woche ist bewusst frei — sechs Tage Pause nach dem Testblock und der langen Ausfahrt sind der Übergang zwischen zwei Mesos, nicht verlorene Zeit."
+    },
+    {
+      "iso_date": "2026-09-15",
+      "day_type": "rest",
+      "plan_note": "Kein Training.",
+      "warum": "Freier Tag wie besprochen."
+    },
+    {
+      "iso_date": "2026-09-16",
+      "day_type": "rest",
+      "plan_note": "Kein Training.",
+      "warum": "Freier Tag wie besprochen."
+    },
+    {
+      "iso_date": "2026-09-17",
+      "day_type": "rest",
+      "plan_note": "Kein Training.",
+      "warum": "Freier Tag wie besprochen."
+    },
+    {
+      "iso_date": "2026-09-18",
+      "day_type": "rest",
+      "plan_note": "Kein Training. Letzter festgelegter freier Tag.",
+      "warum": "Letzter Tag, den du als frei festgelegt hast. Ab hier ist die Woche offen."
+    },
+    {
+      "iso_date": "2026-09-19",
+      "day_type": "rest",
+      "plan_note": "Offen — wird geplant, sobald die Trainingsmöglichkeiten vor Ort feststehen. Bis dahin frei.",
+      "warum": "Hier könnte der Wiedereinstieg liegen, wenn vor Ort etwas geht. Steht noch nichts fest, bleibt der Tag frei — und die erste Einheit wäre ohnehin ein Reclaim eine Stufe unter dem letzten Stand, kein Treppenstart."
+    },
+    {
+      "iso_date": "2026-09-20",
+      "day_type": "rest",
+      "plan_note": "Offen — wie Samstag. Bis dahin frei.",
+      "warum": "Zweiter offener Tag. Meso 4 startet regulär in der Woche darauf."
+    }
+  ]
+}

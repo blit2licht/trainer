@@ -31,7 +31,7 @@
     {
       "id": "bar-muscle-up",
       "ziel": "5 unbroken",
-      "stand": "3 unbroken",
+      "stand": "4 unbroken (Test W37, 09.09. — 5. Rep fail)",
       "typ": "Gymnastics"
     },
     {
@@ -43,13 +43,13 @@
     {
       "id": "weighted-pull-up",
       "ziel": "6 Wiederholungen mit +5 kg",
-      "stand": "5 Wiederholungen mit +5 kg (3×5 sauber, W36)",
+      "stand": "6 Wiederholungen mit +5 kg (Test W37, 09.09.) — ZIEL ERREICHT, Zielneusetzung offen",
       "typ": "Gymnastics"
     },
     {
       "id": "strict-hspu",
       "ziel": "10 unbroken",
-      "stand": "9 unbroken (Test W32)",
+      "stand": "10 unbroken (Test W37, 09.09.) — ZIEL ERREICHT, Zielneusetzung offen",
       "typ": "Gymnastics"
     },
     {
@@ -67,7 +67,7 @@
     {
       "id": "front-squat",
       "ziel": "115 kg sauber gehoben",
-      "stand": "102,5 kg",
+      "stand": "105 kg (W37, 10.09. — 1RM-Schätzung ~112,5)",
       "typ": "1RM-Ziel ohne geplanten Test"
     },
     {
@@ -85,7 +85,7 @@
   "gymnastics_testprotokoll": {
     "hinweis": "Verbindet Volumenarbeit mit den Unbroken-Zielen. Alle 3–4 Wochen ersetzt ein Max-Unbroken-Testsatz (frisch, als erster Arbeitssatz des Fokus-Tags) den regulären ersten Satz. Testergebnis aktualisiert den Zielstand in leistungsziele.",
     "testfrequenz_wochen": "3-4",
-    "naechster_test": "2026-W37 (Testblock + Sechs-Wochen-Review Meso 3)",
+    "naechster_test": "offen — Meso 4. Drei der vier Gymnastics-Treppen sind ausgetestet (HSPU 10, WPU 6 @ +5, BMU 4); neue Treppen erst nach der Zielneusetzung.",
     "progressionstreppen": {
       "bar-muscle-up": "Linked-Sets-Treppe (ab W33): 5×2 unbroken → 4×3 → 3×3 + 1×max → Testsatz max unbroken (Ziel 5). Frequenz 2 Kontakte/Woche (Hauptblock + 5-min-Primer). Methodik, Stufenkriterien und Quellen-Priorität: coach/bmu-entwicklungsplan.md",
       "toes-to-bar": "3×7 → 3×8 → 3×9 → 3×10 → Testsatz max unbroken (Ziel 10)",

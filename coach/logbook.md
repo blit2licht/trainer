@@ -2,6 +2,23 @@
 
 Kurze, verdichtete Wocheneinträge. Rohdaten bleiben in WHOOP, Strava und der Website-Datenbank.
 
+## 2026-W37 · 7.–13. September · Meso 3 W6 — Testblock: zwei Profil-Ziele erreicht, FS 105
+
+**Plan teilweise befolgt.** Mo Ruhe ✓ (rec 58) · Di Ruhe/Termin ✓ (rec 74) · Mi Gymnastics-Testtag ✓ (rec 48) · Do Fokus A ✓ (rec 87) · Fr Ruhe ✓ (rec 50) · **Sa Box gestrichen** → Ride 101,4 km / 3:41 h moving / 748 Hm / Ø-HF 141 / Relative Effort 122 (rec 78) · So Reisetag Charlotte NC. Verdict-Kanal 12/12 hit (Mi 6, Do 6); Do bewusst ohne freie Notiz — der Verdict trug den Review allein. Ø Recovery 66, kein Tag rot, Ø Schlaf 6,35 h mit zwei kurzen Nächten (Mi 5,3 / Fr 5,0). Kein Deload-Trigger.
+
+**Kernbefunde:**
+- **Strict HSPU: 10 unbroken — Profil-Ziel erreicht** (Stand war 9 aus W32). Die Treppe bis 4×8 mit drei sauberen Runden (W34/W35/W36) hat exakt das geliefert, was sie sollte; der Test war überfällig, nicht 4×9.
+- **Weighted Pull-up: 6 Reps @ +5 kg — Profil-Ziel erreicht.** Treppe 3×3 → 3×4 → 3×5 → Test komplett durchlaufen, inklusive Stufe-zurück nach dem W34-Miss. Sauberster Progressionsverlauf des Mesos.
+- **BMU 4 unbroken, 5. Rep fail** — neuer Bestwert (alt 3), Ziel 5 knapp verfehlt. Linked-Sets-Treppe hat getragen (5×2 → 4×3 → Test 4), Fortsetzung in Meso 4.
+- **Front Squat 105×1 — neuer Bestwert** über die 102,5 aus W30 (Rampe 85/95/100/102,5/105). Korridorziel des Blocks erreicht; 107,5 war Option, nicht Ziel, und blieb unbelegt. 1RM-Schätzung von ~107,5 auf ~112,5 angehoben (Ziel 115).
+- **Snatch-Übungswahl eingelöst:** Drop Snatch 3×3 (40/42,5/45) plus Singles bis 57,5 mit bewusst tiefem Empfang, kein Ceiling-Versuch. Beide Blöcke hit. Ob die 3,1-s-Abfahrt von W36 kürzer wird, zeigt erst der nächste Ceiling-Kontakt — Wirkungsnachweis steht aus.
+- **Video-Ende beim Fuß-Befund:** Frontal-/45°-Aufnahme am 12.09. von Martin verworfen. Der Befund vom 01.09. (rechter Fuß nach vorne rechts, außenrotiert) bleibt damit unvermessen und läuft nur noch über Cue/Drill; keine Aufnahme- oder Tape-Anforderung mehr im Plan.
+- **Testsätze auf rec 48:** `recovery_day.u50` hätte den Testblock verschoben, Martin zog durch und holte zwei Profil-Ziele. Zweiter folgenloser Grenzfall nach Fr 28.08. (rec 49). Zwei Datenpunkte sind keine Regeländerung — im Meso-4-Review erneut prüfen.
+- **Sa-Ausfall kostet den C&J-Reiz:** die Ausfahrt ersetzte den Box-Slot (Squat C&J 10 RFT @ 60). C&J zuletzt W35 (Bestwert 82,5) — zwei Wochen ohne Kontakt, Rotations-Flag für Meso 4. Als Ausdauerreiz war die Ausfahrt die längste aufgezeichnete überhaupt.
+- **Körperkomposition:** W37 80,41 kg (n=4) vs. W36 81,05 = **−0,64** — erstmals über dem Zielband −0,3/−0,5. Einordnung vor Korrektur: nur vier Messungen, Reihe endet Fr 11.09. (79,78) und enthält die Sa-Ausfahrt nicht. Kumuliert seit W33 −1,43 in 4 Wochen ≈ −0,36/Woche, also im Band. Keine Anpassung; W38 ist als Reisewoche ohnehin keine saubere Messwoche.
+
+**Offen für W38/Meso 4:** Zielneusetzung HSPU, WPU und T2B (Martins Vorschlag, Sechs-Wochen-Review Meso 3 bleibt bis dahin offen) · Overhead Squat seit W34 ohne Lastaufbau (55×3, Ziel 65) · C&J-Kontakt früh einplanen · FS-Korridor 107,5-110 · BMU-Treppe fortsetzen · Fuß-Cue aus dem Whiteboard-Buch einmal abfragen, sonst fallen lassen. W38 ist Reisewoche Charlotte NC, Planung erst nach Rückmeldung zu den Trainingsmöglichkeiten vor Ort.
+
 ## 2026-W36 · 31. August–6. September · Meso 3 W5 — Konsolidierung: Snatch-Video, BMU 4×3, WPU 3×5
 
 **Plan befolgt** (Di/Do/So wie zuletzt geplant; Sa Box am 05.09. abgesagt, nicht nachgeholt). Mo Ruhe ✓ (rec 44 — Upgrade-Option ≥70 nicht ausgelöst) · Di Fokus A ✓ (rec 60; abends ungeplant Ride mit der Arbeit 47,7 km / 1:40 h / 282 Hm / Ø-HF 139) · Mi Ruhe (Termin) ✓ (rec 80) · Do Fokus B ✓ (rec 84) · Fr Ruhe (Termin) ✓ (rec 12 rot) · Sa ausgefallen ✓ (rec 66) · So Team-WOD „FFR + South + West" ✓ (rec 71, Strain 16,5, Notiz „Scheiss cardio workout"). Erste Woche auf Trainer 3.0 (Planquelle + generiertes data.js): Verdict-Kanal 12/12 hit (Di 6, Do 6), Notizen an allen drei Trainingstagen. Kein Deload-Trigger.

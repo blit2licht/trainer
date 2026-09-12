@@ -14,7 +14,7 @@
     "id": "Meso 3",
     "zeitraum": "2026-W32 bis 2026-W37",
     "phase": "Aufbau + Rekomposition",
-    "vorheriges_meso": "Meso 2 (W25-W30) abgeschlossen — Review: coach/reviews/2026-08-02-meso2.md",
+    "vorheriges_meso": "Meso 2 (W25-W30) abgeschlossen — Review: coach/reviews/2026-08-02-meso2.md. Meso 3 (W32-W37) abgeschlossen — Review: coach/reviews/2026-09-12-meso3.md (2 Ziele erreicht, 8/8 Kennzahlen gehalten oder verbessert, −1,43 kg, kein Deload).",
     "wochenrollen": {
       "W32": "Meso-3-Start: Gymnastics-Testtag (Fr), C&J-Komplex-Reclaim Ceiling 80 (Sa), Snatch Richtung 60 antesten (Di), Defizit-Start — alles erledigt",
       "W33": "Progression aus Testständen: OHS-Lastaufbau Richtung 50/52,5, HSPU-Stufe 4×7, WPU bewusst zweite Runde 3×4 (Martin-Entscheid 09.08., 3×5 ab W34), Snatch 60 reproduzieren, C&J-Speed bei ≤80 — alles erledigt, BMU-Linked-Doubles-Start (Sa) nicht sauber",
@@ -34,8 +34,8 @@
     "gymnastics": [
       "Bar Muscle-up",
       "Weighted Pull-up",
-      "Strict HSPU",
-      "Toes-to-Bar"
+      "Deficit Strict HSPU",
+      "Toes-to-Bar (nur Volumen, Ziel geschlossen 12.09.)"
     ],
     "weightlifting": [
       "Snatch",
@@ -57,7 +57,7 @@
       "clean_jerk": "W35 (Di 25.08., rec 72): Komplex bis 82,5 sauber — NEUER BESTWERT (alt 80, W32). Notiz 8/10, 'letzte okay, da Last hoch'. Leiter real 65/70/72,5/75/80/82,5. WHOOP trackte Clean und Push Jerk getrennt. W36 planmäßig nicht bedient (Konsolidierungswoche). W37 nicht bedient: der Sa-Box-Slot (Squat C&J 10 RFT @ 60) wurde zugunsten der 101-km-Ausfahrt gestrichen. Damit zwei Wochen ohne C&J-Kontakt (zuletzt W35) — Rotations-Flag für Meso 4, Unterbrechungsregel (≥10 Tage) greift ab 10.09. bei weiterem Ausfall in der Reisewoche."
     },
     "offen": [
-      "ZIELNEUSETZUNG FÄLLIG (Sechs-Wochen-Review Meso 3): Strict HSPU (10 unbroken erreicht), Weighted Pull-up (6 @ +5 erreicht) und T2B (16 vs. Ziel 10, seit W32 überfällig). Profil sieht vor, dass Martin neue Ziele vorschlägt — bis dahin bleiben die alten Zielwerte in profile.json stehen, die Stände sind aktualisiert.",
+      "ZIELNEUSETZUNG ERLEDIGT (12.09., Sechs-Wochen-Review Meso 3, coach/reviews/2026-09-12-meso3.md): Strict HSPU 10 erreicht → Nachfolger Deficit Strict HSPU 5 unbroken (erste Session kalibriert die Defizithöhe, dann 4×3 → 4×4 → 4×5 → Test). WPU 6 @ +5 erreicht → Nachfolger 10 Reps @ +5 kg (3×6 → 3×7 → 3×8 → Test; Kapazitätsziel, Trade-off benannt, Horizont ~2 Mesos). T2B geschlossen ohne Ersatz, läuft als Volumen 3×10 weiter. BMU-Ziel 5 und alle Weightlifting-Ziele unverändert.",
       "BMU: 4 unbroken erreicht (Ziel 5). Nächster Schritt in Meso 4 — Treppe eine Stufe weiter (3×3 + 1×max bzw. 4×3 konsolidieren), Test frühestens nach zwei zusammenhängenden Kontaktwochen. Methodik coach/bmu-entwicklungsplan.md.",
       "Front Squat: 105×1 bestätigt (W37). 1RM-Schätzung war ~107,5 und ist damit überholt — neue Schätzung ~112,5 (Ziel 115). Nächster Korridor 107,5-110 mit Singles, RPE-Cap 8, Rack-Position als Abbruchkriterium.",
       "Overhead Squat: seit W34 kein Lastaufbau (Topwert 55×3), in W36/W37 nur als Positionsarbeit bzw. gar nicht bedient. Ziel 65 ist damit der am weitesten entfernte Weightlifting-Punkt — in Meso 4 wieder mit eigenem Slot einplanen.",
@@ -136,7 +136,7 @@
     "notizen": "Website-Datenbank über get_notes.php",
     "strava": "Optional über MCP für Radfahrten"
   },
-  "naechster_zielreview": "Sechs-Wochen-Review Meso 3 (W32-W37) ist mit dem W37-Wochenreview inhaltlich vorbereitet, aber NICHT abgeschlossen: die Zielneusetzung für Strict HSPU (10 erreicht), Weighted Pull-up (6 @ +5 erreicht) und T2B (16 vs. Ziel 10) steht aus und ist Martins Vorschlag (profile.json: neue_ziele). Review-Datei unter coach/reviews/ wird erst danach geschrieben. Nächster regulärer Zielreview: Ende Meso 4.",
+  "naechster_zielreview": "Sechs-Wochen-Review Meso 3 abgeschlossen am 12.09.2026 (coach/reviews/2026-09-12-meso3.md), inklusive Zielneusetzung. Nächster Zielreview: Ende Meso 4. W38 ist Reisewoche (Charlotte NC), Meso 4 startet danach — Schwerpunkte laut Review: OHS mit eigenem Slot, C&J früh, FS-Korridor 107,5-110, neue Gymnastics-Treppen, BMU-Treppe fortsetzen, Snatch-Empfang-Wirkungsnachweis, Körperkomposition unverändert weiter.",
   "systemstatus": "Trainer 3.0 produktiv seit 30.08.2026 (W36): website/index.html ist die 3.0-App auf der Root, website/data.js wird von scripts/build_payload.py aus coach/plan/<id>.json + coach/exercises.json generiert und nie von Hand editiert, /v30/ leitet per .htaccess auf / um, 2.0 liegt stillgelegt unter archive/2.0/ (Alt-Historie für derive_state.py). Engine weiter offen: derive_state.py Phase 1 read-only. Wochenreviews W25-W37 abgeschlossen (W35-So-Ride 30.08. per Strava nachgetragen: 74,5 km / 2:33 h moving / 395 Hm / Ø-HF 133; W36 erste Woche auf 3.0 mit vollständigem Verdict-Rückkanal, 12/12 hit; W37 ebenfalls 12/12 hit an zwei Trainingstagen, davon ein Tag ohne freie Notiz — der Verdict-Kanal trug den Review allein). Session-Feel-Skala seit W35 abgeschafft — Verdict-Tabelle + freie Notiz ersetzen sie (Deload-Trigger entsprechend umformuliert). Meso 3 läuft (W32-W37, Aufbau + Rekomposition inkl. Körperkompositions-Protokoll). Gymnastics-Testblock 1 absolviert (W32). Video-Analyse-Pipeline (MediaPipe) seit 15.08. lokal vorhanden: BMU-Modus validiert (noch ohne Linked-Double-Auswertung), Snatch-Modus seit 20.08. auf --bar-trail (Farbsegmentierung) umgestellt und an 3 Clips validiert; gleichentags Interpolations-Bug in der Winkelberechnung gefixt (Winkel jetzt aus Roh-Detektionen statt interpolierten Positionen) — Diagnose-Ergebnis siehe load_references.squat_snatch_ceiling.",
   "migration": {
     "version": "1.0",

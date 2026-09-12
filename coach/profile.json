@@ -35,22 +35,18 @@
       "typ": "Gymnastics"
     },
     {
-      "id": "toes-to-bar",
-      "ziel": "10 unbroken",
-      "stand": "16 unbroken (Test W32 — Ziel übertroffen, Zielneusetzung beim Review)",
-      "typ": "Gymnastics"
-    },
-    {
       "id": "weighted-pull-up",
-      "ziel": "6 Wiederholungen mit +5 kg",
-      "stand": "6 Wiederholungen mit +5 kg (Test W37, 09.09.) — ZIEL ERREICHT, Zielneusetzung offen",
-      "typ": "Gymnastics"
+      "ziel": "10 Wiederholungen mit +5 kg",
+      "stand": "6 Wiederholungen mit +5 kg (Test W37, 09.09.2026)",
+      "typ": "Gymnastics",
+      "hinweis": "Kapazitätsziel, kein Kraftziel — Martins Entscheid 12.09.2026 mit benanntem Trade-off. Horizont ~2 Mesos."
     },
     {
-      "id": "strict-hspu",
-      "ziel": "10 unbroken",
-      "stand": "10 unbroken (Test W37, 09.09.) — ZIEL ERREICHT, Zielneusetzung offen",
-      "typ": "Gymnastics"
+      "id": "deficit-strict-hspu",
+      "ziel": "5 unbroken vom Defizit (~10 cm)",
+      "stand": "offen — Defizithöhe wird in der ersten Session kalibriert (Maßstab: 3 saubere Wiederholungen)",
+      "typ": "Gymnastics",
+      "vorgaenger": "strict-hspu 10 unbroken — erreicht Test W37 (09.09.2026)"
     },
     {
       "id": "snatch",
@@ -85,17 +81,17 @@
   "gymnastics_testprotokoll": {
     "hinweis": "Verbindet Volumenarbeit mit den Unbroken-Zielen. Alle 3–4 Wochen ersetzt ein Max-Unbroken-Testsatz (frisch, als erster Arbeitssatz des Fokus-Tags) den regulären ersten Satz. Testergebnis aktualisiert den Zielstand in leistungsziele.",
     "testfrequenz_wochen": "3-4",
-    "naechster_test": "offen — Meso 4. Drei der vier Gymnastics-Treppen sind ausgetestet (HSPU 10, WPU 6 @ +5, BMU 4); neue Treppen erst nach der Zielneusetzung.",
+    "naechster_test": "Meso 4, nach Wiederaufbau der neuen Treppen. Deficit HSPU und WPU starten bei null bzw. auf 3×6; BMU-Test erst nach zwei zusammenhängenden Kontaktwochen.",
     "progressionstreppen": {
       "bar-muscle-up": "Linked-Sets-Treppe (ab W33): 5×2 unbroken → 4×3 → 3×3 + 1×max → Testsatz max unbroken (Ziel 5). Frequenz 2 Kontakte/Woche (Hauptblock + 5-min-Primer). Methodik, Stufenkriterien und Quellen-Priorität: coach/bmu-entwicklungsplan.md",
-      "toes-to-bar": "3×7 → 3×8 → 3×9 → 3×10 → Testsatz max unbroken (Ziel 10)",
-      "weighted-pull-up": "3×3 → 3×4 → 3×5 @ +5 kg → Testsatz 6 Reps @ +5 kg",
-      "strict-hspu": "4×5 → 4×6 → 4×7 → 4×8 → Testsatz max unbroken (Ziel 10)"
+      "deficit-strict-hspu": "Erste Session kalibriert die Defizithöhe (Richtwert ~10 cm über Scheiben/Parallettes; Maßstab ist die Höhe, bei der 3 saubere Wiederholungen stehen). Danach 4×3 → 4×4 → 4×5 → Testsatz max unbroken (Ziel 5).",
+      "weighted-pull-up": "3×6 → 3×7 → 3×8 @ +5 kg → Testsatz 10 Reps @ +5 kg. Langsame Progression, Horizont ~2 Mesos.",
+      "toes-to-bar": "Ziel geschlossen (12.09.2026). Läuft als Volumen 3×10 ohne Treppe und ohne Testsatz."
     },
     "regeln": [
       "Pro Woche höchstens eine Stufe pro Ziel steigen; Stufe gilt erst als bestätigt, wenn alle Sätze sauber (kein Failure, Technik hält).",
       "Bei unsauberem letzten Satz eine Stufe zurück, nicht wiederholt erzwingen.",
-      "Testsatz nie auf vorermüdetem System (Recovery <50 % oder Grip-/Overhead-Vorlast am Vortag) — dann Test um eine Woche schieben.",
+      "Testsatz nie auf vorermüdetem System (Recovery <50 % oder Grip-/Overhead-Vorlast am Vortag) — dann Test um eine Woche schieben. STAND 12.09.2026: zweimal folgenlos gebrochen (Fr 28.08. rec 49, Mi 09.09. rec 48 mit zwei erreichten Zielen). Regel bleibt bestehen, steht aber unter Beobachtung; Neubewertung im Meso-4-Review.",
       "Unterbrechungsregel (alle Skills, ab 2026-08-09): ≥10 Tage ohne Kontakt zu einem Skill → eine Reclaim-Session eine Stufe tiefer, bevor die Treppe weiterläuft. Wochen ohne Kontakt zählen nicht als Progressionswochen. Testsatz erst nach ≥2 zusammenhängenden Trainingswochen, nie direkt nach einer Lücke. Herleitung: coach/bmu-entwicklungsplan.md"
     ]
   },
@@ -111,5 +107,21 @@
     "leitplanken": "Kein zusätzliches Cardio als Defizit-Hebel. 15-min-Hypertrophie-Layer (Delts/Brust/Arme) an beiden Fokus-Tagen. Performance-Dip ab Defizit-Woche 3-4 akzeptiert, kein Deload-Trigger."
   },
   "review_rhythmus_wochen": 6,
-  "neue_ziele": "Martin schlägt neue Ziele beim Review vor."
+  "neue_ziele": "Martin schlägt neue Ziele beim Review vor.",
+  "geschlossene_ziele": [
+    {
+      "id": "toes-to-bar",
+      "ziel_war": "10 unbroken",
+      "erreicht": "16 unbroken (Test W32, 07.08.2026)",
+      "geschlossen_am": "2026-09-12",
+      "entscheid": "Kein Nachfolgeziel (Martin, Sechs-Wochen-Review Meso 3). T2B läuft als Volumen weiter (3×10), ohne Zielstatus — der Gymnastics-Fokus trägt drei statt vier Ziele."
+    },
+    {
+      "id": "strict-hspu",
+      "ziel_war": "10 unbroken",
+      "erreicht": "10 unbroken (Test W37, 09.09.2026)",
+      "geschlossen_am": "2026-09-12",
+      "entscheid": "Nachfolger ist deficit-strict-hspu (5 unbroken vom Defizit) — Wechsel von Wiederholungszahl auf Bewegungsumfang."
+    }
+  ]
 }

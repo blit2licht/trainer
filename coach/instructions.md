@@ -162,6 +162,12 @@ Recovery (WHOOP) ist ein **Tagesform-Input zur Autoregulation der Last am Traini
 
 Ruhetage sind harte Ruhetage. Sie werden nicht mit „optional, je nach WHOOP“ aufgeweicht. Wenn ein Tag als Pause geplant ist, bleibt er Pause.
 
+**Ein Ruhetag ist eine Entscheidung, nie ein Platzhalter.** Ein Tag, über den noch nicht entschieden ist, darf nicht als Ruhetag veröffentlicht werden — das Datenmodell kennt nur `own`, `box` und `rest`, es gibt also kein ehrliches „offen“. Fehlt die Information, wird gefragt, bevor der Tag auf die Website geht.
+
+**Zeitangaben gelten exakt bis zum genannten Endtag** (Lehre vom 12.09.2026). Jede Zeitvorgabe von Martin („von Sonntag bis Freitag kein Training“) wird zuerst in konkrete Wochentage mit Datum aufgelöst und dann genau so übernommen. Tage nach dem genannten Ende sind normale Trainingstage und werden geplant — eine Vorgabe wird nie über ihr Ende hinaus fortgeschrieben, auch nicht „vorsichtshalber“, weil eine Folgeinfo fehlt. Fehlt sie, ist das eine Frage, keine Annahme.
+
+**Jede Woche braucht ihre Planquelle, bevor sie beginnt.** `website/data.js` trägt die laufende und die nächste Woche; existiert für die Folgewoche keine `coach/plan/<jahr>-W<nr>.json`, liegt nur eine Woche im Payload und der Wochen-Button am Handy bleibt versteckt (`index.html`, `NEXT_WEEK`). Beim Abschluss einer Woche gehört die Prüfung dazu, ob die Folgewoche existiert — eine erkannte Lücke wird geschlossen, nicht notiert.
+
 WHOOP-Recovery-Skala: 0–33 % rot, 34–66 % gelb, 67–100 % grün. Unter 50 % gilt die Kappungsregel aus „Daily WOD Adjustment“.
 
 ## Referenzen

@@ -30,9 +30,10 @@
   "leistungsziele": [
     {
       "id": "bar-muscle-up",
-      "ziel": "5 unbroken",
+      "ziel": "3×5 verbunden (früher: 5 unbroken) — Formulierung in Leiterwährung, Bestätigung durch Martin offen",
       "stand": "4 unbroken (Test W37, 09.09. — 5. Rep fail)",
-      "typ": "Gymnastics"
+      "typ": "Gymnastics",
+      "hinweis": "Altes Ziel war '5 unbroken' (Stand 4, Testsatz W37). Ohne Testsätze wird die Treppenstufe zum Nachweis. Endgültige Formulierung schlägt Martin vor."
     },
     {
       "id": "weighted-pull-up",
@@ -43,10 +44,11 @@
     },
     {
       "id": "deficit-strict-hspu",
-      "ziel": "5 unbroken vom Defizit (~10 cm)",
+      "ziel": "4×5 sauber vom Defizit (~10 cm) — Formulierung in Leiterwährung, Bestätigung durch Martin offen",
       "stand": "offen — Defizithöhe wird in der ersten Session kalibriert (Maßstab: 3 saubere Wiederholungen)",
       "typ": "Gymnastics",
-      "vorgaenger": "strict-hspu 10 unbroken — erreicht Test W37 (09.09.2026)"
+      "vorgaenger": "strict-hspu 10 unbroken — erreicht Test W37 (09.09.2026)",
+      "hinweis": "Ursprünglich am 12.09. als '5 unbroken' gesetzt, am selben Tag auf Leiterwährung umgestellt (Entscheid keine Testsätze). Endgültige Formulierung schlägt Martin vor."
     },
     {
       "id": "snatch",
@@ -78,23 +80,6 @@
     "Handstand Walks",
     "Crossover Double-Unders"
   ],
-  "gymnastics_testprotokoll": {
-    "hinweis": "Verbindet Volumenarbeit mit den Unbroken-Zielen. Alle 3–4 Wochen ersetzt ein Max-Unbroken-Testsatz (frisch, als erster Arbeitssatz des Fokus-Tags) den regulären ersten Satz. Testergebnis aktualisiert den Zielstand in leistungsziele.",
-    "testfrequenz_wochen": "3-4",
-    "naechster_test": "Meso 4, nach Wiederaufbau der neuen Treppen. Deficit HSPU und WPU starten bei null bzw. auf 3×6; BMU-Test erst nach zwei zusammenhängenden Kontaktwochen.",
-    "progressionstreppen": {
-      "bar-muscle-up": "Linked-Sets-Treppe (ab W33): 5×2 unbroken → 4×3 → 3×3 + 1×max → Testsatz max unbroken (Ziel 5). Frequenz 2 Kontakte/Woche (Hauptblock + 5-min-Primer). Methodik, Stufenkriterien und Quellen-Priorität: coach/bmu-entwicklungsplan.md",
-      "deficit-strict-hspu": "Erste Session kalibriert die Defizithöhe (Richtwert ~10 cm über Scheiben/Parallettes; Maßstab ist die Höhe, bei der 3 saubere Wiederholungen stehen). Danach 4×3 → 4×4 → 4×5 → Testsatz max unbroken (Ziel 5).",
-      "weighted-pull-up": "3×6 → 3×7 → 3×8 @ +5 kg → Testsatz 10 Reps @ +5 kg. Langsame Progression, Horizont ~2 Mesos.",
-      "toes-to-bar": "Ziel geschlossen (12.09.2026). Läuft als Volumen 3×10 ohne Treppe und ohne Testsatz."
-    },
-    "regeln": [
-      "Pro Woche höchstens eine Stufe pro Ziel steigen; Stufe gilt erst als bestätigt, wenn alle Sätze sauber (kein Failure, Technik hält).",
-      "Bei unsauberem letzten Satz eine Stufe zurück, nicht wiederholt erzwingen.",
-      "Testsatz nie auf vorermüdetem System (Recovery <50 % oder Grip-/Overhead-Vorlast am Vortag) — dann Test um eine Woche schieben. STAND 12.09.2026: zweimal folgenlos gebrochen (Fr 28.08. rec 49, Mi 09.09. rec 48 mit zwei erreichten Zielen). Regel bleibt bestehen, steht aber unter Beobachtung; Neubewertung im Meso-4-Review.",
-      "Unterbrechungsregel (alle Skills, ab 2026-08-09): ≥10 Tage ohne Kontakt zu einem Skill → eine Reclaim-Session eine Stufe tiefer, bevor die Treppe weiterläuft. Wochen ohne Kontakt zählen nicht als Progressionswochen. Testsatz erst nach ≥2 zusammenhängenden Trainingswochen, nie direkt nach einer Lücke. Herleitung: coach/bmu-entwicklungsplan.md"
-    ]
-  },
   "koerperkomposition": {
     "beschlossen": "Sechs-Wochen-Review 2026-08-02 (Details: decisions.md 2026-07-28, coach/reviews/2026-08-02-meso2.md)",
     "baseline_kg": 80.3,
@@ -107,7 +92,7 @@
     "leitplanken": "Kein zusätzliches Cardio als Defizit-Hebel. 15-min-Hypertrophie-Layer (Delts/Brust/Arme) an beiden Fokus-Tagen. Performance-Dip ab Defizit-Woche 3-4 akzeptiert, kein Deload-Trigger."
   },
   "review_rhythmus_wochen": 6,
-  "neue_ziele": "Martin schlägt neue Ziele beim Review vor.",
+  "neue_ziele": "Martin schlägt neue Ziele beim Review vor. Ziele werden in Leiterwährung formuliert (erreichte Stufe = Nachweis), nicht als Max-Test — Entscheid 2026-09-12.",
   "geschlossene_ziele": [
     {
       "id": "toes-to-bar",
@@ -123,5 +108,21 @@
       "geschlossen_am": "2026-09-12",
       "entscheid": "Nachfolger ist deficit-strict-hspu (5 unbroken vom Defizit) — Wechsel von Wiederholungszahl auf Bewegungsumfang."
     }
-  ]
+  ],
+  "gymnastics_progression": {
+    "hinweis": "Ersetzt das frühere gymnastics_testprotokoll (Martin-Entscheid 2026-09-12: keine Testwochen, keine Max-Testsätze). Fortschritt wird über den kontinuierlichen Aufbau gemessen — die sauber absolvierte Leiterstufe IST der Nachweis, es gibt keinen separaten Messtermin mehr. Ziele werden deshalb in Leiterwährung formuliert.",
+    "progressionstreppen": {
+      "bar-muscle-up": "Linked-Sets-Treppe (ab W33): 5×2 unbroken → 4×3 → 3×4 → 3×5. Frequenz 2 Kontakte/Woche (Hauptblock + 5-min-Primer). Methodik und Quellen-Priorität: coach/bmu-entwicklungsplan.md. Stand W37: 4×3 erreicht (W36), im Testsatz 4 am Stück.",
+      "deficit-strict-hspu": "Erste Session kalibriert die Defizithöhe (Richtwert ~10 cm über Scheiben/Parallettes; Maßstab ist die Höhe, bei der 3 saubere Wiederholungen stehen). Danach 4×3 → 4×4 → 4×5.",
+      "weighted-pull-up": "3×6 → 3×7 → 3×8 @ +5 kg, danach Richtung Einzelsatz 10. Langsame Progression, Horizont ~2 Mesos.",
+      "toes-to-bar": "Ziel geschlossen (12.09.2026). Läuft als Volumen 3×10 ohne Treppe."
+    },
+    "regeln": [
+      "Pro Woche höchstens eine Stufe pro Ziel steigen; Stufe gilt erst als bestätigt, wenn alle Sätze sauber (kein Failure, Technik hält).",
+      "Bei unsauberem letzten Satz eine Stufe zurück, nicht wiederholt erzwingen.",
+      "Plateau-Signal ersetzt den Test: bleibt eine Stufe zweimal hängen, ist das der Befund — dann Übungswahl, Volumen oder Frequenz ändern, nicht messen.",
+      "Unterbrechungsregel (alle Skills, ab 2026-08-09): ≥10 Tage ohne Kontakt zu einem Skill → eine Reclaim-Session eine Stufe tiefer, bevor die Treppe weiterläuft. Wochen ohne Kontakt zählen nicht als Progressionswochen.",
+      "Benchmark-WODs (Girls, Hero, Open) bleiben als gelegentlicher Maßstab zulässig — sie sind ohnehin Trainingsreiz und erzwingen keinen Wochenumbau. Format vorher auf wodwell.com verifizieren."
+    ]
+  }
 }

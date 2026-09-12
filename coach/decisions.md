@@ -4,6 +4,47 @@ Fortlaufende Prosa-Notizen aus Retrospektiven. Neueste Einträge oben.
 
 ---
 
+## 2026-09-12 — Keine dedizierten Testwochen und Testsätze mehr
+
+Martin setzt fest: keine dedizierten Testwochen, "nie wieder". Tests
+allenfalls als ganz bestimmte Benchmark-WODs. Fortschritt wird über den
+kontinuierlichen Aufbau gemessen.
+
+Einordnung (Coach, gleiche Sitzung): Die Entscheidung ist durch die eigenen
+Daten gedeckt. Alle vier Weightlifting-Ziele sind über Meso 2 und 3 ohne
+jede Testwoche gewachsen — Snatch 57,5 → 60, C&J 80 → 82,5, Front Squat
+102,5 → 105, OHS 50 → 55 — ausschließlich über RPE-gated Singles in
+normalen Fokus-Tagen. Die Gymnastics-Tests in W37 waren zu zwei Dritteln
+vorhersagbar: HSPU 4×8 dreimal sauber ergab Test 10, WPU 3×5 sauber ergab
+Test 6, jeweils genau eine Wiederholung über dem obersten Leitersatz. Die
+Leiter trug die Information bereits. Gekostet hat der Testblock eine Woche
+mit drei Qualitätseinheiten und vier Ruhetagen, plus zwei gestrichene
+Box-Slots — viel Struktur für drei Zahlen, von denen zwei berechenbar waren.
+Dazu kam zweimal Reibung mit der 50-Prozent-Testregel (rec 49 am 28.08.,
+rec 48 am 09.09.), beide Male folgenlos.
+
+Einziger echter Verlust: BMU 3 → 4 war genuine Information, weil das Ziel in
+"max unbroken" formuliert ist, die Linked-Sets-Treppe aber in verbundenen
+Tripeln arbeitet. Das ist kein Argument für Testwochen, sondern ein
+Formulierungsfehler bei den Zielen.
+
+Konsequenz: Ziele werden künftig in Leiterwährung formuliert — die erreichte
+Stufe IST der Nachweis. "4×5 sauber vom Defizit" statt "5 unbroken vom
+Defizit". Damit entfällt sowohl die Testwoche als auch der Max-Testsatz als
+erster Arbeitssatz. Benchmark-WODs (Girls, Hero, Open) bleiben als
+gelegentlicher Maßstab zulässig, weil sie ohnehin Trainingsreiz sind und
+nicht um sich herum eine Woche umbauen.
+
+Das übliche Gegenargument — frische Maximalkapazität als Wettkampfgröße —
+greift bei Martins Apex nicht: keine Wettkämpfe außer gelegentlichen
+Box-Events.
+
+Offen bis zur nächsten Sitzung: Die am selben Tag gesetzten Ziele müssen in
+die neue Währung übersetzt werden (Deficit HSPU, BMU). Zielformulierung ist
+Martins Entscheid.
+
+---
+
 ## 2026-07-28 — Körperkomposition als Meso-3-Reviewpunkt, Accessory-Layer bestätigt
 
 Martin bringt Physique-Wunsch ein (Referenz: zwei AI-idealisierte

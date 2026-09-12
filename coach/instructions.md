@@ -62,6 +62,8 @@ Plane Mesocyclen, Progression, Belastungswellen und leichtere Wochen nach guter 
 
 Keine routinemäßigen 1RM-Tests. Gewichtheber-Fortschritt wird über technisch saubere Singles, Doubles, RPE, Stabilität und tatsächliche erfolgreiche Lifts bewertet. Ein Ziel gilt endgültig als erreicht, wenn das Zielgewicht sauber gehoben wurde. Mehrere eindeutige freie Notizen dürfen als Nachweis gelten.
 
+**Keine dedizierten Testwochen und keine Max-Testsätze** (Martin-Entscheid 2026-09-12, Herleitung decisions.md). Fortschritt wird ausschließlich über den kontinuierlichen Aufbau gemessen: die erreichte Leiterstufe IST der Nachweis. Es wird keine Woche um Messungen herum gebaut, keine Trainingsdichte für frische Testsätze reduziert und kein Max-Unbroken-Satz als erster Arbeitssatz eingeplant. Daraus folgt für die Zielformulierung: **Ziele werden in Leiterwährung geschrieben** ("4×5 sauber vom Defizit"), nicht in Testwährung ("5 unbroken") — sonst entstehen Ziele, die nicht mehr messbar sind. Benchmark-WODs (Girls, Hero, Open) bleiben als gelegentlicher Maßstab zulässig: sie sind ohnehin Trainingsreiz und erzwingen keinen Wochenumbau. Bei Gymnastics-Skills liefert die Leiter zusätzlich das Plateau-Signal — bleibt eine Stufe zweimal hängen, ist das der Befund, den früher ein Test liefern sollte.
+
 Alle sechs Wochen erfolgt ein Zielreview. Das ist ein Bewertungsrhythmus, kein erzwungenes Mesocycle-Ende. Claude darf einen Schwerpunkt begründet verlängern. Martin schlägt neue Ziele vor; Fokuswechsel erfolgen im Review.
 
 ### Video-Analyse (loses Element der Fokus-Entwicklung)

@@ -39,6 +39,20 @@ Das übliche Gegenargument — frische Maximalkapazität als Wettkampfgröße �
 greift bei Martins Apex nicht: keine Wettkämpfe außer gelegentlichen
 Box-Events.
 
+**Präzisierung am selben Tag:** Verboten ist die Architektur, nicht der Satz.
+Ein einzelner Max-Satz (z. B. Max Reps BMU) darf jederzeit in einer normalen
+Session stehen, aus Spaß oder als Intent-Reiz — solange sich Wochenstruktur,
+Ruhetage und Slot-Wahl nicht danach richten. Martins Begründung für die
+Gesamtentscheidung: "eigentlich wäre die Woche auch noch ne Box drin gewesen …
+das ist wirklich zu viel Kosten für zu wenig Zahlen". Der Satz kostet drei
+Minuten, die Testwoche kostete vier Ruhetage und zwei Box-Slots.
+
+Bedingung dafür: Die entstehende Zahl ist ein Datenpunkt mit Kontext
+(Recovery, Vorlast), kein Urteil. Sie darf eine Leiterstufe nie nach unten
+korrigieren und entscheidet nicht über den Zielstatus; nach oben darf sie als
+bestätigter Wert zählen. Sonst kehrt die Testlogik durch die Hintertür zurück,
+nur schlechter kontrolliert.
+
 Offen bis zur nächsten Sitzung: Die am selben Tag gesetzten Ziele müssen in
 die neue Währung übersetzt werden (Deficit HSPU, BMU). Zielformulierung ist
 Martins Entscheid.

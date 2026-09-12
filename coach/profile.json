@@ -121,6 +121,7 @@
       "Pro Woche höchstens eine Stufe pro Ziel steigen; Stufe gilt erst als bestätigt, wenn alle Sätze sauber (kein Failure, Technik hält).",
       "Bei unsauberem letzten Satz eine Stufe zurück, nicht wiederholt erzwingen.",
       "Plateau-Signal ersetzt den Test: bleibt eine Stufe zweimal hängen, ist das der Befund — dann Übungswahl, Volumen oder Frequenz ändern, nicht messen.",
+      "Einzelne Max-Sätze sind erlaubt (Präzisierung 12.09.2026) — z. B. Max Reps BMU, aus Spaß oder als Intent-Reiz, mitten in einer normalen Session. Bedingung: die Woche richtet sich nicht danach (keine Extra-Ruhetage, keine gestrichenen Slots, kein geschützter Termin). Das Ergebnis ist ein Datenpunkt mit Kontext (Recovery, Vorlast) und darf eine Leiterstufe nie nach unten korrigieren; nach oben zählt es als bestätigter Wert.",
       "Unterbrechungsregel (alle Skills, ab 2026-08-09): ≥10 Tage ohne Kontakt zu einem Skill → eine Reclaim-Session eine Stufe tiefer, bevor die Treppe weiterläuft. Wochen ohne Kontakt zählen nicht als Progressionswochen.",
       "Benchmark-WODs (Girls, Hero, Open) bleiben als gelegentlicher Maßstab zulässig — sie sind ohnehin Trainingsreiz und erzwingen keinen Wochenumbau. Format vorher auf wodwell.com verifizieren."
     ]

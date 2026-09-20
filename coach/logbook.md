@@ -2,6 +2,21 @@
 
 Kurze, verdichtete Wocheneinträge. Rohdaten bleiben in WHOOP, Strava und der Website-Datenbank.
 
+## 2026-W38 · 14.–20. September · Reisewoche Charlotte + Meso-4-Start — Barbell-Reclaim RX'd
+
+**Plan RX'd befolgt** (Martin-Bestätigung 20.09.). Mo–Fr Charlotte NC trainingsfrei wie am 12.09. festgelegt; per Strava Di Schwimmen 30 min (Strain 10,3) und Do Schwimmen 45 min (Strain 11,7), kein Kraftreiz. Sa Fokus A: C&J-Komplex 4×1 auf 60/65/70/75, OHS 3×3 auf 45/47,5/50, Layer Delts/Bizeps, Mobility — dazu am selben Tag zwei Ausfahrten (Sendling-Westpark 37,2 km / 1:21 h moving / 147 Hm, Starnberger See 37,5 km / 1:14 h / 148 Hm; Relative Effort 14 + 29). So Box: Deadlift/T2B-Ladder 3-6-9-12-9-6-3 mit 15 Air Squats je Runde @ 85 kg, Level 2, 13-Min-Cap. **Datenlage:** Verdict-Zeilen, Website-Notizen, Recovery/Schlaf (intervals.icu) und Gewicht (Withings) waren aus der Review-Session nicht erreichbar (Netz-Policy, fehlender Withings-Token). Kein Recovery-Schnitt, kein Wochengewicht, kein Deload-Check möglich — Nachtrag vor der W39-Planung, Ausführung gilt bis dahin per Bestätigung.
+
+**Kernbefunde:**
+- **C&J-Kontakt wiederhergestellt:** 25 Tage nach dem 82,5er-Bestwert (W35) lief der Komplex als Reclaim sauber bis 75. Unterbrechungsregel eingehalten, kein Maximalversuch. Ab W39 normale Progression Richtung 80; 85 erst nach reproduzierter 82,5.
+- **Overhead Squat hat wieder einen Slot:** erste Lasteinheit seit dem 19.08. (W34), Reclaim 3×3 bis 50. 52,5-Option nicht belegt, Topwert bleibt 55×3. Der größte Zielabstand des Profils (55 gegen 65) wird ab W39 wieder aktiv bearbeitet — Meso-4-Schwerpunkt 1 ist damit angelaufen.
+- **Sechs freie Tage haben den Reclaim nicht gestört:** beide Übungen wie geplant durch. Ob die Lasten „leicht" oder „ausreichend" waren, steht in der Notiz, die noch nicht gegengelesen ist; ohne Gegenbefund läuft W39 auf der nächsten Stufe.
+- **Samstag war eine Doppelbelastung:** Fokus A plus 74,7 km Rad an einem Tag. Für die Reclaim-Lasten (RPE-Cap 7) unkritisch, für die Sonntags-Box einen Tag später ein Ermüdungsfaktor, der bei der Score-Einordnung mitgelesen werden sollte.
+- **Gymnastics-Lücke läuft weiter:** BMU, WPU und HSPU zuletzt am 09.09. Am ersten Fokus-B-Tag in W39 sind das 15+ Tage — Unterbrechungsregel greift: Reclaim eine Stufe tiefer (BMU 5×2 oder 3×3, WPU 3×5), Deficit-HSPU ohnehin als Kalibrierung. Keine Testsätze.
+- **T2B als Volumen:** 48 Reps in der Ladder, Ziel seit 12.09. geschlossen — läuft ohne Zielstatus weiter.
+- **Körperkomposition:** W38 ohne Wochenschnitt (Reisewoche, kein Pull). Referenz bleibt W37 80,41 kg (n=4). Nächste saubere Bewertung W39 gegen W37.
+
+**Offen für W39 / Meso 4 W1:** Wellness- und Gewichts-Pull nachholen und Verdicts/Notizen 19./20.09. gegenlesen (OHS-52,5-Option, Box-Score) · C&J Richtung 80 · OHS 52,5–55 mit Ziel 57,5 im Meso · FS-Korridor 107,5–110 · Gymnastics-Reclaim vor den neuen Treppen (Deficit-HSPU-Kalibrierung, WPU 3×6 erst nach 3×5-Reclaim) · BMU-Treppe fortsetzen (Test erst nach zwei Kontaktwochen) · Snatch-Ceiling-Kontakt als Wirkungsnachweis der Drop-Snatch-Arbeit · Meso-4-Ende (W44) bestätigen.
+
 ## 2026-W37 · 7.–13. September · Meso 3 W6 — Testblock: zwei Profil-Ziele erreicht, FS 105
 
 **Plan teilweise befolgt.** Mo Ruhe ✓ (rec 58) · Di Ruhe/Termin ✓ (rec 74) · Mi Gymnastics-Testtag ✓ (rec 48) · Do Fokus A ✓ (rec 87) · Fr Ruhe ✓ (rec 50) · **Sa Box gestrichen** → Ride 101,4 km / 3:41 h moving / 748 Hm / Ø-HF 141 / Relative Effort 122 (rec 78) · So Reisetag Charlotte NC. Verdict-Kanal 12/12 hit (Mi 6, Do 6); Do bewusst ohne freie Notiz — der Verdict trug den Review allein. Ø Recovery 66, kein Tag rot, Ø Schlaf 6,35 h mit zwei kurzen Nächten (Mi 5,3 / Fr 5,0). Kein Deload-Trigger.

@@ -30,10 +30,10 @@
   "leistungsziele": [
     {
       "id": "bar-muscle-up",
-      "ziel": "3×5 verbunden (früher: 5 unbroken) — Formulierung in Leiterwährung, Bestätigung durch Martin offen",
+      "ziel": "3×5 verbunden",
       "stand": "4 unbroken (Test W37, 09.09. — 5. Rep fail)",
       "typ": "Gymnastics",
-      "hinweis": "Altes Ziel war '5 unbroken' (Stand 4, Testsatz W37). Ohne Testsätze wird die Treppenstufe zum Nachweis. Endgültige Formulierung schlägt Martin vor."
+      "hinweis": "Altes Ziel '5 unbroken' (Stand 4, Testsatz W37) am 12.09. auf Leiterwährung umgestellt, Formulierung von Martin am 20.09.2026 bestätigt. Treppe: 5×2 → 4×3 → 3×3+1×max → 3×5 verbunden; die erreichte Stufe ist der Nachweis."
     },
     {
       "id": "weighted-pull-up",
@@ -44,11 +44,11 @@
     },
     {
       "id": "deficit-strict-hspu",
-      "ziel": "4×5 sauber vom Defizit (~10 cm) — Formulierung in Leiterwährung, Bestätigung durch Martin offen",
+      "ziel": "4×5 sauber vom Defizit (Kalibrierhöhe, Richtwert ~10 cm)",
       "stand": "offen — Defizithöhe wird in der ersten Session kalibriert (Maßstab: 3 saubere Wiederholungen)",
       "typ": "Gymnastics",
       "vorgaenger": "strict-hspu 10 unbroken — erreicht Test W37 (09.09.2026)",
-      "hinweis": "Ursprünglich am 12.09. als '5 unbroken' gesetzt, am selben Tag auf Leiterwährung umgestellt (Entscheid keine Testsätze). Endgültige Formulierung schlägt Martin vor."
+      "hinweis": "Ursprünglich am 12.09. als '5 unbroken' gesetzt, am selben Tag auf Leiterwährung umgestellt (Entscheid keine Testsätze), Formulierung von Martin am 20.09.2026 bestätigt. Treppe 4×3 → 4×4 → 4×5 auf der Kalibrierhöhe (Session 21.09.)."
     },
     {
       "id": "snatch",

@@ -150,3 +150,12 @@ Meso-Zähler (Kontakt halten, keine Treppen). Meso 4 startet Mo 5.10. (W41),
 sechs volle Wochen bis W46, Zielreview Ende W46. Schwerpunkte aus dem
 Meso-3-Review vom 12.09. unverändert. W41 beginnt für alle Foki mit Reclaim
 (Unterbrechungsregel), Treppen ab W42.
+
+---
+
+## 2026-09-20 — Zielformulierung Deficit HSPU und BMU bestätigt
+
+Martin bestätigt die am 12.09. vorläufig gesetzten Leiterwährungs-Ziele:
+Deficit Strict HSPU „4×5 sauber vom Defizit" (Kalibrierhöhe aus der Session
+21.09., Richtwert ~10 cm) und Bar Muscle-up „3×5 verbunden" (statt „5
+unbroken"). Die erreichte Treppenstufe ist der Nachweis, kein Testsatz.

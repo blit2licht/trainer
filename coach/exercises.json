@@ -272,7 +272,7 @@
         "confirmed_at": null,
         "regeln_ref": "coach/reviews/2026-09-12-meso3.md Zielentscheid"
       },
-      "note": "Nachfolger von hspu_strict (Ziel 10 erreicht W37). Kalibrierung der Defizithöhe Mo 21.09.2026 (W39); Startstufe 4×3 auf dem Kalibrierwert ab Meso 4 (W41/W42). Kein Testsatz, Ziel in Leiterwährung (vorläufig '4×5 sauber vom Defizit', Martin-Bestätigung offen). WHOOP-Alias = derselbe Library-Name wie hspu_strict, Defizit dort nicht abbildbar."
+      "note": "Nachfolger von hspu_strict (Ziel 10 erreicht W37). Kalibrierung der Defizithöhe Mo 21.09.2026 (W39); Startstufe 4×3 auf dem Kalibrierwert ab Meso 4 (W41/W42). Kein Testsatz, Ziel in Leiterwährung '4×5 sauber vom Defizit' (Martin bestätigt 20.09.2026). WHOOP-Alias = derselbe Library-Name wie hspu_strict, Defizit dort nicht abbildbar."
     },
     {
       "ex_id": "wpu",
@@ -354,7 +354,7 @@
           "5x2 unbroken",
           "4x3",
           "3x3 + 1xmax",
-          "test"
+          "3x5 verbunden"
         ],
         "confirmed_step": 0,
         "confirmed_at": "2026-08-22",

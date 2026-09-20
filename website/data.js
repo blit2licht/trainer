@@ -488,7 +488,7 @@ const DATA = {
           "day_type": "own",
           "focus": "B",
           "focus_label": "Gymnastics-Reclaim",
-          "kurzform": "BMU, hspu_deficit, PU",
+          "kurzform": "BMU, Deficit HSPU, PU",
           "blocks": [
             {
               "block_id": "A",
@@ -526,9 +526,9 @@ const DATA = {
               "exercises": [
                 {
                   "ex_id": "hspu_deficit",
-                  "kurz": "Deficit Strict HSPU",
-                  "name": "Deficit Strict HSPU",
-                  "class": null,
+                  "kurz": "Deficit HSPU",
+                  "name": "Deficit Strict Handstand Push-up",
+                  "class": "skill",
                   "target": {
                     "mode": "bw",
                     "sets": 4,
@@ -536,6 +536,7 @@ const DATA = {
                     "rpe_cap": 7,
                     "rest": "2 min"
                   },
+                  "whoop": "Handstand Push-Ups",
                   "warum": "Kalibrierung, kein Arbeitssatz: vier Dreier mit steigendem Defizit 5 → 7,5 → 10 → 12,5 cm (Scheiben oder Parallettes). Die letzte Höhe, bei der alle drei Reps sauber und mit vollem ROM stehen, ist dein Kalibrierwert — bitte in die Notiz schreiben. Auf dieser Höhe startet die Treppe 4×3 → 4×4 → 4×5."
                 }
               ]

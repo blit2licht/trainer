@@ -249,6 +249,32 @@
       "note": "W34 (22.08.) 4×8 bestätigt am Limit — oberste Stufe. Nächster Schritt Max-Test W37."
     },
     {
+      "ex_id": "hspu_deficit",
+      "name": "Deficit Strict Handstand Push-up",
+      "kurz": "Deficit HSPU",
+      "aliases": [
+        "Handstand Push-Ups"
+      ],
+      "class": "skill",
+      "increment": null,
+      "rep_cap_e1rm": null,
+      "pattern": [
+        "overhead",
+        "push"
+      ],
+      "ladder": {
+        "steps": [
+          "4x3",
+          "4x4",
+          "4x5"
+        ],
+        "confirmed_step": null,
+        "confirmed_at": null,
+        "regeln_ref": "coach/reviews/2026-09-12-meso3.md Zielentscheid"
+      },
+      "note": "Nachfolger von hspu_strict (Ziel 10 erreicht W37). Kalibrierung der Defizithöhe Mo 21.09.2026 (W39); Startstufe 4×3 auf dem Kalibrierwert ab Meso 4 (W41/W42). Kein Testsatz, Ziel in Leiterwährung (vorläufig '4×5 sauber vom Defizit', Martin-Bestätigung offen). WHOOP-Alias = derselbe Library-Name wie hspu_strict, Defizit dort nicht abbildbar."
+    },
+    {
       "ex_id": "wpu",
       "name": "Weighted Pull-up",
       "kurz": "PU",

@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "id": "2026-W40",
+  "label": "Urlaubswoche · 28. September – 4. Oktober 2026",
+  "meso": "Übergang · Urlaub Griechenland",
+  "von": "2026-09-28",
+  "bis": "2026-10-04",
+  "phase": "Trainingsfrei Mo–Sa (Griechenland, Rückkehr Sa 3.10.), So 4.10. Ruhe vor dem Meso-4-Start",
+  "_hinweis": "Martin 20.09.: Griechenland komplett trainingsfrei, Rückkehr Sa 3.10. Der Sonntag 4.10. ist als Ruhetag entschieden (Reise-Nachtag, Meso 4 startet Mo 5.10. mit Reclaim). Zweite trainingsfreie Woche innerhalb von drei — bei der W41-Planung gilt für alle Foki die Unterbrechungsregel (≥10 Tage → eine Stufe tiefer): BMU 5×2, WPU 3×5, C&J bis 75, OHS bis 50, Deficit-HSPU auf dem Kalibrierwert vom 21.09.",
+  "days": [
+    {
+      "iso_date": "2026-09-28",
+      "day_type": "rest",
+      "plan_note": "Urlaub Griechenland, trainingsfrei (Martin 20.09.).",
+      "warum": "Urlaub. Kein Training."
+    },
+    {
+      "iso_date": "2026-09-29",
+      "day_type": "rest",
+      "plan_note": "Urlaub Griechenland, trainingsfrei (Martin 20.09.).",
+      "warum": "Urlaub. Kein Training."
+    },
+    {
+      "iso_date": "2026-09-30",
+      "day_type": "rest",
+      "plan_note": "Urlaub Griechenland, trainingsfrei (Martin 20.09.).",
+      "warum": "Urlaub. Kein Training."
+    },
+    {
+      "iso_date": "2026-10-01",
+      "day_type": "rest",
+      "plan_note": "Urlaub Griechenland, trainingsfrei (Martin 20.09.).",
+      "warum": "Urlaub. Kein Training."
+    },
+    {
+      "iso_date": "2026-10-02",
+      "day_type": "rest",
+      "plan_note": "Urlaub Griechenland, trainingsfrei (Martin 20.09.). Letzter Urlaubstag.",
+      "warum": "Urlaub. Kein Training."
+    },
+    {
+      "iso_date": "2026-10-03",
+      "day_type": "rest",
+      "plan_note": "Rückreise aus Griechenland. Kein Training.",
+      "warum": "Rückreisetag. Kein Training."
+    },
+    {
+      "iso_date": "2026-10-04",
+      "day_type": "rest",
+      "plan_note": "Ruhetag nach der Rückreise — entschieden, kein Platzhalter. Meso 4 startet Mo 5.10. mit Reclaim-Einheiten; W41 wird nach der Rückkehr geplant (DreamWOD W41 ziehen, Termine erfragen).",
+      "warum": "Tag nach der Rückreise, bewusst frei. Ab Montag startet Meso 4 — die Woche planen wir, sobald du zurück bist."
+    }
+  ]
+}

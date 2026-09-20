@@ -2,21 +2,23 @@
   "schema_version": 1,
   "aktualisiert_am": "2026-09-20",
   "aktuelle_woche": {
-    "id": "2026-W38",
-    "von": "2026-09-14",
-    "bis": "2026-09-20",
-    "mesocycle": "Übergang → Meso 4 (Start Sa 19.09.)",
+    "id": "2026-W39",
+    "von": "2026-09-21",
+    "bis": "2026-09-27",
+    "mesocycle": "Übergang (W38–W40) — Meso 4 startet Mo 5.10. (W41)",
     "woche_im_fokus": 0,
-    "phase": "Reisewoche Charlotte + Meso-4-Start ABGESCHLOSSEN (Review 20.09.): Mo-Fr trainingsfrei wie festgelegt, per Strava zwei Schwimmeinheiten (Di 30 min, Do 45 min). Sa Fokus A RX'd (Martin-Bestätigung 20.09.): C&J-Komplex-Reclaim 60/65/70/75, OHS-Reclaim 3×3 bis 50, Layer Delts/Bizeps, Mobility — Rad und Schwimmen liefen on top zum Plan, nicht als Ersatz (Martin 20.09.): am Sa zwei Ausfahrten zusätzlich (37,2 + 37,5 km, 2:35 h moving, 295 Hm). So Box DL/T2B-Ladder @ 85 RX'd. Datennachtrag 20.09. (lokal): Verdicts Sa 4/4 hit (C&J, OHS, Layer, Mobility), Notiz Sa 'Alles gut, eher 6/10 als 7/10' — Reclaim-Lasten leicht; OHS-52,5-Option in der Notiz nicht erwähnt, gilt als nicht belegt. So Notiz nur 'Check', kein Score notiert. Recovery Mo–So 83/65/31/30/7/62/76 (Ø 51; So 76 / HRV 51 / RHR 48 per WHOOP-Detailabfrage bestätigt, intervals.icu hing bei 56 / HRV 49 / RHR 49), Schlaf Ø 6,4 h (So 8:01 h per WHOOP bestätigt — intervals.icu liefert 5,02, Sync-Artefakt); Sa Day-Strain 15,3 (Fokus A + 74,7 km Rad); drei rote Tage Mi–Fr 16.–18.09. in Charlotte ohne Trainingslast, Fr = Rückflugnacht (3,3 h Schlaf, rec 7). Deload-Check: Trigger 1 formal erfüllt, Ursache Reise/Flug statt Training — kein Deload, W38 war selbst der natürliche Deload. Gewicht: eine Messung (Sa 80,61), kein Wochenschnitt.",
-    "veroeffentlichter_plan": "coach/plan/2026-W38.json (Quelle) → website/data.js (generiert)"
+    "phase": "Kontaktwoche vor Griechenland (geplant 20.09.): Mo Fokus B Gymnastics-Reclaim (BMU 5×2, Deficit-HSPU-Kalibrierung 4×3 mit 5/7,5/10/12,5 cm, WPU 3×5 @ +5, Layer Brust/Trizeps), Di Fokus A (C&J-Komplex 60/67,5/72,5/77,5/80, OHS 47,5/52,5/55 ×3, Core, Layer Delts/Bizeps). Mi/Do Termine, Fr Abreise Griechenland — trainingsfrei bis Rückkehr Sa 3.10. (Martin 20.09.). Keine Treppenstarts, FS nicht bedient (Korridor 107,5–110 in W41). W40 als Urlaubswoche mitveröffentlicht (7 Ruhetage, So 4.10. entschieden).",
+    "veroeffentlichter_plan": "coach/plan/2026-W39.json + 2026-W40.json (Quelle) → website/data.js (generiert)"
   },
   "mesocycle_plan": {
     "id": "Meso 4",
-    "zeitraum": "2026-W38 (Sa 19.09.) bis voraussichtlich 2026-W44 — sechs volle Wochen ab W39, Ende bei der W39-Planung bestätigen",
+    "zeitraum": "2026-W41 (Mo 5.10.) bis 2026-W46 (So 15.11.) — sechs volle Wochen. Kalender am 20.09. verschoben (Martin): W38–W40 sind Übergang (Reise Charlotte, Kontaktwoche, Urlaub Griechenland) ohne Meso-Zähler. W41 beginnt mit Reclaim (Unterbrechungsregel für alle Foki), Treppen ab W42.",
     "phase": "Aufbau + Rekomposition (Fortsetzung) — OHS mit eigenem Slot, C&J früh, FS-Korridor 107,5-110, neue Gymnastics-Treppen (Deficit HSPU, WPU 3×6), BMU-Treppe fortsetzen",
     "vorheriges_meso": "Meso 2 (W25-W30) abgeschlossen — Review: coach/reviews/2026-08-02-meso2.md. Meso 3 (W32-W37) abgeschlossen — Review: coach/reviews/2026-09-12-meso3.md (2 Ziele erreicht, 8/8 Kennzahlen gehalten oder verbessert, −1,43 kg, kein Deload). Wochenrollen W32-W37 liegen im Logbuch und in der Git-Historie von state.json (Stand 12.09.).",
     "wochenrollen": {
-      "W38": "Reisewoche Charlotte NC (Mo-Fr frei, Sa/So zurück in München). Geplant (12.09.): Sa Meso-4-Start als Reclaim eine Stufe unter dem letzten Stand (C&J bis 75, OHS bis 50), So Box DL/T2B-Ladder @ 85 oder Ausfahrt. ERLEDIGT (Review 20.09., Martin: 'Plan RX'd'): Mo-Fr kein Training, Di/Do Schwimmen (30/45 min, Strain 10,3/11,7). Sa Fokus A komplett — C&J-Komplex 60/65/70/75, OHS 45/47,5/50 ×3, Layer, Mobility — plus zwei Rides am selben Tag on top (kein Ersatz, Martin 20.09.) (Sendling-Westpark 37,2 km / 1:21 h, Starnberger See 37,5 km / 1:14 h; zusammen 74,7 km, 295 Hm, Relative Effort 14 + 29). So Box-Ladder @ 85 RX'd (Level 2). Nachtrag 20.09.: Verdicts Sa 4/4 hit, Notiz Sa 'eher 6/10 als 7/10', So 'Check' ohne Score. Recovery Ø 51 (So 76 / HRV 51 / RHR 48 / 8:01 h per WHOOP bestätigt, intervals.icu-Sync hing bei 56 / 5,02) mit drei roten Reisetagen Mi–Fr (kein Training, Rückflugnacht 3,3 h Schlaf) — Trigger formal erfüllt, aber ohne Trainingsursache, kein Deload. Gewicht n=1 (80,61), kein Wochenschnitt."
+      "W38": "Reisewoche Charlotte NC (Mo-Fr frei, Sa/So zurück in München). Geplant (12.09.): Sa Meso-4-Start als Reclaim eine Stufe unter dem letzten Stand (C&J bis 75, OHS bis 50), So Box DL/T2B-Ladder @ 85 oder Ausfahrt. ERLEDIGT (Review 20.09., Martin: 'Plan RX'd'): Mo-Fr kein Training, Di/Do Schwimmen (30/45 min, Strain 10,3/11,7). Sa Fokus A komplett — C&J-Komplex 60/65/70/75, OHS 45/47,5/50 ×3, Layer, Mobility — plus zwei Rides am selben Tag on top (kein Ersatz, Martin 20.09.) (Sendling-Westpark 37,2 km / 1:21 h, Starnberger See 37,5 km / 1:14 h; zusammen 74,7 km, 295 Hm, Relative Effort 14 + 29). So Box-Ladder @ 85 RX'd (Level 2). Nachtrag 20.09.: Verdicts Sa 4/4 hit, Notiz Sa 'eher 6/10 als 7/10', So 'Check' ohne Score. Recovery Ø 51 (So 76 / HRV 51 / RHR 48 / 8:01 h per WHOOP bestätigt, intervals.icu-Sync hing bei 56 / 5,02) mit drei roten Reisetagen Mi–Fr (kein Training, Rückflugnacht 3,3 h Schlaf) — Trigger formal erfüllt, aber ohne Trainingsursache, kein Deload. Gewicht n=1 (80,61), kein Wochenschnitt.",
+      "W39": "Kontaktwoche (geplant 20.09.): Mo Gymnastics-Reclaim + Deficit-HSPU-Kalibrierung, Di C&J Richtung 80 + OHS 55×3. Mi/Do Termine, Fr–So Griechenland trainingsfrei.",
+      "W40": "Urlaub Griechenland, komplett trainingsfrei (Martin 20.09.), Rückkehr Sa 3.10., So 4.10. Ruhetag. W41 nach Rückkehr planen: DreamWOD ziehen, Termine erfragen, Reclaim-Lasten laut akutem Hinweis."
     },
     "deload_trigger": [
       "Recovery an ≥3 aufeinanderfolgenden Tagen rot (<34 %)",
@@ -62,7 +64,7 @@
       "Snatch rechter Fuß: Befund vom 01.09. bleibt unvermessen (kein Frontal-Video, keine Tape-Messung). Einziger offener Hebel ist ein Cue aus Martins Whiteboard-Buch — beim Meso-4-Planning einmal nachfragen, danach fallen lassen, wenn nichts kommt.",
       "Körperkomposition: W37 80,41 kg (n=4) vs. W36 81,05 = −0,64 — erste Woche ÜBER dem Zielband −0,3/−0,5. Einordnung: Messreihe endet Fr 11.09. (79,78) und enthält die 101-km-Ausfahrt vom Sa noch nicht; n=4 statt 5-7. Kumuliert seit W33 −1,43 in 4 Wochen ≈ −0,36/Woche, also weiter im Band. Keine Korrektur vor dem nächsten vollständigen Wochenschnitt; die Reisewoche W38 (Charlotte) ist ohnehin keine saubere Messwoche — Pull 20.09.: eine Messung (Sa 19.09. 80,61), kein Wochenschnitt. Referenz bleibt W37 80,41; nächste Bewertung W39 gegen W37.",
       "Testsätze unter der 50er-Kappungsgrenze: zweiter Grenzfall nach Fr 28.08. (rec 49, alle Blöcke hit) — Mi 09.09. auf rec 48 zwei Profil-Ziele erreicht. Zwei Datenpunkte sind noch keine Regeländerung, aber die Testregel 'nie unter 50 %' ist damit zweimal folgenlos gebrochen worden. Im Meso-4-Review erneut prüfen, nicht vorher ändern.",
-      "W38 (Charlotte NC): kein Training So 13.09. bis Fr 18.09. — von Martin am 12.09. bestätigt und so gewollt. Wird als natürlicher Deload verbucht. Meso 4 startet danach; erste Einheit ist Reclaim, nicht Treppenstart (Unterbrechungsregel: ≥10 Tage ohne Kontakt → eine Stufe tiefer)."
+      "W39/W40 (geplant 20.09.): nur zwei Kontakt-Einheiten (Mo 21., Di 22.), dann Termine Mi/Do und Griechenland Fr 25.09.–Sa 3.10. trainingsfrei (Martin-Entscheid). Zweite Reisewoche innerhalb von drei — Meso-4-Kalender deshalb auf W41–W46 verschoben. FS seit W37 (105) nicht bedient, Snatch seit W37 nicht bedient — beide in W41 zuerst."
     ]
   },
   "load_references": {
@@ -119,8 +121,13 @@
   "akute_hinweise": [
     {
       "datum": "2026-09-20",
-      "betrifft": "Gymnastics-Reclaim W39 — BMU, WPU, HSPU ohne Kontakt seit 09.09.",
-      "hinweis": "Beim Meso-4-Start am 19.09. lief nur Barbell (planmäßig). Die drei Gymnastics-Ziele haben damit am nächsten Fokus-B-Tag 15+ Tage Lücke: Unterbrechungsregel greift, erste Session eine Stufe unter dem letzten Stand (BMU 4×3 → 5×2 oder 3×3, WPU 3×5 statt Treppenstart 3×6), Deficit-HSPU läuft ohnehin als Kalibrierung. Keine Testsätze."
+      "betrifft": "Reclaim-Regel für den Meso-4-Start W41 (Mo 5.10.) — zweite Lücke ≥10 Tage",
+      "hinweis": "Nach Griechenland (Fr 25.09.–Sa 3.10.) greift für alle Foki erneut die Unterbrechungsregel: BMU 5×2, WPU 3×5 @ +5, C&J-Komplex bis 75, OHS bis 50, Deficit-HSPU 4×3 auf dem Kalibrierwert vom 21.09. (Notiz lesen), FS-Korridor erst in W41 W2 nach einem Squat-Kontakt. Treppen starten in W42. Keine Testsätze."
+    },
+    {
+      "datum": "2026-09-20",
+      "betrifft": "Deficit-HSPU-Kalibrierwert aus der Notiz vom 21.09. übernehmen",
+      "hinweis": "Mo 21.09. läuft die Kalibrierung 4×3 mit 5/7,5/10/12,5 cm; die letzte Höhe mit drei sauberen Reps ist der Startwert der Treppe 4×3 → 4×4 → 4×5. Beim W39-Review in load_references eintragen (neuer Eintrag hspu_deficit). Fehlt die Notiz, WHOOP-Detailprompt oder Martin fragen — nicht schätzen."
     }
   ],
   "hinweis_ablauf": "Beim Wochenreview neu bewerten; spätestens nach 7 Tagen entfernen, wenn nicht erneut bestätigt.",
@@ -132,7 +139,7 @@
     "notizen": "Website-Datenbank über get_notes.php",
     "strava": "Optional über MCP für Radfahrten"
   },
-  "naechster_zielreview": "Sechs-Wochen-Review Meso 3 abgeschlossen am 12.09.2026 (coach/reviews/2026-09-12-meso3.md), inklusive Zielneusetzung. Meso 4 gestartet Sa 19.09. (W38) mit Barbell-Reclaim; nächster Zielreview am Ende von Meso 4 (voraussichtlich W44). Schwerpunkte laut Review: OHS mit eigenem Slot (erledigt ab W38), C&J früh (Kontakt W38 wiederhergestellt), FS-Korridor 107,5-110, neue Gymnastics-Treppen, BMU-Treppe fortsetzen, Snatch-Empfang-Wirkungsnachweis, Körperkomposition unverändert weiter.",
+  "naechster_zielreview": "Sechs-Wochen-Review Meso 3 abgeschlossen am 12.09.2026 (coach/reviews/2026-09-12-meso3.md), inklusive Zielneusetzung. Meso-4-Kalender am 20.09. verschoben: W38–W40 Übergang (Reclaim 19.09., Kontaktwoche W39, Urlaub W40), Meso 4 läuft W41–W46, Zielreview Ende W46 (15.11.). Schwerpunkte laut Review: OHS mit eigenem Slot (erledigt ab W38), C&J früh (Kontakt W38 wiederhergestellt), FS-Korridor 107,5-110, neue Gymnastics-Treppen, BMU-Treppe fortsetzen, Snatch-Empfang-Wirkungsnachweis, Körperkomposition unverändert weiter.",
   "systemstatus": "Trainer 3.0 produktiv seit 30.08.2026 (W36): website/index.html ist die 3.0-App auf der Root, website/data.js wird von scripts/build_payload.py aus coach/plan/<id>.json + coach/exercises.json generiert und nie von Hand editiert, /v30/ leitet per .htaccess auf / um, 2.0 liegt stillgelegt unter archive/2.0/ (Alt-Historie für derive_state.py). Engine weiter offen: derive_state.py Phase 1 read-only. Wochenreviews W25-W38 abgeschlossen (W38-Review 20.09. in zwei Schritten: Cloud-Session ohne Zugriff auf Verdicts, Notizen, intervals.icu und Withings (Ausführung per Martin-Bestätigung 'RX'd', Rides/Schwimmen per Strava-MCP), Datennachtrag lokal am selben Tag — Verdicts 4/4 hit, Recovery und Gewicht gezogen; W35-So-Ride 30.08. per Strava nachgetragen: 74,5 km / 2:33 h moving / 395 Hm / Ø-HF 133; W36 erste Woche auf 3.0 mit vollständigem Verdict-Rückkanal, 12/12 hit; W37 ebenfalls 12/12 hit an zwei Trainingstagen, davon ein Tag ohne freie Notiz — der Verdict-Kanal trug den Review allein). Session-Feel-Skala seit W35 abgeschafft — Verdict-Tabelle + freie Notiz ersetzen sie (Deload-Trigger entsprechend umformuliert). Meso 3 läuft (W32-W37, Aufbau + Rekomposition inkl. Körperkompositions-Protokoll). Gymnastics-Testblock 1 absolviert (W32). Video-Analyse-Pipeline (MediaPipe) seit 15.08. lokal vorhanden: BMU-Modus validiert (noch ohne Linked-Double-Auswertung), Snatch-Modus seit 20.08. auf --bar-trail (Farbsegmentierung) umgestellt und an 3 Clips validiert; gleichentags Interpolations-Bug in der Winkelberechnung gefixt (Winkel jetzt aus Roh-Detektionen statt interpolierten Positionen) — Diagnose-Ergebnis siehe load_references.squat_snatch_ceiling.",
   "migration": {
     "version": "1.0",

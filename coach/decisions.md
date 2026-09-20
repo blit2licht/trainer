@@ -135,3 +135,18 @@ alle historischen Werte bleiben unangetastet (Log ist unantastbar) —
 Auswertungen lesen sie direkt aus der DB, nicht über die Endpunkte.
 Signale der Steuerung: Verdict-Tabelle + Klartextnotiz (wie in
 coach/state.json seit W35 vermerkt).
+
+---
+
+## 2026-09-20 — Meso-4-Kalender verschoben: Start W41 statt W38
+
+Martin („diesen Meso können wir in die Tonne treten"), nach der W39-Planung:
+W38 war Reisewoche Charlotte mit einem Reclaim-Samstag, W39 hat wegen zweier
+Termine und der Abreise nach Griechenland nur zwei Einheiten, W40 ist komplett
+trainingsfrei. Drei Wochen mit drei Einheiten sind kein Meso-Start.
+
+Entscheid: nicht verwerfen, verschieben. W38–W40 laufen als Übergang ohne
+Meso-Zähler (Kontakt halten, keine Treppen). Meso 4 startet Mo 5.10. (W41),
+sechs volle Wochen bis W46, Zielreview Ende W46. Schwerpunkte aus dem
+Meso-3-Review vom 12.09. unverändert. W41 beginnt für alle Foki mit Reclaim
+(Unterbrechungsregel), Treppen ab W42.

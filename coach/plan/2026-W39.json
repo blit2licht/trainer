@@ -1,0 +1,371 @@
+{
+  "schema_version": 1,
+  "id": "2026-W39",
+  "label": "Kontaktwoche · 21.–27. September 2026",
+  "meso": "Übergang · Kontaktwoche vor Griechenland",
+  "von": "2026-09-21",
+  "bis": "2026-09-27",
+  "phase": "Zwei Kontakt-Einheiten (Mo Gymnastics-Reclaim + Deficit-HSPU-Kalibrierung, Di C&J Richtung 80 + OHS bis 55), danach Termine und Urlaub",
+  "_hinweis": "Martin 20.09.: Mi 23. und Do 24. fallen aus (Termine), Fr 25. Abreise Griechenland, komplett trainingsfrei bis Rückkehr Sa 3.10. Meso 4 startet damit erst Mo 5.10. (W41), sechs Wochen bis W46; W38–W40 laufen als Übergang ohne Meso-Zähler (Martin 20.09.: Meso-Kalender verschoben, Schwerpunkte vom 12.09. unverändert). Keine Treppenstarts in dieser Woche — nach Griechenland liegt wieder eine Lücke ≥10 Tage, die Treppen beginnen real in W41/W42. Front Squat bewusst nicht bedient (drittes Squat-Muster neben Squat Clean und OHS), Korridor 107,5–110 in W41. Deficit-HSPU-Ziel und BMU-Ziel sind noch in vorläufiger Leiterwährung (state.json offen) — die Kalibrierung ist davon unabhängig.",
+  "days": [
+    {
+      "iso_date": "2026-09-21",
+      "day_type": "own",
+      "focus": "B",
+      "focus_label": "Gymnastics-Reclaim",
+      "intro": "Erster Gymnastics-Kontakt seit dem Testtag am 9. September, zwölf Tage Lücke. Deshalb heute alles eine Stufe unter dem letzten Stand: BMU 5×2 statt 4×3, Weighted Pull-up 3×5 statt 3×6. Dazwischen der neue Deficit-HSPU als Kalibrierung — heute wird die Höhe gefunden, nicht die Treppe gestartet. Toes-to-Bar entfällt, gestern waren es 48 in der Box, der Griff gehört heute BMU und Pull-ups.",
+      "plan_note": "Coach-Prosa: Unterbrechungsregel (≥10 Tage) greift bei BMU und WPU. Reihenfolge nach Griffbelastung wie W37: BMU frisch zuerst, HSPU als Push-Block dazwischen, WPU zuletzt. Deficit-Kalibrierung nach Review-Vorgabe 12.09.: Maßstab ist die Höhe, bei der drei saubere Reps stehen (Richtwert ~10 cm). Ergebnis in die Notiz — das ist der Startwert der Treppe 4×3 → 4×4 → 4×5 in W41/W42. Mo nach Sonntags-Box (DL/T2B-Ladder, moderat) — Tagesform entscheidet den Cap. Nächster Gymnastics-Kontakt erst W41 (nach Griechenland), also erneut Reclaim.",
+      "recovery_day": {
+        "u50": "BMU 4×2, Deficit nur bis 7,5 cm, WPU 3×4 @ +5. Layer entfällt. Load-RPE-Cap 7.",
+        "u34": "Session entfällt — Mobility bis RPE 6, oder Ruhe."
+      },
+      "blocks": [
+        {
+          "block_id": "A",
+          "prio": "required",
+          "min": 18,
+          "title": "BMU",
+          "superset": false,
+          "verdict_ex_id": "bmu",
+          "exercises": [
+            {
+              "ex_id": "bmu",
+              "target": {
+                "mode": "bw",
+                "sets": 5,
+                "reps": 2,
+                "unbroken": true,
+                "rpe_cap": 8,
+                "rest": "2-3 min"
+              },
+              "warum": "Fünf verbundene Doubles, eine Stufe unter den 4×3 aus W36. Zwölf Tage ohne Kontakt — heute holst du den Rhythmus zurück, nicht die Stufe. Cues: „Fall Into Pike\" für die Stütz-Pause, „Feet in a Bucket\" für den Descent.",
+              "note": "Aufwärmen mit Hang-Arbeit und 2-3 Einzel-BMU. Kein Max-Satz."
+            }
+          ]
+        },
+        {
+          "block_id": "B",
+          "prio": "required",
+          "min": 15,
+          "title": "Deficit Strict HSPU",
+          "superset": false,
+          "exercises": [
+            {
+              "ex_id": "hspu_deficit",
+              "kurz": "Deficit Strict HSPU",
+              "target": {
+                "mode": "bw",
+                "sets": 4,
+                "reps": 3,
+                "rpe_cap": 7,
+                "rest": "2 min"
+              },
+              "warum": "Kalibrierung, kein Arbeitssatz: vier Dreier mit steigendem Defizit 5 → 7,5 → 10 → 12,5 cm (Scheiben oder Parallettes). Die letzte Höhe, bei der alle drei Reps sauber und mit vollem ROM stehen, ist dein Kalibrierwert — bitte in die Notiz schreiben. Auf dieser Höhe startet die Treppe 4×3 → 4×4 → 4×5.",
+              "note": "Push-Block zwischen den beiden Griff-Übungen. Voller ROM, Kopf tief, kein Kipping. Ab der Höhe, bei der Rep 3 nicht mehr sauber ist, abbrechen — das Defizit darunter zählt."
+            }
+          ]
+        },
+        {
+          "block_id": "C",
+          "prio": "required",
+          "min": 12,
+          "title": "Weighted Pull-up",
+          "superset": false,
+          "exercises": [
+            {
+              "ex_id": "wpu",
+              "target": {
+                "mode": "bw_plus",
+                "sets": 3,
+                "reps": 5,
+                "kg": 5,
+                "rpe_cap": 8,
+                "tempo": "30X1",
+                "rest": "2-3 min"
+              },
+              "warum": "Drei Fünfer mit +5 kg, die oberste Stufe der alten Treppe — als Reclaim, nicht als Start der neuen (3×6 kommt erst mit zusammenhängenden Wochen). Letzter Griff-Block des Tages.",
+              "note": "+5 kg ist Zusatzlast, nie Tages-Kennzahl."
+            }
+          ]
+        },
+        {
+          "block_id": "D",
+          "prio": "optional",
+          "min": 15,
+          "title": "Strength: Brust / Trizeps",
+          "superset": false,
+          "verdict_ex_id": "layer_brust_trizeps",
+          "exercises": [
+            {
+              "ex_id": "db_bench",
+              "target": {
+                "mode": "kg",
+                "sets": 3,
+                "reps": 12,
+                "kg": 20,
+                "rpe_cap": 7,
+                "tempo": "kontrolliert",
+                "rest": "60 sec"
+              },
+              "warum": "Zwei Kurzhanteln à 20 kg, höchstens 7 von 10. Zweck: Muskelschutz im Kaloriendefizit.",
+              "note": "Keine Failure-Sätze."
+            },
+            {
+              "ex_id": "triceps_ext",
+              "target": {
+                "mode": "band",
+                "band": "rotes Band",
+                "sets": 3,
+                "reps": 15,
+                "rpe_cap": 7,
+                "rest": "60 sec"
+              },
+              "warum": "Konstante Bandspannung, kontrolliert, kein Versagen.",
+              "note": "Band/Cable, volle ROM."
+            }
+          ]
+        },
+        {
+          "block_id": "Z",
+          "prio": "optional",
+          "min": 8,
+          "title": "Mobility",
+          "superset": false,
+          "verdict_ex_id": "mobility",
+          "exercises": [
+            {
+              "ex_id": "mob_lat_stretch",
+              "kurz": "Lat-Stretch hängend",
+              "target": {
+                "mode": "time",
+                "sets": 2,
+                "sec": 45
+              },
+              "warum": "Cool-down nach dem Pull-Volumen."
+            },
+            {
+              "ex_id": "mob_shoulder_cars",
+              "kurz": "Shoulder CARs je Seite",
+              "target": {
+                "mode": "bw",
+                "sets": 2,
+                "reps": 8
+              },
+              "warum": "Schulter nach HSPU und BMU durchbewegen."
+            },
+            {
+              "ex_id": "mob_thoracic",
+              "kurz": "Thorakale Extension am Foam Roller",
+              "target": {
+                "mode": "time",
+                "sec": 120
+              },
+              "warum": "Brustwirbelsäule öffnen."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "iso_date": "2026-09-22",
+      "day_type": "own",
+      "focus": "A",
+      "focus_label": "Weightlifting-Fokus",
+      "intro": "Zweiter und letzter Barbell-Kontakt vor Griechenland. C&J geht heute vom 75er-Reclaim auf 80 — Kontakt Richtung Bestwert, kein Versuch darüber. Overhead Squat holt den Topwert 55×3 zurück, den du zuletzt am 19. August hattest. Front Squat lässt du heute liegen: drittes Squat-Muster passt nicht mehr rein, der Korridor 107,5–110 wartet bis nach dem Urlaub.",
+      "plan_note": "Coach-Prosa: C&J-Leiter 60/67,5/72,5/77,5/80 als Singles im Komplex, RPE-Cap 8; 82,5 heute nicht, weil danach zwölf Tage Lücke folgen und die Reproduktion in W41 ohnehin wieder mit Reclaim beginnt. OHS 47,5/52,5/55 ×3 als Topwert-Reproduktion, 57,5 erst W41. Tag nach Gymnastics-Reclaim (Griff/Schulter) — Hook Grip und Overhead-Stabilität mitprüfen, Abbruchkriterium Jerk-Stand. Layer Delts/Bizeps als Muskelschutz.",
+      "recovery_day": {
+        "u50": "C&J endet bei 75, OHS bei 52,5. Layer entfällt. Load-RPE-Cap 7.",
+        "u34": "Nur Technik mit leichter Stange und Mobility bis RPE 6 — oder Ruhe."
+      },
+      "blocks": [
+        {
+          "block_id": "A",
+          "prio": "required",
+          "min": 25,
+          "title": "Clean & Jerk",
+          "superset": false,
+          "exercises": [
+            {
+              "ex_id": "clean_jerk",
+              "kurz": "Squat Clean + Push Jerk (Komplex)",
+              "target": {
+                "mode": "kg",
+                "sets": 5,
+                "reps": 1,
+                "kg": 80,
+                "ramp": [
+                  60,
+                  67.5,
+                  72.5,
+                  77.5,
+                  80
+                ],
+                "rpe_cap": 8,
+                "tempo": "explosiv",
+                "rest": "2-3 min"
+              },
+              "warum": "Fünf Komplexe aufsteigend bis 80. Am Samstag war bei 75 Schluss und es fühlte sich nach 6 von 10 an — heute eine Stufe weiter. Der Bestwert 82,5 bleibt liegen: danach kommen zwölf freie Tage, ein Maximalversuch davor bringt nichts.",
+              "note": "Abbruch, sobald der Jerk nicht mehr sicher steht. Kein Nachlegen über 80."
+            }
+          ]
+        },
+        {
+          "block_id": "B",
+          "prio": "required",
+          "min": 18,
+          "title": "Overhead Squat",
+          "superset": false,
+          "exercises": [
+            {
+              "ex_id": "ohs",
+              "target": {
+                "mode": "kg",
+                "sets": 3,
+                "reps": 3,
+                "kg": 55,
+                "ramp": [
+                  47.5,
+                  52.5,
+                  55
+                ],
+                "rpe_cap": 7,
+                "tempo": "kontrolliert",
+                "rest": "2 min"
+              },
+              "warum": "Drei Dreier bis 55 — das ist dein Topwert vom 19. August, den du heute reproduzierst. Am Samstag lief die 50 bei 6 von 10, die 55 ist der logische nächste Kontakt. 57,5 kommt nach dem Urlaub.",
+              "note": "Tief und stabil, Stange über der Fußmitte. Bei RPE über 7 auf 52,5 bleiben."
+            }
+          ]
+        },
+        {
+          "block_id": "C",
+          "prio": "required",
+          "min": 5,
+          "title": "Core",
+          "superset": false,
+          "exercises": [
+            {
+              "ex_id": "hollow_hold",
+              "target": {
+                "mode": "time",
+                "sets": 3,
+                "sec": 30,
+                "rpe_cap": 6,
+                "rest": "60 sec"
+              },
+              "warum": "Unterer Rücken bleibt fest am Boden, Spannung aus der Körpermitte, ruhig atmen.",
+              "note": "Ruhig atmen, unterer Rücken am Boden."
+            }
+          ]
+        },
+        {
+          "block_id": "D",
+          "prio": "optional",
+          "min": 15,
+          "title": "Strength: Delts / Bizeps",
+          "superset": false,
+          "verdict_ex_id": "layer_delts_bizeps",
+          "exercises": [
+            {
+              "ex_id": "lateral_raise",
+              "target": {
+                "mode": "kg",
+                "sets": 3,
+                "reps": 12,
+                "kg": 6,
+                "rpe_cap": 7,
+                "tempo": "kontrolliert",
+                "rest": "60 sec"
+              },
+              "warum": "Zwei Kurzhanteln à 6 kg, kein Versagen. Zweck: Muskelschutz im Kaloriendefizit.",
+              "note": "RPE-Deckel 7 strikt."
+            },
+            {
+              "ex_id": "biceps_curl",
+              "target": {
+                "mode": "kg",
+                "sets": 3,
+                "reps": 12,
+                "kg": 10,
+                "rpe_cap": 7,
+                "tempo": "kontrolliert",
+                "rest": "60 sec"
+              },
+              "warum": "Zwei Kurzhanteln à 10 kg, kontrolliert.",
+              "note": "RPE-Deckel 7 strikt."
+            }
+          ]
+        },
+        {
+          "block_id": "Z",
+          "prio": "optional",
+          "min": 8,
+          "title": "Mobility",
+          "superset": false,
+          "verdict_ex_id": "mobility",
+          "exercises": [
+            {
+              "ex_id": "mob_lat_stretch",
+              "kurz": "Lat-Stretch hängend",
+              "target": {
+                "mode": "time",
+                "sets": 2,
+                "sec": 45
+              },
+              "warum": "Overhead-Enge nach C&J und OHS lösen."
+            },
+            {
+              "ex_id": "mob_hipflexor",
+              "kurz": "Hüftbeuger-Stretch je Seite",
+              "target": {
+                "mode": "time",
+                "sets": 2,
+                "sec": 45
+              },
+              "warum": "Nach dem Squat-Volumen."
+            },
+            {
+              "ex_id": "mob_thoracic",
+              "kurz": "Thorakale Extension am Foam Roller",
+              "target": {
+                "mode": "time",
+                "sec": 120
+              },
+              "warum": "Brustwirbelsäule öffnen."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "iso_date": "2026-09-23",
+      "day_type": "rest",
+      "plan_note": "Termin (fix) — kein Training. DreamWOD Box Squat + Pull-up-Intervalle (60 Pull-ups) wäre ohnehin Pull-Volumen zwei Tage nach dem Gymnastics-Reclaim gewesen.",
+      "warum": "Termin — kein Training."
+    },
+    {
+      "iso_date": "2026-09-24",
+      "day_type": "rest",
+      "plan_note": "Termin (fix) — kein Training. DreamWOD Push Jerk W4/4 bis 90 %+ wäre der interessanteste Box-Tag der Woche gewesen; fällt dem Termin.",
+      "warum": "Termin — kein Training."
+    },
+    {
+      "iso_date": "2026-09-25",
+      "day_type": "rest",
+      "plan_note": "Reisetag — Abflug Griechenland. Kein Training. Ab hier trainingsfrei bis zur Rückkehr Sa 3.10. (Martin 20.09.).",
+      "warum": "Reisetag nach Griechenland. Kein Training — der Urlaub ist trainingsfrei, so wie du es entschieden hast."
+    },
+    {
+      "iso_date": "2026-09-26",
+      "day_type": "rest",
+      "plan_note": "Urlaub Griechenland, trainingsfrei (Martin 20.09.).",
+      "warum": "Urlaub. Kein Training."
+    },
+    {
+      "iso_date": "2026-09-27",
+      "day_type": "rest",
+      "plan_note": "Urlaub Griechenland, trainingsfrei (Martin 20.09.). Sonntags-DreamWOD (AMRAP 28) und Ride entfallen.",
+      "warum": "Urlaub. Kein Training."
+    }
+  ]
+}

@@ -29,9 +29,8 @@ Drei bestätigte Nutzungsszenen, nach Härte der Anforderung:
 2. **Nach der Einheit: Rückmeldung erfassen.** Verdict pro Übung (Done/Fail)
    und Notiz, direkt nach dem Training am Handy. Session-Feel ist abgeschafft
    (Entscheidung 2026-08-31).
-3. **Werkstatt am Desktop.** Fortschritt prüfen, Historie und e1RM-Kurven lesen,
-   Soll/Ist-Muster erkennen, mit Claude die nächste Woche planen — mit Zeit und
-   großem Viewport.
+3. ~~Werkstatt am Desktop~~ — am 30.09.2026 verworfen (nie genutzt). Planung
+   und Fortschrittsblick laufen in Claude-Code-Sessions.
 
 ## Product Purpose
 
@@ -39,13 +38,10 @@ Trainer 3.0 ist eine **self-hosted Trainingsumgebung** für einen Athleten:
 Planung, Ausführung, Rückmeldung und abgeleitete Progression in einem System,
 dessen Gehirn ein KI-Coach mit versioniertem Gedächtnis ist (`coach/`).
 
-Zwei Räume, ein Produkt:
+Ein Raum (die Werkstatt am Desktop wurde am 30.09.2026 verworfen):
 
 - **Ausführung (Handy):** liefert den freigegebenen Wochenplan an die Box und
   nimmt Verdicts und Notizen entgegen. Dokumentartig, stabil.
-- **Werkstatt (Desktop, eigener Ort):** beantwortet beim Öffnen die Frage
-  „Bewegt sich mein Fitnesslevel noch?" — Lagebild nach Meso-Zielen, Historie,
-  e1RM-Kurven, Soll/Ist-Muster, Regel-Treue. Eigener Release-Takt.
 
 Leitprinzip der Datenarchitektur: **Das Log ist unantastbar, alles andere wird
 abgeleitet.** Ausgeführte Sätze (Website-DB, WHOOP-Paste) sind die einzige
@@ -108,8 +104,7 @@ Titelseite, nicht hinter einem Prompt.
   dürfen generiert sein** (präzisiert 2026-08-22 abends): beim Planungs-Commit
   entsteht ein schlanker Handy-Payload (nur Vollzugsdaten; Coach-Prosa
   erreicht das Handy nie), den die Seite lädt. Keine Frameworks, kein Build
-  auf dem Handy. **Werkstatt:** eigener Generierungsschritt erlaubt
-  (Entscheidung 2026-08-22). **Keine native iOS-App** — funktionale
+  auf dem Handy. **Keine native iOS-App** — funktionale
   Begründung in `V3.0/entscheidungen-2026-08-22.md` Nr. 10; bei realer
   PWA-Lücke Capacitor-Wrapper um dieselbe Seite, kein Swift-Neubau.
 - **Deutsch als einzige Sprache.** Fachbegriffe (WOD, RPE, BMU, EMOM, Ceiling,
@@ -143,8 +138,7 @@ Titelseite, nicht hinter einem Prompt.
 
 - Name der Anwendung: „Training · Martin" (Manifest), Kurzform „Training".
 - Kein Branding in der Kopfzeile — die Navigation ist bewusst markenlos.
-- Domain: training.martinwitte.de; Werkstatt als eigener Ort auf demselben
-  Origin.
+- Domain: training.martinwitte.de.
 - **Die Wahl der Schrift ist ausdrücklich kein Markenwert** (Entscheidung
   2026-08-20): Maßstab ist Lesbarkeit unter Gym-Bedingungen. Bestand nutzt
   Space Grotesk/Inter/JetBrains Mono; der Dunkelkammer-Entwurf Archivo/Spline
@@ -165,7 +159,7 @@ Titelseite, nicht hinter einem Prompt.
   erschließbar (Entscheidung 2026-08-22).
 - Trainer-3.0-Konzeptstand: `V3.0/uebergabe-opengym-trainer-3.0.md`
   (Engine-Regeln, Datenmodell), `V3.0/entscheidungen-2026-08-22.md`,
-  `V3.0/werkstatt-konzept.md`, `V3.0/handy-konzept.md`.
+  `V3.0/handy-konzept.md`.
 - Video-Analyse-Pipeline (`scripts/analyze_video.py`, MediaPipe) — Eskalationsziel
   bei wiederholten Technik-Fails.
 - **Nicht vorhanden und nicht erfindbar:** Nutzerzahlen, Testimonials,

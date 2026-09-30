@@ -28,6 +28,6 @@ coach/video_analysis/
 # Konzeptdokumente sind versioniert (Skripte referenzieren sie: datenmodell.md,
 # whoop-paste-format.md, offene-fragen-w35.md). Nicht versioniert: die alten
 # Clickdummies und Icon-Spielwiesen, der generierte build/ und die lokalen
-# Werkstatt-Aufträge in inbox/.
+# Aufträge in inbox/.
 V3.0/*
 !V3.0/*.md

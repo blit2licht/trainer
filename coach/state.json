@@ -55,7 +55,7 @@
     }
   },
   "load_references": {
-    "hinweis": "Bestätigte Arbeitszahlen für Lastansagen an Box-Tagen. Schlüssel sind von scripts/derive_state.py und scripts/build_derived.py abhängig — nicht umbenennen.",
+    "hinweis": "Bestätigte Arbeitszahlen für Lastansagen an Box-Tagen. Schlüssel werden von scripts/derive_state.py gelesen — nicht umbenennen.",
     "squat_snatch_ceiling": {
       "kg": 60,
       "note": "Ceiling 60 (W32, reproduziert W36). Tief empfangene Singles bis 57,5 (W37)."
@@ -110,9 +110,9 @@
   ],
   "hinweis_ablauf": "Beim Wochenreview neu bewerten; spätestens nach 7 Tagen entfernen, wenn nicht erneut bestätigt.",
   "offen": [
-    "Engine-Marker: passenden Benchmark im DreamWOD ab W42 identifizieren und als Startwert setzen.",
-    "App-Paket: Box-Tag als Hauptansicht, Verdict nur auf Zielblöcken, optionaler WOD-Score, Eingabekanal für die Taille. build_derived.py (Werkstatt) trägt noch die alte Zielliste.",
-    "Körper-Baseline: Wochenschnitt W41 zu Hause; Taille ab W41 wöchentlich."
+    "Engine-Marker: passenden Benchmark im DreamWOD ab W42 identifizieren und als Startwert setzen (Martin 30.09.: ok).",
+    "Körper-Baseline: Wochenschnitt W41 zu Hause; Taille ab W41 wöchentlich, Meldung per Chat.",
+    "App-Paket (Box-Tag als Hauptansicht, Verdict nur auf Zielblöcken, WOD-Score, Taille-Eingabe): nicht primär (Martin 30.09.), ohne Termin."
   ],
   "naechster_zielreview": "Nach sechs Wochen Block 5 (≈ W47). Letztes Review: Meso-4-Review 30.09.2026 (coach/reviews/2026-09-30-meso4-review.md).",
   "datenquellen": {
@@ -123,5 +123,5 @@
     "notizen": "Website-Datenbank über get_notes.php, Verdicts über get_verdicts.php",
     "strava": "Optional über MCP für Radfahrten"
   },
-  "systemstatus": "Trainer 3.0 produktiv seit 30.08.2026: website/index.html auf der Root, website/data.js generiert aus coach/plan/<id>.json + coach/exercises.json (scripts/build_payload.py), 2.0 stillgelegt unter archive/2.0/. derive_state.py Phase 1 read-only. Video-Pipeline lokal (scripts/analyze_video.py), nur für konkrete Diagnosefragen."
+  "systemstatus": "Trainer 3.0 produktiv seit 30.08.2026: website/index.html auf der Root, website/data.js generiert aus coach/plan/<id>.json + coach/exercises.json (scripts/build_payload.py), 2.0 stillgelegt unter archive/2.0/. derive_state.py Phase 1 read-only. Video-Pipeline lokal (scripts/analyze_video.py), nur für konkrete Diagnosefragen. Werkstatt (Desktop) am 30.09.2026 verworfen, nie genutzt."
 }

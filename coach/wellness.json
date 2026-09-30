@@ -1,87 +1,7 @@
 {
-  "generated": "2026-09-20T09:07:49+00:00",
+  "generated": "2026-09-30T05:46:49+00:00",
   "source": "intervals.icu",
   "days": [
-    {
-      "date": "2026-09-06",
-      "recovery": 71.0,
-      "hrv": 54.53815,
-      "rhr": 44,
-      "sleep_h": 7.08,
-      "sleep_score": 88.0
-    },
-    {
-      "date": "2026-09-07",
-      "recovery": 58.0,
-      "hrv": 47.905254,
-      "rhr": 47,
-      "sleep_h": 7.12,
-      "sleep_score": 85.0
-    },
-    {
-      "date": "2026-09-08",
-      "recovery": 74.0,
-      "hrv": 53.91265,
-      "rhr": 47,
-      "sleep_h": 6.8,
-      "sleep_score": 87.0
-    },
-    {
-      "date": "2026-09-09",
-      "recovery": 48.0,
-      "hrv": 45.125782,
-      "rhr": 47,
-      "sleep_h": 5.34,
-      "sleep_score": 73.0
-    },
-    {
-      "date": "2026-09-10",
-      "recovery": 87.0,
-      "hrv": 63.362427,
-      "rhr": 44,
-      "sleep_h": 6.71,
-      "sleep_score": 84.0
-    },
-    {
-      "date": "2026-09-11",
-      "recovery": 50.0,
-      "hrv": 51.76909,
-      "rhr": 47,
-      "sleep_h": 4.97,
-      "sleep_score": 62.0
-    },
-    {
-      "date": "2026-09-12",
-      "recovery": 78.0,
-      "hrv": 57.31357,
-      "rhr": 50,
-      "sleep_h": 7.15,
-      "sleep_score": 83.0
-    },
-    {
-      "date": "2026-09-13",
-      "recovery": 35.0,
-      "hrv": 41.86855,
-      "rhr": 53,
-      "sleep_h": 6.07,
-      "sleep_score": 72.0
-    },
-    {
-      "date": "2026-09-14",
-      "recovery": 83.0,
-      "hrv": 61.00613,
-      "rhr": 49,
-      "sleep_h": 6.33,
-      "sleep_score": 68.0
-    },
-    {
-      "date": "2026-09-15",
-      "recovery": 65.0,
-      "hrv": 52.067577,
-      "rhr": 48,
-      "sleep_h": 7.7,
-      "sleep_score": 75.0
-    },
     {
       "date": "2026-09-16",
       "recovery": 31.0,
@@ -116,20 +36,94 @@
     },
     {
       "date": "2026-09-20",
-      "recovery": 56.0,
-      "hrv": 48.692867,
-      "rhr": 49,
-      "sleep_h": 5.02,
-      "sleep_score": 56.0
+      "recovery": 76.0,
+      "hrv": 51.35811,
+      "rhr": 48,
+      "sleep_h": 8.02,
+      "sleep_score": 73.0
+    },
+    {
+      "date": "2026-09-21",
+      "recovery": 62.0,
+      "hrv": 45.829597,
+      "rhr": 48,
+      "sleep_h": 6.86,
+      "sleep_score": 78.0
+    },
+    {
+      "date": "2026-09-22",
+      "recovery": 58.0,
+      "hrv": 45.2904,
+      "rhr": 52,
+      "sleep_h": 6.01,
+      "sleep_score": 78.0
+    },
+    {
+      "date": "2026-09-23",
+      "recovery": 41.0,
+      "hrv": 37.54154,
+      "rhr": 56,
+      "sleep_h": 7.18,
+      "sleep_score": 80.0
+    },
+    {
+      "date": "2026-09-24",
+      "recovery": null,
+      "hrv": null,
+      "rhr": null,
+      "sleep_h": null,
+      "sleep_score": null
+    },
+    {
+      "date": "2026-09-25",
+      "recovery": 66.0,
+      "hrv": 45.97032,
+      "rhr": 51,
+      "sleep_h": 6.31,
+      "sleep_score": 83.0
+    },
+    {
+      "date": "2026-09-26",
+      "recovery": 38.0,
+      "hrv": 31.511217,
+      "rhr": 58,
+      "sleep_h": 7.02,
+      "sleep_score": 77.0
+    },
+    {
+      "date": "2026-09-27",
+      "recovery": 35.0,
+      "hrv": 35.083748,
+      "rhr": 60,
+      "sleep_h": 7.58,
+      "sleep_score": 67.0
+    },
+    {
+      "date": "2026-09-28",
+      "recovery": 34.0,
+      "hrv": 32.258453,
+      "rhr": 59,
+      "sleep_h": 8.51,
+      "sleep_score": 78.0
+    },
+    {
+      "date": "2026-09-29",
+      "recovery": 42.0,
+      "hrv": 32.84298,
+      "rhr": 58,
+      "sleep_h": 8.28,
+      "sleep_score": 92.0
+    },
+    {
+      "date": "2026-09-30",
+      "recovery": null,
+      "hrv": null,
+      "rhr": null,
+      "sleep_h": null,
+      "sleep_score": null
     }
   ],
   "rides": [
-    {
-      "date": "2026-09-12",
-      "distance_km": 101.4,
-      "moving_time_min": 222,
-      "avg_hr": 141
-    },
     {
       "date": "2026-09-19",
       "distance_km": 37.5,

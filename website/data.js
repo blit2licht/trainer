@@ -2,898 +2,95 @@
    Quelle: coach/plan/<id>.json + coach/exercises.json (datenmodell.md §5). */
 const DATA = {
   "week": {
-    "id": "2026-W38",
-    "label": "Reise + Meso-4-Start · 14.–20. September 2026",
-    "meso": "Übergang · Meso-4-Start am Samstag",
-    "von": "2026-09-14",
-    "bis": "2026-09-20",
+    "id": "2026-W40",
+    "label": "Urlaubswoche · 28. September – 4. Oktober 2026",
+    "meso": "Übergang · Urlaub Griechenland",
+    "von": "2026-09-28",
+    "bis": "2026-10-04",
     "days": [
       {
-        "iso_date": "2026-09-14",
+        "iso_date": "2026-09-28",
         "day_type": "rest",
-        "warum": "Erster Tag nach dem Flug. Die Woche ist bewusst frei — sechs Tage Pause nach dem Testblock und der langen Ausfahrt sind der Übergang zwischen zwei Mesos, nicht verlorene Zeit."
+        "warum": "Urlaub. Kein Training."
       },
       {
-        "iso_date": "2026-09-15",
+        "iso_date": "2026-09-29",
         "day_type": "rest",
-        "warum": "Freier Tag wie besprochen."
+        "warum": "Urlaub. Kein Training."
       },
       {
-        "iso_date": "2026-09-16",
+        "iso_date": "2026-09-30",
         "day_type": "rest",
-        "warum": "Freier Tag wie besprochen."
+        "warum": "Urlaub. Kein Training."
       },
       {
-        "iso_date": "2026-09-17",
+        "iso_date": "2026-10-01",
         "day_type": "rest",
-        "warum": "Freier Tag wie besprochen."
+        "warum": "Urlaub. Kein Training."
       },
       {
-        "iso_date": "2026-09-18",
+        "iso_date": "2026-10-02",
         "day_type": "rest",
-        "warum": "Letzter Tag des freien Fensters. Ab morgen läuft wieder Training."
+        "warum": "Urlaub. Kein Training."
       },
       {
-        "iso_date": "2026-09-19",
-        "day_type": "own",
-        "focus": "A",
-        "focus_label": "Weightlifting-Fokus",
-        "kurzform": "C&J, OHS",
-        "blocks": [
-          {
-            "block_id": "A",
-            "prio": "required",
-            "title": "Clean & Jerk",
-            "min": 25,
-            "superset": false,
-            "exercises": [
-              {
-                "ex_id": "clean_jerk",
-                "kurz": "C&J",
-                "name": "Clean & Jerk",
-                "class": "technical",
-                "target": {
-                  "mode": "kg",
-                  "sets": 4,
-                  "reps": 1,
-                  "kg": 75,
-                  "ramp": [
-                    60,
-                    65,
-                    70,
-                    75
-                  ],
-                  "rpe_cap": 7,
-                  "tempo": "explosiv",
-                  "rest": "2-3 min"
-                },
-                "whoop": "Clean and Split Jerk",
-                "warum": "Ein Komplex pro Stufe, sauber hoch bis 75. Der Bestwert steht bei 82,5 aus dem August — den lässt du heute liegen. Nach 25 Tagen ohne Kontakt holt man das Muster zurück, nicht die Last."
-              }
-            ]
-          },
-          {
-            "block_id": "B",
-            "prio": "required",
-            "title": "Overhead Squat",
-            "min": 18,
-            "superset": false,
-            "exercises": [
-              {
-                "ex_id": "ohs",
-                "kurz": "OHS",
-                "name": "Overhead Squat",
-                "class": "technical",
-                "target": {
-                  "mode": "kg",
-                  "sets": 3,
-                  "reps": 3,
-                  "kg": 50,
-                  "ramp": [
-                    45,
-                    47.5,
-                    50
-                  ],
-                  "rpe_cap": 7,
-                  "tempo": "kontrolliert",
-                  "rest": "2 min"
-                },
-                "whoop": "Overhead Squat",
-                "warum": "Drei Dreier aufsteigend bis 50. Topwert ist 55×3, aber der ist vier Wochen alt und lief seitdem nur als Positionsarbeit. 52,5 ist frei, wenn die 50 wirklich sauber sitzt — sonst bleibt es dabei."
-              }
-            ]
-          },
-          {
-            "block_id": "C",
-            "prio": "optional",
-            "title": "Strength: Delts / Bizeps",
-            "min": 15,
-            "superset": false,
-            "exercises": [
-              {
-                "ex_id": "lateral_raise",
-                "kurz": "Lateral Raise",
-                "name": "DB Lateral Raise",
-                "class": "loadable",
-                "target": {
-                  "mode": "kg",
-                  "sets": 3,
-                  "reps": 12,
-                  "kg": 6,
-                  "rpe_cap": 7,
-                  "tempo": "kontrolliert",
-                  "rest": "60 sec"
-                },
-                "whoop": "Lateral Raise",
-                "warum": "Zwei Kurzhanteln à 6 kg, kein Versagen. Zweck: Muskelschutz im Kaloriendefizit."
-              },
-              {
-                "ex_id": "biceps_curl",
-                "kurz": "Curl",
-                "name": "DB Curl",
-                "class": "loadable",
-                "target": {
-                  "mode": "kg",
-                  "sets": 3,
-                  "reps": 12,
-                  "kg": 10,
-                  "rpe_cap": 7,
-                  "tempo": "kontrolliert",
-                  "rest": "60 sec"
-                },
-                "whoop": "Biceps Curl",
-                "warum": "Zwei Kurzhanteln à 10 kg, kontrolliert."
-              }
-            ],
-            "verdict_ex_id": "layer_delts_bizeps",
-            "verdict_class": "generic"
-          },
-          {
-            "block_id": "D",
-            "prio": "optional",
-            "title": "Mobility",
-            "min": 8,
-            "superset": false,
-            "exercises": [
-              {
-                "ex_id": "mob_lat_stretch",
-                "kurz": "Lat-Stretch hängend",
-                "name": "Lat-Stretch hängend",
-                "class": null,
-                "target": {
-                  "mode": "time",
-                  "sets": 2,
-                  "sec": 45
-                },
-                "warum": "Overhead-Enge nach C&J und OHS lösen."
-              },
-              {
-                "ex_id": "mob_hipflexor",
-                "kurz": "Hüftbeuger-Stretch je Seite",
-                "name": "Hüftbeuger-Stretch je Seite",
-                "class": null,
-                "target": {
-                  "mode": "time",
-                  "sets": 2,
-                  "sec": 45
-                },
-                "warum": "Nach dem Squat-Volumen."
-              },
-              {
-                "ex_id": "mob_thoracic",
-                "kurz": "Thorakale Extension am Foam Roller",
-                "name": "Thorakale Extension am Foam Roller",
-                "class": null,
-                "target": {
-                  "mode": "time",
-                  "sec": 120
-                }
-              }
-            ],
-            "verdict_ex_id": "mobility",
-            "verdict_class": "generic"
-          }
-        ],
-        "last_spanne": [
-          45,
-          75
-        ],
-        "zeit_spanne": [
-          43,
-          66
-        ],
-        "recovery_day": {
-          "u50": "C&J endet bei 70, OHS bei 47,5. Layer entfällt. Load-RPE-Cap 7.",
-          "u34": "Nur Technik mit leichter Stange und Mobility bis RPE 6 — oder Ruhe."
-        }
+        "iso_date": "2026-10-03",
+        "day_type": "rest",
+        "warum": "Rückreisetag. Kein Training."
       },
       {
-        "iso_date": "2026-09-20",
+        "iso_date": "2026-10-04",
         "day_type": "box",
-        "einheit": "Deadlift / Toes-to-Bar Ladder For Time",
-        "sub": "3-6-9-12-9-6-3 · 15 Air Squats pro Runde · 13 Min Cap",
+        "einheit": "Power Clean + Clean Pull + Intervalle",
+        "sub": "E1:30 × 5: 3 TnG Power Cleans @ 50–55 % · E1:00 × 3: 2 Clean Pulls · E2:00 × 5: 5 HPC / 5 FS / 10 Cal",
         "wod": [
           {
-            "struktur": "3-6-9-12-9-6-3 auf Zeit · 15 Air Squats am Ende jeder Runde · 13 Min Cap",
+            "struktur": "Every 1:30 × 5",
             "bewegungen": [
               {
-                "reps": "3-6-9-12-9-6-3",
-                "name": "Deadlift",
-                "detail": "85 kg · Level 2"
+                "reps": "3",
+                "name": "Touch-and-Go Power Clean",
+                "detail": "50–55 %"
+              }
+            ]
+          },
+          {
+            "struktur": "Every 1:00 × 3",
+            "bewegungen": [
+              {
+                "reps": "2",
+                "name": "Clean Pull",
+                "detail": "bis 90 %"
+              }
+            ]
+          },
+          {
+            "struktur": "Every 2:00 × 5",
+            "format": "Score: langsamste Runde",
+            "bewegungen": [
+              {
+                "reps": "5",
+                "name": "Hang Power Clean",
+                "detail": "52,5 kg · Level 2"
               },
               {
-                "reps": "3-6-9-12-9-6-3",
-                "name": "Toes-to-Bar",
-                "detail": "unbroken solange sauber"
+                "reps": "5",
+                "name": "Front Squat",
+                "detail": "52,5 kg"
               },
               {
-                "reps": "15",
-                "name": "Air Squats",
-                "detail": "am Ende jeder Runde"
+                "reps": "10",
+                "name": "Cal any machine",
+                "detail": ""
               }
             ]
           }
         ],
-        "warum": "Deadlifts mit 85 Kilo, dazu Toes-to-Bar und Air Squats, Deckel bei 13 Minuten. Hinge hattest du letzte Woche gar nicht, und die Last ist so weit unter deinem Bereich, dass der Tag nach dem Wiedereinstieg kein Problem ist. Wenn du lieber Rad fährst, ist das der gleichwertige Tausch."
+        "warum": "Erster Tag zurück. Leichte Power Cleans zum Reinkommen, danach fünf Intervalle mit Hang Power Cleans, Front Squats und Kalorien. Die Last ist bewusst niedrig, der Kreislauf soll arbeiten, nicht die Hantel."
       }
     ]
   },
   "weeks": [
-    {
-      "id": "2026-W38",
-      "label": "Reise + Meso-4-Start · 14.–20. September 2026",
-      "meso": "Übergang · Meso-4-Start am Samstag",
-      "von": "2026-09-14",
-      "bis": "2026-09-20",
-      "days": [
-        {
-          "iso_date": "2026-09-14",
-          "day_type": "rest",
-          "warum": "Erster Tag nach dem Flug. Die Woche ist bewusst frei — sechs Tage Pause nach dem Testblock und der langen Ausfahrt sind der Übergang zwischen zwei Mesos, nicht verlorene Zeit."
-        },
-        {
-          "iso_date": "2026-09-15",
-          "day_type": "rest",
-          "warum": "Freier Tag wie besprochen."
-        },
-        {
-          "iso_date": "2026-09-16",
-          "day_type": "rest",
-          "warum": "Freier Tag wie besprochen."
-        },
-        {
-          "iso_date": "2026-09-17",
-          "day_type": "rest",
-          "warum": "Freier Tag wie besprochen."
-        },
-        {
-          "iso_date": "2026-09-18",
-          "day_type": "rest",
-          "warum": "Letzter Tag des freien Fensters. Ab morgen läuft wieder Training."
-        },
-        {
-          "iso_date": "2026-09-19",
-          "day_type": "own",
-          "focus": "A",
-          "focus_label": "Weightlifting-Fokus",
-          "kurzform": "C&J, OHS",
-          "blocks": [
-            {
-              "block_id": "A",
-              "prio": "required",
-              "title": "Clean & Jerk",
-              "min": 25,
-              "superset": false,
-              "exercises": [
-                {
-                  "ex_id": "clean_jerk",
-                  "kurz": "C&J",
-                  "name": "Clean & Jerk",
-                  "class": "technical",
-                  "target": {
-                    "mode": "kg",
-                    "sets": 4,
-                    "reps": 1,
-                    "kg": 75,
-                    "ramp": [
-                      60,
-                      65,
-                      70,
-                      75
-                    ],
-                    "rpe_cap": 7,
-                    "tempo": "explosiv",
-                    "rest": "2-3 min"
-                  },
-                  "whoop": "Clean and Split Jerk",
-                  "warum": "Ein Komplex pro Stufe, sauber hoch bis 75. Der Bestwert steht bei 82,5 aus dem August — den lässt du heute liegen. Nach 25 Tagen ohne Kontakt holt man das Muster zurück, nicht die Last."
-                }
-              ]
-            },
-            {
-              "block_id": "B",
-              "prio": "required",
-              "title": "Overhead Squat",
-              "min": 18,
-              "superset": false,
-              "exercises": [
-                {
-                  "ex_id": "ohs",
-                  "kurz": "OHS",
-                  "name": "Overhead Squat",
-                  "class": "technical",
-                  "target": {
-                    "mode": "kg",
-                    "sets": 3,
-                    "reps": 3,
-                    "kg": 50,
-                    "ramp": [
-                      45,
-                      47.5,
-                      50
-                    ],
-                    "rpe_cap": 7,
-                    "tempo": "kontrolliert",
-                    "rest": "2 min"
-                  },
-                  "whoop": "Overhead Squat",
-                  "warum": "Drei Dreier aufsteigend bis 50. Topwert ist 55×3, aber der ist vier Wochen alt und lief seitdem nur als Positionsarbeit. 52,5 ist frei, wenn die 50 wirklich sauber sitzt — sonst bleibt es dabei."
-                }
-              ]
-            },
-            {
-              "block_id": "C",
-              "prio": "optional",
-              "title": "Strength: Delts / Bizeps",
-              "min": 15,
-              "superset": false,
-              "exercises": [
-                {
-                  "ex_id": "lateral_raise",
-                  "kurz": "Lateral Raise",
-                  "name": "DB Lateral Raise",
-                  "class": "loadable",
-                  "target": {
-                    "mode": "kg",
-                    "sets": 3,
-                    "reps": 12,
-                    "kg": 6,
-                    "rpe_cap": 7,
-                    "tempo": "kontrolliert",
-                    "rest": "60 sec"
-                  },
-                  "whoop": "Lateral Raise",
-                  "warum": "Zwei Kurzhanteln à 6 kg, kein Versagen. Zweck: Muskelschutz im Kaloriendefizit."
-                },
-                {
-                  "ex_id": "biceps_curl",
-                  "kurz": "Curl",
-                  "name": "DB Curl",
-                  "class": "loadable",
-                  "target": {
-                    "mode": "kg",
-                    "sets": 3,
-                    "reps": 12,
-                    "kg": 10,
-                    "rpe_cap": 7,
-                    "tempo": "kontrolliert",
-                    "rest": "60 sec"
-                  },
-                  "whoop": "Biceps Curl",
-                  "warum": "Zwei Kurzhanteln à 10 kg, kontrolliert."
-                }
-              ],
-              "verdict_ex_id": "layer_delts_bizeps",
-              "verdict_class": "generic"
-            },
-            {
-              "block_id": "D",
-              "prio": "optional",
-              "title": "Mobility",
-              "min": 8,
-              "superset": false,
-              "exercises": [
-                {
-                  "ex_id": "mob_lat_stretch",
-                  "kurz": "Lat-Stretch hängend",
-                  "name": "Lat-Stretch hängend",
-                  "class": null,
-                  "target": {
-                    "mode": "time",
-                    "sets": 2,
-                    "sec": 45
-                  },
-                  "warum": "Overhead-Enge nach C&J und OHS lösen."
-                },
-                {
-                  "ex_id": "mob_hipflexor",
-                  "kurz": "Hüftbeuger-Stretch je Seite",
-                  "name": "Hüftbeuger-Stretch je Seite",
-                  "class": null,
-                  "target": {
-                    "mode": "time",
-                    "sets": 2,
-                    "sec": 45
-                  },
-                  "warum": "Nach dem Squat-Volumen."
-                },
-                {
-                  "ex_id": "mob_thoracic",
-                  "kurz": "Thorakale Extension am Foam Roller",
-                  "name": "Thorakale Extension am Foam Roller",
-                  "class": null,
-                  "target": {
-                    "mode": "time",
-                    "sec": 120
-                  }
-                }
-              ],
-              "verdict_ex_id": "mobility",
-              "verdict_class": "generic"
-            }
-          ],
-          "last_spanne": [
-            45,
-            75
-          ],
-          "zeit_spanne": [
-            43,
-            66
-          ],
-          "recovery_day": {
-            "u50": "C&J endet bei 70, OHS bei 47,5. Layer entfällt. Load-RPE-Cap 7.",
-            "u34": "Nur Technik mit leichter Stange und Mobility bis RPE 6 — oder Ruhe."
-          }
-        },
-        {
-          "iso_date": "2026-09-20",
-          "day_type": "box",
-          "einheit": "Deadlift / Toes-to-Bar Ladder For Time",
-          "sub": "3-6-9-12-9-6-3 · 15 Air Squats pro Runde · 13 Min Cap",
-          "wod": [
-            {
-              "struktur": "3-6-9-12-9-6-3 auf Zeit · 15 Air Squats am Ende jeder Runde · 13 Min Cap",
-              "bewegungen": [
-                {
-                  "reps": "3-6-9-12-9-6-3",
-                  "name": "Deadlift",
-                  "detail": "85 kg · Level 2"
-                },
-                {
-                  "reps": "3-6-9-12-9-6-3",
-                  "name": "Toes-to-Bar",
-                  "detail": "unbroken solange sauber"
-                },
-                {
-                  "reps": "15",
-                  "name": "Air Squats",
-                  "detail": "am Ende jeder Runde"
-                }
-              ]
-            }
-          ],
-          "warum": "Deadlifts mit 85 Kilo, dazu Toes-to-Bar und Air Squats, Deckel bei 13 Minuten. Hinge hattest du letzte Woche gar nicht, und die Last ist so weit unter deinem Bereich, dass der Tag nach dem Wiedereinstieg kein Problem ist. Wenn du lieber Rad fährst, ist das der gleichwertige Tausch."
-        }
-      ]
-    },
-    {
-      "id": "2026-W39",
-      "label": "Kontaktwoche · 21.–27. September 2026",
-      "meso": "Übergang · Kontaktwoche vor Griechenland",
-      "von": "2026-09-21",
-      "bis": "2026-09-27",
-      "days": [
-        {
-          "iso_date": "2026-09-21",
-          "day_type": "own",
-          "focus": "B",
-          "focus_label": "Gymnastics-Reclaim",
-          "kurzform": "BMU, Deficit HSPU, PU",
-          "blocks": [
-            {
-              "block_id": "A",
-              "prio": "required",
-              "title": "BMU",
-              "min": 18,
-              "superset": false,
-              "exercises": [
-                {
-                  "ex_id": "bmu",
-                  "kurz": "BMU",
-                  "name": "Bar Muscle-up",
-                  "class": "skill",
-                  "target": {
-                    "mode": "bw",
-                    "sets": 5,
-                    "reps": 2,
-                    "unbroken": true,
-                    "rpe_cap": 8,
-                    "rest": "2-3 min"
-                  },
-                  "whoop": "Muscle Ups",
-                  "warum": "Fünf verbundene Doubles, eine Stufe unter den 4×3 aus W36. Zwölf Tage ohne Kontakt — heute holst du den Rhythmus zurück, nicht die Stufe. Cues: „Fall Into Pike\" für die Stütz-Pause, „Feet in a Bucket\" für den Descent."
-                }
-              ],
-              "verdict_ex_id": "bmu",
-              "verdict_class": "skill"
-            },
-            {
-              "block_id": "B",
-              "prio": "required",
-              "title": "Deficit Strict HSPU",
-              "min": 15,
-              "superset": false,
-              "exercises": [
-                {
-                  "ex_id": "hspu_deficit",
-                  "kurz": "Deficit HSPU",
-                  "name": "Deficit Strict Handstand Push-up",
-                  "class": "skill",
-                  "target": {
-                    "mode": "bw",
-                    "sets": 4,
-                    "reps": 3,
-                    "rpe_cap": 7,
-                    "rest": "2 min"
-                  },
-                  "whoop": "Handstand Push-Ups",
-                  "warum": "Kalibrierung, kein Arbeitssatz: vier Dreier mit steigendem Defizit 5 → 7,5 → 10 → 12,5 cm (Scheiben oder Parallettes). Die letzte Höhe, bei der alle drei Reps sauber und mit vollem ROM stehen, ist dein Kalibrierwert — bitte in die Notiz schreiben. Auf dieser Höhe startet die Treppe 4×3 → 4×4 → 4×5."
-                }
-              ]
-            },
-            {
-              "block_id": "C",
-              "prio": "required",
-              "title": "Weighted Pull-up",
-              "min": 12,
-              "superset": false,
-              "exercises": [
-                {
-                  "ex_id": "wpu",
-                  "kurz": "PU",
-                  "name": "Weighted Pull-up",
-                  "class": "skill",
-                  "target": {
-                    "mode": "bw_plus",
-                    "sets": 3,
-                    "reps": 5,
-                    "kg": 5,
-                    "rpe_cap": 8,
-                    "tempo": "30X1",
-                    "rest": "2-3 min"
-                  },
-                  "whoop": "Weighted Pull Ups",
-                  "warum": "Drei Fünfer mit +5 kg, die oberste Stufe der alten Treppe — als Reclaim, nicht als Start der neuen (3×6 kommt erst mit zusammenhängenden Wochen). Letzter Griff-Block des Tages."
-                }
-              ]
-            },
-            {
-              "block_id": "D",
-              "prio": "optional",
-              "title": "Strength: Brust / Trizeps",
-              "min": 15,
-              "superset": false,
-              "exercises": [
-                {
-                  "ex_id": "db_bench",
-                  "kurz": "DB Bench",
-                  "name": "DB Bench Press",
-                  "class": "loadable",
-                  "target": {
-                    "mode": "kg",
-                    "sets": 3,
-                    "reps": 12,
-                    "kg": 20,
-                    "rpe_cap": 7,
-                    "tempo": "kontrolliert",
-                    "rest": "60 sec"
-                  },
-                  "whoop": "DB Bench Press",
-                  "warum": "Zwei Kurzhanteln à 20 kg, höchstens 7 von 10. Zweck: Muskelschutz im Kaloriendefizit."
-                },
-                {
-                  "ex_id": "triceps_ext",
-                  "kurz": "Triceps",
-                  "name": "Triceps Extension",
-                  "class": "generic",
-                  "target": {
-                    "mode": "band",
-                    "band": "rotes Band",
-                    "sets": 3,
-                    "reps": 15,
-                    "rpe_cap": 7,
-                    "rest": "60 sec"
-                  },
-                  "whoop": "Triceps Extension",
-                  "warum": "Konstante Bandspannung, kontrolliert, kein Versagen."
-                }
-              ],
-              "verdict_ex_id": "layer_brust_trizeps",
-              "verdict_class": "generic"
-            },
-            {
-              "block_id": "Z",
-              "prio": "optional",
-              "title": "Mobility",
-              "min": 8,
-              "superset": false,
-              "exercises": [
-                {
-                  "ex_id": "mob_lat_stretch",
-                  "kurz": "Lat-Stretch hängend",
-                  "name": "Lat-Stretch hängend",
-                  "class": null,
-                  "target": {
-                    "mode": "time",
-                    "sets": 2,
-                    "sec": 45
-                  },
-                  "warum": "Cool-down nach dem Pull-Volumen."
-                },
-                {
-                  "ex_id": "mob_shoulder_cars",
-                  "kurz": "Shoulder CARs je Seite",
-                  "name": "Shoulder CARs je Seite",
-                  "class": null,
-                  "target": {
-                    "mode": "bw",
-                    "sets": 2,
-                    "reps": 8
-                  },
-                  "warum": "Schulter nach HSPU und BMU durchbewegen."
-                },
-                {
-                  "ex_id": "mob_thoracic",
-                  "kurz": "Thorakale Extension am Foam Roller",
-                  "name": "Thorakale Extension am Foam Roller",
-                  "class": null,
-                  "target": {
-                    "mode": "time",
-                    "sec": 120
-                  },
-                  "warum": "Brustwirbelsäule öffnen."
-                }
-              ],
-              "verdict_ex_id": "mobility",
-              "verdict_class": "generic"
-            }
-          ],
-          "zeit_spanne": [
-            45,
-            68
-          ],
-          "recovery_day": {
-            "u50": "BMU 4×2, Deficit nur bis 7,5 cm, WPU 3×4 @ +5. Layer entfällt. Load-RPE-Cap 7.",
-            "u34": "Session entfällt — Mobility bis RPE 6, oder Ruhe."
-          }
-        },
-        {
-          "iso_date": "2026-09-22",
-          "day_type": "own",
-          "focus": "A",
-          "focus_label": "Weightlifting-Fokus",
-          "kurzform": "C&J, OHS, Core",
-          "blocks": [
-            {
-              "block_id": "A",
-              "prio": "required",
-              "title": "Clean & Jerk",
-              "min": 25,
-              "superset": false,
-              "exercises": [
-                {
-                  "ex_id": "clean_jerk",
-                  "kurz": "C&J",
-                  "name": "Clean & Jerk",
-                  "class": "technical",
-                  "target": {
-                    "mode": "kg",
-                    "sets": 5,
-                    "reps": 1,
-                    "kg": 80,
-                    "ramp": [
-                      60,
-                      67.5,
-                      72.5,
-                      77.5,
-                      80
-                    ],
-                    "rpe_cap": 8,
-                    "tempo": "explosiv",
-                    "rest": "2-3 min"
-                  },
-                  "whoop": "Clean and Split Jerk",
-                  "warum": "Fünf Komplexe aufsteigend bis 80. Am Samstag war bei 75 Schluss und es fühlte sich nach 6 von 10 an — heute eine Stufe weiter. Der Bestwert 82,5 bleibt liegen: danach kommen zwölf freie Tage, ein Maximalversuch davor bringt nichts."
-                }
-              ]
-            },
-            {
-              "block_id": "B",
-              "prio": "required",
-              "title": "Overhead Squat",
-              "min": 18,
-              "superset": false,
-              "exercises": [
-                {
-                  "ex_id": "ohs",
-                  "kurz": "OHS",
-                  "name": "Overhead Squat",
-                  "class": "technical",
-                  "target": {
-                    "mode": "kg",
-                    "sets": 3,
-                    "reps": 3,
-                    "kg": 55,
-                    "ramp": [
-                      47.5,
-                      52.5,
-                      55
-                    ],
-                    "rpe_cap": 7,
-                    "tempo": "kontrolliert",
-                    "rest": "2 min"
-                  },
-                  "whoop": "Overhead Squat",
-                  "warum": "Drei Dreier bis 55 — das ist dein Topwert vom 19. August, den du heute reproduzierst. Am Samstag lief die 50 bei 6 von 10, die 55 ist der logische nächste Kontakt. 57,5 kommt nach dem Urlaub."
-                }
-              ]
-            },
-            {
-              "block_id": "C",
-              "prio": "required",
-              "title": "Core",
-              "min": 5,
-              "superset": false,
-              "exercises": [
-                {
-                  "ex_id": "hollow_hold",
-                  "kurz": "Core",
-                  "name": "Hollow Body Hold",
-                  "class": "generic",
-                  "target": {
-                    "mode": "time",
-                    "sets": 3,
-                    "sec": 30,
-                    "rpe_cap": 6,
-                    "rest": "60 sec"
-                  },
-                  "whoop": "Hollow Hold",
-                  "warum": "Unterer Rücken bleibt fest am Boden, Spannung aus der Körpermitte, ruhig atmen."
-                }
-              ]
-            },
-            {
-              "block_id": "D",
-              "prio": "optional",
-              "title": "Strength: Delts / Bizeps",
-              "min": 15,
-              "superset": false,
-              "exercises": [
-                {
-                  "ex_id": "lateral_raise",
-                  "kurz": "Lateral Raise",
-                  "name": "DB Lateral Raise",
-                  "class": "loadable",
-                  "target": {
-                    "mode": "kg",
-                    "sets": 3,
-                    "reps": 12,
-                    "kg": 6,
-                    "rpe_cap": 7,
-                    "tempo": "kontrolliert",
-                    "rest": "60 sec"
-                  },
-                  "whoop": "Lateral Raise",
-                  "warum": "Zwei Kurzhanteln à 6 kg, kein Versagen. Zweck: Muskelschutz im Kaloriendefizit."
-                },
-                {
-                  "ex_id": "biceps_curl",
-                  "kurz": "Curl",
-                  "name": "DB Curl",
-                  "class": "loadable",
-                  "target": {
-                    "mode": "kg",
-                    "sets": 3,
-                    "reps": 12,
-                    "kg": 10,
-                    "rpe_cap": 7,
-                    "tempo": "kontrolliert",
-                    "rest": "60 sec"
-                  },
-                  "whoop": "Biceps Curl",
-                  "warum": "Zwei Kurzhanteln à 10 kg, kontrolliert."
-                }
-              ],
-              "verdict_ex_id": "layer_delts_bizeps",
-              "verdict_class": "generic"
-            },
-            {
-              "block_id": "Z",
-              "prio": "optional",
-              "title": "Mobility",
-              "min": 8,
-              "superset": false,
-              "exercises": [
-                {
-                  "ex_id": "mob_lat_stretch",
-                  "kurz": "Lat-Stretch hängend",
-                  "name": "Lat-Stretch hängend",
-                  "class": null,
-                  "target": {
-                    "mode": "time",
-                    "sets": 2,
-                    "sec": 45
-                  },
-                  "warum": "Overhead-Enge nach C&J und OHS lösen."
-                },
-                {
-                  "ex_id": "mob_hipflexor",
-                  "kurz": "Hüftbeuger-Stretch je Seite",
-                  "name": "Hüftbeuger-Stretch je Seite",
-                  "class": null,
-                  "target": {
-                    "mode": "time",
-                    "sets": 2,
-                    "sec": 45
-                  },
-                  "warum": "Nach dem Squat-Volumen."
-                },
-                {
-                  "ex_id": "mob_thoracic",
-                  "kurz": "Thorakale Extension am Foam Roller",
-                  "name": "Thorakale Extension am Foam Roller",
-                  "class": null,
-                  "target": {
-                    "mode": "time",
-                    "sec": 120
-                  },
-                  "warum": "Brustwirbelsäule öffnen."
-                }
-              ],
-              "verdict_ex_id": "mobility",
-              "verdict_class": "generic"
-            }
-          ],
-          "last_spanne": [
-            47.5,
-            80
-          ],
-          "zeit_spanne": [
-            48,
-            71
-          ],
-          "recovery_day": {
-            "u50": "C&J endet bei 75, OHS bei 52,5. Layer entfällt. Load-RPE-Cap 7.",
-            "u34": "Nur Technik mit leichter Stange und Mobility bis RPE 6 — oder Ruhe."
-          }
-        },
-        {
-          "iso_date": "2026-09-23",
-          "day_type": "rest",
-          "warum": "Termin — kein Training."
-        },
-        {
-          "iso_date": "2026-09-24",
-          "day_type": "rest",
-          "warum": "Termin — kein Training."
-        },
-        {
-          "iso_date": "2026-09-25",
-          "day_type": "rest",
-          "warum": "Reisetag nach Griechenland. Kein Training — der Urlaub ist trainingsfrei, so wie du es entschieden hast."
-        },
-        {
-          "iso_date": "2026-09-26",
-          "day_type": "rest",
-          "warum": "Urlaub. Kein Training."
-        },
-        {
-          "iso_date": "2026-09-27",
-          "day_type": "rest",
-          "warum": "Urlaub. Kein Training."
-        }
-      ]
-    },
     {
       "id": "2026-W40",
       "label": "Urlaubswoche · 28. September – 4. Oktober 2026",
@@ -933,8 +130,369 @@ const DATA = {
         },
         {
           "iso_date": "2026-10-04",
+          "day_type": "box",
+          "einheit": "Power Clean + Clean Pull + Intervalle",
+          "sub": "E1:30 × 5: 3 TnG Power Cleans @ 50–55 % · E1:00 × 3: 2 Clean Pulls · E2:00 × 5: 5 HPC / 5 FS / 10 Cal",
+          "wod": [
+            {
+              "struktur": "Every 1:30 × 5",
+              "bewegungen": [
+                {
+                  "reps": "3",
+                  "name": "Touch-and-Go Power Clean",
+                  "detail": "50–55 %"
+                }
+              ]
+            },
+            {
+              "struktur": "Every 1:00 × 3",
+              "bewegungen": [
+                {
+                  "reps": "2",
+                  "name": "Clean Pull",
+                  "detail": "bis 90 %"
+                }
+              ]
+            },
+            {
+              "struktur": "Every 2:00 × 5",
+              "format": "Score: langsamste Runde",
+              "bewegungen": [
+                {
+                  "reps": "5",
+                  "name": "Hang Power Clean",
+                  "detail": "52,5 kg · Level 2"
+                },
+                {
+                  "reps": "5",
+                  "name": "Front Squat",
+                  "detail": "52,5 kg"
+                },
+                {
+                  "reps": "10",
+                  "name": "Cal any machine",
+                  "detail": ""
+                }
+              ]
+            }
+          ],
+          "warum": "Erster Tag zurück. Leichte Power Cleans zum Reinkommen, danach fünf Intervalle mit Hang Power Cleans, Front Squats und Kalorien. Die Last ist bewusst niedrig, der Kreislauf soll arbeiten, nicht die Hantel."
+        }
+      ]
+    },
+    {
+      "id": "2026-W41",
+      "label": "Box-Woche · 5.–11. Oktober 2026",
+      "meso": "Übergang · Box-Woche nach dem Urlaub",
+      "von": "2026-10-05",
+      "bis": "2026-10-11",
+      "days": [
+        {
+          "iso_date": "2026-10-05",
+          "day_type": "box",
+          "einheit": "Box Squat + For Time",
+          "sub": "E3:00 × 4: 6 Box Squats @ 70–72,5 % + Calf Raises · For Time: 2000 m Row / 30 HPC / 50 Jump Squats · 15 Min Cap",
+          "wod": [
+            {
+              "struktur": "Every 3:00 × 4",
+              "bewegungen": [
+                {
+                  "reps": "6",
+                  "name": "Box Squat",
+                  "detail": "70–72,5 % Back-Squat-1RM"
+                },
+                {
+                  "reps": "10/10",
+                  "name": "Single Leg Calf Raise",
+                  "detail": ""
+                }
+              ]
+            },
+            {
+              "struktur": "For Time · 15 Min Cap",
+              "bewegungen": [
+                {
+                  "reps": "2000 m",
+                  "name": "Row",
+                  "detail": "oder 1600 m Run / 120 Cal"
+                },
+                {
+                  "reps": "30",
+                  "name": "Hang Power Clean",
+                  "detail": "60 kg · Level 2"
+                },
+                {
+                  "reps": "50",
+                  "name": "Jump Squats",
+                  "detail": ""
+                }
+              ]
+            }
+          ],
+          "warum": "Box Squats bei 70 Prozent, danach 2000 Meter rudern, 30 Hang Power Cleans und 50 Jump Squats. Genau die Mischung, die du wolltest: moderate Hantel, viel Kreislauf."
+        },
+        {
+          "iso_date": "2026-10-06",
           "day_type": "rest",
-          "warum": "Tag nach der Rückreise, bewusst frei. Ab Montag startet Meso 4 — die Woche planen wir, sobald du zurück bist."
+          "warum": "Frei nach zwei Box-Tagen. Heute steht in der Box ein Push-Jerk-Maximum an, das passt nicht zur ersten Woche nach dem Urlaub."
+        },
+        {
+          "iso_date": "2026-10-07",
+          "day_type": "box",
+          "einheit": "Chipper For Time",
+          "sub": "100-75-50-25 Double-Unders · 25 Power Cleans / 20 Front Squats / 15 C&J / 10 Squat Cleans · 20 Min Cap",
+          "wod": [
+            {
+              "struktur": "For Time · 20 Min Cap",
+              "bewegungen": [
+                {
+                  "reps": "100",
+                  "name": "Double-Unders",
+                  "detail": ""
+                },
+                {
+                  "reps": "25",
+                  "name": "Power Clean",
+                  "detail": "52,5 kg · Level 2"
+                },
+                {
+                  "reps": "75",
+                  "name": "Double-Unders",
+                  "detail": ""
+                },
+                {
+                  "reps": "20",
+                  "name": "Front Squat",
+                  "detail": "52,5 kg"
+                },
+                {
+                  "reps": "50",
+                  "name": "Double-Unders",
+                  "detail": ""
+                },
+                {
+                  "reps": "15",
+                  "name": "Clean & Jerk",
+                  "detail": "52,5 kg"
+                },
+                {
+                  "reps": "25",
+                  "name": "Double-Unders",
+                  "detail": ""
+                },
+                {
+                  "reps": "10",
+                  "name": "Squat Clean",
+                  "detail": "52,5 kg"
+                }
+              ]
+            }
+          ],
+          "warum": "Double-Unders im Wechsel mit Cleans, Front Squats und Clean & Jerks bei 52,5 Kilo. Die Hantel ist leicht, das Tempo macht den Tag."
+        },
+        {
+          "iso_date": "2026-10-08",
+          "day_type": "box",
+          "einheit": "3 × 10 Min AMRAP",
+          "sub": "Bike / DB Bench / Renegade Rows / Wall Sit · Row-Ski / Sit-ups / Box Jumps / Plank · Burpees / Devil Press / DB Snatch / Hang",
+          "wod": [
+            {
+              "struktur": "10 Min AMRAP · danach 4 Min Pause",
+              "bewegungen": [
+                {
+                  "reps": "12",
+                  "name": "Cal Bike",
+                  "detail": ""
+                },
+                {
+                  "reps": "10",
+                  "name": "DB Bench Press",
+                  "detail": "2× 15 kg"
+                },
+                {
+                  "reps": "10",
+                  "name": "Renegade Rows",
+                  "detail": "5/Seite"
+                },
+                {
+                  "reps": "30 s",
+                  "name": "Wall Sit",
+                  "detail": ""
+                }
+              ]
+            },
+            {
+              "struktur": "10 Min AMRAP · danach 4 Min Pause",
+              "bewegungen": [
+                {
+                  "reps": "12",
+                  "name": "Cal Row/Ski",
+                  "detail": ""
+                },
+                {
+                  "reps": "10",
+                  "name": "Sit-ups",
+                  "detail": ""
+                },
+                {
+                  "reps": "10",
+                  "name": "Box Jumps",
+                  "detail": ""
+                },
+                {
+                  "reps": "30 s",
+                  "name": "Front Plank",
+                  "detail": ""
+                }
+              ]
+            },
+            {
+              "struktur": "10 Min AMRAP",
+              "format": "Score: Runden + Reps aller drei Teile",
+              "bewegungen": [
+                {
+                  "reps": "10",
+                  "name": "Burpees",
+                  "detail": ""
+                },
+                {
+                  "reps": "5",
+                  "name": "Devil Press",
+                  "detail": "2× 15 kg"
+                },
+                {
+                  "reps": "10",
+                  "name": "Alt. DB Snatch",
+                  "detail": ""
+                },
+                {
+                  "reps": "30 s",
+                  "name": "Hang",
+                  "detail": ""
+                }
+              ]
+            }
+          ],
+          "warum": "Drei zehnminütige AMRAPs mit Kurzhanteln, Maschinen und Körpergewicht. Keine Langhantel, nur Kreislauf. Gleichmäßig durchziehen statt im ersten Teil zu überziehen."
+        },
+        {
+          "iso_date": "2026-10-09",
+          "day_type": "rest",
+          "warum": "Frei. Fran würde deinen Griff genau vor dem Samstag leeren."
+        },
+        {
+          "iso_date": "2026-10-10",
+          "day_type": "box",
+          "einheit": "Power Snatch + Snatch Pull + EMOM",
+          "sub": "E1:30 × 5: 3 Power Snatches @ 60–65 % · E1:00 × 3: 2 Snatch Pulls · EMOM 12: DB Snatch / BBJO + Max C2B",
+          "wod": [
+            {
+              "struktur": "Every 1:30 × 5",
+              "bewegungen": [
+                {
+                  "reps": "3",
+                  "name": "Power Snatch",
+                  "detail": "60–65 % · TnG wenn sauber"
+                }
+              ]
+            },
+            {
+              "struktur": "Every 1:00 × 3",
+              "bewegungen": [
+                {
+                  "reps": "2",
+                  "name": "Snatch Pull",
+                  "detail": "bis 100 %"
+                }
+              ]
+            },
+            {
+              "struktur": "EMOM 12 (6 Runden)",
+              "format": "Score: total C2B",
+              "bewegungen": [
+                {
+                  "reps": "12",
+                  "name": "Alt. DB Snatch",
+                  "detail": "20 kg · Level 2 · Min 1"
+                },
+                {
+                  "reps": "5",
+                  "name": "Burpee Box Jump Over",
+                  "detail": "60 cm · Min 2"
+                },
+                {
+                  "reps": "Max",
+                  "name": "Chest-to-Bar Pull-ups",
+                  "detail": "Rest von Min 2"
+                }
+              ]
+            }
+          ],
+          "warum": "Leichte Power Snatches um 37,5 Kilo, Snatch Pulls und dann zwölf Minuten EMOM mit Kurzhantel-Snatches, Burpee Box Jump Overs und Chest-to-Bar. Der einzige Tag mit Snatch-Kontakt diese Woche, ganz ohne Druck."
+        },
+        {
+          "iso_date": "2026-10-11",
+          "day_type": "box",
+          "einheit": "Bench Press + 16 Min AMRAP",
+          "sub": "E2:15 × 4: 4 Bench + 10 Face Pulls · 1× Max Paused Bench @ 60 % · AMRAP 16: 200 m Run / 20 FR Lunges / 20 Push Press / 20 Cal / 20 Sit-ups",
+          "wod": [
+            {
+              "struktur": "Every 2:15 × 4",
+              "bewegungen": [
+                {
+                  "reps": "4",
+                  "name": "Bench Press",
+                  "detail": "RPE ≤ 8"
+                },
+                {
+                  "reps": "10",
+                  "name": "Banded Face Pulls",
+                  "detail": ""
+                }
+              ]
+            },
+            {
+              "struktur": "1 × Max Reps",
+              "bewegungen": [
+                {
+                  "reps": "Max",
+                  "name": "Paused Bench Press",
+                  "detail": "60 % des schwersten 4er · 2 s Pause"
+                }
+              ]
+            },
+            {
+              "struktur": "16 Min AMRAP",
+              "bewegungen": [
+                {
+                  "reps": "200 m",
+                  "name": "Run",
+                  "detail": ""
+                },
+                {
+                  "reps": "20",
+                  "name": "Front Rack Lunge Steps",
+                  "detail": "30 kg · Level 2"
+                },
+                {
+                  "reps": "20",
+                  "name": "Push Press",
+                  "detail": "30 kg"
+                },
+                {
+                  "reps": "20",
+                  "name": "Cal any machine",
+                  "detail": ""
+                },
+                {
+                  "reps": "20",
+                  "name": "Sit-ups",
+                  "detail": ""
+                }
+              ]
+            }
+          ],
+          "warum": "Bankdrücken in Viererserien, dann 16 Minuten AMRAP mit Laufen, Lunges, Push Press und Kalorien. Bei gutem Wetter ist die Ausfahrt der gleichwertige Tausch."
         }
       ]
     }

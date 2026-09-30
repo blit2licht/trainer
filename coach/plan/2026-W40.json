@@ -5,8 +5,8 @@
   "meso": "Übergang · Urlaub Griechenland",
   "von": "2026-09-28",
   "bis": "2026-10-04",
-  "phase": "Trainingsfrei Mo–Sa (Griechenland, Rückkehr Sa 3.10.), So 4.10. Ruhe vor dem Meso-4-Start",
-  "_hinweis": "Martin 20.09.: Griechenland komplett trainingsfrei, Rückkehr Sa 3.10. Der Sonntag 4.10. ist als Ruhetag entschieden (Reise-Nachtag, Meso 4 startet Mo 5.10. mit Reclaim). Zweite trainingsfreie Woche innerhalb von drei — bei der W41-Planung gilt für alle Foki die Unterbrechungsregel (≥10 Tage → eine Stufe tiefer): BMU 5×2, WPU 3×5, C&J bis 75, OHS bis 50, Deficit-HSPU auf dem Kalibrierwert vom 21.09.",
+  "phase": "Trainingsfrei Mo–Sa (Griechenland, Rückkehr Sa 3.10.), So 4.10. Box-Wiedereinstieg",
+  "_hinweis": "Martin 20.09.: Griechenland komplett trainingsfrei, Rückkehr Sa 3.10. Martin 30.09.: So 4.10. ist trainierbar und eröffnet die reine Box-Woche nach dem Urlaub (keine Meso-Arbeit, Kreislauf wieder in Schwung). Der frühere Ruhetag-Entscheid für den 4.10. ist damit ersetzt.",
   "days": [
     {
       "iso_date": "2026-09-28",
@@ -46,9 +46,54 @@
     },
     {
       "iso_date": "2026-10-04",
-      "day_type": "rest",
-      "plan_note": "Ruhetag nach der Rückreise — entschieden, kein Platzhalter. Meso 4 startet Mo 5.10. mit Reclaim-Einheiten; W41 wird nach der Rückkehr geplant (DreamWOD W41 ziehen, Termine erfragen).",
-      "warum": "Tag nach der Rückreise, bewusst frei. Ab Montag startet Meso 4 — die Woche planen wir, sobald du zurück bist."
+      "day_type": "box",
+      "einheit": "Power Clean + Clean Pull + Intervalle",
+      "sub": "E1:30 × 5: 3 TnG Power Cleans @ 50–55 % · E1:00 × 3: 2 Clean Pulls · E2:00 × 5: 5 HPC / 5 FS / 10 Cal",
+      "plan_note": "Martin 30.09.: Box-Woche nach dem Urlaub, keine Meso-Arbeit. Erster Tag nach der Rückreise — Level 2 (52,5 kg), Power Cleans bei 50–55 %, Pulls nicht über 90 %. Score = langsamste Runde, nicht jagen.",
+      "warum": "Erster Tag zurück. Leichte Power Cleans zum Reinkommen, danach fünf Intervalle mit Hang Power Cleans, Front Squats und Kalorien. Die Last ist bewusst niedrig, der Kreislauf soll arbeiten, nicht die Hantel.",
+      "wod": [
+        {
+          "struktur": "Every 1:30 × 5",
+          "bewegungen": [
+            {
+              "reps": "3",
+              "name": "Touch-and-Go Power Clean",
+              "detail": "50–55 %"
+            }
+          ]
+        },
+        {
+          "struktur": "Every 1:00 × 3",
+          "bewegungen": [
+            {
+              "reps": "2",
+              "name": "Clean Pull",
+              "detail": "bis 90 %"
+            }
+          ]
+        },
+        {
+          "struktur": "Every 2:00 × 5",
+          "format": "Score: langsamste Runde",
+          "bewegungen": [
+            {
+              "reps": "5",
+              "name": "Hang Power Clean",
+              "detail": "52,5 kg · Level 2"
+            },
+            {
+              "reps": "5",
+              "name": "Front Squat",
+              "detail": "52,5 kg"
+            },
+            {
+              "reps": "10",
+              "name": "Cal any machine",
+              "detail": ""
+            }
+          ]
+        }
+      ]
     }
   ]
 }

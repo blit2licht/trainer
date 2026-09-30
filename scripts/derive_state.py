@@ -296,7 +296,7 @@ def build_report(exercises: dict, state: dict, verdicts: list[dict],
     line("")
     line("4) WAEHRUNGSVERGLEICH  (state.json-Referenz  vs  Engine-Ableitung)")
     line("   Waehrung je Klasse: loadable=e1RM/prescription · technical=ceiling")
-    line("   · skill=Treppenstufe (werkstatt-konzept)")
+    line("   · skill=Treppenstufe")
     for ex_id, ex in reg.items():
         cls = ex["class"]
         if cls == "generic":

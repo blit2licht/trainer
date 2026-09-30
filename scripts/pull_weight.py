@@ -174,14 +174,16 @@ def build(groups: list) -> dict:
                 continue
             per_day.setdefault(date, []).append(m["value"] * (10 ** m["unit"]))
 
-    days = [{"date": d, "weight_kg": round(sum(v) / len(v), 2)}
-            for d, v in sorted(per_day.items())]
+    # Auf 0,1 kg runden — zwei Nachkommastellen sind Scheinpräzision
+    # (Entscheid 2026-09-30). Wochenschnitte aus den ungerundeten Tageswerten.
+    day_means = {d: sum(v) / len(v) for d, v in sorted(per_day.items())}
+    days = [{"date": d, "weight_kg": round(m, 1)} for d, m in day_means.items()]
 
     weeks = {}
-    for d in days:
-        iso = dt.date.fromisoformat(d["date"]).isocalendar()
-        weeks.setdefault(f"{iso.year}-W{iso.week:02d}", []).append(d["weight_kg"])
-    wochenschnitte = [{"woche": w, "avg_kg": round(sum(v) / len(v), 2), "n_messungen": len(v)}
+    for d, m in day_means.items():
+        iso = dt.date.fromisoformat(d).isocalendar()
+        weeks.setdefault(f"{iso.year}-W{iso.week:02d}", []).append(m)
+    wochenschnitte = [{"woche": w, "avg_kg": round(sum(v) / len(v), 1), "n_messungen": len(v)}
                       for w, v in sorted(weeks.items())]
 
     return {
@@ -190,7 +192,8 @@ def build(groups: list) -> dict:
         "hinweis": "Nur Gewicht. Withings-Körperfett (BIA) bewusst nicht übernommen — "
                    "bei Martin ~10 %-Punkte zu niedrig, steuerungsunbrauchbar "
                    "(Entscheidung 2026-08-02). Steuerung läuft ausschließlich über "
-                   "Wochenschnitt-Vergleich (Ziel −0,3 bis −0,5 kg/Wo ab W34 vs. W33).",
+                   "Wochenschnitt-Vergleich (Tempo und Baseline: coach/profile.json "
+                   "koerperkomposition).",
         "days": days,
         "wochenschnitte": wochenschnitte,
     }

@@ -73,42 +73,6 @@
         "reason": "Type-Ramp stammt aus der gelockten Dunkelkammer-Referenz; DESIGN.md-Neuschrieb aus dem Gewinner ist der nächste Phasenschritt"
       },
       {
-        "rule": "design-system-font-size",
-        "value": "*",
-        "files": [
-          "V3.0/werkstatt.html"
-        ],
-        "createdAt": "2026-08-22T15:20:51.863Z",
-        "reason": "Dunkelkammer-Weltgrammatik (design/dunkelkammer.html, DESIGN.md): Mono-Etiketten uppercase, feine Mono-Grade, Light-Theme-Leiter; identisch zu V3.0/handy.html sanktioniert. Feintuning in polish."
-      },
-      {
-        "rule": "design-system-color",
-        "value": "*",
-        "files": [
-          "V3.0/werkstatt.html"
-        ],
-        "createdAt": "2026-08-22T15:20:51.912Z",
-        "reason": "Dunkelkammer-Weltgrammatik (design/dunkelkammer.html, DESIGN.md): Mono-Etiketten uppercase, feine Mono-Grade, Light-Theme-Leiter; identisch zu V3.0/handy.html sanktioniert. Feintuning in polish."
-      },
-      {
-        "rule": "all-caps-body",
-        "value": "*",
-        "files": [
-          "V3.0/werkstatt.html"
-        ],
-        "createdAt": "2026-08-22T15:20:51.984Z",
-        "reason": "Dunkelkammer-Weltgrammatik (design/dunkelkammer.html, DESIGN.md): Mono-Etiketten uppercase, feine Mono-Grade, Light-Theme-Leiter; identisch zu V3.0/handy.html sanktioniert. Feintuning in polish."
-      },
-      {
-        "rule": "flat-type-hierarchy",
-        "value": "*",
-        "files": [
-          "V3.0/werkstatt.html"
-        ],
-        "createdAt": "2026-08-22T15:20:52.032Z",
-        "reason": "Dunkelkammer-Weltgrammatik (design/dunkelkammer.html, DESIGN.md): Mono-Etiketten uppercase, feine Mono-Grade, Light-Theme-Leiter; identisch zu V3.0/handy.html sanktioniert. Feintuning in polish."
-      },
-      {
         "rule": "design-system-color",
         "value": "*",
         "files": [

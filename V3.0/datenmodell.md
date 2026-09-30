@@ -5,6 +5,11 @@ Konsolidiert die Schema-Anforderungen aus `handy-konzept.md` (§Schema-Anforderu
 Bei Widerspruch gilt: Entscheidungen 2026-08-22 > Übergabe > dieses Dokument, außer wo
 hier ausdrücklich „entschieden in dieser Session" steht.
 
+**Stand 30.09.2026:** Die Werkstatt (Desktop) ist verworfen, `werkstatt-konzept.md`
+und `scripts/build_derived.py` sind gelöscht. `website/derived.js` (§0, §6) wurde
+nie gebaut und wird nicht gebaut; alle Werkstatt-Bezüge in diesem Dokument sind
+Entwurfshistorie. Gültig bleiben Registry (§1), Planquelle (§4) und Verdicts.
+
 Status-Legende wie Übergabe: `entschieden` (bauen) / `Vorschlag` (in dieser Session
 entworfen, von Martin noch nicht bestätigt) / `offen`.
 
@@ -320,6 +325,8 @@ Status: Vorschlag (Feldnamen); Content-Diät und Nur-aktuelle-Woche entschieden 
 ---
 
 ## 6. Werkstatt-Export `website/derived.js` (generiert) — löst Konflikt 2
+
+> Verworfen am 30.09.2026 zusammen mit der Werkstatt. Abschnitt bleibt als Entwurfshistorie.
 
 **ENTSCHIEDEN (Martin, 22.08.): Weekly.** Der Diff entsteht beim Weekly-Paste
 (Recap-Commit regeneriert `derived.json` + `website/derived.js`); sein Ort ist

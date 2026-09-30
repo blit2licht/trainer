@@ -1,24 +1,24 @@
 #!/usr/bin/env python3
-"""build_payload.py — Trainer 3.0, Handy-Payload-Generator (datenmodell.md §5).
+"""build_payload.py — Trainer 3.0, Handy-Payload-Generator (coach/architecture.md).
 
 Liest die Planquelle (coach/plan/2026-Wxx.json) + die Registry
 (coach/exercises.json) und erzeugt den schlanken Handy-Payload im data.js-Format.
-Prinzip (Entscheid 11): Quelle speichert einmal, Payload leitet ab.
+Prinzip: Quelle speichert einmal, Payload leitet ab.
 
 Der Generator
-  - STRIPPT alle Prosa, die das Handy nie erreichen darf (handy-konzept §2b):
-    warum, note (je Übung), intro, plan_note. recovery_day bleibt als
-    Kurzform je Fokus-Tag (datenmodell §5).
+  - STRIPPT die Prosa, die das Handy nie erreichen darf: note (je Übung),
+    intro, plan_note. warum wandert mit (am Handy ausklappbar), recovery_day
+    bleibt als Kurzform je Fokus-Tag.
   - REICHERT an: kurz aus der Registry, generierte kurzform / last_spanne /
     zeit_spanne (nie redundant in der Quelle gespeichert).
   - LINTET: Klammern oder Gedankenstrich-Zusätze im Blocktitel = Warnung
     (Titel ist nur der Übungs-/Blockname; Planungsprosa gehört in note,
-    nicht in den Titel — Schema-Anforderung 5).
+    nicht in den Titel).
 
 SCHARF seit 30.08.2026: Standard-Ausgabe ist website/data.js. Der Generator
 stempelt dabei den Inhalts-Hash in die data.js-Einbindung von website/index.html
 (?v=<hash>) — ohne diesen Stempel hielt Safari am iPhone alte Stände fest
-(Befund 23.08.). 2.0 liegt nur noch als Archiv unter archive/2.0/.
+(Befund 23.08.).
 """
 
 from __future__ import annotations
@@ -38,7 +38,7 @@ PLAN_DIR = REPO / "coach" / "plan"
 DEFAULT_OUT = REPO / "website" / "data.js"
 INDEX_HTML = REPO / "website" / "index.html"
 
-# Erlaubte target-Modi (datenmodell.md §3). `rpe` = Last selbst gewählt, der
+# Erlaubte target-Modi (coach/architecture.md). `rpe` = Last selbst gewählt, der
 # RPE-Deckel führt — für Layer-/Accessory-Arbeit ohne vorgeschriebenes Gewicht.
 TARGET_MODES = {"kg", "bw", "bw_plus", "time", "band", "rpe"}
 
@@ -189,7 +189,7 @@ def build_day(day: dict, reg: dict, warns: list[str]) -> dict:
         day_out["last_spanne"] = [min(kg_targets), max(kg_targets)]
     if min_all:
         day_out["zeit_spanne"] = [min_required, min_all]
-    # recovery_day bleibt als Kurzform (datenmodell §5), intro/plan_note nicht.
+    # recovery_day bleibt als Kurzform, intro/plan_note nicht.
     if "recovery_day" in day:
         day_out["recovery_day"] = day["recovery_day"]
     return day_out
@@ -227,7 +227,7 @@ def render_js(payload: dict) -> str:
     body = json.dumps(payload, ensure_ascii=False, indent=2)
     return ("/* GENERIERT von scripts/build_payload.py — nicht von Hand "
             "editieren.\n   Quelle: coach/plan/<id>.json + coach/exercises.json "
-            "(datenmodell.md §5). */\n"
+            "(coach/architecture.md). */\n"
             f"const DATA = {body};\n")
 
 

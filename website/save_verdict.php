@@ -1,10 +1,10 @@
 <?php
-// Trainer 3.0 — Verdict schreiben (datenmodell.md §4, Übergabe 5.3 + Entscheid 7).
+// Trainer 3.0 — Verdict schreiben (coach/architecture.md, Abschnitt Verdict-Kanal).
 // POST JSON: { secret, iso_date, ex_id, verdict, miss_reason?, source? }
-// Shared-Secret-Absicherung (Entscheid 7): Secret liegt im localStorage des
+// Shared-Secret-Absicherung: Secret liegt im localStorage des
 // Handys und in config.php als VERDICT_SECRET. Kein Login-System.
 // Antwort = gespeicherter Zeilenstand (Serverstand), damit das Handy nie die
-// Tap-Annahme zeigt, sondern den DB-Zustand (handy-konzept §1).
+// Tap-Annahme zeigt, sondern den DB-Zustand.
 
 header('Content-Type: application/json');
 header('X-Verdicts-Version: 1');
@@ -97,7 +97,7 @@ try {
     );
 
     // 'clear' löscht die Zeile — zurück auf unknown (= Abwesenheit der Zeile,
-    // datenmodell §4). Rücknahme-Kanal für Fehltaps am Handy.
+    // siehe coach/architecture.md). Rücknahme-Kanal für Fehltaps am Handy.
     if ($verdict === 'clear') {
         $del = $pdo->prepare('DELETE FROM verdicts WHERE iso_date = :d AND ex_id = :e');
         $del->execute([':d' => $iso_date, ':e' => $ex_id]);

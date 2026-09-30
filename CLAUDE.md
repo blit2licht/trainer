@@ -21,4 +21,10 @@ GitHub ist die gemeinsame Wahrheit. Vor Änderungen immer den neuesten Stand lad
 
 ## Veröffentlichung
 
-Nur `website/` wird veröffentlicht. Die App ist `website/index.html` (Trainer 3.0, seit 30.08.2026 auf der Root — 2.0 liegt stillgelegt unter `archive/2.0/`). Ein Deployment ist erst erfolgreich, wenn https://training.martinwitte.de erreichbar ist und die aktuelle Wochen-ID aus `website/data.js` ausliefert. Bei Fehlschlag einen Revert-Commit erstellen, stoppen und den Fehler erklären.
+Nur `website/` wird veröffentlicht. Die App ist `website/index.html` (Trainer 3.0, seit 30.08.2026 auf der Root; der Vorgänger 2.0 liegt nur noch in der Git-Historie). Ein Deployment ist erst erfolgreich, wenn https://training.martinwitte.de erreichbar ist und die aktuelle Wochen-ID aus `website/data.js` ausliefert. Bei Fehlschlag einen Revert-Commit erstellen, stoppen und den Fehler erklären.
+
+Deployt wird nur, wenn ein Push auf `main` etwas unter `website/` ändert; reine Coaching-Commits lösen kein Deployment aus.
+
+## App-Arbeit
+
+Änderungen an der App selbst (`website/` außer dem generierten `data.js`) folgen den Regeln in `website/CLAUDE.md`: auf einem Zweig arbeiten, nur mit Auftrag bauen, jede UI-Änderung am Handy-Format ansehen.

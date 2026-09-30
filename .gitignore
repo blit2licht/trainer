@@ -4,9 +4,6 @@ config.php
 .vscode/
 *.swp
 
-# Generiertes Design-Bundle — wird aus website/index.html gebaut
-design/bundle/
-
 # Vendorte Agent-Werkzeuge — gehören nicht in das Trainingsrepo, werden lokal
 # bzw. über den jeweiligen Marketplace installiert
 .claude/
@@ -19,15 +16,8 @@ design/bundle/
 .impeccable/config.local.json
 .impeccable/hook.cache.json
 .impeccable/questions/
+.impeccable/live/
 
 # Video-Analyse-Rohdaten (Videos, Frames, Plots) — nie committen, nur
 # verdichtete Erkenntnisse wandern manuell nach coach/state.json
 coach/video_analysis/
-
-# Trainer 3.0 — seit der Umstellung am 30.08.2026 das Produkt. Die
-# Konzeptdokumente sind versioniert (Skripte referenzieren sie: datenmodell.md,
-# whoop-paste-format.md, offene-fragen-w35.md). Nicht versioniert: die alten
-# Clickdummies und Icon-Spielwiesen, der generierte build/ und die lokalen
-# Aufträge in inbox/.
-V3.0/*
-!V3.0/*.md

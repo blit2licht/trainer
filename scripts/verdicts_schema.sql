@@ -1,14 +1,14 @@
--- Trainer 3.0 — Verdict-Tabelle (datenmodell.md §4, Übergabe 5.3)
+-- Trainer 3.0 — Verdict-Tabelle (coach/architecture.md, Abschnitt Verdict-Kanal)
 -- Auf dem IONOS-Server EINMALIG von Hand ausführen. Nicht automatisch deployt.
--- Ersetzt die vertagte blocks_done-Migration vollständig (Entscheid 4):
+-- Ersetzt die vertagte blocks_done-Migration vollständig:
 -- "Block erledigt" entfällt zugunsten des Übungs-Verdicts.
 --
--- Kanal 1 der Zwei-Kanal-Ist-Erfassung (Entscheid 4.1): trägt hit/miss +
--- miss_reason, nie kg. Lastdetails kommen ausschließlich aus dem WHOOP-Paste.
+-- Trägt hit/miss + miss_reason, nie kg. Lastdetails stehen in der Tagesnotiz
+-- oder kommen per gezielter WHOOP-Detailabfrage.
 --
 -- Semantik:
 --   verdict     hit | miss                (unknown ist KEIN DB-Wert — es ist die
---                                           Abwesenheit einer Zeile, datenmodell.md §4)
+--                                           Abwesenheit einer Zeile)
 --   miss_reason technik | last | NULL     (nur bei class technical gesetzt)
 --   source      button | whoop_derived | recap_answer
 --   Eindeutigkeit (iso_date, ex_id), last-write-wins (REPLACE / ON DUPLICATE KEY UPDATE).

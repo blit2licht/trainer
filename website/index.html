@@ -569,13 +569,17 @@ a{color:inherit;text-underline-offset:3px}
   font-weight:800;font-size:19px;letter-spacing:-.02em;color:var(--ink);line-height:1.25;
 }
 .mv-reps.is-long{font-size:15px;font-variation-settings:'wdth' 100;letter-spacing:-.01em}
+/* Name und Detail teilen sich die Zeile, solange beide passen. Passt das
+   Detail nicht mehr daneben, rutscht es als Ganzes unter den Namen und
+   bricht dort um — abgeschnitten wird nichts (Befund 30.09.). */
 .mv-name{
-  display:block;font-family:var(--disp);font-weight:600;font-size:17px;
+  display:flex;flex-wrap:wrap;align-items:baseline;column-gap:9px;
+  font-family:var(--disp);font-weight:600;font-size:17px;
   letter-spacing:-.01em;line-height:1.3;
 }
 .mv-detail{
-  margin-left:9px;font-family:var(--mono);font-size:13px;font-weight:500;
-  color:var(--ink-3);white-space:nowrap;
+  min-width:0;font-family:var(--mono);font-size:13px;font-weight:500;
+  color:var(--ink-3);
 }
 
 /* ═══ Apparat ═══ */
@@ -736,7 +740,7 @@ a{color:inherit;text-underline-offset:3px}
   <aside class="apparat" id="apparat"></aside>
 </div>
 
-<script src="./data.js?v=6a935727"></script>
+<script src="./data.js?v=a953849f"></script>
 <script>
 /* ════════════════════════════════════════════════════════════════════
    DUNKELKAMMER — Rendering-Kern (aus design/dunkelkammer.html)
@@ -748,8 +752,7 @@ const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':
 const stripHtml = s => String(s).replace(/<[^>]*>/g,'');
 
 /* ── V3-Overlay wird vom Adapter aus dem 3.0-Payload gebaut (nicht mehr hart
-   verdrahtet): V3[iso][block_id] = { ex_id, cls }. warum ist Datenfeld für
-   Engine/Werkstatt — wird hier nie gerendert. ── */
+   verdrahtet): V3[iso][block_id] = { ex_id, cls }. ── */
 let V3 = {};
 
 /* ── 3.0-Payload → Render-Form (2.x-Kontrakt des Dunkelkammer-Renders).
@@ -855,8 +858,7 @@ function adaptWeek(w){
         /* Verdict-Einheiten des Blocks: verdict_ex_id bündelt auf EIN Verdict
            (Composite/Anker — Layer, Mobility, BMU-Drill+BMU). OHNE
            verdict_ex_id trägt jede Übung ihr eigenes Verdict: unabhängige
-           loadable-Übungen (D1/D2) brauchen eigene Hit/Miss-Granularität,
-           sonst kann derive_state keine Lastentscheidung je Übung ableiten. */
+           Übungen (D1/D2) brauchen eigene Hit/Miss-Granularität. */
         v3[day.iso_date][b.block_id] =
           (b.verdict_ex_id || (b.exercises || []).length <= 1)
             ? [{ ex_id: b.verdict_ex_id || first.ex_id || blockSlug,
@@ -1637,8 +1639,8 @@ function showFocus(letter){
     const hi = {};
     (b.headers || []).forEach((h, i) => hi[h] = i);
     const single = (b.rows || []).length === 1;
-    /* Superset-Kennung kommt aus dem Payload-Feld (superset: true am Block,
-       datenmodell §2) — keine Heuristik mehr: Rest gilt dann dem Paar. */
+    /* Superset-Kennung kommt aus dem Payload-Feld (superset: true am Block)
+       — keine Heuristik mehr: Rest gilt dann dem Paar. */
     const isSuper = b.superset === true && (b.rows || []).length >= 2;
     /* Verdict-Einheiten: eine je Block (Anker/Composite) oder eine je Übung
        (unabhängige loadable-Übungen, D1/D2-Split). Bei mehreren steht das

@@ -1,5 +1,5 @@
 <?php
-// Trainer 3.0 — Verdicts lesen (datenmodell.md §4, Entscheid 3).
+// Trainer 3.0 — Verdicts lesen (coach/architecture.md, Abschnitt Verdict-Kanal).
 // GET ?from=YYYY-MM-DD&to=YYYY-MM-DD
 // Analog get_notes.php: Read-Endpoint ohne Secret. Die Seite lädt damit beim
 // Öffnen den Verdict-Zustand der aktuellen Woche zurück und spiegelt den

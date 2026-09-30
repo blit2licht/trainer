@@ -1,5 +1,5 @@
 /* GENERIERT von scripts/build_payload.py — nicht von Hand editieren.
-   Quelle: coach/plan/<id>.json + coach/exercises.json (datenmodell.md §5). */
+   Quelle: coach/plan/<id>.json + coach/exercises.json (coach/architecture.md). */
 const DATA = {
   "week": {
     "id": "2026-W40",

@@ -20,119 +20,105 @@ ein **Review-Werkzeug**, keine Zielgruppe: Sie decken blinde Flecken auf, dürfe
 Martin aber nicht überstimmen, und aus ihnen darf keine Feature- oder
 Zielgruppenanforderung abgeleitet werden.
 
-Drei bestätigte Nutzungsszenen, nach Härte der Anforderung:
+Zwei bestätigte Nutzungsszenen, nach Härte der Anforderung:
 
-1. **Im Gym am Handy, mitten im Satz.** Kurzer Blick zwischen zwei Sätzen, oft mit
-   Magnesium an den Händen, wechselndes Licht, Zeitdruck. Dazu gehört jetzt der
-   Ein-Tap-Rückkanal (Verdict). Diese Szene stellt die härtesten Anforderungen
-   und gewinnt im Konflikt gegen die anderen beiden.
-2. **Nach der Einheit: Rückmeldung erfassen.** Verdict pro Übung (Done/Fail)
-   und Notiz, direkt nach dem Training am Handy. Session-Feel ist abgeschafft
-   (Entscheidung 2026-08-31).
-3. ~~Werkstatt am Desktop~~ — am 30.09.2026 verworfen (nie genutzt). Planung
-   und Fortschrittsblick laufen in Claude-Code-Sessions.
+1. **Im Gym am Handy, mitten im Satz.** Kurzer Blick zwischen zwei Sätzen oder
+   vor dem WOD, oft mit Magnesium an den Händen, wechselndes Licht, Zeitdruck.
+   Diese Szene stellt die härtesten Anforderungen und gewinnt im Konflikt.
+2. **Nach der Einheit: Rückmeldung erfassen.** In der eigenen Einheit das
+   Verdict je Block (Done/Fail), an jedem Tag die Notiz — direkt nach dem
+   Training am Handy.
+
+Planung und Fortschrittsblick laufen in Claude-Code-Sessions, nicht in der App.
+Die Werkstatt am Desktop wurde am 30.09.2026 verworfen (nie genutzt).
 
 ## Product Purpose
 
-Trainer 3.0 ist eine **self-hosted Trainingsumgebung** für einen Athleten:
-Planung, Ausführung, Rückmeldung und abgeleitete Progression in einem System,
-dessen Gehirn ein KI-Coach mit versioniertem Gedächtnis ist (`coach/`).
+Trainer 3.0 ist die **Handy-Seite eines KI-Coaches mit versioniertem Gedächtnis**
+(`coach/`). Seit dem 30.09.2026 ist die Box die Hauptbühne: Martin trainiert an
+4–5 Tagen im Kurs, dazu kommt eine kurze eigene Einheit pro Woche. Die App tut
+zwei Dinge:
 
-Ein Raum (die Werkstatt am Desktop wurde am 30.09.2026 verworfen):
+- **Plan ausliefern:** den freigegebenen Wochenplan an die Box bringen — an
+  Box-Tagen das WOD mit Level und Ansage, in der eigenen Einheit die Blöcke mit
+  Lasten.
+- **Rückmeldung erfassen:** Verdicts und Notizen entgegennehmen, damit der
+  Coach die nächste Woche auf dem aufbaut, was tatsächlich passiert ist.
 
-- **Ausführung (Handy):** liefert den freigegebenen Wochenplan an die Box und
-  nimmt Verdicts und Notizen entgegen. Dokumentartig, stabil.
+Lasten, Ceilings und Ziele pflegt der Coach von Hand (`coach/state.json`,
+`coach/profile.json`). Eine Engine, die Lasten automatisch aus Verdicts ableitet,
+war geplant und ist am 30.09.2026 eingestellt worden.
 
-Leitprinzip der Datenarchitektur: **Das Log ist unantastbar, alles andere wird
-abgeleitet.** Ausgeführte Sätze (Website-DB, WHOOP-Paste) sind die einzige
-Wahrheit; Prescriptions werden bei jeder Ableitung deterministisch neu berechnet
-(`scripts/derive_state.py` → `coach/derived.json`), nie als Zähler fortgeschrieben.
-
-Erfolg bedeutet: Martin führt den Plan im Gym ohne Nachdenken aus, ein Tap
-genügt als Rückmeldung, und die nächste Woche baut nachweisbar auf dem auf, was
-tatsächlich passiert ist.
+Erfolg bedeutet: Martin findet den Tag im Gym ohne Nachdenken, die Rückmeldung
+kostet einen Tap oder einen Satz, und der Plan nimmt ihm nichts von dem weg, was
+das Training in der Class ausmacht.
 
 ## Positioning
 
-Keine generische Fitness-App und kein WHOOP-Ersatz, sondern eine persönliche
-Trainingsumgebung mit auditierbarer Progression: Jede Zahl im Plan trägt ihre
-maschinenerzeugte Begründung (`warum`-Pflichtfeld), jede Empfehlung ist eine
-pure Funktion der Historie, und Fortschritt wird in vier ehrlichen Währungen
-gemessen (e1RM-Trend, Ceiling-Bestätigung, Treppenstufe, Gewichtstrend) statt in
-einem Kunst-Score. Vorschlag, nie Automatik: die Lastentscheidung bleibt bei
-Martin und seinem Coach. Abgrenzung zu WHOOP: die Antwort steht auf der
-Titelseite, nicht hinter einem Prompt.
+Keine generische Fitness-App und kein WHOOP-Ersatz, sondern die Ausführungsseite
+eines persönlichen Coaches. Der Plan begründet sich selbst (`warum` je Tag und
+Übung, am Handy ausklappbar), und die Antwort steht auf der Titelseite, nicht
+hinter einem Prompt. Die Lastentscheidung bleibt bei Martin und seinem Coach.
 
 ## Operating Context
 
-- **Wochenrhythmus.** Neue Woche vorne in `weeks[]` in `website/data.js`;
-  die Seite zeigt maximal vier Wochen. Fokus-Übungen tragen künftig `ex_id`,
-  `target`-Objekt und `warum` (maschinenlesbares Soll).
-- **Rückkanal (Ist), zwei Kanäle, kein Doppel-Logging:**
-  Verdict per Done/Fail-Tap auf der Website (`save_verdict.php`, Rückspiegelung
-  über `get_verdicts.php`; bei `technical` nach Fail die Rückfrage Technik/Last);
-  Satzdetails aus dem WHOOP Weekly Paste, geparst zur Planungszeit.
-  `unknown` bewegt nie Last; Fallback-Kette Button → Nachtrag auf der Seite →
-  WHOOP → Recap-Nachfrage.
-- **Ableitung zur Planungszeit, nie live im Gym.** `derive_state.py` läuft nur
-  in Claude-Code-Sessions; Output `coach/derived.json` mit `derived_at`.
-  Recovery-Gate danach, nie davor (Recovery < 50 %: kein Steigerungssatz,
-  RPE-Cap 7; die Engine sieht Recovery nie).
-- **Übungs-Registry** `coach/exercises.json` (~15 Einträge): `ex_id`, Aliasse,
-  `class` (loadable | technical | skill), `increment`, `rep_cap_e1rm`.
+- **Wochenrhythmus.** Der Coach schreibt die Planquelle
+  `coach/plan/<jahr>-W<nr>.json`; `scripts/build_payload.py` erzeugt daraus
+  `website/data.js`. Der Payload trägt die laufende und die nächste Woche,
+  vergangene Wochen zeigt das Handy nicht.
+- **Rückkanal.** Verdict per Done/Fail-Tap in der eigenen Einheit
+  (`save_verdict.php`, Rückspiegelung über `get_verdicts.php`; bei `technical`
+  nach Fail die Rückfrage Technik/Last). An Box-Tagen die Tagesnotiz; an Tagen
+  mit Zielkontakt (Snatch, C&J) ein Satz mit Top-Last und sauber ja/nein. Ein
+  fehlendes Verdict ist nie ein Miss.
+- **Recovery** filtert am Trainingstag (Kappungsregel in
+  `coach/instructions.md`), nie in der Wochenplanung und nie auf der Website.
+- **Übungs-Registry** `coach/exercises.json`: `ex_id`, Name, Kurzname, Aliasse,
+  `class`.
 - **Datenquellen.** Recovery/HRV/Schlaf aus intervals.icu
   (`scripts/pull_wellness.py`), Gewicht aus Withings (`scripts/pull_weight.py`,
-  BIA-Körperfett wird ignoriert), WODs aus DreamWOD, Verdicts und Notizen aus
-  der Website-DB.
-- **Deployment.** Commit auf `main` → GitHub Actions → SFTP auf IONOS. Ein
+  BIA-Körperfett wird ignoriert), WODs aus DreamWOD per Schnittstelle, Verdicts
+  und Notizen aus der Website-DB.
+- **Deployment.** Push auf `main` mit Änderung unter `website/` → GitHub Actions
+  → SFTP auf IONOS. Ein
   Deployment gilt erst als erfolgreich, wenn https://training.martinwitte.de
   die aktuelle Wochen-ID ausliefert. `website/config.php` existiert nur auf dem
   Server. Endpoints mit Schreibzugriff tragen ein Shared Secret.
-- **Migration 3.0 — abgeschlossen (30.08.2026, W36).** Bau W35, Parallel-Lauf
-  unter `/v30/` in W35. Martin nutzte 2.0 in W35 nicht mehr, deshalb
-  Scharfschaltung vor dem geplanten Meso-4-Termin: `website/index.html` ist die
-  3.0-App, `website/data.js` wird aus `coach/plan/` generiert, `/v30/` leitet
-  auf `/` um, 2.0 liegt stillgelegt unter `archive/2.0/`. Offen bleibt die
-  Engine (`derive_state.py` Phase 1, read-only gegen die handgepflegten
-  Referenzen). Konzeptdokumente versioniert in `V3.0/*.md`.
+- **Technische Referenz:** `coach/architecture.md` (Planquelle, Registry,
+  Verdict-Kanal, Altlasten). Der Vorgänger 2.0 liegt nur noch in der
+  Git-Historie.
+- **Offener Ausbau:** `coach/auftraege/app-paket-box-tag.md` (Box-Tag als
+  Hauptansicht, Verdict auf dem Zielblock, WOD-Score, Taille) — ohne Termin.
 
 ## Capabilities and Constraints
 
 **Bestätigte Randbedingungen (bindend):**
 
 - **Ausführungsseite bleibt eine HTML-Datei ohne Build-Schritt — die Daten
-  dürfen generiert sein** (präzisiert 2026-08-22 abends): beim Planungs-Commit
-  entsteht ein schlanker Handy-Payload (nur Vollzugsdaten; Coach-Prosa
-  erreicht das Handy nie), den die Seite lädt. Keine Frameworks, kein Build
-  auf dem Handy. **Keine native iOS-App** — funktionale
-  Begründung in `V3.0/entscheidungen-2026-08-22.md` Nr. 10; bei realer
-  PWA-Lücke Capacitor-Wrapper um dieselbe Seite, kein Swift-Neubau.
+  dürfen generiert sein** (präzisiert 2026-08-22): beim Planungs-Commit
+  entsteht ein schlanker Handy-Payload, den die Seite lädt. Keine Frameworks,
+  kein Build auf dem Handy. **Keine native iOS-App** (Entscheidung 2026-08-22);
+  bei realer PWA-Lücke ein Capacitor-Wrapper um dieselbe Seite, kein
+  Swift-Neubau.
 - **Deutsch als einzige Sprache.** Fachbegriffe (WOD, RPE, BMU, EMOM, Ceiling,
-  Verdict) bleiben englisch, Glossar erklärt sie.
+  Verdict) bleiben englisch.
 - **Keine Entscheidungsunterstützung bei der Lastkappung auf der Website**
   (Entscheidung 2026-08-20, gilt fort): kein Recovery-Eingabefeld, keine
-  automatisch reduzierten Lasten im Gym. Das Recovery-Gate lebt in der Planung.
+  automatisch reduzierten Lasten im Gym.
 - **Keine Tracker.** Externe CDNs (Schriften) ausdrücklich erlaubt
   (Entscheidung 2026-08-19).
-- **Vorschlag, nie Automatik.** Die Engine liefert Prescriptions mit
-  Begründung; Commit bleibt bei Martin/Coach. Automatische Progression nur für
-  `class: loadable`; `technical` bekommt nie eine automatische Prescription.
+- **Kein unnützer Text am Handy.** Coach-Prosa (`plan_note`, `note`) erreicht
+  das Handy nie; Begründungen sind eingeklappt; keine Wochenrückschau.
 
 **Technische Fakten:**
 
-- Vanilla JS im Frontend. Backend: einzelne PHP-Endpoints gegen MySQL/MariaDB
-  (`get_notes.php`, `save_note.php`, künftig `save_verdict.php`,
-  `get_verdicts.php`).
-- PWA-Bestandteile vorhanden (Manifest, Service Worker network-first);
-  Offline ist „nice to have", kein Must-have (Entscheidung 2026-08-19).
-  Verdict-Taps puffern offline und syncen nach (last-write-wins).
-- Der Routine-Renderer kennt feste Spaltennamen (`Übung`, `Sets × Reps`,
-  `Dauer`, `Last`, `RPE`, `Tempo`, `Rest`/`Pause`, `Note`); WODs gehören ins
-  `wod`-Objekt. Felder wie `f.intro` werden per `innerHTML` gerendert —
-  Klartext-Ableitungen müssen durch `stripHtml()`.
-- Box-Tage bleiben außerhalb der Verdict-/Progressions-Logik; dort führt das
-  WOD, Rückmeldung über die Tagesnotiz. `session_feel` ist abgeschafft
-  (Entscheidung 2026-08-31); die DB-Spalte bleibt nur als Historie.
+- Vanilla JS im Frontend. Backend: einzelne PHP-Endpoints gegen MariaDB
+  (`get_notes.php`, `save_note.php`, `save_verdict.php`, `get_verdicts.php`,
+  `cron_summary.php`).
+- Kein Service Worker: `website/sw.js` ist ein Kill-Switch für den alten
+  2.0-Worker. Der Cache-Stempel in `index.html` sorgt für frische Stände.
+- `session_feel` ist abgeschafft (Entscheidung 2026-08-31); die DB-Spalte
+  bleibt als Historie (siehe Altlasten in `coach/architecture.md`).
 
 ## Brand Commitments
 
@@ -140,9 +126,8 @@ Titelseite, nicht hinter einem Prompt.
 - Kein Branding in der Kopfzeile — die Navigation ist bewusst markenlos.
 - Domain: training.martinwitte.de.
 - **Die Wahl der Schrift ist ausdrücklich kein Markenwert** (Entscheidung
-  2026-08-20): Maßstab ist Lesbarkeit unter Gym-Bedingungen. Bestand nutzt
-  Space Grotesk/Inter/JetBrains Mono; der Dunkelkammer-Entwurf Archivo/Spline
-  Sans Mono — entschieden wird beim Redesign-Commit.
+  2026-08-20): Maßstab ist Lesbarkeit unter Gym-Bedingungen. Die gültige
+  Designwelt steht in `DESIGN.md`.
 - Ton: sachlich, verdichtet, begründend. Der Plan behauptet nicht, er belegt.
   Zustände tragen Worte, nie nur Farbe.
 
@@ -151,17 +136,12 @@ Titelseite, nicht hinter einem Prompt.
 - Echte Trainingshistorie seit 2026-W25 in `coach/logbook.md`,
   Sechs-Wochen-Reviews unter `coach/reviews/`, Entscheidungsprotokoll in
   `coach/decisions.md`.
-- Bestätigte Leistungsstände und Ziele in `coach/profile.json` (u. a. Snatch 60,
-  C&J 80, Front Squat 102,5, Strict HSPU 9 unbroken, T2B 16 unbroken) samt
-  Gymnastics-Progressionstreppen — Grundlage der `skill`-Klasse.
+- Ziele, geparkte und geschlossene Ziele in `coach/profile.json`; aktuelle
+  Arbeitszahlen in `coach/state.json`.
 - Wellness- und Gewichtsreihen in `coach/wellness.json` und `coach/weight.json`.
-- Historische Satzdaten in WHOOP, per Prompt-Backfill für Kern-Movements
-  erschließbar (Entscheidung 2026-08-22).
-- Trainer-3.0-Konzeptstand: `V3.0/uebergabe-opengym-trainer-3.0.md`
-  (Engine-Regeln, Datenmodell), `V3.0/entscheidungen-2026-08-22.md`,
-  `V3.0/handy-konzept.md`.
-- Video-Analyse-Pipeline (`scripts/analyze_video.py`, MediaPipe) — Eskalationsziel
-  bei wiederholten Technik-Fails.
+- Historische Satzdaten in WHOOP, per gezielter Detailabfrage erschließbar.
+- Video-Analyse-Pipeline (`scripts/analyze_video.py`, MediaPipe) für konkrete
+  Technikfragen.
 - **Nicht vorhanden und nicht erfindbar:** Nutzerzahlen, Testimonials,
   Vergleiche, Preise, medizinische Messwerte jenseits der genannten Quellen.
 
@@ -169,21 +149,15 @@ Titelseite, nicht hinter einem Prompt.
 
 1. **Die Box gewinnt.** Im Konflikt zwischen Lesbarkeit unter Gym-Bedingungen
    und allem anderen gewinnt die Ausführbarkeit mitten im Satz.
-2. **Jede Zahl ist belegt.** Prescriptions tragen ihre maschinenerzeugte
-   Begründung (`warum`), e1RM-Werte ihre Quelle, Ceilings ihr
-   Bestätigungsdatum. Eine Empfehlung, die man nicht auditieren kann, ist eine,
-   der man aufhört zu vertrauen.
-3. **Das Log ist unantastbar, alles andere abgeleitet.** Keine Zähler, die
-   driften; eine korrigierte Notiz erzeugt deterministisch die korrigierte
-   nächste Empfehlung. `unknown` ist nie ein Miss und bewegt nie Last.
-4. **Rückmeldung ist Teil des Produkts.** Der Verdict-Tap ist der primäre
-   Rückkanal; er wird nie zum Nebenschauplatz degradiert und kostet nie mehr
-   als einen Tap.
-5. **Vorschlag, nie Automatik.** Die Engine rechnet, der Mensch entscheidet.
-   Recovery filtert nach der Ableitung, nie in ihr.
-6. **Fortschritt in ehrlichen Währungen.** Vier Währungen je Zielklasse, kein
-   Einheits-Score; Zustände heißen steigt/hält/stagniert/fällt und sind aus
-   Daten ableitbar, nie handgesetzt.
+2. **Jede Zahl ist belegt.** Lasten tragen ihre Begründung (`warum`), Ceilings
+   ihr Bestätigungsdatum. Eine Empfehlung, die man nicht nachvollziehen kann,
+   ist eine, der man aufhört zu vertrauen.
+3. **Rückmeldung ist Teil des Produkts.** Sie kostet nie mehr als einen Tap
+   oder einen Satz; ein fehlendes Verdict ist Unsicherheit, kein Miss.
+4. **Vorschlag, nie Automatik.** Der Coach schlägt vor, der Mensch entscheidet.
+   Recovery filtert am Tag, nicht im Plan.
+5. **Kein zweites Programm neben der Box.** Die App zeigt das Box-Training und
+   ergänzt nur, was dort fehlt.
 
 ## Accessibility & Inclusion
 

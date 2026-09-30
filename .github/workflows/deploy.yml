@@ -3,6 +3,11 @@ name: Deploy to IONOS
 on:
   push:
     branches: [main]
+    # Nur deployen, wenn sich die App oder dieser Workflow ändert. Reine
+    # Coaching-Commits (coach/, Doku) lösen kein Deployment aus.
+    paths:
+      - 'website/**'
+      - '.github/workflows/deploy.yml'
   workflow_dispatch:
 
 permissions:
@@ -45,6 +50,7 @@ jobs:
           mirror --reverse \
             --exclude-glob config.php \
             --exclude-glob config.template.php \
+            --exclude-glob CLAUDE.md \
             ./website/ /
           bye
           EOF

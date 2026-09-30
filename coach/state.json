@@ -14,8 +14,8 @@
     "id": "Block 5 — Box als Hauptbühne",
     "start": "2026-W42",
     "grundlage": "coach/reviews/2026-09-30-meso4-review.md (Alternative A, Martins Entscheide 30.09.2026). Meso 4 in der geplanten Form verworfen.",
-    "wochenmodell": "4–5 Box-Tage, 1 eigene Einheit ~45 min (Snatch-/C&J-Technik + BMU-Leiter), So optional Rad",
-    "prioritaet": "Lean-Phase vorne: Snatch/C&J halten und Technik verbessern, Ceiling nur opportunistisch; BMU-Leiter läuft normal",
+    "wochenmodell": "4–5 Box-Tage, 1 eigene Einheit ~45 min (Snatch-/C&J-Technik + BMU-Erhaltungskontakt), So optional Rad",
+    "prioritaet": "Lean-Phase vorne: Snatch/C&J halten und Technik verbessern, Ceiling nur opportunistisch (schwerer Box-Oly-Tag, Recovery ≥ 34 %). BMU geparkt, nur Erhalt.",
     "engine_marker": "Start offen — erster passender Benchmark aus dem Box-Programm ab W42",
     "deload_trigger": [
       "Recovery an ≥3 aufeinanderfolgenden Tagen rot (<34 %)",
@@ -39,19 +39,23 @@
       "letzter_kontakt": "2026-09-22 (eigene Einheit: Komplex Squat Clean + Push Jerk bis 80)",
       "baustelle": "Technik und Jerk, nicht Beinkraft"
     },
-    "bmu": {
-      "stufe": "4×3 (W36)",
-      "max_unbroken": 4,
-      "ziel": "3×5 verbunden",
-      "treppe": "5×2 → 4×3 → 3×4 → 3×5",
-      "letzter_kontakt": "2026-09-21 (Reclaim 5×2 sauber)",
-      "cues": "Fall Into Pike · Feet in a Bucket (Video-Diagnose 22.08.: Stütz-Pause kürzer, Descent enger)"
-    },
     "koerper": {
       "baseline": "offen — erste volle Woche zu Hause W41",
       "letzter_wochenschnitt": "W37 80,4 kg (n=4)",
       "taille_cm": null,
       "letztes_foto": null
+    }
+  },
+  "geparkt": {
+    "bmu": {
+      "status": "geparkt seit 30.09.2026 (Martin) — Erhalt statt Ziel, bis die Lean-Phase durch ist",
+      "erhalt": "ein kurzer Kontakt pro Woche (Primer 4×1–2 oder BMU im Box-WOD), keine Leiter",
+      "stufe": "4×3 (W36)",
+      "max_unbroken": 4,
+      "ziel_bei_wiederaufnahme": "3×5 verbunden",
+      "treppe": "5×2 → 4×3 → 3×4 → 3×5",
+      "letzter_kontakt": "2026-09-21 (Reclaim 5×2 sauber)",
+      "cues": "Fall Into Pike · Feet in a Bucket (Video-Diagnose 22.08.: Stütz-Pause kürzer, Descent enger)"
     }
   },
   "load_references": {
@@ -67,7 +71,7 @@
     "bmu": {
       "max_unbroken": 4,
       "stufe_w36": "4x3",
-      "note": "Linked-Sets-Treppe, Methodik coach/bmu-entwicklungsplan.md. Reclaim 5×2 am 21.09."
+      "note": "Geparkt seit 30.09.2026, Erhalt. Treppe bei Wiederaufnahme 5×2 → 4×3 → 3×4 → 3×5 verbunden, Methodik coach/bmu-entwicklungsplan.md. Reclaim 5×2 am 21.09."
     },
     "front_squat": {
       "kg_1rm_geschaetzt": 112.5,
@@ -93,7 +97,7 @@
       "note": "10 unbroken (W37). Kein Ziel mehr."
     },
     "hspu_deficit": {
-      "kalibrierwert": "Scheibenstapel 5 kg + 2,5 kg (W39)",
+      "kalibrierwert": "Scheibenstapel 5 kg + 2,5 kg (W39); ob je Hand oder als gemeinsamer Stapel, ist nicht geklärt — vor der ersten Nutzung Martin fragen",
       "note": "Kein Ziel mehr; Referenz, falls die Box Deficit HSPU programmiert."
     },
     "toes_to_bar": {
@@ -104,15 +108,16 @@
   "akute_hinweise": [
     {
       "datum": "2026-09-30",
-      "betrifft": "Wiedereinstieg nach Urlaub (W41, Lücke seit 21./22.09.)",
-      "hinweis": "Erste Zielkontakte nach ≥10 Tagen Pause: C&J bis ~75, Snatch unterhalb der Ceiling, BMU Reclaim 5×2 (Unterbrechungsregel, gilt nur noch für BMU). Keine Ceiling-Versuche in W41."
+      "betrifft": "Wiedereinstieg nach Urlaub — erster Kontakt je Ziel (Lücke seit 21./22.09., Snatch seit 10.09.)",
+      "hinweis": "W41 ist reine Box-Woche ohne eigene Einheit (Martin 30.09.), keine Ceiling-Versuche. Der erste Zielkontakt nach der Pause, voraussichtlich in der eigenen Einheit W42: C&J bis ~75, Snatch unterhalb der Ceiling. Erster BMU-Kontakt als Reclaim 5×2 (Unterbrechungsregel), danach nur Erhalt. Gilt bis zum jeweils ersten Kontakt — bei den Reviews W40 und W41 erneut bestätigen, nicht nach 7 Tagen verfallen lassen."
     }
   ],
   "hinweis_ablauf": "Beim Wochenreview neu bewerten; spätestens nach 7 Tagen entfernen, wenn nicht erneut bestätigt.",
   "offen": [
     "Engine-Marker: passenden Benchmark im DreamWOD ab W42 identifizieren und als Startwert setzen (Martin 30.09.: ok).",
     "Körper-Baseline: Wochenschnitt W41 zu Hause; Taille ab W41 wöchentlich, Meldung per Chat.",
-    "App-Paket (Box-Tag als Hauptansicht, Verdict nur auf Zielblöcken, WOD-Score, Taille-Eingabe): nicht primär (Martin 30.09.), ohne Termin."
+    "App-Paket (Box-Tag als Hauptansicht, Verdict nur auf Zielblöcken, WOD-Score, Taille-Eingabe): nicht primär (Martin 30.09.), ohne Termin.",
+    "BMU geparkt bis Ende der Lean-Phase (Martin 30.09.): Wiederaufnahme im Zielreview (≈ W47) entscheiden."
   ],
   "naechster_zielreview": "Nach sechs Wochen Block 5 (≈ W47). Letztes Review: Meso-4-Review 30.09.2026 (coach/reviews/2026-09-30-meso4-review.md).",
   "datenquellen": {

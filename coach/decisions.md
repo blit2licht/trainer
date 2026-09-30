@@ -4,7 +4,53 @@ Fortlaufende Prosa-Notizen aus Retrospektiven. Neueste Einträge oben.
 
 ---
 
+## 2026-09-30 — Nachkorrektur zum Kanon-Umbau: BMU geparkt, Ceiling ab 34 %, Zahlen richtiggestellt
+
+Eine Gegenprüfung des Umbaus vom Vormittag hat zwei Faktenfehler in der
+Begründung und mehrere Widersprüche im neuen Kanon gefunden. Martin hat die
+offenen Punkte am selben Tag entschieden.
+
+Richtiggestellt:
+- Box-Tage W32–W39: gelaufen 9 von 13 geplanten, nicht „9 von 24“. Die 24
+  sind das Wochenmodell (3 × 8), nicht der Plan. Geplant waren pro Woche
+  3 / 2 / 1 / 3 / 2 / 1 / 1 / 0, weil Reisen, Termine und „Fokus vor Box“ die
+  Box schon in der Planung verdrängt haben. Von den vier Ausfällen wurden drei
+  durch Ausfahrten ersetzt (W32 So, W35 So, W37 Sa), einer wurde abgesagt
+  (W36 Sa). Mehr als zwei Box-Tage pro Woche gab es in diesen acht Wochen nie;
+  4–5 sind damit ein ungetestetes Modell, das an „Q4 mehr Zeit, weniger
+  Reisen“ hängt. Beim ersten Zielreview prüfen.
+- Zielherkunft: WPU 10 @ +5 und Deficit HSPU waren nicht „aus Daten abgeleitet,
+  nicht von Martin gewollt“. Martin hat beide am 12.09. als Nachfolgeziele
+  gewählt und Deficit HSPU am 20.09. in der Formulierung bestätigt. Am 30.09.
+  hat er sie revidiert, weil sie nicht zu seinen Top-Zielen gehören.
+
+Entscheide (Martin, 30.09.2026):
+- Ceiling-Versuch ab 34 % Recovery (nicht rot). Die Kappung unter 50 % gilt für
+  normale Steigerungssätze, nicht für den Ceiling-Versuch an einem schweren
+  Box-Oly-Tag. Damit ist auch der alte offene Punkt erledigt, dass die
+  50er-Grenze zweimal folgenlos unterschritten wurde (28.08. rec 49, 09.09.
+  rec 48).
+- Bar Muscle-up ist geparkt: Erhalt statt Ziel, bis die Lean-Phase durch ist.
+  Es bleiben zwei Leistungsziele, Snatch 65 und C&J 85. Hintergrund aus der Gegenprüfung: eine eigene
+  Einheit pro Woche ist genau die Frequenz, die `bmu-entwicklungsplan.md` als
+  Ursache der Stagnation in Meso 2 benannt hat. Erhalt heißt ein kurzer Kontakt
+  pro Woche, ohne Leiter. Wiederaufnahme entscheidet das Zielreview.
+- Die BMU-Treppe ist auf eine Fassung gebracht: 5×2 → 4×3 → 3×4 → 3×5
+  verbunden (`profile.json`, `exercises.json`, `bmu-entwicklungsplan.md`).
+- W41 bleibt reine Box-Woche mit moderaten Lasten. Der Reclaim nach der Pause
+  wandert in den ersten Zielkontakt, voraussichtlich die eigene Einheit W42.
+
+Weiter offen aus der Gegenprüfung, nicht entschieden: Endkriterium der
+Lean-Phase, die Breite des Tempo-Bands (0,1 kg liegt unter dem Messrauschen),
+die Deload-Trigger bei nur einer eigenen Einheit und der Rückkanal an
+Box-Tagen, solange das App-Paket fehlt.
+
+---
+
 ## 2026-09-30 — Box als Hauptbühne: Meso 4 verworfen, Kanon neu ausgerichtet
+
+Korrigiert am selben Tag, siehe Eintrag darüber (Box-Zahlen, Zielherkunft,
+BMU, Ceiling-Schwelle).
 
 Anlass: Martins Rückmeldung „Spaßfaktor gering“ und ein externes Review des
 geplanten Meso 4 (`coach/reviews/2026-09-30-meso4-review.md`). Martin wählt
@@ -13,14 +59,15 @@ Einheit von ca. 45 Minuten pro Woche.
 
 Kern des Befunds: Meso 4 war fachlich begründet, nahm aber genau das weg, was
 Martin seit 13 Jahren im CrossFit hält — Wettkampf mit der Class, Abwechslung,
-das All-out-Gefühl. Sieben Leistungsziele auf zwei Fokus-Tagen, vier davon aus
-Daten abgeleitet statt von Martin gewollt, dazu ein Hypertrophie-Layer, der im
+das All-out-Gefühl. Sieben Leistungsziele auf zwei Fokus-Tagen, von denen nur
+drei zu Martins Top-Zielen gehörten, dazu ein Hypertrophie-Layer, der im
 Defizit nur Erhalt leisten konnte.
 
 Der Abgleich mit dem Logbuch zeigt, wo der Fehler praktisch saß: Die
-Fokus-Tage liefen zuverlässig (W32–W37 12 von 12), die Box-Tage nicht (W32–W39
-9 von geplanten 24). Die Regel „Fokus vor Box“ und die Ausfahrten haben
-genau den Teil verdrängt, der Martin Spaß macht. Das System selbst war auf das
+Fokus-Tage liefen zuverlässig (W32–W37 12 von 12), die Box kam kaum vor
+(W32–W39 9 Einheiten in 8 Wochen, geplant waren 13 statt der 24 des
+Wochenmodells). Reisen, Termine, die Regel „Fokus vor Box“ und die Ausfahrten
+haben genau den Teil verdrängt, der Martin Spaß macht. Das System selbst war auf das
 Parallelprogramm gebaut: acht Foki in einer eigenen Rotation, `state.json` mit
 über 2000 Zeichen Verlaufsprosa pro Feld, Box-Tage per Kanon „kompakt halten“.
 
@@ -41,8 +88,9 @@ Leiterwährung für BMU mit Unterbrechungsregel, drei Ernährungsregeln, kein
 Zusatz-Cardio, keine Testwochen.
 
 Lehre für den Coach: Eine Zielliste wächst leicht aus den Daten heraus
-(„Ziel erreicht → Nachfolger setzen“), ohne dass jemand fragt, ob Martin das
-will. Deshalb die Pflichtprüfung der Zielherkunft.
+(„Ziel erreicht → Nachfolger setzen“). Auch ein Nachfolger, dem Martin im
+Review zustimmt, gehört nicht automatisch zu dem, was er wirklich will. Deshalb
+die Pflichtprüfung der Zielherkunft.
 
 ---
 

@@ -1,5 +1,12 @@
 # BMU-Entwicklungsplan
 
+**Status seit 30.09.2026: geparkt.** Martin führt den Bar Muscle-up als Erhalt statt als Ziel, bis die Lean-Phase durch ist (`decisions.md`, Nachkorrektur 30.09.2026). Erhalt heißt ein kurzer Kontakt pro Woche (Primer 4×1–2 frisch oder BMU im Box-WOD), ohne Leiter und ohne Stufenaufstieg. Dieser Plan gilt wieder ab der Wiederaufnahme, mit zwei Änderungen gegenüber dem Text unten:
+
+- Die Treppe lautet seit dem 20.09.2026 **5×2 → 4×3 → 3×4 → 3×5 verbunden**; die erreichte Stufe ist der Nachweis. Stufe 3 („3×3 + 1×max“) und der Testsatz entfallen (keine Testwochen, Entscheid 12.09.2026).
+- Die Slots „Fokus B“ und „Fokus A“ gibt es nicht mehr. Die zwei Kontakte liegen dann in der eigenen Einheit (Hauptblock) und als Primer vor einem Box-Kurs.
+
+Stand beim Parken: 4×3 erreicht (W36), 4 unbroken (W37), letzter Kontakt 21.09. (Reclaim 5×2). Der erste Kontakt nach ≥10 Tagen Pause ist ein Reclaim 5×2.
+
 Erstellt 2026-08-09 auf Martins Auftrag, nach dem Gymnastics-Test W32 (BMU 3 unbroken, unverändert seit Meso-2-Start) und seinem Feedback vom 07.08.: „Selbst mit grüner Recovery ist das Trainingsvolumen für Muscle-ups zu gering, um mehr Reps in Folge zu schaffen — Ausfallzeiten werden ggf. zu wenig berücksichtigt."
 
 **Verbindlichkeit:** Die unten referenzierten Quellen und die daraus abgeleitete Logik haben **höchste Priorität bei jeder künftigen BMU-Progressionsplanung**. Abweichungen davon sind zu begründen. Die Prinzipien (Frequenz, Reiz-Typ, Test-Rhythmus, Unterbrechungsregel) gelten sinngemäß auch für die anderen Gymnastics-Skill-Blöcke (Abschnitt „Übertrag").

@@ -27,7 +27,7 @@ Operativer Leistungsmaßstab:
 Priorität bei Konflikten:
 1. Gesundheit, Robustheit und langfristige Trainingsfähigkeit
 2. Trainingstreue und Freude: Training in der Class, Intensität frei, Abwechslung
-3. Die drei Leistungsziele (Snatch, Clean & Jerk, Bar Muscle-up)
+3. Die zwei Leistungsziele (Snatch, Clean & Jerk); Bar Muscle-up ist seit 30.09.2026 geparkt und läuft als Erhalt
 4. Körperkomposition (Q4: Lean-Phase vorne)
 5. Recovery, Schlaf, Lebensstress und akute Signale (Autoregulation am Tag)
 6. Radfahrt als optionales Socializing
@@ -36,27 +36,30 @@ Priorität bei Konflikten:
 
 Die Standardwoche umfasst:
 - 4–5 Box-Tage im normalen Track (Morgenkurs), voll mitgehen, messen mit der Class
-- 1 eigene Einheit, ca. 45 min: Snatch- oder C&J-Technik plus BMU-Leiter
+- 1 eigene Einheit, ca. 45 min: Snatch- oder C&J-Technik plus ein kurzer BMU-Erhaltungskontakt
 - optional sonntags Radfahren als Socializing
 
 Die Kalenderwoche wird immer Montag bis Sonntag gespeichert. Termin- und Zeitbeschränkungen werden jede Woche neu berücksichtigt.
 
-Bei Zeitmangel gilt: Box vor eigener Einheit vor Radfahrt. Die eigene Einheit entfällt, wenn die Box in der Woche Snatch, C&J und BMU schon bedient hat.
+Bei Zeitmangel gilt: Box vor eigener Einheit vor Radfahrt. Die eigene Einheit entfällt, wenn die Box in der Woche Snatch und C&J schon bedient hat.
 
 ### Box-Tage (Kernarbeit)
 
 Box-Tage laufen frei und all-out, ohne RPE-Cap als Planvorgabe. Der Coach wählt die Tage nach Wochenlogik (Kollisionen, Sequenz, Termine, nie ohne Grund mehr als drei harte Tage am Stück) und lehnt einzelne Tage nur mit einem kurzen, konkreten Grund ab.
 
-**Zielkontakt:** Programmiert die Box Snatch, Clean & Jerk (inkl. Varianten wie Squat Clean + Jerk) oder Bar Muscle-ups, zählt der Tag als Kontakt für das jeweilige Ziel. An diesen Tagen bekommt der Box-Tag eine zielbezogene Ansage:
+**Zielkontakt:** Programmiert die Box Snatch oder Clean & Jerk (inkl. Varianten wie Squat Clean + Jerk), zählt der Tag als Kontakt für das jeweilige Ziel. An diesen Tagen bekommt der Box-Tag eine zielbezogene Ansage:
 - Snatch: Empfangs-Cue und Lastbereich; Ceiling-Versuch über 60 erst, wenn der Empfang sitzt (Kriterium in `profile.json`).
-- C&J: Lastbereich, Jerk-Fokus; Ceiling-Versuch (85) erlaubt, wenn die Box einen schweren Tag programmiert und die Recovery nicht rot ist.
-- BMU: welche Leiterstufe im Box-Teil zählt, oder ob das WOD-Volumen den Leiterkontakt ersetzt.
+- C&J: Lastbereich, Jerk-Fokus; Ceiling-Versuch (85) erlaubt, wenn die Box einen schweren Tag programmiert.
+
+**Ceiling-Versuch und Recovery:** erlaubt ab 34 % Recovery (nicht rot; Martin 30.09.2026). Die Kappung unter 50 % gilt für normale Steigerungssätze, nicht für den Ceiling-Versuch an einem schweren Box-Oly-Tag.
+
+**Bar Muscle-up (geparkt, Erhalt):** seit 30.09.2026 kein Ziel, bis die Lean-Phase durch ist (`profile.json` → `geparkte_ziele`). Erhalt heißt ein kurzer Kontakt pro Woche: Primer 4×1–2 frisch in der eigenen Einheit oder vor einem Box-Kurs, oder BMU im Box-WOD. Keine Leiter, kein Stufenaufstieg, keine Zielansage. Über die Wiederaufnahme entscheidet das Zielreview; dann gelten wieder zwei Kontakte pro Woche nach `coach/bmu-entwicklungsplan.md`.
 
 Box-Programmierung wird wie jedes fremde Programm gegen Apex und Wochenlogik eingeordnet, aber nicht nachgebaut und nicht mit eigenen Lastkorridoren überschrieben, wo kein Zielbezug besteht. Front Squat, OHS, Pull-ups, HSPU und Co. sind Box-Volumen ohne Zielstatus.
 
 ### Eigene Einheit
 
-Dauer ca. 45 min einschließlich Warm-up. Inhalt ausschließlich das, was die Box in der Woche nicht abgedeckt hat: Snatch- oder C&J-Technik (Empfang, Jerk) plus BMU-Leiter. RPE-Caps gelten nur hier. Kein Hypertrophie-Layer, kein Erhaltungszubehör, kein verstecktes Conditioning. Hat die Box alle drei Ziele in der Woche bedient, darf die Einheit ausfallen oder durch einen weiteren Box-Tag ersetzt werden.
+Dauer ca. 45 min einschließlich Warm-up. Inhalt ausschließlich das, was die Box in der Woche nicht abgedeckt hat: Snatch- oder C&J-Technik (Empfang, Jerk) plus der BMU-Erhaltungskontakt (ca. 5 min). RPE-Caps gelten nur hier. Kein Hypertrophie-Layer, kein Erhaltungszubehör, kein verstecktes Conditioning. Hat die Box beide Ziele in der Woche bedient, darf die Einheit ausfallen oder durch einen weiteren Box-Tag ersetzt werden; der BMU-Kontakt wandert dann als Primer vor einen Box-Kurs.
 
 Die Einheit liegt an einem Tag ohne harten Box-Oly-Teil am Vortag; ist das nicht möglich, entscheidet die Recovery des Tages.
 
@@ -64,7 +67,7 @@ Die Einheit liegt an einem Tag ohne harten Box-Oly-Teil am Vortag; ist das nicht
 
 Plane Blöcke, Progression und leichtere Wochen nach guter Trainingspraxis und anhand der verfügbaren Daten. Kein starrer Deload-Rhythmus; Deload nur bei Triggern (`state.json`).
 
-**Keine dedizierten Testwochen** (Martin-Entscheid 2026-09-12, Herleitung decisions.md). Verboten ist die Architektur, nicht der Satz: ein einzelner Max-Satz oder Ceiling-Versuch darf in einer normalen Session stehen, solange sich Wochenstruktur, Ruhetage und Slot-Wahl nicht danach richten. Die Zahl ist ein Datenpunkt mit Kontext; sie darf eine Leiterstufe nie nach unten korrigieren, nach oben zählt sie. Gewichtheber-Ziele gelten als erreicht, wenn das Zielgewicht sauber gehoben wurde — in der Box oder in der eigenen Einheit. Der BMU-Nachweis läuft über die Leiter.
+**Keine dedizierten Testwochen** (Martin-Entscheid 2026-09-12, Herleitung decisions.md). Verboten ist die Architektur, nicht der Satz: ein einzelner Max-Satz oder Ceiling-Versuch darf in einer normalen Session stehen, solange sich Wochenstruktur, Ruhetage und Slot-Wahl nicht danach richten. Die Zahl ist ein Datenpunkt mit Kontext; sie darf eine Leiterstufe nie nach unten korrigieren, nach oben zählt sie. Gewichtheber-Ziele gelten als erreicht, wenn das Zielgewicht sauber gehoben wurde — in der Box oder in der eigenen Einheit. Gymnastics-Ziele werden in Leiterwährung geführt (die erreichte Stufe ist der Nachweis); derzeit läuft keine Leiter.
 
 **Zielherkunft prüfen.** Bei jeder Zielformulierung prüfen, ob das Ziel von Martin kommt oder aus Daten abgeleitet ist. Abgeleitete Ziele gibt es nur, wenn Martin sie ausdrücklich übernimmt (Feld `quelle` in `profile.json`). Kein Ziel ohne passenden Messweg: ein Ziel, das nur per Max-Test nachweisbar ist, braucht eine vereinbarte Nachweisbedingung.
 
@@ -117,7 +120,7 @@ Akute Hinweise werden beim Wochenreview neu bewertet und spätestens nach sieben
 2. Lies die Planquelle der laufenden Woche (`coach/plan/<jahr>-W<nr>.json`); `website/data.js` ist daraus generiert.
 3. Lies `coach/profile.json`, wenn Ziele, Baselines, Ausschlüsse oder dauerhafte Regeln relevant sind.
 4. Lies `coach/logbook.md` nur für Wochenreviews, Trends oder historische Fragen.
-5. Bestätige intern Mesocycle, Kalenderwoche, aktuelle Foki, Lastreferenzen, Einschränkungen und offene Flags.
+5. Bestätige intern Block, Kalenderwoche, Ziele und geparkte Ziele, Lastreferenzen, Einschränkungen und offene Flags.
 6. Wechsle direkt in den passenden Arbeitsmodus.
 
 Verlasse dich nicht auf Chat-Historie. Vor jeder Änderung den neuesten GitHub-Stand laden. Bei Konflikten nicht überschreiben, sondern neu abgleichen.
@@ -213,7 +216,7 @@ Wenn Last- oder Satzhistorien fehlen, erstelle präzise, kopierfertige WHOOP-Pro
 
 Erst Diagnose und Auswahl, dann Vorschau.
 
-Reihenfolge der Auswahl: zuerst das DreamWOD der Woche auf Zielkontakte lesen (wo kommen Snatch, C&J, BMU vor?), dann 4–5 Box-Tage wählen, dann prüfen, was für die eigene Einheit übrig bleibt.
+Reihenfolge der Auswahl: zuerst das DreamWOD der Woche auf Zielkontakte lesen (wo kommen Snatch und C&J vor, wo liegt der BMU-Erhaltungskontakt?), dann 4–5 Box-Tage wählen, dann prüfen, was für die eigene Einheit übrig bleibt.
 
 Die Vorschau enthält:
 - einen kompakten Wochenstundenplan mit markierten Zielkontakten
@@ -235,7 +238,7 @@ Wenn Martin ein einzelnes Box-WOD einfügt:
 - programmiere nicht die ganze Woche neu, außer das WOD erzeugt einen echten Konflikt
 
 **Kappungsregel (Recovery-basiert, Tageslast):**
-- Recovery unter 50 %: im Hantelteil kein neues Top-Gewicht und kein Ceiling-Versuch, der letzte Steigerungssatz entfällt. Das WOD läuft normal.
+- Recovery unter 50 %: im Hantelteil kein neues Top-Gewicht, der letzte Steigerungssatz entfällt. Das WOD läuft normal. Ausnahme: der Ceiling-Versuch an einem schweren Box-Oly-Tag bleibt ab 34 % erlaubt (Martin 30.09.2026).
 - Recovery unter 34 % (rot): nur Technik- und Mobility-Arbeit bis RPE 6 — oder Ruhe.
 
 Die Kappung gilt am Trainingstag selbst und wird für die nächsten 24–48 Stunden berücksichtigt. Nicht mechanisch Tag 3 und später darauf programmieren.
@@ -294,20 +297,7 @@ Weightlifting-Lasten immer plattenfreundlich angeben — nur Vielfache von 1,25 
 
 WHOOP rundet geloggte Gewichte auf ganze kg (47,5 → 48, 42,5 → 43). Krumme Ganzzahlen aus WHOOP daher nicht wörtlich nehmen, sondern auf das nächste 1,25-Vielfache zurücklesen — Martin nutzt real immer 1,25-Vielfache, nie die kleinen Oly-Scheiben.
 
-Zwei Skalen, die früher beide „RPE“ hießen und deshalb strikt getrennt werden:
-
-| | **Load RPE** | **Session-Feel** (`session_feel`) |
-|---|---|---|
-| Was | Rate of Perceived Exertion, 1–10 | Wie die Einheit lief, 1–5 |
-| Richtung | höher = härter, näher am Limit | höher = besser |
-| Wer setzt es | Claude, im Plan als Vorgabe | Martin, nach der Einheit |
-| Wo | `rpe`-Feld in `data.js`, RPE-Pill | Emoji-Skala im Notiz-Panel |
-| Stufen | RPE 8 ≈ zwei Wiederholungen in Reserve | 1 Mies · 2 Zäh · 3 Okay · 4 Gut · 5 Stark |
-
-Session-Feel misst ausdrücklich **keine** Anstrengung. Eine harte Einheit mit
-Load RPE 8, die sauber lief, ist Session-Feel 4–5; eine leichte Einheit, bei der
-sich Martin schlapp fühlte, ist Session-Feel 2. Nie das eine aus dem anderen
-ableiten.
+**Load RPE** ist die einzige RPE-Skala: Rate of Perceived Exertion, 1–10, höher = härter und näher am Limit; RPE 8 ≈ zwei Wiederholungen in Reserve. Claude setzt sie als Planvorgabe, und nur in der eigenen Einheit. Die frühere Session-Feel-Skala (1–5) ist abgeschafft; wie eine Einheit lief, sagen Verdict und freie Notiz.
 
 **Conditioning-Reiz nach Bewegungsmuster + Puls einschätzen, nicht nach Last.** Ein Mixed-Modal-Stück mit Laufen, Toes-to-Bar oder kurzen, schnellen Bewegungszyklen ist **nie „moderat“**, auch bei leichtem Gewicht — es treibt zuverlässig in Zone 4+ und zählt als harte Einheit. Leichte Last ≠ leichter Reiz. Bei AMRAPs/Intervallen mit solchen Mustern von High-Intensity-Cardio ausgehen und entsprechend in der Wochenlast verbuchen.
 

@@ -442,7 +442,7 @@ const DATA = {
                 {
                   "reps": "4",
                   "name": "Bench Press",
-                  "detail": "RPE ≤ 8"
+                  "detail": "schwerster sauberer 4er"
                 },
                 {
                   "reps": "10",

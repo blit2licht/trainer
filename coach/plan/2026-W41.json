@@ -6,7 +6,7 @@
   "von": "2026-10-05",
   "bis": "2026-10-11",
   "phase": "Reine Box-Woche: moderate Lasten, mehr Kreislauf, keine Meso-Arbeit",
-  "_hinweis": "Martin 30.09.: nach dem Urlaub eine Woche pure Box, weil der Kreislauf wieder in Schwung kommen soll — keine Meso-Arbeit, keine Fokus-Tage. Meso 4 ist offen und wird grundsätzlich neu diskutiert (Spaßfaktor, Martin 30.09.). Durchgehend Level 2. Di Push-Jerk-1RM abgelehnt (Maximalversuch direkt nach dem Urlaub), Fr Fran abgelehnt (45 Pull-ups vor den C2B am Sa). Nie mehr als zwei Box-Tage am Stück. So 11.10.: Box als Standard, Ausfahrt bei gutem Wetter (Martin entscheidet Sa-Abend).",
+  "_hinweis": "Martin 30.09.: nach dem Urlaub eine Woche pure Box, weil der Kreislauf wieder in Schwung kommen soll — keine eigene Einheit, keine Zielarbeit. Übergangswoche vor Block 5 (Box als Hauptbühne, Start W42). Am 30.09. gegen instructions V2.0 geprüft und von Martin bestätigt: bleibt reine Box-Woche mit moderaten Lasten. Durchgehend Level 2. Di Push-Jerk-1RM abgelehnt (Maximalversuch direkt nach dem Urlaub, keine Ceiling-Versuche in W41), Fr Fran abgelehnt (45 Pull-ups vor den C2B am Sa). Kein BMU-Kontakt in dieser Woche; der Reclaim 5×2 liegt im ersten Kontakt ab W42. Nie mehr als zwei Box-Tage am Stück. So 11.10.: Box als Standard, Ausfahrt bei gutem Wetter (Martin entscheidet Sa-Abend).",
   "days": [
     {
       "iso_date": "2026-10-05",
@@ -271,7 +271,7 @@
             {
               "reps": "4",
               "name": "Bench Press",
-              "detail": "RPE ≤ 8"
+              "detail": "schwerster sauberer 4er"
             },
             {
               "reps": "10",

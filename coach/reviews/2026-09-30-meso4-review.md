@@ -173,9 +173,9 @@ Alle Studien über PubMed abgerufen am 30.09.2026.
 
 **Fokus-Einheiten W32–W41** laut Logbuch: W32–W37 12 von 12, W38 1 von 2 (Reise Charlotte), W39 2 von 2, W40 0 (Urlaub), W41 0 (reine Box-Woche auf Martins Wunsch). Die „3 von 8“ im Onepager beziehen sich auf W38–W41 und damit auf Reise, Urlaub und eine bewusste Box-Woche. Ein Umsetzungsproblem der Fokus-Tage gab es nicht: wo der Plan lief, liefen sie.
 
-**Box-Tage im selben Zeitraum:** geplant 3 pro Woche, gelaufen W32–W39 2 / 2 / 1 / 2 / 1 / 0 / 1 / 0, also 9 in 8 Wochen. Die Box lag real nicht bei 60 %, sondern bei rund 37 % der Einheiten. Sie war der Posten, der gestrichen wurde, über „Fokus vor Box“ und über Ausfahrten. Das stützt Befund 6 und 7 stärker, als der Bericht annimmt.
+**Box-Tage im selben Zeitraum:** Wochenmodell 3 pro Woche, tatsächlich geplant W32–W39 3 / 2 / 1 / 3 / 2 / 1 / 1 / 0 (13), gelaufen 2 / 2 / 1 / 2 / 1 / 0 / 1 / 0, also 9 in 8 Wochen. Die Box lag real nicht bei 60 %, sondern bei rund 37 % der Einheiten. Verdrängt wurde sie schon in der Planung (Reisen, Termine, „Fokus vor Box“); von den vier ausgefallenen Box-Tagen wurden drei durch Ausfahrten ersetzt. Das stützt Befund 6 und 7, zeigt aber auch: mehr als zwei Box-Tage pro Woche gab es in diesem Zeitraum nie. (Korrigiert am 30.09.; die erste Fassung nannte „geplant 3 pro Woche“ als Nenner.)
 
-**Gewicht (Withings-Wochenschnitte):** W34 81,5 · W35 81,4 · W36 81,1 · W37 80,4 · W39 79,5 (n=2, zählt nicht). −1,1 kg in drei Wochen, also rund −0,35 kg pro Woche und im Band. Die Zahlen im Onepager widersprechen sich nicht, sie haben verschiedene Bezüge: 80,3 ist die Profil-Baseline vom August, 80,41 der Schnitt W37, −1,43 der Verlauf seit W33. Die neue Baseline entsteht in W41 zu Hause.
+**Gewicht (Withings-Wochenschnitte):** W34 81,5 · W35 81,4 · W36 81,0 · W37 80,4 · W39 79,5 (n=2, zählt nicht). −1,1 kg in drei Wochen, also rund −0,35 kg pro Woche und im Band. Die Zahlen im Onepager widersprechen sich nicht, sie haben verschiedene Bezüge: 80,3 ist die Profil-Baseline vom August, 80,41 der Schnitt W37, −1,43 der Verlauf seit W33. Die neue Baseline entsteht in W41 zu Hause.
 
 **Max-Tests:** Der Kanon erlaubt seit dem 12.09. einzelne Max-Sätze in normalen Sessions. Ein Ceiling-Single an einem schweren Box-Tag verletzt also keine Regel; offen war nur die Bedingung.
 
@@ -188,3 +188,10 @@ Alle Studien über PubMed abgerufen am 30.09.2026.
 - [x] Ground-Truth-Abgleich: erledigt (siehe oben).
 
 Umbau-Tiefe (Martin): Kanon und State werden schlank neu aufgesetzt (`profile.json`, `instructions.md`, `state.json`, `decisions.md`). Der App-Umbau (Box-Tag als Hauptansicht, Zielkontakt-Marker, Score, Taille) folgt als eigenes Paket. Der neue Block startet in W42 (12.10.2026).
+
+### Nachkorrektur nach Gegenprüfung (30.09.2026)
+
+- **Zielherkunft:** Die Aussage des Berichts, vier Ziele seien aus Daten abgeleitet und nicht von Martin gewollt, trifft für WPU und Deficit HSPU so nicht zu. Martin hat beide am 12.09. als Nachfolgeziele gewählt (`2026-09-12-meso3.md`, Zielentscheid) und am 30.09. revidiert.
+- **Ceiling-Versuch:** erlaubt ab 34 % Recovery; die Kappung unter 50 % gilt für normale Steigerungssätze.
+- **Bar Muscle-up geparkt:** Erhalt statt Ziel, bis die Lean-Phase durch ist. Es bleiben zwei Leistungsziele (Snatch 65, C&J 85). Die Tabelle „Leistungsziele (nur drei)“ oben ist damit überholt.
+- Einzelheiten und die weiter offenen Punkte: `coach/decisions.md`, Eintrag „Nachkorrektur“ vom 30.09.2026.

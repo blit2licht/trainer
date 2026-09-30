@@ -18,7 +18,7 @@
   "wochenmodell": {
     "grundsatz": "Box als Hauptbühne (Alternative A, Martin 30.09.2026). Box-WODs sind Kernarbeit, nicht Beiwerk.",
     "box_tage": "4-5 pro Woche, normaler Track (Morgenkurs), voll mitgehen, messen mit der Class",
-    "eigene_einheit": "1 pro Woche, ca. 45 min: Snatch- oder C&J-Technik plus BMU-Leiter — füllt nur, was die Box in der Woche nicht abdeckt",
+    "eigene_einheit": "1 pro Woche, ca. 45 min: Snatch- oder C&J-Technik, dazu ein kurzer BMU-Erhaltungskontakt — füllt nur, was die Box in der Woche nicht abdeckt",
     "radfahrt": "Sonntag optional, sozial",
     "prioritaet_bei_zeitmangel": [
       "Box",
@@ -33,7 +33,7 @@
       "ziel": "65 kg sauber gehoben",
       "stand": "60 kg (W32, reproduziert W36)",
       "typ": "1RM-Ziel, Nachweis per Ceiling-Versuch",
-      "quelle": "Martin (Top-3, 30.09.2026)",
+      "quelle": "Martin (Top-Ziel, 30.09.2026)",
       "hinweis": "Empfang zuerst. Kein Ceiling-Versuch über 60, bevor der Empfang sitzt: 3 Singles in Folge bei 55 kg, voll tief empfangen, 2 s stabil — Martins Urteil reicht, kein Video-Zwang. OHS und Drop Snatch nur als Werkzeug, nicht als Ziel."
     },
     {
@@ -41,23 +41,27 @@
       "ziel": "85 kg sauber gehoben",
       "stand": "82,5 kg (W35, 25.08.2026 — Komplex Squat Clean + Push Jerk)",
       "typ": "1RM-Ziel, Nachweis per Ceiling-Versuch",
-      "quelle": "Martin (Top-3, 30.09.2026)",
+      "quelle": "Martin (Top-Ziel, 30.09.2026)",
       "hinweis": "Limit sind Technik und Jerk, nicht die Beinkraft (82,5 ≈ 73 % des geschätzten FS-1RM 112,5)."
-    },
-    {
-      "id": "bar-muscle-up",
-      "ziel": "3×5 verbunden",
-      "stand": "4 unbroken (W37); Treppe 4×3 erreicht (W36)",
-      "typ": "Gymnastics, Leiterwährung",
-      "quelle": "Martin (Top-3, 30.09.2026; Formulierung bestätigt 20.09.2026)",
-      "hinweis": "Treppe 5×2 → 4×3 → 3×4 → 3×5 verbunden, max. eine Stufe pro Woche; die erreichte Stufe ist der Nachweis. Methodik: coach/bmu-entwicklungsplan.md."
     }
   ],
   "zielregeln": [
     "Nur Ziele, die von Martin kommen. Aus Daten abgeleitete Ziele gibt es nur, wenn Martin sie ausdrücklich übernimmt — jedes Ziel trägt deshalb das Feld 'quelle'.",
-    "Ein Box-Tag, der Snatch, Clean & Jerk oder BMU programmiert, zählt als Zielkontakt. Die eigene Einheit füllt, was in der Woche fehlt.",
-    "Ceiling-Versuch (Snatch, C&J) ist erlaubt, wenn die Box einen schweren Oly-Tag programmiert und die Recovery des Tages nicht rot ist. Keine Testwochen, kein Wochenumbau für einen Versuch.",
+    "Ein Box-Tag, der Snatch oder Clean & Jerk programmiert, zählt als Zielkontakt. Die eigene Einheit füllt, was in der Woche fehlt.",
+    "Ceiling-Versuch (Snatch, C&J) ist erlaubt, wenn die Box einen schweren Oly-Tag programmiert und die Recovery des Tages mindestens 34 % beträgt (nicht rot; Martin 30.09.2026). Die Kappung unter 50 % gilt für normale Steigerungssätze, nicht für den Ceiling-Versuch. Keine Testwochen, kein Wochenumbau für einen Versuch.",
     "Ziel erreicht = Zielgewicht sauber gehoben bzw. Leiterstufe sauber absolviert."
+  ],
+  "geparkte_ziele": [
+    {
+      "id": "bar-muscle-up",
+      "ziel_bei_wiederaufnahme": "3×5 verbunden",
+      "stand": "4 unbroken (W37); Treppe 4×3 erreicht (W36)",
+      "geparkt_am": "2026-09-30",
+      "entscheid": "Martin 30.09.2026: BMU ist Erhalt statt Ziel, bis die Lean-Phase durch ist. Über die Wiederaufnahme entscheidet das Zielreview.",
+      "erhalt": "Ein kurzer Kontakt pro Woche: Primer 4×1–2 frisch in der eigenen Einheit oder vor einem Box-Kurs, oder BMU im Box-WOD. Keine Leiter, kein Stufenaufstieg, keine Zielansage.",
+      "wiederaufnahme": "Erste Session als Reclaim eine Stufe tiefer, danach Treppe 5×2 → 4×3 → 3×4 → 3×5 verbunden mit zwei Kontakten pro Woche (Methodik: coach/bmu-entwicklungsplan.md). Die erreichte Stufe ist der Nachweis.",
+      "quelle": "Martin (Formulierung bestätigt 20.09.2026, geparkt 30.09.2026)"
+    }
   ],
   "engine_marker": {
     "zweck": "Beobachtung für den Apex 'lange gesund', keine Steuerung (Review 30.09.2026).",
@@ -107,14 +111,14 @@
       "ziel_war": "10 Wiederholungen mit +5 kg",
       "stand_bei_schluss": "6 @ +5 kg (W37), 3×5 @ +5 (W39)",
       "geschlossen_am": "2026-09-30",
-      "entscheid": "Aus Daten abgeleitet, nicht Martins Top-3 (Review 30.09.). Läuft über die Box."
+      "entscheid": "Von Martin am 12.09.2026 als Nachfolgeziel gewählt, am 30.09. revidiert: gehört nicht zu seinen Top-Zielen. Läuft über die Box."
     },
     {
       "id": "deficit-strict-hspu",
       "ziel_war": "4×5 sauber vom Defizit",
       "stand_bei_schluss": "kalibriert auf Scheibenstapel 5 kg + 2,5 kg (W39)",
       "geschlossen_am": "2026-09-30",
-      "entscheid": "Aus Daten abgeleitet, nicht Martins Top-3 (Review 30.09.). Läuft über die Box."
+      "entscheid": "Von Martin am 12.09.2026 als Nachfolgeziel gewählt und am 20.09. in der Formulierung bestätigt, am 30.09. revidiert: gehört nicht zu seinen Top-Zielen. Läuft über die Box."
     },
     {
       "id": "toes-to-bar",
@@ -132,13 +136,13 @@
     }
   ],
   "gymnastics_progression": {
-    "hinweis": "Nur noch für BMU. Keine Testwochen, keine Max-Testsätze als Architektur (Entscheid 2026-09-12); einzelne Max-Sätze in normalen Sessions sind erlaubt.",
+    "hinweis": "BMU ist seit 30.09.2026 geparkt (Erhalt, siehe geparkte_ziele); die Regeln gelten wieder, sobald die Leiter aufgenommen wird. Keine Testwochen, keine Max-Testsätze als Architektur (Entscheid 2026-09-12); einzelne Max-Sätze in normalen Sessions sind erlaubt.",
     "regeln": [
       "Pro Woche höchstens eine Stufe steigen; Stufe gilt erst als bestätigt, wenn alle Sätze sauber (kein Failure, Technik hält).",
       "Bei unsauberem letzten Satz eine Stufe zurück, nicht wiederholt erzwingen.",
       "Plateau-Signal: bleibt eine Stufe zweimal hängen, ist das der Befund — dann Übungswahl, Volumen oder Frequenz ändern, nicht messen.",
       "Einzelner Max-Satz erlaubt, wenn die Woche sich nicht danach richtet. Ergebnis ist ein Datenpunkt; er darf eine Leiterstufe nie nach unten korrigieren, nach oben zählt er.",
-      "Unterbrechungsregel (nur BMU): ≥10 Tage ohne Kontakt → eine Reclaim-Session eine Stufe tiefer, bevor die Treppe weiterläuft. BMU in einem Box-WOD zählt als Kontakt."
+      "Unterbrechungsregel (nur BMU): ≥10 Tage ohne Kontakt → der nächste Kontakt ist ein Reclaim eine Stufe tiefer (5×2), auch im Erhalt. BMU in einem Box-WOD zählt als Kontakt."
     ]
   }
 }

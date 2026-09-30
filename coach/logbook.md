@@ -2,6 +2,20 @@
 
 Kurze, verdichtete Wocheneinträge. Rohdaten bleiben in WHOOP, Strava und der Website-Datenbank.
 
+## 2026-W39 · 21.–27. September · Kontaktwoche vor Griechenland — Reclaim komplett, Deficit-HSPU kalibriert
+
+**Plan RX'd befolgt.** Mo Fokus B ✓ (rec 62) · Di Fokus A ✓ (rec 58) · Mi/Do Termine, Ruhe ✓ · Fr Abreise Griechenland, Sa/So trainingsfrei ✓. Verdict-Kanal 10/10 hit (Mo 5, Di 5). Mo mit freier Notiz, Di ohne Notiz — die Di-Verdicts hat Martin am 26.09. aus Griechenland nachgetragen; für Di gibt es keine WHOOP-/Strava-Aktivität, der Verdict trägt den Tag allein. Recovery Mo–So 62/58/41/–/66/38/35 (Ø 50, kein Tag rot, Do ohne Daten), Ø Schlaf 6,8 h. Kein Deload-Trigger.
+
+**Kernbefunde:**
+- **Deficit-HSPU kalibriert:** steigende Scheibenstapel 2,5 / 2×2,5 / 5 / 5+2,5 kg sauber, 5+2×2,5 kg nicht. Kalibrierwert ist der Stapel **5 kg + 2,5 kg** — in Scheiben, nicht in Zentimetern gemessen; die Kombination ist in der Box reproduzierbar und bleibt die Einheit der Treppe 4×3 → 4×4 → 4×5.
+- **C&J wieder bei 80:** Komplex 60/67,5/72,5/77,5/80 hit, zweiter Kontakt nach dem Reclaim vom 19.09. Bestwert bleibt 82,5 (W35).
+- **Overhead Squat 55×3 reproduziert:** 47,5/52,5/55 hit — Topwert aus W34 nach fünf Wochen wieder gehoben. Aufbau Richtung 57,5 ab W42.
+- **Gymnastics-Reclaim sauber:** BMU 5×2 ✓, WPU 3×5 @ +5 hit, Layer Brust/Trizeps „easily". Die Lücke seit dem Testtag 09.09. ist geschlossen — bis Griechenland.
+- **Front Squat und Snatch nicht bedient** (planmäßig) — beide seit W37 (10.09.) ohne Kontakt.
+- **Körperkomposition:** zwei Messungen (Mo 78,94 / Di 80,06), kein Wochenschnitt. Referenz bleibt W37 80,41 kg.
+
+**Offen für W41 / Meso 4 W1 (nach Urlaubswoche W40):** Reclaim für alle Foki (Lücke ab 22.09. ≥10 Tage) · Snatch und FS zuerst · Deficit-HSPU 4×3 auf 5+2,5 kg · Treppen (WPU 3×6, Deficit-HSPU, BMU) ab W42 · Fuß-Cue aus dem Whiteboard-Buch einmal abfragen · Planquelle 2026-W41.json anlegen.
+
 ## 2026-W38 · 14.–20. September · Reisewoche Charlotte + Meso-4-Start — Barbell-Reclaim RX'd
 
 **Plan RX'd befolgt** (Martin-Bestätigung 20.09.); Rad und Schwimmen liefen on top, nicht als Ersatz. Mo–Fr Charlotte NC trainingsfrei wie am 12.09. festgelegt; per Strava Di Schwimmen 30 min (Strain 10,3) und Do Schwimmen 45 min (Strain 11,7), kein Kraftreiz. Sa Fokus A: C&J-Komplex 4×1 auf 60/65/70/75, OHS 3×3 auf 45/47,5/50, Layer Delts/Bizeps, Mobility — dazu am selben Tag zwei Ausfahrten (Sendling-Westpark 37,2 km / 1:21 h moving / 147 Hm, Starnberger See 37,5 km / 1:14 h / 148 Hm; Relative Effort 14 + 29). So Box: Deadlift/T2B-Ladder 3-6-9-12-9-6-3 mit 15 Air Squats je Runde @ 85 kg, Level 2, 13-Min-Cap. **Datenlage (Nachtrag 20.09., lokal):** Verdict-Kanal Sa 4/4 hit (C&J, OHS, Layer, Mobility), Notiz Sa „Alles gut, eher 6/10 als 7/10"; So Notiz „Check", kein Score. Recovery Mo–So 83/65/31/30/7/62/76 (Ø 51), Ø Schlaf 6,4 h; Mi–Fr drei rote Tage in Charlotte ohne Training, Fr = Rückflugnacht (3,3 h Schlaf, rec 7, RHR 61). Sa rec 62, Sa Day-Strain 15,3 (Fokus A + 74,7 km Rad). So rec 76 / HRV 51 / RHR 48 / Schlaf 8:01 h per WHOOP-Detailabfrage bestätigt (intervals.icu zeigte 56 / 49 / 49 / 5,02 — Sync hing). **Deload-Check:** Trigger 1 (≥3 rote Tage) formal erfüllt, Ursache Reise und Flug ohne Trainingslast, erste Einheit am Sa auf rec 62 mit RPE 6 — kein Deload, W38 war selbst der natürliche Deload. Gewicht: eine Messung (Sa 80,61), kein Wochenschnitt.

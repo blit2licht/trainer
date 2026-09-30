@@ -4,7 +4,113 @@ Fortlaufende Prosa-Notizen aus Retrospektiven. Neueste Einträge oben.
 
 ---
 
+## 2026-09-30 — Open-Gym-Progression und Wochenmodell nach Review präzisiert
+
+Ein weiteres Review des Kanons vom selben Tag hat mit Martin zehn Punkte
+abschließend geklärt. Dieser Eintrag hat Vorrang vor den beiden älteren
+Einträgen vom 30.09., wo sie sich widersprechen. Das neue Modell gilt ab W42;
+W40 und W41 bleiben unverändert vereinbarte Übergangswochen.
+
+Ersetzt werden damit: „4–5 Box-Tage + 1 eigene Einheit von ca. 45 Minuten“,
+der Vorrang „Box vor eigener Einheit“ samt automatischem Wegfall der eigenen
+Einheit, der Ceiling-Versuch nur an einem schweren Box-Oly-Tag, die
+50-%-Kappung mit Ceiling-Ausnahme und der Engine-Marker 2000 m Row in W42/W47.
+
+Entscheide (Martin, 30.09.2026):
+
+1. Wochenmodell. Die Box trägt Class-Erlebnis, Wettbewerb, Abwechslung und
+   vielseitiges Training. Das Open Gym trägt gezielte Technikentwicklung und
+   aktive Lastprogression bei Snatch und Clean & Jerk. Regelfall nach
+   verfügbaren Terminen: 5 → 3 Box + 2 Open Gym, 4 → 3 Box + 1 Open Gym,
+   3 → 2 Box + 1 Open Gym als knappe Ausnahme. Zweimal Open Gym bei fünf
+   Terminen ist Regelfall; 4 Box + 1 Open Gym bleibt begründete Alternative.
+   Kein pauschaler Box-Vorrang mehr. Eine Open-Gym-Session hat einen
+   geschützten Platz in der Terminplanung, ohne Trainingszwang bei Krankheit
+   oder relevanter Ermüdung. Die Bausteine addieren sich nicht automatisch zu
+   sieben Trainingstagen.
+2. Open Gym. Etwa 75 Minuten einschließlich Warm-up, die 45-Minuten-Grenze
+   entfällt. Bei zwei Sessions einmal Schwerpunkt Snatch, einmal Schwerpunkt
+   Clean & Jerk; der zweite Lift kann ergänzend vorkommen, es sind nicht
+   automatisch zwei Maximal- oder Ceiling-Tage. Bei einer Session beide Lifts
+   gemeinsam. Das Open Gym verfolgt ausdrücklich höhere Lasten, sofern Technik
+   und Tagesform passen. Kein Hypertrophie-Layer, kein altes Zubehörprogramm.
+   BMU bleibt geparkt mit kurzem Erhaltungskontakt nach den bestehenden Regeln.
+3. Box-Lifts. Snatch und C&J im Box-Programm zählen als ergänzende Kontakte
+   und Belastung; geprüft werden Variante, Umfang und Lage zu den
+   Open-Gym-Sessions. Sie ersetzen das Open Gym nicht automatisch. Geplante
+   Lastprogression und Ceiling-Versuche liegen im Open Gym. Das ist Martins
+   Planungsentscheidung, keine Aussage darüber, dass Fortschritt außerhalb des
+   Open Gym unmöglich wäre.
+4. Ziele und Bestwerte. Aktive Ziele bleiben Snatch 65 kg und Clean & Jerk
+   85 kg, letzteres jetzt ausdrücklich mit Split Jerk. Historische Bestwerte,
+   von Martin bestätigt: Snatch 67,5 kg (Datum und genaue Variante nicht
+   geklärt), Clean & Jerk mit Split Jerk 90 kg (Datum nicht geklärt). Sie
+   werden getrennt von den aktuellen Arbeitsreferenzen geführt: Snatch 60 kg,
+   Squat Clean + Push Jerk 82,5 kg. Die 82,5 kg sind kein bestätigter aktueller
+   Split-Jerk-Wert. Der letzte Split-Jerk-Kontakt ist nicht erinnerlich,
+   vermutlich mindestens zwölf Monate her. Der erste Split-Jerk-Kontakt im
+   Open Gym ist Wiedereinstieg und Kalibrierung (Split-Position, Fußarbeit,
+   stabiler Empfang, Last über saubere Aufwärmsätze, kein vorab festgelegtes
+   Top-Gewicht); die 90 kg fließen in keine Lastberechnung ein, und der
+   Korridor „bis ~75“ aus dem Push-Jerk-Komplex wird nicht ungeprüft
+   übertragen. Das Snatch-Empfangskriterium bleibt (3 Singles in Folge bei
+   55 kg, voll tief, 2 s stabil, Martins Urteil reicht); vor Erfüllung keine
+   Ceiling-Versuche über 60 kg.
+5. Lean-Phase und Blockerfolg. Die Lean-Priorität bleibt und steht in der
+   Hierarchie jetzt vor den Leistungszielen, statt von deren pauschalem
+   Vorrang aufgehoben zu werden. Aktive Lift-Progression ist gewollt; Martin
+   erwartet angesichts früherer Bestwerte einen gewissen Wiederaufbau, ohne
+   garantierte Steigerung oder wöchentliche Steigerungspflicht. Ein Block kann
+   auch ohne neuen Bestwert erfolgreich sein: sichtbar leaner, Leistung
+   gehalten, Technik verbessert, Training regelmäßig umgesetzt. 65/85 bleiben
+   Ziele, sind aber keine Erfolgspflicht bis W47. Gesundheit und langfristige
+   Trainingsfähigkeit bleiben übergeordnet.
+6. Recovery und Steigerungen. Die starre 50-%-Kappung und die Sonderausnahme
+   für Ceiling-Versuche sind gestrichen. Für normale Steigerungen und
+   Ceiling-Versuche gilt dieselbe Logik: bei gelb (34–66 %) entscheiden
+   Tagesform, Technik und Aufwärmsätze; kein gelber oder grüner Wert gibt
+   allein frei. Die Rot-Regel bleibt (unter 34 % nur Technik/Mobility bis
+   RPE 6 oder Ruhe). Recovery bleibt Tagesform-Input, keine Vorhersage.
+7. Radfahren. Das Rad ersetzt bevorzugt einen Box-Tag mit wenig Weightlifting
+   und stärkerem Ausdauerfokus, bei fünf Terminen z. B. 2 Open Gym + 2 Box +
+   1 Rad — bewusste Ausnahme vom normalen Minimum von drei Box-Tagen, das Open
+   Gym bleibt geschützt. Eine Ausfahrt ist häufig sozial und kein automatisch
+   gleichwertiger Ersatz für intensives Box-Conditioning; Dauer und
+   tatsächliche Intensität zählen trotzdem zur Belastungsplanung. Der
+   Kalorienverbrauch ist Nebeneffekt, kein Anlass für mehr Fahrumfang.
+8. Benchmarks. Der Pflichttermin 2000 m Row in W42 und W47 ist gestrichen, es
+   gibt keinen obligatorischen Start-/Endvergleich pro Block. 2000 m Row, Fran,
+   Cindy oder andere passende Benchmarks sind gelegentliche Indikatoren:
+   frühestens Ende Oktober 2026, kein verbindlicher Termin, ausschließlich im
+   Open Gym, nur bei passender Gelegenheit, ohne automatische Verdrängung der
+   Lift-Progression, keine Testwoche. Das Format wird erst vor der konkreten
+   Planung nach der Quellenregel verifiziert.
+9. Gewichtstrend. Das Zielband −0,4 bis −0,5 kg pro Woche bleibt. Nachgesteuert
+   wird erst, wenn zwei aufeinanderfolgende Wochenveränderungen auf derselben
+   Seite außerhalb des Bands liegen. Dafür braucht es drei aufeinanderfolgende
+   gültige Wochenschnitte mit je mindestens vier Wiegetagen. Einmal zu langsam
+   und danach zu schnell löst nichts aus. Ungültige Wochen werden nicht
+   übersprungen; ein Mehrwochenabstand ist keine Wochenveränderung. Baseline
+   W41, Taille, Fotos und das Lean-Endkriterium bleiben.
+10. Deload. Weniger Leistung allein löst keinen Deload aus. Zwei ausdrücklich
+    als „zäh oder mies“ gemeldete Trainingstage in Folge führen zur
+    Belastungsprüfung, auch in der Lean-Phase; Anpassung und Umfang folgen dem
+    Befund, und das Defizit entkräftet die Meldung nicht pauschal. Der Trigger
+    „mindestens drei rote Recovery-Tage in Folge“ bleibt. BMU-Erhalt und
+    Unterbrechungsregel sind unverändert.
+
+Offen dokumentierte Unsicherheiten: Datum und Variante des Snatch-Bestwerts
+67,5 kg, Datum des C&J-Bestwerts 90 kg, Zeitpunkt des letzten
+Split-Jerk-Kontakts.
+
+Nicht Teil dieser Entscheidung: App-Umsetzung, Engine, neuer Wochenplan.
+
+---
+
 ## 2026-09-30 — Nachkorrektur zum Kanon-Umbau: BMU geparkt, Ceiling ab 34 %, Zahlen richtiggestellt
+
+In Teilen ersetzt am selben Tag, siehe Eintrag darüber (Ceiling und
+50-%-Kappung, Engine-Marker, Tempo-Auslöser, Deload-Folge).
 
 Eine Gegenprüfung des Umbaus vom Vormittag hat zwei Faktenfehler in der
 Begründung und mehrere Widersprüche im neuen Kanon gefunden. Martin hat die
@@ -86,7 +192,8 @@ System aufgeräumt (Martin, 30.09.2026):
 ## 2026-09-30 — Box als Hauptbühne: Meso 4 verworfen, Kanon neu ausgerichtet
 
 Korrigiert am selben Tag, siehe Eintrag darüber (Box-Zahlen, Zielherkunft,
-BMU, Ceiling-Schwelle).
+BMU, Ceiling-Schwelle). Wochenmodell, Dauer der eigenen Einheit und
+Box-Vorrang sind durch den obersten Eintrag vom 30.09. ersetzt.
 
 Anlass: Martins Rückmeldung „Spaßfaktor gering“ und ein externes Review des
 geplanten Meso 4 (`coach/reviews/2026-09-30-meso4-review.md`). Martin wählt

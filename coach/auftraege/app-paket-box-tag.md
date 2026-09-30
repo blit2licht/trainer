@@ -4,13 +4,15 @@
 **Ziel-Datei:** `website/index.html`, dazu `scripts/build_payload.py` und je nach Lösung ein PHP-Endpoint.
 **Herkunft:** Kanon-Umbau vom 30.09.2026 (`coach/decisions.md`). Seitdem ist die Box die Hauptbühne, die App ist aber noch um die eigene Einheit herum gebaut.
 
+**Nachtrag 30.09.2026:** Das Wochenmodell wurde am selben Tag präzisiert (`coach/decisions.md`, oberster Eintrag): ab W42 im Regelfall 3 Box + 1–2 Open Gym, geplante Lastprogression und Ceiling-Versuche liegen im Open Gym. Der Umfang unten ist daran angepasst; vor einer Freigabe den Zuschnitt noch einmal gegen das Modell prüfen.
+
 ## Warum
 
-An 4–5 von 5–6 Trainingstagen zeigt die App einen Box-Tag. Dort gibt es heute das WOD, eine ausklappbare Begründung und die Tagesnotiz. Die zielbezogene Ansage an Tagen mit Snatch oder C&J steht versteckt in der Begründung, und die Rückmeldung zum Zielkontakt läuft als freier Satz in der Notiz.
+Der Box-Tag bleibt mit meist drei Tagen pro Woche der häufigste Tagestyp. Dort gibt es heute das WOD, eine ausklappbare Begründung und die Tagesnotiz. Die Ansage an Tagen mit Snatch oder C&J steht versteckt in der Begründung, und die Rückmeldung zum Zielkontakt läuft als freier Satz in der Notiz.
 
 ## Umfang
 
-1. **Zielkontakt sichtbar.** Ein Box-Tag mit Snatch- oder C&J-Teil trägt in der Wochenliste eine Markierung und in der Tagesansicht die Ansage offen über dem WOD (Lastbereich, Cue, Ceiling ja/nein) — ein Satz, nicht eingeklappt.
+1. **Zielkontakt sichtbar.** Ein Box-Tag mit Snatch- oder C&J-Teil trägt in der Wochenliste eine Markierung und in der Tagesansicht die Ansage offen über dem WOD (Lastbereich, Cue) — ein Satz, nicht eingeklappt.
 2. **Verdict auf dem Zielblock.** Genau ein Done/Fail am Zielteil des Box-Tags, mit derselben Technik/Last-Rückfrage wie in der eigenen Einheit. Übrige WOD-Teile bleiben ohne Button.
 3. **WOD-Score, optional.** Ein kurzes Feld für Zeit oder Runden+Reps am Box-Tag. Freiwillig, ohne Pflicht und ohne Auswertung am Handy.
 4. **Taille.** Ein Zahlenfeld, einmal pro Woche, damit der Wert nicht im Review abgefragt werden muss.

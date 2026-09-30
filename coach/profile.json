@@ -16,30 +16,55 @@
     "motivation": "Was Martin seit 13 Jahren im CrossFit hält: Wettkampf mit der Box-Class, Abwechslung, das All-out-Gefühl. Spaßkiller: Alleintraining, gedrosselte Intensität, wochenlang gleiche Übungen (Martin 30.09.2026, Review coach/reviews/2026-09-30-meso4-review.md)."
   },
   "wochenmodell": {
-    "grundsatz": "Box als Hauptbühne (Alternative A, Martin 30.09.2026). Box-WODs sind Kernarbeit, nicht Beiwerk.",
-    "box_tage": "4-5 pro Woche, normaler Track (Morgenkurs), voll mitgehen, messen mit der Class",
-    "eigene_einheit": "1 pro Woche, ca. 45 min: Snatch- oder C&J-Technik, dazu ein kurzer BMU-Erhaltungskontakt — füllt nur, was die Box in der Woche nicht abdeckt",
-    "radfahrt": "Sonntag optional, sozial",
-    "prioritaet_bei_zeitmangel": [
-      "Box",
-      "eigene Einheit",
-      "Radfahrt"
-    ],
+    "gilt_ab": "2026-W42. W40 und W41 sind vereinbarte Übergangswochen und bleiben unverändert.",
+    "grundsatz": "Zwei Bühnen mit getrennten Aufgaben (Martin 30.09.2026, Präzisierung nach Review). Die Box trägt Class-Erlebnis, Wettbewerb, Abwechslung und vielseitiges Training. Das Open Gym trägt die gezielte Technikentwicklung und die aktive Lastprogression bei Snatch und Clean & Jerk.",
+    "regelfall_nach_terminen": {
+      "5_termine": "3 Box + 2 Open Gym",
+      "4_termine": "3 Box + 1 Open Gym",
+      "3_termine": "2 Box + 1 Open Gym (knappe Ausnahme)"
+    },
+    "alternative": "4 Box + 1 Open Gym bei fünf Terminen, begründet aus Wochenprogramm und Terminen. Zweimal Open Gym bei fünf Terminen ist der Regelfall, keine seltene Ausnahme.",
+    "terminplanung": "Kein pauschaler Vorrang der Box vor dem Open Gym. Eine Open-Gym-Session hat einen geschützten Platz in der Terminplanung; geschützt heißt kein Trainingszwang bei Krankheit oder relevanter Ermüdung. Die Bausteine werden nicht automatisch zu sieben Trainingstagen addiert.",
+    "box_tage": "Normaler Track (Morgenkurs), voll mitgehen, messen mit der Class. Snatch und C&J im Box-Programm sind ergänzende Kontakte und Belastung, kein Ersatz für das Open Gym.",
+    "open_gym": {
+      "zeitbudget": "etwa 75 Minuten einschließlich Warm-up",
+      "zwei_sessions": "Einmal Schwerpunkt Snatch, einmal Schwerpunkt Clean & Jerk. Der zweite Lift kann ergänzend vorkommen. Nicht automatisch zwei Maximal- oder Ceiling-Tage.",
+      "eine_session": "Beide Lifts gemeinsam, sinnvoll innerhalb der 75 Minuten geplant.",
+      "auftrag": "Verfolgt ausdrücklich höhere Lasten, sofern Technik und Tagesform passen — nicht nur Technikpflege, kein Lückenfüller. Dazu der kurze BMU-Erhaltungskontakt nach den bestehenden Regeln.",
+      "nicht": "Kein Hypertrophie-Layer, kein Zubehörprogramm."
+    },
+    "radfahrt": "Optional, meist sonntags, häufig sozial. Das Rad ersetzt bevorzugt einen Box-Tag mit wenig Weightlifting und stärkerem Ausdauerfokus — bei fünf Terminen z. B. 2 Open Gym + 2 Box + 1 Rad. Das ist eine bewusste Ausnahme vom normalen Minimum von drei Box-Tagen; das Open Gym bleibt geschützt. Eine Ausfahrt ist kein automatisch gleichwertiger Ersatz für intensives Box-Conditioning; Dauer und tatsächliche Intensität zählen trotzdem zur Belastungsplanung. Der Kalorienverbrauch ist Nebeneffekt, kein Anlass für zusätzlichen Fahrumfang als Defizit-Hebel.",
     "ausstattung": "Vollständige CrossFit-Box"
+  },
+  "blockerfolg": {
+    "grundsatz": "Ein Block kann auch ohne neuen Bestwert erfolgreich sein (Martin 30.09.2026).",
+    "kriterien": [
+      "sichtbar leaner",
+      "Leistung gehalten",
+      "Technik verbessert",
+      "Training regelmäßig umgesetzt"
+    ],
+    "ziele": "Snatch 65 und C&J 85 bleiben bestehen, sind aber keine Erfolgspflicht bis W47."
   },
   "leistungsziele": [
     {
       "id": "snatch",
       "ziel": "65 kg sauber gehoben",
-      "stand": "60 kg (W32, reproduziert W36)",
+      "stand": "60 kg (W32, reproduziert W36) — aktuelle Arbeitsreferenz",
+      "historischer_bestwert": "67,5 kg — Datum und genaue Variante nicht geklärt (Martin 30.09.2026). Getrennt vom aktuellen Stand geführt, keine Arbeitsreferenz.",
       "typ": "1RM-Ziel, Nachweis per Ceiling-Versuch",
       "quelle": "Martin (Top-Ziel, 30.09.2026)",
       "hinweis": "Empfang zuerst. Kein Ceiling-Versuch über 60, bevor der Empfang sitzt: 3 Singles in Folge bei 55 kg, voll tief empfangen, 2 s stabil — Martins Urteil reicht, kein Video-Zwang. OHS und Drop Snatch nur als Werkzeug, nicht als Ziel."
     },
     {
       "id": "clean-and-jerk",
-      "ziel": "85 kg sauber gehoben",
-      "stand": "82,5 kg (W35, 25.08.2026 — Komplex Squat Clean + Push Jerk)",
+      "ziel": "85 kg sauber gehoben, ausdrücklich mit Split Jerk (Martin 30.09.2026)",
+      "stand": "Squat Clean + Push Jerk 82,5 kg (W35, 25.08.2026) — aktuell belegter Bestwert und Arbeitsreferenz für diesen Komplex. Kein bestätigter aktueller Split-Jerk-Wert; der aktuelle Split-Jerk-Stand ist offen.",
+      "historischer_bestwert": "90 kg mit Split Jerk — Datum nicht geklärt (Martin 30.09.2026). Getrennt vom aktuellen Stand geführt; nicht zur aktuellen Lastberechnung verwenden.",
+      "split_jerk": {
+        "letzter_kontakt": "Nicht erinnerlich, vermutlich mindestens zwölf Monate her — Unsicherheit, kein belegtes Datum.",
+        "erster_kontakt": "Im Open Gym als Wiedereinstieg und Kalibrierung: Split-Position, Fußarbeit und stabilen Empfang prüfen, Last anhand sauberer Aufwärmsätze aufbauen. Kein vorab festgelegtes Top-Gewicht. Ein Wiedereinstiegskorridor aus dem Push-Jerk-Komplex (z. B. „bis ~75“) wird nicht ungeprüft übertragen."
+      },
       "typ": "1RM-Ziel, Nachweis per Ceiling-Versuch",
       "quelle": "Martin (Top-Ziel, 30.09.2026)",
       "hinweis": "Limit sind Technik und Jerk, nicht die Beinkraft (82,5 ≈ 73 % des geschätzten FS-1RM 112,5)."
@@ -47,8 +72,11 @@
   ],
   "zielregeln": [
     "Nur Ziele, die von Martin kommen. Aus Daten abgeleitete Ziele gibt es nur, wenn Martin sie ausdrücklich übernimmt — jedes Ziel trägt deshalb das Feld 'quelle'.",
-    "Ein Box-Tag, der Snatch oder Clean & Jerk programmiert, zählt als Zielkontakt. Die eigene Einheit füllt, was in der Woche fehlt.",
-    "Ceiling-Versuch (Snatch, C&J) ist erlaubt, wenn die Box einen schweren Oly-Tag programmiert und die Recovery des Tages mindestens 34 % beträgt (nicht rot; Martin 30.09.2026). Die Kappung unter 50 % gilt für normale Steigerungssätze, nicht für den Ceiling-Versuch. Keine Testwochen, kein Wochenumbau für einen Versuch.",
+    "Snatch und Clean & Jerk im Box-Programm zählen als ergänzende Kontakte und als Belastung. Geprüft werden Variante, Umfang und Lage zu den Open-Gym-Sessions. Box-Kontakte ersetzen das Open Gym nicht automatisch, auch wenn beide Lifts vorkommen.",
+    "Geplante Lastprogression und Ceiling-Versuche (Snatch, C&J) werden im Open Gym platziert und nicht von passenden Box-WODs abhängig gemacht. Das ist Martins Planungsentscheidung, keine Aussage darüber, wo Fortschritt physiologisch möglich ist. Keine Testwochen, kein Wochenumbau für einen Versuch.",
+    "Recovery: Für normale Steigerungen und Ceiling-Versuche gilt dieselbe Logik. Unter 34 % (rot) nur Technik/Mobility bis RPE 6 oder Ruhe. Bei gelb (34–66 %) entscheiden Tagesform, Technik und Aufwärmsätze. Kein Wert gibt allein frei, auch ein gelber oder grüner nicht. Die frühere 50-%-Kappung und die Sonderausnahme für Ceiling-Versuche sind gestrichen (Martin 30.09.2026).",
+    "Das Snatch-Empfangskriterium gilt zusätzlich und unabhängig von der Recovery: vor Erfüllung keine Ceiling-Versuche über 60 kg.",
+    "Aktive Lift-Progression ist gewollt, aber keine garantierte Steigerung und keine wöchentliche Steigerungspflicht.",
     "Ziel erreicht = Zielgewicht sauber gehoben bzw. Leiterstufe sauber absolviert."
   ],
   "geparkte_ziele": [
@@ -63,10 +91,16 @@
       "quelle": "Martin (Formulierung bestätigt 20.09.2026, geparkt 30.09.2026)"
     }
   ],
-  "engine_marker": {
-    "zweck": "Beobachtung für den Apex 'lange gesund', keine Steuerung (Review 30.09.2026).",
-    "methode": "2000 m Row auf Zeit, einmal zu Beginn (W42) und einmal am Ende des Blocks (W47), am Ende eines Box-Tags, rund 8 Minuten. Gleiche Bedingungen: gleiches Gerät und Damper, Recovery nicht rot, kein Rudern im WOD davor. Die Woche richtet sich nicht danach (Martin 30.09.2026).",
-    "stand": "Startwert offen — W42"
+  "benchmarks": {
+    "zweck": "Gelegentliche Indikatoren für den Apex 'lange gesund', keine Steuerung. Ersetzt den Engine-Marker mit Pflichttermin (Martin 30.09.2026).",
+    "regeln": [
+      "Kein obligatorischer Start-/Endvergleich pro Block. Der Pflichttermin 2000 m Row in W42 und W47 ist gestrichen.",
+      "2000 m Row, Fran, Cindy oder ein anderer passender Benchmark, frühestens Ende Oktober 2026. Es gibt keinen verbindlichen Termin.",
+      "Ausschließlich im Open Gym, nicht zusätzlich vor oder nach einer Box-Class.",
+      "Nur bei passender Gelegenheit bewusst einplanen. Verdrängt die Lift-Progression nicht automatisch. Keine Testwoche.",
+      "Das exakte Format erst vor der konkreten Planung nach der Quellenregel verifizieren (instructions.md, Referenzen)."
+    ],
+    "stand": "Kein Wert, kein Termin."
   },
   "ausgeschlossen": [
     "Ring Muscle-ups",
@@ -76,10 +110,10 @@
   ],
   "koerperkomposition": {
     "ziel": "Lean und muskulös, Sixpack sichtbar — keine Waagenzahl (Martin 30.09.2026).",
-    "prioritaet_q4": "Lean-Phase vorne (Martin 30.09.2026): erst lean werden und Kraft halten, danach gezielt aufbauen.",
+    "prioritaet_q4": "Lean-Phase vorne (Martin 30.09.2026) — sie wird nicht durch einen pauschalen Vorrang der Leistungsziele aufgehoben. Aktive Lift-Progression im Open Gym ist trotzdem gewollt; angesichts früherer Bestwerte erwartet Martin einen gewissen Wiederaufbau. Keine garantierte Steigerung, keine wöchentliche Steigerungspflicht. Gesundheit und langfristige Trainingsfähigkeit bleiben übergeordnet.",
     "ziel_kg": "74-76 (nur grobe Orientierung, ~50 % sicher, dass dort ein Sixpack sichtbar ist — keine Steuergröße)",
     "wochentrend_ziel_kg": "-0,4 bis -0,5",
-    "tempo_bewertung": "Korrigiert wird erst, wenn zwei gültige Wochenschnitte in Folge außerhalb des Bands liegen. Gültig ist ein Wochenschnitt ab 4 Messungen; Wochen darunter zählen nicht (Martin 30.09.2026).",
+    "tempo_bewertung": "Nachgesteuert wird erst, wenn zwei aufeinanderfolgende Wochenveränderungen auf derselben Seite außerhalb des Zielbands liegen — zweimal zu langsam oder zweimal zu schnell. Dafür braucht es drei aufeinanderfolgende gültige Wochenschnitte, jeder mit mindestens vier Wiegetagen. Einmal zu langsam und danach zu schnell löst keine automatische Korrektur aus. Ungültige Wochen werden nicht übersprungen: ein Abstand über mehrere Wochen wird nie als Wochenveränderung behandelt (Martin 30.09.2026).",
     "ende": "Die Lean-Phase endet, sobald Martin an Foto und Taille 'lean' sagt — sein Urteil, keine Waagenzahl. Im Zielreview (≈ W47) wird Pflicht geprüft: weiter, Pause oder Schluss (Martin 30.09.2026).",
     "baseline": "Erste volle Woche zu Hause nach dem Urlaub (W41, 05.-11.10.2026). Letzter belastbarer Wochenschnitt vorher: W37 80,4 kg.",
     "messgroessen": [
@@ -88,7 +122,7 @@
       "Foto alle zwei Wochen, gleiches Licht, gleiche Pose — bleibt lokal bei Martin, nie ins Repo"
     ],
     "methode": "3 Regeln statt Tracking: Protein zuerst, eher im oberen Teil von 150-215 g/Tag · Carbs folgen dem Training · keine flüssigen Kalorien/Snacks.",
-    "leitplanken": "Kein zusätzliches Cardio als Defizit-Hebel (Box-Volumen deckt Engine ab). Kein Hypertrophie-Layer — Erhalt leisten schweres Heben und Box-WODs. Performance-Dip im Defizit akzeptiert, kein Deload-Trigger.",
+    "leitplanken": "Kein zusätzliches Cardio als Defizit-Hebel (Box-Volumen deckt Engine ab); das gilt auch für den Fahrumfang auf dem Rad. Kein Hypertrophie-Layer — Erhalt leisten schweres Heben und Box-WODs. Weniger Leistung allein löst keinen Deload aus. Zwei ausdrücklich als „zäh oder mies“ gemeldete Trainingstage in Folge führen aber auch in der Lean-Phase zur Belastungsprüfung; das Defizit entkräftet diese Meldungen nicht pauschal.",
     "datenquelle": "Withings via scripts/pull_weight.py → coach/weight.json. Nur Gewicht — der Withings-Körperfettwert (BIA) wird ignoriert (~10 %-Punkte zu niedrig, steuerungsunbrauchbar). Taille: der Coach fragt sie im Wochenreview ab; alle zwei Wochen zusätzlich, ob das Foto gemacht ist (Martin 30.09.2026)."
   },
   "review_rhythmus_wochen": 6,

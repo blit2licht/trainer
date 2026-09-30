@@ -13,28 +13,34 @@
   "block": {
     "id": "Block 5 — Box als Hauptbühne",
     "start": "2026-W42",
-    "grundlage": "coach/reviews/2026-09-30-meso4-review.md (Alternative A, Martins Entscheide 30.09.2026). Meso 4 in der geplanten Form verworfen.",
-    "wochenmodell": "4–5 Box-Tage, 1 eigene Einheit ~45 min (Snatch-/C&J-Technik + BMU-Erhaltungskontakt), So optional Rad",
-    "prioritaet": "Lean-Phase vorne: Snatch/C&J halten und Technik verbessern, Ceiling nur opportunistisch (schwerer Box-Oly-Tag, Recovery ≥ 34 %). BMU geparkt, nur Erhalt.",
-    "engine_marker": "2000 m Row auf Zeit: Startwert W42, Endwert W47, jeweils am Ende eines Box-Tags. Startwert offen.",
+    "grundlage": "coach/reviews/2026-09-30-meso4-review.md (Alternative A, Martins Entscheide 30.09.2026), am selben Tag präzisiert (decisions.md: Open-Gym-Progression und Wochenmodell). Meso 4 in der geplanten Form verworfen.",
+    "wochenmodell": "Nach verfügbaren Terminen: 5 → 3 Box + 2 Open Gym · 4 → 3 Box + 1 Open Gym · 3 → 2 Box + 1 Open Gym (knappe Ausnahme). Alternative bei fünf Terminen: 4 Box + 1 Open Gym, begründet. Open Gym ~75 min inkl. Warm-up (Snatch/C&J: Technik und aktive Lastprogression, dazu BMU-Erhaltungskontakt); eine Session hat einen geschützten Platz. Rad optional, ersetzt bevorzugt einen ausdauerlastigen Box-Tag mit wenig Weightlifting. Keine Addition zu sieben Trainingstagen.",
+    "prioritaet": "Lean-Phase vorne. Aktive Lift-Progression im Open Gym ist gewollt, ohne Steigerungspflicht; geplante Steigerungen und Ceiling-Versuche liegen im Open Gym, Box-Lifts sind ergänzende Kontakte. Blockerfolg auch ohne neuen Bestwert: sichtbar leaner, Leistung gehalten, Technik verbessert, Training regelmäßig umgesetzt. 65/85 bleiben Ziele, keine Erfolgspflicht bis W47. BMU geparkt, nur Erhalt.",
+    "recovery_regel": "Gleiche Logik für normale Steigerungen und Ceiling-Versuche: rot (<34 %) nur Technik/Mobility bis RPE 6 oder Ruhe; gelb (34–66 %) entscheiden Tagesform, Technik und Aufwärmsätze; kein Wert gibt allein frei. Keine 50-%-Kappung mehr. Snatch-Empfangskriterium gilt zusätzlich.",
+    "benchmarks": "Kein Pflichttermin, kein Start-/Endvergleich. Gelegentlicher Indikator (2000 m Row, Fran, Cindy o. ä.) frühestens Ende Oktober 2026, nur im Open Gym und nur bei passender Gelegenheit. Kein Termin vereinbart.",
     "deload_trigger": [
       "Recovery an ≥3 aufeinanderfolgenden Tagen rot (<34 %)",
-      "Martin meldet zwei Trainingstage in Folge als zäh oder mies (Tagesnotiz oder Chat)"
+      "Martin meldet zwei Trainingstage in Folge ausdrücklich als zäh oder mies (Tagesnotiz oder Chat)"
     ],
-    "deload_hinweis": "Kein starrer Rhythmus; ein Trigger löst eine sofortige Wochenkorrektur aus (Volumen zuerst). Der Defizit-Performance-Dip ist kein Trigger, Reise- oder Urlaubstage ohne Training ebenfalls nicht."
+    "deload_hinweis": "Kein starrer Rhythmus. Drei rote Tage in Folge lösen wie bisher eine sofortige Wochenkorrektur aus (Volumen zuerst). Zwei als zäh oder mies gemeldete Trainingstage in Folge führen zur Belastungsprüfung, auch in der Lean-Phase: Anpassung und Umfang folgen dem Befund, nicht automatisch einem starren Deload-Schema, und das Defizit entkräftet die Meldung nicht pauschal. Weniger Leistung allein ist kein Trigger, Reise- oder Urlaubstage ohne Training ebenfalls nicht."
   },
   "ziele": {
     "snatch": {
       "stand_kg": 60,
       "ziel_kg": 65,
+      "historischer_bestwert": "67,5 kg — Datum und genaue Variante nicht geklärt (Martin 30.09.2026). Keine Arbeitsreferenz.",
       "letzter_kontakt": "2026-09-10 (eigene Einheit: Drop Snatch 3×3 bis 45, Singles bis 57,5 tief empfangen)",
-      "empfang_kriterium": "3 Singles in Folge bei 55 kg, voll tief empfangen, 2 s stabil — Martins Urteil, kein Video-Zwang. Noch nicht erfüllt.",
+      "empfang_kriterium": "3 Singles in Folge bei 55 kg, voll tief empfangen, 2 s stabil — Martins Urteil, kein Video-Zwang. Noch nicht erfüllt; bis dahin keine Ceiling-Versuche über 60 kg.",
       "baustelle": "Tiefe Empfangsposition unter schwerer Last (Video W36: Abfahrt 1,6 s @ 57,5 / 3,1 s @ 60, Bar driftet ~11 cm nach hinten). Zug stark, kein Kraftproblem. Rechter Fuß landet vorne-rechts außenrotiert: Befund ohne Auftrag, am 30.09.2026 fallen gelassen.",
       "werkzeuge": "Drop Snatch, tief empfangene Singles 50–57,5, OHS als Positionsreiz"
     },
     "clean_jerk": {
       "stand_kg": 82.5,
+      "stand_variante": "Squat Clean + Push Jerk (W35) — aktuell belegter Bestwert, kein bestätigter Split-Jerk-Wert",
       "ziel_kg": 85,
+      "ziel_variante": "mit Split Jerk (Martin 30.09.2026)",
+      "historischer_bestwert": "90 kg mit Split Jerk — Datum nicht geklärt (Martin 30.09.2026). Nicht zur aktuellen Lastberechnung verwenden.",
+      "split_jerk": "Aktueller Stand offen. Letzter Kontakt nicht erinnerlich, vermutlich mindestens zwölf Monate her (Unsicherheit). Erster Kontakt im Open Gym ist Wiedereinstieg und Kalibrierung: Split-Position, Fußarbeit, stabiler Empfang; Last anhand sauberer Aufwärmsätze aufbauen, kein vorab festgelegtes Top-Gewicht.",
       "letzter_kontakt": "2026-09-22 (eigene Einheit: Komplex Squat Clean + Push Jerk bis 80)",
       "baustelle": "Technik und Jerk, nicht Beinkraft"
     },
@@ -65,7 +71,7 @@
     },
     "clean_jerk_komplex": {
       "kg": 82.5,
-      "note": "Bestwert 82,5 (W35). Zuletzt 80 (W39, 22.09.)."
+      "note": "Bestwert 82,5 (W35). Zuletzt 80 (W39, 22.09.). Komplex Squat Clean + Push Jerk — keine Split-Jerk-Referenz; die gibt es erst nach der Kalibrierung im Open Gym."
     },
     "bmu": {
       "max_unbroken": 4,
@@ -108,16 +114,16 @@
     {
       "datum": "2026-09-30",
       "betrifft": "Wiedereinstieg nach Urlaub — erster Kontakt je Ziel (Lücke seit 21./22.09., Snatch seit 10.09.)",
-      "hinweis": "W41 ist reine Box-Woche ohne eigene Einheit (Martin 30.09.), keine Ceiling-Versuche. Der erste Zielkontakt nach der Pause, voraussichtlich in der eigenen Einheit W42: C&J bis ~75, Snatch unterhalb der Ceiling. Erster BMU-Kontakt als Reclaim 5×2 (Unterbrechungsregel), danach nur Erhalt. Gilt bis zum jeweils ersten Kontakt — bei den Reviews W40 und W41 erneut bestätigen, nicht nach 7 Tagen verfallen lassen."
+      "hinweis": "W41 ist reine Box-Woche ohne Open Gym (Martin 30.09.), keine Ceiling-Versuche. Der erste Kontakt je Lift nach der Pause liegt im Open Gym ab W42: Snatch unterhalb der Ceiling. Clean & Jerk: der frühere Korridor „bis ~75“ stammt aus dem Komplex Squat Clean + Push Jerk und wird nicht ungeprüft auf den Split Jerk übertragen — der erste Split-Jerk-Kontakt ist Wiedereinstieg und Kalibrierung ohne vorab festgelegtes Top-Gewicht (ziele.clean_jerk.split_jerk). Erster BMU-Kontakt als Reclaim 5×2 (Unterbrechungsregel), danach nur Erhalt. Gilt bis zum jeweils ersten Kontakt — bei den Reviews W40 und W41 erneut bestätigen, nicht nach 7 Tagen verfallen lassen."
     }
   ],
   "hinweis_ablauf": "Beim Wochenreview neu bewerten; spätestens nach 7 Tagen entfernen, wenn nicht erneut bestätigt.",
   "offen": [
-    "Engine-Marker: 2000 m Row in W42 an einen Box-Tag hängen (kein Rudern im WOD davor) und Startwert eintragen.",
+    "Split Jerk: erster Kontakt im Open Gym ab W42 als Kalibrierung; danach den aktuellen Split-Jerk-Stand als eigene Lastreferenz eintragen.",
     "Körper-Baseline: Wochenschnitt W41 zu Hause. Taille ab dem W41-Review wöchentlich abfragen, Foto alle zwei Wochen.",
     "App-Paket (Box-Tag als Hauptansicht, Verdict auf dem Zielblock, WOD-Score, Taille): Auftrag in coach/auftraege/app-paket-box-tag.md, ohne Termin (Martin 30.09.)."
   ],
-  "naechster_zielreview": "Nach sechs Wochen Block 5 (≈ W47). Pflichtpunkte: Lean-Phase (weiter, Pause, Schluss), BMU-Wiederaufnahme, ob 4–5 Box-Tage pro Woche real stattfinden. Letztes Review: Meso-4-Review 30.09.2026 (coach/reviews/2026-09-30-meso4-review.md).",
+  "naechster_zielreview": "Nach sechs Wochen Block 5 (≈ W47). Pflichtpunkte: Lean-Phase (weiter, Pause, Schluss), BMU-Wiederaufnahme, ob das Wochenmodell (3 Box + 1–2 Open Gym) real stattfindet. Blockerfolg wird an den vier Kriterien gemessen (leaner, Leistung gehalten, Technik verbessert, Training regelmäßig), nicht an neuen Bestwerten. Letztes Review: Meso-4-Review 30.09.2026 (coach/reviews/2026-09-30-meso4-review.md).",
   "datenquellen": {
     "dreamwod": "Per Schnittstelle gezogen (siehe instructions.md Referenzen), Screenshot nur als Fallback",
     "intervals_icu": "Recovery/HRV/RHR/Schlaf über scripts/pull_wellness.py → coach/wellness.json",

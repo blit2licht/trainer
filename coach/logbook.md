@@ -16,7 +16,7 @@ Kurze, verdichtete Wocheneinträge. Rohdaten bleiben in WHOOP, Strava und der We
 
 **Offen für W41 / Meso 4 W1 (nach Urlaubswoche W40):** Reclaim für alle Foki (Lücke ab 22.09. ≥10 Tage) · Snatch und FS zuerst · Deficit-HSPU 4×3 auf 5+2,5 kg · Treppen (WPU 3×6, Deficit-HSPU, BMU) ab W42 · Fuß-Cue aus dem Whiteboard-Buch einmal abfragen · Planquelle 2026-W41.json anlegen.
 
-*Überholt am 30.09.2026 (decisions.md): Meso 4 verworfen, Box als Hauptbühne ab W42. WPU, Deficit HSPU, OHS und FS sind keine Ziele mehr, BMU ist geparkt; die Treppen oben laufen nicht weiter. W41 ist reine Box-Woche, Reclaim beim ersten Zielkontakt ab W42. Offen bleibt der Fuß-Cue.*
+*Überholt am 30.09.2026 (decisions.md): Meso 4 verworfen, Box als Hauptbühne ab W42. WPU, Deficit HSPU, OHS und FS sind keine Ziele mehr, BMU ist geparkt; die Treppen oben laufen nicht weiter. W41 ist reine Box-Woche, Reclaim beim ersten Zielkontakt ab W42. Der Fuß-Cue ist fallen gelassen.*
 
 ## 2026-W38 · 14.–20. September · Reisewoche Charlotte + Meso-4-Start — Barbell-Reclaim RX'd
 

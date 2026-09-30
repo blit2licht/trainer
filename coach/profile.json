@@ -65,8 +65,8 @@
   ],
   "engine_marker": {
     "zweck": "Beobachtung für den Apex 'lange gesund', keine Steuerung (Review 30.09.2026).",
-    "methode": "Ein Benchmark-WOD aus dem Box-Programm zu Beginn und am Ende des Blocks, unter gleichen Bedingungen (Level, Tageszeit, keine harte Vortagslast). Format vorher auf wodwell.com verifizieren.",
-    "stand": "Start offen — erster passender Benchmark ab W42"
+    "methode": "2000 m Row auf Zeit, einmal zu Beginn (W42) und einmal am Ende des Blocks (W47), am Ende eines Box-Tags, rund 8 Minuten. Gleiche Bedingungen: gleiches Gerät und Damper, Recovery nicht rot, kein Rudern im WOD davor. Die Woche richtet sich nicht danach (Martin 30.09.2026).",
+    "stand": "Startwert offen — W42"
   },
   "ausgeschlossen": [
     "Ring Muscle-ups",
@@ -79,6 +79,8 @@
     "prioritaet_q4": "Lean-Phase vorne (Martin 30.09.2026): erst lean werden und Kraft halten, danach gezielt aufbauen.",
     "ziel_kg": "74-76 (nur grobe Orientierung, ~50 % sicher, dass dort ein Sixpack sichtbar ist — keine Steuergröße)",
     "wochentrend_ziel_kg": "-0,4 bis -0,5",
+    "tempo_bewertung": "Korrigiert wird erst, wenn zwei gültige Wochenschnitte in Folge außerhalb des Bands liegen. Gültig ist ein Wochenschnitt ab 4 Messungen; Wochen darunter zählen nicht (Martin 30.09.2026).",
+    "ende": "Die Lean-Phase endet, sobald Martin an Foto und Taille 'lean' sagt — sein Urteil, keine Waagenzahl. Im Zielreview (≈ W47) wird Pflicht geprüft: weiter, Pause oder Schluss (Martin 30.09.2026).",
     "baseline": "Erste volle Woche zu Hause nach dem Urlaub (W41, 05.-11.10.2026). Letzter belastbarer Wochenschnitt vorher: W37 80,4 kg.",
     "messgroessen": [
       "7-Tage-Schnitt auf derselben Waage zu Hause (Withings), auf 0,1 kg gerundet",
@@ -87,7 +89,7 @@
     ],
     "methode": "3 Regeln statt Tracking: Protein zuerst, eher im oberen Teil von 150-215 g/Tag · Carbs folgen dem Training · keine flüssigen Kalorien/Snacks.",
     "leitplanken": "Kein zusätzliches Cardio als Defizit-Hebel (Box-Volumen deckt Engine ab). Kein Hypertrophie-Layer — Erhalt leisten schweres Heben und Box-WODs. Performance-Dip im Defizit akzeptiert, kein Deload-Trigger.",
-    "datenquelle": "Withings via scripts/pull_weight.py → coach/weight.json. Nur Gewicht — der Withings-Körperfettwert (BIA) wird ignoriert (~10 %-Punkte zu niedrig, steuerungsunbrauchbar). Taille: Martin meldet den Wert (Kanal folgt mit dem App-Paket)."
+    "datenquelle": "Withings via scripts/pull_weight.py → coach/weight.json. Nur Gewicht — der Withings-Körperfettwert (BIA) wird ignoriert (~10 %-Punkte zu niedrig, steuerungsunbrauchbar). Taille: der Coach fragt sie im Wochenreview ab; alle zwei Wochen zusätzlich, ob das Foto gemacht ist (Martin 30.09.2026)."
   },
   "review_rhythmus_wochen": 6,
   "neue_ziele": "Martin schlägt neue Ziele beim Review vor. Gymnastics-Ziele in Leiterwährung (erreichte Stufe = Nachweis), Weightlifting-Ziele als sauber gehobenes Gewicht.",

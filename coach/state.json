@@ -16,13 +16,12 @@
     "grundlage": "coach/reviews/2026-09-30-meso4-review.md (Alternative A, Martins Entscheide 30.09.2026). Meso 4 in der geplanten Form verworfen.",
     "wochenmodell": "4–5 Box-Tage, 1 eigene Einheit ~45 min (Snatch-/C&J-Technik + BMU-Erhaltungskontakt), So optional Rad",
     "prioritaet": "Lean-Phase vorne: Snatch/C&J halten und Technik verbessern, Ceiling nur opportunistisch (schwerer Box-Oly-Tag, Recovery ≥ 34 %). BMU geparkt, nur Erhalt.",
-    "engine_marker": "Start offen — erster passender Benchmark aus dem Box-Programm ab W42",
+    "engine_marker": "2000 m Row auf Zeit: Startwert W42, Endwert W47, jeweils am Ende eines Box-Tags. Startwert offen.",
     "deload_trigger": [
       "Recovery an ≥3 aufeinanderfolgenden Tagen rot (<34 %)",
-      "Zielblock-Miss mit Zäh-/Mies-Klartextnotiz in zwei aufeinanderfolgenden Einheiten",
-      "Leistungsabfall bei gehaltener Last (Reps/kg unter Referenz)"
+      "Martin meldet zwei Trainingstage in Folge als zäh oder mies (Tagesnotiz oder Chat)"
     ],
-    "deload_hinweis": "Kein starrer Rhythmus; Trigger lösen eine sofortige Wochenkorrektur aus (Volumen zuerst). Der Defizit-Performance-Dip zählt nicht als Trigger. Reise- oder Urlaubstage ohne Training ebenfalls nicht."
+    "deload_hinweis": "Kein starrer Rhythmus; ein Trigger löst eine sofortige Wochenkorrektur aus (Volumen zuerst). Der Defizit-Performance-Dip ist kein Trigger, Reise- oder Urlaubstage ohne Training ebenfalls nicht."
   },
   "ziele": {
     "snatch": {
@@ -30,7 +29,7 @@
       "ziel_kg": 65,
       "letzter_kontakt": "2026-09-10 (eigene Einheit: Drop Snatch 3×3 bis 45, Singles bis 57,5 tief empfangen)",
       "empfang_kriterium": "3 Singles in Folge bei 55 kg, voll tief empfangen, 2 s stabil — Martins Urteil, kein Video-Zwang. Noch nicht erfüllt.",
-      "baustelle": "Tiefe Empfangsposition unter schwerer Last (Video W36: Abfahrt 1,6 s @ 57,5 / 3,1 s @ 60, Bar driftet ~11 cm nach hinten). Zug stark, kein Kraftproblem. Rechter Fuß landet vorne-rechts außenrotiert (unvermessen, nur Cue).",
+      "baustelle": "Tiefe Empfangsposition unter schwerer Last (Video W36: Abfahrt 1,6 s @ 57,5 / 3,1 s @ 60, Bar driftet ~11 cm nach hinten). Zug stark, kein Kraftproblem. Rechter Fuß landet vorne-rechts außenrotiert: Befund ohne Auftrag, am 30.09.2026 fallen gelassen.",
       "werkzeuge": "Drop Snatch, tief empfangene Singles 50–57,5, OHS als Positionsreiz"
     },
     "clean_jerk": {
@@ -59,7 +58,7 @@
     }
   },
   "load_references": {
-    "hinweis": "Bestätigte Arbeitszahlen für Lastansagen an Box-Tagen. Schlüssel werden von scripts/derive_state.py gelesen — nicht umbenennen.",
+    "hinweis": "Bestätigte Arbeitszahlen für Lastansagen, handgepflegt. Nur beim Wochenreview mit belegten Werten ändern.",
     "squat_snatch_ceiling": {
       "kg": 60,
       "note": "Ceiling 60 (W32, reproduziert W36). Tief empfangene Singles bis 57,5 (W37)."
@@ -114,19 +113,18 @@
   ],
   "hinweis_ablauf": "Beim Wochenreview neu bewerten; spätestens nach 7 Tagen entfernen, wenn nicht erneut bestätigt.",
   "offen": [
-    "Engine-Marker: passenden Benchmark im DreamWOD ab W42 identifizieren und als Startwert setzen (Martin 30.09.: ok).",
-    "Körper-Baseline: Wochenschnitt W41 zu Hause; Taille ab W41 wöchentlich, Meldung per Chat.",
-    "App-Paket (Box-Tag als Hauptansicht, Verdict nur auf Zielblöcken, WOD-Score, Taille-Eingabe): nicht primär (Martin 30.09.), ohne Termin.",
-    "BMU geparkt bis Ende der Lean-Phase (Martin 30.09.): Wiederaufnahme im Zielreview (≈ W47) entscheiden."
+    "Engine-Marker: 2000 m Row in W42 an einen Box-Tag hängen (kein Rudern im WOD davor) und Startwert eintragen.",
+    "Körper-Baseline: Wochenschnitt W41 zu Hause. Taille ab dem W41-Review wöchentlich abfragen, Foto alle zwei Wochen.",
+    "App-Paket (Box-Tag als Hauptansicht, Verdict auf dem Zielblock, WOD-Score, Taille): Auftrag in coach/auftraege/app-paket-box-tag.md, ohne Termin (Martin 30.09.)."
   ],
-  "naechster_zielreview": "Nach sechs Wochen Block 5 (≈ W47). Letztes Review: Meso-4-Review 30.09.2026 (coach/reviews/2026-09-30-meso4-review.md).",
+  "naechster_zielreview": "Nach sechs Wochen Block 5 (≈ W47). Pflichtpunkte: Lean-Phase (weiter, Pause, Schluss), BMU-Wiederaufnahme, ob 4–5 Box-Tage pro Woche real stattfinden. Letztes Review: Meso-4-Review 30.09.2026 (coach/reviews/2026-09-30-meso4-review.md).",
   "datenquellen": {
     "dreamwod": "Per Schnittstelle gezogen (siehe instructions.md Referenzen), Screenshot nur als Fallback",
     "intervals_icu": "Recovery/HRV/RHR/Schlaf über scripts/pull_wellness.py → coach/wellness.json",
     "withings": "Gewicht über scripts/pull_weight.py → coach/weight.json — Körperfettwert (BIA) wird ignoriert",
     "whoop": "Nur gezielte Detailabfragen (Satz-/Lasthistorien)",
-    "notizen": "Website-Datenbank über get_notes.php, Verdicts über get_verdicts.php",
+    "notizen": "Website-Datenbank über get_notes.php, Verdicts über get_verdicts.php. Zielkontakte an Box-Tagen stehen als ein Satz in der Tagesnotiz (Top-Last, sauber ja/nein).",
     "strava": "Optional über MCP für Radfahrten"
   },
-  "systemstatus": "Trainer 3.0 produktiv seit 30.08.2026: website/index.html auf der Root, website/data.js generiert aus coach/plan/<id>.json + coach/exercises.json (scripts/build_payload.py), 2.0 stillgelegt unter archive/2.0/. derive_state.py Phase 1 read-only. Video-Pipeline lokal (scripts/analyze_video.py), nur für konkrete Diagnosefragen. Werkstatt (Desktop) am 30.09.2026 verworfen, nie genutzt."
+  "systemstatus": "Trainer 3.0 produktiv seit 30.08.2026: website/index.html auf der Root, website/data.js generiert aus coach/plan/<id>.json + coach/exercises.json (scripts/build_payload.py). Technische Referenz: coach/architecture.md. Am 30.09.2026 eingestellt und entfernt: Engine (derive_state.py), Werkstatt (Desktop), Entwurfsordner V3.0/, Archiv 2.0, Design-Sandbox. Video-Pipeline lokal (scripts/analyze_video.py), nur für konkrete Diagnosefragen."
 }

@@ -40,10 +40,46 @@ Entscheide (Martin, 30.09.2026):
 - W41 bleibt reine Box-Woche mit moderaten Lasten. Der Reclaim nach der Pause
   wandert in den ersten Zielkontakt, voraussichtlich die eigene Einheit W42.
 
-Weiter offen aus der Gegenprüfung, nicht entschieden: Endkriterium der
-Lean-Phase, die Breite des Tempo-Bands (0,1 kg liegt unter dem Messrauschen),
-die Deload-Trigger bei nur einer eigenen Einheit und der Rückkanal an
-Box-Tagen, solange das App-Paket fehlt.
+Nachgezogen am selben Tag (Martin, 30.09.2026):
+- Lean-Phase endet mit Martins Urteil an Foto und Taille, ohne Waagenzahl. Im
+  Zielreview (≈ W47) wird Pflicht geprüft: weiter, Pause oder Schluss.
+- Tempo-Band −0,4 bis −0,5 kg/Woche bleibt. Korrigiert wird erst, wenn zwei
+  gültige Wochenschnitte in Folge (je mindestens 4 Messungen) außerhalb liegen;
+  das Band allein ist schmaler als das Messrauschen.
+- Deload-Trigger: drei rote Tage in Folge, oder Martin meldet zwei
+  Trainingstage in Folge als zäh oder mies. Die Trigger „Zielblock-Miss“ und
+  „Leistungsabfall bei gehaltener Last“ entfallen: bei einer eigenen Einheit
+  pro Woche kaum auslösbar und vom Defizit-Dip nicht zu trennen.
+- Rückkanal an Box-Tagen mit Zielkontakt: ein Satz in der Tagesnotiz (Top-Last,
+  sauber ja/nein). Der Verdict-Button dort kommt erst mit dem App-Paket.
+- Engine-Marker: 2000 m Row auf Zeit in W42 und W47, am Ende eines Box-Tags.
+  Ersetzt „Benchmark aus dem Box-Programm“, weil der Vergleich sonst davon
+  abhängt, ob die Box denselben Benchmark zweimal bringt.
+- Taille und Foto: Abfrage im Wochenreview, kein eigener Kanal.
+- Snatch, rechter Fuß: Befund fallen gelassen, kein Cue-Auftrag mehr.
+
+System aufgeräumt (Martin, 30.09.2026):
+- Engine eingestellt und entfernt: `scripts/derive_state.py` gelöscht, die
+  Engine-Felder in `exercises.json` gestrichen. Bei zwei Technik-Zielen und
+  einer eigenen Einheit pro Woche gibt es nichts zu rechnen; Lasten bleiben
+  handgepflegt in `state.json`.
+- Entwurfsordner `V3.0/` gelöscht (Git-Historie bis `9f34da6`). Was noch gilt
+  — Planquelle, Registry, Verdict-Kanal — steht jetzt in
+  `coach/architecture.md`. `PRODUCT.md` beschreibt den realen Zweck der App:
+  Plan ausliefern, Rückmeldung erfassen.
+- App-Paket nicht gestrichen, sondern als Auftrag aufgeschrieben
+  (`coach/auftraege/app-paket-box-tag.md`), ohne Termin.
+- Am Repo arbeiten Claude Code und Codex. Die Regeldateien für Cursor, Cline,
+  Windsurf, OpenCode und Copilot sind gelöscht.
+- Ebenfalls gelöscht, Git-Historie reicht: `archive/2.0/`, `migrations/` und die
+  seit der 3.0-Umstellung defekte Design-Sandbox (`design/build.py`, README,
+  `farbmuster.html`). Die gelockte Designwelt `design/dunkelkammer.html` bleibt.
+- Altlast bewusst belassen: die Spalten `session_feel` und `blocks_done` in der
+  Notiz-Tabelle samt Laufzeiterkennung in den PHP-Endpoints.
+- Coaching und App bleiben in einem Repo: Planquelle, Generator, Cache-Stempel
+  und Deployment sind ein Vorgang. Getrennt werden die Arbeitsweisen —
+  App-Arbeit auf einem Zweig nach `website/CLAUDE.md`, Wochenpläne direkt auf
+  `main`. Deployt wird nur noch bei Änderungen unter `website/`.
 
 ---
 

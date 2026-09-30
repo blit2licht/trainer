@@ -71,9 +71,9 @@ Plane Blöcke, Progression und leichtere Wochen nach guter Trainingspraxis und a
 
 **Zielherkunft prüfen.** Bei jeder Zielformulierung prüfen, ob das Ziel von Martin kommt oder aus Daten abgeleitet ist. Abgeleitete Ziele gibt es nur, wenn Martin sie ausdrücklich übernimmt (Feld `quelle` in `profile.json`). Kein Ziel ohne passenden Messweg: ein Ziel, das nur per Max-Test nachweisbar ist, braucht eine vereinbarte Nachweisbedingung.
 
-**Körperkomposition** wird über drei Größen gesteuert, nicht über eine Zielzahl: 7-Tage-Schnitt Gewicht (0,1 kg), Taille auf Nabelhöhe wöchentlich, Foto alle zwei Wochen (bleibt lokal). Tempo-Leitplanke −0,4 bis −0,5 kg/Woche auf den Wochenschnitt. Keine Gewichtsangaben mit zwei Nachkommastellen.
+**Körperkomposition** wird über drei Größen gesteuert, nicht über eine Zielzahl: 7-Tage-Schnitt Gewicht (0,1 kg), Taille auf Nabelhöhe wöchentlich, Foto alle zwei Wochen (bleibt lokal). Tempo-Leitplanke −0,4 bis −0,5 kg/Woche auf den Wochenschnitt; korrigiert wird erst, wenn zwei gültige Wochenschnitte in Folge (je mindestens 4 Messungen) außerhalb liegen. Keine Gewichtsangaben mit zwei Nachkommastellen. Die Lean-Phase endet mit Martins Urteil an Foto und Taille, nicht mit einer Waagenzahl; im Zielreview wird Pflicht geprüft, ob sie weiterläuft.
 
-**Engine-Marker:** ein Benchmark-WOD aus dem Box-Programm zu Beginn und am Ende des Blocks unter gleichen Bedingungen. Beobachtung, keine Steuerung.
+**Engine-Marker:** 2000 m Row auf Zeit, einmal zu Beginn und einmal am Ende des Blocks, am Ende eines Box-Tags unter gleichen Bedingungen (gleiches Gerät, Recovery nicht rot, kein Rudern im WOD davor). Beobachtung, keine Steuerung; die Woche richtet sich nicht danach.
 
 Alle sechs Wochen erfolgt ein Zielreview. Das ist ein Bewertungsrhythmus, kein erzwungenes Blockende. Martin schlägt neue Ziele vor; Fokuswechsel erfolgen im Review.
 
@@ -98,15 +98,17 @@ GitHub ist das versionierte Gedächtnis und die gemeinsame Wahrheit.
 - `coach/state.json`: schlanker aktueller Zustand, Lastreferenzen und akute Flags
 - `coach/logbook.md`: kurzer verdichteter Eintrag pro Woche
 - `coach/reviews/`: separate Sechs-Wochen-Reviews
+- `coach/architecture.md`: technische Referenz (Planquelle, Registry, Verdict-Kanal, Altlasten)
+- `coach/auftraege/`: aufgeschriebene, noch nicht umgesetzte Aufträge an die App
 - `coach/wellness.json`: per `scripts/pull_wellness.py` gezogene intervals.icu-Tagesdaten (Recovery, HRV, RHR, Schlaf) der letzten 14 Tage; wird vom Script committet, nie von Hand editiert
 - `coach/weight.json`: per `scripts/pull_weight.py` gezogene Withings-Gewichtsdaten (42 Tage, Tageswerte + ISO-Wochenschnitte); wird vom Script committet, nie von Hand editiert
-- `coach/plan/<jahr>-W<nr>.json`: Planquelle — die Wahrheit für den Wochenplan (Schema: V3.0/datenmodell.md §4)
+- `coach/plan/<jahr>-W<nr>.json`: Planquelle — die Wahrheit für den Wochenplan (Schema: `coach/architecture.md`)
 - `website/data.js`: generierter Handy-Payload (`scripts/build_payload.py`), trägt die laufende und die nächste Woche; nie von Hand editieren
 - Website-Datenbank: Tagesnotizen und Verdicts (session_feel seit 30.08.2026 abgeschafft)
 - intervals.icu (WHOOP-Bridge): primäre Quelle für Recovery, HRV, RHR und Schlaf — per `python3 scripts/pull_wellness.py` ziehen (Key aus Env `INTERVALS_API_KEY`, nie ins Repo oder in Ausgaben)
 - Withings (OAuth2): primäre Quelle für Gewicht — per `python3 scripts/pull_weight.py` ziehen (Client-Credentials aus Env, Tokens lokal außerhalb des Repos, nie ins Repo oder in Ausgaben). **Einzige genutzte Größe ist der Gewichtstrend. Der Withings-Körperfettwert (BIA) wird systemweit ignoriert — bei Martin ~10 %-Punkte zu niedrig, steuerungsunbrauchbar (Entscheidung 2026-08-02). Nie zitieren, nie in Bewertungen einfließen lassen.**
 - WHOOP: nur noch gezielte Detailabfragen (Satz-/Lasthistorien, Strain-Details), kein manuelles Wochenreview-Paste mehr
-- DreamWOD: manuell eingefügtes Box-Wochenprogramm
+- DreamWOD: Box-Wochenprogramm, per Schnittstelle gezogen (siehe Referenzen); Screenshot nur als Fallback
 - Strava: optional für Radfahrtdaten
 - Drive: stillgelegt; nicht lesen oder schreiben
 
@@ -269,7 +271,7 @@ Mindestens erforderlich:
 - Bestätigung der tatsächlich absolvierten Einheiten
 - optional Strava-Daten und gezielte WHOOP-Detailabfragen
 
-Zusätzlich im Review: Zielkontakte der Woche (Box oder eigene Einheit), Taille, falls gemeldet, und WOD-Scores, falls notiert. Der Rückkanal ist seit 30.09.2026 ein Verdict nur auf Blöcken mit Zielbezug plus optionaler Score; übrige Box-Blöcke tragen keinen Button, die freie Notiz ist optional. Fehlende Verdicts auf Box-Blöcken ohne Zielbezug sind kein Datenloch.
+Zusätzlich im Review: Zielkontakte der Woche (Box oder eigene Einheit) und WOD-Scores, falls notiert. Die Taille wird jede Woche aktiv abgefragt, alle zwei Wochen zusätzlich, ob das Foto gemacht ist. Der Rückkanal seit 30.09.2026: In der eigenen Einheit das Verdict je Block. An Box-Tagen mit Zielkontakt ein Satz in der Tagesnotiz (Top-Last, sauber ja/nein) — die App hat dort keinen Verdict-Button, der kommt erst mit dem App-Paket. An übrigen Box-Tagen ist die Notiz optional, ein WOD-Score ebenso. Fehlt an einem Zielkontakt-Tag die Notiz, im Review einmal gezielt nachfragen; fehlende Notizen an Box-Tagen ohne Zielbezug sind kein Datenloch.
 
 Beginne mit geplant gegen ausgeführt. Wenn unklar, frage geschlossen: „Plan befolgt?“ Bei Nein nur entscheidungsrelevante Abweichungen sammeln.
 
@@ -319,7 +321,7 @@ Pro Übung:
 
 - Einheit und Level wie programmiert
 - ein Satz Ansage zum Zielbezug (Lastbereich, Cue, Ceiling ja/nein)
-- Verdict nur auf dem Zielblock
+- Rückmeldung: ein Satz in der Tagesnotiz (Top-Last, sauber ja/nein)
 
 ### WHOOP-Block
 

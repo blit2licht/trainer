@@ -4,6 +4,48 @@ Fortlaufende Prosa-Notizen aus Retrospektiven. Neueste Einträge oben.
 
 ---
 
+## 2026-09-30 — Box als Hauptbühne: Meso 4 verworfen, Kanon neu ausgerichtet
+
+Anlass: Martins Rückmeldung „Spaßfaktor gering“ und ein externes Review des
+geplanten Meso 4 (`coach/reviews/2026-09-30-meso4-review.md`). Martin wählt
+Alternative A: Das Training liegt in der Box, eigene Arbeit schrumpft auf eine
+Einheit von ca. 45 Minuten pro Woche.
+
+Kern des Befunds: Meso 4 war fachlich begründet, nahm aber genau das weg, was
+Martin seit 13 Jahren im CrossFit hält — Wettkampf mit der Class, Abwechslung,
+das All-out-Gefühl. Sieben Leistungsziele auf zwei Fokus-Tagen, vier davon aus
+Daten abgeleitet statt von Martin gewollt, dazu ein Hypertrophie-Layer, der im
+Defizit nur Erhalt leisten konnte.
+
+Der Abgleich mit dem Logbuch zeigt, wo der Fehler praktisch saß: Die
+Fokus-Tage liefen zuverlässig (W32–W37 12 von 12), die Box-Tage nicht (W32–W39
+9 von geplanten 24). Die Regel „Fokus vor Box“ und die Ausfahrten haben
+genau den Teil verdrängt, der Martin Spaß macht. Das System selbst war auf das
+Parallelprogramm gebaut: acht Foki in einer eigenen Rotation, `state.json` mit
+über 2000 Zeichen Verlaufsprosa pro Feld, Box-Tage per Kanon „kompakt halten“.
+
+Entscheide (Martin, 30.09.2026):
+- Wochenmodell: 4–5 Box-Tage, 1 eigene Einheit (Snatch-/C&J-Technik + BMU-Leiter), So optional Rad. „Fokus vor Box“ gestrichen, Box ist Kernarbeit.
+- Ziele: nur Snatch 65, C&J 85, BMU 3×5 verbunden. FS, OHS, WPU und Deficit HSPU geschlossen, laufen als Box-Volumen. Jedes Ziel trägt künftig seine Herkunft (`quelle`).
+- Zielkontakt: Box-Tage mit Snatch, C&J oder BMU zählen.
+- RPE-Caps nur in der eigenen Einheit; Box-Tage frei. Die Recovery-Kappung bleibt als Tagesregel für den Hantelteil.
+- Q4-Priorität: Lean-Phase vorne (−0,4 bis −0,5 kg/Woche), Snatch/C&J halten und Technik verbessern.
+- Körper: gesteuert über 7-Tage-Schnitt, Taille, Foto; 74–76 kg nur Orientierung. Kein Hypertrophie-Layer. Protein eher im oberen Teil von 150–215 g.
+- Nachweis: Ceiling-Versuch erlaubt, wenn die Box einen schweren Oly-Tag programmiert und die Recovery nicht rot ist. Snatch-Empfang „sitzt“ = 3 Singles in Folge @ 55, voll tief, 2 s stabil, Martins Urteil reicht.
+- Engine-Marker: Benchmark-WOD aus dem Box-Programm zu Beginn und Ende des Blocks, nur Beobachtung.
+- Rückkanal: Verdict nur auf Blöcken mit Zielbezug, dazu optionaler WOD-Score.
+- Umbau: Kanon und State schlank neu (`instructions.md` V2.0, `profile.json` und `state.json` Schema 2). App-Anpassung folgt als eigenes Paket.
+
+Behalten: Deload nur bei Triggern, WHOOP steuert nur die Tageslast,
+Leiterwährung für BMU mit Unterbrechungsregel, drei Ernährungsregeln, kein
+Zusatz-Cardio, keine Testwochen.
+
+Lehre für den Coach: Eine Zielliste wächst leicht aus den Daten heraus
+(„Ziel erreicht → Nachfolger setzen“), ohne dass jemand fragt, ob Martin das
+will. Deshalb die Pflichtprüfung der Zielherkunft.
+
+---
+
 ## 2026-09-12 — Keine dedizierten Testwochen und Testsätze mehr
 
 Martin setzt fest: keine dedizierten Testwochen, "nie wieder". Tests

@@ -1,129 +1,143 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "athlet": {
     "name": "Martin",
     "alter": 45,
     "groesse_cm": 184,
     "gewicht_kg": 80,
     "trainingserfahrung_jahre": "13+",
-    "gesundheit": "Keine dauerhaften Verletzungen oder Bewegungseinschränkungen bekannt"
+    "gesundheit": "Keine dauerhaften Verletzungen oder Bewegungseinschränkungen bekannt (Martin 30.09.2026: keine Beschwerden, topfit)"
   },
   "zielbild": {
     "apex": "Lange gesund, fit und robust leben und im CrossFit auf Masters-Niveau leistungsfähig bleiben.",
-    "rx_standard": "DreamWOD Level 2 sicher; Level 3 regelmäßig situationsabhängig, aber nicht dauerhaft verpflichtend."
+    "masters": "Bezeichnung für die Altersklasse, keine Wettkampfambition — kein Wettkampf-Peaking.",
+    "rx_standard": "DreamWOD Level 2 sicher; Level 3 regelmäßig situationsabhängig, aber nicht dauerhaft verpflichtend.",
+    "motivation": "Was Martin seit 13 Jahren im CrossFit hält: Wettkampf mit der Box-Class, Abwechslung, das All-out-Gefühl. Spaßkiller: Alleintraining, gedrosselte Intensität, wochenlang gleiche Übungen (Martin 30.09.2026, Review coach/reviews/2026-09-30-meso4-review.md)."
   },
   "wochenmodell": {
-    "standard": {
-      "box_tage": 3,
-      "fokus_tage": 2,
-      "radfahrt": "Sonntag, optionales Socializing"
-    },
+    "grundsatz": "Box als Hauptbühne (Alternative A, Martin 30.09.2026). Box-WODs sind Kernarbeit, nicht Beiwerk.",
+    "box_tage": "4-5 pro Woche, normaler Track (Morgenkurs), voll mitgehen, messen mit der Class",
+    "eigene_einheit": "1 pro Woche, ca. 45 min: Snatch- oder C&J-Technik plus BMU-Leiter — füllt nur, was die Box in der Woche nicht abdeckt",
+    "radfahrt": "Sonntag optional, sozial",
     "prioritaet_bei_zeitmangel": [
-      "Fokus-Tage",
       "Box",
+      "eigene Einheit",
       "Radfahrt"
     ],
-    "bei_nur_drei_einheiten": "Beide Fokus-Tage plus wertvollster Box-Tag",
-    "fokus_dauer_min": "60-90",
     "ausstattung": "Vollständige CrossFit-Box"
   },
   "leistungsziele": [
     {
-      "id": "bar-muscle-up",
-      "ziel": "3×5 verbunden",
-      "stand": "4 unbroken (Test W37, 09.09. — 5. Rep fail)",
-      "typ": "Gymnastics",
-      "hinweis": "Altes Ziel '5 unbroken' (Stand 4, Testsatz W37) am 12.09. auf Leiterwährung umgestellt, Formulierung von Martin am 20.09.2026 bestätigt. Treppe: 5×2 → 4×3 → 3×3+1×max → 3×5 verbunden; die erreichte Stufe ist der Nachweis."
-    },
-    {
-      "id": "weighted-pull-up",
-      "ziel": "10 Wiederholungen mit +5 kg",
-      "stand": "6 Wiederholungen mit +5 kg (Test W37, 09.09.2026)",
-      "typ": "Gymnastics",
-      "hinweis": "Kapazitätsziel, kein Kraftziel — Martins Entscheid 12.09.2026 mit benanntem Trade-off. Horizont ~2 Mesos."
-    },
-    {
-      "id": "deficit-strict-hspu",
-      "ziel": "4×5 sauber vom Defizit (Kalibrierhöhe, Richtwert ~10 cm)",
-      "stand": "offen — Defizithöhe wird in der ersten Session kalibriert (Maßstab: 3 saubere Wiederholungen)",
-      "typ": "Gymnastics",
-      "vorgaenger": "strict-hspu 10 unbroken — erreicht Test W37 (09.09.2026)",
-      "hinweis": "Ursprünglich am 12.09. als '5 unbroken' gesetzt, am selben Tag auf Leiterwährung umgestellt (Entscheid keine Testsätze), Formulierung von Martin am 20.09.2026 bestätigt. Treppe 4×3 → 4×4 → 4×5 auf der Kalibrierhöhe (Session 21.09.)."
-    },
-    {
       "id": "snatch",
       "ziel": "65 kg sauber gehoben",
-      "stand": "60 kg (W32, Form 7/10 — Ceiling freigegeben)",
-      "typ": "1RM-Ziel ohne geplanten Test"
+      "stand": "60 kg (W32, reproduziert W36)",
+      "typ": "1RM-Ziel, Nachweis per Ceiling-Versuch",
+      "quelle": "Martin (Top-3, 30.09.2026)",
+      "hinweis": "Empfang zuerst. Kein Ceiling-Versuch über 60, bevor der Empfang sitzt: 3 Singles in Folge bei 55 kg, voll tief empfangen, 2 s stabil — Martins Urteil reicht, kein Video-Zwang. OHS und Drop Snatch nur als Werkzeug, nicht als Ziel."
     },
     {
       "id": "clean-and-jerk",
       "ziel": "85 kg sauber gehoben",
       "stand": "82,5 kg (W35, 25.08.2026 — Komplex Squat Clean + Push Jerk)",
-      "typ": "1RM-Ziel ohne geplanten Test"
+      "typ": "1RM-Ziel, Nachweis per Ceiling-Versuch",
+      "quelle": "Martin (Top-3, 30.09.2026)",
+      "hinweis": "Limit sind Technik und Jerk, nicht die Beinkraft (82,5 ≈ 73 % des geschätzten FS-1RM 112,5)."
     },
     {
-      "id": "front-squat",
-      "ziel": "115 kg sauber gehoben",
-      "stand": "105 kg (W37, 10.09. — 1RM-Schätzung ~112,5)",
-      "typ": "1RM-Ziel ohne geplanten Test"
-    },
-    {
-      "id": "overhead-squat",
-      "ziel": "mindestens 65 kg sauber gehoben",
-      "stand": "55 kg",
-      "typ": "1RM-Ziel ohne geplanten Test"
+      "id": "bar-muscle-up",
+      "ziel": "3×5 verbunden",
+      "stand": "4 unbroken (W37); Treppe 4×3 erreicht (W36)",
+      "typ": "Gymnastics, Leiterwährung",
+      "quelle": "Martin (Top-3, 30.09.2026; Formulierung bestätigt 20.09.2026)",
+      "hinweis": "Treppe 5×2 → 4×3 → 3×4 → 3×5 verbunden, max. eine Stufe pro Woche; die erreichte Stufe ist der Nachweis. Methodik: coach/bmu-entwicklungsplan.md."
     }
   ],
+  "zielregeln": [
+    "Nur Ziele, die von Martin kommen. Aus Daten abgeleitete Ziele gibt es nur, wenn Martin sie ausdrücklich übernimmt — jedes Ziel trägt deshalb das Feld 'quelle'.",
+    "Ein Box-Tag, der Snatch, Clean & Jerk oder BMU programmiert, zählt als Zielkontakt. Die eigene Einheit füllt, was in der Woche fehlt.",
+    "Ceiling-Versuch (Snatch, C&J) ist erlaubt, wenn die Box einen schweren Oly-Tag programmiert und die Recovery des Tages nicht rot ist. Keine Testwochen, kein Wochenumbau für einen Versuch.",
+    "Ziel erreicht = Zielgewicht sauber gehoben bzw. Leiterstufe sauber absolviert."
+  ],
+  "engine_marker": {
+    "zweck": "Beobachtung für den Apex 'lange gesund', keine Steuerung (Review 30.09.2026).",
+    "methode": "Ein Benchmark-WOD aus dem Box-Programm zu Beginn und am Ende des Blocks, unter gleichen Bedingungen (Level, Tageszeit, keine harte Vortagslast). Format vorher auf wodwell.com verifizieren.",
+    "stand": "Start offen — erster passender Benchmark ab W42"
+  },
   "ausgeschlossen": [
     "Ring Muscle-ups",
     "Handstand Walks",
-    "Crossover Double-Unders"
+    "Crossover Double-Unders",
+    "DreamWOD Advanced-Track (Martin trainiert in den Morgenkursen, normaler Track)"
   ],
   "koerperkomposition": {
-    "beschlossen": "Sechs-Wochen-Review 2026-08-02 (Details: decisions.md 2026-07-28, coach/reviews/2026-08-02-meso2.md)",
-    "baseline_kg": 80.3,
-    "ziel_kg": "74-76",
-    "zeitraum": "~4 Monate ab Meso 3 (2026-W32)",
-    "wochentrend_ziel_kg": "-0,3 bis -0,5",
-    "methode": "3 Regeln statt Tracking: Protein zuerst ~150 g/Tag · Carbs folgen dem Training · keine flüssigen Kalorien/Snacks. Kontrolle über Wiegetrend (täglich wiegen, nur Wochenschnitte vergleichen).",
-    "datenquelle": "Withings via scripts/pull_weight.py → coach/weight.json. Nur Gewicht — der Withings-Körperfettwert (BIA) wird ignoriert (~10 %-Punkte zu niedrig, steuerungsunbrauchbar).",
-    "messregel": "W32-W33 zählen nicht als Trend (Urlaubs-Wasser/Glykogen, Rückkehrgewicht 82 kg am 02.08. ist keine Baseline). Echte Bewertung ab Wochenschnitt W34 vs. W33.",
-    "leitplanken": "Kein zusätzliches Cardio als Defizit-Hebel. 15-min-Hypertrophie-Layer (Delts/Brust/Arme) an beiden Fokus-Tagen. Performance-Dip ab Defizit-Woche 3-4 akzeptiert, kein Deload-Trigger."
+    "ziel": "Lean und muskulös, Sixpack sichtbar — keine Waagenzahl (Martin 30.09.2026).",
+    "prioritaet_q4": "Lean-Phase vorne (Martin 30.09.2026): erst lean werden und Kraft halten, danach gezielt aufbauen.",
+    "ziel_kg": "74-76 (nur grobe Orientierung, ~50 % sicher, dass dort ein Sixpack sichtbar ist — keine Steuergröße)",
+    "wochentrend_ziel_kg": "-0,4 bis -0,5",
+    "baseline": "Erste volle Woche zu Hause nach dem Urlaub (W41, 05.-11.10.2026). Letzter belastbarer Wochenschnitt vorher: W37 80,4 kg.",
+    "messgroessen": [
+      "7-Tage-Schnitt auf derselben Waage zu Hause (Withings), auf 0,1 kg gerundet",
+      "Taillenumfang auf Nabelhöhe, einmal pro Woche, gleiche Bedingungen",
+      "Foto alle zwei Wochen, gleiches Licht, gleiche Pose — bleibt lokal bei Martin, nie ins Repo"
+    ],
+    "methode": "3 Regeln statt Tracking: Protein zuerst, eher im oberen Teil von 150-215 g/Tag · Carbs folgen dem Training · keine flüssigen Kalorien/Snacks.",
+    "leitplanken": "Kein zusätzliches Cardio als Defizit-Hebel (Box-Volumen deckt Engine ab). Kein Hypertrophie-Layer — Erhalt leisten schweres Heben und Box-WODs. Performance-Dip im Defizit akzeptiert, kein Deload-Trigger.",
+    "datenquelle": "Withings via scripts/pull_weight.py → coach/weight.json. Nur Gewicht — der Withings-Körperfettwert (BIA) wird ignoriert (~10 %-Punkte zu niedrig, steuerungsunbrauchbar). Taille: Martin meldet den Wert (Kanal folgt mit dem App-Paket)."
   },
   "review_rhythmus_wochen": 6,
-  "neue_ziele": "Martin schlägt neue Ziele beim Review vor. Ziele werden in Leiterwährung formuliert (erreichte Stufe = Nachweis), nicht als Max-Test — Entscheid 2026-09-12.",
+  "neue_ziele": "Martin schlägt neue Ziele beim Review vor. Gymnastics-Ziele in Leiterwährung (erreichte Stufe = Nachweis), Weightlifting-Ziele als sauber gehobenes Gewicht.",
   "geschlossene_ziele": [
+    {
+      "id": "front-squat",
+      "ziel_war": "115 kg sauber gehoben",
+      "stand_bei_schluss": "105 kg (W37, 10.09.2026 — 1RM-Schätzung ~112,5)",
+      "geschlossen_am": "2026-09-30",
+      "entscheid": "Kein Ziel mehr (Review 30.09.): für C&J 85 nicht nötig, läuft als Box-Volumen."
+    },
+    {
+      "id": "overhead-squat",
+      "ziel_war": "mindestens 65 kg sauber gehoben",
+      "stand_bei_schluss": "55 kg ×3 (W34, reproduziert W39)",
+      "geschlossen_am": "2026-09-30",
+      "entscheid": "Kein Ziel mehr (Review 30.09.): beschreibt dasselbe Problem wie der Snatch-Empfang; OHS bleibt Werkzeug."
+    },
+    {
+      "id": "weighted-pull-up",
+      "ziel_war": "10 Wiederholungen mit +5 kg",
+      "stand_bei_schluss": "6 @ +5 kg (W37), 3×5 @ +5 (W39)",
+      "geschlossen_am": "2026-09-30",
+      "entscheid": "Aus Daten abgeleitet, nicht Martins Top-3 (Review 30.09.). Läuft über die Box."
+    },
+    {
+      "id": "deficit-strict-hspu",
+      "ziel_war": "4×5 sauber vom Defizit",
+      "stand_bei_schluss": "kalibriert auf Scheibenstapel 5 kg + 2,5 kg (W39)",
+      "geschlossen_am": "2026-09-30",
+      "entscheid": "Aus Daten abgeleitet, nicht Martins Top-3 (Review 30.09.). Läuft über die Box."
+    },
     {
       "id": "toes-to-bar",
       "ziel_war": "10 unbroken",
       "erreicht": "16 unbroken (Test W32, 07.08.2026)",
       "geschlossen_am": "2026-09-12",
-      "entscheid": "Kein Nachfolgeziel (Martin, Sechs-Wochen-Review Meso 3). T2B läuft als Volumen weiter (3×10), ohne Zielstatus — der Gymnastics-Fokus trägt drei statt vier Ziele."
+      "entscheid": "Kein Nachfolgeziel (Martin, Sechs-Wochen-Review Meso 3)."
     },
     {
       "id": "strict-hspu",
       "ziel_war": "10 unbroken",
       "erreicht": "10 unbroken (Test W37, 09.09.2026)",
       "geschlossen_am": "2026-09-12",
-      "entscheid": "Nachfolger ist deficit-strict-hspu (5 unbroken vom Defizit) — Wechsel von Wiederholungszahl auf Bewegungsumfang."
+      "entscheid": "Nachfolger deficit-strict-hspu, am 30.09.2026 ebenfalls geschlossen."
     }
   ],
   "gymnastics_progression": {
-    "hinweis": "Ersetzt das frühere gymnastics_testprotokoll (Martin-Entscheid 2026-09-12: keine Testwochen, keine Max-Testsätze). Fortschritt wird über den kontinuierlichen Aufbau gemessen — die sauber absolvierte Leiterstufe IST der Nachweis, es gibt keinen separaten Messtermin mehr. Ziele werden deshalb in Leiterwährung formuliert.",
-    "progressionstreppen": {
-      "bar-muscle-up": "Linked-Sets-Treppe (ab W33): 5×2 unbroken → 4×3 → 3×4 → 3×5. Frequenz 2 Kontakte/Woche (Hauptblock + 5-min-Primer). Methodik und Quellen-Priorität: coach/bmu-entwicklungsplan.md. Stand W37: 4×3 erreicht (W36), im Testsatz 4 am Stück.",
-      "deficit-strict-hspu": "Erste Session kalibriert die Defizithöhe (Richtwert ~10 cm über Scheiben/Parallettes; Maßstab ist die Höhe, bei der 3 saubere Wiederholungen stehen). Danach 4×3 → 4×4 → 4×5.",
-      "weighted-pull-up": "3×6 → 3×7 → 3×8 @ +5 kg, danach Richtung Einzelsatz 10. Langsame Progression, Horizont ~2 Mesos.",
-      "toes-to-bar": "Ziel geschlossen (12.09.2026). Läuft als Volumen 3×10 ohne Treppe."
-    },
+    "hinweis": "Nur noch für BMU. Keine Testwochen, keine Max-Testsätze als Architektur (Entscheid 2026-09-12); einzelne Max-Sätze in normalen Sessions sind erlaubt.",
     "regeln": [
-      "Pro Woche höchstens eine Stufe pro Ziel steigen; Stufe gilt erst als bestätigt, wenn alle Sätze sauber (kein Failure, Technik hält).",
+      "Pro Woche höchstens eine Stufe steigen; Stufe gilt erst als bestätigt, wenn alle Sätze sauber (kein Failure, Technik hält).",
       "Bei unsauberem letzten Satz eine Stufe zurück, nicht wiederholt erzwingen.",
-      "Plateau-Signal ersetzt den Test: bleibt eine Stufe zweimal hängen, ist das der Befund — dann Übungswahl, Volumen oder Frequenz ändern, nicht messen.",
-      "Einzelne Max-Sätze sind erlaubt (Präzisierung 12.09.2026) — z. B. Max Reps BMU, aus Spaß oder als Intent-Reiz, mitten in einer normalen Session. Bedingung: die Woche richtet sich nicht danach (keine Extra-Ruhetage, keine gestrichenen Slots, kein geschützter Termin). Das Ergebnis ist ein Datenpunkt mit Kontext (Recovery, Vorlast) und darf eine Leiterstufe nie nach unten korrigieren; nach oben zählt es als bestätigter Wert.",
-      "Unterbrechungsregel (alle Skills, ab 2026-08-09): ≥10 Tage ohne Kontakt zu einem Skill → eine Reclaim-Session eine Stufe tiefer, bevor die Treppe weiterläuft. Wochen ohne Kontakt zählen nicht als Progressionswochen.",
-      "Benchmark-WODs (Girls, Hero, Open) bleiben als gelegentlicher Maßstab zulässig — sie sind ohnehin Trainingsreiz und erzwingen keinen Wochenumbau. Format vorher auf wodwell.com verifizieren."
+      "Plateau-Signal: bleibt eine Stufe zweimal hängen, ist das der Befund — dann Übungswahl, Volumen oder Frequenz ändern, nicht messen.",
+      "Einzelner Max-Satz erlaubt, wenn die Woche sich nicht danach richtet. Ergebnis ist ein Datenpunkt; er darf eine Leiterstufe nie nach unten korrigieren, nach oben zählt er.",
+      "Unterbrechungsregel (nur BMU): ≥10 Tage ohne Kontakt → eine Reclaim-Session eine Stufe tiefer, bevor die Treppe weiterläuft. BMU in einem Box-WOD zählt als Kontakt."
     ]
   }
 }

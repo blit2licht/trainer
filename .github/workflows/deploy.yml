@@ -3,11 +3,12 @@ name: Deploy to IONOS
 on:
   push:
     branches: [main]
-    # Nur deployen, wenn sich die App oder dieser Workflow ändert. Reine
+    # Nur deployen, wenn sich die App oder der Deploy-Weg ändert. Reine
     # Coaching-Commits (coach/, Doku) lösen kein Deployment aus.
     paths:
       - 'website/**'
       - '.github/workflows/deploy.yml'
+      - '.github/scripts/**'
   workflow_dispatch:
 
 permissions:
@@ -16,6 +17,11 @@ permissions:
 concurrency:
   group: production-deploy
   cancel-in-progress: false
+
+env:
+  SFTP_HOST: ${{ secrets.FTP_HOST }}
+  SFTP_USER: ${{ secrets.FTP_USERNAME }}
+  SFTP_PASS: ${{ secrets.FTP_PASSWORD }}
 
 jobs:
   deploy:
@@ -28,49 +34,19 @@ jobs:
       - name: Install tools
         run: sudo apt-get update && sudo apt-get install -y lftp
 
-      - name: Determine expected week
-        id: week
-        shell: bash
-        run: |
-          # data.js wird seit der 3.0-Umstellung generiert (JSON-Schreibweise
-          # "id": "..."), früher stand hier JS-Objektsyntax id: "...".
-          WEEK_ID="$(sed -n 's/^[[:space:]]*"id": "\([^"]*\)",/\1/p' website/data.js | head -n 1)"
-          test -n "$WEEK_ID"
-          echo "id=$WEEK_ID" >> "$GITHUB_OUTPUT"
-
       - name: Deploy website via SFTP
-        env:
-          SFTP_HOST: ${{ secrets.FTP_HOST }}
-          SFTP_USER: ${{ secrets.FTP_USERNAME }}
-          SFTP_PASS: ${{ secrets.FTP_PASSWORD }}
-        run: |
-          mkdir -p ~/.ssh
-          echo "StrictHostKeyChecking no" >> ~/.ssh/config
-          lftp -u "$SFTP_USER","$SFTP_PASS" "sftp://$SFTP_HOST" <<EOF
-          mirror --reverse \
-            --exclude-glob config.php \
-            --exclude-glob config.template.php \
-            --exclude-glob CLAUDE.md \
-            ./website/ /
-          bye
-          EOF
+        run: bash .github/scripts/deploy.sh
 
       - name: Verify deployment
         id: verify
         continue-on-error: true
-        env:
-          EXPECTED_WEEK_ID: ${{ steps.week.outputs.id }}
-        run: |
-          for attempt in 1 2 3 4 5; do
-            if curl --fail --silent --show-error --max-time 20 \
-              https://training.martinwitte.de/data.js | grep --fixed-strings "$EXPECTED_WEEK_ID"; then
-              exit 0
-            fi
-            sleep 12
-          done
-          exit 1
+        run: bash .github/scripts/verify_live.sh
 
+      # Ab hier nur der Fehlerfall. Der Revert-Push läuft mit dem GITHUB_TOKEN
+      # und startet deshalb keinen neuen Workflow — der revertete Stand muss
+      # in diesem Lauf selbst wieder auf den Server.
       - name: Revert failed deployment
+        id: revert
         if: steps.verify.outcome == 'failure' && !startsWith(github.event.head_commit.message, 'Revert')
         run: |
           git config user.name "github-actions[bot]"
@@ -78,10 +54,21 @@ jobs:
           git revert --no-edit HEAD
           git push origin HEAD:main
 
+      - name: Redeploy reverted state
+        id: rollback
+        if: steps.revert.outcome == 'success'
+        continue-on-error: true
+        run: |
+          bash .github/scripts/deploy.sh
+          bash .github/scripts/verify_live.sh
+
       - name: Report deployment failure
         if: steps.verify.outcome == 'failure'
-        env:
-          EXPECTED_WEEK_ID: ${{ steps.week.outputs.id }}
         run: |
-          echo "::error::Website nicht erreichbar oder Wochen-ID $EXPECTED_WEEK_ID wurde nicht ausgeliefert."
+          echo "::error::Deployment fehlgeschlagen: Website nicht erreichbar oder Wochen-ID nicht ausgeliefert."
+          case "${{ steps.rollback.outcome }}" in
+            success) echo "::notice::Der oberste Commit wurde revertet, der vorherige Stand ist wieder live." ;;
+            failure) echo "::error::Revert ist gepusht, aber der Rückbau auf dem Server ist fehlgeschlagen. Der Server steht auf einem unklaren Stand — Workflow von Hand neu starten." ;;
+            *)       echo "::error::Kein Rückbau erfolgt (Revert-Commit an der Spitze oder Revert fehlgeschlagen). Server von Hand prüfen." ;;
+          esac
           exit 1

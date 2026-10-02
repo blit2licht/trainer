@@ -25,6 +25,6 @@ Produktrahmen: `PRODUCT.md`. Gestaltung: `DESIGN.md` und `design/dunkelkammer.ht
 Eine UI-Änderung ist erst fertig, wenn sie angesehen wurde. Datenchecks reichen nicht.
 
 1. Lokal starten: `python3 -m http.server 8765 --directory website`. Die PHP-Endpoints fehlen lokal; Verdicts laufen dann im Stub-Modus, Notizen laden nicht.
-2. Bei 375 px Breite ansehen, jeweils die ganze Seite: Wochenliste, ein Box-Tag, eine eigene Einheit („Fokus-Tag"), die Vorschau auf die nächste Woche.
+2. Bei 375 px Breite ansehen, jeweils die ganze Seite: Wochenliste, ein Box-Tag, ein Open-Gym-Tag („Fokus-Tag“), die Vorschau auf die nächste Woche.
 3. Auf abgeschnittenen Text, Überläufe und Umbrüche achten, mit den längsten echten Inhalten der Woche.
 4. Nach dem Deployment dieselben Ansichten live prüfen und den Stempel in der ausgelieferten `index.html` mit dem im Repo vergleichen.

@@ -7,7 +7,7 @@ Technischer Überblick des Coaching-Systems. Reine Referenz — die Coaching-Wah
 Zwei Aufgaben, mehr nicht:
 
 1. **Plan ausliefern.** Der freigegebene Wochenplan geht als generierter Payload ans Handy.
-2. **Rückmeldung erfassen.** Verdict je Block in der eigenen Einheit, Tagesnotiz an allen Tagen.
+2. **Rückmeldung erfassen.** Verdict je Block im Open Gym, Tagesnotiz an allen Tagen.
 
 Lasten, Ceilings und Ziele pflegt der Coach von Hand in `state.json` und `profile.json`. Eine Engine, die aus Verdicts automatisch Lasten ableitet (`derive_state.py`, `derived.json`), war geplant und ist am 30.09.2026 eingestellt worden: Bei zwei Technik-Zielen und einer eigenen Einheit pro Woche gibt es nichts zu rechnen. Ebenfalls verworfen: die Werkstatt am Desktop.
 
@@ -47,7 +47,7 @@ Drei Tagestypen, es gibt kein „offen":
 |---|---|---|
 | `rest` | Ruhetag, entschieden | `plan_note`, `warum` |
 | `box` | Box-Tag (auch Ride) | `einheit`, `sub`, `wod[]`, `plan_note`, `warum` |
-| `own` | eigene Einheit (in App und Code „Fokus-Tag") | `focus`, `focus_label`, `blocks[]`, `plan_note`, optional `recovery_day` |
+| `own` | Open Gym (bisher „eigene Einheit“; in App und Code „Fokus-Tag“) | `focus`, `focus_label`, `blocks[]`, `plan_note`, optional `recovery_day` |
 
 - `plan_note` ist Coach-Prosa und wird gestrippt. `warum` wandert mit und ist am Handy unter „Begründung" ausklappbar.
 - **Box-Tag:** `wod[]` ist eine Liste von Teilen mit `struktur`, optional `format`, und `bewegungen[]` (`reps`, `name`, `detail`). Keine `ex_id`, keine Targets, kein Verdict-Button. Die zielbezogene Ansage an Tagen mit Zielkontakt steht in `warum`.
@@ -83,7 +83,7 @@ Tabelle `verdicts` (Schema: `scripts/verdicts_schema.sql`): `iso_date`, `ex_id`,
 - `website/save_verdict.php`: Schreiben mit Shared Secret. Antwort ist der gespeicherte Zeilenstand, die App zeigt den Serverstand und nie eine Tap-Annahme. `verdict: 'clear'` löscht die Zeile (Rücknahme eines Fehltaps).
 - `website/get_verdicts.php?from=YYYY-MM-DD&to=YYYY-MM-DD`: Lesen.
 - Eine fehlende Zeile heißt „kein Verdict" und ist nie ein Miss.
-- Verdicts gibt es nur in der eigenen Einheit. An Box-Tagen mit Zielkontakt steht die Rückmeldung als ein Satz in der Tagesnotiz; ein Verdict-Button dort ist Teil des offenen App-Pakets (`coach/auftraege/app-paket-box-tag.md`).
+- Verdicts gibt es nur im Open Gym. An Box-Tagen mit Zielkontakt steht die Rückmeldung als ein Satz in der Tagesnotiz; ein Verdict-Button dort ist Teil des offenen App-Pakets (`coach/auftraege/app-paket-box-tag.md`).
 
 ## Tagesnotizen
 
@@ -95,7 +95,7 @@ Tabelle `verdicts` (Schema: `scripts/verdicts_schema.sql`): `iso_date`, `ex_id`,
 
 - **Spalten `session_feel` und `blocks_done` in `session_notes`.** Die Session-Feel-Skala ist seit dem 31.08.2026 abgeschafft, der Erledigt-Rückkanal `blocks_done` wurde nie gebaut (Verdicts haben ihn ersetzt). `website/notes_db.php` erkennt zur Laufzeit, ob die Feel-Spalte `session_feel` oder noch `rpe_feel` heißt und ob `blocks_done` existiert; `save_note.php` und `get_notes.php` bedienen beides weiter. Das läuft fehlerfrei und bleibt so: Ein Aufräumen bräuchte ein `ALTER TABLE` auf dem Live-Server ohne Nutzen für das Training.
 - Die SQL-Datei zur Umbenennung `rpe_feel` → `session_feel` vom 19.07.2026 liegt nur noch in der Git-Historie (`migrations/`). Ob sie auf dem Server gelaufen ist, ist wegen der Laufzeiterkennung unerheblich.
-- **Begriff „Fokus-Tag"** in `index.html`, `DESIGN.md` und `design/`: meint den Tag mit der eigenen Einheit (`day_type: own`).
+- **Begriff „Fokus-Tag"** in `index.html`, `DESIGN.md` und `design/`: meint den Open-Gym-Tag (`day_type: own`).
 
 ## Datenquellen (extern)
 

@@ -25,7 +25,7 @@ Zwei bestätigte Nutzungsszenen, nach Härte der Anforderung:
 1. **Im Gym am Handy, mitten im Satz.** Kurzer Blick zwischen zwei Sätzen oder
    vor dem WOD, oft mit Magnesium an den Händen, wechselndes Licht, Zeitdruck.
    Diese Szene stellt die härtesten Anforderungen und gewinnt im Konflikt.
-2. **Nach der Einheit: Rückmeldung erfassen.** In der eigenen Einheit das
+2. **Nach der Einheit: Rückmeldung erfassen.** Im Open Gym das
    Verdict je Block (Done/Fail), an jedem Tag die Notiz — direkt nach dem
    Training am Handy.
 
@@ -41,7 +41,7 @@ Snatch und Clean & Jerk; im Datenmodell der Tagestyp `own`, bisher „eigene
 Einheit“). Die App tut zwei Dinge:
 
 - **Plan ausliefern:** den freigegebenen Wochenplan an die Box bringen — an
-  Box-Tagen das WOD mit Level und Ansage, in der eigenen Einheit die Blöcke mit
+  Box-Tagen das WOD mit Level und Ansage, im Open Gym die Blöcke mit
   Lasten.
 - **Rückmeldung erfassen:** Verdicts und Notizen entgegennehmen, damit der
   Coach die nächste Woche auf dem aufbaut, was tatsächlich passiert ist.
@@ -67,7 +67,7 @@ hinter einem Prompt. Die Lastentscheidung bleibt bei Martin und seinem Coach.
   `coach/plan/<jahr>-W<nr>.json`; `scripts/build_payload.py` erzeugt daraus
   `website/data.js`. Der Payload trägt die laufende und die nächste Woche,
   vergangene Wochen zeigt das Handy nicht.
-- **Rückkanal.** Verdict per Done/Fail-Tap in der eigenen Einheit
+- **Rückkanal.** Verdict per Done/Fail-Tap im Open Gym
   (`save_verdict.php`, Rückspiegelung über `get_verdicts.php`; bei `technical`
   nach Fail die Rückfrage Technik/Last). An Box-Tagen die Tagesnotiz; an Tagen
   mit Zielkontakt (Snatch, C&J) ein Satz mit Top-Last und sauber ja/nein. Ein

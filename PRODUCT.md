@@ -35,9 +35,10 @@ Die Werkstatt am Desktop wurde am 30.09.2026 verworfen (nie genutzt).
 ## Product Purpose
 
 Trainer 3.0 ist die **Handy-Seite eines KI-Coaches mit versioniertem Gedächtnis**
-(`coach/`). Seit dem 30.09.2026 ist die Box die Hauptbühne: Martin trainiert an
-4–5 Tagen im Kurs, dazu kommt eine kurze eigene Einheit pro Woche. Die App tut
-zwei Dinge:
+(`coach/`). Seit dem 30.09.2026 ist die Box die Hauptbühne. Ab W42 gilt im
+Regelfall 3 Box + 1–2 Open Gym (~75 min, Technik und aktive Lastprogression bei
+Snatch und Clean & Jerk; im Datenmodell der Tagestyp `own`, bisher „eigene
+Einheit“). Die App tut zwei Dinge:
 
 - **Plan ausliefern:** den freigegebenen Wochenplan an die Box bringen — an
   Box-Tagen das WOD mit Level und Ansage, in der eigenen Einheit die Blöcke mit
@@ -71,7 +72,7 @@ hinter einem Prompt. Die Lastentscheidung bleibt bei Martin und seinem Coach.
   nach Fail die Rückfrage Technik/Last). An Box-Tagen die Tagesnotiz; an Tagen
   mit Zielkontakt (Snatch, C&J) ein Satz mit Top-Last und sauber ja/nein. Ein
   fehlendes Verdict ist nie ein Miss.
-- **Recovery** filtert am Trainingstag (Kappungsregel in
+- **Recovery** filtert am Trainingstag (Abschnitt „Recovery und Steigerungen“ in
   `coach/instructions.md`), nie in der Wochenplanung und nie auf der Website.
 - **Übungs-Registry** `coach/exercises.json`: `ex_id`, Name, Kurzname, Aliasse,
   `class`.
@@ -156,8 +157,9 @@ hinter einem Prompt. Die Lastentscheidung bleibt bei Martin und seinem Coach.
    oder einen Satz; ein fehlendes Verdict ist Unsicherheit, kein Miss.
 4. **Vorschlag, nie Automatik.** Der Coach schlägt vor, der Mensch entscheidet.
    Recovery filtert am Tag, nicht im Plan.
-5. **Kein zweites Programm neben der Box.** Die App zeigt das Box-Training und
-   ergänzt nur, was dort fehlt.
+5. **Kein zweites Vollprogramm neben der Box.** Die App zeigt das Box-Training
+   und das Open Gym. Das Open Gym hat eine eigene Aufgabe (Technik und aktive
+   Lastprogression bei Snatch und Clean & Jerk) und ist kein Lückenfüller.
 
 ## Accessibility & Inclusion
 

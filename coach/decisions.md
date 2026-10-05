@@ -407,3 +407,19 @@ Freigabe-Rückfragen zurückzugeben. Beschlossen: kg-Regel in instructions.md
 Prozentangaben der W41 in kg umgerechnet, unterwöchige Korrekturen ohne
 Commit-Rückfrage veröffentlichen (stand schon im Kanon, wurde nicht befolgt).
 Offen: kg-Zahl für den Paused Bench am 11.10., dafür fehlt eine Bench-Referenz.
+
+---
+
+## 2026-10-05 — Schätzregel für Planlasten, Widerspruch im Kanon aufgelöst
+
+Nach der Zweitdiagnose zur Prozent-Abweichung (coach/abweichungen/2026-10-05-prozent-statt-kg.md)
+gibt Martin das Go: Der Coach schätzt fehlende Lasten selbst, statt zurückzufragen.
+Geändert in instructions.md: Schrittfolge unter „Lasten und RPE“ (schätzen,
+markieren, Korridor, RPE-Abbruch, Konfidenz; Martins eigene Schätzung hat Vorrang,
+der Plan wartet nicht auf Antworten), Ausnahme für Planlasten in der Quellen-Disziplin
+(Punkt 3 und 90-%-Schwelle in Punkt 8), WHOOP-Prompts nur noch optional, Kurzhanteln
+bei Unklarheit geschätzt statt RPE, RPE-Abbruchkriterium auch an Box-Tagen erlaubt,
+Open-Gym-Format immer mit kg (Kalibrierungen: Stufen in kg, Top offen).
+Die Lücke des Build-Riegels (Angaben ganz ohne Zahl) nimmt Martin hin; der Coach
+prüft sie vor jedem Commit selbst. Dazu neue Lastreferenzen nach Martins Angaben:
+Deadlift 160 kg, Strict Press 5 @ 62,5 kg (13.08.) mit geschätzter 1RM 70 kg.

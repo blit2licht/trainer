@@ -93,6 +93,15 @@
       "box_4er_w41_plan": "60 → 75 kg aufbauend, Top 75 nur bei RPE ≤ 8 (So 11.10.)",
       "note": "Keine belegte Bench-Zahl. Martin 05.10.2026: Bauchgefühl 4er ~70 kg, ausdrücklich unsicher. Coach-Ableitung aus Push Press 82,5 und Strict HSPU 10: 4er 75–80, 1RM-Spanne 80–95 (~50 % sicher). Plan nimmt Martins Zahl als Kern. Nach dem 11.10. durch den gelaufenen 4er ersetzen."
     },
+    "deadlift": {
+      "kg_1rm": 160,
+      "note": "Martin 05.10.2026, ohne Datum, als 1RM geführt. Referenz für Box-Lasten in kg; zuletzt im Box-WOD 85 kg (W38, Ladder mit T2B)."
+    },
+    "strict_press": {
+      "kg_1rm_geschaetzt": 70,
+      "satz": "5 @ 62,5 kg (13.08.2026, Martin)",
+      "note": "1RM aus dem 5er geschätzt: Brzycki 70,3, Epley 72,9; geführt mit 70 kg, Korridor 70–72,5 (~75 % sicher). Der Satz ist 7 Wochen alt, mit Urlaub dazwischen. Beim nächsten belegten Satz ersetzen."
+    },
     "pause_ohs": {
       "kg": 55,
       "schema": "3x3",

@@ -22,12 +22,17 @@
             {
               "reps": "6",
               "name": "Box Squat",
-              "detail": "80–85 kg"
+              "detail": "80–85 kg",
+              "kg": [
+                80,
+                85
+              ]
             },
             {
               "reps": "10/10",
               "name": "Single Leg Calf Raise",
-              "detail": ""
+              "detail": "",
+              "kg": "ohne"
             }
           ]
         },
@@ -37,17 +42,20 @@
             {
               "reps": "2000 m",
               "name": "Row",
-              "detail": "oder 1600 m Run / 120 Cal"
+              "detail": "oder 1600 m Run / 120 Cal",
+              "kg": "ohne"
             },
             {
               "reps": "30",
               "name": "Hang Power Clean",
-              "detail": "60 kg · Level 2"
+              "detail": "60 kg · Level 2",
+              "kg": 60
             },
             {
               "reps": "50",
               "name": "Jump Squats",
-              "detail": ""
+              "detail": "",
+              "kg": "ohne"
             }
           ]
         }
@@ -73,42 +81,50 @@
             {
               "reps": "100",
               "name": "Double-Unders",
-              "detail": ""
+              "detail": "",
+              "kg": "ohne"
             },
             {
               "reps": "25",
               "name": "Power Clean",
-              "detail": "52,5 kg · Level 2"
+              "detail": "52,5 kg · Level 2",
+              "kg": 52.5
             },
             {
               "reps": "75",
               "name": "Double-Unders",
-              "detail": ""
+              "detail": "",
+              "kg": "ohne"
             },
             {
               "reps": "20",
               "name": "Front Squat",
-              "detail": "52,5 kg"
+              "detail": "52,5 kg",
+              "kg": 52.5
             },
             {
               "reps": "50",
               "name": "Double-Unders",
-              "detail": ""
+              "detail": "",
+              "kg": "ohne"
             },
             {
               "reps": "15",
               "name": "Clean & Jerk",
-              "detail": "52,5 kg"
+              "detail": "52,5 kg",
+              "kg": 52.5
             },
             {
               "reps": "25",
               "name": "Double-Unders",
-              "detail": ""
+              "detail": "",
+              "kg": "ohne"
             },
             {
               "reps": "10",
               "name": "Squat Clean",
-              "detail": "52,5 kg"
+              "detail": "52,5 kg",
+              "kg": 52.5
             }
           ]
         }
@@ -128,22 +144,26 @@
             {
               "reps": "12",
               "name": "Cal Bike",
-              "detail": ""
+              "detail": "",
+              "kg": "ohne"
             },
             {
               "reps": "10",
               "name": "DB Bench Press",
-              "detail": "2× 15 kg"
+              "detail": "2× 15 kg",
+              "kg": 15
             },
             {
               "reps": "10",
               "name": "Renegade Rows",
-              "detail": "5/Seite · 2× 15 kg"
+              "detail": "5/Seite · 2× 15 kg",
+              "kg": 15
             },
             {
               "reps": "30 s",
               "name": "Wall Sit",
-              "detail": ""
+              "detail": "",
+              "kg": "ohne"
             }
           ]
         },
@@ -153,22 +173,26 @@
             {
               "reps": "12",
               "name": "Cal Row/Ski",
-              "detail": ""
+              "detail": "",
+              "kg": "ohne"
             },
             {
               "reps": "10",
               "name": "Sit-ups",
-              "detail": ""
+              "detail": "",
+              "kg": "ohne"
             },
             {
               "reps": "10",
               "name": "Box Jumps",
-              "detail": ""
+              "detail": "",
+              "kg": "ohne"
             },
             {
               "reps": "30 s",
               "name": "Front Plank",
-              "detail": ""
+              "detail": "",
+              "kg": "ohne"
             }
           ]
         },
@@ -179,22 +203,26 @@
             {
               "reps": "10",
               "name": "Burpees",
-              "detail": ""
+              "detail": "",
+              "kg": "ohne"
             },
             {
               "reps": "5",
               "name": "Devil Press",
-              "detail": "2× 15 kg"
+              "detail": "2× 15 kg",
+              "kg": 15
             },
             {
               "reps": "10",
               "name": "Alt. DB Snatch",
-              "detail": "15 kg · Level 2"
+              "detail": "15 kg · Level 2",
+              "kg": 15
             },
             {
               "reps": "30 s",
               "name": "Hang",
-              "detail": ""
+              "detail": "",
+              "kg": "ohne"
             }
           ]
         }
@@ -220,7 +248,11 @@
             {
               "reps": "3",
               "name": "Power Snatch",
-              "detail": "37,5–40 kg · TnG wenn sauber"
+              "detail": "37,5–40 kg · TnG wenn sauber",
+              "kg": [
+                37.5,
+                40
+              ]
             }
           ]
         },
@@ -230,7 +262,8 @@
             {
               "reps": "2",
               "name": "Snatch Pull",
-              "detail": "bis 60 kg"
+              "detail": "bis 60 kg",
+              "kg": 60
             }
           ]
         },
@@ -241,17 +274,20 @@
             {
               "reps": "12",
               "name": "Alt. DB Snatch",
-              "detail": "20 kg · Level 2 · Min 1"
+              "detail": "20 kg · Level 2 · Min 1",
+              "kg": 20
             },
             {
               "reps": "5",
               "name": "Burpee Box Jump Over",
-              "detail": "60 cm · Min 2"
+              "detail": "60 cm · Min 2",
+              "kg": "ohne"
             },
             {
               "reps": "Max",
               "name": "Chest-to-Bar Pull-ups",
-              "detail": "Rest von Min 2"
+              "detail": "Rest von Min 2",
+              "kg": "ohne"
             }
           ]
         }
@@ -271,12 +307,17 @@
             {
               "reps": "4",
               "name": "Bench Press",
-              "detail": "60 → 75 kg aufbauend (Schätzung) · 75 nur bei RPE ≤ 8"
+              "detail": "60 → 75 kg aufbauend (Schätzung) · 75 nur bei RPE ≤ 8",
+              "kg": [
+                60,
+                75
+              ]
             },
             {
               "reps": "10",
               "name": "Banded Face Pulls",
-              "detail": ""
+              "detail": "",
+              "kg": "ohne"
             }
           ]
         },
@@ -286,7 +327,8 @@
             {
               "reps": "Max",
               "name": "Paused Bench Press",
-              "detail": "42,5 kg (60 % des 4er-Tops; 70 → 42,5 · 75 → 45 · 80 → 47,5) · 2 s Pause"
+              "detail": "42,5 kg (60 % des 4er-Tops; 70 → 42,5 · 75 → 45 · 80 → 47,5) · 2 s Pause",
+              "kg": 42.5
             }
           ]
         },
@@ -296,27 +338,32 @@
             {
               "reps": "200 m",
               "name": "Run",
-              "detail": ""
+              "detail": "",
+              "kg": "ohne"
             },
             {
               "reps": "20",
               "name": "Front Rack Lunge Steps",
-              "detail": "30 kg · Level 2"
+              "detail": "30 kg · Level 2",
+              "kg": 30
             },
             {
               "reps": "20",
               "name": "Push Press",
-              "detail": "30 kg"
+              "detail": "30 kg",
+              "kg": 30
             },
             {
               "reps": "20",
               "name": "Cal any machine",
-              "detail": ""
+              "detail": "",
+              "kg": "ohne"
             },
             {
               "reps": "20",
               "name": "Sit-ups",
-              "detail": ""
+              "detail": "",
+              "kg": "ohne"
             }
           ]
         }

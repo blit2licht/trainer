@@ -20,6 +20,11 @@ Der Generator
     selben Feld eine kg-Zahl tragen (Martin-Regel 2026-10-05, Abweichung
     coach/abweichungen/2026-10-05-prozent-statt-kg.md). Steigungs-, Puls-
     oder Recovery-Prozente sind erlaubt (PCT_ALLOW).
+  - BRICHT AB, wenn eine Bewegung eines Box-Tags kein Pflichtfeld `kg` trägt
+    (Zahl, [min, max] oder "ohne"), wenn die kg-Zahl nicht im angezeigten
+    `detail` steht oder wenn eine Hantelbewegung als "ohne" markiert ist
+    (Martin 05.10.2026). `kg` ist Prüffeld und erreicht das Handy nicht; die
+    App liest die Last weiter aus `detail`.
 
 SCHARF seit 30.08.2026: Standard-Ausgabe ist website/data.js. Der Generator
 stempelt dabei den Inhalts-Hash in die data.js-Einbindung von website/index.html
@@ -73,6 +78,75 @@ def pct_without_kg(text: str) -> bool:
     return False
 
 
+# Pflichtfeld kg je Box-Bewegung (Martin 05.10.2026). "ohne" ist die
+# ausdrückliche Entscheidung „keine externe Last“ (Rudern, Burpees, DU …).
+KG_OHNE = "ohne"
+# Bewegungen, die nie "ohne" sein dürfen: Langhantel, Kurzhantel, Kettlebell,
+# Wall Ball, Sandbag. Lunges und Squats ohne Zusatz bleiben bewusst draußen,
+# weil es sie auch mit Körpergewicht gibt.
+LOADED_RE = re.compile(
+    r"\b(DB|KB|Dumbbell|Kettlebell|Barbell|Sandbag|Wall Ball|Clean|Snatch|"
+    r"Jerk|Thruster|Deadlift|Bench|Press|Front Squat|Back Squat|Box Squat|"
+    r"Overhead Squat|OHS|Front Rack)\b", re.IGNORECASE)
+NUM_RE = re.compile(r"\d+(?:,\d+)?")
+
+
+def fmt_kg(value: float) -> str:
+    """80 → '80', 47.5 → '47,5' (Schreibweise wie in detail)."""
+    return (f"{value:.2f}".rstrip("0").rstrip(".")).replace(".", ",")
+
+
+def lint_box_kg_fields(day: dict, errors: list[str]) -> None:
+    """Jede Box-Bewegung trägt kg: Zahl, [min, max] oder "ohne", passend zu detail."""
+    iso = day.get("iso_date")
+    for teil in day.get("wod", []) or []:
+        for bew in teil.get("bewegungen", []) or []:
+            name = bew.get("name", "?")
+            detail = bew.get("detail") or ""
+            where = f"{iso} {day.get('einheit') or 'Box'} / {name}"
+            if "kg" not in bew:
+                errors.append(f"{where}: Pflichtfeld kg fehlt — Zahl, [min, max] "
+                              f"oder \"ohne\" eintragen.")
+                continue
+            kg = bew["kg"]
+            if kg == KG_OHNE:
+                if LOADED_RE.search(name):
+                    errors.append(f"{where}: als \"ohne\" markiert, ist aber eine "
+                                  f"Hantelbewegung — kg-Zahl eintragen.")
+                elif KG_RE.search(detail):
+                    errors.append(f"{where}: kg \"ohne\", aber detail nennt eine "
+                                  f"Last «{detail}».")
+                continue
+            values = kg if isinstance(kg, list) else [kg]
+            if not values or len(values) > 2 or not all(
+                    isinstance(v, (int, float)) and not isinstance(v, bool)
+                    and v > 0 for v in values):
+                errors.append(f"{where}: kg «{kg}» ungültig — erlaubt sind eine "
+                              f"Zahl, [min, max] oder \"ohne\".")
+                continue
+            if not KG_RE.search(detail):
+                errors.append(f"{where}: kg {kg}, aber detail «{detail}» zeigt "
+                              f"keine kg-Zahl — das Handy liest die Last aus detail.")
+                continue
+            shown = set(NUM_RE.findall(detail))
+            missing = [fmt_kg(v) for v in values if fmt_kg(v) not in shown]
+            if missing:
+                errors.append(f"{where}: kg {kg} passt nicht zu detail «{detail}» "
+                              f"(fehlt: {', '.join(missing)} kg).")
+
+
+def strip_kg(wod: list) -> list:
+    """Prüffeld kg aus den Bewegungen entfernen, bevor der Payload entsteht."""
+    out = []
+    for teil in wod:
+        teil = dict(teil)
+        if isinstance(teil.get("bewegungen"), list):
+            teil["bewegungen"] = [{k: v for k, v in b.items() if k != "kg"}
+                                  for b in teil["bewegungen"]]
+        out.append(teil)
+    return out
+
+
 def lint_box_loads(day: dict, errors: list[str]) -> None:
     """Box-/Ruhetag: Prozent ohne kg in sub, plan_note, warum oder detail ist ein Fehler."""
     iso = day.get("iso_date")
@@ -109,10 +183,13 @@ def build_day(day: dict, reg: dict, warns: list[str],
     if dtype != "own":
         if errors is not None:
             lint_box_loads(day, errors)
+            if dtype == "box":
+                lint_box_kg_fields(day, errors)
         out = {"iso_date": iso, "day_type": dtype}
         for key in ("einheit", "sub", "wod", "warum"):
             if key in day:
-                out[key] = day[key]
+                out[key] = strip_kg(day[key]) if key == "wod" and \
+                    isinstance(day[key], list) else day[key]
         return out
 
     out_blocks = []

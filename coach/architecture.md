@@ -50,7 +50,8 @@ Drei Tagestypen, es gibt kein „offen":
 | `own` | Open Gym (bisher „eigene Einheit“; in App und Code „Fokus-Tag“) | `focus`, `focus_label`, `blocks[]`, `plan_note`, optional `recovery_day` |
 
 - `plan_note` ist Coach-Prosa und wird gestrippt. `warum` wandert mit und ist am Handy unter „Begründung" ausklappbar.
-- **Box-Tag:** `wod[]` ist eine Liste von Teilen mit `struktur`, optional `format`, und `bewegungen[]` (`reps`, `name`, `detail`). Keine `ex_id`, keine Targets, kein Verdict-Button. Die zielbezogene Ansage an Tagen mit Zielkontakt steht in `warum`.
+- **Box-Tag:** `wod[]` ist eine Liste von Teilen mit `struktur`, optional `format`, und `bewegungen[]` (`reps`, `name`, `detail`, `kg`). Keine `ex_id`, keine Targets, kein Verdict-Button. Die zielbezogene Ansage an Tagen mit Zielkontakt steht in `warum`.
+- **Pflichtfeld `kg` je Box-Bewegung (seit 05.10.2026):** eine Zahl (`52.5`), ein Bereich (`[80, 85]`) oder `"ohne"` für Bewegungen ohne externe Last. Kurzhanteln: kg je Hantel. Der Build bricht ab, wenn das Feld fehlt, wenn die Zahl nicht im `detail` steht (die App liest die Last aus `detail`) oder wenn eine Hantelbewegung als `"ohne"` markiert ist. `kg` ist ein Prüffeld und wird vor dem Payload entfernt.
 - **Eigene Einheit:** `blocks[]` mit `block_id`, `prio` (`required` oder optional), `min`, `title`, `superset`, `exercises[]`. Jede Übung trägt `ex_id` (aus der Registry), `target` und `warum`. `title` ist nur der Übungs- oder Blockname; Zusätze gehören in `note` oder `warum` (der Build warnt bei Klammern oder Gedankenstrich im Titel). Ein Block mit mehreren nur angezeigten Bewegungen bekommt über `verdict_ex_id` genau ein Verdict.
 
 ### `target`-Modi

@@ -423,3 +423,9 @@ Open-Gym-Format immer mit kg (Kalibrierungen: Stufen in kg, Top offen).
 Die Lücke des Build-Riegels (Angaben ganz ohne Zahl) nimmt Martin hin; der Coach
 prüft sie vor jedem Commit selbst. Dazu neue Lastreferenzen nach Martins Angaben:
 Deadlift 160 kg, Strict Press 5 @ 62,5 kg (13.08.) mit geschätzter 1RM 70 kg.
+
+Nachtrag am selben Tag: Martin beauftragt das Pflichtfeld `kg` je Box-Bewegung.
+Die hingenommene Lücke ist damit geschlossen. Der Build verlangt für jede
+Bewegung eine kg-Zahl, einen Bereich oder ausdrücklich „ohne“, prüft sie gegen
+die angezeigte Zahl und lehnt „ohne“ bei Hantelbewegungen ab. Das Feld bleibt
+intern, die App ist unverändert.

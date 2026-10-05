@@ -50,7 +50,7 @@ const DATA = {
             ]
           }
         ],
-        "warum": "Box Squats bei 70 Prozent, danach 2000 Meter rudern, 30 Hang Power Cleans und 50 Jump Squats. Genau die Mischung, die du wolltest: moderate Hantel, viel Kreislauf."
+        "warum": "Box Squats mit 80 Kilo, danach 2000 Meter rudern, 30 Hang Power Cleans und 50 Jump Squats. Genau die Mischung, die du wolltest: moderate Hantel, viel Kreislauf."
       },
       {
         "iso_date": "2026-10-06",
@@ -115,7 +115,7 @@ const DATA = {
         "iso_date": "2026-10-08",
         "day_type": "box",
         "einheit": "3 × 10 Min AMRAP",
-        "sub": "Bike / DB Bench / Renegade Rows / Wall Sit · Row-Ski / Sit-ups / Box Jumps / Plank · Burpees / Devil Press / DB Snatch / Hang",
+        "sub": "Bike / DB Bench / Renegade Rows / Wall Sit · Row-Ski / Sit-ups / Box Jumps / Plank · Burpees / Devil Press / DB Snatch / Hang · DBs 2× 15 kg",
         "wod": [
           {
             "struktur": "10 Min AMRAP · danach 4 Min Pause",
@@ -133,7 +133,7 @@ const DATA = {
               {
                 "reps": "10",
                 "name": "Renegade Rows",
-                "detail": "5/Seite"
+                "detail": "5/Seite · 2× 15 kg"
               },
               {
                 "reps": "30 s",
@@ -184,7 +184,7 @@ const DATA = {
               {
                 "reps": "10",
                 "name": "Alt. DB Snatch",
-                "detail": ""
+                "detail": "15 kg · Level 2"
               },
               {
                 "reps": "30 s",
@@ -255,7 +255,7 @@ const DATA = {
         "iso_date": "2026-10-11",
         "day_type": "box",
         "einheit": "Bench Press + 16 Min AMRAP",
-        "sub": "E2:15 × 4: 4 Bench + 10 Face Pulls · 1× Max Paused Bench @ 60 % · AMRAP 16: 200 m Run / 20 FR Lunges / 20 Push Press / 20 Cal / 20 Sit-ups",
+        "sub": "E2:15 × 4: 4 Bench 65 → 80 kg + 10 Face Pulls · 1× Max Paused Bench @ 47,5 kg · AMRAP 16: 200 m Run / 20 FR Lunges / 20 Push Press / 20 Cal / 20 Sit-ups",
         "wod": [
           {
             "struktur": "Every 2:15 × 4",
@@ -263,7 +263,7 @@ const DATA = {
               {
                 "reps": "4",
                 "name": "Bench Press",
-                "detail": "schwerster sauberer 4er"
+                "detail": "65 → 80 kg aufbauend (Schätzung) · Top 80 nur bei RPE ≤ 8"
               },
               {
                 "reps": "10",
@@ -278,7 +278,7 @@ const DATA = {
               {
                 "reps": "Max",
                 "name": "Paused Bench Press",
-                "detail": "60 % des schwersten 4er · 2 s Pause"
+                "detail": "47,5 kg (60 % des 4er-Tops; 75 → 45 · 80 → 47,5 · 82,5 → 50) · 2 s Pause"
               }
             ]
           },
@@ -313,7 +313,7 @@ const DATA = {
             ]
           }
         ],
-        "warum": "Bankdrücken in Viererserien, dann 16 Minuten AMRAP mit Laufen, Lunges, Push Press und Kalorien. Bei gutem Wetter ist die Ausfahrt der gleichwertige Tausch."
+        "warum": "Bankdrücken in Viererserien aufbauend bis 75 bis 80 Kilo, dann ein Satz Pausen-Bankdrücken mit 47,5 Kilo auf Wiederholungen, danach 16 Minuten AMRAP mit Laufen, Lunges, Push Press und Kalorien. Die Bench-Zahlen sind eine Schätzung ohne belegte Referenz: bei RPE 8 ist Schluss, der gelaufene 4er wird die Referenz. Bei gutem Wetter ist die Ausfahrt der gleichwertige Tausch."
       }
     ]
   },
@@ -367,7 +367,7 @@ const DATA = {
               ]
             }
           ],
-          "warum": "Box Squats bei 70 Prozent, danach 2000 Meter rudern, 30 Hang Power Cleans und 50 Jump Squats. Genau die Mischung, die du wolltest: moderate Hantel, viel Kreislauf."
+          "warum": "Box Squats mit 80 Kilo, danach 2000 Meter rudern, 30 Hang Power Cleans und 50 Jump Squats. Genau die Mischung, die du wolltest: moderate Hantel, viel Kreislauf."
         },
         {
           "iso_date": "2026-10-06",
@@ -432,7 +432,7 @@ const DATA = {
           "iso_date": "2026-10-08",
           "day_type": "box",
           "einheit": "3 × 10 Min AMRAP",
-          "sub": "Bike / DB Bench / Renegade Rows / Wall Sit · Row-Ski / Sit-ups / Box Jumps / Plank · Burpees / Devil Press / DB Snatch / Hang",
+          "sub": "Bike / DB Bench / Renegade Rows / Wall Sit · Row-Ski / Sit-ups / Box Jumps / Plank · Burpees / Devil Press / DB Snatch / Hang · DBs 2× 15 kg",
           "wod": [
             {
               "struktur": "10 Min AMRAP · danach 4 Min Pause",
@@ -450,7 +450,7 @@ const DATA = {
                 {
                   "reps": "10",
                   "name": "Renegade Rows",
-                  "detail": "5/Seite"
+                  "detail": "5/Seite · 2× 15 kg"
                 },
                 {
                   "reps": "30 s",
@@ -501,7 +501,7 @@ const DATA = {
                 {
                   "reps": "10",
                   "name": "Alt. DB Snatch",
-                  "detail": ""
+                  "detail": "15 kg · Level 2"
                 },
                 {
                   "reps": "30 s",
@@ -572,7 +572,7 @@ const DATA = {
           "iso_date": "2026-10-11",
           "day_type": "box",
           "einheit": "Bench Press + 16 Min AMRAP",
-          "sub": "E2:15 × 4: 4 Bench + 10 Face Pulls · 1× Max Paused Bench @ 60 % · AMRAP 16: 200 m Run / 20 FR Lunges / 20 Push Press / 20 Cal / 20 Sit-ups",
+          "sub": "E2:15 × 4: 4 Bench 65 → 80 kg + 10 Face Pulls · 1× Max Paused Bench @ 47,5 kg · AMRAP 16: 200 m Run / 20 FR Lunges / 20 Push Press / 20 Cal / 20 Sit-ups",
           "wod": [
             {
               "struktur": "Every 2:15 × 4",
@@ -580,7 +580,7 @@ const DATA = {
                 {
                   "reps": "4",
                   "name": "Bench Press",
-                  "detail": "schwerster sauberer 4er"
+                  "detail": "65 → 80 kg aufbauend (Schätzung) · Top 80 nur bei RPE ≤ 8"
                 },
                 {
                   "reps": "10",
@@ -595,7 +595,7 @@ const DATA = {
                 {
                   "reps": "Max",
                   "name": "Paused Bench Press",
-                  "detail": "60 % des schwersten 4er · 2 s Pause"
+                  "detail": "47,5 kg (60 % des 4er-Tops; 75 → 45 · 80 → 47,5 · 82,5 → 50) · 2 s Pause"
                 }
               ]
             },
@@ -630,7 +630,7 @@ const DATA = {
               ]
             }
           ],
-          "warum": "Bankdrücken in Viererserien, dann 16 Minuten AMRAP mit Laufen, Lunges, Push Press und Kalorien. Bei gutem Wetter ist die Ausfahrt der gleichwertige Tausch."
+          "warum": "Bankdrücken in Viererserien aufbauend bis 75 bis 80 Kilo, dann ein Satz Pausen-Bankdrücken mit 47,5 Kilo auf Wiederholungen, danach 16 Minuten AMRAP mit Laufen, Lunges, Push Press und Kalorien. Die Bench-Zahlen sind eine Schätzung ohne belegte Referenz: bei RPE 8 ist Schluss, der gelaufene 4er wird die Referenz. Bei gutem Wetter ist die Ausfahrt der gleichwertige Tausch."
         }
       ]
     }

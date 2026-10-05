@@ -14,6 +14,12 @@ Der Generator
   - LINTET: Klammern oder Gedankenstrich-Zusätze im Blocktitel = Warnung
     (Titel ist nur der Übungs-/Blockname; Planungsprosa gehört in note,
     nicht in den Titel).
+  - BRICHT AB (kein Payload, kein Stempel), wenn an einem Box- oder Ruhetag
+    eine Lastangabe nur in Prozent steht: jedes `sub`, `plan_note`, `warum`
+    und `detail` mit Prozentzeichen oder „Prozent" im Lastkontext muss im
+    selben Feld eine kg-Zahl tragen (Martin-Regel 2026-10-05, Abweichung
+    coach/abweichungen/2026-10-05-prozent-statt-kg.md). Steigungs-, Puls-
+    oder Recovery-Prozente sind erlaubt (PCT_ALLOW).
 
 SCHARF seit 30.08.2026: Standard-Ausgabe ist website/data.js. Der Generator
 stempelt dabei den Inhalts-Hash in die data.js-Einbindung von website/index.html
@@ -42,13 +48,57 @@ INDEX_HTML = REPO / "website" / "index.html"
 # RPE-Deckel führt — für Layer-/Accessory-Arbeit ohne vorgeschriebenes Gewicht.
 TARGET_MODES = {"kg", "bw", "bw_plus", "time", "band", "rpe"}
 
+# kg-Riegel (Martin-Regel 2026-10-05): eine Lastangabe nennt immer kg, ein
+# Prozentwert darf höchstens daneben stehen. Geprüft werden die Textfelder der
+# Box- und Ruhetage; Open-Gym-Lasten laufen über target.mode.
+KG_RE = re.compile(r"\d+(?:[,.]\d+)?\s*kg\b", re.IGNORECASE)
+PCT_RE = re.compile(r"\d\s*%|\bProzent\b", re.IGNORECASE)
+# Prozente, die keine Last sind: Steigung, Puls, Recovery, Pacing. Geprüft
+# wird das Umfeld (PCT_WINDOW Zeichen vor und nach dem Treffer).
+PCT_ALLOW = ("steigung", "incline", "gefälle", "neigung", "grade", "puls",
+             "herzfrequenz", "hfmax", "hf ", "hr ", "recovery", "zone",
+             "effort", "pace", "tempo", "dämpfer", "damper", "körperfett")
+PCT_WINDOW = 40
+
+
+def pct_without_kg(text: str) -> bool:
+    """True, wenn im Text ein Lastprozent steht, aber keine kg-Zahl."""
+    if not text or KG_RE.search(text):
+        return False
+    low = text.lower()
+    for m in PCT_RE.finditer(text):
+        window = low[max(0, m.start() - PCT_WINDOW):m.end() + PCT_WINDOW]
+        if not any(word in window for word in PCT_ALLOW):
+            return True
+    return False
+
+
+def lint_box_loads(day: dict, errors: list[str]) -> None:
+    """Box-/Ruhetag: Prozent ohne kg in sub, plan_note, warum oder detail ist ein Fehler."""
+    iso = day.get("iso_date")
+    einheit = day.get("einheit") or day.get("day_type")
+    for key in ("sub", "plan_note", "warum"):
+        text = day.get(key)
+        if isinstance(text, str) and pct_without_kg(text):
+            errors.append(f"{iso} {einheit} / {key}: Prozentangabe ohne kg in "
+                          f"«{text}» — Last immer in kg (instructions.md, "
+                          f"Lasten und RPE).")
+    for teil in day.get("wod", []) or []:
+        for bew in teil.get("bewegungen", []) or []:
+            detail = bew.get("detail")
+            if isinstance(detail, str) and pct_without_kg(detail):
+                errors.append(f"{iso} {einheit} / {bew.get('name')}: Prozentangabe "
+                              f"ohne kg in «{detail}» — Last immer in kg "
+                              f"(instructions.md, Lasten und RPE).")
+
 
 def load_json(path: Path) -> dict:
     with path.open(encoding="utf-8") as fh:
         return json.load(fh)
 
 
-def build_day(day: dict, reg: dict, warns: list[str]) -> dict:
+def build_day(day: dict, reg: dict, warns: list[str],
+              errors: list[str] | None = None) -> dict:
     """Ein Tag → Payload-Tag. Fokus-Tage tragen Vollzugsdaten, andere nur den Typ."""
     iso = day.get("iso_date")
     dtype = day.get("day_type")
@@ -57,6 +107,8 @@ def build_day(day: dict, reg: dict, warns: list[str]) -> dict:
     # einheit/sub/wod erreichen das Handy — der Tag-Klick zeigt die
     # DreamWOD-Kerninfos wie in 2.x (Martin, 23.08.).
     if dtype != "own":
+        if errors is not None:
+            lint_box_loads(day, errors)
         out = {"iso_date": iso, "day_type": dtype}
         for key in ("einheit", "sub", "wod", "warum"):
             if key in day:
@@ -195,18 +247,20 @@ def build_day(day: dict, reg: dict, warns: list[str]) -> dict:
     return day_out
 
 
-def build_week(plan: dict, reg: dict, warns: list[str]) -> dict:
+def build_week(plan: dict, reg: dict, warns: list[str],
+               errors: list[str] | None = None) -> dict:
     return {
         "id": plan.get("id"),
         "label": plan.get("label"),
         "meso": plan.get("meso"),
         "von": plan.get("von"),
         "bis": plan.get("bis"),
-        "days": [build_day(d, reg, warns) for d in plan.get("days", [])],
+        "days": [build_day(d, reg, warns, errors) for d in plan.get("days", [])],
     }
 
 
-def build_payload(plans: list[dict], exercises: dict, warns: list[str]) -> dict:
+def build_payload(plans: list[dict], exercises: dict, warns: list[str],
+                  errors: list[str] | None = None) -> dict:
     """Payload trägt jede noch nicht abgelaufene Planwoche (aktuelle + nächste).
 
     Grund (Martin, 23.08.): Wird die Folgewoche am Samstag veröffentlicht,
@@ -216,7 +270,7 @@ def build_payload(plans: list[dict], exercises: dict, warns: list[str]) -> dict:
     Vergangene Wochen bleiben draußen (keine Wochenrückschau am Handy).
     """
     reg = {e["ex_id"]: e for e in exercises["exercises"]}
-    weeks = [build_week(p, reg, warns) for p in plans]
+    weeks = [build_week(p, reg, warns, errors) for p in plans]
     weeks.sort(key=lambda w: w.get("von") or "")
     # week (Singular) bleibt als erste Woche stehen: Deployment-Check und
     # ältere Leser greifen weiter auf die aktuelle Wochen-ID zu.
@@ -307,7 +361,16 @@ def main() -> int:
     exercises = load_json(EXERCISES_JSON)
 
     warns: list[str] = []
-    payload = build_payload(plans, exercises, warns)
+    errors: list[str] = []
+    payload = build_payload(plans, exercises, warns, errors)
+    if errors:
+        # Harter Riegel: ohne kg-Zahl geht kein Plan auf das Handy — weder
+        # Payload noch Cache-Stempel werden geschrieben (Abweichung 05.10.2026).
+        print(f"FEHLER: {len(errors)} Lastangabe(n) ohne kg — Build abgebrochen, "
+              f"nichts geschrieben.", file=sys.stderr)
+        for e in errors:
+            print(f"  - {e}", file=sys.stderr)
+        return 1
     out_path = Path(args.out) if args.out else DEFAULT_OUT
     out_path.parent.mkdir(parents=True, exist_ok=True)
     out_path.write_text(render_js(payload), encoding="utf-8")

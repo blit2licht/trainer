@@ -1,6 +1,6 @@
 # Abweichung 2026-10-05: Lastvorgabe in Prozent statt Kilogramm
 
-**Status:** Sofortmaßnahmen erledigt (Commit `8a7dc07`), Vorbeugemaßnahme offen
+**Status:** Geschlossen am 05.10.2026 — Sofortmaßnahmen (`8a7dc07`), Restkorrektur der Woche, Lint-Riegel und Zweitdiagnose (Folgecommit). Offen bleibt nur die Übernahme der gelaufenen Lasten im W41-Review.
 **Betroffen:** W41, Box-Tag Mo 05.10. (Box Squat), Fr 09.10. (Power Snatch, Snatch Pulls), So 11.10. (Paused Bench)
 **Gemeldet von:** Martin, 05.10.2026, 07:32, vor dem Training
 
@@ -33,9 +33,19 @@ Der W41-Plan wurde umgerechnet: Box Squat 80–85 kg, Power Snatch 37,5–40 kg,
 
 ## Offene Punkte
 
-1. **Paused Bench So 11.10.** Die Angabe steht noch als „60 % des schwersten 4ers“. Es fehlt eine Bench-Referenz, Martins Schätzung ist angefragt. Danach Plan und Payload aktualisieren.
-2. **Lint-Riegel in `scripts/build_payload.py` (Auftrag an Claude Code).** Jedes `detail`, `sub` und `plan_note` mit einem Prozentzeichen im Lastkontext muss im selben Feld auch eine kg-Zahl enthalten, sonst bricht der Build mit Hinweis auf Tag und Übung ab. Ausnahmen wie Steigungs- oder Pulsangaben explizit erlauben. Abnahme: Ein Plan mit „70 %“ ohne kg scheitert, der aktuelle W41-Plan baut sauber, sobald der Bench-Wert ergänzt ist.
-3. **Wochenreview W41.** Bestätigte Box-Squat- und Snatch-Lasten aus den Notizen in `load_references` übernehmen. Die Back-Squat-Schätzung ersetzen, sobald es einen belegten schweren Satz gibt.
+1. **Paused Bench So 11.10.** Erledigt 05.10. nachmittags: Da keine Bench-Referenz existiert und Martins Schätzung noch nicht vorliegt, hat der Coach nach der neuen Regel selbst geschätzt (Bench-1RM ~95 kg aus Push Press 82,5 und Strict HSPU 10, ±10 kg, ~65 % sicher). Im Plan stehen jetzt 4er aufbauend 65 → 80 kg mit RPE-8-Abbruch und Paused Bench 47,5 kg mit Tabelle für das gelaufene 4er-Top. Die Schätzung steht markiert in `state.json` (`load_references.bench_press`); Martins eigene Zahl ersetzt sie, sobald sie kommt.
+2. **Lint-Riegel in `scripts/build_payload.py`.** Erledigt 05.10.: Box- und Ruhetage werden in `sub`, `plan_note`, `warum` und jedem `detail` geprüft. Prozentzeichen oder das Wort „Prozent“ ohne kg-Zahl im selben Feld bricht den Build mit Tag und Übung ab, bevor Payload oder Cache-Stempel geschrieben werden. Erlaubt bleiben Steigung, Puls, HFmax, Recovery, Zone, Effort, Pace und Dämpfer (`PCT_ALLOW`). Abnahme: der Original-W41-Plan (`fd34fae`) scheitert mit acht Treffern, der aktuelle W41-Plan baut sauber, ein Testplan mit Steigungs- und Recovery-Prozenten baut sauber.
+3. **Wochenreview W41.** Bleibt offen: bestätigte Box-Squat-, Snatch- und Bench-Lasten aus den Notizen in `load_references` übernehmen; Back-Squat- und Bench-Schätzung durch belegte Sätze ersetzen.
+
+## Zweitdiagnose (Claude Code, 05.10.2026 nachmittags)
+
+Eigene Prüfung des Falls anhand der Git-Historie, unabhängig von der Morgen-Retro. Die vier genannten Ursachen stimmen, greifen aber zu kurz; das zeigen drei Befunde.
+
+1. **Kein Einzelfall, sondern Muster.** Der W40-Plan trug für den Wiedereinstieg am So 04.10. dieselbe Form („50–55 %“, „bis 90 %“ bei Power Clean und Clean Pull), angelegt im selben Commit `fd34fae` vom 30.09. Der Fehler ist also am ersten Box-Tag nach dem Urlaub bereits einmal durchgelaufen, ohne dass er auffiel. Ursache ist nicht ein Kopierfehler an einem Tag, sondern die Übernahme des DreamWOD-Lastsystems: Metcon-Teile tragen dort ein Level mit kg, Kraftteile Prozente der 1RM. Das Level wurde übersetzt, die Prozente nicht, an jedem Kraftteil der beiden Wochen.
+2. **Die Sofortkorrektur hat Felder repariert, nicht die Woche.** Nach `8a7dc07` standen noch drei lastlose Stellen: Mo-Begründung „Box Squats bei 70 Prozent“ (am Handy ausklappbar), Do Kurzhantel-Snatch und Renegade Rows ohne kg, So Bench „schwerster sauberer 4er“ ohne Zahl neben dem bekannten Paused-Bench-Prozent. Dieselbe Logik, die die Prozente durchgelassen hat (nur die genannte Stelle prüfen, nicht die Klasse), hat auch die Korrektur begrenzt.
+3. **Der Kanon widerspricht sich.** Die neue kg-Regel verlangt eine geschätzte Zahl, wenn die Referenz fehlt. Direkt darüber steht weiter „3. Nur bestätigte Daten verwenden. 4. Ohne Referenz entweder Martin fragen oder eine RPE-basierte Kalibrierung planen“, und in der Quellen-Disziplin „Nur mit ≥90 % Sicherheit ausgeben“. Eine Bench-Schätzung aus Push Press und HSPU erreicht keine 90 %. Solange beide Regeln nebeneinander stehen, entscheidet die Session, welche sie befolgt; heute Morgen hat sie die ältere befolgt. Vorschlag an Martin, nicht umgesetzt (kein Auftrag für `instructions.md`): Punkt 3 und 4 unter „Lasten und RPE“ auf „Schätzen, markieren, Korridor und Abbruch nennen“ umschreiben und die 90-%-Regel für Lastschätzungen ausdrücklich ausnehmen.
+
+Strukturell liegt darunter, dass die Last an Box-Tagen Freitext im Feld `detail` ist. Es gibt kein Zahlfeld, das ein Build prüfen könnte; deshalb konnte der Lint bisher nur Open-Gym-Targets sehen. Der heute eingebaute Riegel prüft den Text und fängt damit die Klasse „Prozent ohne kg“, nicht aber „gar keine Last“ (wie den 4er ohne Zahl). Ein Schema mit Pflichtfeld `kg` je Bewegung wäre die saubere Lösung; das ist ein App-Auftrag und gehört zu Martin.
 
 ## Prozesslehre
 

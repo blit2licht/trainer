@@ -1,6 +1,6 @@
 {
   "schema_version": 2,
-  "aktualisiert_am": "2026-09-30",
+  "aktualisiert_am": "2026-10-05",
   "_hinweis": "Schlanker Zustand seit 30.09.2026: aktuelle Zahlen, letzter Zielkontakt, akute Flags. Verlaufsprosa gehört ins Logbuch; der ausführliche Stand bis 30.09. liegt in der Git-Historie dieser Datei (Commit 120a9d3).",
   "aktuelle_woche": {
     "id": "2026-W40",
@@ -87,6 +87,11 @@
       "kg_1rm_geschaetzt": 120,
       "box_squat_w41": "6 @ 80 kg, RPE 6 (05.10.)",
       "note": "Schätzung Martin 05.10.2026, keine belegte 1RM. Referenz für Box-Lasten in kg."
+    },
+    "bench_press": {
+      "kg_1rm_geschaetzt": 95,
+      "box_4er_w41_plan": "65 → 80 kg aufbauend, Top 80 nur bei RPE ≤ 8 (So 11.10.)",
+      "note": "Schätzung Coach 05.10.2026 (±10 kg, ~65 % sicher) aus Push Press 82,5 und Strict HSPU 10; keine belegte Bench-Zahl, Martins eigene Schätzung angefragt. Nach dem 11.10. durch den gelaufenen 4er ersetzen."
     },
     "pause_ohs": {
       "kg": 55,

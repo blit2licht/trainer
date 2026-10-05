@@ -14,7 +14,7 @@
       "einheit": "Box Squat + For Time",
       "sub": "E3:00 × 4: 6 Box Squats @ 80–85 kg + Calf Raises · For Time: 2000 m Row / 30 HPC / 50 Jump Squats · 15 Min Cap",
       "plan_note": "Level 2 (60 kg). Box Squats 80 kg (gelaufen, RPE 6), Spielraum bis 85 kg; Basis Back Squat ~120 kg geschätzt. Zweiter Tag in Folge nach dem Sonntag — die Ruderstrecke ist der Kreislaufteil, HPC in handlichen Sets.",
-      "warum": "Box Squats bei 70 Prozent, danach 2000 Meter rudern, 30 Hang Power Cleans und 50 Jump Squats. Genau die Mischung, die du wolltest: moderate Hantel, viel Kreislauf.",
+      "warum": "Box Squats mit 80 Kilo, danach 2000 Meter rudern, 30 Hang Power Cleans und 50 Jump Squats. Genau die Mischung, die du wolltest: moderate Hantel, viel Kreislauf.",
       "wod": [
         {
           "struktur": "Every 3:00 × 4",
@@ -118,7 +118,7 @@
       "iso_date": "2026-10-08",
       "day_type": "box",
       "einheit": "3 × 10 Min AMRAP",
-      "sub": "Bike / DB Bench / Renegade Rows / Wall Sit · Row-Ski / Sit-ups / Box Jumps / Plank · Burpees / Devil Press / DB Snatch / Hang",
+      "sub": "Bike / DB Bench / Renegade Rows / Wall Sit · Row-Ski / Sit-ups / Box Jumps / Plank · Burpees / Devil Press / DB Snatch / Hang · DBs 2× 15 kg",
       "plan_note": "Level 2 (2× 15 kg). Reiner Kreislauftag, keine Barbell. Score über alle drei AMRAPs, gleichmäßiges Tempo statt Sprint in Teil 1.",
       "warum": "Drei zehnminütige AMRAPs mit Kurzhanteln, Maschinen und Körpergewicht. Keine Langhantel, nur Kreislauf. Gleichmäßig durchziehen statt im ersten Teil zu überziehen.",
       "wod": [
@@ -138,7 +138,7 @@
             {
               "reps": "10",
               "name": "Renegade Rows",
-              "detail": "5/Seite"
+              "detail": "5/Seite · 2× 15 kg"
             },
             {
               "reps": "30 s",
@@ -189,7 +189,7 @@
             {
               "reps": "10",
               "name": "Alt. DB Snatch",
-              "detail": ""
+              "detail": "15 kg · Level 2"
             },
             {
               "reps": "30 s",
@@ -261,9 +261,9 @@
       "iso_date": "2026-10-11",
       "day_type": "box",
       "einheit": "Bench Press + 16 Min AMRAP",
-      "sub": "E2:15 × 4: 4 Bench + 10 Face Pulls · 1× Max Paused Bench @ 60 % · AMRAP 16: 200 m Run / 20 FR Lunges / 20 Push Press / 20 Cal / 20 Sit-ups",
-      "plan_note": "Standard Box, Level 2 (30 kg). Alternative bei gutem Wetter: Ausfahrt statt Box — Martin entscheidet Sa-Abend, dann Plan anpassen. Team-WOD statt DreamWOD: hochladen und einordnen lassen.",
-      "warum": "Bankdrücken in Viererserien, dann 16 Minuten AMRAP mit Laufen, Lunges, Push Press und Kalorien. Bei gutem Wetter ist die Ausfahrt der gleichwertige Tausch.",
+      "sub": "E2:15 × 4: 4 Bench 65 → 80 kg + 10 Face Pulls · 1× Max Paused Bench @ 47,5 kg · AMRAP 16: 200 m Run / 20 FR Lunges / 20 Push Press / 20 Cal / 20 Sit-ups",
+      "plan_note": "Standard Box, Level 2 (30 kg). Bench ohne belegte Referenz — Schätzung Coach 05.10. aus Push Press 82,5 und Strict HSPU 10: Bench-1RM ~95 kg (±10), 4er-Top 75–80 kg. Aufbau 65 → 70 → 75 → 80 kg; 80 nur, wenn 75 bei RPE ≤ 7 lief. Abbruch: RPE 8 erreicht, Bar wird spürbar langsamer oder kein Spotter — dann kein weiterer Satz schwerer. Paused Bench = 60 % des gelaufenen 4er-Tops, auf 2,5 kg abgerundet: 75 → 45 kg, 80 → 47,5 kg, 82,5 → 50 kg. Martins eigene Bench-Schätzung ersetzt die Coach-Schätzung, sobald sie kommt; der gelaufene 4er wird im W41-Review Referenz. Alternative bei gutem Wetter: Ausfahrt statt Box — Martin entscheidet Sa-Abend, dann Plan anpassen. Team-WOD statt DreamWOD: hochladen und einordnen lassen.",
+      "warum": "Bankdrücken in Viererserien aufbauend bis 75 bis 80 Kilo, dann ein Satz Pausen-Bankdrücken mit 47,5 Kilo auf Wiederholungen, danach 16 Minuten AMRAP mit Laufen, Lunges, Push Press und Kalorien. Die Bench-Zahlen sind eine Schätzung ohne belegte Referenz: bei RPE 8 ist Schluss, der gelaufene 4er wird die Referenz. Bei gutem Wetter ist die Ausfahrt der gleichwertige Tausch.",
       "wod": [
         {
           "struktur": "Every 2:15 × 4",
@@ -271,7 +271,7 @@
             {
               "reps": "4",
               "name": "Bench Press",
-              "detail": "schwerster sauberer 4er"
+              "detail": "65 → 80 kg aufbauend (Schätzung) · Top 80 nur bei RPE ≤ 8"
             },
             {
               "reps": "10",
@@ -286,7 +286,7 @@
             {
               "reps": "Max",
               "name": "Paused Bench Press",
-              "detail": "60 % des schwersten 4er · 2 s Pause"
+              "detail": "47,5 kg (60 % des 4er-Tops; 75 → 45 · 80 → 47,5 · 82,5 → 50) · 2 s Pause"
             }
           ]
         },

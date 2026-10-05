@@ -89,9 +89,9 @@
       "note": "Schätzung Martin 05.10.2026, keine belegte 1RM. Referenz für Box-Lasten in kg."
     },
     "bench_press": {
-      "kg_1rm_geschaetzt": 95,
-      "box_4er_w41_plan": "65 → 80 kg aufbauend, Top 80 nur bei RPE ≤ 8 (So 11.10.)",
-      "note": "Schätzung Coach 05.10.2026 (±10 kg, ~65 % sicher) aus Push Press 82,5 und Strict HSPU 10; keine belegte Bench-Zahl, Martins eigene Schätzung angefragt. Nach dem 11.10. durch den gelaufenen 4er ersetzen."
+      "kg_1rm_geschaetzt": 85,
+      "box_4er_w41_plan": "60 → 75 kg aufbauend, Top 75 nur bei RPE ≤ 8 (So 11.10.)",
+      "note": "Keine belegte Bench-Zahl. Martin 05.10.2026: Bauchgefühl 4er ~70 kg, ausdrücklich unsicher. Coach-Ableitung aus Push Press 82,5 und Strict HSPU 10: 4er 75–80, 1RM-Spanne 80–95 (~50 % sicher). Plan nimmt Martins Zahl als Kern. Nach dem 11.10. durch den gelaufenen 4er ersetzen."
     },
     "pause_ohs": {
       "kg": 55,

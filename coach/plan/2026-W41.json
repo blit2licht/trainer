@@ -261,9 +261,9 @@
       "iso_date": "2026-10-11",
       "day_type": "box",
       "einheit": "Bench Press + 16 Min AMRAP",
-      "sub": "E2:15 × 4: 4 Bench 65 → 80 kg + 10 Face Pulls · 1× Max Paused Bench @ 47,5 kg · AMRAP 16: 200 m Run / 20 FR Lunges / 20 Push Press / 20 Cal / 20 Sit-ups",
-      "plan_note": "Standard Box, Level 2 (30 kg). Bench ohne belegte Referenz — Schätzung Coach 05.10. aus Push Press 82,5 und Strict HSPU 10: Bench-1RM ~95 kg (±10), 4er-Top 75–80 kg. Aufbau 65 → 70 → 75 → 80 kg; 80 nur, wenn 75 bei RPE ≤ 7 lief. Abbruch: RPE 8 erreicht, Bar wird spürbar langsamer oder kein Spotter — dann kein weiterer Satz schwerer. Paused Bench = 60 % des gelaufenen 4er-Tops, auf 2,5 kg abgerundet: 75 → 45 kg, 80 → 47,5 kg, 82,5 → 50 kg. Martins eigene Bench-Schätzung ersetzt die Coach-Schätzung, sobald sie kommt; der gelaufene 4er wird im W41-Review Referenz. Alternative bei gutem Wetter: Ausfahrt statt Box — Martin entscheidet Sa-Abend, dann Plan anpassen. Team-WOD statt DreamWOD: hochladen und einordnen lassen.",
-      "warum": "Bankdrücken in Viererserien aufbauend bis 75 bis 80 Kilo, dann ein Satz Pausen-Bankdrücken mit 47,5 Kilo auf Wiederholungen, danach 16 Minuten AMRAP mit Laufen, Lunges, Push Press und Kalorien. Die Bench-Zahlen sind eine Schätzung ohne belegte Referenz: bei RPE 8 ist Schluss, der gelaufene 4er wird die Referenz. Bei gutem Wetter ist die Ausfahrt der gleichwertige Tausch.",
+      "sub": "E2:15 × 4: 4 Bench 60 → 75 kg + 10 Face Pulls · 1× Max Paused Bench @ 42,5 kg · AMRAP 16: 200 m Run / 20 FR Lunges / 20 Push Press / 20 Cal / 20 Sit-ups",
+      "plan_note": "Standard Box, Level 2 (30 kg). Bench ohne belegte Referenz. Martin 05.10.: keine Zahl, Bauchgefühl 4er ~70 kg, ausdrücklich unsicher; Coach-Ableitung aus Push Press 82,5 und Strict HSPU 10 läge bei 75–80. Plan nimmt Martins Zahl als Kern: Aufbau 60 → 65 → 70 → 75 kg; 75 nur, wenn 70 bei RPE ≤ 7 lief. Abbruch: RPE 8 erreicht, Bar wird spürbar langsamer oder kein Spotter — dann kein weiterer Satz schwerer. Paused Bench = 60 % des gelaufenen 4er-Tops, auf 2,5 kg abgerundet: 70 → 42,5 kg, 75 → 45 kg, 80 → 47,5 kg. Der gelaufene 4er wird im W41-Review Referenz. Alternative bei gutem Wetter: Ausfahrt statt Box — Martin entscheidet Sa-Abend, dann Plan anpassen. Team-WOD statt DreamWOD: hochladen und einordnen lassen.",
+      "warum": "Bankdrücken in Viererserien aufbauend bis 70 bis 75 Kilo, dann ein Satz Pausen-Bankdrücken mit 42,5 Kilo auf Wiederholungen, danach 16 Minuten AMRAP mit Laufen, Lunges, Push Press und Kalorien. Die Bench-Zahlen sind eine Schätzung ohne belegte Referenz: bei RPE 8 ist Schluss, der gelaufene 4er wird die Referenz. Bei gutem Wetter ist die Ausfahrt der gleichwertige Tausch.",
       "wod": [
         {
           "struktur": "Every 2:15 × 4",
@@ -271,7 +271,7 @@
             {
               "reps": "4",
               "name": "Bench Press",
-              "detail": "65 → 80 kg aufbauend (Schätzung) · Top 80 nur bei RPE ≤ 8"
+              "detail": "60 → 75 kg aufbauend (Schätzung) · 75 nur bei RPE ≤ 8"
             },
             {
               "reps": "10",
@@ -286,7 +286,7 @@
             {
               "reps": "Max",
               "name": "Paused Bench Press",
-              "detail": "47,5 kg (60 % des 4er-Tops; 75 → 45 · 80 → 47,5 · 82,5 → 50) · 2 s Pause"
+              "detail": "42,5 kg (60 % des 4er-Tops; 70 → 42,5 · 75 → 45 · 80 → 47,5) · 2 s Pause"
             }
           ]
         },

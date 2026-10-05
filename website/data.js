@@ -255,7 +255,7 @@ const DATA = {
         "iso_date": "2026-10-11",
         "day_type": "box",
         "einheit": "Bench Press + 16 Min AMRAP",
-        "sub": "E2:15 × 4: 4 Bench 65 → 80 kg + 10 Face Pulls · 1× Max Paused Bench @ 47,5 kg · AMRAP 16: 200 m Run / 20 FR Lunges / 20 Push Press / 20 Cal / 20 Sit-ups",
+        "sub": "E2:15 × 4: 4 Bench 60 → 75 kg + 10 Face Pulls · 1× Max Paused Bench @ 42,5 kg · AMRAP 16: 200 m Run / 20 FR Lunges / 20 Push Press / 20 Cal / 20 Sit-ups",
         "wod": [
           {
             "struktur": "Every 2:15 × 4",
@@ -263,7 +263,7 @@ const DATA = {
               {
                 "reps": "4",
                 "name": "Bench Press",
-                "detail": "65 → 80 kg aufbauend (Schätzung) · Top 80 nur bei RPE ≤ 8"
+                "detail": "60 → 75 kg aufbauend (Schätzung) · 75 nur bei RPE ≤ 8"
               },
               {
                 "reps": "10",
@@ -278,7 +278,7 @@ const DATA = {
               {
                 "reps": "Max",
                 "name": "Paused Bench Press",
-                "detail": "47,5 kg (60 % des 4er-Tops; 75 → 45 · 80 → 47,5 · 82,5 → 50) · 2 s Pause"
+                "detail": "42,5 kg (60 % des 4er-Tops; 70 → 42,5 · 75 → 45 · 80 → 47,5) · 2 s Pause"
               }
             ]
           },
@@ -313,7 +313,7 @@ const DATA = {
             ]
           }
         ],
-        "warum": "Bankdrücken in Viererserien aufbauend bis 75 bis 80 Kilo, dann ein Satz Pausen-Bankdrücken mit 47,5 Kilo auf Wiederholungen, danach 16 Minuten AMRAP mit Laufen, Lunges, Push Press und Kalorien. Die Bench-Zahlen sind eine Schätzung ohne belegte Referenz: bei RPE 8 ist Schluss, der gelaufene 4er wird die Referenz. Bei gutem Wetter ist die Ausfahrt der gleichwertige Tausch."
+        "warum": "Bankdrücken in Viererserien aufbauend bis 70 bis 75 Kilo, dann ein Satz Pausen-Bankdrücken mit 42,5 Kilo auf Wiederholungen, danach 16 Minuten AMRAP mit Laufen, Lunges, Push Press und Kalorien. Die Bench-Zahlen sind eine Schätzung ohne belegte Referenz: bei RPE 8 ist Schluss, der gelaufene 4er wird die Referenz. Bei gutem Wetter ist die Ausfahrt der gleichwertige Tausch."
       }
     ]
   },
@@ -572,7 +572,7 @@ const DATA = {
           "iso_date": "2026-10-11",
           "day_type": "box",
           "einheit": "Bench Press + 16 Min AMRAP",
-          "sub": "E2:15 × 4: 4 Bench 65 → 80 kg + 10 Face Pulls · 1× Max Paused Bench @ 47,5 kg · AMRAP 16: 200 m Run / 20 FR Lunges / 20 Push Press / 20 Cal / 20 Sit-ups",
+          "sub": "E2:15 × 4: 4 Bench 60 → 75 kg + 10 Face Pulls · 1× Max Paused Bench @ 42,5 kg · AMRAP 16: 200 m Run / 20 FR Lunges / 20 Push Press / 20 Cal / 20 Sit-ups",
           "wod": [
             {
               "struktur": "Every 2:15 × 4",
@@ -580,7 +580,7 @@ const DATA = {
                 {
                   "reps": "4",
                   "name": "Bench Press",
-                  "detail": "65 → 80 kg aufbauend (Schätzung) · Top 80 nur bei RPE ≤ 8"
+                  "detail": "60 → 75 kg aufbauend (Schätzung) · 75 nur bei RPE ≤ 8"
                 },
                 {
                   "reps": "10",
@@ -595,7 +595,7 @@ const DATA = {
                 {
                   "reps": "Max",
                   "name": "Paused Bench Press",
-                  "detail": "47,5 kg (60 % des 4er-Tops; 75 → 45 · 80 → 47,5 · 82,5 → 50) · 2 s Pause"
+                  "detail": "42,5 kg (60 % des 4er-Tops; 70 → 42,5 · 75 → 45 · 80 → 47,5) · 2 s Pause"
                 }
               ]
             },
@@ -630,7 +630,7 @@ const DATA = {
               ]
             }
           ],
-          "warum": "Bankdrücken in Viererserien aufbauend bis 75 bis 80 Kilo, dann ein Satz Pausen-Bankdrücken mit 47,5 Kilo auf Wiederholungen, danach 16 Minuten AMRAP mit Laufen, Lunges, Push Press und Kalorien. Die Bench-Zahlen sind eine Schätzung ohne belegte Referenz: bei RPE 8 ist Schluss, der gelaufene 4er wird die Referenz. Bei gutem Wetter ist die Ausfahrt der gleichwertige Tausch."
+          "warum": "Bankdrücken in Viererserien aufbauend bis 70 bis 75 Kilo, dann ein Satz Pausen-Bankdrücken mit 42,5 Kilo auf Wiederholungen, danach 16 Minuten AMRAP mit Laufen, Lunges, Push Press und Kalorien. Die Bench-Zahlen sind eine Schätzung ohne belegte Referenz: bei RPE 8 ist Schluss, der gelaufene 4er wird die Referenz. Bei gutem Wetter ist die Ausfahrt der gleichwertige Tausch."
         }
       ]
     }

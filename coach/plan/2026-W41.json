@@ -12,8 +12,8 @@
       "iso_date": "2026-10-05",
       "day_type": "box",
       "einheit": "Box Squat + For Time",
-      "sub": "E3:00 × 4: 6 Box Squats @ 70–72,5 % + Calf Raises · For Time: 2000 m Row / 30 HPC / 50 Jump Squats · 15 Min Cap",
-      "plan_note": "Level 2 (60 kg). Box Squats bei 70 % des Back-Squat-1RM, sauber und kontrolliert. Zweiter Tag in Folge nach dem Sonntag — die Ruderstrecke ist der Kreislaufteil, HPC in handlichen Sets.",
+      "sub": "E3:00 × 4: 6 Box Squats @ 80–85 kg + Calf Raises · For Time: 2000 m Row / 30 HPC / 50 Jump Squats · 15 Min Cap",
+      "plan_note": "Level 2 (60 kg). Box Squats 80 kg (gelaufen, RPE 6), Spielraum bis 85 kg; Basis Back Squat ~120 kg geschätzt. Zweiter Tag in Folge nach dem Sonntag — die Ruderstrecke ist der Kreislaufteil, HPC in handlichen Sets.",
       "warum": "Box Squats bei 70 Prozent, danach 2000 Meter rudern, 30 Hang Power Cleans und 50 Jump Squats. Genau die Mischung, die du wolltest: moderate Hantel, viel Kreislauf.",
       "wod": [
         {
@@ -22,7 +22,7 @@
             {
               "reps": "6",
               "name": "Box Squat",
-              "detail": "70–72,5 % Back-Squat-1RM"
+              "detail": "80–85 kg"
             },
             {
               "reps": "10/10",
@@ -210,8 +210,8 @@
       "iso_date": "2026-10-10",
       "day_type": "box",
       "einheit": "Power Snatch + Snatch Pull + EMOM",
-      "sub": "E1:30 × 5: 3 Power Snatches @ 60–65 % · E1:00 × 3: 2 Snatch Pulls · EMOM 12: DB Snatch / BBJO + Max C2B",
-      "plan_note": "Level 2. Power Snatch bei 60–65 % (~37,5 kg), Touch-and-Go wenn sauber. Pulls bis 100 %, nicht 110. EMOM: C2B als Score, aber sauber vor schnell.",
+      "sub": "E1:30 × 5: 3 Power Snatches @ 37,5–40 kg · E1:00 × 3: 2 Snatch Pulls · EMOM 12: DB Snatch / BBJO + Max C2B",
+      "plan_note": "Level 2. Power Snatch 37,5–40 kg, Touch-and-Go wenn sauber. Pulls bis 60 kg, nicht schwerer. EMOM: C2B als Score, aber sauber vor schnell.",
       "warum": "Leichte Power Snatches um 37,5 Kilo, Snatch Pulls und dann zwölf Minuten EMOM mit Kurzhantel-Snatches, Burpee Box Jump Overs und Chest-to-Bar. Der einzige Tag mit Snatch-Kontakt diese Woche, ganz ohne Druck.",
       "wod": [
         {
@@ -220,7 +220,7 @@
             {
               "reps": "3",
               "name": "Power Snatch",
-              "detail": "60–65 % · TnG wenn sauber"
+              "detail": "37,5–40 kg · TnG wenn sauber"
             }
           ]
         },
@@ -230,7 +230,7 @@
             {
               "reps": "2",
               "name": "Snatch Pull",
-              "detail": "bis 100 %"
+              "detail": "bis 60 kg"
             }
           ]
         },

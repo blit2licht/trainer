@@ -83,6 +83,11 @@
       "top_single_w37": 105,
       "note": "105×1 (W37). Kein Ziel mehr; Referenz für Box-Lasten."
     },
+    "back_squat": {
+      "kg_1rm_geschaetzt": 120,
+      "box_squat_w41": "6 @ 80 kg, RPE 6 (05.10.)",
+      "note": "Schätzung Martin 05.10.2026, keine belegte 1RM. Referenz für Box-Lasten in kg."
+    },
     "pause_ohs": {
       "kg": 55,
       "schema": "3x3",

@@ -392,3 +392,18 @@ Martin bestätigt die am 12.09. vorläufig gesetzten Leiterwährungs-Ziele:
 Deficit Strict HSPU „4×5 sauber vom Defizit" (Kalibrierhöhe aus der Session
 21.09., Richtwert ~10 cm) und Bar Muscle-up „3×5 verbunden" (statt „5
 unbroken"). Die erreichte Treppenstufe ist der Nachweis, kein Testsatz.
+
+---
+
+## 2026-10-05 — Retro: Prozent statt Kilogramm am Box-Tag
+
+Der W41-Plan übernahm DreamWOD-Prozente („70–72,5 % Back-Squat-1RM“) ungefiltert
+auf die Website; Martin stand ohne kg-Zahl in der Box. Die Kilogramm-Erwartung
+stand nirgends im Kanon. Vorhersage der Retro war, dass Martin die fehlende Regel
+und den leeren ersten Turn bemängelt; tatsächlich lag der Kern woanders: Es ist
+Coach-Job zu sagen, was geht, auch per Schätzung, statt Prozente, Fragen oder
+Freigabe-Rückfragen zurückzugeben. Beschlossen: kg-Regel in instructions.md
+(„Lasten und RPE“), Back Squat ~120 kg als Schätzreferenz in state.json, alle
+Prozentangaben der W41 in kg umgerechnet, unterwöchige Korrekturen ohne
+Commit-Rückfrage veröffentlichen (stand schon im Kanon, wurde nicht befolgt).
+Offen: kg-Zahl für den Paused Bench am 11.10., dafür fehlt eine Bench-Referenz.

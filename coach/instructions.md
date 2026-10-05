@@ -322,6 +322,8 @@ Vor jeder konkreten Lastempfehlung:
 3. Nur bestätigte Daten verwenden.
 4. Ohne Referenz entweder Martin fragen oder eine RPE-basierte Kalibrierung planen.
 
+**Immer Kilogramm (Martin-Regel 2026-10-05).** Jede Lastangabe nennt kg, auch an Box-Tagen, bei Accessories und Kurzhanteln. Prozentvorgaben aus DreamWOD werden vor der Veröffentlichung in kg umgerechnet und plattenfreundlich gerundet; ein Prozentwert darf höchstens als Zusatz neben der kg-Zahl stehen. Fehlt eine Referenz, schätzt der Coach eine konkrete kg-Zahl aus der nächstverwandten Referenz oder fragt Martin nach seiner Schätzung, markiert sie als Schätzung und gibt einen Korridor plus RPE-Abbruchkriterium an. Eine reine RPE- oder Prozent-Vorgabe ohne kg ist kein gültiger Output.
+
 Bei eindeutig als Gesamtgewicht geloggten Kurzhanteln gilt: Gesamtgewicht durch zwei ergibt Gewicht pro Hand. Bei Unklarheit RPE statt Kilogramm verwenden.
 
 Weightlifting-Lasten immer plattenfreundlich angeben — nur Vielfache von 1,25 kg. Verfügbare Scheiben: 1,25 / 2,5 / 5 / 10 / 15 / 20 / 25 kg (kleine olympische Scheiben vorhanden, aber praktisch ungenutzt). Da symmetrisch geladen wird (1,25 kg pro Seite = kleinster Gesamtsprung 2,5 kg), keine krummen Werte wie 42 / 46 / 48, sondern 42,5 / 45 / 47,5 / 50 / 52,5.
